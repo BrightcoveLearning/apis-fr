@@ -1,0 +1,1979 @@
+﻿<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Dans cette rubrique, vous découvrirez les opérations de base liées à l'intégration de Brightcove Video Cloud à un CMS. Il répertorie les fonctions typiques que les utilisateurs exécutent dans le CMS et les opérations d'API Brightcove qui peuvent être utilisées pour fournir cette fonctionnalité.">
+  
+  <title>Intégration de votre CMS avec Video Cloud</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">  
+  <link data-react-helmet="true" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&amp;display=swap">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/prism.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/styles.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/landing-page.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/tabs.css">
+  <link rel="stylesheet" href="/assets/css/local.css">
+  <link data-react-helmet="true" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&display=swap">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/381443caa8.js" crossorigin="anonymous"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/google-analytics.js"></script>
+  <script src="/assets/js/sajari-head.js"></script>
+</head>
+
+<body class="body">
+
+<header>
+  <div class="div-header">
+    <a href="/"><img class="product-logo" src="https://support.brightcove.com/site-assets/images/site/product-logos/Video_Cloud_Logo.svg" alt="logo du produit" style="max-height: 100px;max-width: 232px;"/></a>
+<!-- GTranslate: https://gtranslate.io/ -->
+<select onchange="doGTranslate(this);"><option value="">Sélectionner la langue</option><option value="en|en" translate="No">English</option><option value="en|zh-TW" translate="No">繁體中文</option><option value="en|fr" translate="No">Français</option><option value="en|de" translate="No">Deutsche</option><option value="en|ja" translate="No">日本語</option><option value="en|ko" translate="No">한국어</option><option value="en|es" translate="No">Español</option></select>
+
+<script>
+/* <![CDATA[ */
+function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];var plang=location.hostname.split('.')[0];if(plang.length !=2 && plang.toLowerCase() != 'zh-cn' && plang.toLowerCase() != 'zh-tw')plang='en';location.href=location.protocol+'//'+(lang == 'en' ? '' : lang+'.')+location.hostname.replace('www.', '').replace(RegExp('^' + plang + '\\.'), '')+location.pathname+location.search;}
+/* ]]> */
+</script>
+
+
+
+    <span class="secondary-nav"><a href="https://supportportal.brightcove.com/s/login/?"><img src="https://support.brightcove.com/site-assets/images/site/support.png" alt="assistance"/> Contacter le support</a> <span style="vertical-align: top;margin-left:1em;margin-right:1em;">|</span> <a href="https://status.brightcove.com/">État<img src="https://support.brightcove.com/site-assets/images/site/status.png" alt="état du système"/> du système</a></span> <br/>
+    
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb arr-right">
+      
+      <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+      
+      
+      
+      <li class="breadcrumb-item"><a href="/general/">Informations générales</a></li>
+      
+      <li class="breadcrumb-item active" aria-current="page">Intégration de votre CMS avec Video Cloud</li>
+    </ol>
+  </nav>
+</header>
+<div class="container">
+    <div class="row">
+            <div class="col-sm-3 left-side-bar">
+        <select id="site_select" class="bcls-select" style="margin-right: 1rem;">
+          <option value="">Autres documents Brightcove</option>
+          
+            
+              <option value="https://support.brightcove.com">Accueil Documentation</option>
+            
+          
+            
+              <option value="https://audience.support.brightcove.com">Audience de Brightcove</option>
+            
+          
+            
+              <option value="https://beacon.support.brightcove.com">Balise Brightcove</option>
+            
+          
+            
+              <option value="https://campaign.support.brightcove.com">Campagne Brightcove</option>
+            
+          
+            
+              <option value="https://engage.support.brightcove.com">Brightcove Engagez</option>
+            
+          
+            
+              <option value="https://live.support.brightcove.com">Brightcove Live</option>
+            
+          
+            
+              <option value="https://gallery.support.brightcove.com">Brightcove Gallery</option>
+            
+          
+            
+              <option value="https://ssai.support.brightcove.com">Brightcove SSAI</option>
+            
+          
+            
+              <option value="https://social.support.brightcove.com">Brightcove Social</option>
+            
+          
+            
+              <option value="https://studio.support.brightcove.com">Video Cloud Studio</option>
+            
+          
+            
+              <option value="https://player.support.brightcove.com">Développement du joueur Brightcove</option>
+            
+          
+            
+              <option value="https://apis.support.brightcove.com">API de la plate-forme Video Cloud</option>
+            
+          
+            
+              <option value="https://sdks.support.brightcove.com">SDK pour périphériques Video Cloud</option>
+            
+          
+            
+              <option value="https://integrations.support.brightcove.com">Intégrations et connecteurs CMS</option>
+            
+          
+            
+              <option value="https://general.support.brightcove.com">Informations générales sur Video Cloud</option>
+            
+          
+            
+              <option value="https://zencoder.support.brightcove.com">Zencoder</option>
+            
+          
+        </select>
+
+        <nav class="sidenav" id="side_nav">
+          
+            
+            <h5><a href="/index.html">Accueil</a></h5>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/getting-started/index.html">Mise en route <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/getting-started/getting-started-brightcove-apis.html">Vue d'ensemble : API de plate-forme</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/authentication-brightcove-api-requests.html">Authentification pour les requêtes API</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/concepts-testing-tools-brightcove-apis.html">Outils de test pour les API Brightcove</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/learning-guide-using-rest-apis.html">Guide d'apprentissage : Utilisation des API REST</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/general/index.html">Informations générales <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/general/all-api-references.html">Toutes les références API</a></li>
+                  
+                
+                  
+                    <li><a href="/general/overview-context-aware-encoding.html">Vue d'ensemble de l'encodage tenant compte du contexte</a></li>
+                  
+                
+                  
+                    <li><a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'identification d'authentification API</a></li>
+                  
+                
+                  
+                    <li><a href="/general/integrating-your-cms-video-cloud.html">Intégration de votre CMS avec Video Cloud</a></li>
+                  
+                
+                  
+                    <li><a href="/general/platform-api-code-samples.html">Exemples de code API de plate-forme</a></li>
+                  
+                
+                  
+                    <li><a href="/general/video-cloud-api-training-videos.html">Vidéos de formation API de plate-forme</a></li>
+                  
+                
+                  
+                    <li><a href="/general/concepts-api-tester.html">Testeur API en ligne</a></li>
+                  
+                
+                  
+                    <li><a href="/general/use-insomnia-api-requests.html">Utiliser l'Insomnie pour les requêtes API</a></li>
+                  
+                
+                  
+                    <li><a href="/general/use-postman-api-requests.html">Utiliser Postman pour les requêtes API</a></li>
+                  
+                
+                  
+                    <li><a href="/general/audio-content.html">Contenu audio</a></li>
+                  
+                
+                  
+                    <li><a href="/general/known-issues.html">Problèmes connus des API de la plate-forme</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/analytics/index.html">API Analytics <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/analytics/getting-started/index.html">Mise en route <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/analytics/getting-started/overview-analytics-api-v1.html">Vue d'ensemble : API Analytics</a></li>
+                        
+                        <li><a href="/analytics/getting-started/analytics-api-explorer.html">Analytics API Explorateur</a></li>
+                        
+                        <li><a href="/analytics/getting-started/overview-video-data-endpoint.html">Vue d'ensemble : Point de terminaison de données vidéo</a></li>
+                        
+                        <li><a href="/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html">Vue d'ensemble : Dimensions, champs et paramètres</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/analytics/general/index.html">Informations générales <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/analytics/general/faq-analytics-api.html">FAQ : API Analytics</a></li>
+                        
+                        <li><a href="/analytics/general/analytics-api-glossary.html">Glossaire API Analytics</a></li>
+                        
+                        <li><a href="/analytics/general/analytics-api-unique-users.html">Utilisateurs uniques</a></li>
+                        
+                        <li><a href="/analytics/general/live-metrics.html">Mesures en direct</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/analytics/references/index.html">Références <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/analytics/references/reference.html">Référence de l'API Analytics</a></li>
+                        
+                        <li><a href="/analytics/references/analytics-api-release-notes.html">Notes de version</a></li>
+                        
+                        <li><a href="/analytics/references/known-issues.html">Problèmes connus</a></li>
+                        
+                        <li><a href="/analytics/references/analytics-api-error-reference.html">Référence d'erreur</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/analytics/dimension-guides/index.html">Guides de dimension <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-account.html">Dimension : <code>compte</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-browsertype.html">Dimension : <code>browser_type</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-date.html">Dimension : <code>date</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-datehour.html">Dimension : <code>date_hour</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-destinationdomain.html">Dimension : <code>destination_domain</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-destinationpath.html">Dimension : <code>destination_path</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-devicemanufacturer.html">Dimension : <code>device_manufacturier</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-devicetype.html">Dimension : <code>device_type</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-deviceos.html">Dimension : <code>device_os</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-city.html">Dimension : <code>ville</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-country.html">Dimension : <code>pays</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-region.html">Dimension : <code>région</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-livestream.html">Dimension : <code>live_stream</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-referrerdomain.html">Dimension : <code>referrer_domain</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-sourcetype.html">Dimension : <code>source_type</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-searchterms.html">Dimension : <code>search_terms</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-socialplatform.html">Dimension : <code>social_platform</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-player.html">Dimension : <code>joueur</code></a></li>
+                        
+                        <li><a href="/analytics/dimension-guides/dimension-video.html">Dimension : <code>vidéo</code></a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/analytics/code-samples/index.html">Exemples de code <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/analytics/code-samples/analytics-api-sample-concurrent-viewers-live-events.html">Visionneuses simultanées pour les événements en direct</a></li>
+                        
+                        <li><a href="/analytics/code-samples/analytics-api-sample-daily-analytics-report-generator.html">Générateur de rapports d'analyse quotidienne</a></li>
+                        
+                        <li><a href="/analytics/code-samples/analytics-api-sample-destinations-report.html">Rapport Destinations</a></li>
+                        
+                        <li><a href="/analytics/code-samples/analytics-api-sample-geographical-analytics-report.html">Rapport d'analyse géographique</a></li>
+                        
+                        <li><a href="/analytics/code-samples/analytics-api-sample-unique-users-day.html">Utilisateurs uniques par jour</a></li>
+                        
+                        <li><a href="/analytics/code-samples/analytics-api-sample-video-engagement-graph.html">Graphique d'engagement vidéo</a></li>
+                        
+                        <li><a href="/analytics/code-samples/analytics-api-sample-video-report-player-and-day.html">Rapport vidéo par joueur et par jour</a></li>
+                        
+                        <li><a href="/analytics/code-samples/analytics-api-sample-video-report-reference-id.html">Rapport vidéo par ID de référence</a></li>
+                        
+                        <li><a href="/analytics/code-samples/analytics-api-sample-video-report-tags.html">Rapport vidéo par balises</a></li>
+                        
+                        <li><a href="/analytics/code-samples/analyticscms-apis-sample-analytics-playlists.html">Analytics par listes de lecture</a></li>
+                        
+                        <li><a href="/analytics/code-samples/analyticscms-apis-sample-recently-added-videos.html">Vidéos récemment ajoutées</a></li>
+                        
+                        <li><a href="/analytics/code-samples/code-sample-video-analytics-report-country-and-day.html">Rapport d'analyse vidéo par pays et par jour</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/cms/index.html">API CMS <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/cms/getting-started/index.html">Mise en route <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/cms/getting-started/overview-cms-api.html">Vue d'ensemble : API CMS</a></li>
+                        
+                        <li><a href="/cms/getting-started/practice-area-cms-api.html">Domaine d'entraînement : API CMS</a></li>
+                        
+                        <li><a href="/cms/getting-started/best-practices-cms-and-playback-apis.html">Meilleures pratiques : CMS et API de lecture</a></li>
+                        
+                        <li><a href="/cms/getting-started/cms-api-notifications.html">Notifications API CMS</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/cms/references/index.html">Références <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/cms/references/reference.html">Référence de l'API CMS</a></li>
+                        
+                        <li><a href="/cms/references/catalog-apis-cms-api-and-playback-api-release-notes.html">CMS/API de lecture Notes de mise à jour</a></li>
+                        
+                        <li><a href="/cms/references/known-issues.html">Problèmes connus</a></li>
+                        
+                        <li><a href="/cms/references/cms-api-video-fields-reference.html">Référence des champs vidéo API CMS</a></li>
+                        
+                        <li><a href="/cms/references/cms-api-playlist-fields-reference.html">Référence des champs de liste de lecture API CMS</a></li>
+                        
+                        <li><a href="/cms/references/cms-api-custom-fields-reference.html">Référence des champs personnalisés de l'API CMS</a></li>
+                        
+                        <li><a href="/cms/references/cms-api-folder-fields-reference.html">Référence des champs de dossier API CMS</a></li>
+                        
+                        <li><a href="/cms/references/cms-api-error-message-reference.html">Référence du message d'erreur de l'API CMS</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/cms/searching/index.html">Recherche <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/cms/searching/cms-and-playback-apis-video-search-v2.html">API CMS : Recherche vidéo v2</a></li>
+                        
+                        <li><a href="/cms/searching/cms-api-playlists-search.html">API CMS : Recherche de listes de</a>lecture</li>
+                        
+                        <li><a href="/cms/searching/using-cms-api-page-search-results.html">Résultats de recherche de page</a></li>
+                        
+                        <li><a href="/cms/searching/cmsplayback-api-videos-search.html">CMS et API de lecture : Recherche vidéo v1</a></li>
+                        
+                        <li><a href="/playback/guides/catalog-search-architecture.html">Architecture de recherche de catalogue</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/cms/managing-videos/index.html">Gestion des vidéos/actifs <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/cms/managing-videos/using-cms-api-add-geo-filtering.html">Ajouter un filtrage géo-filtrant</a></li>
+                        
+                        <li><a href="/cms/managing-videos/digital-master-delete-api.html">API de suppression principale numérique</a></li>
+                        
+                        <li><a href="/cms/managing-videos/deleting-videos.html">Suppression de vidéos</a></li>
+                        
+                        <li><a href="/cms/managing-videos/getting-counts-videos-and-playlists.html">Obtenir le nombre de vidéos et de playlists</a></li>
+                        
+                        <li><a href="/cms/managing-videos/managing-playlists-using-cms-api.html">Gestion des listes de lecture à l'aide de l'API CMS</a></li>
+                        
+                        <li><a href="/cms/managing-videos/using-cms-api-managing-clips.html">Gestion des clips</a></li>
+                        
+                        <li><a href="/cms/managing-videos/media-sharing-cms-api.html">Partage de médias</a></li>
+                        
+                        <li><a href="/cms/managing-videos/multilingual-metadata.html">Métadonnées multilingues</a></li>
+                        
+                        <li><a href="/cms/managing-videos/using-cms-api-retrieve-video-data.html">Récupérer des données vidéo</a></li>
+                        
+                        <li><a href="/cms/managing-videos/setting-360-degree-video-properties-cms-api.html">Définir les propriétés vidéo à 360 degrés</a></li>
+                        
+                        <li><a href="/cms/managing-videos/using-cms-api-remote-assets.html">Ressources distantes</a></li>
+                        
+                        <li><a href="/cms/managing-videos/using-cms-api-add-webvtt-captions-text-tracks.html">Ajouter des légendes WebVTT (pistes de texte)</a></li>
+                        
+                        <li><a href="/cms/managing-videos/generate-video-sitemaps.html">Générer des sitemaps vidéo</a></li>
+                        
+                        <li><a href="/cms/managing-videos/identifying-low-performing-content.html">Identification du contenu faiblement performant</a></li>
+                        
+                        <li><a href="/cms/managing-videos/cms-api-working-folders.html">Utilisation des dossiers</a></li>
+                        
+                        <li><a href="/cms/managing-videos/working-with-labels.html">Utilisation des étiquettes</a></li>
+                        
+                        <li><a href="/cms/managing-videos/linking-zencoder-and-video-cloud-video-demand.html">Liaison de Zencoder et Video Cloud</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/cms/code-samples/index.html">Exemples de code <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-add-multiple-affiliate-accounts-media-sharing.html">Ajouter plusieurs comptes affiliés</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-share-multiple-videos.html">Partager plusieurs vidéos</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-media-sharing-report.html">Rapport sur le partage des médias</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-shared-media-report.html">Rapport sur les médias partagés</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-update-videos.html">Mettre à jour vidéos</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-add-custom-field-multiple-videos.html">Ajouter un champ personnalisé à plusieurs vidéos</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-update-geo-properties.html">Mettre à jour les propriétés géo</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-add-cue-points.html">Ajouter des points de repère</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-video-report-generator.html">Générateur de rapport vidéo</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-videos-delivery-type.html">Vidéos par type de livraison</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-download-links.html">Liens de téléchargement</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-video-sitemap-generator.html">Générateur de plan du site vidéo</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-mrss-generator.html">Générateur MRSS</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-mrss-feed-playlist.html">Flux MRSS de la playlist</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-generate-rss-podcast-feed-itunes.html">Flux de podcast RSS pour iTunes</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-video-renditions-inspector.html">Inspecteur des formats associés vidéo</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-report-audio-only-content.html">Rapport sur le contenu audio uniquement</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-video-schema-builder.html">Générateur de schéma vidéo</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-python-code-get-request.html">Code Python pour une requête GET</a></li>
+                        
+                        <li><a href="/cms/code-samples/cms-api-sample-video-search-app.html">Application de recherche vidéo</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/xdr/index.html">API de reprise multipériphérique (XDR) <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/xdr/getting-started/index.html">Mise en route <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/xdr/getting-started/xdr-overview.html">Vue d'ensemble : Reprise multi-appareils</a></li>
+                        
+                        <li><a href="/xdr/getting-started/get-playback-position.html">Obtention de la position de lecture à partir de l'API XDR</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/xdr/index.html">Guides <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="https://player.support.brightcove.com/playback/xdr-with-bcplayer.html">Reprise multi-appareils avec Brightcove Player</a></li>
+                        
+                        <li><a href="https://sdks.support.brightcove.com/features/cross-device-resume-sdks.html">Reprise multipériphérique avec les kits SDK natifs</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/xdr/references/index.html">Références <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/xdr/getting-started/xdr-overview.html">Référence de l'API de reprise inter-périphériques</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/data-collection/index.html">API de collecte de données <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/data-collection/overview-data-collection-api-v2.html">Vue d'ensemble : API de collecte de données</a></li>
+                  
+                
+                  
+                    <li><a href="/data-collection/data-collection-api-sample.html">Exemple d'API de collecte de données</a></li>
+                  
+                
+                  
+                    <li><a href="/data-collection/references/reference.html">Référence de l'API de collecte de données</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/delivery-system/index.html">API du système de livraison <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/delivery-system/overview-delivery-system-api.html">Vue d'ensemble : API du système de livraison</a></li>
+                  
+                
+                  
+                    <li><a href="/delivery-system/step-step-delivery-system-api.html">Étape par étape : API du système de livraison</a></li>
+                  
+                
+                  
+                    <li><a href="/delivery-system/delivery-system-api-git-overview.html">Vue d'ensemble de Git</a></li>
+                  
+                
+                  
+                    <li><a href="/delivery-system/references/reference.html">Référence de l'API du système de livraison</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/dynamic-ingest/index.html">API d'ingestion dynamique <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/dynamic-ingest/getting-started/index.html">Mise en route <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">Vue d'ensemble : API d'ingestion dynamique</a></li>
+                        
+                        <li><a href="/dynamic-ingest/getting-started/quick-start-dynamic-ingest-api.html">Brève introduction : API d'ingestion dynamique</a></li>
+                        
+                        <li><a href="/dynamic-ingest/getting-started/source-file-upload-api-dynamic-ingest.html">API de téléchargement de fichier source pour l'ingest dynamique</a></li>
+                        
+                        <li><a href="/dynamic-ingest/getting-started/overview-dynamic-delivery.html">Vue d'ensemble de la livraison dynamique</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/dynamic-ingest/general/index.html">Informations générales <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/dynamic-ingest/general/dynamic-ingest-api-best-practices.html">API d'ingestion dynamique : Meilleures pratiques</a></li>
+                        
+                        <li><a href="/dynamic-ingest/general/notifications-dynamic-delivery-video-cloud.html">Notifications pour l'ingestion dynamique</a></li>
+                        
+                        <li><a href="/dynamic-ingest/general/get-status-dynamic-ingest-requests-dynamic-delivery.html">Obtenir l'état des demandes d'ingest dynamique</a></li>
+                        
+                        <li><a href="/dynamic-ingest/general/fallback-retry-strategy.html">Stratégie de repl/nouvelle tentative</a></li>
+                        
+                        <li><a href="/dynamic-ingest/general/using-dynamic-ingest-s3.html">Utilisation de Dynamic Ingest avec S3</a></li>
+                        
+                        <li><a href="/dynamic-ingest/general/ugc-strategies.html">Stratégies UGC</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/dynamic-ingest/references/index.html">Références <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/dynamic-ingest/references/reference.html">Référence de l'API d'ingest dynamique</a></li>
+                        
+                        <li><a href="/dynamic-ingest/references/dynamic-ingest-api-release-notes.html">Notes de mise à jour de l'API de gestion dynamique</a></li>
+                        
+                        <li><a href="/dynamic-ingest/references/known-issues.html">Problèmes connus</a></li>
+                        
+                        <li><a href="/dynamic-ingest/references/dynamic-ingest-ingest-fields.html">Référence des champs d'ingestion</a></li>
+                        
+                        <li><a href="/dynamic-ingest/references/dynamic-ingest-error-message-reference.html">Référence du message d'erreur d'ingestion dynamique</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/dynamic-ingest/ingest-guides/index.html">Guides d'ingestion <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/dynamic-ingest/ingest-guides/context-aware-encoding.html">Utilisation de l'encodage tenant compte du contexte</a></li>
+                        
+                        <li><a href="/dynamic-ingest/ingest-guides/dynamic-delivery-ingest-priority-queueing.html">Delivery Dynamic Ingérer la file d'attente prioritaire</a></li>
+                        
+                        <li><a href="/ingest-profiles/guides/archiving-masters.html">Masques d'archivage</a></li>
+                        
+                        <li><a href="/dynamic-ingest/ingest-guides/implementing-multiple-audio-tracks-using-apis.html">Implémentation de plusieurs pistes audio</a></li>
+                        
+                        <li><a href="/dynamic-ingest/ingest-guides/images-and-dynamic-ingest-api.html">Images et API Dynamic Ingest</a></li>
+                        
+                        <li><a href="/dynamic-ingest/ingest-guides/dynamic-ingest-media-sharing.html">Ingeste dynamique avec partage de médias</a></li>
+                        
+                        <li><a href="/dynamic-ingest/ingest-guides/ingesting-content-drm.html">Ingestion de contenu avec DRM</a></li>
+                        
+                        <li><a href="/dynamic-ingest/ingest-guides/ingesting-webvtt-files-text-trackscaptions.html">Ingestion de fichiers WebVTT</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/dynamic-ingest/code-samples/index.html">Exemples de code <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/dynamic-ingest/code-samples/dynamic-ingest-api-tester-dynamic-delivery.html">Testeur d'API d'ingestion dynamique</a></li>
+                        
+                        <li><a href="/dynamic-ingest/code-samples/dynamic-ingest-api-sample-ingesting-videos-dynamic-delivery.html">Ingesting Vidéos</a></li>
+                        
+                        <li><a href="/dynamic-ingest/code-samples/dynamic-ingest-api-sample-re-transcoding-videos-dynamic-delivery.html">Vidéos de retranscodage</a></li>
+                        
+                        <li><a href="/dynamic-ingest/code-samples/dynamic-ingest-api-sample-replacing-videos-dynamic-delivery.html">Remplacement des vidéos</a></li>
+                        
+                        <li><a href="/dynamic-ingest/code-samples/dynamic-ingest-api-sample-add-scheduled-videos-dynamic-delivery.html">Ajouter des vidéos programmées</a></li>
+                        
+                        <li><a href="/dynamic-ingest/code-samples/dynamic-ingest-api-sample-adding-text-tracks.html">Ajout de pistes de texte</a></li>
+                        
+                        <li><a href="/dynamic-ingest/code-samples/dynamic-ingest-api-sample-ingesting-low-priority-videos-dynamic-delivery.html">Ingestion de vidéos à faible priorité</a></li>
+                        
+                        <li><a href="/dynamic-ingest/code-samples/dynamic-ingest-api-sample-python-code.html">Code Python</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/ingest-profiles/index.html">Ingérer les profils API <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ingest-profiles/getting-started/index.html">Mise en route <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ingest-profiles/getting-started/overview-ingest-profiles-api-dynamic-delivery-context-aware-encoding.html">Vue d'ensemble : API Ingestion des profils</a></li>
+                        
+                        <li><a href="/ingest-profiles/getting-started/practice-area-ingest-profiles-api-dynamic-delivery.html">Domaine d'entraînement : API Ingestion des profils</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ingest-profiles/guides/index.html">Guides <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ingest-profiles/guides/archiving-masters.html">Masques d'archivage</a></li>
+                        
+                        <li><a href="/ingest-profiles/guides/hevc-video.html">Vidéo HEVC</a></li>
+                        
+                        <li><a href="/ingest-profiles/guides/cae-fast-publish.html">Publier rapide CAE</a></li>
+                        
+                        <li><a href="/general/audio-content.html">Contenu audio</a></li>
+                        
+                        <li><a href="/ingest-profiles/guides/mp4s-dynamic-delivery.html">MP4 dans la livraison dynamique</a></li>
+                        
+                        <li><a href="https://studio.support.brightcove.com/admin/ingest-profiles-best-practices.html">Meilleures pratiques</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ingest-profiles/references/index.html">Références <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ingest-profiles/references/reference.html">Référence de l'API des profils d'ingest</a></li>
+                        
+                        <li><a href="/ingest-profiles/references/ingest-profiles-api-fields-reference-dynamic-delivery-and-context-aware-encoding.html">Référence des champs de profils d'ingest</a></li>
+                        
+                        <li><a href="/ingest-profiles/references/standard-ingest-profiles-dynamic-delivery-and-context-aware-encoding.html">Profils d'ingest standard</a></li>
+                        
+                        <li><a href="/ingest-profiles/references/standard-live-ingest-profiles.html">Profils d'ingestion en direct standard</a></li>
+                        
+                        <li><a href="/ingest-profiles/references/fields-custom-live-ingest-profiles.html">Champs pour les profils d'ingest en direct personnalisés</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ingest-profiles/code-samples/index.html">Exemples de code <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ingest-profiles/code-samples/ingest-profiles-api-sample-create-custom-dynamic-delivery-profile.html">Créer un profil de livraison dynamique personnalisé</a></li>
+                        
+                        <li><a href="/ingest-profiles/code-samples/ingest-profiles-api-sample-create-custom-context-aware-encoding-profile.html">Créer un profil CAE personnalisé</a></li>
+                        
+                        <li><a href="/ingest-profiles/code-samples/ingest-profiles-api-sample-add-profile-multiple-accounts.html">Ajouter un profil à plusieurs comptes</a></li>
+                        
+                        <li><a href="/ingest-profiles/code-samples/ingest-profiles-api-sample-get-all-profiles-account.html">Obtenir tous les profils d'un compte</a></li>
+                        
+                        <li><a href="/ingest-profiles/code-samples/ingest-profiles-api-sample-set-default-profile-dynamic-delivery.html">Définir le profil par défaut</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/oauth/index.html">API OAuth <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/oauth/getting-started/index.html">Mise en route <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/oauth/getting-started/overview-oauth-api-v4.html">Vue d'ensemble : API OAuth</a></li>
+                        
+                        <li><a href="/oauth/getting-started/quick-start-oauth.html">Brève introduction : API OAuth</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/oauth/guides/index.html">Guides <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">Créer des informations d'identification client : cURL</a></li>
+                        
+                        <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">Créer des informations d'identification client : Facteur</a></li>
+                        
+                        <li><a href="/oauth/guides/getting-access-tokens.html">Obtenir des jetons d'accès</a></li>
+                        
+                        <li><a href="/oauth/guides/api-operations-client-credentials-requests.html">Opérations API pour les demandes d'informations d'identification client</a></li>
+                        
+                        <li><a href="/oauth/guides/get-your-bc-token.html">Obtenir votre BC_TOKEN</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/oauth/references/index.html">Références <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/oauth/references/reference.html">Référence de l'API OAuth</a></li>
+                        
+                        <li><a href="/oauth/references/oauth-api-error-message-reference.html">Référence du message d'erreur de l'API OAuth</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/oauth/code-samples/index.html">Exemples de code <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/oauth/code-samples/oauth-api-sample-create-client-credentials.html">Créer des informations d'identification client</a></li>
+                        
+                        <li><a href="/oauth/code-samples/oauth-api-sample-get-access-token.html">Obtenir un jeton d'accès</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/playback/index.html">API de lecture <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/playback/getting-started/index.html">Mise en route <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/playback/getting-started/overview-playback-api.html">Vue d'ensemble : API de lecture</a></li>
+                        
+                        <li><a href="/playback/getting-started/quick-start-playback-api.html">Brève introduction : API de lecture</a></li>
+                        
+                        <li><a href="/cms/getting-started/best-practices-cms-and-playback-apis.html">Meilleures pratiques : CMS et API de lecture</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/playback/guides/index.html">Guides <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/cms/searching/cmsplayback-api-videos-search.html">CMS et API de lecture : Recherche vidéo</a></li>
+                        
+                        <li><a href="/cms/getting-started/best-practices-cms-and-playback-apis.html">Architecture de recherche de catalogue</a></li>
+                        
+                        <li><a href="/playback/guides/static-url-delivery.html">Livraison d'URL statique</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/playback/references/index.html">Références <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/playback/references/reference_v1.html">Référence de l'API de lecture</a></li>
+                        
+                        <li><a href="/playback/references/playback-api-video-fields-reference.html">Référence des champs vidéo</a></li>
+                        
+                        <li><a href="/playback/references/playback-api-playlist-fields-reference.html">Référence des champs de liste</a></li>
+                        
+                        <li><a href="/playback/references/playback-api-error-reference.html">Référence d'erreur</a></li>
+                        
+                        <li><a href="/cms/references/catalog-apis-cms-api-and-playback-api-release-notes.html">CMS/API de lecture Notes de mise à jour</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/playback/code-samples/index.html">Exemples de code <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/playback/code-samples/thumbnail-grid.html">Grille de vignettes vidéo</a></li>
+                        
+                        <li><a href="/playback/code-samples/playback-api-sample-mrss-generator.html">Générateur MRSS</a></li>
+                        
+                        <li><a href="/playback/code-samples/playback-api-sample-jsonmrss-feed-playlist.html">Flux JSON/MRSS à partir d'une playlist</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/player-management/index.html">API de gestion du lecteur <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/player-management/getting-started/index.html">Mise en route <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/player-management/getting-started/overview-player-management-api.html">Vue d'ensemble : API de gestion du lecteur</a></li>
+                        
+                        <li><a href="/player-management/getting-started/step-step-player-management.html">Étape par étape : Gestion des joueurs</a></li>
+                        
+                        <li><a href="/player-management/getting-started/training-demand-quick-start-player-management.html">Formation à la demande : Démarrage rapide de la gestion des joueurs</a></li>
+                        
+                        <li><a href="/player-management/getting-started/oauth-guide.html">Guide OAuth</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/player-management/guides/index.html">Guides <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/player-management/guides/player-configuration-guide.html">Guide de configuration du joueur</a></li>
+                        
+                        <li><a href="/player-management/guides/plugin-registry.html">Registre des plug-ins</a></li>
+                        
+                        <li><a href="/player-management/guides/pre-release-player.html">Joueur pré-libération</a></li>
+                        
+                        <li><a href="/player-management/guides/player-repositories.html">Référentiels de lecteur</a></li>
+                        
+                        <li><a href="/player-management/guides/guide-embed-apis.html">Intégrer des API</a></li>
+                        
+                        <li><a href="/player-management/guides/opting-out-automatic-player-updates.html">Désactiver les mises à jour automatiques du lecteur</a></li>
+                        
+                        <li><a href="/player-management/guides/embedding-brightcove-players-cms.html">Intégrer des joueurs Brightcove dans un CMS</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/player-management/references/index.html">Références <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/player-management/references/reference.html">Référence de l'API de gestion du lecteur</a></li>
+                        
+                        <li><a href="/player-management/references/player-management-api-release-notes.html">Notes de version</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/player-management/code-samples/index.html">Exemples de code <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/player-management/code-samples/setup-player-management-samples.html">Configuration des exemples de gestion des joueurs</a></li>
+                        
+                        <li><a href="/player-management/code-samples/bulk-updating-brightcove-default-player.html">Mise à jour en bloc d'un lecteur</a></li>
+                        
+                        <li><a href="/player-management/code-samples/player-management-api-sample-create-player.html">Créer un joueur</a></li>
+                        
+                        <li><a href="/player-management/code-samples/player-management-api-sample-display-players.html">Afficher les lecteurs</a></li>
+                        
+                        <li><a href="/player-management/code-samples/player-management-api-sample-delete-players.html">Supprimer des joueurs</a></li>
+                        
+                        <li><a href="/player-management/code-samples/player-management-api-sample-using-lastviewed-data.html">Utilisation de last_viewé Data</a></li>
+                        
+                        <li><a href="/player-management/code-samples/player-management-api-sample-programmatically-update-players.html">Mettre à jour les joueurs par programme</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/policy/index.html">API de stratégie <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/policy/getting-started/index.html">Mise en route <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/policy/getting-started/overview-policy-api.html">Vue d'ensemble : API de stratégie</a></li>
+                        
+                        <li><a href="/policy/getting-started/quick-start-policy-api.html">Exemple de code : Générer une clé de stratégie</a></li>
+                        
+                        <li><a href="/policy/getting-started/policy-keys.html">Clé de stratégie du joueur</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/policy/references/index.html">Références <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/policy/references/reference.html">Référence de l'API de stratégie</a></li>
+                        
+                        <li><a href="/policy/references/policy-api-release-notes.html">Notes de version</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/social-syndication/index.html">API de syndication sociale <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/social-syndication/getting-started/index.html">Mise en route <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/social-syndication/getting-started/public-syndication-api-overview.html">Vue d'ensemble : API de configuration de syndication</a></li>
+                        
+                        <li><a href="/social-syndication/getting-started/feed-syndication-api-overview.html">Vue d'ensemble : API de flux de syndication</a></li>
+                        
+                        <li><a href="/social-syndication/getting-started/sample-templates-universal-syndication.html">Modèles pour Universal Syndication</a></li>
+                        
+                        <li><a href="/cms/searching/cms-and-playback-apis-video-search-v2.html">CMS et API de lecture : Recherche vidéo v2</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/social-syndication/references/index.html">Références <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/social-syndication/references/configuration-reference.html">Référence de l'API de configuration de syndication</a></li>
+                        
+                        <li><a href="/social-syndication/references/feed-reference.html">Référence de l'API de flux de syndication</a></li>
+                        
+                        <li><a href="/policy/references/policy-api-release-notes.html">Notes de version</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/dynamic-ingest-legacy/index.html">API d'ingest dynamique héritée <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/dynamic-ingest-legacy/getting-started/index.html">Mise en route <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/dynamic-ingest-legacy/getting-started/overview-dynamic-ingest-api-legacy-ingest.html">Vue d'ensemble : API d'ingestion dynamique</a></li>
+                        
+                        <li><a href="/dynamic-ingest-legacy/getting-started/quick-start-dynamic-ingest-api-legacy-ingest.html">Brève introduction : API d'ingestion dynamique</a></li>
+                        
+                        <li><a href="/dynamic-ingest-legacy/getting-started/migrating-legacy-ingest-system-dynamic-delivery.html">Migration vers la livraison dynamique</a></li>
+                        
+                        <li><a href="/dynamic-ingest/getting-started/source-file-upload-api-dynamic-ingest.html">API de téléchargement de fichier source pour l'ingest dynamique</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/dynamic-ingest-legacy/general/index.html">Informations générales <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/dynamic-ingest/general/dynamic-ingest-api-best-practices.html">API d'ingestion dynamique : Meilleures pratiques</a></li>
+                        
+                        <li><a href="/dynamic-ingest-legacy/general/dynamic-ingest-notifications-legacy-ingest.html">Notifications d'ingestion dynamique</a></li>
+                        
+                        <li><a href="/dynamic-ingest-legacy/general/get-status-dynamic-ingest-requests-legacy-ingest.html">Obtenir l'état des demandes</a></li>
+                        
+                        <li><a href="/dynamic-ingest/general/fallback-retry-strategy.html">Stratégie de repl/nouvelle tentative</a></li>
+                        
+                        <li><a href="/dynamic-ingest/general/using-dynamic-ingest-s3.html">Utilisation de Dynamic Ingest avec S3</a></li>
+                        
+                        <li><a href="/dynamic-ingest/general/ugc-strategies.html">Stratégies UGC</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/dynamic-ingest-legacy/references/index.html">Références <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/dynamic-ingest/references/reference.html">Référence de l'API d'ingest dynamique</a></li>
+                        
+                        <li><a href="/dynamic-ingest/references/dynamic-ingest-api-release-notes.html">Notes de mise à jour de l'API de gestion dynamique</a></li>
+                        
+                        <li><a href="/dynamic-ingest/references/dynamic-ingest-ingest-fields.html">Référence des champs d'ingestion</a></li>
+                        
+                        <li><a href="/dynamic-ingest/references/dynamic-ingest-error-message-reference.html">Référence du message d'erreur d'ingestion dynamique</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/dynamic-ingest-legacy/ingest-guides/index.html">Guides d'ingestion <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/dynamic-ingest/ingest-guides/images-and-dynamic-ingest-api.html">Images et API Dynamic Ingest</a></li>
+                        
+                        <li><a href="/dynamic-ingest/ingest-guides/dynamic-ingest-media-sharing.html">Ingeste dynamique avec partage de médias</a></li>
+                        
+                        <li><a href="/dynamic-ingest/ingest-guides/ingesting-webvtt-files-text-trackscaptions.html">Ingestion de fichiers WebVTT</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/dynamic-ingest-legacy/code-samples/index.html">Exemples de code <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/dynamic-ingest-legacy/code-samples/dynamic-ingest-api-sample-ingesting-videos-legacy-ingest.html">Ingesting Vidéos</a></li>
+                        
+                        <li><a href="/dynamic-ingest-legacy/code-samples/dynamic-ingest-api-sample-re-transcoding-videos-legacy-ingest.html">Vidéos de retranscodage</a></li>
+                        
+                        <li><a href="/dynamic-ingest-legacy/code-samples/dynamic-ingest-api-sample-replacing-videos-legacy-ingest.html">Remplacement des vidéos</a></li>
+                        
+                        <li><a href="/dynamic-ingest-legacy/code-samples/dynamic-ingest-api-sample-add-scheduled-videos-legacy-ingest.html">Ajouter des vidéos programmées</a></li>
+                        
+                        <li><a href="/dynamic-ingest/code-samples/dynamic-ingest-api-sample-adding-text-tracks.html">Ajout de pistes de texte</a></li>
+                        
+                        <li><a href="/dynamic-ingest/code-samples/dynamic-ingest-api-sample-python-code.html">Code Python</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/ingest-profiles-legacy/index.html">Ingestion des profils API hérité <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ingest-profiles-legacy/getting-started/index.html">Mise en route <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ingest-profiles-legacy/getting-started/overview-ingest-profiles-api-legacy-ingest.html">Vue d'ensemble : API Ingestion des profils</a></li>
+                        
+                        <li><a href="/ingest-profiles-legacy/getting-started/quick-start-ingest-profiles-api.html">Brève introduction : API Ingestion des profils</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ingest-profiles-legacy/guides/index.html">Guides <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ingest-profiles/guides/archiving-masters.html">Masques d'archivage</a></li>
+                        
+                        <li><a href="/ingest-profiles-legacy/guides/rendition-settings-and-video-quality.html">Paramètres de rendu et qualité vidéo</a></li>
+                        
+                        <li><a href="/ingest-profiles-legacy/guides/conditional-output.html">Sortie conditionnelle</a></li>
+                        
+                        <li><a href="/general/audio-content.html">Contenu audio</a></li>
+                        
+                        <li><a href="https://studio.support.brightcove.com/admin/ingest-profiles-best-practices.html">Meilleures pratiques</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ingest-profiles-legacy/references/index.html">Références <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ingest-profiles/references/reference.html">Référence de l'API des profils d'ingest</a></li>
+                        
+                        <li><a href="/ingest-profiles-legacy/references/ingest-profiles-api-fields-reference-legacy-ingest.html">Référence des champs de profils d'ingest</a></li>
+                        
+                        <li><a href="/ingest-profiles-legacy/references/standard-ingest-profiles-legacy-transcoding.html">Profils d'ingest standard : Système hérité</a></li>
+                        
+                        <li><a href="/ingest-profiles/references/standard-live-ingest-profiles.html">Profils d'ingestion en direct standard</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ingest-profiles-legacy/code-samples/index.html">Exemples de code <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ingest-profiles/code-samples/ingest-profiles-api-sample-add-profile-multiple-accounts.html">Ajouter un profil à plusieurs comptes</a></li>
+                        
+                        <li><a href="/ingest-profiles/code-samples/ingest-profiles-api-sample-get-all-profiles-account.html">Obtenir tous les profils d'un compte</a></li>
+                        
+                        <li><a href="/ingest-profiles-legacy/code-samples/ingest-profiles-api-sample-set-default-profile-multiple-accounts-legacy-ingest.html">Définir un profil par défaut plusieurs comptes</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/training/index.html">Entraînement <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/training/online-training-courses.html">Cours de formation en ligne</a></li>
+                  
+                
+                  
+                    <li><a href="/training/register-training.html">S' inscrire à la formation dirigée par un instructeur</a></li>
+                  
+                
+                  
+                    <li><a href="/training/brightcove-university.html">Cours de formation à l'Université de Brightcove</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/support/index.html">Support <strong>+</strong></a></h5>
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    
+                  
+                
+                  
+                    <li><a href="/support/viewing-brightcove-system-status-page.html">Affichage de la page État du système Brightcove</a></li>
+                  
+                
+                  
+                    <li><a href="/support/contact-sales.html">Contacter les ventes</a></li>
+                  
+                
+                  
+                    <li><a href="/support/opening-case-with-brightcove-support.html">Ouverture d'un dossier de support</a></li>
+                  
+                
+              </ul>
+            
+          
+      </nav>
+    </div>
+    <div class="col-lg-7" style="background-color: white;color: #333333;margin-top: -1em;margin-bottom: -1em;padding-bottom:1em;">
+  <!-- bootstrap layout -->
+
+<p id="bc_veggie_burger_wrapper" style="display: none;"><img id="bc_veggie_burger" src="/assets/images/feather/menu.svg" alt="Menu de navigation"/></p>
+
+<!-- search bar -->
+<div id="nav-search-box" style="margin-top: 1rem;"></div>
+<!-- in-page navigation for narrow screens -->
+<details class="centered-inpage-nav" id="centered_inpage_nav">
+  <summary><h6 class="toc">Contenu de la page</h6></summary>
+  <nav id="centered_toc"></nav>
+  <ul id="centered_in_page_toc" class="list-none"></ul>
+</details>
+<!-- open in new tab/window -->
+<a id="open_new_tab" href="#" target="_blank" style="display: none;"><img src="/assets/images/feather/external-link.svg" alt="ouvrir dans un nouvel onglet" style="margin-top:4em;width: 1.5em;"/></a>
+
+
+
+
+
+
+<!-- 
+  This content appears on:
+  
+  https://apis.support.brightcove.com/general/integrating-your-cms-video-cloud.html
+
+  https://integrations.support.brightcove.com/general/integrating-your-cms-video-cloud.html
+
+  If you update in one place, you MUST update it in all!
+ -->
+
+ <h1>Intégration de votre CMS avec Video Cloud</h1>
+ <article class="bcls-article">
+  <summary>Dans cette rubrique, vous découvrirez les opérations de base liées à l'intégration de Brightcove Video Cloud à un CMS. Il répertorie les fonctions typiques que les utilisateurs exécutent dans le CMS et les opérations d'API Brightcove qui peuvent être utilisées pour fournir cette fonctionnalité.</summary>
+  <section class="bcls-section">
+    <h2 id="userFunctions">Fonctions utilisateur</h2>
+    
+    <p>Voici des fonctions liées à <span translate="No">Video Cloud</span> ce que vous pourriez souhaiter fournir aux utilisateurs de votre CMS :</p>
+    
+    <ul>
+      <li>Ajoutez de nouvelles vidéos à <span translate="No">Video Cloud</span></li>
+      <li>Remplacer une <span translate="No">Video Cloud</span> vidéo par une nouvelle version</li>
+      <li>Mettre à jour les métadonnées des vidéos, telles que le titre, la description et les balises</li>
+      <li>Supprimer des vidéos</li>
+      <li>Créer des sélections</li>
+      <li>Modifier les vidéos dans une liste de lecture</li>
+      <li>Supprimer les sélections</li>
+      <li>Créer des lecteurs vidéo</li>
+      <li>Modifier les propriétés du lecteur vidéo, telles que les dimensions ou le style</li>
+      <li>Ajouter des fonctionnalités spéciales aux lecteurs vidéo via des plugins</li>
+      <li>Publier des vidéos ou des listes de lecture uniques</li>
+      <li>Fournir des données analytiques sur les charges vidéo, les vues, les taux de lecture, l'engagement, etc.</li>
+    </ul>
+    
+    <p>Vous ne souhaitez peut-être pas exposer toutes ces fonctionnalités à vos utilisateurs finaux - vous ne voudrez peut-être pas les laisser supprimer des vidéos, par exemple. L'un des avantages de l'intégration <span translate="No">Video Cloud</span> à votre CMS plutôt que de laisser les utilisateurs aller directement à <span translate="No">Video Cloud</span> Studio est que vous pouvez choisir exactement quelle fonctionnalité exposer aux utilisateurs via les API Brightcove.</p>
+    </section>
+    
+    <section class="bcls-section">
+    <h2 id="authentication">Authentification</h2>
+    
+    <p>Pour toutes les demandes d'API Brightcove, l'authentification est basée sur des jetons d'accès OAuth2. Il existe un processus en deux étapes pour obtenir des jetons d'accès :</p>
+    
+    <ol>
+      <li>Créez des informations d'identification client avec des autorisations pour les opérations API dont vous avez besoin</li>
+      <li>Utiliser les informations d'identification du client pour créer un jeton d'accès temporaire pour authentifier une demande d'API</li>
+    </ol>
+    
+    <h3>Création d'informations d'identification client</h3>
+    
+    <p>La création d'informations d'identification client est une opération unique qui peut être effectuée via <a href="/general/managing-api-authentication-credentials.html"> <span translate="No">Video Cloud</span> Studio</a> ou le <a href="/oauth/getting-started/overview-oauth-api-v4.html#getCredentials"> <span translate="No">OAuth API</span> </a>. Cependant, un <code translate="No">client_id</code> et <code translate="No">client_secret</code> sont renvoyés, que vous devez enregistrer pour demander des jetons d'accès.</p>
+    
+    <aside class="bcls-aside bcls-aside--warning">Le <code translate="No">client_secret</code> est affiché uniquement lorsque les informations d'identification client sont créées - elles ne peuvent plus jamais être récupérées. Si vous perdez un secret client, vous devez créer un nouveau code d'identification client.</aside>
+    
+    <h3>Création d'un jeton d'accès</h3>
+    
+    <p>Les jetons d'accès temporaires sont créés à l'aide du <a href="/oauth/guides/getting-access-tokens.html"> <span translate="No">OAuth API</span> </a>. Le <code translate="No">client_id</code> et <code translate="No">client_secret</code> doit être codé en Base64 et transmis en tant que chaîne <code translate="No">Basic</code> d'autorisation.</p>
+    
+    <p>Le <code translate="No">access_token</code> retourné est transmise dans un en-tête Authorization avec l'appel API :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-bash" translate="No">&gt;Authorization: Bearer <strong><em>your_access_token</em></strong>
+    </code>
+    </pre>
+    
+    <p>Les jetons d'accès sont valables pendant 5 minutes. Sauf si vous effectuez une sorte d'opération par lots qui fera des centaines d'appels d'API successifs, il est logique de simplement demander un nouveau pour chaque appel d'API plutôt que d'essayer de garder une trace du délai d'attente.</p>
+    </section>
+    
+    <section class="bcls-section">
+    <h2 id="addingVideos">Ajout de vidéos</h2>
+    
+    <p>Si vous souhaitez permettre aux utilisateurs d'ajouter des vidéos à <span translate="No">Video Cloud</span> partir de votre CMS, vous pouvez le faire en utilisant le <a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html"> <span translate="No">Dynamic Ingest API</span> </a>. Nous vous recommandons de charger des vidéos dans votre référentiel, qui peut être un compartiment S3 ou simplement un serveur public. Le système Dynamic Ingest peut extraire les vidéos et les ajouter au <span translate="No">Video Cloud</span> système grâce à un processus en deux étapes décrit ci-dessous.</p>
+    
+    <h3>Ajout d'un objet vidéo à <span translate="No">Video Cloud</span></h3>
+    
+    <p>La première étape consiste à créer un objet vidéo dans le <span translate="No">Video Cloud</span> système en faisant une <span translate="No">POST</span> demande au <span translate="No">CMS API</span>:</p>
+    
+    <pre class="line-numbers">
+    <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/:account_id/videos
+    </code>
+    </pre>
+    
+    <p>Le corps de la requête inclura des propriétés vidéo de base dans un <span translate="No">JSON</span> objet - au minimum, la vidéo <code translate="No">name</code> , mais vous pouvez également inclure des métadonnées supplémentaires telles que <code translate="No">description</code> <code translate="No">tags</code>:</p>
+    
+    <pre class="line-numbers">
+    <code class="language-json" translate="No">{
+    "name": "Woodpecker",
+    "description": "A bird that hunts insects inside wood",
+    "reference_id": "Bird_Woodpecker.mp4",
+    "tags": ["bird", "air", "nature"]
+    }
+    </code>
+    </pre>
+    
+    <aside class="bcls-aside bcls-aside--information">A <code translate="No">reference_id</code> peut être ajouté à n'importe quelle vidéo. Les identifiants de référence doivent être uniques dans le compte. Si vos vidéos ont des identifiants dans votre système CMS, il est recommandé d'utiliser cet identifiant comme identifiant de référence dans le <span translate="No">Video Cloud</span> système.</aside>
+    
+    <h3>Ingestion de la vidéo</h3>
+    
+    <p>Lorsque vous créez l'objet vidéo, l' <span translate="No">CMS API</span> renvoie un <span translate="No">JSON</span> objet contenant les propriétés vidéo. Vous allez extraire la vidéo <code translate="No">id</code> de la <span translate="No">JSON</span> , et l'utiliser pour faire un appel <span translate="No">Dynamic Ingest API</span> à la demande d'ingestion et de transcodage de la vidéo :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-http" translate="No">https://ingest.api.brightcove.com/v1/accounts/<strong><em>ACCOUNT_ID</em></strong>/videos/<strong><em>VIDEO_ID</em></strong>/ingest-requests
+    </code>
+    </pre>
+    
+    <p>Encore une fois, vous enverrez <span translate="No">JSON</span> dans le corps de la requête en spécifiant l'emplacement du fichier vidéo :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-json" translate="No">{
+      "master":{
+        "url":"http://learning-services-media.brightcove.com/videos/mp4/Bird_Woodpecker.mp4"
+      },
+      "profile":"multi-platform-extended-static",
+      "capture-images": true
+    }
+    </code>
+    </pre>
+    
+    <p> <code translate="No">profile</code> Voici le profil Ingest qui spécifie les formats associés à créer dans le processus de transcodage. Dans la plupart des cas, l'un des profils standard suivants devrait être adéquat :</p>
+    
+    <h4>Profils de livraison dynamique</h4>
+    
+    <ul>
+      <li><code translate="No">multi-platform-extended-static</code></li>
+      <li><code translate="No">multi-platform-standard-static</code></li>
+    </ul>
+    
+    <h4>Profils d'ingeste hérités</h4>
+    
+    <ul>
+      <li><code translate="No">videocloud-default-v1 (the default)</code></li>
+      <li><code translate="No">screencast-1280</code></li>
+      <li><code translate="No">smart-player-transition</code></li>
+      <li><code translate="No">single-bitrate-high</code></li>
+      <li><code translate="No">audio-only</code></li>
+      <li><code translate="No">single-bitrate-standard</code></li>
+      <li><code translate="No">high-resolution</code></li>
+    </ul>
+    
+    <p>Toutefois, vous pouvez créer des profils d'ingeste personnalisés supplémentaires, si nécessaire, à l'aide de <a href="/ingest-profiles/getting-started/overview-ingest-profiles-api-dynamic-delivery-context-aware-encoding.html"> <span translate="No">Ingest Profiles API</span> </a> ou à l'aide de <a href="https://studio.support.brightcove.com/admin/managing-ingest-profiles.html"> <span translate="No">Video Cloud</span> Studio</a>.</p>
+    
+    <aside class="bcls-aside bcls-aside--warning">Si vous récupérez des profils à <a href="/ingest-profiles/"> <span translate="No">Ingest Profiles API</span> </a> l'aide des résultats des <strong>comptes d'ingest hérités</strong> , les profils de livraison dynamique seront inclus, mais leur utilisation entraînera des erreurs. Vous devrez filtrer ces profils côté client. Vous pouvez reconnaître les profils de livraison dynamique par l'existence d'une <code translate="No">dynamic_origin</code> propriété :
+    
+    <pre class="line-numbers">
+    <code class="language-json" translate="No">{
+        "version": 2,
+        "name": "multi-platform-extended-static",
+        "display_name": "Multiplatform Extended",
+        "description": "Deliver high quality content for a wide range content types and screen sizes including mobile, desktop and large screens.",
+        "account_id": -1,
+        "brightcove_standard": true,
+        "date_created": 1495114240899,
+        "date_last_modified": 1503002227627,
+        "digital_master": {
+          "rendition": "passthrough",
+          "distribute": false
+        },
+        "renditions": [
+        ],
+        "packages": [
+        ],
+        "<span class="bcls-highlight">dynamic_origin</span>": {
+          "renditions": [
+            "default/audio64",
+            "default/audio128",
+            "default/video3800",
+            "default/video700",
+            "default/video3500",
+            "default/video2000",
+            "default/video1700",
+            "default/video1200",
+            "default/audio96",
+            "default/video450",
+            "default/video900",
+            "default/audio192"
+          ],
+          "images": [
+            {
+              "label": "thumbnail",
+              "height": 90,
+              "width": 160
+            },
+            {
+              "label": "poster",
+              "height": 720,
+              "width": 1280
+            }
+          ]
+        },
+        "id": "f1b16093e2dc4f81810f1488"
+      }</code></pre>
+    </aside>
+    
+    <h4>Ajout d'images d'affiche et de vignettes</h4>
+    
+    <p>L' <code translate="No">capture-images</code> option dans le code ci-dessus indique de <span translate="No">Video Cloud</span> capturer des images d'affiches et de vignettes pour la vidéo au milieu du processus de transcodage. Alternativement, vous pouvez <code translate="No">capture-images</code> définir <code translate="No">false</code> et ingérer des images à la place, soit en même temps que vous ingérez la vidéo ou plus tard :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-json" translate="No">{
+    "master":{
+    "url":"http://learning-services-media.brightcove.com/videos/mp4/Bird_Woodpecker.mp4"
+    },
+    "profile":"multi-platform-extended-static",
+    "capture-images": false,
+    <strong>"poster": {
+    "url": "http://learning-services-media.brightcove.com/images/for_video/titmouse-poster.png",
+    "width": 640,
+    "height": 360
+    },
+    "thumbnail": {
+    "url": "http://learning-services-media.brightcove.com/images/for_video/titmouse-thumbnail.png",
+    "width": 160,
+    "height": 90
+    }</strong>
+    }
+    </code>
+    </pre>
+    
+    <p>Voir <a href="/dynamic-ingest/ingest-guides/images-and-dynamic-ingest-api.html">Images et la <span translate="No">Dynamic Ingest API</span> </a> pour plus de détails.</p>
+    
+    <h4>Ajout de pistes de texte pour les sous-titres ou les chapitres</h4>
+    
+    <p>Vous pouvez également utiliser <span translate="No">Dynamic Ingest API</span> pour ajouter des pistes de texte dans des fichiers <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Video_Text_Tracks_Format">WebVTT</a> à des vidéos, que ce soit au moment de l'ingestion ou ultérieurement. Les pistes de texte permettent d'ajouter <a href="https://player.support.brightcove.com/general/adding-captions-videos-programmatically.html">des légendes ou des</a> <a href="https://studio.support.brightcove.com/media/adding-chapters-video.html">chapitres</a> à une vidéo.</p>
+    
+    <pre class="line-numbers">
+    <code class="language-json" translate="No">{
+    "master":{
+    "url":"http://learning-services-media.brightcove.com/videos/mp4/Bird_Woodpecker.mp4"
+    },
+    "profile":"multi-platform-extended-static",
+    "capture-images": false,
+    "poster": {
+    "url": "http://learning-services-media.brightcove.com/images/for_video/titmouse-poster.png",
+    "width": 640,
+    "height": 360
+    },
+    "thumbnail": {
+    "url": "http://learning-services-media.brightcove.com/images/for_video/titmouse-thumbnail.png",
+    "width": 160,
+    "height": 90
+    },
+    <strong>"text_tracks": [
+    {
+    "url": "http://learning-services-media.brightcove.com/captions/for_video/Water-in-Motion.vtt",
+    "srclang": "en",
+    "kind": "captions",
+    "label": "English",
+    "default": true
+    }
+    ]</strong>
+    }
+    </code>
+    </pre>
+    
+    <p>Pour plus de détails, reportez-vous à la section <a href="/dynamic-ingest/ingest-guides/ingesting-webvtt-files-text-trackscaptions.html">Ingesting WebVTT Files</a> .</p>
+    </section>
+    
+    <section class="bcls-section" id="manangingVideos">
+    <h2>Gestion des vidéos</h2>
+    
+    <p>Le vous <span translate="No">CMS API</span> permet de récupérer des données vidéo pour un compte. (Comme indiqué ci-dessus, il est également utilisé pour créer des objets vidéo dans le cadre du processus d'ingestion vidéo.) La requête la plus basique est la suivante :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/account_id/videos
+    </code>
+    </pre>
+    
+    <p>Par défaut, cette demande renvoie un <span translate="No">JSON</span> tableau de 20 objets vidéo contenant une multitude de métadonnées, y compris le nom, la description, les balises, les champs personnalisés, les dates de création et de dernière modification, les URL de l'affiche et de la miniature, et bien plus encore.</p>
+    
+    <p>Vous pouvez affiner les résultats de la demande en ajoutant un ou plusieurs des paramètres suivants à la demande :</p>
+    
+    <dl>
+      <dt><code translate="No">limit</code></dt>
+      <dd>cela détermine le nombre d'objets vidéo à retourner, et peut être défini sur n'importe quel nombre jusqu'à 100 - la valeur par défaut est 20</dd>
+      <dt><code translate="No">offset</code></dt>
+      <dd>cela détermine le nombre d'éléments à ignorer, et est donc utilisé avec pour la page <code translate="No">limit</code> à travers le catalogue vidéo - la valeur par défaut est 0</dd>
+      <dt><code translate="No">sort</code></dt>
+      <dd>cela détermine le champ de métadonnées vidéo pour trier le résultat par - par défaut, les résultats sont triés par <code translate="No">updated_at</code> (décroissant, pour afficher d'abord les dernières vidéos mises à jour)</dd>
+    </dl>
+    
+    <p>Pour obtenir des informations détaillées sur ces <a href="/cms/getting-started/overview-cms-api.html#parameters"> paramètres, reportez-vous à la section <span translate="No">CMS API</span> Présentation -</a> Paramètres.</p>
+    
+    <h3>Recherche de vidéos</h3>
+    
+    <p>Vous pouvez également rechercher des vidéos selon un large éventail de critères à l'aide du <code translate="No">q</code> paramètre. Vous pouvez effectuer des recherches par champs spécifiques tels que le nom, la description et les balises, ainsi que les dates et l'état des vidéos :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/account_id/videos?q=tags:sea,mammal
+    </code>
+    </pre>
+    
+    <p>Pour plus d'informations et toutes les options de recherche, reportez-vous à la section <a href="/cms/searching/cms-and-playback-apis-video-search-v2.html">Rechercher des vidéos</a>.</p>
+    
+    <h3>Obtenir et mettre à jour une vidéo spécifique</h3>
+    
+    <p>Pour récupérer une vidéo spécifique par son identifiant ou son identifiant de référence :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/account_id/videos/<strong><em>id</em></strong>
+    or
+    https://cms.api.brightcove.com/v1/accounts/account_id/videos/<strong><em>ref:reference_id</em></strong>
+    </code>
+    </pre>
+    
+    <p>Une <span translate="No">GET</span> requête renvoie l'objet vidéo. Pour le mettre à jour, modifiez le <span translate="No">JSON</span> et renvoyez le à l'aide d'une <span translate="No">PATCH</span> requête à la même URL.</p>
+    
+    <aside class="bcls-aside bcls-aside--tip">Lorsque vous affichez des vidéos à vos utilisateurs, il est conseillé d'inclure la miniature dans l'écran afin de réduire le risque de sélectionner la mauvaise vidéo à publier ou à mettre à jour.</aside>
+    </section>
+    
+    <section class="bcls-section" id="playlists">
+    <h2>Listes de lecture</h2>
+    
+    <p>Les informations de liste de lecture sont également gérées <span translate="No">CMS API</span> à l'aide de la même manière que les informations vidéo. Notez que <span translate="No">Video Cloud</span> prend en charge huit types de playlists dans deux catégories :</p>
+    
+    <dl>
+      <dt>Listes de lecture manuelles <code translate="No">EXPLICIT</code>( ou)</dt>
+      <dd>contiennent un ensemble de vidéos spécifié - jusqu'à 100 vidéos peuvent être incluses</dd>
+      <dt>Sélections intelligentes</dt>
+      <dd>construit dynamiquement au moment de l'exécution en fonction des critères de recherche - il existe sept variétés de playlists intelligentes correspondant à la façon dont les vidéos sont classées dans la liste :
+      <ul>
+        <li><code translate="No">ACTIVATEDOLDESTTONEWEST</code></li>
+        <li><code translate="No">ACTIVATEDNEWESTTOOLDEST</code></li>
+        <li><code translate="No">ALPHABETICAL</code></li>
+        <li><code translate="No">PLAYSTOTAL</code></li>
+        <li><code translate="No">PLAYSTRAILINGWEEK</code></li>
+        <li><code translate="No">STARTDATEOLDESTTONEWEST</code></li>
+        <li><code translate="No">STARTDATENEWESTTO_OLDEST</code></li>
+      </ul>
+    
+      <aside class="bcls-aside bcls-aside--warning">Notez que vous <strong>ne pouvez pas</strong> changer une liste de lecture manuelle en liste de lecture intelligente (ou vice-versa) une fois la liste de lecture créée.</aside>
+    
+      <p>La limite du nombre de vidéos peut être définie à n'importe quel nombre jusqu'à 100.</p>
+      </dd>
+    </dl>
+    
+    <p>Comme pour les vidéos, vous pouvez récupérer toutes les playlists, à l'aide <code translate="No">limit</code> et <code translate="No">offset</code> à la page des résultats si le compte dispose d'un grand nombre de playlists :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/account_id/<strong><em>playlists</em></strong>
+    </code>
+    </pre>
+    
+    <p>Le tableau renvoyé d'objets de la liste de lecture inclura des métadonnées pour la liste de lecture, y compris celle <code translate="No">type</code> correspondant à l'un des types décrits ci-dessus. Si le type est <code translate="No">EXPLICIT</code>, il y aura également un <code translate="No">video_ids</code> tableau contenant les identifiants des vidéos incluses. Si le type est l'un des types de liste de lecture intelligente, il y aura une <code translate="No">search</code> propriété contenant la chaîne de recherche qui récupère les vidéos, quelque chose comme ceci :</p>
+    
+    <pre>
+    <code class="language-http" translate="No">q=tags:fish,birds
+    </code>
+    </pre>
+    
+    <p>Vous pouvez également récupérer une seule playlist par son <code translate="No">id</code>:</p>
+    
+    <pre class="line-numbers">
+    <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/account_id/playlists/<strong><em>playlist_id</em></strong>
+    </code>
+    </pre>
+    
+    <p>Si vous devez récupérer les objets vidéo complets d'une playlist (pour afficher les informations sur les vidéos sur une page), il vous suffit d'ajouter <code translate="No">/videos</code> à cette URL :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/account_id/playlists/<strong><em>playlist_id/videos</em></strong>
+    </code>
+    </pre>
+    
+    <p>Notez que pour une liste de lecture intelligente, la demande renvoie les vidéos qui correspondent aux critères de recherche actuellement, mais cela peut changer.</p>
+    </section>
+    
+    <section class="bcls-section" id="creatingPlayers">
+    <h2>Création de lecteurs</h2>
+    
+    <p>Les joueurs Brightcove peuvent être créés via le <a href="/player-management/getting-started/overview-player-management-api.html"> <span translate="No">Player Management API</span> </a>. L'API vous permet de créer des lecteurs, de mettre à jour leurs propriétés et d'obtenir le code intégré sous la forme d'une URL, d'une <code translate="No">iframe</code> balise ou d'un bloc de HTML à intégrer dans la page.</p>
+    
+    <p class="BCL-aside">Vous pouvez jusqu'à 200 joueurs par compte, mais il est généralement moins déroutant pour les utilisateurs d'avoir autant de joueurs que vous en avez absolument besoin. Vous devriez avoir des lecteurs séparés pour lire des vidéos individuelles ou des playlists, mais sinon vous n'avez besoin que de joueurs différents lorsqu'ils seront stylisés différemment ou si des fonctionnalités différentes sont ajoutées via des plugins.</p>
+    
+    <p>Pour créer un joueur, il vous suffit de faire une <span translate="No">POST</span> demande au <span translate="No">Player Management API</span>:</p>
+    
+    <pre class="line-numbers">
+    <code class="language-http" translate="No">https://players.api.brightcove.com/v2/accounts/account_id/players
+    </code>
+    </pre>
+    
+    <p>Dans le corps de la requête, incluez la <a href="/player-management/guides/player-configuration-guide.html">configuration du joueur</a> - la seule chose requise est un <code translate="No">name</code>:</p>
+    
+    <pre class="line-numbers">
+    <code class="language-json" translate="No">{
+    "name": "Single video player for blog posts"
+    }
+    </code>
+    </pre>
+    
+    <p>La réponse vous donnera l'identifiant du joueur, ainsi que le code d'intégration sous plusieurs formes :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-json" translate="No">{
+    "embed_code": "&lt;iframe src='//players.brightcove.net/57838016001/de055fa4-4f09-45af-8531-419c6794ad04_default/index.html' allowfullscreen webkitallowfullscreen mozallowfullscreen&gt;&lt;/iframe&gt;",
+    "embed_in_page": "http://players.brightcove.net/57838016001/de055fa4-4f09-45af-8531-419c6794ad04_default/in_page.embed",
+    "id": "de055fa4-4f09-45af-8531-419c6794ad04",
+    "preview_embed_code": "&lt;iframe src='//preview-players.brightcove.net/v1/accounts/57838016001/players/de055fa4-4f09-45af-8531-419c6794ad04/preview/embeds/default/master/index.html' allowfullscreen webkitallowfullscreen mozallowfullscreen&gt;&lt;/iframe&gt;",
+    "preview_url": "http://preview-players.brightcove.net/v1/accounts/57838016001/players/de055fa4-4f09-45af-8531-419c6794ad04/preview/embeds/default/master/index.html",
+    "url": "http://players.brightcove.net/57838016001/de055fa4-4f09-45af-8531-419c6794ad04_default/index.html"
+    }
+    </code>
+    </pre>
+    
+    <p>Pour obtenir la configuration complète du joueur, vous faites une demande au <code translate="No">/players</code> point de terminaison, mais ajoutez l'ID de joueur qui est retourné dans la réponse ci-dessus :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-http" translate="No">https://players.api.brightcove.com/v2/accounts/account_id/players/de055fa4-4f09-45af-8531-419c6794ad04
+    </code>
+    </pre>
+    
+    <p>Vous pouvez faire une <span translate="No">PATCH</span> demande au même point de terminaison pour mettre à jour la configuration du lecteur.</p>
+    
+    <p>Vous remarquerez dans la réponse ci-dessus, le <code translate="No">preview_embed_code</code> et <code translate="No">preview_url</code>. Pour permettre le test des nouveaux joueurs ou des mises à jour de joueurs, les joueurs nouvellement créés ou mis à jour sont configurés en mode prévisualisation afin de vous permettre de les voir avant d'apporter des modifications aux joueurs existants. Pour introduire des modifications dans la production, vous devez <strong>publier</strong> le lecteur avec cette demande :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-http" translate="No">https://players.api.brightcove.com/v2/accounts/account_id/players/de055fa4-4f09-45af-8531-419c6794ad04/<strong><em>publish</em></strong>
+    </code>
+    </pre>
+    </section>
+    
+    <section class="bcls-section" id="customizingPlayers">
+    <h2>Personnalisation des joueurs</h2>
+    
+    <p>Le <a href="https://player.support.brightcove.com/getting-started/overview-brightcove-player.html">lecteur Brightcove</a> est construit avec des technologies web standard : HTML, CSS et <span translate="No">JavaScript</span>. Vous pouvez personnaliser le lecteur à l'aide de ces mêmes technologies. Cela peut être fait dans la page où le lecteur est publié, mais la meilleure pratique consiste à ajouter vos personnalisations au joueur lui-même via la <a href="/player-management/guides/player-configuration-guide.html">configuration</a> du joueur, en mettant à jour le lecteur via une <span translate="No">PATCH</span> requête au <span translate="No">Player Management API</span> comme expliqué dans la section précédente.</p>
+    
+    <p>Vous pouvez également ajouter des fonctionnalités et des fonctionnalités supplémentaires au lecteur via des <span translate="No">JavaScript</span> <a href="https://player.support.brightcove.com/plugins/brightcove-player-plugins.html">plugins</a> , et il existe une <a href="https://docs.brightcove.com/brightcove-player/current-release/index.html">API Player</a> étendue pour vous aider à intégrer votre code avec le lecteur. Brightcove propose un certain nombre de plugins prêts à l'emploi pour des choses telles que l'activation de la publicité, la personnalisation de l'écran de fin et l'ajout de superpositions.</p>
+    </section>
+    
+    <section class="bcls-section" id="publishingVideos">
+    <h2>Publier des vidéos</h2>
+    
+    <p>Dans la <a href="#creatingPlayers">section Création de lecteurs</a> ci-dessus, nous avons vu que lorsque vous obtenez l'objet de configuration du lecteur en utilisant le <span translate="No">Player Management API</span> , les données renvoyées incluent une balise iframe pour intégrer le lecteur dans une page HTML, ainsi qu'une URL pour le HTML complet si vous veulent incorporer le lecteur directement dans une page.</p>
+    
+    <aside class="bcls-aside bcls-aside--tip">Nous vous recommandons d'utiliser l'intégration iframe autant que possible, car cela évite les conflits entre le CSS du lecteur <span translate="No">JavaScript</span> et d'autres feuilles de style et scripts utilisés dans la page. Voir <a href="https://player.support.brightcove.com/publish/choosing-correct-embed-code.html">ce document</a> pour plus de détails sur les différences et des recommandations plus précises sur lesquelles intégrer à utiliser dans différentes situations.</aside>
+    
+    <p>Pour l'intégration que vous choisissez, vous devrez ajouter un identifiant <span translate="No">Video Cloud</span> vidéo ou un identifiant de playlist au code intégré pour ajouter du contenu au lecteur. Le code d'intégration iframe ressemble à ceci :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-html" translate="No">&lt;iframe
+    src='//players.brightcove.net/57838016001/de055fa4-4f09-45af-8531-419c6794ad04_default/index.html'
+    allowfullscreen webkitallowfullscreen mozallowfullscreen&gt;&lt;/iframe&gt;
+    </code>
+    </pre>
+    
+    <p>À l'URL du lecteur, vous devez ajouter le paramètre <code translate="No">videoId={}video_id</code>, de sorte que le code intégré complet ressemblera à ceci :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-html" translate="No">&lt;iframe
+    src='//players.brightcove.net/57838016001/de055fa4-4f09-45af-8531-419c6794ad04_default/index.html<strong><em>?videoId=4483119716001</em></strong>'
+    allowfullscreen webkitallowfullscreen mozallowfullscreen&gt;&lt;/iframe&gt;
+    </code>
+    </pre>
+    
+    <p>S'il s'agit d'un lecteur de liste de lecture, vous utilisez le paramètre à la <code translate="No">playlistId={playlist_id}</code> place. La modification du code d'intégration dans la page est similaire.</p>
+    
+    <p>À moins que les dimensions du joueur ne soient fixées dans la configuration du joueur, vous devrez également dimensionner le joueur en ajoutant de la largeur et de la hauteur dans un <code translate="No">style</code> attribut :</p>
+    
+    <pre class="line-numbers">
+    <code class="language-html" translate="No">&lt;iframe
+    src='//players.brightcove.net/57838016001/de055fa4-4f09-45af-8531-419c6794ad04_default/index.html<strong><em>?videoId=4483119716001</em></strong>'
+    allowfullscreen webkitallowfullscreen mozallowfullscreen
+    style=width:640px;height:360px;&gt;&lt;/iframe&gt;
+    </code>
+    </pre>
+    </section>
+    
+    <section class="bcls-section" id="analytics">
+    <h2>Obtenir des rapports Analytics</h2>
+    
+    <p>Le vous <a href="/analytics/getting-started/overview-analytics-api-v1.html"> <span translate="No">Analytics API</span> </a> permet de générer des rapports d'analyse par de nombreux différents <code translate="No">dimensions</code>. Pour plus d'informations, reportez-vous aux <a href="/analytics/dimension-guides/index.html">Guides de dimension</a> .</p>
+      
+    <p>Vous pouvez spécifier la plage de dates du rapport, les métriques à renvoyer et vous pouvez obtenir les données dans <span translate="No">JSON</span> , <span translate="No">csv</span> , ou <span translate="No">xlxs</span> format</p>
+    
+    <p>Pour les périodes du dernier mois, vous pouvez également générer des <a href="/analytics/getting-started/overview-analytics-api-v1.html#engagement">rapports d'engagement</a> détaillés qui affichent des vues pour chaque centième partie de la vidéo.</p>
+    </section>
+    
+    <section class="bcls-section" id="summary">
+    <h2>Résumé des API</h2>
+    
+    <p>Voici un résumé des API utiles pour l'intégration avec <span translate="No">Video Cloud</span>.</p>
+    
+    <dl>
+      <dt><a href="/oauth/getting-started/overview-oauth-api-v4.html"><span translate="No">OAuth API</span> </a></dt>
+      <dd>Permet de créer des informations d'identification client et d'accéder aux jetons pour accéder aux autres API.</dd>
+      <dt>Gestion des médias</dt>
+      <dd>
+      <dl>
+        <dt><a href="/ingest-profiles/getting-started/overview-ingest-profiles-api-dynamic-delivery-context-aware-encoding.html"><span translate="No">Ingest Profiles API</span> </a></dt>
+        <dd>Utilisé pour créer des profils d'ingest personnalisés spécifiant les formats associés à créer pour les vidéos ajoutées à <span translate="No">Video Cloud</span></dd>
+        <dt><a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html"><span translate="No">Dynamic Ingest API</span> </a></dt>
+        <dd>Utilisé pour ajouter des vidéos et des ressources multimédias connexes à <span translate="No">Video Cloud</span></dd>
+        <dt><a href="/cms/getting-started/overview-cms-api.html"><span translate="No">CMS API</span> </a></dt>
+        <dd>Utilisé pour créer des objets vidéo pour l'ingestion et pour gérer des vidéos et des playlists</dd>
+      </dl>
+      </dd>
+      <dt>Lecteurs Brightcove</dt>
+      <dd>
+      <dl>
+        <dt><a href="https://player.support.brightcove.com/getting-started/overview-brightcove-player.html">Le joueur de Brightcove</a></dt>
+        <dd>Le lecteur inclut une <span translate="No">JavaScript</span> API pour interagir avec le lecteur lors de l'exécution</dd>
+        <dt><a href="/player-management/getting-started/overview-player-management-api.html"><span translate="No">Player Management API</span> </a></dt>
+        <dd>Utilisé pour créer et configurer des joueurs, et pour obtenir le code d'intégration du lecteur</dd>
+      </dl>
+      </dd>
+      <dt><a href="/analytics/getting-started/overview-analytics-api-v1.html"><span translate="No">Analytics API</span> </a></dt>
+      <dd>Utilisé pour obtenir des rapports d'analyse sur les performances vidéo</dd>
+    </dl>
+    </section>
+  </article>
+<!-- complete bootstrap layout -->
+    </div>
+    <div class="col-sm-2 right-side-bar">
+      
+      <nav class="right-side-nav" id="right_side_nav">
+        <h6 class="toc">Contenu de la page</h6>
+        <ul id="in_page_nav" class="list-none"></ul>
+      </nav>
+      
+    </div>
+  </div>
+</div>
+
+<hr>
+<footer class="bcls-footer" role="contentinfo">
+  <div class="row">
+    <div class="region region-footer-top-center col-md-12">
+      <nav role="navigation" aria-labelledby="block-brightcovesupport-menu" id="block-brightcovesupport" class="footer-menu">
+
+        <h2>Assistance Brightcove</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://status.brightcove.com">État du système</a>
+          </li>
+          <li>
+            <a href="https://supportportal.brightcove.com/s/login/?">Contacter le support</a>
+          </li>
+          <li>
+            <a href="https://support.brightcove.com/">Documentation</a>
+          </li>
+        </ul>
+
+      </nav>
+      <nav role="navigation" aria-labelledby="block-training-menu" id="block-training" class="footer-menu">
+
+        <h2>Formation</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://studio.support.brightcove.com/training/online-training-courses.html">Cours en ligne</a>
+          </li>
+          <li>
+            <a href="https://studio.support.brightcove.com/training/register-training.html">S' inscrire à un cours</a>
+          </li>
+          <li>
+            <a href="https://university.brightcove.com/">Université de Brightcove</a>
+          </li>
+        </ul>
+
+      </nav>
+      <nav role="navigation" aria-labelledby="block-brightcove-menu" class="footer-menu">
+
+        <h2>Brightcove</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://www.brightcove.com">BrightCove.com</a>
+          </li>
+          <li>
+            <a href="https://supportportal.brightcove.com/s/login/?">Contactez-nous</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="region region-footer-bottom-center col-md-12">
+      <div class="bcls-copyright footer-menu">
+        <table>
+          <tr>
+            <td>
+              <div id="bc_copyright" class="field field--name-field-copyright-year field--type-string field--label-hidden field--item" style="float: left;"> Brightcove, Inc. Tous droits réservés.</div>
+            </td>
+            <td><a href="https://www.brightcove.com/en/legal/privacy">Confidentialité</a> | <a href="https://www.brightcove.com/en/terms-and-conditions">Termes et conditions</a></td>
+            <td>
+              <div class="gf-links-cols footer-menu">
+                <div class="gf-social"><a href="https://www.linkedin.com/company/16439" title="LinkedIn" newtab="newtab" class="gf-social-linkedin"><i class="fab fa-linkedin-in" style="font-size: 1.5rem;"></i></a><a href="https://twitter.com/brightcove" title="Twitter" newtab="newtab" class="gf-social-twitter"><i class="fab fa-twitter" style="font-size: 1.5rem;"></i></a><a href="https://www.facebook.com/Brightcove" title="Facebook" newtab="newtab" class="gf-social-facebook"><i class="fab fa-facebook-f" style="font-size: 1.5rem;"></i></a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div>
+</div>
+<script>
+      
+  var searchBox = sajari.init({
+    mode: "search-box",
+    project: "1588255093746585379", // Set this to your project.
+    collection: "brightcove-documenation", // Set this to your collection.
+    instantPipeline: "autocomplete", // Pipeline used as you type
+    inputPlaceholder: "Search", // Input element placeholder
+    maxSuggestions: 5, // Maximum number of suggestions to show
+    attachSearchBox: document.getElementById("nav-search-box") // DOM element to attach to
+  });
+  
+    searchBox("sub", "pipeline.search-sent", function (_, query) {
+      window.location = "/search.html?q=" + encodeURIComponent(query.q);
+    });
+  
+
+</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/https-fix.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/setDate.js"></script>
+  
+  <script src="https://support.brightcove.com/site-assets/js/site/prism.js"></script>
+  
+  <script src="https://support.brightcove.com/site-assets/js/site/site.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/tabs.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/toc.js"></script>
+  <script src="/assets/js/sites_nav.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/bcls-utils.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/site/local-link-fix.js"></script>
+  <script src="/assets/js/feedback.js"></script>
+  
+  <script src="/assets/js/sajari-search-foot.js"></script>
+  
+  <!-- <script src="/assets/js/sajari-index.js"></script> -->
+  <style>
+    a.sj-paginator__page-number.sj-paginator__page-number--current.css-so0ov7 {
+      background-color: lightblue;
+    }
+    div.sj-tabs__tab {
+      margin-top: 3rem;
+      margin-left: .3rem;
+      border-top-left-radius: .4rem;
+      border-top-right-radius: .4rem;
+      background-color:#e8e8e8;
+    }
+
+    div.sj-tabs__tab.sj-tabs__tab--selected {
+      border-bottom-color: crimson;
+      background-color: #f8f8f8;
+    }
+
+    p.sj-results__result__description.css-p9jvyt {
+      font-size: 1rem;
+    }
+
+    .sj-result__text.css-31l7gp h3 {
+      color: navy;
+      font-size: 1.4rem;
+    }
+    </style>
+
+</body>
+
+</html>
