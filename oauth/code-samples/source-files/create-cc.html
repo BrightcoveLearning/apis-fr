@@ -1,0 +1,39 @@
+<section class="bcls-section">
+  <h2 id="app">Créer des informations d'identification client</h2>
+
+  <fieldset>
+    <legend>Contributions</legend>
+
+    <p>Nom des identifiants (pas de caractères spéciaux) : <input id="credentialsName" type="text" size="50" /></p>
+
+    <p>BC_TOKEN : <input id="bcToken" type="text" size="50" /></p>
+
+    <p>Compte(s) pour lequel créer des informations d'identification (liste délimitée par des virgules) : <input id="accountIds" type="text" size="50" placeholder="57838016001,1752604059001,921483702001" /></p>
+
+    <p>Type(s) de compte(s) : <select name="accountTypeSelector" id="accountTypeSelector"><option value="video-cloud-account">Nuage vidéo</option><option value="video-cloud-account">Lecteur Brightcove</option> </select></p>
+
+    <p>Opérations d'API à activer (voir <a href="https://support.brightcove.com/api-operations-client-credentials-requests" target="_blank">Opérations d'API pour les informations d'identification du client</a> pour plus d'informations):</p>
+
+    <div id="operationsList">&nbsp;</div>
+
+    <p><button id="submitButton" class="bcls-button">Obtenir les informations d'identification du client</button></p>
+
+    <p>Corps complet de la requête API :</p>
+    <textarea name="apiRequest" id="apiRequest" class="bcls-code"></textarea></fieldset>
+
+  <fieldset>
+    <legend>Sortir</legend>
+
+    <h3>identité du client</h3>
+    <textarea name="clientId" id="clientId" class="bcls-code">L'ID client apparaîtra ici...</textarea>
+
+    <h3>Secret du client</h3>
+    <textarea name="clientSecret" id="clientSecret" class="bcls-code">La clé secrète du client apparaîtra ici...</textarea>
+
+    <h3>Réponse complète</h3>
+
+    <pre class="line-numbers">
+<code id="apiResponse" class="language-json">La réponse complète de l'API apparaîtra ici...</code></pre>
+  </fieldset>
+</section>
+

@@ -1,0 +1,463 @@
+---
+title: 'Aperçu: Filigrane médico-légal' la
+description: "Dans cette rubrique, vous obtiendrez un aperçu de haut niveau de la fonction de filigrane médico-légal de Brightcove."
+parent: Forensic Watermarking
+---
+ <h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+  <section class="bcls-section">
+    <h2 id="Introduction">introduction</h2>
+    <p>Brightcove s'est associé à <a href="https://dtv.nagra.com/nexguard-forensic-watermarking">NAGRA</a> fournir un filigrane médico-légal en tant que fonctionnalité de la plate-forme Video Cloud. Cela aidera à protéger votre contenu premium contre le piratage et le partage de contenu non autorisé. Cette fonctionnalité permet également d'identifier rapidement la source d'une fuite de contenu, afin que des mesures puissent être prises.</p>
+  </section>
+  <section class="bcls-section">
+    <h2 id="Setup">Installer</h2>
+    <p>La configuration suivante est nécessaire pour prendre en charge la solution Forensic Watermarking de Brightcove :</p>
+    <ol class="bcls-tasklist-restart">
+      <li>
+        Contactez votre gestionnaire de compte :
+        <ol>
+          <li>Assurez-vous que votre compte est activé pour la livraison dynamique.</li>
+          <li>Activez votre compte pour Forensic Watermarking ; Il s'agit d'un module complémentaire payant de Video Cloud.</li>
+        </ol>
+      </li>
+      <li>Obtenez votre clé de licence auprès de <a href="https://dtv.nagra.com/nexguard-forensic-watermarking">NAGRA</a>.</li>
+      <li>Générez une paire de clés publique-privée qui sera utilisée par le JWT Forensic Watermarking et déchiffrée par le CDN. (voir ci-dessous)</li>
+      <li>Utilisez le script fourni par NAGRA pour générer un jeton Web JSON (JWT) pour le tatouage légal. Assurez-vous de gérer la manière dont le jeton de filigrane médico-légal et chaque visionneuse sont liés. Vous en aurez besoin lorsque vous <a href="#Configure_your_player">configurer vos joueurs</a> et dans le cas de faire un service de détection pour savoir quel téléspectateur a divulgué le contenu illégalement.</li>
+    </ol>
+    <p>
+      Il existe de nombreuses façons de générer la paire de clés publique-privée. Voici quelques exemples:
+    </p>
+    <h3>
+      Exemple de script bash :
+    </h3>
+    <aside class="bcls-aside bcls-aside--information">Notez que le script ci-dessous utilise le <strong>jq</strong> package pour l'analyse de JSON. Si vous n'avez pas installé jq, consultez le <a href="https://github.com/stedolan/jq/wiki/Installation">instructions d'installation</a>.</aside>
+    <p>
+      Exemple de script pour générer la paire de clés :
+    </p>
+<pre class="line-numbers"><code class="language-bash" translate="No">#!/bin/bash
+set -euo pipefail
+
+NAME=${1:-}
+test -z "${NAME:-}" &amp;&amp; NAME="brightcove-forensic-watermarking-key-$(date +%s)"
+mkdir "$NAME"
+
+PRIVATE_PEM="./$NAME/private.pem"
+PUBLIC_PEM="./$NAME/public.pem"
+PUBLIC_TXT="./$NAME/public_key.txt"
+
+ssh-keygen -t rsa -b 2048 -m PEM -f "$PRIVATE_PEM" -q -N ""
+openssl rsa -in "$PRIVATE_PEM" -pubout -outform PEM -out "$PUBLIC_PEM" 2&gt;/dev/null
+openssl rsa -in "$PRIVATE_PEM" -pubout -outform DER | base64 &gt; "$PUBLIC_TXT"
+
+rm "$PRIVATE_PEM".pub
+
+echo "Public key to saved in $PUBLIC_TXT"
+</code></pre>
+    <p>
+      Exécutez le script :
+    </p>
+    <pre><code class="language-bash" translate="No">$ bash keygen.sh
+</code></pre>
+
+    <details id="Example_using_Go">
+      <summary>Exemple utilisant <span translate="No">Aller</span></summary>
+      <p>
+        Exemple utilisant le <span translate="No">Aller</span> langage de programmation pour générer la paire de clés :
+      </p>
+      <aside class="bcls-aside bcls-aside--tip">Si vous êtes nouveau <span translate="No">Aller</span> , voir le <a href="https://golang.org/">Les <span translate="No">Aller</span> Langage de programmation</a> page d'accueil.</aside>
+<pre class="line-numbers"><code class="language-bash" translate="No">package main
+  
+  import (
+    "crypto/rand"
+    "crypto/rsa"
+    "crypto/x509"
+    "encoding/base64"
+    "encoding/pem"
+    "flag"
+    "fmt"
+    "io/ioutil"
+    "os"
+    "path"
+    "strconv"
+    "time"
+  )
+  
+  func main() {
+    var out string
+  
+    flag.StringVar(&amp;out, "output-dir", "", "Output directory to write files into")
+    flag.Parse()
+  
+    if out == "" {
+      out = "rsa-key_" + strconv.FormatInt(time.Now().Unix(), 10)
+    }
+  
+    if err := os.MkdirAll(out, os.ModePerm); err != nil {
+      panic(err.Error())
+    }
+  
+    priv, err := rsa.GenerateKey(rand.Reader, 2048)
+    if err != nil {
+      panic(err.Error())
+    }
+  
+    privBytes := x509.MarshalPKCS1PrivateKey(priv)
+  
+    pubBytes, err := x509.MarshalPKIXPublicKey(priv.Public())
+    if err != nil {
+      panic(err.Error())
+    }
+  
+    privOut, err := os.OpenFile(path.Join(out, "private.pem"), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
+    if err != nil {
+      panic(err.Error())
+    }
+  
+    if err := pem.Encode(privOut, &amp;pem.Block{Type: "RSA PRIVATE KEY", Bytes: privBytes}); err != nil {
+      panic(err.Error())
+    }
+  
+    pubOut, err := os.OpenFile(path.Join(out, "public.pem"), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
+    if err != nil {
+      panic(err.Error())
+    }
+  
+    if err := pem.Encode(pubOut, &amp;pem.Block{Type: "PUBLIC KEY", Bytes: pubBytes}); err != nil {
+      panic(err.Error())
+    }
+  
+    var pubEnc = base64.StdEncoding.EncodeToString(pubBytes)
+  
+    var pubEncOut = path.Join(out, "public_key.txt")
+    if err := ioutil.WriteFile(pubEncOut, []byte(pubEnc+"\n"), 0600); err != nil {
+      panic(err.Error())
+    }
+  
+    fmt.Println("Public key saved in " + pubEncOut)
+  }
+  </code></pre>
+    </details>
+    <br>
+
+    <details id="Example_using_node_js">
+      <summary>Exemple utilisant node.js</summary>
+      <p>
+        Exemple utilisant node.js pour générer la paire de clés :
+      </p>
+      <aside class="bcls-aside bcls-aside--tip">Cet exemple de script nécessite la version 11 ou ultérieure du nœud.</aside>
+  <pre class="line-numbers"><code class="language-javascript" translate="No">var crypto = require("crypto");
+  var fs = require("fs");
+  
+  var now = Math.floor(new Date() / 1000);
+  var dir = "rsa-key_" + now;
+  fs.mkdirSync(dir);
+  
+  crypto.generateKeyPair(
+    "rsa",
+    {modulusLength: 2048},
+    (err, publicKey, privateKey) =&gt; {
+      fs.writeFile(
+        dir + "/public.pem",
+        publicKey.export({ type: "spki", format: "pem" }),
+        err =&gt; {}
+      );
+      fs.writeFile(
+        dir + "/public_key.txt",
+        publicKey.export({ type: "spki", format: "der" }).toString("base64") +
+          "\n",
+        err =&gt; {}
+      );
+      fs.writeFile(
+        dir + "/private.pem",
+        privateKey.export({ type: "pkcs1", format: "pem" }),
+        err =&gt; {}
+      );
+    }
+  );
+  
+  console.log("Public key saved in " + dir + "/public_key.txt");</code></pre>
+    </details>
+
+  </section>
+  <section class="bcls-section">
+    <h2 id="Implementation">Mise en œuvre</h2>
+    <p>Vous pouvez implémenter le filigrane judiciaire avec Video Cloud Studio ou vous pouvez le faire manuellement à l'aide des API Brightcove. Les méthodes sont détaillées dans les sections suivantes.</p>
+  </section>
+  <section class="bcls-section"></section>
+    <h2 id="Video_Cloud_Studio">Studio Nuage Vidéo</h2>
+    <p>Suivez ces étapes pour utiliser Forensic Watermarking avec Video Cloud Studio :</p>
+    <ol class="bcls-tasklist-restart">
+      <li>
+        <p>Forensic Watermarking n'est pas lié à un profil d'ingestion spécifique. Vous pouvez utiliser n'importe quel profil de livraison dynamique ou d'encodage contextuel.</p>
+        <ol>
+          <li>Fournissez à Brightcove votre clé de licence NAGRA. Cette clé de licence sera utilisée lors du transcodage pour générer le filigrane.</li>
+          <li>Dans le <strong>Télécharger</strong> module, sélectionnez votre profil d'ingestion.</li>
+          <li>
+            <p>Vérifier la <strong>Activer le filigrane judiciaire</strong> option.</p>
+            <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Enable watermarking option" src="/assets/images/general/forensic-watermarking/enable-watermarking.png" />
+              <figcaption class="bcls-caption--image">Activer l'option de filigrane</figcaption>
+              </figure> 
+          </li>
+          <li>
+          Ajouter la balise <code translate="No">watermarked</code> à la vidéo, car cela rendra beaucoup plus facile d'identifier les vidéos avec un filigrane médico-légal et de <a href="#Analytics_reports">générer des rapports d'analyse sur eux</a>:
+          <figure class="bcls-figure">
+            <img class="bcls-image" src="/assets/images/general/forensic-watermarking/add-tag.png" alt="Add Tag">
+            <figcaption class="bcls-caption--image">Ajouter une étiquette</figcaption>
+          </figure>
+          </li>
+          <li>
+            <p>Faites glisser ou recherchez votre vidéo pour commencer l'ingestion.</p>
+            <aside class="bcls-aside bcls-aside--information">Vous pouvez ingérer ou retranscoder les vidéos que vous souhaitez filigraner.</aside>
+          </li>
+        </ol>
+      </li>
+      <!-- <li>In the <strong>Media</strong> module, you can enable/disable your videos for watermarking.</li> -->
+      <li id="Configure_your_player">
+        <p>Configurez votre lecteur.</p>
+        <p>C'est là que vous passerez le jeton de filigrane NAGRA et l'identifiant de la visionneuse au joueur. Vous pouvez utiliser soit le lecteur Web Brightcove, soit les lecteurs natifs du SDK :</p>
+        <ul>
+          <li><a href="https://player.support.brightcove.com/playback/forensic-watermarking-with-bcp.html">Filigranage judiciaire avec Brightcove Player</a></li>
+          <li><a href="https://sdks.support.brightcove.com/features/forensic-watermarking-with-sdks.html">Filigranage judiciaire avec les SDK natifs</a></li>
+          <!-- <li><a href="https://live.support.brightcove.com/general/forensic-watermarking-live.html">Forensic Watermarking with Live Streams</a></li> -->
+        </ul>
+      </li>
+      <li>Lire le contenu qui a été ingéré pour le filigrane judiciaire.</li>
+    </ol>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Analytics_reports">Rapports analytiques</h2>
+    <p>Les rapports d'analyse sur les téléspectateurs pour les vidéos avec filigrane médico-légale sont disponibles via le <a href="/analytics/index.html">API d'analyse</a> seul. Les rapports peuvent être renvoyés au format JSON, CSV ou XLXS</p>
+    <p>Dans les données Analytics :</p>
+    <pre><code translate="no">1 Transaction = 1 Viewer unique par vidéo en 24 heures</code></pre>
+    <aside class="bcls-aside bcls-aside--information language-editable">Notez que certains des exemples fournis ci-dessous supposent que vous avez ajouté la balise <code translate="No">watermarked</code> à vos vidéos avec filigrane médico-légal. Sinon, vous devrez filtrer vos demandes à l'aide d'un <code translate="No">where=video=={video_id}</code> filtre (comme dans le premier exemple).</aside>
+    <h3>Exemple 1 : spectateurs pour une vidéo par date</h3>
+    <p>Pour cet exemple, nous interrogerons le <code translate="No">video</code> , <code translate="No">viewer</code> et <code translate="No">date</code> dimensions et récupérer le rapport au format CSV.</p>
+    <h4>Demande d'échantillon</h4>
+<pre><code class="language-http" translate="No">https://analytics.api.brightcove.com/v1/data?accounts=4800266849001&from=2021-06-23&to=2021-06-25&dimensions=date,viewer&limit=10&where=video==70702952720202&fields=video,viewer,video_view&format=csv</code></pre>
+    <h4>Réponse</h4>
+<pre><code class="language-csv" translate="No">"date","video","viewer","video_view"
+"2021-06-25","70702952720202","3f46037f932b0c5a","1"
+"2021-06-24","70702952720202","3f46037f932b0c5a","2"</code></pre>
+<p>Notez que le <code translate="No">viewer</code> est généré par le lecteur Brightcove et défini sur une chaîne unique basée sur l'agent utilisateur et l'IP. Idéalement, vous devriez définir vous-même l'identifiant du spectateur en fonction d'un identifiant de connexion - voir <a href="https://player.support.brightcove.com/playback/xdr-with-bcplayer.html#Set_the_user_identifier">ce sujet</a> pour savoir comment procéder. Votre identifiant sera basé sur des informations pouvant être récupérées via JavaScript.</p>
+    <h3>Exemple 2 : nombre de téléspectateurs</h3>
+    <p>Dans cet exemple, nous supposerons que toutes les vidéos avec filigrane médico-légal ont la balise <code translate="No">watermarked</code>. Nous interrogerons à nouveau le <code translate="No">video</code> , <code translate="No">viewer</code> et <code translate="No">date</code> dimensions et ne retourner qu'un article, car c'est le résumé qui nous intéresse ici :</p>
+    <h4>Demande d'échantillon</h4>
+<pre><code class="language-http" translate="No">https://analytics.api.brightcove.com/v1/data?accounts=4800266849001&from=2021-06-23&to=2021-06-25&dimensions=date,viewer&limit=1&where=video.q==tags:watermarked</code></pre>
+    <h4>Réponse</h4>
+<pre class="line-numbers"><code class="language-json" translate="No">{
+  "item_count": 7,
+  "items": [
+    {
+      "date": "2021-06-25",
+      "viewer": "07B1489C-5786-400E-945B-ABB3559B3897",
+      "video_view": 1
+    }
+  ],
+  "summary": {
+    "video_view": 25
+  }
+}</code></pre>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="APIs">Apis</h2>
+    <p>Voici les API et les champs liés à Forensic Watermarking :</p>
+    <h3><a href="/dynamic-ingest/index.html">API d'ingestion dynamique</a></h3>
+    <p>Une fois qu'un compte est activé pour le filigrane judiciaire, vous pouvez ajouter un filigrane judiciaire à une vidéo en ajoutant le <code translate="No">forensic_watermarking</code> à votre demande d'ingestion et en le définissant sur <code translate="No">true</code>. Cela peut être fait pour l'ingestion d'origine, le remplacement ou le retranscodage de la vidéo.</p>
+    <h4>Exemple de corps de requête</h4>
+<pre class="line-numbers"><code class="language-json" translate="No">{
+  "master": {
+          "url": "http://solutions.brightcove.com/video/Walking_Dead_609.mp4",
+          "audio_tracks": [
+              {
+                  "language": "en",
+                  "variant": "main"
+              }
+          ]
+      },
+    "profile": "multi-platform-standard-static-with-mp4",
+    <span class="bc-highlight">"forensic_watermarking": true,</span>
+    "capture-images": true
+}</code></pre>
+    <p>Il y a aussi <code translate="No">forensic_watermarking_stub_mode</code> indicateur qui, lorsqu'il est défini sur <code translate="No">true</code> produit des filigranes médico-légaux visibles :</p>
+    <figure class="bcls-figure">
+      <img class="bcls-image" src="/assets/images/general/forensic-watermarking/visible-watermarks.png" alt="Visible Forensic Watermarks">
+      <figcaption class="bcls-caption--image">Filigranes médico-légaux visibles</figcaption>
+    </figure>
+    <aside class="bcls-aside bcls-aside--information language-editable">Noter que <code translate="No">forensic_watermarking_stub_mode</code> ne peut être défini qu'à l'aide de l'API Dynamic Ingest. Vous ne pouvez pas le définir à l'aide du module de téléchargement.</aside>
+    <p><code translate="No">forensic_watermarking</code> doit également être réglé sur <code translate="no">vrai</code> pour activer les filigranes visibles.</p>
+    <p>Utilisez des filigranes visibles sur une vidéo pour tester les intégrations (vous devriez tester avec une vidéo d'au moins 10 minutes). Une fois que vous avez vérifié que les filigranes médico-légaux sont présents, vous souhaiterez les supprimer pour n'avoir que des filigranes médico-légaux invisibles. Pour ce faire, vous devrez soumettre une autre demande d'ingestion dynamique pour retranscoder la vidéo, cette fois en définissant <code translate="No">forensic_watermarking_stub_mode</code> à <code translate="No">false</code>.</p>
+    <h4>Exemple de corps de demande pour les filigranes médico-légaux visibles</h4>
+<pre class="line-numbers"><code class="language-json" translate="No">{
+  "master": {
+          "url": "http://solutions.brightcove.com/video/Walking_Dead_609.mp4",
+          "audio_tracks": [
+              {
+                  "language": "en",
+                  "variant": "main"
+              }
+          ]
+      },
+    "profile": "multi-platform-standard-static-with-mp4",
+    <span class="bc-highlight">"forensic_watermarking": true,</span>
+    <span class="bc-highlight">"forensic_watermarking_stub_mode": true,</span>
+    "capture-images": true
+}</code></pre>
+    <h4>Exemple de corps de demande pour supprimer les filigranes médico-légaux visibles</h4>
+<pre class="line-numbers"><code class="language-json" translate="No">{
+    "profile": "multi-platform-standard-static-with-mp4",
+    <span class="bc-highlight">"forensic_watermarking": true,</span>
+    <span class="bc-highlight">"forensic_watermarking_stub_mode": false,</span>
+    "capture-images": true
+}</code></pre>
+    
+    <h3><a href="/cms/index.html">API CMS</a></h3>
+    <p>Par défaut, les rendus avec filigrane judiciaire seront fournis si le filigrane judiciaire a été demandé lors de l'ingestion. La présence de filigranes médico-légaux sera indiquée par le champ en lecture seule <code translate="No">forensic_watermarking</code>. Si le champ a une valeur de <code translate="No">ACTIVE</code> , le filigrane médico-légal a été ajouté à la VOD. Si le champ a une valeur de <code translate="No">UNAVAILABLE</code> ou <code translate="No">null</code> , la VOD n'a pas de filigrane médico-légal.</p>
+      
+      <!-- <p>You can disable this using a video update request to the CMS API and setting <code translate="No">forensic_watermarking</code> to <code translate="No">INACTIVE</code>. To enable delivery of forensic watermarked renditions again, send another update request setting <code translate="No">forensic_watermarking</code> to <code translate="No">ACTIVE</code>.</p>
+    <p>For accounts not enable for forensic watermarking, <code translate="No">forensic_watermarking</code> will be <code translate="No">null</code> and not included in API responses</p>
+    <h4>Sample request body</h4>
+<pre class="line-numbers"><code class="language-json" translate="No">{
+  "forensic_watermarking": "INACTIVE"
+}</code></pre> -->
+
+    <h3>API de lecture</h3>
+    <p>Les réponses vidéo GET de l'API de lecture contiendront également un <code translate="No">forensic_watermarking</code> (si le compte est activé pour le filigrane médico-légal). Si la valeur est <code translate="No">ACTIVE</code> , les rendus avec des filigranes médico-légaux seront livrés en tant que sources au lecteur. Sinon, des rendus non filigranés seront livrés.</p>
+    <h3>Zencoder<a href="https://zencoder.support.brightcove.com/index.html"></a></h3>
+      <p>Pour générer des sorties avec filigrane judiciaire dans Zencoder, vous devez spécifier 2 sorties par vidéo, une avec <code translate="no">"forensic_watermark": "UNE"</code> et l'autre avec <code translate="no">"forensic_watermark": "B"</code> (ce sont les deux seules valeurs <code translate="no">forensic_watermark</code> champ peut avoir).</p>
+      <h4>Exemple de demande (sorties uniquement)</h4>
+<pre class="line-numbers"><code class="language-json" translate="No">{
+  "outputs": [
+      {
+          "base_url": "s3://urlTest",
+          "filename": "contextAwareEncoding1_A.m4f",
+          "public": false,
+          "format": "m4f",
+          "label": "m4f-contextAwareEncoding1-A-b30e1",
+          "generate_mp4_atom_map": true,
+          "Mp4_atom_map_filename": "contextAwareEncod-A-atom_map.json",
+          "skip_audio": true,
+          <span class="bc-highlight">"forensic_watermark": "A"</span>,
+          "dynamic_profile_rendition": 1,
+          "skip": {
+              "require_video": true
+          },
+          "fragment_duration": 2000,
+          "segment_seconds": 2,
+          "headers": {
+              "x-amz-server-side-encryption": "AES256"
+          }
+      },
+      {         
+          "base_url": "s3://urlTest",
+          "filename": "contextAwareEncoding1_B.m4f",
+          "public": false,
+          "format": "m4f",
+          "label": "m4f-contextAwareEncoding1-B-e348",
+          "generate_mp4_atom_map": true,
+          "mp4_atom_map_filename": "contextAwareEncod-B-atom_map.json",
+          "skip_audio": true,
+          <span class="bc-highlight">"forensic_watermark": "B"</span>,
+          "dynamic_profile_rendition": 1,
+          "skip": {
+              "require_video": true
+          },
+          "fragment_duration": 2000,
+          "segment_seconds": 2,
+          "headers": {
+              "x-amz-server-side-encryption": "AES256"
+          }
+      }
+  ]
+}</code></pre>
+    <h4>Filigranes visibles pour les tests</h4>
+    <p>À des fins de test, pour vérifier que le filigrane judiciaire est présent, vous pouvez forcer le filigrane judiciaire visible en ajoutant <code translate="No">"forensic_watermark_stub_mode":true</code> aux sorties comme indiqué dans l'exemple ci-dessous :</p>
+<pre class="line-numbers"><code class="language-json" translate="No">{
+  "outputs": [
+      {
+          "base_url": "s3://urlTest",
+          "filename": "contextAwareEncoding1_A.m4f",
+          "public": false,
+          "format": "m4f",
+          "label": "m4f-contextAwareEncoding1-A-b30e1",
+          "generate_mp4_atom_map": true,
+          "Mp4_atom_map_filename": "contextAwareEncod-A-atom_map.json",
+          "skip_audio": true,
+          <span class="bc-highlight">"forensic_watermark": "A"</span>,
+          <span class="bc-highlight">"forensic_watermark_stub_mode":true</span>,
+          "dynamic_profile_rendition": 1,
+          "skip": {
+              "require_video": true
+          },
+          "fragment_duration": 2000,
+          "segment_seconds": 2,
+          "headers": {
+              "x-amz-server-side-encryption": "AES256"
+          }
+      },
+      {         
+          "base_url": "s3://urlTest",
+          "filename": "contextAwareEncoding1_B.m4f",
+          "public": false,
+          "format": "m4f",
+          "label": "m4f-contextAwareEncoding1-B-e348",
+          "generate_mp4_atom_map": true,
+          "mp4_atom_map_filename": "contextAwareEncod-B-atom_map.json",
+          "skip_audio": true,
+          <span class="bc-highlight">"forensic_watermark": "B"</span>,
+          <span class="bc-highlight">"forensic_watermark_stub_mode":true</span>,
+          "dynamic_profile_rendition": 1,
+          "skip": {
+              "require_video": true
+          },
+          "fragment_duration": 2000,
+          "segment_seconds": 2,
+          "headers": {
+              "x-amz-server-side-encryption": "AES256"
+          }
+      }
+  ]
+}</code></pre>
+  </section>
+  <section class="bcls-section">
+    <h2 id="supported_features">Fonctionnalités prises en charge</h2>
+    <ul>
+      <li>GDN</li>
+      <li>Restrictions de lecture</li>
+      <li>Re-transcodage</li>
+      <li>Remplacement du fichier source</li>
+      <li>CAE</li>
+      <li>Téléchargement hors ligne</li>
+      <li>Chromecast</li>
+      <li>Airplay</li>
+    </ul>
+
+  </section>
+  <section class="bcls-section">
+    <h2 id="Limitations">Limites</h2>
+    <ul>
+      <li>Seule la VOD est prise en charge pour le moment. Le filigrane judiciaire pour les diffusions en direct n'est pas pris en charge.</li>
+      <li>Les vidéos doivent durer au moins cinq minutes pour qu'un filigrane médico-légal soit appliqué.</li>
+      <li>HLSv7 n'est pas pris en charge. HLSv7 est utilisé pour fournir du HEVC, des codecs mixtes et de l'audio 5.1. Par conséquent, HEVC, la vidéo à codecs mixtes et l'audio 5.1 ne sont actuellement pas pris en charge.</li>
+      <li>Les vidéos HLS cryptées (HLSe) ne sont actuellement pas prises en charge.</li>
+      <li>Cette fonctionnalité nécessite une clé de licence NAGRA.</li>
+      <li>Les joueurs auront besoin d'un JWT de filigrane judiciaire que vous créerez à l'aide d'un script fourni par NAGRA.</li>
+      <li><a href="/delivery-rules/index.html">Règles de livraison</a> ne peut pas être utilisé avec des lecteurs utilisés pour diffuser des vidéos avec un filigrane médico-légal.</li>
+      <li>Vous devez utiliser le CDN de Brightcove. BYO CDN n'est pas pris en charge.</li>
+      <!-- <li>You are responsible for generating and managing the tokens used to identify each viewer.</li> -->
+      <li>Brightcove ne gère pas l'analyse de détection. Pour cela, contactez NAGRA.</li>
+    </ul>
+  </section>
+  <section class="bcls-section">
+    <h2 id="related_topics">Rubriques connexes</h2>
+    <ul>
+      <li><a href="https://player.support.brightcove.com/playback/forensic-watermarking-with-bcp.html">Filigranage judiciaire avec Brightcove Player</a></li>
+      <li><a href="https://sdks.support.brightcove.com/features/forensic-watermarking-with-sdks.html">Filigranage judiciaire avec les SDK natifs</a></li>
+      <li><a href="https://zencoder.support.brightcove.com/encoding-guides/forensic-watermarking.html">Zencoder : Filigrane médico-légal</a></li>
+      <li><a href="https://zencoder.support.brightcove.com/encoding-settings/content-protection/encoding-settings-forensic-watermarking.html">Zencoder : Paramètres de filigrane judiciaire</a></li>
+    </ul>
+  </section>
+</article>

@@ -1,0 +1,102 @@
+---
+title: URL signées et authentification de jeton avec un flux en direct
+description: 'Dans cette rubrique, vous apprendrez à utiliser les URL signées et l'authentification par jeton pour empêcher les utilisateurs finaux de pouvoir lire votre flux en direct sans autorisation appropriée.'
+parent: Guides 
+grandparent: Live API
+---
+ <h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="Overview">Aperçu</h2>
+
+<p>Si vous fournissez du contenu premium ou confidentiel, vous rechercherez tous les moyens de garantir qu'il reste sécurisé. Vous ne voulez pas que les utilisateurs finaux puissent copier les URL des vidéos ou continuer à lire du contenu sans l'autorisation appropriée. Brightcove prend en charge la signature des URL RTMP, HLS et DASH.</p>
+
+<p>Si vous allez générer votre propre jeton, il y a une étape dans ce processus. Si vous souhaitez que le système Live génère une URL tokenisée, deux étapes, détaillées dans les sections qui suivent, sont requises pour activer l'authentification par token pour les flux en direct.</p>
+
+<aside class="bcls-aside bcls-aside--information">Actuellement, l'authentification par jeton n'est prise en charge qu'avec Akamai EdgeAuth 2.0.</aside>
+</section>
+
+<section id="Implementation" class="bcls-section">
+<h2>Mise en œuvre</h2>
+
+<aside class="bcls-aside bcls-aside--information">Remarque : si vous créez votre propre jeton et que vous l'ajoutez à l'URL, vous ne devez effectuer que l'étape 1.</aside>
+
+<h3>Étape 1: Création de l'emploi en direct</h3>
+
+<p>Pour activer l'authentification par jeton, incluez les éléments suivants dans le corps de la demande lorsque vous <a href="/live-api/references/reference.html#api-Live_Jobs-Create_a_Live_Job">créer un emploi</a>:</p>
+
+<pre class="line-numbers">
+  <code class="language-json" translate="No">"add_cdns": [{
+    "label": "My CDN",
+    "prepend": "mycdn-a.akamaihd.net",
+    "protocol": "https",
+    "vendor": "akamai",
+    "token_auth": {
+      "auth_type": "Akamai2.0",
+      "key": "AKAMAI_TOKEN_PASSWORD",
+      "token_name": "AKAMAI_TOKEN_NAME",
+      "media": {
+        "start_time": "now",
+        "end_time": 1495697388,
+        "ttl": 60
+      }
+    }
+  }]</code></pre>
+
+<p>Les champs concernés sont décrits dans le tableau suivant :</p>
+
+<table class="bcls-table">
+	<caption class="bcls-caption--table">Champs TTL pour les travaux en direct</caption>
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Champ</th>
+			<th>Valeur</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td ><code translate="No">start_time</code></td>
+			<td >Soit <code translate="No">now</code> ou une heure de début unix/posix</td>
+		</tr>
+		<tr>
+			<td ><code translate="No">end_time</code></td>
+			<td >heure de fin unix/posix</td>
+		</tr>
+		<tr>
+			<td ><code translate="No">ttl</code></td>
+			<td >nombre en secondes pour la durée de vie</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>Étape 2: Après la création de l'emploi en direct</h3>
+
+<aside class="bcls-aside bcls-aside--information">Ne terminez cette étape que si vous êtes <strong>ne pas</strong> créer votre propre jeton et souhaitez plutôt que l'API Live génère une URL tokenisée.</aside>
+
+<p>Une fois la tâche en direct créée, vous devez effectuer une autre demande pour générer les URL du manifeste principal. Pour ce faire, envoyez un <code translate="No">POST</code> demande à:</p>
+
+<pre class="line-numbers">
+  <code class="language-http" translate="No">https://api.bcovlive.io/v1/jobs/<span class="bcls-input">JOB_ID</span>/authurls</code></pre>
+
+<p>Incluez le JSON suivant comme corps de la requête :</p>
+
+<pre class="line-numbers">
+  <code class="language-json" translate="No">{
+    "ttl": <span class="bcls-input">number in seconds for time to live</span>
+  }</code></pre>
+</section>
+
+<section id="Notes" class="bcls-section">
+<h2>Remarques</h2>
+
+<ul>
+	<li>Les <code translate="No">ttl</code> la valeur pour les deux étapes ci-dessus doit être égale ou supérieure à la fenêtre DVR - sinon la fenêtre DVR sera limitée à la <code translate="No">ttl</code> valeur</li>
+	<li>http et https sont pris en charge</li>
+	<li>Les <code translate="No">token_name</code> doit comporter de 5 à 12 caractères et doit correspondre à ce qui est configuré dans Akamai</li>
+	<li><code translate="No">start_time</code> est facultatif et peut être <code translate="No">"now"</code> (par défaut) ou une valeur de temps d'époque en secondes</li>
+	<li><code translate="No">end_time</code> est facultatif et peut être une valeur de temps d'époque en secondes - soit <code translate="No">end_time</code> ou <code translate="No">ttl</code> est requis; si non spécifié, <code translate="No">ttl</code> est supposé être le plus élevé de <code translate="No">live_dvr_sliding_window_duration</code> et <code translate="No">vod_sliding_window_duration</code></li>
+</ul>
+</section>
+</article>

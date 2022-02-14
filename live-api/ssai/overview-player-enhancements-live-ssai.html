@@ -1,0 +1,97 @@
+---
+title: 'Aperçu: Améliorations du lecteur pour Live SSAI' la
+description: Dans cette rubrique, vous apprendrez à lire des flux en direct avec des publicités côté serveur qui utilisent les améliorations du lecteur pour Live SSAI pour une expérience utilisateur améliorée.
+parent: SSAI 
+grandparent: Live API
+---
+
+
+<!--
+  This content appears on:
+
+  https://ssai.support.brightcove.com/live/guides/overview-player-enhancements-live-ssai.html
+
+  If you update in one place, you MUST update it in all!
+ -->
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="Introduction">introduction</h2>
+
+<p>Les publicités côté serveur vous permettent de maximiser les revenus publicitaires en diffusant des publicités de haute qualité intégrées à votre contenu sous forme de flux en direct transparent. Étant donné que les publicités sont cousues côté serveur, les utilisateurs ne peuvent pas tirer parti des bloqueurs de publicités, et une implémentation fonctionne sur plusieurs plates-formes et appareils. Pas besoin de créer des clients personnalisés pour chaque appareil.</p>
+
+<p>Les améliorations du lecteur de Brightcove pour Live SSAI s'appuient sur les publicités côté serveur en élargissant l'expérience de l'utilisateur et en capturant les revenus des clics. Cette boîte à outils vous permet d'ajouter des composants côté client aux flux en direct, y compris le nombre d'annonces, les minuteurs de compte à rebours des annonces, les annonces cliquables et les annonces associées.</p>
+
+<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Client-side ad components" src="//learning-services-media.brightcove.com/doc-assets/node/18946-sls-overview/client-components-sls.png" />
+<figcaption class="bcls-caption--image">Composants publicitaires côté client</figcaption>
+</figure>
+
+<p>La boîte à outils fournit également un autre moyen de déclencher des événements de suivi. Les données de suivi sont transmises au client, ce qui vous donne la possibilité de déclencher des événements de suivi à partir du client ou du serveur. Sachez que les bloqueurs de publicités peuvent empêcher le suivi côté client.</p>
+
+<aside class="bcls-aside bcls-aside--information">Actuellement, cette fonctionnalité ne prend pas en charge les annonces désactivables.</aside>
+<p>Pour plus de détails, voir ce qui suit :</p>
+<ul>
+  <li>
+    <a href="https://ssai.support.brightcove.com/live/guides/implementing-player-enhancements-live-ssai.html">Implémentation des améliorations de lecteur pour Live SSAI</a>
+  </li>
+</ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Account_setup">Configuration du compte</h2>
+
+<p>Contactez votre gestionnaire de compte pour activer votre compte pour les diffusions en direct, l'insertion d'annonces côté serveur (SSAI) et les améliorations de lecteur pour Live SSAI.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Specifications">Caractéristiques</h2>
+
+<p>Les améliorations de lecteur de Brightcove pour Live SSAI améliorent l'expérience de l'utilisateur final en fournissant les fonctionnalités suivantes :</p>
+
+<h3>Surfaces de suivi des événements jusqu'au client</h3>
+
+<p>Les données de suivi, y compris les impressions, les quartiles, CreativeView, la pause, le silence, sont présentées au client. Cela vous donne la possibilité de déclencher des événements de suivi à partir du client ou du serveur. Les événements spécifiques au client tels que le clic, la pause et le silence doivent toujours être déclenchés à partir du client.</p>
+
+<p>Les <code translate="No">ExtendedMetadata</code> de vos réponses VAST est personnalisable et inclus pour le client.</p>
+
+<p>Les coupures publicitaires diffusées dans la fenêtre DVR d'un flux suivront les mêmes actions.</p>
+
+<h3>Fournit des informations sur les coupures publicitaires</h3>
+
+<p>La durée de la coupure publicitaire aide à garder les téléspectateurs intéressés par le flux.</p>
+
+<p>Les informations sur les coupures publicitaires sont transmises au client. Chaque durée d'annonce au sein d'une pause est présentée au client. Le client fournit un compte à rebours configurable de la pause ou du nombre d'annonces dans la pause, et un compte à rebours pour chacun.</p>
+
+<h3>Active les annonces cliquables</h3>
+
+<p>Les annonces cliquables vous permettent de maximiser les revenus et d'aligner les ventes d'annonces.</p>
+
+<p>Les URL de destination du serveur publicitaire seront transmises au client de lecture. La vidéo sera cliquable et enverra des événements de suivi au clic de l'utilisateur. Lorsque vous cliquez dessus, le client met le flux en pause et ouvre la destination dans un nouvel onglet de navigateur ou dans une vue Web distincte.</p>
+
+<aside class="bcls-aside bcls-aside--information">Étant donné que les téléviseurs ne prennent pas en charge un navigateur Web, les publicités cliquables ne sont pas disponibles sur les téléviseurs connectés.</aside>
+
+<h3>Active les annonces associées</h3>
+
+<p>Les annonces compagnons fournissent un autre format pour afficher le contenu publicitaire. Il s'agit généralement de texte, d'annonces display ou de rich media qui apparaissent en dehors du lecteur. L'avantage de ces publicités est qu'elles peuvent rester visibles tout au long de la lecture vidéo.</p>
+
+<aside class="bcls-aside bcls-aside--information">Les publicités associées n'apparaissent pas sur les téléviseurs connectés.</aside>
+</section>
+
+<section class="bcls-section">
+<h2 id="Limitations">Limites</h2>
+
+<p>Actuellement, cette fonctionnalité n'est disponible que pour les régions suivantes :</p> 
+  <ul>
+    <li>ap-sud-est-1 (Singapour)</li>
+    <li>ap-sud-est-2 (Sydney)</li>
+    <li>ap-nord-est-1 (Tokyo)</li>
+    <li>eu-central-1 (Francfort)</li>
+    <li>us-west-2 (Oregon)</li>
+  </ul>
+
+</section>
+
+</article>

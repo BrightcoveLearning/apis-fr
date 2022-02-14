@@ -1,0 +1,185 @@
+---
+title: 'API en direct : Messages d'erreur' la
+description: Cette rubrique répertorie les messages d'erreur renvoyés par l'API Live. Ce travail est en cours. Si vous voyez une erreur qui n'est pas répertoriée ici, informez-en l'équipe des services d'apprentissage et nous l'ajouterons.
+parent: References 
+grandparent: Live API
+---
+ <h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="error_message_reference">Référence du message d'erreur</h2>
+
+<table class="bcls-table">
+  <caption class="bcls-caption--table">Messages d'erreur de l'API en direct</caption>
+  <thead class="bcls-table__head">
+    <tr>
+      <th>Erreur</th>
+      <th>La description</th>
+      <th>S'applique à</th>
+      <th>Corps de réponse</th>
+    </tr>
+  </thead>
+  <tbody class="bcls-table__body">
+    <tr>
+      <td><code translate="No">400 BAD_REQUEST</code></td>
+      <td>Les <code translate="No">region </code> spécifié dans la demande n'existe pas ou n'est pas pris en charge</td>
+      <td>Créer un emploi en direct</td>
+      <td>
+      
+<code class="language-json" translate="No">{
+"error": "Invalid region"
+}
+</code>
+
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="No">400 BAD_REQUEST</code></td>
+      <td>La durée du point de repère inséré doit être au moins le double de la longueur des segments du travail</td>
+      <td>Insérer un point de repère</td>
+      <td>
+      
+<code class="language-json" translate="No">{
+  "error": "The parameter duration should be greater than or equal to (2 * target duration) of the job"
+}
+</code>
+    
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="No">400 BAD_REQUEST</code></td>
+      <td>Le JSON a inclus une valeur invalide pour certains champs</td>
+      <td>Créer un travail en direct, créer un clip VOD, créer/mettre à jour la configuration des annonces, créer/mettre à jour un ensemble de balises, ingérer une ardoise, créer un ensemble de balises</td>
+      <td>
+      
+<code class="language-json" translate="No">{
+"error": "Invalid input value"
+}
+</code>
+
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="No">400 BAD_REQUEST</code></td>
+      <td>L'url de notification manquait le protocole ou le protocole n'est pas un type pris en charge</td>
+      <td>Créer un travail en direct, créer un clip VOD, créer/mettre à jour la configuration des annonces, créer/mettre à jour un ensemble de balises, ingérer une ardoise, créer un ensemble de balises</td>
+      <td>
+      
+<code class="language-json" translate="No">{
+"error": "The notification target type is not supported currently"
+}
+</code>
+
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="No">400 BAD_REQUEST</code></td>
+      <td>Le nombre de travaux SEP autorisés est limité. Vous recevrez également cette erreur si vous incluez <code translate="No">"channel_type": "24x7"</code> dans la demande de création de tâche et n'ont acheté que des SEP, pas des événements.</td>
+      <td>Créer un emploi en direct</td>
+      <td>
+      
+<code class="language-json" translate="No">{
+    "error": "You've reached the number of static entry points jobs you can create in this region for your account"
+}
+</code>
+
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="No">400 BAD_REQUEST</code></td>
+      <td>Seules 5 tâches en attente (en attente de connexion d'un codeur) sont autorisées. Pour créer des tâches supplémentaires, vous devrez connecter un encodeur à l'une des tâches en attente ou l'annuler</td>
+      <td>Créer un emploi en direct</td>
+      <td>
+      
+<code class="language-json" translate="No">{
+"error" : "You've reached the number of waiting jobs you can create for your account"
+}
+</code>
+
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="No">400 BAD_REQUEST</code></td>
+      <td>Pour créer des actifs VOD, vous devez utiliser notre propre livraison</td>
+      <td>La cause la plus probable est que vous demandez une ressource VOD complète ou un clip sur un flux crypté. Les actifs VOD pour les flux chiffrés ne sont pas pris en charge</td>
+      <td>
+      
+<code class="language-json" translate="No">{
+"error": "The notification target type is not supported currently"
+}
+</code>
+
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="No">401 UNAUTHORIZED</code></td>
+      <td>Les <code translate="No">X-API-KEY </code> l'en-tête n'a pas été envoyé avec la demande ou la valeur de la clé n'était pas valide</td>
+      <td>Toutes les demandes</td>
+      <td>
+      
+<code class="language-json" translate="No">{
+"message": "Unauthorized"
+}
+</code>
+
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="No">404 RESOURCE_NOT_FOUND</code></td>
+      <td>L'URL de la demande était défectueuse</td>
+      <td>Toutes les demandes</td>
+      <td>
+      
+<code class="language-json" translate="No">{
+"message": "Unauthorized"
+}
+</code>
+
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="No">500 INTERNAL_SERVER_ERROR</code></td>
+      <td>Vous avez tenté d'arrêter une tâche en direct qui a déjà été arrêtée</td>
+      <td>Annuler le travail en direct</td>
+      <td>
+      
+<code class="language-json" translate="No">{
+"error": "After filtering, there is no job to process"
+}
+</code>
+
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="No">500 INTERNAL_SERVER_ERROR</code></td>
+      <td>Vous avez spécifié un ID de tâche ou d'actif qui n'existe pas</td>
+      <td>Obtenir les détails du travail, annuler le travail en direct, activer le travail SEP, insérer un point de repère, insérer des métadonnées chronométrées ID3, créer un clip VOD</td>
+      <td>
+      
+<code class="language-json" translate="No">{
+"error": "DB getItem, no results found"
+}
+</code>
+
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="No">400 BAD_REQUEST</code></td>
+      <td>Le message suivant s'affiche lorsque la limite de 5 sorties RTMP par tâche en direct est atteinte.
+      </td>
+      <td>Les sorties RTMP sont limitées à 5 sorties par tâche Live</td>
+      <td>
+      
+<code class="language-json" translate="No">{ 
+  "error":"RTMP outputs limit reached, failed to add" 
+}
+</code>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+</section>
+</article>

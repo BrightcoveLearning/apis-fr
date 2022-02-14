@@ -1,0 +1,58 @@
+---
+title: 'Exemple d'API en direct : Créer un travail en direct'
+parent: Code Samples 
+grandparent: Live API
+---
+
+<article class="bcls-article">
+  <h1>Exemple d'API en direct : Créer un travail en direct</h1>
+  <summary>Dans cet exemple, vous apprendrez à créer une tâche Live simple.</summary>
+
+
+<section class="bcls-section">
+<h2 id="Introduction">introduction</h2>
+
+<p>Cet exemple crée une tâche Live simple avec trois rendus de sortie : 1080p, 720p et 480p.</p>
+
+<p>Parce que le <span translate="No">API en direct</span> n'est pas compatible CORS et doit être accessible depuis une application côté serveur, la requête API est envoyée via un simple proxy écrit en PHP. Vous pouvez reproduire cela dans n'importe quel langage côté serveur - tout ce qu'il fait est de collecter les paramètres de demande envoyés par JavaScript, d'envoyer la demande à l'API et de renvoyer la réponse à JavaScript. Tout le code se trouve dans le <a href="#code">section de code ci-dessous</a>.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="create_live_job_app">Créer une application d'emploi en direct</h2>
+Retrouvez tout le code associé à cet exemple dans ce <a href="https://github.com/BrightcoveLearning/18519-live-api-sample-create-live-job">Dépôt GitHub</a>.
+
+<p data-height="1400" data-theme-id="dark" data-slug-hash="ZoYoVY" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="Live API Sample: Create a Live Job" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/ZoYoVY/">Exemple d'API en direct : Créer un travail en direct</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script></section>
+
+<section class="bcls-section">
+<h2 id="Using_the_CodePen" class="bcls-expander-head">Utiliser le CodePen</h2>
+
+<div class="bcls-expander-content">
+<p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus :</p>
+
+<ul>
+	<li>Basculez l'affichage réel du lecteur en cliquant sur le bouton <strong>Résultat</strong> bouton.</li>
+	<li>Clique le <strong>HTML/CSS/JS</strong> pour afficher UN des types de code.</li>
+	<li>Cliquez sur <strong>Modifier sur CodePen</strong> dans le coin supérieur droit pour insérer ce CodePen dans votre propre compte.</li>
+	<li>Retrouvez tout le code associé à cet exemple dans ce <a href="https://github.com/BrightcoveLearning/18519-live-api-sample-create-live-job">Dépôt GitHub</a>.</li>
+</ul>
+</div>
+</section>
+
+<section class="bcls-section">
+<h2 id="code">Code proxy</h2>
+
+<p>En plus du code trouvé dans CodePen (et le référentiel GitHub associé), cet exemple nécessite un proxy pour effectuer la demande d'API et renvoyer la réponse à l'application. Pour cette application, nous avons utilisé PHP et le code est présenté ci-dessous. Vous pouvez utiliser n'importe quel langage côté serveur pour créer le proxy.</p>
+
+<details>
+	<summary>Exemple de code proxy</summary>
+	<pre class="line-numbers">
+	<code class="language-php">&lt;?php /** * live-proxy.php - proxy pour les API Brightcove Live * effectue la requête et renvoie la réponse * Accès : * (notez que vous devez *toujours* accéder au proxy via HTTPS) * Méthode : POSTER * * @poster {string} url - l'URL de la requête API * @post {string} [requestType=GET] - Méthode HTTP pour la requête * @post {string} [requestBody] - Données JSON à envoyer avec les demandes d'écriture * @post {string} apiKey - Clé API en direct * * @returns {string} $response - Réponse JSON reçue de l'API */ // Activation CORS et autres en-têtes header("Access-Control-Allow-Origin: *"); header("Type de contenu : application/json" ); header("X-Content-Type-Options: nosniff"); header("X-XSS-Protection"); $requestData = json_decode(file_get_contents('php://input')); // configurer l'appel API // obtenir la clé api $apikey = $requestData-&gt;apiKey; // obtient le type de requête ou par défaut GET if ($requestData-&gt;requestType) { $method = $requestData-&gt;requestType; } autre { $method = "GET"; } // plus de contrôles de sécurité $needle = '.io'; $endapi = strpos($requestData-&gt;url, $needle) + 3; $nextChar = substr($requestData-&gt;url, $endapi, 1); if (strpos($requestData-&gt;url, 'api.bcovlive.io') == false) { exit('{"ERROR":"Only requests to Brightcove Live APIs are accepted by this proxy"}'); } else if ($nextChar !== '/' &amp;&amp; $nextChar !== '?') { exit('{"ERROR": "There was a problem with your API request - please check the URL"}'); } // récupère l'URL et les informations d'autorisation à partir du formulaire data $request = $requestData-&gt;url; // envoyer la requête http si ($requestData-&gt;requestBody) { $ch = curl_init($request); curl_setopt_array($ch, array( CURLOPT_CUSTOMREQUEST =&gt; $method, CURLOPT_RETURNTRANSFER =&gt; TRUE, CURLOPT_SSL_VERIFYPEER =&gt; FALSE, CURLOPT_HTTPHEADER =&gt; array( 'Content-type: application/json', "X-API-KEY: {$apikey}", ), CURLOPT_POSTFIELDS =&gt; $requestData-&gt;requestBody )); $response = curl_exec($ch); curl_close($ch); } else { $ch = curl_init($request); curl_setopt_array($ch, array( CURLOPT_CUSTOMREQUEST =&gt; $method, CURLOPT_RETURNTRANSFER =&gt; TRUE, CURLOPT_SSL_VERIFYPEER =&gt; FALSE, CURLOPT_HTTPHEADER =&gt; array( 'Content-type: application/json', "X-API-KEY: {$apikey}", ) )); $response = curl_exec($ch); curl_close($ch); } // Vérifier les erreurs si ($response === FALSE) { $logEntry = "\nError:\n". "\n".date("Y-m-d H:i:s")." UTC \n" .$response; $logFileLocation = "log.txt"; $fileHandle = fopen($logFileLocation, 'a') or die("-1"); fwrite($fileHandle, $logEntry); fclose($fileHandle); echo '{"ERROR": "There was a problem with your API call"}'+ die(curl_error($ch)); } // Décode la réponse // $responseData = json_decode($response, TRUE); // renvoie la réponse à l'appelant AJAX $responseDecoded = json_decode($response); // si (!isset($responseDecoded)) { // $response = '{null}'; // } echo $réponse; ?&gt; </code></pre>
+</details>
+</section>
+
+<script src="//learning-services-media.brightcove.com/doc-assets/node/18519-live-api-sample-create-live-job/create-job.js">
+
+</script>
+
+</article>

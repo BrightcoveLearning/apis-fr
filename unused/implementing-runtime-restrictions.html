@@ -1,0 +1,83 @@
+---
+title: Description de la « Mise en œuvre des restrictions d'exécution » : "Dans cette rubrique, vous apprendrez comment générer et enregistrer des Jason Web Tokens (JWT) lors de l'utilisation des restrictions de lecture Brightcove."
+parent: Getting Started 
+grandparent: Playback Restrictions
+layout: staging
+---
+ <h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+  <br/>
+  <aside class="bcls-aside bcls-aside--tip">Cette fonctionnalité est disponible pour un ensemble spécifique de clients ayant accès à la phase de disponibilité limitée des restrictions de lecture Brightcove.</aside>
+
+<section class="bcls-section">
+<h2 id="Introduction">introduction</h2>
+
+<p>Les restrictions de lecture Brightcove offrent un niveau de sécurité supplémentaire lors de l'utilisation de la diffusion dynamique avec un contenu protégé par DRM ou HTTP Live Streaming Encryption (HLSe). </p>
+
+<p>Cette fonctionnalité vous permet de contrôler la lecture de votre contenu en exigeant un jeton pour autoriser la lecture. Un Jason Web Tokens (JWT) valide est requis pour obtenir une clé nécessaire pour déchiffrer le HLS chiffré, ou une licence nécessaire pour déchiffrer le contenu protégé par DRM.</p>
+
+<p>Si vous n'êtes pas familier avec cette fonction, consultez le <a href="/playback-restrictions/getting-started/overview-playback-restrictions.html">Aperçu: Restrictions de lecture Brightcove</a> document.</p>
+
+</section>
+
+<section class="bcls-section">
+<h2 id="Workflow">Flux de travail</h2>
+
+<p>Pour utiliser le service d'autorisation de lecture, procédez comme suit :</p>
+<ol class="bcls-tasklist">
+  <li>
+    <a href="#Create_a_JSON_Web_Token">Créer un <span translate="No">Jeton Web JSON</span></a>
+  </li>
+  <li>
+    <a href="#Configure_the_player">Configurer le joueur pour utiliser le jeton</a>
+  </li>
+</ol>
+
+</section>
+
+<section class="bcls-section">
+<h2 id="Create_a_JSON_Web_Token">Créer un <span translate="No">Jeton Web JSON</span></h2>
+
+<p>Pour créer un jeton à utiliser lors de la communication avec l'API de lecture de Brightcove, consultez le <a href="https://general.support.brightcove.com/developer/create-json-web-token.html">Créer un <span translate="No">Jeton Web JSON</span> (JWT)</a> document.</p>
+
+</section>
+
+<section class="bcls-section">
+<h2 id="Configure_the_player">Configurer le lecteur</h2>
+
+<p>Le jeton est transmis avec la demande de lecture. Si le jeton n'est pas valide ou a expiré, l'accès au contenu sera restreint. Le joueur doit être configuré pour utiliser le jeton.</p>
+
+<h3>Lecteur Web</h3>
+<p>
+  Pour plus de détails sur la configuration du lecteur Web Brightcove, consultez le <a href="https://player.support.brightcove.com/playback/license-protection-with-bcp.html">Protection de clé/licence avec Brightcove Player</a> document.
+</p>
+<h3>Lecteur Android natif</h3>
+<p>
+  Pour plus de détails sur la configuration du lecteur natif pour Android, consultez le <a href="https://sdks.support.brightcove.com/features/license-protection-with-sdks.html">Protection de clé/licence avec les SDK natifs</a> document.
+</p>
+<h3>Lecteur iOS natif</h3>
+<p>
+  Pour plus de détails sur la configuration du lecteur natif pour iOS, consultez le <a href="https://sdks.support.brightcove.com/features/license-protection-with-sdks.html">Protection de clé/licence avec les SDK natifs</a> document.
+</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Limitations">Limites</h2>
+
+<p>Les limitations suivantes s'appliquent à cette fonctionnalité :</p>
+<ul>
+  <li>
+    Pour HLSe (AES-128), le jeton sera ajouté à la demande de manifeste principal et se propagera à l'URL de la clé de chiffrement. Étant donné que ces URL sont ajoutées au manifeste principal, les clients doivent envisager de restreindre le nombre d'utilisations pour minimiser l'exposition de leur contenu.
+  </li>
+  <li>
+    Pour HLSe (AES-128), les joueurs feront plusieurs demandes lors de la lecture d'une vidéo, généralement une par rendu. Les <a href="https://general.support.brightcove.com/developer/create-json-web-token.html#Claims_for_Playback_Restrictions">réclamation maxu</a> doit être suffisamment élevé pour tenir compte de ces demandes. Vous devriez envisager des réclamations supplémentaires pour minimiser l'exposition de votre contenu. Le changement de rendu demandera une nouvelle licence.
+  </li>
+  <li>
+    Suivi de la <a href="https://general.support.brightcove.com/developer/create-json-web-token.html#Claims_for_Playback_Restrictions">réclamations maxu et maxip</a> est finalement cohérent. Cela signifie que si un jeton utilisant ces revendications est réutilisé plusieurs fois en succession rapide, il est possible de voir ce jeton accepté plus de fois que ces revendications ne le déclarent. Le suivi devient cohérent en quelques secondes et après cette fenêtre, le jeton sera bloqué comme prévu.
+  </li>
+</ul>
+</section>
+
+</article>

@@ -1,0 +1,207 @@
+---
+title: Description des limites de périphérique de mise en œuvre : "Dans cette rubrique, vous apprendrez comment activer les limites de périphérique pour la lecture vidéo à l'aide des restrictions de lecture Brightcove."
+parent: Guides 
+grandparent: Playback Restrictions
+---
+ <h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+  
+  <!-- <br/>
+  <aside class="bcls-aside bcls-aside--tip">This feature is available for a specific set of customers with access to the Limited Availability phase of Brightcove Playback Restrictions.</aside> -->
+  
+  <section class="bcls-section">
+    <h2 id="Introduction">introduction</h2>
+
+    <p>Avec les restrictions de lecture Brightcove, vous pouvez définir des limites de périphérique pour la lecture vidéo. L'appareil de chaque utilisateur est enregistré avec un identifiant unique lorsqu'une demande de licence DRM est effectuée. Vous contrôlez le nombre d'appareils par utilisateur.</p>
+    <p>
+      La limite d'appareils est vérifiée et appliquée à chaque demande de licence. Pour utiliser cette restriction, vous passerez un <a href="https://general.support.brightcove.com/developer/create-jwt.html">Jeton Web JSON (JWT)</a> avec l'identifiant actuel de l'utilisateur <code translate="No">uid</code> à l'API de lecture.
+    </p>
+
+    <p>Si vous débutez avec cette fonctionnalité, consultez le <a href="/playback-restrictions/getting-started/overview-playback-restrictions.html">Aperçu: Restrictions de lecture Brightcove</a> document.</p>
+
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Device_registration">Enregistrement de l'appareil</h2>
+    <p>
+      Un appareil est enregistré auprès de Brightcove lorsqu'une demande de lecture valide qui inclut un <a href="https://general.support.brightcove.com/developer/create-jwt.html">Jeton Web JSON (JWT)</a> avec <code translate="No">uid</code> et <code translate="No">dlimit</code> les réclamations sont reçues. A partir de ce moment, cet appareil occupera un emplacement.
+    </p>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="JWT_claims">Revendications JWT</h2>
+    <p>Pour les limites d'appareils, vous pouvez utiliser les revendications suivantes avec les revendications généralement requises :</p>
+    <ul>
+      <li>
+        <p>:<code translate="No">uid</code></p>
+        <p>L'identifiant de l'utilisateur final. Ce champ est obligatoire pour l'enregistrement de l'appareil.</p>
+      </li>
+      <li>
+        <p>:<code translate="No">dlimit</code></p>
+        <p>Pour le contenu DRM, le <code translate="No">dlimit</code> La revendication indique le nombre d'appareils qu'un utilisateur peut diffuser. Chaque appareil de chaque utilisateur demandant un flux est enregistré. Une fois la limite de diffusion atteinte, plus aucun appareil ne pourra diffuser.</p>
+        <p>
+          Les <code translate="No">dlimit</code> la revendication vous permet de contrôler le nombre d'appareils pouvant être associés à l'utilisateur spécifié <code translate="No">uid</code>. La valeur doit être &gt; <code translate="No">0</code>.
+        </p>
+        <p>Si la <code translate="No">dlimit</code> la valeur de la réclamation est supprimée dans les demandes ultérieures, les appareils précédemment autorisés continueront de fonctionner.
+        </p>
+        <p>
+          <strong>Exemple</strong><br />
+          Si la <code translate="No">dlimit</code> la valeur est définie sur <code translate="No">3</code> , l'utilisateur peut jouer sur les appareils A, B et C (tous seraient autorisés). Essayer de jouer sur l'appareil D serait refusé.<br />
+          Si la <code translate="No">dlimit</code> la valeur est changée en <code translate="No">1</code> , l'utilisateur peut toujours jouer sur les 3 appareils A, B et C, à moins que les appareils ne soient révoqués manuellement en gérant les appareils avec l'API Devices. Pour ce faire, consultez le <a href="#Manage_devices">Gérer les appareils</a> section.
+        </p>
+      </li>
+      <!-- <li>
+        <p><code translate="No">maxip</code>:</p>
+        For HLSe content, the <code translate="No">maxip</code> claim defines how many different IP addresses can stream at the same time.
+      </li> -->
+    </ul>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Implementation">Mise en œuvre</h2>
+    <p>
+      Pour utiliser les limites d'appareils, procédez comme suit :
+    </p>
+    <ol class="bcls-tasklist">
+      <li>
+        <p>
+          Créer un <a href="https://general.support.brightcove.com/developer/create-json-web-token.html">Jeton Web JSON (JWT)</a> avec les revendications généralement requises ainsi que les <code translate="No">uid</code> et <code translate="No">dlimit</code> réclamations.
+        </p>
+        <p>
+          L'appareil de chaque utilisateur est enregistré avec un identifiant unique lorsqu'une demande de licence DRM est effectuée.
+        </p>
+      </li>
+      <li>
+        <p>
+          <a href="#Manage_devices">Gérer les appareils des utilisateurs</a> avec l'API des appareils. Cette API vous permet d'obtenir les appareils d'un utilisateur, de supprimer des appareils et de mettre à jour le nom d'un appareil.
+        </p>
+        <p>
+          Lorsqu'un appareil est enregistré, il est identifié par son identifiant et son pseudonyme. L'API des appareils vous permet de modifier le surnom de l'appareil, ce qui facilite la gestion de votre liste d'appareils.
+        </p>
+      </li>
+      <li>
+        <a href="/playback-restrictions/getting-started/implementing-playback-rights.html#Configure_your_player">Configurez votre lecteur</a> d'utiliser le <span translate="No">Jeton Web JSON</span> (JWT) créé à l'étape précédente.
+      </li>
+    </ol>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Manage_devices">Gérer les appareils</h2>
+
+    <p>Vous pouvez gérer les appareils utilisateur avec le <a href="/playback-restrictions/references/devices-api/reference.html">API des appareils</a>.</p>
+
+    <h3 id="Playback_Rights_API">API des appareils</h3>
+    <p>
+      Avec l'API Devices, vous pouvez obtenir et supprimer des appareils utilisateur.
+    </p>
+
+    <h3>URL de base</h3>
+    <p>
+      L'URL de base de l'API est :
+    </p>
+    <pre><code class="language-http" translate="No">https://playback-auth.api.brightcove.com/v1</code></pre>
+
+    <h3>Chemin du compte</h3>
+    <p>
+      Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base :
+    </p>
+    <pre><code class="language-http" translate="No">https://playback-auth.api.brightcove.com/v1/accounts/{accountID}</code></pre>
+
+    <h3>Autorisation</h3>
+    <p>
+      Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization :
+    </p>
+    <pre><code class="language-http" translate="No">Authorization: Bearer {access_token}</code></pre>
+    <p>
+      Le jeton d'accès est un jeton d'accès OAuth2 temporaire qui doit être obtenu auprès du service Brightcove OAuth. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a>.
+    </p>
+
+    <h3>Autorisations</h3>
+    <p>
+      Les demandes à l'API Devices doivent être effectuées à partir de <a href="/oauth/index.html">informations d'identification du client</a> avec les autorisations suivantes :
+    </p>
+    <ul>
+      <li>
+        <code translate="No">video-cloud/playback-auth/devices/read</code>
+      </li>
+      <li>
+        <code translate="No">video-cloud/playback-auth/devices/write</code>
+      </li>
+    </ul>
+
+    <h3>Méthodes API</h3>
+    <p>
+      L'API Devices prend en charge les requêtes suivantes. Pour plus de détails, consultez le <a href="/playback-restrictions/references/devices-api/reference.html">Référence de l'API des appareils</a>.
+    </p>
+
+    <h4>Obtenir tous les appareils utilisateur</h4>
+    <pre><code class="language-http" translate="No">GET /v1/accounts/{accountID}/users/{userID}/devices</code></pre>
+    <h5>Corps de réponse</h5>
+    <p>
+      Le corps de la réponse contient un tableau de périphériques et devrait ressembler à ceci :
+    </p>
+    <pre class="line-numbers"><code class="language-json" translate="No">[
+    {
+        &quot;id&quot;: &quot;12e12345-11e1-1bd1-d123-1234567890&quot;,
+        &quot;created_at&quot;: 1612646018,
+        &quot;updated_at&quot;: 1612646018,
+        &quot;name&quot;: &quot;my device1&quot;,
+        &quot;user_agent&quot;: &quot;PlayReadyClient&quot;
+    },
+    {
+        &quot;id&quot;: &quot;WVCf123456789abcdefghijkl1234567890abcdefg&quot;,
+        &quot;created_at&quot;: 1612385697,
+        &quot;updated_at&quot;: 1612385697,
+        &quot;name&quot;: &quot;my device2&quot;,
+        &quot;user_agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0&quot;
+    }
+]</code></pre>
+    <br />
+
+    <h4>Mettre à jour le nom de l'appareil</h4>
+    <p>
+      Les <code translate="No">PATCH</code> demande vous permet de définir un nom descriptif pour l'appareil.
+    </p>
+    <pre><code class="language-http" translate="No">PATCH  /v1/accounts/{accountID}/users/{userID}/devices/{deviceID}
+  Content-Type: application/json
+  Body: {devices object}</code></pre>
+    <h5>Corps de la demande</h5>
+    <p>
+      Le corps de la requête contient le nom de l'appareil.
+    </p>
+    <pre class="line-numbers"><code class="language-json" translate="No">{
+    &quot;name&quot;: &quot;my device1&quot;
+}</code></pre>
+
+    <p>
+      Voici les détails du champ :
+    </p>
+    <table class="bcls-table">
+      <thead class="bcls-table__head">
+        <tr>
+          <th>Champ</th>
+          <th>Taper</th>
+          <th>La description</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td><code translate="No">name</code></td>
+          <td>Chaîne de caractères</td>
+          <td>Un surnom descriptif pour aider à identifier l'appareil</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+
+    <h4>Supprimer tous les appareils utilisateur</h4>
+    <pre><code class="language-http" translate="No">DELETE /v1/accounts/{accountID}/users/{userID}/devices</code></pre>
+    <br />
+
+    <h4>Supprimer un appareil utilisateur spécifique</h4>
+    <pre><code class="language-http" translate="No">DELETE /v1/accounts/{accountID}/users/{userID}/devices/{deviceID}</code></pre>
+    <br />
+  </section>
+
+</article>

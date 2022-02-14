@@ -1,0 +1,200 @@
+---
+title: Gestion des pistes de texte à l'aide de l'API CMS
+description: 'Dans cette rubrique, vous apprendrez à utiliser l'API CMS pour mettre à jour les pistes de texte WebVTT de vos vidéos.'
+parent: Managing Videos/Assets 
+grandparent: CMS API
+---
+ <h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+    <section class="bcls-section">
+    <h2 id="Introduction">introduction</h2>
+    
+    <p>Que les pistes de texte soient ingérées (statiques ou dynamiques) ou distantes, vous pouvez utiliser un <code translate="no">PIÈCE</code> demande de mise à jour des métadonnées associées aux pistes de texte.</p>
+    <h3>Remarques</h3>
+    <ul>
+      <li>Les méthodes expliquées dans ce document servent à mettre à jour les fichiers WebVTT ajoutés à vos vidéos. Vous pouvez ingérer des fichiers WebVTT dans Video Cloud en utilisant le <a href="/dynamic-ingest/ingest-guides/ingesting-webvtt-files-text-trackscaptions.html">API d'ingestion dynamique</a> ou <a href="/cms/managing-videos/using-cms-api-add-webvtt-captions-text-tracks.html">ajouter des fichiers WebVTT distants</a> à vos vidéos à l'aide de l'API CMS.</li>
+    </ul>
+    
+    </section>
+    
+    <section class="section">
+    <h2 id="authorization">Autorisation</h2>
+    
+		<p>Les requêtes à l'API CMS nécessitent un en-tête d'autorisation qui contient vos jetons d'accès. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a>.</p>
+    
+    <p>Les opérations dont vous aurez besoin pour mettre à jour les métadonnées de la vidéo sont <code translate="No">video-cloud/video/update</code> ou <code translate="No">video-cloud/video/all</code>.</p>
+    </section>
+    
+    <section class="section">
+    <h2 id="syntax">Syntaxe</h2>
+
+		<aside class="bcls-aside bcls-aside--warning">Les <strong>l'ensemble de la baie doit être patché</strong> , pas seulement la piste ou le terrain qui change.</aside>
+
+		<p>Nous vous recommandons de faire d'abord la demande suivante pour obtenir la baie complète :</p>
+<pre><code class="language-http" translate="No">GET
+https://cms.api.brightcove.com/v1/accounts/{account_id}/videos/{video_ID}
+</code></pre>
+    <h3>Mise à jour des pistes de texte</h3>
+		<p>Lors de la mise à jour des pistes de texte, certains champs de <a href="/cms/references/cms-api-video-fields-reference-stage.html#text_tracks">Champs de pistes de texte</a> peut être traité différemment selon son type.</p>
+
+		<table class="bcls-table">
+			<caption class="bcls-caption--table">Champs de piste de texte</caption>
+			<thead class="bcls-table__head">
+					<tr>
+							<th>Champ</th>
+							<th>Taper</th>
+							<th>Pistes de texte à distance</th>
+							<th>Pistes de texte ingéré statiques</th>
+							<th>Pistes de texte ingéré dynamiques</th>
+					</tr>
+			</thead>
+			<tbody class="bcls-table__body">
+					<tr>
+							<td><code translate="no">identifiant</code></td>
+							<td>Chaîne de caractères</td>
+							<td colspan="3">Valeur LECTURE SEULE. Requis pour identifier le TT qui doit être mis à jour.</td>
+					</tr>
+					<tr>
+							<td><code translate="no">identifiant de compte</code></td>
+							<td>Chaîne de caractères</td>
+							<td colspan="3">Les mises à jour de ce champ seront ignorées.</td>
+					</tr>
+					<tr>
+							<td>src<code translate="no"></code></td>
+							<td>Chaîne de caractères</td>
+							<td>Obligatoire et limité à 255 caractères.</td>
+							<td colspan="2">Les mises à jour de ce champ seront ignorées.</td>
+					</tr>
+					<tr>
+							<td>srclang<code translate="no"></code></td>
+							<td>Chaîne de caractères</td>
+							<td colspan="3">Limité à 32 caractères.</td>
+					</tr>
+					<tr>
+							<td><code translate="no">étiqueter</code></td>
+							<td>Chaîne de caractères</td>
+							<td colspan="3">Limité à 255 caractères.</td>
+					</tr>
+					<tr>
+							<td><code translate="no">type</code></td>
+							<td>Énumération</td>
+							<td colspan="3">Les valeurs valides sont <code translate="no">Les sous-titres</code> , <code translate="no">légendes</code> , <code translate="no">descriptif</code> , <code translate="no">chapitres</code> , <code translate="no">métadonnées</code>. Sensible aux majuscules et minuscules.</td>
+					</tr>
+					<tr>
+							<td>mime_type<code translate="no"></code></td>
+							<td>Chaîne de caractères</td>
+							<td colspan="2">Limité à 32 caractères.</td>
+							<td>Les mises à jour de ce champ seront ignorées.</td>
+					</tr>
+					<tr>
+							<td><code translate="no">id_actif</code></td>
+							<td>Chaîne de caractères</td>
+							<td colspan="2">Valeur LECTURE SEULE.</td>
+							<td>Champ non applicable pour ce type. Les mises à jour de ce champ seront ignorées.</td>
+					</tr>
+					<tr>
+							<td>in_band_metadata_track_dispatch_type<code translate="no"></code></td>
+							<td>Chaîne de caractères</td>
+							<td colspan="2">Champ non applicable pour ce type. </td>
+							<td>Les mises à jour de ce champ seront ignorées.</td>
+					</tr>
+					<tr>
+							<td>sources<code translate="no"></code></td>
+							<td>Déployer</td>
+							<td colspan="3">Valeur LECTURE SEULE.</td>
+					</tr>
+					<tr>
+							<td><code translate="no">défaut</code></td>
+							<td>booléen</td>
+							<td colspan="2"><code translate="no">vrai</code> ou <code translate="no">faux</code>. Vous ne pouvez pas ajouter plusieurs <code translate="no">par défaut=vrai</code> aux pistes de texte avec différents <code translate="no">srclang</code>.</td>
+							<td>Les mises à jour de ce champ seront ignorées.</td>
+					</tr>
+			</tbody>
+	</table>
+    <h3>Demander</h3>
+    <p>Applicable aux pistes de texte distantes, statiques et dynamiques.</p>
+    <pre class="line-numbers">
+<code class="language-http" translate="No">PATCH
+https://cms.api.brightcove.com/v1/accounts/{account_id}/videos/{video_ID}</code></pre>
+    
+    <h3>Demander des exemples de corps</h3>
+    <details>
+			<summary>Pistes de texte à distance</summary>
+			<p>Le corps de la requête sera un objet JSON contenant un tableau de pistes de texte :</p>
+<pre class="line-numbers"><code class="language-json" translate="No">{
+	"text_tracks" : 
+	[ 
+		{ 
+			"id" : "1234-1234-1234"
+			"src" :     "http://learning-services-media.brightcove.com/captions/bc_smart_ja.   vtt",
+			"srclang" : "ja", 
+			"label" : "日本人", 
+			"kind" : "captions", 
+			"mime_type" : null, 
+			"default" : true 
+		}, 
+		{ 
+			"id" : "5678-5678-5678"
+			"src" : "http://learning-services-media.brightcove.com/captions/bc_smart_es.   vtt",  
+			"srclang" : "es", 
+			"label" : "español", 
+			"kind" : "descriptions",
+			"mime_type" : null,
+			"default" : false 
+		} 
+	] 
+}</code></pre>
+		</details>
+    <details>
+			<summary>Pistes de texte statiques</summary>
+			<p>Le corps de la requête sera un objet JSON contenant un tableau de pistes de texte :</p>
+<pre class="line-numbers"><code class="language-json" translate="No">{
+	"text_tracks" : 
+	[ 
+		{ 
+			"id" : "1234-1234-1234"
+			"srclang" : "ja", 
+			"label" : "日本人", 
+			"kind" : "captions", 
+			"mime_type" : null, 
+			"default" : true 
+		}, 
+		{ 
+			"id" : "5678-5678-5678"  
+			"srclang" : "es", 
+			"label" : "español", 
+			"kind" : "descriptions",
+			"mime_type" : null,
+			"default" : false 
+		} 
+	] 
+}</code></pre>
+		</details>
+    <details>
+			<summary>Pistes de texte dynamiques</summary>
+			<p>Le corps de la requête sera un objet JSON contenant un tableau de pistes de texte :</p>
+<pre class="line-numbers"><code class="language-json" translate="No">{
+	"text_tracks" : 
+	[ 
+		{ 
+			"id" : "1234-1234-1234"
+			"srclang" : "ja", 
+			"label" : "日本人", 
+			"kind" : "captions", 
+			"mime_type" : null, 
+			"default" : true 
+		}, 
+		{ 
+			"id" : "5678-5678-5678"  
+			"srclang" : "es", 
+			"label" : "español", 
+			"kind" : "descriptions",
+			"mime_type" : null,
+			"default" : false 
+		} 
+	] 
+}</code></pre>
+		</details>
+  </section>
+</article>

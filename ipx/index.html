@@ -1,0 +1,23 @@
+---
+title: API d'expérience sur la page
+description: 'Apprenez à gérer vos expériences sur la page de la galerie Brightcove à l'aide de l'API d'expérience sur la page. Cette API s'adresse principalement à ceux qui intègrent Gallery avec un CMS ou un autre système.'
+parent: Home
+---
+ <h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+  <section class="card-wrapper">
+    {% for item in site.data.navigation %} {% if item.name == page.title %} {% for subsection in item.docs %}
+            <section class="bcls-card-small" onclick="window.location.href='{{subsection.url}}'">
+              <div class="card-content">
+                <h2>{{ subsection.name }}</h2>
+                <ul>
+                  {% for doc in subsection.docs %}
+                        <li><a href="{{ doc.url }}">{{ doc.name }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </section>
+        {% endfor %} {% endif %} {% endfor %}
+  </section>
+</article>

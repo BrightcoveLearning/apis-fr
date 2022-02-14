@@ -1,0 +1,141 @@
+---
+title: 'API en direct : Insérer des métadonnées temporelles ID3'
+description: 'Cette rubrique explique comment insérer des métadonnées temporelles ID3 dans votre flux en direct à l'aide de l'API en direct.'
+parent: Guides 
+grandparent: Live API
+---
+ <h1>{{ page.title }}</h1>
+<article class="bcls-article">
+ <summary>{{ page.description }}</summary>
+<section class="bcls-section">
+<h2 id="Insert_ID3_timed_metadata">Aperçu</h2>
+
+<p>Les métadonnées temporelles ID3 sont utilisées pour envoyer des données avec un flux en direct à un moment précis. Pour insérer des métadonnées temporisées ID3 pour un travail en cours, effectuez un <code translate="No">POST </code> demande à:</p>
+
+<pre class="line-numbers">
+<code class="language-http" translate="No">https://api.bcovlive.io/v1/jobs/<span class="bcls-input">JOB_ID</span>/id3tag
+</code></pre>
+
+<h3>Exemple de corps de requête</h3>
+
+<pre class="line-numbers">
+<code class="language-json" translate="No">{
+ "id3_tag": {
+ "name": "cp1",
+ "value": "Some information I want to send",
+   "timecode": "15:50:49:16"
+ }
+}</code></pre>
+
+<aside class="bcls-aside bcls-aside--warning">Noter:
+<ul>
+  <li>Seul <code translate="No">id3_tag</code> objet peut être soumis dans une demande</li>
+	<li>Si vous utilisez le <code translate="No">timecode </code> propriété, le travail ne stocke que la demande d'insertion la plus récente</li>
+	<li>Si vous utilisez le <code translate="No">timecode </code> propriété, l'encodeur doit envoyer un timecode au format SMPTE (HH:MM:SS:FF) stocké dans la propriété tc via OnFI</li>
+	<li>Encodeurs logiciels tels que Wirecast et OBS <strong>ne pas</strong> prend en charge l'envoi de timecode via des paquets OnFI dans le flux RTMP</li>
+	<li>Encodeurs matériels élémentaires <strong>faire</strong> prend en charge l'envoi de timecode via des paquets OnFI dans le flux RTMP</li>
+	<li>Balise d'état ID3v2 <code translate="No">name</code> peut contenir jusqu'à 4 caractères.</li>
+	<li><code translate="No">value</code> peut aller jusqu'à 256 Ko.</li>
+	<li><code translate="No">Timecode</code> est facultatif - lorsqu'il est omis, l'insertion sera immédiate.</li>
+</ul>
+</aside>
+
+<ul>
+</ul>
+
+<h3>Exemple de réponse</h3>
+
+<pre class="line-numbers">
+<code class="language-json" translate="No">{
+"id": "JOB_ID",
+"id3_tag": {
+"tag_name": "BCOV",
+"tag_value": "my value"
+}
+}</code></pre>
+</section>
+
+<section class="bcls-section">
+<h2 id="Do_SMPTE_timecodes_exist">Existe-t-il des timecodes SMPTE dans l'entrée ?</h2>
+
+<p>Tous les encodeurs n'envoient pas de timecodes SMPTE. Pour vérifier s'ils existent dans votre entrée, une façon de vérifier est de regarder la liste de morceaux VOD pour les balises comme <code class="language-html" translate="No">#VOD-TIMING:timecode=15:18:36:01,wallclock=1549047672441,tsvideo=25400,tsaudio=-1</code>. L'URL de la liste de morceaux vod devrait être disponible sur <code class="language-html" translate="No">output_media_files[0].playback_url_vod</code> lorsque vous récupérez les informations sur le travail.</p>
+
+<h2 id="Do_SMPTE_timecodes_exist">Analysez une liste de lecture en direct pour obtenir le code temporel</h2>
+
+<p>Lorsque vous créez une tâche Brightcove Live, une liste de lecture principale par défaut est renvoyée. Par exemple:</p>
+
+<pre>
+<code class="language-html" translate="No">https://bcovlive-a.akamaihd.net/ade7a7b3aaea4a4d8107fb8bb262381e/eu-central-1/52725330351/playlist.m3u8</code></pre>
+
+<p>Nous aurons besoin de la liste de lecture principale VOD pour laquelle nous devrons ajouter "_vod" à la dernière partie de notre extension d'URL comme <strong>playlist_vod.m3u8</strong></p>
+
+<pre>
+<code class="language-html" translate="No">https://bcovlive-a.akamaihd.net/ade7a7b3aaea4a4d8107fb8bb262381e/eu-central-1/52725330351/playlist_vod.m3u8</code></pre>
+
+<p>La liste de lecture sera composée de&nbsp;plusieurs rendus/profils, que si vous "courbez" la liste de lecture, vous pourrez voir les rendus. Exemple:</p>
+
+<pre class="line-numbers">
+<code class="language-javascript" translate="No">
+curl -i "https://bcovlive-a.akamaihd.net/ade7a7b3aaea4a4d8107fb8bb262381e/eu-central-1/52725330351/playlist_vod.m3u8"
+
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-STREAM-INF:BANDWIDTH=4292608,CODECS="avc1.100.41,mp4a.40.2",RESOLUTION=1920x1080
+profile_0/chunklist_vod.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=2654208,CODECS="avc1.100.41,mp4a.40.2",RESOLUTION=1280x720
+profile_1/chunklist_vod.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=1937408,CODECS="avc1.77.41,mp4a.40.2",RESOLUTION=960x540
+profile_2/chunklist_vod.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=1118208,CODECS="avc1.77.31,mp4a.40.2",RESOLUTION=640x360
+profile_3/chunklist_vod.m3u8</code></pre>
+
+<p>La liste complète des playlists de rendus/profils sera&nbsp;ressemblent à ces URL "profile_0" et "profile_1" :</p>
+
+<pre>
+<code class="language-html" translate="No">https://bcovlive-a.akamaihd.net/ade7a7b3aaea4a4d8107fb8bb262381e/eu-central-1/52725330351/profile_0/chunklist_vod.m3u8</code></pre>
+
+<pre>
+<code class="language-html" translate="No">https://bcovlive-a.akamaihd.net/ade7a7b3aaea4a4d8107fb8bb262381e/eu-central-1/52725330351/profile_1/chunklist_vod.m3u8</code></pre>
+
+</section>
+
+<section class="bcls-section">
+    <ol class="bcls-tasklist-restart">
+<p>Maintenant, il y a quelques options pour regarder ces listes de lecture VOD pour vérifier le timecode :</p>
+
+
+
+    <li>Vous pouvez faire une commande "curl". Exemple:</li>
+
+<pre class="line-numbers">
+<code class="language-javascript" translate="No">
+curl -i "https://bcovlive-a.akamaihd.net/ade7a7b3aaea4a4d8107fb8bb262381e/eu-central-1/52725330351/profile_0/chunklist_vod.m3u8"
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-TARGETDURATION:8
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-DISCONTINUITY-SEQUENCE:0
+#EXT-X-INDEPENDENT-SEGMENTS
+#BCOV-RENDITION-DATA-X-STREAM-INF:BANDWIDTH=4292608,RESOLUTION=1920x1080,FRAME-RATE=25.000,CODECS="mp4a.40.2,avc1.100.41"
+#VOD-STARTTIMESTAMP:1573207934483
+#VOD-MANIFESTSTARTTIME:1573207934483
+#VOD-TOTALDELETEDDURATION:0.0
+#VOD-FRAMERATE:25.0
+#VOD-TIMING:timecode=null,wallclock=1573207934483,tsvideo=3480040,tsaudio=3480007
+#EXT-X-PROGRAM-DATE-TIME:2019-11-08T10:12:11.871+00:00
+#EXTINF:7.2,
+2etzot2c_66e2f8bc56774f4b9a2e26adee46c5b3_media_2.ts
+#VOD-TIMING:timecode=null,wallclock=1573207941720,tsvideo=3487240,tsaudio=3487239
+#EXT-X-PROGRAM-DATE-TIME:2019-11-08T10:12:19.071+00:00</code></pre>
+
+
+
+
+	
+    <li>Si vous utilisez Safari&nbsp;navigateur, vous pouvez lire la liste de lecture principale ou l'une des listes de morceaux. Ensuite, ouvrez l'onglet du réseau de développeurs et recherchez « chunklist ». Sélectionnez l'un d'entre eux et regardez l'onglet Aperçu.</li>
+    <figure class="bcls-figure"><img alt="" class="bcls-image--no-border" width="750" height="400" src="/assets/images/live-api/18758/0.png" /></figure>
+	<li>Si vous n'avez pas Safari, vous pouvez appliquer le même processus dans un autre navigateur en utilisant le lecteur Akamai dans <code class="language-html" translate="No">http://players.akamai.com/hls/</code>. Chargez la liste de lecture dans Akamai Player, puis ouvrez l'onglet réseau de votre navigateur et recherchez la « chunklist ».</li>
+	<li>Si vous avez un mandataire, comme "Charles", c'est le même principe. Lisez l'une des listes de lecture VOD dans le lecteur Safari ou Akamai HLS, puis filtrez les résultats dans votre proxy pour consulter l'une des listes de morceaux renvoyées.</li>
+</ol>
+</section>
+</article>

@@ -1,0 +1,73 @@
+---
+title: API de métadonnées de publicité Brightcove Live Program
+description: 'L'API de métadonnées de programme publicitaire expose une API pour que les métadonnées de contenu soient poussées et constamment mises à jour hors bande à partir d'un flux en direct client.'
+parent: Guides 
+grandparent: Live API
+---
+ <h1>{{ page.title }}</h1>
+<article class="bcls-article">
+ <summary>{{ page.description }}</summary>
+	<section class="bcls-section">
+<h2 id="introduction">introduction</h2>
+
+<p>Le schéma de métadonnées publicitaires (ad_server_data) prend en charge une syntaxe JSON plate sans éléments imbriqués (paires clé-valeur uniquement). L'ensemble de données du serveur publicitaire via l'API est utilisé pour toutes les coupures publicitaires reçues après la mise à jour jusqu'à ce que les données soient écrasées ou réinitialisées. Les clients peuvent mettre à jour et/ou réinitialiser les données à tout moment pendant leur diffusion en direct.</p>
+
+<p>Ces métadonnées ne persistent pas entre les activations Steam. Les métadonnées publicitaires qui doivent persister entre les activations de flux doivent être définies dans la configuration publicitaire de l'application SSAI. L'ensemble de données via l'API est configurable pour une utilisation en tant que macros sur le serveur publicitaire et le remplacement des balises côté serveur.</p>
+
+<p>Les métadonnées du programme publicitaire sont transmises au système SSAI via des balises de liste de lecture personnalisées et suivent la priorité des paramètres publicitaires dynamiques (DAP) existants dans le système SSAI. Les données du serveur publicitaire envoyées sur un point de repère ont priorité sur les métadonnées attribuées à la tâche. Si des collisions de clés se produisent entre les données de point de repère et les métadonnées de l'annonce sur le travail, les valeurs de point de repère sont considérées comme prioritaires et utilisées dans la collection fusionnée</p>
+
+<p>Les métadonnées publicitaires fournies sur un point de repère ne sont utilisées que pour ce point de repère et ne persistent pas pour les insertions de point de repère suivantes. Seules les métadonnées publicitaires définies via l'API de métadonnées publicitaires du programme persisteront pour toutes les coupures publicitaires reçues par la suite jusqu'à ce qu'elles soient mises à jour ou réinitialisées.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="endpoints">Points de terminaison</h2>
+
+<p>Pour plus de détails sur les points de terminaison, consultez le <a href="/live-api/references/reference.html#operation/AddAdMatadata">Référence de l'API en direct</a>.</p>
+
+<h3>Ajouter/mettre à jour</h3>
+
+<p>Pour ajouter ou mettre à jour les métadonnées des annonces de programmes en direct, envoyez un <code translate="No">POST</code> demande à:</p>
+
+<pre>
+<code class="language-http" translate="No">https://api.bcovlive.io/v1/jobs/<span class="bcls-input">{job_id}</span>/cuepointdata</code></pre>
+
+<h4><request body=""></request></h4>
+
+<table class="bcls-table">
+	<caption class="bcls-caption--table">Ajouter/mettre à jour des champs</caption>
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Champ</th>
+			<th>Taper</th>
+			<th>La description</th>
+			<th>Exemple</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td><code translate="No">ad_server_data</code></td>
+			<td>Objet</td>
+			<td>Un objet contenant des paires clé/valeur.</td>
+			<td>
+			<pre class="line-numbers">
+<code class="language-json" translate="No">{
+  "ad_server_data": {
+  	"one":"won",
+  	"two":2,
+  	"three":false
+  }
+}
+</code></pre>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>Effacer</h3>
+
+<p>Pour supprimer les métadonnées d'annonces de programmes en direct, envoyez un <code translate="No">DELETE</code> demande à:</p>
+
+<pre>
+<code class="language-http" translate="No">https://api.bcovlive.io/v1/jobs/<span class="bcls-input">{job_id}</span>/cuepointdata</code></pre>
+</section>
+</article>

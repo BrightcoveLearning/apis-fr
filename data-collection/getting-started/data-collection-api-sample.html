@@ -1,0 +1,56 @@
+---
+title: 'Exemple d'API de collecte de données'
+description: 'Dans cet exemple, vous apprendrez comment envoyer des informations au collecteur de données afin d'obtenir des données d'analyse pour les vidéos qui ne sont pas visionnées dans un lecteur Web ou SDK Brightcove. Notez que cette technique doit <strong><em>ne pas</em></strong> être utilisé si vous utilisez les lecteurs Web ou SDK de Brightcove, car cela entraînera des données d'analyse dupliquées.'
+parent: Data Collection API
+---
+ <h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+    <section class="bcls-section">
+    <h2 id="limitations">Limites</h2>
+    
+    <aside class="bcls-aside bcls-aside--information">Cet exemple et le code associé sont fournis comme guide pour le développement de votre production. Le code n'est pas certifié pour une utilisation en production ni officiellement pris en charge.</aside>
+    </section>
+    
+    <section class="bcls-section">
+    <h2 id="player">Stylo de code</h2>
+    <h3>Code source</h3>
+    <p>
+      Retrouvez tout le code associé à cet exemple dans ce <a href="https://github.com/BrightcoveLearning/17987-data-collection-api-sample">Dépôt GitHub</a>.
+    </p>
+    <h3>Exemple d'application</h3>
+    <p data-height="1200" data-theme-id="dark" data-slug-hash="QmRWvL" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="Collection API Sample" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/QmRWvL/">Exemple d'API de collecte</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
+    <script async src="https://static.codepen.io/assets/embed/ei.js"></script></section>
+    
+    <section class="bcls-section">
+      <details>
+    <h2 id="Using_the_CodePen">Utiliser le CodePen</h2>
+    
+    <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus :</p>
+    
+    <ul>
+      <li>Basculez l'affichage réel du lecteur en cliquant sur le bouton <strong>Résultat</strong> bouton.</li>
+      <li>Clique le <strong>HTML/CSS/JS</strong> pour afficher UN des types de code.</li>
+      <li>Cliquez sur <strong>Modifier sur CodePen</strong> dans le coin supérieur droit pour insérer ce CodePen dans votre propre compte.</li>
+      <li>Retrouvez tout le code associé à cet exemple dans ce <a href="https://github.com/BrightcoveLearning/17987-data-collection-api-sample">Dépôt GitHub</a>.</li>
+    </ul>
+    </details>
+    </section>
+    
+    <section class="bcls-section">
+    <h2 id="Code_for_the_sample">Remarques sur l'échantillon</h2>
+    
+    <p>Le code de cet exemple est entièrement en JavaScript et comprend deux parties (toutes deux trouvées dans le CodePen : le script du plug-in est en haut et un court morceau de code qui ajoute le plug-in au lecteur en bas) :</p>
+    
+    <ul>
+      <li>Le script qui ajoute le plugin au lecteur videojs</li>
+      <li>Le script du plugin qui envoie les données au Data Collector</li>
+    </ul>
+    
+    <aside class="bcls-aside bcls-aside--tip">
+    <p>Notez que la façon dont les données sont « envoyées » à l'API de collecte de données consiste à définir l'URL de la demande comme <code translate="No">src</code> valeur pour une nouvelle image (<code translate="No">img</code> ), puis en injectant cet élément dans la page.</p>
+    
+    <p>Vous devriez utiliser la même méthode plutôt que <code translate="No">XMLHttpRequest</code> ou autre afin d'éviter <a href="https://general.support.brightcove.com/developer/concepts-cors.html">SCRO</a> problèmes.</p>
+    </aside>
+    </section>
+    </article>

@@ -1,0 +1,868 @@
+---
+title: 'API en direct : Création de clips VOD'
+description: 'Cette rubrique vous montre comment créer des clips vidéo à la demande (VOD) à partir de vos diffusions en direct.'
+parent: Guides 
+grandparent: Live API
+---
+ <h1>{{ page.title }}</h1>
+<article class="bcls-article">
+ <summary>{{ page.description }}</summary>
+<section class="bcls-section">
+<h2 id="Overview">Aperçu</h2>
+
+<p>Les clips sont des vidéos extraites d'un flux en direct. Ils peuvent être envoyés vers un compartiment S3, un site FTP ou un <span translate="No">Nuage vidéo</span> Compte. Le clip est créé en tant que vidéo MP4, et c'est ce qui est envoyé à la destination dans tous les cas. Dans le cas d <span translate="No">Nuage vidéo</span> , le MP4 sera transcodé par le système d'acquisition, et les types de rendus créés pour la vidéo dépendront du profil d'acquisition utilisé.</p>
+
+<p>Les définitions des clips sont créées à l'aide du <code translate="No">/vods</code> point final.</p>
+
+<p>Les clips peuvent être créés de plusieurs manières :</p>
+
+<ul>
+	<li>Avec <code translate="No">stream_start_timecode</code> et/ou <code translate="No">stream_end_timecode</code> défini dans les timecodes SMPTE pour l'événement de diffusion en direct - <strong>notez que cela nécessite que l'encodeur envoie des informations de code temporel</strong></li>
+	<li>Avec <code translate="No">start_time</code> et/ou <code translate="No">end_time</code> défini par rapport à l'heure de début ( <code translate="No">stream_start_time</code> ) de tout l'événement de diffusion en direct</li>
+	<li>Avec <code translate="No">start_time</code> et/ou <code translate="No">end_time</code> défini en temps Epoch (Unix) (en secondes)</li>
+	<li>Avec <code translate="No">duration</code></li>
+	<li>L'API VOD <strong>pouvez</strong> être utilisé avec <strong>crypté ou protégé par DRM</strong> travaux. Actuellement, le Live Module ne prend pas en charge cela, mais le sera dans une future version.</li>
+</ul>
+
+<h3>Remarques</h3>
+
+<ol>
+	<li>Pour rendre les clips disponibles le plus rapidement possible, un clip précis au segment est d'abord créé, puis remplacé par un clip précis à l'image dès qu'il est disponible.</li>
+	<li>Si vous spécifiez <code translate="No">duration</code> , le clip résultant sera le suivant :
+	<ul>
+		<li>Si la tâche est active et toujours active : (heure de la demande - durée) à (heure de la demande)</li>
+		<li>Si le travail est terminé : ( <code translate="No">finished_at</code> - durée) à ( <code translate="No">finished_at</code>)</li>
+	</ul>
+	</li>
+	<li>Si vous spécifiez les deux <code translate="No">start_time</code> ET <code translate="No">end_time</code>:
+	<ul>
+		<li>Si la tâche est active et toujours active : tant que la fenêtre de temps Epoch tombe entièrement dans <code translate="No">created_at</code> et l'heure de la demande, le clip sera fait</li>
+		<li>Si le travail est terminé : tant que la fenêtre de temps Epoch tombe entièrement dans <code translate="No">created_at</code> et <code translate="No">finished_at</code> , le clip sera fait</li>
+	</ul>
+	</li>
+	<li>Clips de flux en direct utilisant <a href="/live-api/ssai/live-api-server-side-ad-insertion-ssai.html">SSAI</a> n'inclura pas d'annonces.</li>
+	<li>Les clips peuvent être créés jusqu'à 7 jours après un événement. Pour <a translate="No" href="/live-api/guides/live-api-static-entry-points.html">SEP</a> , ils peuvent être créés jusqu'à la prochaine activation ou jusqu'à 7 jours (selon la plus courte des deux).</li>
+	<li>L'API VOD n'ajoutera aucun contenu en dehors de ce qui est présent dans le flux. Si vous spécifiez 350 sur un flux en direct de 300 secondes, la sortie durera 300 secondes.</li>
+	<li>Vous n'avez pas besoin d'utiliser un flux en direct compatible DVR pour que l'écrêtage fonctionne, car le flux en direct est stocké au fur et à mesure de sa diffusion et est disponible immédiatement et pendant 7 jours après la fin de l'événement.</li>
+	<li>L'écrêtage Brightcove Live ne produira qu'un élément ayant la même résolution que la sortie de résolution la plus élevée. Il ne correspondra pas à la résolution d'entrée source (à moins qu'elle ne soit la même que la sortie de résolution la plus élevée).</li>
+</ol>
+
+<p>Les clips peuvent également être envoyés vers plusieurs destinations :</p>
+
+<ul>
+	<li>UNE <span translate="No"><span translate="No">Nuage vidéo</span></span> Compte</li>
+	<li>Un serveur FTP</li>
+	<li>Un seau S3</li>
+</ul>
+
+<p>Lorsque vous spécifiez un clip, la sortie <strong>doit</strong> contenir <strong>Soit</strong> une <code translate="No">url</code> destination <strong>ou</strong> une <code translate="No">videocloud</code> objet pour détailler la création de la vidéo et l'ingestion du clip dans <span translate="No">Nuage vidéo</span>.</p>
+
+<p>Remarque : clips <strong>peut être créé pendant que le flux en direct est en cours d'exécution</strong>. Pour ce faire, vous devrez définir les heures de début et de fin du clip en temps Epoch ou par rapport à <strong>début</strong> l'heure de la diffusion en direct.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="credentials">Crédits</h2>
+
+<p>Si la destination à laquelle vous envoyez le clip nécessite des informations d'identification pour y accéder, vous pouvez les créer à l'aide des opérations d'identification de l'API Live. Voir <a href="/live-api/guides/managing-credentials-live-api.html">Gestion des informations d'identification pour l'API Live</a> pour plus de détails.</p>
+
+<aside class="bcls-aside bcls-aside--information">Notez que si vous envoyez le clip à un compte Video Cloud associé au compte Live, vous devez <strong>ne pas</strong> inclure les informations d'identification dans le travail de découpage.</aside>
+</section>
+
+<section class="bcls-section">
+<h2 id="Endpoint">Point de terminaison</h2>
+
+<p>Les clips sont créés en envoyant un <code translate="No">POST</code> demande à:</p>
+
+<pre class="line-numbers">
+<code class="language-http" translate="No">https://api.bcovlive.io/v1/vods
+</code>
+</pre>
+</section>
+
+<section class="bcls-section">
+<h2 id="Request_body_video_cloud">Corps de la demande - <span translate="No"><span translate="No">Nuage vidéo</span></span></h2>
+
+<aside class="bcls-aside bcls-aside--tip">Remarque : nous recommandons fortement <strong>ne pas</strong> en spécifiant le profil d'acquisition qui doit être utilisé pour transcoder le clip, et utilisez à la place le profil par défaut du compte. Cela réduira les risques d'erreurs lors de la création du clip dans <span translate="No"><span translate="No">Nuage vidéo</span></span></aside>
+
+<h3>Exemple 1 : heures de début/fin par rapport au début du flux</h3>
+
+<p>Le corps de la demande comprend les heures de début et de fin, ainsi que des détails sur l'endroit où envoyer le clip. Voici un exemple de corps de requête qui crée un clip de la troisième minute d'un flux et l'envoie à un <span translate="No">Nuage vidéo</span> Compte:</p>
+
+<pre class="line-numbers">
+<code class="language-json" translate="No">{
+  "live_job_id":"<span class="bcls-input">PUT-LIVE-JOB-ID-HERE</span>",
+  "outputs":[
+    {
+      "label": "60 secs by stream from min 2 to min 3",
+      "stream_start_time": 120,
+      "stream_end_time": 180,
+      "credentials": "<span class="bcls-input">USER_VIDEOCLOUD_CREDENTIAL_LABEL</span>",
+      "videocloud": {
+        "video": {
+        "name": "One Minute Clip",
+        "tags": ["live", "clip"]
+        },
+          "ingest": {
+            "capture-images": true
+        }
+      }
+    }
+  ]
+}
+</code>
+</pre>
+
+<p>Dans cet exemple, nous créons un clip d'une durée d'une minute et l'envoyons à <span translate="No">Nuage vidéo</span> . Nous donnons un nom au clip et quelques balises, sans spécifier le <a translate="No" href="https://apis.support.brightcove.com/ingest-profiles/getting-started/overview-ingest-profiles-api-dynamic-delivery-context-aware-encoding.html">ingérer le profil</a> pour le retranscodage, afin que la valeur par défaut du compte soit utilisée, et en demandant <span translate="No">Nuage vidéo</span> pour capturer des images miniatures et des affiches du clip pendant le transcodage.</p>
+
+<h3>Exemple 2 : heures de début/fin dans l'heure d'époque</h3>
+
+<p>Le corps de la demande inclut les heures de début et de fin dans l'heure Epoch, et des détails sur l'endroit où envoyer le clip. Voici un exemple de corps de requête qui crée un clip de la troisième minute d'un flux et l'envoie à un <span translate="No">Nuage vidéo</span> Compte:</p>
+
+<pre class="line-numbers">
+<code class="language-json" translate="No">{
+  "live_job_id":"<span class="bcls-input">PUT-LIVE-JOB-ID-HERE</span>",
+    "outputs":[
+      {
+        "label": "60 secs - epoch time",
+        "start_time": 1516652694,
+        "end_time": 1516652754,
+        "credentials": "<span class="bcls-input">USER_VIDEOCLOUD_CREDENTIAL_LABEL</span>",
+        "videocloud": {
+          "video": {
+          "name": "One Minute Clip",
+          "tags": ["live", "clip"]
+          },
+            "ingest": {
+            "capture-images": true
+        }
+      }
+    }
+  ]
+}
+</code>
+</pre>
+
+<p>Dans cet exemple, nous créons un clip d'une durée d'une minute à une heure Epoch spécifique (dans ce cas le 22 janvier 2018 à 08:24:54 GMT).</p>
+
+<h3>Exemple 3 : durée avec heure de début par rapport au début du flux</h3>
+
+<p>Le corps de la requête inclut la durée et stream_start_time, ainsi que des détails sur l'endroit où envoyer le clip. Voici un exemple de corps de requête qui crée un clip de la troisième minute d'un flux et l'envoie à un <span translate="No">Nuage vidéo</span> Compte:</p>
+
+<pre class="line-numbers">
+<code class="language-json" translate="No">{
+  "live_job_id":"<span class="bcls-input">PUT-LIVE-JOB-ID-HERE</span>",
+  "outputs":[
+    {
+      "label": "60 secs from start time",
+      "stream_start_time": 300,
+      "duration": 60,
+      "credentials": "<span class="bcls-input">USER_VIDEOCLOUD_CREDENTIAL_LABEL</span>",
+      "videocloud": {
+        "video": {
+        "name": "One Minute Clip",
+        "tags": ["live", "clip"]
+        },
+        "ingest": {
+        "capture-images": true
+        }
+      }
+    }
+  ]
+}
+</code>
+</pre>
+
+<p>Dans cet exemple, nous créons un clip d'une durée d'une minute commençant 5 minutes après le début de la diffusion en direct.</p>
+
+<h3>Exemple 4 : durée sans heure de début ni de fin</h3>
+
+<p>Le corps de la demande inclut les heures de début et de fin dans l'heure Epoch, et des détails sur l'endroit où envoyer le clip. Voici un exemple de corps de requête qui crée un clip de la troisième minute d'un flux et l'envoie à un <span translate="No">Nuage vidéo</span> Compte:</p>
+
+<pre class="line-numbers">
+<code class="language-json" translate="No">{
+  "live_job_id":"<span class="bcls-input">PUT-LIVE-JOB-ID-HERE</span>",
+  "outputs":[
+    {
+      "label": "60 secs - duration",
+      "duration": 60,
+      "credentials": "<span class="bcls-input">USER_VIDEOCLOUD_CREDENTIAL_LABEL</span>",
+      "videocloud": {
+        "video": {
+        "name": "One Minute Clip",
+        "tags": ["live", "clip"]
+        },
+        "ingest": {
+          "capture-images": true
+        }
+      },
+      "notifications": ["<span class="bcls-input">http://myserver.com/api/notification_listener?type=jvod</span>"]
+    }
+  ]
+}
+</code>
+</pre>
+
+<p>Dans cet exemple, nous créons un clip d'une durée d'une minute. Étant donné que nous ne spécifions pas d'heure de début ou de fin, le clip sera extrait des 60 dernières secondes du flux en direct.</p>
+
+<h3>Exemple 5 : utilisation <code translate="No">stream_start_timecode</code> et <code translate="No">stream_end_timecode</code></h3>
+
+<p>Le corps de la demande comprend les heures/images de début et de fin dans les codes temporels HH:MM:SS:FF et des détails sur l'endroit où envoyer le clip. Notez que pour utiliser des codes temporels, l'encodeur doit envoyer des codes temporels. Voici un exemple de corps de requête qui crée un clip des 50 minutes d'un flux et l'envoie à un <span translate="No">Nuage vidéo</span> Compte:</p>
+
+<pre class="line-numbers">
+<code class="language-json" translate="No">{
+  "live_job_id":"<span class="bcls-input">PUT-LIVE-JOB-ID-HERE</span>",
+  "outputs":[
+    {
+      "label": "Clipping using Timecode from-01:10:18:15 to-01:11:08:15",
+      "stream_start_timecode": "01:10:18:15",
+      "stream_end_timecode": "01:11:08:15",
+      "credentials": "<span class="bcls-input">USER_VIDEOCLOUD_CREDENTIAL_LABEL</span>",
+      "videocloud": {
+        "video": {
+          "name": "Fifty Minute Clip",
+          "tags": ["live", "clip"]
+        },
+        "ingest": {
+        "capture-images": true
+        }
+      }
+    },
+    "notifications": ["<span class="bcls-input">http://myserver.com/api/notification_listener?type=jvod</span>"]
+  ]
+}
+</code>
+</pre>
+
+<h3>Informations générales sur l'envoi de clips vers <span translate="No">Nuage vidéo</span></h3>
+
+<p>Pour voir quels champs peuvent être inclus dans le <code translate="No">video</code> et <code translate="No">ingest</code> objets, voir le <a translate="No" href="https://docs.brightcove.com/dynamic-ingest-api/v1/doc/index.html"><span translate="No">API d'ingestion dynamique</span> Référence</a>.</p>
+
+<aside class="bcls-aside bcls-aside--warning">Faire <strong>ne pas</strong> inclure le <code translate="No">master</code> terrain dans le <code translate="No">ingest</code> objet, car ces informations seront fournies par l'API Live.</aside>
+
+<section class="bcls-section">
+<h2 id="Request_body_s3">Corps de la requête - S3</h2>
+
+<p>Le corps de la demande comprend les heures de début et de fin, ainsi que des détails sur l'endroit où envoyer le clip. Voici un exemple de corps de requête qui crée un extrait de la troisième minute d'un flux et l'envoie à un compartiment S3 :</p>
+
+<pre class="line-numbers">
+<code class="language-json" translate="No">{
+  "live_job_id":"{{job_id}}",
+  "outputs":[
+    {
+      "label": "last_30",
+      "duration": 30,
+      "url": "s3://<span class="bcls-input">YOUR_BUCKET_NAME</span>/<span class="bcls-input">file_name.mp4</span>",
+      "credentials": "<span class="bcls-input">s3-credentials</span>",
+      "notifications": ["<span class="bcls-input">http://myserver.com/api/notification_listener?type=jvod</span>"]
+    }
+  ],
+}
+</code>
+</pre>
+
+<p>Dans cet exemple, nous créons un clip d'une durée de 30 secondes et l'envoyons à un compartiment S3. Nous fournissons l'URL du compartiment, y compris le nom du fichier pour le clip, et une chaîne qui est le nom des informations d'identification du compartiment S3 enregistrées - les informations d'identification peuvent être configurées pour votre compte par le support Brightcove.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Request_body_fields">Champs du corps de la requête</h2>
+
+<p>Voici un tableau complet des champs du corps de la requête.</p>
+
+<table class="bcls-table">
+	<caption class="bcls-caption--table">Champs du corps de la demande</caption>
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Champ</th>
+			<th>Taper</th>
+			<th>La description</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td><code translate="No">live_job_id</code></td>
+			<td>Chaîne de caractères</td>
+			<td>
+			<p>L'identifiant du travail Live Stream à partir duquel créer le clip VOD.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">outputs</code></td>
+			<td>Objet[]</td>
+			<td>
+			<p>Tableau de sorties VOD</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">outputs.label</code></td>
+			<td>Chaîne de caractères</td>
+			<td>
+			<p>Étiquette pour la sortie</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">outputs.duration</code></td>
+			<td>Nombre</td>
+			<td>
+			<p>Durée du clip en secondes. Les <code translate="No">duration</code> peut être utilisé seul pour définir un clip qui sera constitué du final <code translate="No">{duration}</code> secondes du flux. <code translate="No">duration</code> peut également être utilisé avec n'importe quel <strong>un des</strong> <code translate="No">stream_start_time</code> , <code translate="No">stream_end_time</code> , <code translate="No">start_time</code> , <code translate="No">end_time</code> , <code translate="No">stream_end_timecode</code> , ou <code translate="No">stream_start_timecode</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">outputs.stream_start_time</code></td>
+			<td>Nombre</td>
+			<td>
+			<p>Heure de début en secondes du clip par rapport à l'heure de début du flux en direct, <code translate="No">stream_start_time</code> doit être utilisé avec <strong>Soit</strong> <code translate="No">stream_end_time</code> ou <code translate="No">duration</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">outputs.stream_end_time</code></td>
+			<td>Nombre</td>
+			<td>
+			<p>Heure de fin en secondes du clip par rapport à l'heure de début du flux en direct, <code translate="No">stream_end_time</code> doit être utilisé avec <strong>Soit</strong> <code translate="No">stream_start_time</code> ou <code translate="No">duration</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">outputs.start_time</code></td>
+			<td>Nombre</td>
+			<td>
+			<p>Heure de début du clip en temps Epoch (Unix) (secondes), <code translate="No">start_time</code> doit être utilisé avec <strong>Soit</strong> <code translate="No">end_time</code> ou <code translate="No">duration</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">outputs.end_time</code></td>
+			<td>Nombre</td>
+			<td>
+			<p>Heure de fin du clip en temps Epoch (Unix) (secondes), <code translate="No">end_time</code> doit être utilisé avec <strong>Soit</strong> <code translate="No">start_time</code> ou <code translate="No">duration</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">outputs.stream_start_timecode</code></td>
+			<td>Nombre</td>
+			<td>
+			<p>Heure de début du clip dans un timecode au format SMPTE (HH:MM:SS:FF) à partir du début du flux, <code translate="No">stream_start_timecode</code> doit être utilisé avec <strong>Soit</strong> <code translate="No">stream_end_timecode</code> ou <code translate="No">duration</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">outputs.stream_end_timecode</code></td>
+			<td>Nombre</td>
+			<td>
+			<p>Heure de fin du clip dans un timecode au format SMPTE (HH:MM:SS:FF) à partir de la fin du flux, <code translate="No">outputs.stream_end_timecode</code> doit être utilisé avec <strong>Soit</strong> <code translate="No">stream_start_timecode</code> ou <code translate="No">duration</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">outputs.url</code></td>
+			<td>Chaîne de caractères</td>
+			<td>
+			<p>URL de destination du clip, notez que la sortie <strong>doit</strong> contenir <strong>Soit</strong> cette <code translate="No">url</code> champ <strong>ou</strong> une <code translate="No">videocloud</code> objet définissant les propriétés de la vidéo et les options d'acquisition pour <span translate="No">Nuage vidéo</span>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">outputs.credentials</code></td>
+			<td>Chaîne de caractères</td>
+			<td>
+			<p>Le nom des identifiants configurés dans votre compte pour cette adresse</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">outputs.videocloud</code></td>
+			<td>Objet</td>
+			<td>
+			<p>Un objet contenant des entrées pour <span translate="No"><span translate="No">Nuage vidéo</span></span> ingestion</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No"><a href="#video_fields">outputs.videocloud.video</a></code></td>
+			<td>Objet</td>
+			<td>
+			<p>Un objet contenant des entrées pour <span translate="No"><span translate="No">Nuage vidéo</span></span> création d'objet vidéo - voir le <a translate="No" href="https://docs.brightcove.com/cms-api/v1/doc/index.html#api-videoGroup-Create_Video">Référence de l'API CMS pour créer une vidéo</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No"><a href="#dynamic_ingest_fields">outputs.videocloud.ingest</a></code></td>
+			<td>Objet</td>
+			<td>
+			<p>Un objet contenant des entrées pour <span translate="No"><span translate="No">Nuage vidéo</span></span> ingestion vidéo - voir le <a translate="No" href="https://docs.brightcove.com/dynamic-ingest-api/v1/doc/index.html#api-Ingest-Ingest_Media_Asset">Référence d'ingestion dynamique</a> - faire <strong>ne pas</strong> inclure le <code translate="No">master</code> car ces informations seront fournies par l'API Live. Si aucun profil d'ingestion n'est spécifié, le profil par défaut du compte sera utilisé.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3 id="video_fields">Champs vidéo pour <span translate="No">Nuage vidéo</span> ingestion</h3>
+
+<p>Voir le <a href="https://docs.brightcove.com/cms-api/v1/doc/index.html#operation/CreateVideo">Référence de l'API CMS</a> pour plus de détails.</p>
+
+<table class="bcls-table">
+	<caption class="bcls-caption--table">Champs vidéo</caption>
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Champ</th>
+			<th>Taper</th>
+			<th>La description</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td><code translate="No">ad_keys</code></td>
+			<td>Chaîne de caractères</td>
+			<td>Chaîne représentant les paires clé/valeur d'annonce attribuées à la vidéo. Les paires clé/valeur sont formatées comme clé=valeur et sont séparées par des esperluettes. Par exemple: <code translate="No">"adKeys": "category=sports&amp;live=true"</code></td>
+		</tr>
+		<tr>
+			<td><a href="#cuepoint"><code translate="No">cue_points</code> </a></td>
+			<td>Tableau de cartes</td>
+			<td>tableau de cartes de points de repère</td>
+		</tr>
+		<tr>
+			<td><code translate="No">custom_fields</code></td>
+			<td>Carte des paires champ-valeur (Strings)</td>
+			<td>Personnalisé <code translate="No">fieldname:value</code> ensembles pour la vidéo - notez que le champ personnalisé qui ne <strong>ne pas</strong> ont une valeur pour cette vidéo ne sont pas inclus dans cette carte ; les valeurs des champs personnalisés ont une longueur maximale de 1024 caractères à un octet</td>
+		</tr>
+		<tr>
+			<td><code translate="No">description</code></td>
+			<td>Chaîne de caractères; remplace l'ancien shortDescription</td>
+			<td>Brève description de la vidéo (longueur maximale : 248 caractères à un octet)</td>
+		</tr>
+		<tr>
+			<td><code translate="No">economics</code></td>
+			<td>Chaîne, doit être l'une des valeurs d'énumération valides</td>
+			<td>soit "AD_SUPPORTED" (par défaut) soit "GRATUIT"</td>
+		</tr>
+		<tr>
+			<td><a href="#geo"><code translate="No">geo</code></a></td>
+			<td>Carte des paires propriété-valeur</td>
+			<td>Propriétés de géo-restriction pour la vidéo</td>
+		</tr>
+		<tr>
+			<td><a href="#link"><code translate="No">link</code> </a></td>
+			<td>Carte des paires propriété-valeur</td>
+			<td>Carte des propriétés des liens associés</td>
+		</tr>
+		<tr>
+			<td><code translate="No">long_description</code></td>
+			<td>Chaîne de caractères</td>
+			<td>Description longue (jusqu'à 5000 caractères)</td>
+		</tr>
+		<tr>
+			<td><code translate="No">name</code></td>
+			<td>Chaîne de caractères</td>
+			<td>Le nom de la vidéo (longueur maximale : 248 caractères à un octet) <strong>obligatoire</strong></td>
+		</tr>
+		<tr>
+			<td><code translate="No">offline_enabled</code></td>
+			<td>booléen</td>
+			<td>Si la vidéo est activée pour la lecture hors ligne</td>
+		</tr>
+		<tr>
+			<td><code translate="No">projection</code></td>
+			<td>Chaîne de caractères</td>
+			<td>La projection cartographique pour les vidéos 360°, par exemple "équirectangulaire"</td>
+		</tr>
+		<tr>
+			<td><code translate="No">reference_id</code></td>
+			<td>Chaîne de caractères</td>
+			<td>Un identifiant spécifié par l'utilisateur qui <strong>identifie de manière unique la vidéo</strong> , limité à 150 caractères. Un referenceId peut être utilisé comme clé étrangère pour identifier cette vidéo dans un autre système. L'ID de référence ne doit pas contenir d'espaces, de virgules ou de caractères spéciaux.</td>
+		</tr>
+		<tr>
+			<td><a href="#schedule"><code translate="No">schedule</code></a></td>
+			<td>Carte des paires propriété-valeur</td>
+			<td>Carte des dates-heures de début et de fin pour la disponibilité de la vidéo</td>
+		</tr>
+		<tr>
+			<td><code translate="No">state</code></td>
+			<td>Chaîne de caractères</td>
+			<td>ACTIF INACTIF</td>
+		</tr>
+		<tr>
+			<td><code translate="No">tags</code></td>
+			<td>Tableau de balises (Strings)</td>
+			<td>Tableau des tags attribués à la vidéo</td>
+		</tr>
+		<tr>
+			<td><a href="#text_tracks"><code translate="No">text_tracks</code> </a></td>
+			<td>Tableau de pistes de texte de style HTML5</td>
+			<td>Tableau de pistes de texte (fichiers WebVTT) attribués à la vidéo</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4 id="cuepoint">Champs de point de repère vidéo</h4>
+
+<p>Le tableau ci-dessous présente les champs pour <code translate="No">video.cuepoints</code>.</p>
+
+<table class="bcls-table">
+	<caption class="bcls-caption--table">Champs de point de repère</caption>
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Champ</th>
+			<th>Taper</th>
+			<th>La description</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td><code translate="No">id</code></td>
+			<td>Chaîne de caractères</td>
+			<td>Identifiant système du point de repère</td>
+		</tr>
+		<tr>
+			<td><code translate="No">force_stop</code></td>
+			<td><em>booléen</em></td>
+			<td>Si la vidéo doit être arrêtée au point de repère</td>
+		</tr>
+		<tr>
+			<td><code translate="No">metadata</code></td>
+			<td><em>Chaîne de caractères; point de code uniquement</em></td>
+			<td>Une chaîne de métadonnées associée au point de repère</td>
+		</tr>
+		<tr>
+			<td><code translate="No">name</code></td>
+			<td><em>Chaîne de caractères</em></td>
+			<td>Le nom du point de repère</td>
+		</tr>
+		<tr>
+			<td><code translate="No">time</code></td>
+			<td><em>Flotter</em></td>
+			<td>Temps du point de repère en secondes mesuré depuis le début de la vidéo</td>
+		</tr>
+		<tr>
+			<td><code translate="No">type</code></td>
+			<td><em>Chaîne de caractères</em></td>
+			<td>Le type de point de repère ( <code translate="No">AD</code> ou <code translate="No">DATA</code>)</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4 id="geo">Champs géographiques vidéo</h4>
+
+<p>Le tableau ci-dessous montre les <code translate="No">video.geo</code> champs d'objet.</p>
+
+<table class="bcls-table">
+	<caption class="bcls-caption--table">Champs de géofiltrage</caption>
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Champ</th>
+			<th>Taper</th>
+			<th>La description</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td><code translate="No">countries</code></td>
+			<td>Tableau des chaînes de codes de pays</td>
+			<td>Tableau de la liste ISO 3166 de codes à 2 ou 4 lettres (https://www.iso.org/obp/ui/) pour les pays dans lesquels la vidéo est autorisée ou non à jouer</td>
+		</tr>
+		<tr>
+			<td><code translate="No">exclude_countries</code></td>
+			<td>booléen</td>
+			<td>Si vrai, le tableau des pays est traité comme une liste de pays exclus de l'affichage</td>
+		</tr>
+		<tr>
+			<td><code translate="No">restricted</code></td>
+			<td>booléen</td>
+			<td>Si le filtrage géographique est activé pour cette vidéo</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4 id="link">Champs de lien vidéo</h4>
+
+<p>Le tableau ci-dessous montre les <code translate="No">video.link</code> champs d'objet.</p>
+
+<table class="bcls-table">
+	<caption class="bcls-caption--table">Champs de lien</caption>
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Champ</th>
+			<th>Taper</th>
+			<th>La description</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td><code translate="No">url</code></td>
+			<td>Chaîne de caractères</td>
+			<td>URL du lien associé</td>
+		</tr>
+		<tr>
+			<td><code translate="No">text</code></td>
+			<td>Chaîne de caractères</td>
+			<td>Texte du lien connexe</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4 id="schedule">Champs de programmation vidéo</h4>
+
+<p>Le tableau ci-dessous présente les champs de <code translate="No">video.schedule</code> objet</p>
+
+<table class="bcls-table">
+	<caption class="bcls-caption--table">Champs video.schedule</caption>
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Champ</th>
+			<th>Taper</th>
+			<th>La description</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td><code translate="No">ends_at</code></td>
+			<td>Chaîne au format de date ISO-8601</td>
+			<td>Date et heure à laquelle la vidéo n'est plus disponible pour la visualisation</td>
+		</tr>
+		<tr>
+			<td><code translate="No">starts_at</code></td>
+			<td>Chaîne au format de date ISO-8601</td>
+			<td>Date-heure à laquelle la vidéo devient disponible pour la visualisation</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3 id="dynamic_ingest_fields"><span translate="No">Nuage vidéo</span> Ingérer des champs</h3>
+
+<table class="bcls-table">
+	<caption class="bcls-caption--table"><span translate="No">Nuage vidéo</span> Ingérer des champs</caption>
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Champ</th>
+			<th>Taper</th>
+			<th>La description</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+		</tr>
+		<tr>
+			<td><code translate="No">audio_tracks</code> <em>optionnel</em> <strong>Livraison dynamique uniquement</strong></td>
+			<td>Objet[]</td>
+			<td>
+			<p>tableau d'objets de piste audio - voir <a href="https://apis.support.brightcove.com/dynamic-ingest/ingest-guides/implementing-multiple-audio-tracks-using-apis.html">Implémentation de plusieurs pistes audio à l'aide des API</a> pour plus d'informations.</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">audio_tracks.merge_with_existing</code> <em>optionnel</em></td>
+			<td>booléen</td>
+			<td>
+			<p>s'il faut remplacer les pistes audio existantes ou en ajouter de nouvelles (actuellement uniquement <code translate="No">false</code> est pris en charge) <strong>Livraison dynamique uniquement</strong></p>
+
+			<p class="default-value">Valeur par défaut: <code translate="No">false</code></p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">audio_tracks.masters</code> <em>optionnel</em></td>
+			<td>Objet[]</td>
+			<td>
+			<p>tableau d'objets de piste audio <strong>Livraison dynamique uniquement</strong></p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">audio_tracks.masters.url</code> <em>optionnel</em></td>
+			<td>Chaîne de caractères</td>
+			<td>
+			<p>URL du fichier audio <strong>Livraison dynamique uniquement</strong></p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">audio_tracks.masters.language</code> <em>optionnel</em></td>
+			<td>Chaîne de caractères</td>
+			<td>
+			<p>Code de langue pour la piste audio à partir des sous-étiquettes dans <a href="https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry</a> (la valeur par défaut peut être définie pour le compte en contactant l'assistance Brightcove) <strong>Livraison dynamique uniquement</strong></p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">audio_tracks.masters.variant</code> <em>optionnel</em></td>
+			<td>Chaîne de caractères</td>
+			<td>
+			<p>le type de piste audio (la valeur par défaut peut être définie pour le compte en contactant l'assistance Brightcove) <strong>Livraison dynamique uniquement</strong></p>
+
+			<p class="type-size">Valeurs autorisées : <code translate="No">"main"</code> , <code translate="No">"alternate"</code> , <code translate="No">"commentary"</code> , <code translate="No">"dub"</code> , <code translate="No">"descriptive"</code></p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">profile</code> <em>optionnel</em></td>
+			<td>Chaîne de caractères</td>
+			<td>
+			<p>profil d'ingestion à utiliser pour le transcodage ; s'il est absent, le profil par défaut sera utilisé</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">text_tracks</code> <em>optionnel</em></td>
+			<td>Objet[]</td>
+			<td>
+			<p>tableau de <code translate="No">text_tracks</code> objets - voir <a href="https://apis.support.brightcove.com/dynamic-ingest/ingest-guides/ingesting-webvtt-files-text-trackscaptions.html">Ingérer des fichiers WebVTT (pistes de texte)</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">text_tracks.url</code></td>
+			<td>URL</td>
+			<td>
+			<p>URL d'un fichier WebVTT</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">text_tracks.srclang</code></td>
+			<td>Chaîne de caractères</td>
+			<td>
+			<p>Code de langue ISO 639 à 2 lettres (alpha-2) pour les pistes de texte</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">text_tracks.kind</code> <em>optionnel</em></td>
+			<td>Chaîne de caractères</td>
+			<td>
+			<p>comment le fichier vtt est destiné à être utilisé</p>
+
+			<p class="default-value">Valeur par défaut: <code translate="No">captions</code></p>
+
+			<p class="type-size">Valeurs autorisées : <code translate="No">"captions"</code> , <code translate="No">"subtitles"</code> , <code translate="No">"chapters"</code> , <code translate="No">"metadata"</code></p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">text_tracks.label</code> <em>optionnel</em></td>
+			<td>Chaîne de caractères</td>
+			<td>
+			<p>titre lisible par l'utilisateur</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">text_tracks.default</code> <em>optionnel</em></td>
+			<td>booléen</td>
+			<td>
+			<p>définit la langue par défaut pour les légendes/sous-titres</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">capture-images</code> <em>optionnel</em></td>
+			<td>booléen</td>
+			<td>
+			<p>si l'affiche et la vignette doivent être capturées pendant le transcodage ; par défaut à <code translate="No">true</code> si le profil a des rendus d'image, <code translate="No">false</code> si ce n'est pas le cas - voir <a href="https://apis.support.brightcove.com/dynamic-ingest/ingest-guides/images-and-dynamic-ingest-api.html">Images et API d'ingestion dynamique</a> pour plus d'informations</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">poster</code> <em>optionnel</em></td>
+			<td>Objet</td>
+			<td>
+			<p>l'affiche vidéo à ingérer - voir <a href="https://apis.support.brightcove.com/dynamic-ingest/ingest-guides/images-and-dynamic-ingest-api.html">Images et API d'ingestion dynamique</a> pour plus d'informations</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">poster.url</code></td>
+			<td>URL</td>
+			<td>
+			<p>URL de l'image de l'affiche vidéo</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">poster.height</code> <em>optionnel</em></td>
+			<td>Entier</td>
+			<td>
+			<p>hauteur de pixel de l'image</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">poster.width</code> <em>optionnel</em></td>
+			<td>Entier</td>
+			<td>
+			<p>largeur en pixels de l'image</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">thumbnail</code> <em>optionnel</em></td>
+			<td>Objet</td>
+			<td>
+			<p>la vignette de la vidéo à ingérer - voir <a href="https://apis.support.brightcove.com/dynamic-ingest/ingest-guides/images-and-dynamic-ingest-api.html">Images et API d'ingestion dynamique</a> pour plus d'informations</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">thumbnail.url</code></td>
+			<td>URL</td>
+			<td>
+			<p>URL de l'image miniature de la vidéo</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">thumbnail.height</code> <em>optionnel</em></td>
+			<td>Entier</td>
+			<td>
+			<p>hauteur de pixel de l'image</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">thumbnail.width</code> <em>optionnel</em></td>
+			<td>Entier</td>
+			<td>
+			<p>largeur en pixels de l'image</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">callbacks</code> <em>optionnel</em></td>
+			<td>Chaîne de caractères[]</td>
+			<td>Tableau d'URL qui <a href="https://apis.support.brightcove.com/dynamic-ingest/general/notifications-dynamic-delivery-video-cloud.html">avis</a> doit être envoyé à
+			<p>&nbsp;</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</section>
+
+<section class="bcls-section">
+<h2 id="API_response">Réponse de l'API</h2>
+
+<p>La réponse à une demande de création de clip inclut un identifiant pour la tâche et le libellé que vous avez défini dans le corps de la demande, ainsi que l'identifiant de la tâche en direct :</p>
+
+<pre class="line-numbers">
+<code class="language-json" translate="No">{
+  "vod_jobs": [
+    {
+      "jvod_id": "9582606c50d84be5ad4bc104f2aa3360",
+      "label": "last 60 secs of live job"
+    }
+  ],
+  "live_job_id": "88ba5d87b61a4ef3a6dddabd0c38d319"
+}
+</code>
+</pre>
+
+<h3>Champs de réponse</h3>
+
+<table class="bcls-table">
+	<caption class="bcls-caption--table">Champs du corps de la réponse</caption>
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="width: 30%">Champ</th>
+			<th style="width: 10%">Taper</th>
+			<th style="width: 70%">La description</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td><code translate="No">vod_jobs</code></td>
+			<td>Objet</td>
+			<td>
+			<p>L'objet de réponse de clip</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">jvod_id</code></td>
+			<td>Chaîne de caractères</td>
+			<td>
+			<p>L'identifiant de la tâche de clip</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">label</code></td>
+			<td>Chaîne de caractères</td>
+			<td>
+			<p>L'étiquette du clip (depuis l'entrée)</p>
+			</td>
+		</tr>
+		<tr>
+			<td><code translate="No">live_job_id</code></td>
+			<td>Chaîne de caractères</td>
+			<td>
+			<p>L'identifiant du travail en direct (à partir de l'entrée)</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</section>
+</section>
+</article>

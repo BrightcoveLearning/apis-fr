@@ -1,0 +1,83 @@
+FAQ:---
+title: ' Filigrane médico-légal' la
+description: "Dans cette rubrique, vous pouvez afficher les réponses à un certain nombre de questions fréquemment posées concernant Brightcove Forensic Watermarking."
+parent: Forensic Watermarking
+---
+ <h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+  <style type="text/css">
+    résumé des détails { font-size: 1.15rem; }
+  </style>
+  
+  <section class="bcls-section">
+    <h2 id="Introduction">introduction</h2>
+    <p>
+      Forensic Watermarking (FW) vous permet de protéger votre contenu premium contre le piratage et le partage de contenu non autorisé. Cette fonctionnalité ajoute un filigrane invisible à vos vidéos, vous permettant de suivre toute fuite de contenu.
+    </p>
+    <p>Pour en savoir plus sur cette fonctionnalité, consultez le <a href="/general/overview-forensic-watermarking.html">Aperçu: Filigrane médico-légal</a> document.</p>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="General_questions">Général</h2> 
+      <details>
+          <summary>Comment fonctionne la détection de contenu ?</summary>
+          <p>Le processus de détection est basé sur une partie du contenu qui peut être téléchargée, capturée ou enregistrée dans un fichier. Un outil spécifique de NAGRA, appelé <strong>Conditionneur</strong> , génère un <strong>.pak</strong> déposer. Ce fichier est soumis à NAGRA pour récupérer la séquence unique livrée, qui est ensuite associée à un utilisateur. Vous êtes responsable de faire correspondre la séquence à l'utilisateur. Les services de détection sont acquis directement auprès de NAGRA ; généralement effectué par un tiers engagé par le propriétaire du contenu pour explorer Internet afin de trouver du contenu illégal.</p>
+      </details>
+      <br/>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Integrations">Intégrations</h2>
+    <details>
+      <summary>Le filigrane judiciaire est-il pris en charge avec des appareils tels que Chromecast ou AirPlay ?</summary>
+        <p>Oui, le jeton de filigrane est transmis au récepteur de diffusion. Ceci est pris en charge avec le lecteur Web et les SDK natifs.</p>
+      </details>
+      <br/>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Reporting">Suivi et rapports</h2>
+    <details>
+      <summary>Comment NAGRA suit-il le nombre de transactions utilisées par un client ?</summary>
+      <p>NAGRA n'a aucun moyen de savoir si une partie de notre logiciel est connectée à NAGRA pour déclarer les transactions.</p>
+      <p>Vous êtes responsable de télécharger depuis l'API Analytics un rapport avec le nombre de visiteurs uniques par jour, toutes les 24h, pour fournir comme preuve le nombre de transactions utilisées.</p>
+    </details>
+    <br/>
+    <details>
+      <summary>Comment les rapports sont-ils gérés ?</summary>
+      <p>Les rapports d'analyse sur les téléspectateurs pour les vidéos avec filigrane médico-légale sont disponibles via l'API Analytics.</p>
+      <p>Pour plus de détails, consultez le <a href="/general/overview-forensic-watermarking.html#Analytics_reports">Aperçu: Filigrane médico-légal</a> document.</p>
+    </details>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="General_questions">Transcodage</h2>
+      <details>
+          <summary>Quelle est la durée minimale de vidéo requise pour utiliser avec succès le micrologiciel ?</summary>
+          <p>5 minutes</p>
+      </details>
+      <br/>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="General_questions">Lecteur Web</h2>
+      <details>
+          <summary>Y a-t-il une superposition pour indiquer aux téléspectateurs que le contenu a un filigrane invisible ?</summary>
+          <p>Brightcove Player prend en charge une superposition.<br/>
+            Exemple: <a href="https://studio.support.brightcove.com/players/configuring-player-overlay-using-overlay-plugin.html">Configuration d'une superposition de lecteur à l'aide du plug-in Overlay</a>.
+          </p>
+      </details>
+      <br/>
+  </section>
+
+  <!-- <section class="bcls-section">
+    <h2 id="General_questions">Native SDKs</h2>
+      <details>
+          <summary>Is Forensic Watermarking supported with devices such as Chromecast or AirPlay?</summary>
+          <p>Yes, the watermark token is passed along to the cast receiver</p>
+      </details>
+      <br/>
+  </section> -->
+  
+</article>

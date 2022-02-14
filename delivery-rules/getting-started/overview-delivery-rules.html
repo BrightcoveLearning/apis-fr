@@ -1,0 +1,64 @@
+---
+title: 'Aperçu: Règles de livraison' la
+description: « Dans cette rubrique, vous apprendrez comment les règles de livraison de Brightcove vous permettent de personnaliser la manière dont vos médias sont livrés pour répondre à vos objectifs commerciaux.
+parent: Getting started 
+grandparent: Delivery Rules API
+---
+ <h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="Introduction">introduction</h2>
+
+<p>Les règles de livraison de Brightcove sont une fonctionnalité de la livraison dynamique qui vous permet de tirer parti de la capacité de génération de manifestes juste à temps sur une base plus granulaire. Avec les règles de livraison, vous pouvez créer des règles personnalisées pour contrôler la manière dont votre contenu est livré au spectateur. Cela vous permet de diffuser du contenu de manière plus efficace et efficiente.</p>
+
+<p>Les règles de livraison vous donnent la possibilité de créer une logique conditionnelle basée sur le type d'appareil, l'emplacement de l'utilisateur ou un signal de votre application. Lorsque ces conditions sont déclenchées, vous contrôlez le comportement tel que les types de rendus renvoyés et le CDN à utiliser.</p>
+<p>Pour plus d'informations sur la mise en œuvre des règles de livraison, consultez les éléments suivants :</p>
+<ul>
+  <li>
+    <a href="/delivery-rules/getting-started/implementing-delivery-rules.html">Mise en œuvre des règles de livraison</a>
+  </li>
+  <li>
+    <a href="https://player.support.brightcove.com/playback/using-delivery-rules-with-bcp.html">Utilisation des règles de livraison avec Brightcove Player</a>
+  </li>
+  <li>
+    <a href=" https://sdks.support.brightcove.com/features/using-delivery-rules-with-sdks.html">Utilisation des règles de livraison avec les SDK natifs</a>
+  </li>
+  <li>
+    <a href="/dynamic-ingest/getting-started/overview-dynamic-delivery.html">Présentation de la livraison dynamique</a>
+  </li>
+</ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Examples">Exemples</h2>
+
+<p>Comme vous pouvez l'imaginer, les combinaisons de logique conditionnelle peuvent être infinies. Voici quelques exemples de ce que les règles de livraison peuvent faire :</p>
+
+<h3>Plusieurs niveaux d'abonnement</h3>
+<p>
+  Un modèle courant pour les services de vidéo à la demande par abonnement (SVOD) consiste à proposer deux niveaux d'abonnement : définition standard (SD) et haute définition (HD).
+</p>
+<p>
+  Sur la base d'un signal de votre application, vous pouvez indiquer à Dynamic Delivery de renvoyer uniquement les rendus SD pour les utilisateurs standard et les rendus HD pour les utilisateurs premium.
+</p>
+
+<h3>CDN optimisés pour la géographie</h3>
+<p>
+  Alors que la plupart des CDN sont optimisés pour une distribution mondiale, certaines zones sont mieux desservies par un CDN spécifique à une région. Un CDN dans la région ou dans le pays peut être utilisé pour une livraison optimale.
+</p>
+<p>
+  Avec les règles de livraison, vous pouvez créer une règle de sorte que lorsqu'un spectateur se trouve dans une zone spécifique, un CDN spécifique à la région sera utilisé. Pour tous les autres utilisateurs, un CDN global sera utilisé.
+</p>
+
+<h3>Rendus optimisés pour les appareils</h3>
+<p>
+  Étant donné que les consommateurs visualisent les médias à partir d'une variété de tailles d'écran, il n'est pas idéal de fournir le même ensemble de rendus à chaque appareil.
+</p>
+<p>
+  Avec les règles de livraison, vous pouvez créer une règle qui détecte si l'appareil du spectateur est un téléphone et exclure les rendus 1080p. Vous pourriez avoir une autre règle qui détecte si un spectateur se trouve sur un appareil OTT et exclut les rendus inférieurs à 360p.
+</p>
+</section>
+
+</article>
