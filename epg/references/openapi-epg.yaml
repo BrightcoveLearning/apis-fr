@@ -52,7 +52,7 @@ paths:
           schema:
             type: string
         - name: limit
-          description: 'Number of items to return - all items are returned by default'
+          description: "Number of items to return - all items are returned by default'
           explode: true
           in: query
           schema:
@@ -89,7 +89,7 @@ paths:
           style: form
         - name: Content-Type
           in: header
-          description: 'Content-Type: application/json'
+          description: "Content-Type: application/json'
           required: true
           style: simple
           explode: false
@@ -97,7 +97,7 @@ paths:
             type: string
         - name: Authorization
           in: header
-          description: 'Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'
+          description: "Authorization: Bearer access_token (see [Getting Access Tokens](/oauth/guides/getting-access-tokens.html))'
           required: true
           style: simple
           explode: false
@@ -105,7 +105,7 @@ paths:
             type: string
       responses:
         '200':
-          description: '200'
+          description: "200'
           content:
             text/xml:
               schema:

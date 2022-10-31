@@ -1,5 +1,6 @@
 ---
-title: Description de l'utilisation des droits de lecture avec Brightcove Player : "Dans cette rubrique, vous apprendrez comment configurer Brightcove Player pour utiliser les droits de lecture de Brightcove."
+title: "Description de l'utilisation des droits de lecture avec Brightcove Player"
+description: "Dans cette rubrique, vous apprendrez comment configurer Brightcove Player pour utiliser les droits de lecture de Brightcove."
 parent: Guides 
 grandparent: Playback Rights
 layout: staging
@@ -14,7 +15,7 @@ layout: staging
   <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
     <p>
-      Par défaut, Brightcove Player communique avec l'API de lecture Brightcove. Un nouveau système de gestion des droits et des restrictions de lecture se trouve devant l'API de lecture et fournit une autorisation de lecture à l'aide de licences DRM.
+      Par défaut, Brightcove Player communique avec le Playback API Brightcove. Un nouveau système de gestion des droits et des restrictions de lecture se trouve devant le Playback API et fournit une autorisation de lecture à l'aide de licences DRM.
     </p>
     <aside class="bcls-aside bcls-aside--information">Remarques:
       <ul>
@@ -28,12 +29,12 @@ layout: staging
   <section class="bcls-section">
     <h2 id="Request_with_playback_restrictions">Demande avec droits de lecture</h2>
     <p>
-      Pour utiliser les droits de lecture, procédez comme suit :
+      Pour utiliser les droits de lecture, procédez comme suit:
     </p>
     <ol class="bcls-tasklist__restart">
       <li>
         <p>
-          Brightcove Player envoie une requête à l'API de lecture s'il dispose d'une clé de stratégie. Il s'agit de la valeur par défaut pour tous les lecteurs Brightcove. La première étape consiste à supprimer la clé de stratégie par défaut intégrée au lecteur :
+          Brightcove Player envoie une requête à le Playback API s'il dispose d'une clé de stratégie. Il s'agit de la valeur par défaut pour tous les Lecteurs Brightcove. La première étape consiste à supprimer la clé de stratégie par défaut intégrée au lecteur:
         </p>
         <pre>
 <code class="language-javascript" translate="No">player.catalog.setPolicyKey(null);</code></pre>
@@ -43,17 +44,17 @@ layout: staging
           Si vous avez des restrictions au niveau de l'utilisateur, vous avez besoin d'un jeton d'autorisation. Lorsqu'il est spécifié, ce jeton est ajouté en tant qu'en-tête d'autorisation pour toutes les demandes ultérieures.
         </p>
         <p>
-          Vous pouvez en ajouter un au lecteur comme suit :
+          Vous pouvez en ajouter un au lecteur comme suit:
         </p>
         <pre>
 <code class="language-javascript" translate="No">player.catalog.setBcovAuthToken('<span class="bcls-input">your jwt token</span>');</code></pre>
       </li>
       <li>
         <p>
-          Après avoir modifié la clé de stratégie et/ou le jeton d'autorisation, vous êtes prêt à demander des données à l'API de lecture Brightcove et à les charger dans le lecteur. Ce processus est identique au cas par défaut.
+          Après avoir modifié la clé de stratégie et/ou le jeton d'autorisation, vous êtes prêt à demander des données à le Playback API Brightcove et à les charger dans le lecteur. Ce processus est identique au cas par défaut.
         </p>
         <p>
-          Voici un exemple de récupération d'une seule vidéo avec des restrictions de lecture et un jeton d'autorisation :
+          Voici un exemple de récupération d'une seule vidéo avec des restrictions de lecture et un jeton d'autorisation:
         </p>
         <aside class="bcls-aside bcls-aside--tip">Notez que le <a href="https://player.support.brightcove.com/coding-topics/using-bc-and-getplayer-methods.html#bc_method_details">méthode bc()</a> est utilisé pour vous permettre de définir la clé de stratégie avant d'appeler le catalogue.</aside>
 
@@ -73,7 +74,7 @@ layout: staging
 <code class="language-javascript" translate="No">&lt;script&gt;
     // +++ Add the player attributes +++
     var myPlayer,
-    	myPlayerEl = document.getElementById(&quot;myPlayerID&quot;);
+      myPlayerEl = document.getElementById(&quot;myPlayerID&quot;);
     myPlayerEl.setAttribute('data-account', <span class="bcls-input">your account id</span>);
     myPlayerEl.setAttribute('data-player', '<span class="bcls-input">your player id</span>');
 
@@ -110,9 +111,9 @@ layout: staging
 
   <section class="bcls-section">
     <h2 id="Request_without_playback_rights">Demande sans droits de lecture</h2>
-    <p>Ce processus peut être inversé pour rediriger les demandes vers l'API Playback sans droits ni restrictions.</p>
+    <p>Ce processus peut être inversé pour rediriger les demandes vers le Playback API sans droits ni restrictions.</p>
     <p>
-      Définissez la clé de stratégie et le jeton d'autorisation comme suit :
+      Définissez la clé de stratégie et le jeton d'autorisation comme suit:
     </p>
     <pre class="line-numbers">
 <code class="language-javascript" translate="No">player.catalog.setPolicyKey('<span class="bcls-input">your policy key</span>');

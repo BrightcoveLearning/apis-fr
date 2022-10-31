@@ -1,95 +1,95 @@
 ---
-title: 'API EPG : Les meilleures pratiques'
+title: "API EPG: Les meilleures pratiques"
 parent: Getting Started 
 grandparent: Cloud Playout APIs
 description: This topic provides best practices for working with the Cloud Playout EPG API.
 ---
  <h1>{{ page.title }}</h1>
 <article class="bcls-article">
-	<summary>{{page.description}}</summary>
-	<section class="bcls-section">
-		<h2 id="Introduction">introduction</h2>
-		<p>L'API EPG renvoie un guide de programmation électronique XML pour un canal Cloud Playout, utile pour afficher des informations sur le programme sur votre page Web ou dans votre application. Cette rubrique fournit des explications sur le fonctionnement de l'API et des recommandations pour l'utiliser le plus efficacement possible.</p>
-	</section>
-	<section class="bcls-section">
-		<h2 id="channel_states">États des canaux</h2>
-		<h3>États actifs</h3>
-		<ul>
-			<li><code translate="no">BROUILLON</code> (Lorsque l'heure de début/d'arrêt programmée de la chaîne dans le futur)</li>
-			<li><code translate="no">REPROGRAMMATION</code></li>
-			<li><code translate="no">PROGRAMMÉ</code></li>
-			<li><code translate="no">DÉPART</code></li>
-			<li>START_ERROR<code translate="no"></code></li>
-			<li><code translate="no">CRÉER</code></li>
-			<li>CREATE_ERROR<code translate="no"></code></li>
-			<li><code translate="no">FONCTIONNEMENT</code></li>
-		</ul>
-		<h3>États inactifs</h3>
-		<ul>
-			<li><code translate="no">BROUILLON</code> (Les chaînes arrêtées entreront à nouveau dans l'état BROUILLON)</li>
-			<li><code translate="no">INACTIF</code></li>
-			<li><code translate="no">ARRÊT</code></li>
-			<li>STOP_ERROR<code translate="no"></code></li>
-			<li>START_ERROR<code translate="no"></code></li>
-			<li><code translate="no">SUPPRESSION</code> (il n'y aura aucun enregistrement EPG - cela peut amener l'API EPG à renvoyer un code de réponse 500)</li>
-			<li><code translate="no">DELETE_ERROR</code> (il n'y aura aucun enregistrement EPG - cela peut amener l'API EPG à renvoyer un code de réponse 500)</li>
-		</ul>
-	</section>
-	<section class="bcls-section">
-		<h2 id="EPG_Query_Recommendation">Recommandation de requête EPG</h2>
-		<ul>
-			<li>La requête EPG par défaut (sans aucun paramètre de requête pour <code translate="No">start</code> , <code translate="No">stop</code> , ou <code translate="No"></code>limite</code> fourni) renverra 100 enregistrements EPG (ou tous les enregistrements s'il y en a moins de 100). Le nombre renvoyé peut être modifié en le définissant dans le <code translate="no">limite</code> paramètre.</li>
-			<li>Les enregistrements jusqu'à 14 jours seront toujours fournis en fournissant une heure de début et une heure de fin explicites, ainsi qu'une valeur limite plus élevée à la requête EPG.</li>
-			<li>Étant donné que le temps de traitement augmente de façon exponentielle avec le nombre d'enregistrements à traiter, nous vous recommandons d'utiliser une méthode paginée pour interroger les enregistrements EPG (voir <a href="#pagination">Pagination</a> ci-dessous) pour récupérer des données en masse.</li>
-		</ul>
-	</section>
-	<section class="bcls-section">
-		<h2 id="pagination">Pagination</h2>
-		<p>Voici comment nous vous recommandons de paginer vos requêtes pour un grand nombre d'enregistrements afin d'obtenir les meilleures performances :</p>
-		<ol class="bcls-tasklist-restart">
-			<li>
-				Commencez par une requête sans paramètre de requête :
+  <summary>{{page.description}}</summary>
+  <section class="bcls-section">
+    <h2 id="Introduction">introduction</h2>
+    <p>L'API EPG renvoie un guide de programmation électronique XML pour un canal Cloud Playout, utile pour afficher des informations sur le programme sur votre page Web ou dans votre application. Cette rubrique fournit des explications sur le fonctionnement de l'API et des recommandations pour l'utiliser le plus efficacement possible.</p>
+  </section>
+  <section class="bcls-section">
+    <h2 id="channel_states">États des canaux</h2>
+    <h3>États actifs</h3>
+    <ul>
+      <li><code translate="no">BROUILLON</code> (Lorsque l'heure de début/d'arrêt programmée de la chaîne dans le futur)</li>
+      <li><code translate="no">REPROGRAMMATION</code></li>
+      <li><code translate="no">PROGRAMMÉ</code></li>
+      <li><code translate="no">DÉPART</code></li>
+      <li>START_ERROR<code translate="no"></code></li>
+      <li><code translate="no">CRÉER</code></li>
+      <li>CREATE_ERROR<code translate="no"></code></li>
+      <li><code translate="no">FONCTIONNEMENT</code></li>
+    </ul>
+    <h3>États inactifs</h3>
+    <ul>
+      <li><code translate="no">BROUILLON</code> (Les chaînes arrêtées entreront à nouveau dans l'état BROUILLON)</li>
+      <li><code translate="no">INACTIF</code></li>
+      <li><code translate="no">ARRÊT</code></li>
+      <li>STOP_ERROR<code translate="no"></code></li>
+      <li>START_ERROR<code translate="no"></code></li>
+      <li><code translate="no">SUPPRESSION</code> (il n'y aura aucun enregistrement EPG - cela peut amener l'API EPG à renvoyer un code de réponse 500)</li>
+      <li><code translate="no">DELETE_ERROR</code> (il n'y aura aucun enregistrement EPG - cela peut amener l'API EPG à renvoyer un code de réponse 500)</li>
+    </ul>
+  </section>
+  <section class="bcls-section">
+    <h2 id="EPG_Query_Recommendation">Recommandation de requête EPG</h2>
+    <ul>
+      <li>La requête EPG par défaut (sans aucun paramètre de requête pour <code translate="No">start</code> , <code translate="No">stop</code> , ou <code translate="No"></code>limite</code> fourni) renverra 100 enregistrements EPG (ou tous les enregistrements s'il y en a moins de 100). Le nombre renvoyé peut être modifié en le définissant dans le <code translate="no">limite</code> paramètre.</li>
+      <li>Les enregistrements jusqu'à 14 jours seront toujours fournis en fournissant une heure de début et une heure de fin explicites, ainsi qu'une valeur limite plus élevée à la requête EPG.</li>
+      <li>Étant donné que le temps de traitement augmente de façon exponentielle avec le nombre d'enregistrements à traiter, nous vous recommandons d'utiliser une méthode paginée pour interroger les enregistrements EPG (voir <a href="#pagination">Pagination</a> ci-dessous) pour récupérer des données en masse.</li>
+    </ul>
+  </section>
+  <section class="bcls-section">
+    <h2 id="pagination">Pagination</h2>
+    <p>Voici comment nous vous recommandons de paginer vos requêtes pour un grand nombre d'enregistrements afin d'obtenir les meilleures performances:</p>
+    <ol class="bcls-tasklist-restart">
+      <li>
+        Commencez par une requête sans paramètre de requête:
 <pre><code class="language-http" translate="No">https://sm.cloudplayout.brightcove.com/accounts/<span class="bcls-input">{account_id}</span>/channels/<span class="bcls-input">{channel_id}</span>/epg
-				</code></pre>
-				<ul>
-					<li>Si le canal n'est pas en cours d'exécution, cela renverra 100 enregistrements à partir de l'heure de début du canal ou de l'heure actuelle, selon la dernière éventualité.</li>
-					<li>Si la chaîne fonctionne, les 100 enregistrements seront un mélange 50/50 de programmes historiques et futurs</li>
-				</ul>
-			</li>
-			<li>Pour des pages de données supplémentaires, soumettez une demande avec le <code translate="no">début</code> jeu de paramètres égal au <code translate="no">arrêter</code> valeur d'attribut dans le <code translate="no">programme</code> balise du dernier enregistrement renvoyé dans la réponse précédente - <strong>plus 1 seconde</strong>.</li>
-	</ol>
-	<h3>Exemple</h3>
-	<p>Supposons que votre première requête renvoie une réponse comme celle-ci :</p>
+        </code></pre>
+        <ul>
+          <li>Si le canal n'est pas en cours d'exécution, cela renverra 100 enregistrements à partir de l'heure de début du canal ou de l'heure actuelle, selon la dernière éventualité.</li>
+          <li>Si la chaîne fonctionne, les 100 enregistrements seront un mélange 50/50 de programmes historiques et futurs</li>
+        </ul>
+      </li>
+      <li>Pour des pages de données supplémentaires, soumettez une demande avec le <code translate="no">début</code> jeu de paramètres égal au <code translate="no">arrêter</code> valeur d'attribut dans le <code translate="no">programme</code> balise du dernier enregistrement renvoyé dans la réponse précédente - <strong>plus 1 seconde</strong>.</li>
+  </ol>
+  <h3>Exemple</h3>
+  <p>Supposons que votre première requête renvoie une réponse comme celle-ci:</p>
 <pre class="line-numbers"><code class="language-xml">&lt;tv&gt; ... &lt;programme channel="channel_id" start="20210228000457" stop="<span class="bcls-highlight">20210228001457</span>"&gt; &lt;title&gt;live&lt;/title&gt; &lt;desc&gt;live&lt;/desc&gt; &lt;length units="seconds"&gt;600.0&lt;/length&gt; &lt;icon src="https://img.brightcove.com/cloudplayout/live- icon.jpg" width="" height=""/&gt; &lt;category&gt;en direct&lt;/category&gt; &lt;keyword&gt;eyJ2aWRlb19pZCI6IjcwNzAxMjE2NDgyMjAyIiwib3JkZXIiOjMsInRhZ3MiOiJyb21hbmNlIiwiY3Vz6ZG9XYXIiOjMsInRhZ3MiOiJyb21hbmNlIiwiY3Vz6NXG9YXWEJR21hbmNlIiwiY3Vz6NXG9TWJX21hI</code></pre>
-		<p>Le surligné <code translate="no">arrêter</code> la valeur dans le dernier enregistrement est un horodatage sous la forme <code translate="no">AAAAMMJJhhmmss</code> , donc au format ISO 8601 : <code translate="No">2021-02-28 00:14:57</code>.</p>
-		<p>En ajoutant une seconde à cette valeur, on obtient <code translate="No">2021-02-28 00:14:58</code>.</p>
-		<p>Le paramètre de requête de la prochaine requête sera alors : <code translate="no">start=2021-02-28%2000%3A14%3A57 - rappelez-vous que le début (et <code translate="no">finir</code> ) doit être codé en URI.</code></p>
-		<p>Pour récupérer tous les enregistrements, continuez à envoyer des demandes en augmentant <code translate="no">début</code> valeurs jusqu'à ce que vous obteniez une réponse HTTP 422 avec le message "Le canal ne sera pas en cours d'exécution dans la fenêtre de temps demandée".</p>
-	</section>
-	<section class="bcls-section">
-		<h2 id="Additional_notes">Notes supplémentaires sur le comportement de la réponse EPG</h2>
-		<p>Les notes suivantes sur le fonctionnement de l'API EPG sont destinées à vous aider à créer des requêtes qui obtiendront la réponse souhaitée.</p>
-		<ul>
-			<li>L'EPG est construit dynamiquement en fonction de l'état actuel du canal, donc si un canal est dans un état actif, sauf <code translate="No">RUNNING</code> , l'EPG produira les données futures à partir de l'heure de début de la chaîne programmée.</li>
-			<li>Si une chaîne est en <code translate="No">RUNNING</code> état, l'EPG invoqué sans aucun paramètre de requête fournira un mélange (répartition de 50 % - avec une limite de 100, cela produirait au plus 50 enregistrements passés et 50 enregistrements futurs) de données d'horaires passés et futurs.</li>
-			<li>Lorsque vous arrêtez ou supprimez une chaîne, elle sera dans un <code translate="No">INACTIVE</code> Etat; les futurs enregistrements EPG ne seront pas disponibles puisque la chaîne a terminé sa diffusion.
-				<ul>
-					<li>Dans de tels cas, l'EPG renverra soit un ensemble de données vides, soit un code d'erreur 422.</li>
-					<li>Si des données historiques sont nécessaires pour l'un des états inactifs, la demande EPG doit avoir une heure de début/fin passée dans les paramètres de requête.</li>
-				</ul>
-			</li>
-			<li>Si la demande EPG a à la fois un <code translate="No">end</code> temps et <code translate="No">limit</code> , <code translate="No">limit</code> aura la préférence et que de nombreux enregistrements seront générés - dans ce cas, vous pourriez recevoir des enregistrements après l'heure de fin donnée.</li>
-			<li>Les <code translate="No">start</code>/<code translate="No">end</code> la fenêtre ne peut excéder 14 jours. <code translate="No">start</code> peut être 14 jours plus tôt que la date-heure actuelle pour récupérer un EPG historique. Vous pouvez également interroger les futures données EPG jusqu'à 14 jours après la date-heure actuelle.</li>
-			<li>Si la différence entre l'heure de fin et l'heure de début fournies est supérieure à 14 jours, l'API ne génère des données de programmation que pendant 14 jours à partir du moment de la demande jusqu'à l'heure d'arrêt programmée du canal ou 14 jours, selon la première éventualité.</li>
-			<li>Les deux <code translate="No">start</code> et <code translate="No">end</code> peut accepter des valeurs date-heure avec ou sans décalages de fuseau horaire - si aucun décalage de fuseau horaire n'est inclus, l'UTC est supposé</li>
-			<li>Les deux <code translate="No">start</code> et <code translate="No">end</code> les valeurs doivent être codées en URI.</li>
-		</ul>
-		<h3>Raisons pour lesquelles l'API EPG renverrait un code d'erreur 422</h3>
-		<ul>
-			<li>L'heure de début de l'EPG ne peut pas être supérieure à 14 jours à partir du début de la chaîne ou de l'heure actuelle, selon la plus grande des deux</li>
-			<li>L'heure de début de l'EPG ne peut pas être antérieure à 14 jours avant l'heure actuelle</li>
-			<li>L'intervalle EPG doit être inférieur ou égal à 14 jours (l'heure de début et l'heure de fin doivent être dans la limite de 14 jours)</li>
-			<li>Le canal sera en cours d'exécution dans la fenêtre de temps demandée (EPG demandé avec une heure de début au-delà de l'heure d'arrêt du canal programmée) L'heure de début doit être fournie ou doit être inférieure à l'heure de fin (heure de début &lt; heure de fin)</li>
-		</ul>
-	</section>
+    <p>Le surligné <code translate="no">arrêter</code> la valeur dans le dernier enregistrement est un horodatage sous la forme <code translate="no">AAAAMMJJhhmmss</code> , donc au format ISO 8601 : <code translate="No">2021-02-28 00:14:57</code>.</p>
+    <p>En ajoutant une seconde à cette valeur, on obtient <code translate="No">2021-02-28 00:14:58</code>.</p>
+    <p>Le paramètre de requête de la prochaine requête sera alors: <code translate="no">start=2021-02-28%2000%3A14%3A57 - rappelez-vous que le début (et <code translate="no">finir</code> ) doit être codé en URI.</code></p>
+    <p>Pour récupérer tous les enregistrements, continuez à envoyer des demandes en augmentant <code translate="no">début</code> valeurs jusqu'à ce que vous obteniez une réponse HTTP 422 avec le message "Le canal ne sera pas en cours d'exécution dans la fenêtre de temps demandée".</p>
+  </section>
+  <section class="bcls-section">
+    <h2 id="Additional_notes">Notes supplémentaires sur le comportement de la réponse EPG</h2>
+    <p>Les notes suivantes sur le fonctionnement de l'API EPG sont destinées à vous aider à créer des requêtes qui obtiendront la réponse souhaitée.</p>
+    <ul>
+      <li>L'EPG est construit dynamiquement en fonction de l'état actuel du canal, donc si un canal est dans un état actif, sauf <code translate="No">RUNNING</code> , l'EPG produira les données futures à partir de l'heure de début de la chaîne programmée.</li>
+      <li>Si une chaîne est en <code translate="No">RUNNING</code> état, l'EPG invoqué sans aucun paramètre de requête fournira un mélange (répartition de 50 % - avec une limite de 100, cela produirait au plus 50 enregistrements passés et 50 enregistrements futurs) de données d'horaires passés et futurs.</li>
+      <li>Lorsque vous arrêtez ou supprimez une chaîne, elle sera dans un <code translate="No">INACTIVE</code> Etat; les futurs enregistrements EPG ne seront pas disponibles puisque la chaîne a terminé sa diffusion.
+        <ul>
+          <li>Dans de tels cas, l'EPG renverra soit un ensemble de données vides, soit un code d'erreur 422.</li>
+          <li>Si des données historiques sont nécessaires pour l'un des états inactifs, la demande EPG doit avoir une heure de début/fin passée dans les paramètres de requête.</li>
+        </ul>
+      </li>
+      <li>Si la demande EPG a à la fois un <code translate="No">end</code> temps et <code translate="No">limit</code> , <code translate="No">limit</code> aura la préférence et que de nombreux enregistrements seront générés - dans ce cas, vous pourriez recevoir des enregistrements après l'heure de fin donnée.</li>
+      <li>Les <code translate="No">start</code>/<code translate="No">end</code> la fenêtre ne peut excéder 14 jours. <code translate="No">start</code> peut être 14 jours plus tôt que la date-heure actuelle pour récupérer un EPG historique. Vous pouvez également interroger les futures données EPG jusqu'à 14 jours après la date-heure actuelle.</li>
+      <li>Si la différence entre l'heure de fin et l'heure de début fournies est supérieure à 14 jours, l'API ne génère des données de programmation que pendant 14 jours à partir du moment de la demande jusqu'à l'heure d'arrêt programmée du canal ou 14 jours, selon la première éventualité.</li>
+      <li>Les deux <code translate="No">start</code> et <code translate="No">end</code> peut accepter des valeurs date-heure avec ou sans décalages de fuseau horaire - si aucun décalage de fuseau horaire n'est inclus, l'UTC est supposé</li>
+      <li>Les deux <code translate="No">start</code> et <code translate="No">end</code> les valeurs doivent être codées en URI.</li>
+    </ul>
+    <h3>Raisons pour lesquelles l'API EPG renverrait un code d'erreur 422</h3>
+    <ul>
+      <li>L'heure de début de l'EPG ne peut pas être supérieure à 14 jours à partir du début de la chaîne ou de l'heure actuelle, selon la plus grande des deux</li>
+      <li>L'heure de début de l'EPG ne peut pas être antérieure à 14 jours avant l'heure actuelle</li>
+      <li>L'intervalle EPG doit être inférieur ou égal à 14 jours (l'heure de début et l'heure de fin doivent être dans la limite de 14 jours)</li>
+      <li>Le canal sera en cours d'exécution dans la fenêtre de temps demandée (EPG demandé avec une heure de début au-delà de l'heure d'arrêt du canal programmée) L'heure de début doit être fournie ou doit être inférieure à l'heure de fin (heure de début &lt; heure de fin)</li>
+    </ul>
+  </section>
 </article>

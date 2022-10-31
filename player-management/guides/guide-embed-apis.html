@@ -1,7 +1,7 @@
 ---
 title: 'Intégrer des API'
-description: '<p>Cette rubrique vous aidera à décider quand et comment utiliser les API d'intégration. La décision de choisir entre utiliser les API de configuration du lecteur ou les API d'intégration est importante et le contenu de ce document vous guidera dans ces décisions.</p>
-<aside class="bcls-aside bcls-aside--information">Les instructions curl dans ce guide s'appuient sur le travail effectué dans le <a href="/player-management/getting-started/step-step-player-management.html">Démarrage rapide: Gestion des joueurs</a>. Parcourir ce guide après avoir effectué le démarrage rapide de la gestion des joueurs vous permet de voir les modifications apportées à un joueur enfant et, surtout, les fonctionnalités héritées du joueur parent.</aside>'
+description: "<p>Cette rubrique vous aidera à décider quand et comment utiliser les API d'intégration. La décision de choisir entre utiliser les Player Management API ou les API d'intégration est importante et le contenu de ce document vous guidera dans ces décisions.</p>
+<aside>Les instructions curl dans ce guide s'appuient sur le travail effectué dans le Démarrage rapide: Gestion des Lecteurs. Parcourir ce guide après avoir effectué le démarrage rapide de la gestion des Lecteurs vous permet de voir les modifications apportées à un Lecteur enfant et, surtout, les fonctionnalités héritées du Lecteur parent.</aside>"
 parent: Guides 
 grandparent: Player Management API
 ---
@@ -11,9 +11,9 @@ grandparent: Player Management API
   <section class="bcls-section">
     <h2 id="whatisembed">Pourquoi utiliser les API intégrées ?</h2>
     
-    <p>Les API d'intégration vous permettent de créer plusieurs instances d'un lecteur particulier. Une bonne façon de penser à cette relation joueur/instance est une relation parent/enfant. Le joueur unique est le parent et les joueurs créés avec les API d'intégration sont les enfants du joueur parent. Le lecteur parent possède la majeure partie des propriétés que vous souhaitez que votre lecteur ait, puis vous pouvez utiliser les API intégrées pour personnaliser des sous-ensembles de propriétés sur différents lecteurs enfants. Par exemple, vous pouvez charger différents médias ou utiliser différents plugins et styles avec différents lecteurs enfants.</p>
+    <p>Les API d'intégration vous permettent de créer plusieurs instances d'un lecteur particulier. Une bonne façon de penser à cette relation Lecteur/instance est une relation parent/enfant. Le Lecteur unique est le parent et les Lecteurs créés avec les API d'intégration sont les enfants du Lecteur parent. Le lecteur parent possède la majeure partie des propriétés que vous souhaitez que votre lecteur ait, puis vous pouvez utiliser les API intégrées pour personnaliser des sous-ensembles de propriétés sur différents Lecteurs enfants. Par exemple, vous pouvez charger différents médias ou utiliser différents plugins et styles avec différents Lecteurs enfants.</p>
     
-    <p>Les schémas suivants aident à clarifier la fonctionnalité. Ci-dessous, le parent est affiché à gauche et deux enfants joueurs à droite. Observe ceci:</p>
+    <p>Les schémas suivants aident à clarifier la fonctionnalité. Ci-dessous, le parent est affiché à gauche et deux enfants Lecteurs à droite. Observe ceci:</p>
     
     <ul>
       <li>L'affiche est héritée par les deux enfants</li>
@@ -31,26 +31,26 @@ grandparent: Player Management API
     <figcaption class="bcls-caption--image">Les enfants héritent des changements</figcaption>
     </figure>
     
-    <aside class="bcls-aside bcls-aside--information">Noter: Par défaut, vous êtes limité à 50 joueurs enfants pour chaque joueur parent. Si vous avez un cas d'utilisation pour plus, veuillez contacter le support et discuter de la situation avec eux.</aside>
+    <aside class="bcls-aside bcls-aside--information">Noter: Par défaut, vous êtes limité à 50 Lecteurs enfants pour chaque Lecteur parent. Si vous avez un cas d'utilisation pour plus, veuillez contacter le support et discuter de la situation avec eux.</aside>
     </section>
     
     <section id="When_not_to_use" class="bcls-section">
     <h2>Quand NE PAS utiliser les API d'intégration</h2>
     
-    <p>S'il existe de bonnes raisons d'utiliser les API intégrées si votre cas d'utilisation en a besoin, il existe également de bonnes raisons de rester avec des joueurs réguliers. Voici quelques-uns:</p>
+    <p>S'il existe de bonnes raisons d'utiliser les API intégrées si votre cas d'utilisation en a besoin, il existe également de bonnes raisons de rester avec des Lecteurs réguliers. Voici quelques-uns:</p>
     
     <ul>
-      <li>Les joueurs enfants ne peuvent pas être modifiés à l'aide de Video Cloud Studio. Vous ne pouvez modifier les joueurs enfants que via l'API de gestion des joueurs. Vous pouvez modifier le lecteur parent d'un lecteur enfant dans Video Cloud Studio, cependant, une modification apportée au lecteur parent affecte tous les lecteurs enfants.</li>
-      <li>La publication d'un lecteur parent peut prendre beaucoup de temps si de nombreux lecteurs enfants sont associés à ce lecteur parent. Chaque joueur enfant est publié séparément, et si vous avez plus de 30 joueurs enfants, vous pouvez vous attendre à des retards dans la publication de votre joueur enfant. Ce serait exactement le même cas que de publier 30 joueurs réguliers en même temps.</li>
+      <li>Les Lecteurs enfants ne peuvent pas être modifiés à l'aide de Video Cloud Studio. Vous ne pouvez modifier les Lecteurs enfants que via l'Ingestion Profiles API. Vous pouvez modifier le lecteur parent d'un lecteur enfant dans Video Cloud Studio, cependant, une modification apportée au lecteur parent affecte tous les Lecteurs enfants.</li>
+      <li>La publication d'un lecteur parent peut prendre beaucoup de temps si de nombreux Lecteurs enfants sont associés à ce lecteur parent. Chaque Lecteur enfant est publié séparément, et si vous avez plus de 30 Lecteurs enfants, vous pouvez vous attendre à des retards dans la publication de votre Lecteur enfant. Ce serait exactement le même cas que de publier 30 Lecteurs réguliers en même temps.</li>
     </ul>
     
-    <p>Compte tenu des raisons ci-dessus, il peut être judicieux de commencer par utiliser des joueurs réguliers, puis d'essayer les intégrations lorsque vous voyez le besoin d'enfants joueurs.</p>
+    <p>Compte tenu des raisons ci-dessus, il peut être judicieux de commencer par utiliser des Lecteurs réguliers, puis d'essayer les intégrations lorsque vous voyez le besoin d'enfants Lecteurs.</p>
     </section>
     
     <section class="bcls-section">
     <h2 id="video_tag_data-embed">intégration de données de balise vidéo</h2>
     
-    <p>Il existe des différences de notation entre les joueurs parents et enfants. Le code de lecteur intégré standard apparaît dans ce format :</p>
+    <p>Il existe des différences de notation entre les Lecteurs parents et enfants. Le code de lecteur intégré standard apparaît dans ce format:</p>
     
     <pre class="line-numbers">
     <code class="language-html" translate="No">&lt;video-js
@@ -61,9 +61,9 @@ grandparent: Player Management API
       data-application-id=""
       class="vjs-fluid"&gt;&lt;/video-js&gt;</code></pre>
     
-    <p>Les <code translate="No">data-embed</code> L'attribut détermine si le joueur est un parent ou un enfant. Si la valeur est <code translate="No">default</code> , le joueur est un parent. Si le joueur est un enfant, le <code translate="No">data-embed</code> L'attribut contiendra l'ID du joueur parent. Voici un exemple :</p>
+    <p>Les <code translate="No">data-embed</code> L'attribut détermine si le Lecteur est un parent ou un enfant. Si la valeur est <code translate="No">default</code> , le Lecteur est un parent. Si le Lecteur est un enfant, le <code translate="No">data-embed</code> L'attribut contiendra l'ID du Lecteur parent. Voici un exemple:</p>
     
-    <p>Les <code translate="No">data-embed</code> L'attribut détermine si le joueur est un parent ou un enfant. Si la valeur est <code translate="No">default</code> , le joueur est un parent. Si le joueur est un enfant, le <code translate="No">data-embed</code> L'attribut contiendra l'ID du joueur parent. Voici un exemple :</p>
+    <p>Les <code translate="No">data-embed</code> L'attribut détermine si le Lecteur est un parent ou un enfant. Si la valeur est <code translate="No">default</code> , le Lecteur est un parent. Si le Lecteur est un enfant, le <code translate="No">data-embed</code> L'attribut contiendra l'ID du Lecteur parent. Voici un exemple:</p>
     
     <pre class="line-numbers">
     <code class="language-html" translate="No">&lt;video-js
@@ -73,18 +73,18 @@ grandparent: Player Management API
       data-application-id=""
       class="video-js" controls&gt;&lt;/video-js&gt;</code></pre>
     
-    <p>Notez que le <code translate="No">data-player</code> , c'est-à-dire l'ID du joueur, est le même, mais le <code translate="No">data-embed</code> a changé de <code translate="No">default</code> à l'ID de l'enfant joueur.</p>
+    <p>Notez que le <code translate="No">data-player</code> , c'est-à-dire l'ID du Lecteur, est le même, mais le <code translate="No">data-embed</code> a changé de <code translate="No">default</code> à l'ID de l'enfant Lecteur.</p>
     </section>
     
     <section class="bcls-section">
-    <h2 id="notation">URL des joueurs enfants</h2>
+    <h2 id="notation">URL des Lecteurs enfants</h2>
     
-    <p>Comment différenciez-vous le parent joueur des enfants joueurs ? Les URL seront différentes. Par exemple, l'URL d'un joueur parent est :</p>
+    <p>Comment différenciez-vous le parent Lecteur des enfants Lecteurs ? Les URL seront différentes. Par exemple, l'URL d'un Lecteur parent est:</p>
     
     <pre class="line-numbers">
     <code class="language-http" translate="No">//players.brightcove.net/1507807800001/HiAdwRZ7kK<span class="bcls-highlight">_default</span>/index.min.js</code></pre>
     
-    <p>Après avoir utilisé les API d'intégration pour créer un lecteur enfant, l'ID du lecteur enfant a été ajouté à l'URL du parent, comme indiqué ici :</p>
+    <p>Après avoir utilisé les API d'intégration pour créer un lecteur enfant, l'ID du lecteur enfant a été ajouté à l'URL du parent, comme indiqué ici:</p>
     
     <pre class="line-numbers">
     <code class="language-http" translate="No">//players.brightcove.net/1507807800001/HiAdwRZ7kK<span class="bcls-highlight">_NURK56ZSV</span>/index.min.js</code></pre>
@@ -93,37 +93,37 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h2 id="why">Cas d'utilisation parent/enfant</h2>
     
-    <p>Supposons que vous utilisiez plusieurs lecteurs vidéo. Souvent, les caractéristiques communes des lecteurs sont à peu près les mêmes, mais dans quelques cas, vous souhaitez modifier le lecteur pour des cas particuliers. Vous pouvez créer plusieurs lecteurs à l'aide des API de configuration de lecteur avec <code translate="No">POST</code> et <code translate="No">PATCH</code> méthodes, mais cela pourrait entraîner des problèmes de maintenance importants. Par exemple, disons que vous vouliez changer l'affiche pour tous les joueurs. Cela signifierait utiliser <code translate="No">PATCH</code> sur tous les différents joueurs. Alors que si vous créiez des enfants joueurs, vous ne feriez que <code translate="No">PATCH</code> le joueur parent, et tous les enfants joueurs auraient automatiquement la nouvelle affiche.</p>
+    <p>Supposons que vous utilisiez plusieurs Lecteurs vidéo. Souvent, les caractéristiques communes des Lecteurs sont à peu près les mêmes, mais dans quelques cas, vous souhaitez modifier le lecteur pour des cas particuliers. Vous pouvez créer plusieurs Lecteurs à l'aide des API de configuration de lecteur avec <code translate="No">POST</code> et <code translate="No">PATCH</code> méthodes, mais cela pourrait entraîner des problèmes de maintenance importants. Par exemple, disons que vous vouliez changer l'affiche pour tous les Lecteurs. Cela signifierait utiliser <code translate="No">PATCH</code> sur tous les différents Lecteurs. Alors que si vous créiez des enfants Lecteurs, vous ne feriez que <code translate="No">PATCH</code> le Lecteur parent, et tous les enfants Lecteurs auraient automatiquement la nouvelle affiche.</p>
     </section>
     
     <section class="bcls-section">
     <h2 id="creationprocess">Processus de création</h2>
     
-    <p>Si vous avez fait le <a href="/player-management/getting-started/step-step-player-management.html">Pas à pas: Gestion des joueurs</a> vous avez vu le processus d'utilisation des instructions curl pour communiquer des méthodes HTTP à l'API Player Management. La même approche sera utilisée ici.</p>
+    <p>Si vous avez fait le <a href="/player-management/getting-started/step-step-player-management.html">Pas à pas: Gestion des Lecteurs</a> vous avez vu le processus d'utilisation des instructions curl pour communiquer des méthodes HTTP à l'API Player Management. La même approche sera utilisée ici.</p>
     
-    <p>Pour créer un lecteur, vous avez probablement utilisé quelques méthodes HTTP avec les API de configuration du lecteur, telles que :</p>
+    <p>Pour créer un lecteur, vous avez probablement utilisé quelques méthodes HTTP avec les Player Management API, telles que:</p>
     
     <ul>
-      <li>Créez le lecteur à l'aide d'un <code translate="No">POST</code> à <em>https://players.api.brightcove.com/v2/accounts/{account_id}/joueurs</em></li>
-      <li>Mettez à jour le lecteur à l'aide d'un <code translate="No">PATCH</code> à <em>https://players.api.brightcove.com/v2/accounts/{account_id}/joueurs/{player_id}/configuration</em></li>
-      <li>Publiez le lecteur mis à jour à l'aide d'un <code translate="No">POST</code> à <em>https://players.api.brightcove.com/v2/accounts/{account_id}/joueurs/{player_id}/publier</em></li>
+      <li>Créez le lecteur à l'aide d'un <code translate="No">POST</code> à <em>https://players.api.brightcove.com/v2/accounts/{account_id}/Lecteurs</em></li>
+      <li>Mettez à jour le lecteur à l'aide d'un <code translate="No">PATCH</code> à <em>https://players.api.brightcove.com/v2/accounts/{account_id}/Lecteurs/{player_id}/configuration</em></li>
+      <li>Publiez le lecteur mis à jour à l'aide d'un <code translate="No">POST</code> à <em>https://players.api.brightcove.com/v2/accounts/{account_id}/Lecteurs/{player_id}/publier</em></li>
     </ul>
     
-    <p>Une approche similaire sera utilisée pour les enfants joueurs utilisant les API d'intégration. A un très haut niveau vous allez :</p>
+    <p>Une approche similaire sera utilisée pour les enfants Lecteurs utilisant les API d'intégration. A un très haut niveau vous allez :</p>
     
     <ul>
-      <li>Créez un enfant joueur à l'aide d'un <code translate="No">POST</code> à <em>https://players.api.brightcove.com/v2/accounts/{account_id}/joueurs/{player_id}/<strong>intègre</strong></em>. Noter: Les joueurs enfants créés avec les API d'intégration s'auto-publient lors de la création, il n'est donc pas nécessaire de publier lors de la création du lecteur enfant, uniquement lors de la mise à jour du lecteur enfant.</li>
-      <li>Mettez à jour le lecteur enfant à l'aide d'un <code translate="No">PATCH</code> à <em>https://players.api.brightcove.com/v2/accounts/{account_id}/joueurs/{player_id}/<strong>embeds/$EMBED_ID/configuration</strong></em></li>
-      <li>Publiez le lecteur enfant à l'aide d'un <code translate="No">POST</code> à <em>https://players.api.brightcove.com/v2/accounts/{account_id}/joueurs/{player_id}/<strong>intègre/$EMBED_ID/publier</strong></em></li>
+      <li>Créez un enfant Lecteur à l'aide d'un <code translate="No">POST</code> à <em>https://players.api.brightcove.com/v2/accounts/{account_id}/Lecteurs/{player_id}/<strong>intègre</strong></em>. Noter: Les Lecteurs enfants créés avec les API d'intégration s'auto-publient lors de la création, il n'est donc pas nécessaire de publier lors de la création du lecteur enfant, uniquement lors de la mise à jour du lecteur enfant.</li>
+      <li>Mettez à jour le lecteur enfant à l'aide d'un <code translate="No">PATCH</code> à <em>https://players.api.brightcove.com/v2/accounts/{account_id}/Lecteurs/{player_id}/<strong>embeds/$EMBED_ID/configuration</strong></em></li>
+      <li>Publiez le lecteur enfant à l'aide d'un <code translate="No">POST</code> à <em>https://players.api.brightcove.com/v2/accounts/{account_id}/Lecteurs/{player_id}/<strong>intègre/$EMBED_ID/publier</strong></em></li>
     </ul>
     
     <p>Le contenu suivant décrit le processus en détail.</p>
     </section>
     
     <section class="bcls-section">
-    <h2 id="createembed">Créer un enfant joueur</h2>
+    <h2 id="createembed">Créer un enfant Lecteur</h2>
     
-    <p>Pour créer un joueur enfant, vous utilisez un HTTP <code translate="No">POST</code> méthode, comme indiqué ici :</p>
+    <p>Pour créer un Lecteur enfant, vous utilisez un HTTP <code translate="No">POST</code> méthode, comme indiqué ici :</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl /
@@ -146,7 +146,7 @@ grandparent: Player Management API
     https://players.api.brightcove.com/v2/accounts/{account_id}/players/$PLAYER_ID/embeds</code></pre>
     <!-- <p><code data-gist-id="11401488" data-gist-hide-footer="true" data-gist-line="255-272"></code></p> -->
     
-    <p>Voici un exemple de réponse à la création d'un joueur enfant :</p>
+    <p>Voici un exemple de réponse à la création d'un Lecteur enfant:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -161,17 +161,17 @@ grandparent: Player Management API
     
     <p class="BCL-aside">Noter: Le lecteur enfant s'auto-publie lors de la création, il n'est donc pas nécessaire de publier le lecteur enfant après la création. Vous devez toujours publier le lecteur enfant s'il est modifié avec un <code translate="No">PATCH</code> méthode. À ce stade, les informations d'aperçu ne sont pas utiles car vous pouvez utiliser le lecteur enfant publié immédiatement après sa création.</p>
     
-    <p>Vous pouvez maintenant utiliser le <code translate="No">url</code> propriété du joueur enfant pour voir les résultats. Dans l'exemple ci-dessous, le lecteur enfant a été ajouté au lecteur parent créé dans l'étape par étape : Gestion des joueurs. Vous voyez la nouvelle affiche et la nouvelle vidéo, mais le plug-in de superposition du lecteur parent est toujours présent.</p>
+    <p>Vous pouvez maintenant utiliser le <code translate="No">url</code> propriété du Lecteur enfant pour voir les résultats. Dans l'exemple ci-dessous, le lecteur enfant a été ajouté au lecteur parent créé dans l'étape par étape: Gestion des Lecteurs. Vous voyez la nouvelle affiche et la nouvelle vidéo, mais le plug-in de superposition du lecteur parent est toujours présent.</p>
     
     <figure class="bcls-figure"><img class="bcls-image" alt="Child Player with Parent's Overlay" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/player-management-api/guides/embeds/embed-guide-robin.png" />
-    <figcaption class="bcls-caption--image">Enfant Joueur avec Superposition Parentale</figcaption>
+    <figcaption class="bcls-caption--image">Enfant Lecteur avec Superposition Parentale</figcaption>
     </figure>
     </section>
     
     <section class="bcls-section">
-    <h2 id="updateembed">Mettre à jour le joueur enfant</h2>
+    <h2 id="updateembed">Mettre à jour le Lecteur enfant</h2>
     
-    <p>Pour mettre à jour le lecteur enfant, vous utilisez un HTTP <code translate="No">PATCH</code> méthode. L'instruction curl suivante met à jour le <code translate="No">poster</code> biens. On suppose que vous avez défini le <code translate="No">$EMBED_ID</code> variable d'environnement de manière appropriée :</p>
+    <p>Pour mettre à jour le lecteur enfant, vous utilisez un HTTP <code translate="No">PATCH</code> méthode. L'instruction curl suivante met à jour le <code translate="No">poster</code> biens. On suppose que vous avez défini le <code translate="No">$EMBED_ID</code> variable d'environnement de manière appropriée:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl
@@ -199,9 +199,9 @@ grandparent: Player Management API
     <!-- <p><code data-gist-id="11401488" data-gist-hide-footer="true" data-gist-line="350-353"></code></p> --></section>
     
     <section class="bcls-section">
-    <h2 id="publishembed">Publier un enfant joueur</h2>
+    <h2 id="publishembed">Publier un enfant Lecteur</h2>
     
-    <p>Une fois le joueur enfant modifié, vous devrez le publier. Assurez-vous que le <code translate="No">$EMBED_ID</code> La variable d'environnement est définie et vous pouvez ensuite publier le lecteur enfant nouvellement modifié :</p>
+    <p>Une fois le Lecteur enfant modifié, vous devrez le publier. Assurez-vous que le <code translate="No">$EMBED_ID</code> La variable d'environnement est définie et vous pouvez ensuite publier le lecteur enfant nouvellement modifié:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl
@@ -211,7 +211,7 @@ grandparent: Player Management API
     https://players.api.brightcove.com/v2/accounts/{account_id}/players/$PLAYER_ID/embeds/$EMBED_ID/publish</code></pre>
     <!-- <p><code data-gist-id="11401488" data-gist-hide-footer="true" data-gist-line="281-285"></code></p> -->
     
-    <p>La réponse fournit les informations vitales nécessaires pour utiliser le lecteur enfant, un peu comme le fait la publication d'un lecteur :</p>
+    <p>La réponse fournit les informations vitales nécessaires pour utiliser le lecteur enfant, un peu comme le fait la publication d'un lecteur:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -225,7 +225,7 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h2 id="displayembed">Afficher les informations sur l'enfant</h2>
     
-    <p>Vous pouvez utiliser le HTTP <code translate="No">GET</code> méthode pour récupérer les informations sur un enfant joueur. Un exemple d'instruction curl est :</p>
+    <p>Vous pouvez utiliser le HTTP <code translate="No">GET</code> méthode pour récupérer les informations sur un enfant Lecteur. Un exemple d'instruction curl est:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl
@@ -238,9 +238,9 @@ grandparent: Player Management API
     <p>Une assez grande quantité de données JSON est renvoyée.</p>
     
     <section class="bcls-section">
-    <h2 id="deletingembeds">Supprimer les joueurs enfants</h2>
+    <h2 id="deletingembeds">Supprimer les Lecteurs enfants</h2>
     
-    <p>Vous pouvez également supprimer un joueur enfant en utilisant le <code translate="No">DELETE</code> méthode. Voici un exemple d'instruction curl pour supprimer un joueur enfant :</p>
+    <p>Vous pouvez également supprimer un Lecteur enfant en utilisant le <code translate="No">DELETE</code> méthode. Voici un exemple d'instruction curl pour supprimer un Lecteur enfant:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl
@@ -250,5 +250,5 @@ grandparent: Player Management API
     https://players.api.brightcove.com/v2/accounts/{account_id}/players/$PLAYER_ID/embeds/$EMBED_ID</code></pre>
     <!-- <p><code data-gist-id="11401488" data-gist-hide-footer="true" data-gist-line="314-318"></code></p> -->
     
-    <p>Bien sûr, cela n'affectera que le joueur enfant et non le joueur parent.</p>
+    <p>Bien sûr, cela n'affectera que le Lecteur enfant et non le Lecteur parent.</p>
     </section>

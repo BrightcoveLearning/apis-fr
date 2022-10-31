@@ -1,6 +1,6 @@
 ---
-title: 'Aperçu: API d'audience'
-description: 'Dans cette rubrique, vous découvrirez l'API Audience. L'API Audience vous permet de récupérer les données d'événement et de prospect.'
+title: 'Aperçu: Audience API'
+description: "Dans cette rubrique, vous découvrirez Audience API. Audience API vous permet de récupérer les données d'événement et de prospect."
 parent: Getting Started 
 grandparent: Audience API
 ---
@@ -13,32 +13,32 @@ grandparent: Audience API
   </section>
   <section class="bcls-section">
     <h2 id="Base_URL">URL de base</h2>
-    <p>L'URL de base de l'API Audience est :</p>
+    <p>L'URL de base de Audience API est:</p>
     <pre class="line-numbers">
 <code class="language-http" translate="No">https://audience.api.brightcove.com/v1</code></pre>
   </section>
   <section class="bcls-section">
     <h2 id="Account_path">Chemin du compte</h2>
-    <p>Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Vous devrez toujours ajouter le terme « comptes » suivi de votre identifiant de compte à l'URL de base :</p>
+    <p>Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Vous devrez toujours ajouter le terme « comptes » suivi de votre identifiant de compte à l'URL de base:</p>
     <pre class="line-numbers">
 <code class="language-http" translate="No">https://audience.api.brightcove.com/v1/accounts/<span class="bcls-input">{account_id}</span> </code></pre>
   </section>
   <section class="bcls-section">
     <h2 id="Authentication">Authentification</h2>
-    <p>L'API Audience utilise le Brightcove <a href="/oauth/getting-started/overview-oauth-api-v4.html">Service OAuth</a> pour authentifier les appels.</p>
-    <p>Vous devrez d'abord obtenir les informations d'identification du client (un <code translate="No">client_id</code> et <code translate="No">client_secret</code>). Il s'agit d'une opération unique qui peut être effectuée à l'aide du <a href="https://studio.support.brightcove.com/admin/managing-api-authentication-credentials.html">Interface utilisateur des informations d'identification OAuth</a>. Vous aurez besoin d'autorisations pour les opérations d'audience/lecture :</p>
+    <p>Audience API utilise le Brightcove <a href="/oauth/getting-started/overview-oauth-api-v4.html">Service OAuth</a> pour authentifier les appels.</p>
+    <p>Vous devrez d'abord obtenir les informations d'identification du client (un <code translate="No">client_id</code> et <code translate="No">client_secret</code>). Il s'agit d'une opération unique qui peut être effectuée à l'aide du <a href="https://studio.support.brightcove.com/admin/managing-api-authentication-credentials.html">Interface utilisateur des informations d'identification OAuth</a>. Vous aurez besoin d'autorisations pour les opérations d'audience/lecture:</p>
     <figure class="bcls-figure"><img class="bcls-image" alt="Required Permissions" src="/assets/images/audience/operations.png" />
       <figcaption class="bcls-caption--image">Autorisations requises</figcaption>
     </figure>
     <p>Vous pouvez obtenir les informations d'identification du client directement à partir du service Brightcove OAuth en utilisant <a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">boucle</a> ou <a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">Facteur</a>.</p>
-    <p>Vous aurez également besoin d'un <code translate="No">access_token</code> , qui est obtenu en utilisant le <code translate="No">client_id</code> et <code translate="No">client_secret</code> et transmis dans un en-tête d'autorisation avec votre requête API :</p>
+    <p>Vous aurez également besoin d'un <code translate="No">access_token</code> , qui est obtenu en utilisant le <code translate="No">client_id</code> et <code translate="No">client_secret</code> et transmis dans un en-tête d'autorisation avec votre requête API:</p>
     <pre class="line-numbers">
 <code class="language-http" translate="No">Authorization: Bearer <em>{access_token}</em></code></pre>
     <p>Les <code translate="No">access_token</code> expire après cinq minutes, vous devez donc en obtenir un pour chaque demande, ou vérifier que votre token est toujours valide. Voir <a href="/oauth/guides/getting-access-tokens.html">Obtenir des jetons d'accès</a> pour une explication détaillée de la façon d'obtenir des jetons d'accès, y compris des exemples de code.</p>
   </section>
   <section class="bcls-section">
     <h2 id="Error_handling">La gestion des erreurs</h2>
-    <p>Si une erreur se produit, l'API répondra avec l'un des codes d'état suivants et un code d'erreur correspondant dans le corps de la réponse :</p>
+    <p>Si une erreur se produit, l'API répondra avec l'un des codes d'état suivants et un code d'erreur correspondant dans le corps de la réponse:</p>
     <table class="bcls-table">
       <thead class="bcls-table__head">
         <tr>
@@ -80,7 +80,7 @@ grandparent: Audience API
         </tr>
       </tbody>
     </table>
-    <p>Voici un exemple de corps de réponse pour une erreur :</p>
+    <p>Voici un exemple de corps de réponse pour une erreur:</p>
     <pre class="line-numbers">
 <code class="language-json" translate="No">[
 	{
@@ -109,11 +109,11 @@ grandparent: Audience API
 <code class="language-http" translate="No">fields=video_id,video_name</code></pre>
     <p>Les champs que vous pouvez filtrer et trier sont détaillés pour chaque type de demande dans les sections qui suivent.</p>
     <h3 id="Date_ranges">Plages de dates</h3>
-    <p>Les plages de dates peuvent être spécifiées dans <code translate="No">from</code> et <code translate="No">to</code> paramètres et sont appliqués à la date à laquelle l'événement de vue a été mis à jour pour la dernière fois (le champ updated_at). Les plages de dates peuvent être indiquées dans les formats suivants :</p>
+    <p>Les plages de dates peuvent être spécifiées dans <code translate="No">from</code> et <code translate="No">to</code> paramètres et sont appliqués à la date à laquelle l'événement de vue a été mis à jour pour la dernière fois (le champ updated_at). Les plages de dates peuvent être indiquées dans les formats suivants:</p>
     <ul>
       <li>La valeur du texte <code translate="No">now</code> qui représente l'heure actuelle</li>
       <li>Valeurs de temps d'époque en millisecondes, telles que <code translate="No">1377047323000</code></li>
-      <li>Dates exprimées au format de date international standard ISO 8601 : <code translate="No">YYYY-MM-DD</code> format, tel que <code translate="No">2013-09-12</code>. Pour les dates exprimées dans ce format :
+      <li>Dates exprimées au format de date international standard ISO 8601: <code translate="No">YYYY-MM-DD</code> format, tel que <code translate="No">2013-09-12</code>. Pour les dates exprimées dans ce format:
         <ul>
           <li>Toute plage de dates spécifiée sera interprétée en UTC</li>
           <li>L'heure de la date donnée sera interprétée comme minuit ( <code translate="No">00:00:00</code> ) à la date indiquée</li>
@@ -130,14 +130,14 @@ grandparent: Audience API
       </li>
     </ul>
     <h3 id="Paging_results">Résultats de la pagination</h3>
-    <p>Les <code translate="No">limit</code> est le nombre d'articles à retourner (par défaut : 25 ; maximum : 200). <code translate="No">offset</code> est le nombre d'éléments à ignorer (par défaut : 0). Vous pouvez utiliser <code translate="No">limit</code> et <code translate="No">offset</code> ensemble pour créer une application qui parcourt les résultats. Chacun comprend le <code translate="No">limit</code> , <code translate="No">offset</code> , et <code translate="No">count.</code> , que vous pouvez utiliser pour configurer l'itération sur les résultats totaux. Par exemple, en JavaScript, vous pouvez obtenir le nombre total d'itérations requises comme ceci :</p>
+    <p>Les <code translate="No">limit</code> est le nombre d'articles à retourner (par défaut: 25 ; maximum: 200). <code translate="No">offset</code> est le nombre d'éléments à ignorer (par défaut : 0). Vous pouvez utiliser <code translate="No">limit</code> et <code translate="No">offset</code> ensemble pour créer une application qui parcourt les résultats. Chacun comprend le <code translate="No">limit</code> , <code translate="No">offset</code> , et <code translate="No">count.</code> , que vous pouvez utiliser pour configurer l'itération sur les résultats totaux. Par exemple, en JavaScript, vous pouvez obtenir le nombre total d'itérations requises comme ceci:</p>
     <pre class="line-numbers">
 <code class="language-javascript" translate="No">// response is the JSON-parsed response from the first request
 var totalRequests = Math.ceil(response.count / response.limit)</code></pre>
   </section>
   <section class="bcls-section">
     <h2 id="Retrieving_view_events">Récupération des événements de vue</h2>
-    <p>Pour récupérer les événements de vue dans un compte, effectuez une <code translate="No">GET</code> requête à la ressource view_events :</p>
+    <p>Pour récupérer les événements de vue dans un compte, effectuez une <code translate="No">GET</code> requête à la ressource view_events:</p>
     <pre class="line-numbers">
 <code class="language-http" translate="No">https://audience.api.brightcove.com/v1/accounts/{account_id}/view_events</code></pre>
     <aside class="bcls-aside bcls-aside--warning">Afficher uniquement les événements qui ont été <em>traité</em> apparaîtra dans la réponse.</aside>
@@ -179,7 +179,7 @@ var totalRequests = Math.ceil(response.count / response.limit)</code></pre>
 		</details>
     <h3 id="fieldsForViewEvents">Champs de filtrage et de sélection</h3>
     <p>Tous les <a href="#Parameters">paramètres</a> peut être utilisé avec <code translate="No">view_event</code> demandes.</p>
-    <p>Voici un exemple de requête dans cURL en utilisant les paramètres :</p>
+    <p>Voici un exemple de requête dans cURL en utilisant les paramètres:</p>
     <pre class="line-numbers">
 <code class="language-bash" translate="No">curl -i https://audience.api.brightcove.com/v1/accounts/{account_id}/view_events?where=video_id==123&amp;from=-5d&amp;to=now&amp;sort=-created_at \
   -H "Authorization: Bearer {token}"</code></pre>
@@ -265,7 +265,7 @@ var totalRequests = Math.ceil(response.count / response.limit)</code></pre>
     <pre class="line-numbers">
 <code class="language-http" translate="No">https://audience.api.brightcove.com/v1/accounts/{account_id}/leads</code></pre>
     <details>
-			<summary>Exemple de réponse :</summary>
+			<summary>Exemple de réponse:</summary>
 <pre class="line-numbers">
 <code class="language-json" translate="No">{
 "count": 2,
@@ -295,7 +295,7 @@ var totalRequests = Math.ceil(response.count / response.limit)</code></pre>
 		</details>
     <h3 id="fieldsForLeads">Champs de filtrage et de sélection</h3>
     <p>Tous les <a href="#Parameters">paramètres</a> peut être utilisé avec <code translate="No">leads</code> demandes.</p>
-    <p>Voici un exemple de requête dans cURL en utilisant les paramètres :</p>
+    <p>Voici un exemple de requête dans cURL en utilisant les paramètres:</p>
     <pre class="line-numbers">
 <code class="language-bash" translate="No">curl -i https://audience.api.brightcove.com/v1/accounts/{account_id}/leads?where=video_id==123&amp;from=-5d&amp;to=now&amp;sort=-created_at \
   -H "Authorization: Bearer {token}"</code></pre>

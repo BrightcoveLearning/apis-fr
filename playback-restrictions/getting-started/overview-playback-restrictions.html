@@ -1,5 +1,6 @@
 ---
-title: "Aperçu: Description des restrictions de lecture Brightcove : "Dans cette rubrique, vous découvrirez différentes stratégies de gestion de la lecture vidéo à l'aide des restrictions de lecture Brightcove."
+title: "Aperçu: Description des restrictions de lecture Brightcove"
+description: "Dans cette rubrique, vous découvrirez différentes stratégies de gestion de la lecture vidéo à l'aide des restrictions de lecture Brightcove."
 parent: Getting Started 
 grandparent: Playback Restrictions
 ---
@@ -13,14 +14,14 @@ grandparent: Playback Restrictions
   <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
     <p>Que votre contenu soit destiné à un public interne ou externe, gratuit ou monétisé, les restrictions de lecture Brightcove offrent le bon niveau de sécurité du contenu pour s'adapter à votre cas d'utilisation tout en permettant aux téléspectateurs d'accéder au contenu depuis n'importe quel appareil, n'importe où.</p>
-    <p>Cette fonctionnalité vous permet de définir différents scénarios de diffusion de votre contenu, notamment :</p>
+    <p>Cette fonctionnalité vous permet de définir différents scénarios de diffusion de votre contenu, notamment:</p>
     <ul>
       <li>Où votre contenu est disponible</li>
       <li>Comment le contenu est diffusé</li>
       <li>Quand le contenu peut être consulté</li>
       <li>Qui peut regarder votre contenu</li>
     </ul>
-    <p>Consultez l'article du blog : <a href="https://www.brightcove.com/en/blog/more-than-just-security/">C'est plus qu'une simple sécurité – c'est une question d'intégrité de la marque et de vos engagements clients</a></p>
+    <p>Consultez l'article du blog: <a href="https://www.brightcove.com/en/blog/more-than-just-security/">C'est plus qu'une simple sécurité – c'est une question d'intégrité de la marque et de vos engagements clients</a></p>
 
     <h3>Caractéristiques</h3>
     <p>La flexibilité de cette fonctionnalité permet de s'adapter à un certain nombre de cas d'utilisation différents.</p>
@@ -267,7 +268,7 @@ grandparent: Playback Restrictions
     <p>Les produits Brightcove suivants prennent en charge les restrictions de lecture :</p>
     <ul>
       <!-- <li><strong>Brightcove Beacon</strong> - Full Playback Restrictions support and Viewer Entitlements are coming (roll-out date TBD)</li> -->
-      <li><strong>Nuage vidéo : VOD et Live</strong></li>
+      <li><strong>Nuage vidéo: VOD et Live</strong></li>
       <li><strong>Événements virtuels</strong></li>
       <li><strong>Campagne</strong></li>
       <li><strong>Engager</strong></li>
@@ -278,7 +279,7 @@ grandparent: Playback Restrictions
 
   <section class="bcls-section">
     <h2 id="How_are_Playback_Restrictions_applied">Comment les restrictions de lecture sont-elles appliquées ?</h2>
-    <p>Les restrictions de lecture peuvent être appliquées comme suit :</p>
+    <p>Les restrictions de lecture peuvent être appliquées comme suit:</p>
     <ul>
       <li><a href="#Asset_level_restrictions">Restrictions au niveau des actifs</a></li>
       <li><a href="#Runtime_restrictions">Restrictions d'exécution</a></li>
@@ -290,7 +291,7 @@ grandparent: Playback Restrictions
     <h2 id="Asset_level_restrictions">Restrictions au niveau des actifs</h2>
     <p>Les restrictions au niveau des actifs sont définies dans les droits de lecture.</p>
 
-    <p>Vous pouvez utiliser des restrictions de lecture au niveau de l'élément lorsque vous souhaitez restreindre la diffusion pour les éléments suivants :</p>
+    <p>Vous pouvez utiliser des restrictions de lecture au niveau de l'élément lorsque vous souhaitez restreindre la diffusion pour les éléments suivants:</p>
     <ul>
       <li>Région (Géo-restrictions)</li>
       <li>Heure (Planification)</li>
@@ -300,7 +301,7 @@ grandparent: Playback Restrictions
     <aside class="bcls-aside bcls-aside--information">Par défaut, toutes les nouvelles ressources ingérées auront un droit de lecture qui permet la diffusion en continu pour tout le monde, partout et à tout moment.</aside>
 
     <h3>Région</h3>
-    <p>Les restrictions géographiques limitent les endroits où le contenu de votre flux peut être consulté dans le monde entier. Les options incluent :</p>
+    <p>Les restrictions géographiques limitent les endroits où le contenu de votre flux peut être consulté dans le monde entier. Les options incluent:</p>
     <ul>
       <li>Adresses IP</li>
       <li>CIDR</li>
@@ -308,14 +309,14 @@ grandparent: Playback Restrictions
       <li>DMA (uniquement disponible pour les DMA américains)</li>
       <li>Des pays</li>
     </ul>
-    <p>À déterminer - Les restrictions géographiques ont une règle globale qui définit le comportement global comme suit :</p>
+    <p>À déterminer - Les restrictions géographiques ont une règle globale qui définit le comportement global comme suit:</p>
     <ul>
       <li>Lorsque la règle globale est définie sur <strong>Autorise tout</strong> , il autorisera toutes les lectures et vous pourrez mettre des régions sur liste noire.</li>
       <li>Lorsque la règle globale est définie sur <strong>Bloquer tout</strong> , cela bloquera toute lecture et vous pourrez ajouter des régions à la liste blanche.</li>
     </ul>
 
     <h3>Temps</h3>
-    <p>La planification vous permet de définir une fenêtre de disponibilité pour diffuser votre contenu avec deux options :</p>
+    <p>La planification vous permet de définir une fenêtre de disponibilité pour diffuser votre contenu avec deux options:</p>
     <ul>
       <li>Dates spécifiques</li>
       <li>Récurrent pour des jours et des heures spécifiques</li>
@@ -325,7 +326,7 @@ grandparent: Playback Restrictions
     <p>Les restrictions de domaine vous permettent de définir des domaines où vous souhaitez autoriser ou bloquer le streaming.</p>
 
     <h3>Procuration</h3>
-    <p>Les restrictions de proxy empêchent la diffusion de contenu lorsqu'un proxy est en place. Il existe cinq types de proxy disponibles :</p>
+    <p>Les restrictions de proxy empêchent la diffusion de contenu lorsqu'un proxy est en place. Il existe cinq types de proxy disponibles:</p>
     <ul>
       <li>Anonyme - L'adresse IP du client n'est pas disponible</li>
       <li>Public - Plusieurs utilisateurs mandatés à partir d'un emplacement permettant un accès Internet public</li>
@@ -381,7 +382,7 @@ grandparent: Playback Restrictions
       <figcaption class="bcls-caption--image">Droits de lecture</figcaption>
     </figure>
 
-    <p>Les restrictions au niveau des actifs peuvent être définies en utilisant soit :</p>
+    <p>Les restrictions au niveau des actifs peuvent être définies en utilisant soit:</p>
     <ul>
       <li><a href="#Using_Brightcove_APIs">Utilisation des API Brightcove</a></li>
       <li><a href="#Using_Video_Cloud_Studio">Utilisation de Video Cloud Studio</a></li>
@@ -394,7 +395,7 @@ grandparent: Playback Restrictions
         <p>Tout d'abord, utilisez le <a href="/playback-restrictions/references/playback-rights/reference.html">API des droits de lecture</a> pour créer une restriction.</p>
       </li>
       <li>
-        <p>Ensuite, utilisez le <a href="/cms/index.html">API CMS</a> pour associer la restriction à vos ressources vidéo.</p>
+        <p>Ensuite, utilisez le <a href="/cms/index.html">CMS API</a> pour associer la restriction à vos ressources vidéo.</p>
       </li>
       <li>
         <p>Pour plus de détails, consultez le <a href="/playback-restrictions/getting-started/implementing-playback-rights.html">Implémentation des droits de lecture</a> document.</p>
@@ -452,7 +453,7 @@ grandparent: Playback Restrictions
     <p>Pour restreindre la diffusion en continu au moment de l'exécution, vous aurez besoin d'un jeton Web JSON (JWT) avec des autorisations spécifiques (revendications). Ce jeton est envoyé à chaque demande de flux.</p>
     <p>Cette fonctionnalité nécessite que vous mettiez en œuvre une solution middleware entre votre système de gestion des utilisateurs (UMS) et le service de lecture de Brightcove.</p>
 
-    <p>Les restrictions suivantes peuvent être définies lors de l'exécution :</p>
+    <p>Les restrictions suivantes peuvent être définies lors de l'exécution:</p>
     <ul>
       <li>Droits de lecture</li>
       <li>Mots clés</li>
@@ -480,7 +481,7 @@ grandparent: Playback Restrictions
     <p>En utilisant le <code translate="No">vids</code> réclamation, vous pouvez spécifier, au moment de l'exécution, une liste d'actifs pour permettre la diffusion en continu.</p>
 
     <h3>Contrôles des droits</h3>
-    <p>Une vérification des droits définit les droits d'accès de l'utilisateur final au moment de l'exécution en fonction des ID vidéo et/ou des balises. Cela implique de définir les revendications suivantes dans le JWT :</p>
+    <p>Une vérification des droits définit les droits d'accès de l'utilisateur final au moment de l'exécution en fonction des ID vidéo et/ou des balises. Cela implique de définir les revendications suivantes dans le JWT:</p>
     <ul>
       <li><code translate="No">prid</code></li>
       <li><code translate="No">vids</code></li>
@@ -520,7 +521,7 @@ grandparent: Playback Restrictions
         </li>
         <li>
           <p>Solution</p>
-          <p>Pour ce cas d'utilisation, chaque utilisateur connecté qui demande du contenu à la plate-forme doit avoir un jeton avec les revendications suivantes :</p>
+          <p>Pour ce cas d'utilisation, chaque utilisateur connecté qui demande du contenu à la plate-forme doit avoir un jeton avec les revendications suivantes:</p>
           <ul>
             <li><code translate="No">uid</code> = <code translate="No">"{unique user-id}"</code></li>
             <li><code translate="No">climit</code> = <code translate="No">1</code></li>
@@ -558,7 +559,7 @@ grandparent: Playback Restrictions
         </li>
         <li>
           <p>Solution</p>
-          <p>Dans ce cas, chaque utilisateur connecté doit avoir un jeton avec les revendications suivantes :</p>
+          <p>Dans ce cas, chaque utilisateur connecté doit avoir un jeton avec les revendications suivantes:</p>
           <ul>
             <li><code translate="No">uid</code> = <code translate="No">"{unique user-id}"</code></li>
             <li><code translate="No">vids</code> = <code translate="No">["asset 1","asset 2","asset 3"]</code></li>
@@ -570,7 +571,7 @@ grandparent: Playback Restrictions
     </details>
 
     <h3>Définition des restrictions d'exécution</h3>
-    <p>Pour utiliser les restrictions d'exécution, procédez comme suit :</p>
+    <p>Pour utiliser les restrictions d'exécution, procédez comme suit:</p>
     <ol class="bcls-tasklist-restart">
       <li>
         <p>Mettre en œuvre un middleware</p>
@@ -578,11 +579,11 @@ grandparent: Playback Restrictions
       </li>
       <li>
         <p>Créer un JWT</p>
-        <p>Créez un jeton Web JSON valide (JWT signé avec votre clé privée) avec des autorisations spécifiques (revendications). Pour plus de détails, consultez le <a href="https://general.support.brightcove.com/developer/create-json-web-token.html">Créer un <span translate="No">Jeton Web JSON</span> (JWT)</a> document.</p>
+        <p>Créez un jeton Web JSON valide (JWT signé avec votre clé privée) avec des autorisations spécifiques (revendications). Pour plus de détails, consultez le <a href="https://general.support.brightcove.com/developer/create-json-web-token.html">Créer un <span>Jeton Web JSON</span> (JWT)</a> document.</p>
       </li>
       <li>
         <p>Configurer le lecteur</p>
-        <p>Le jeton est transmis avec la demande de lecture. Si le jeton n'est pas valide ou a expiré, l'accès au contenu sera restreint. Le joueur doit être configuré pour utiliser le jeton.</p>
+        <p>Le jeton est transmis avec la demande de lecture. Si le jeton n'est pas valide ou a expiré, l'accès au contenu sera restreint. Le Lecteur doit être configuré pour utiliser le jeton.</p>
 
         <strong>Lecteur Web</strong>
         <p>
@@ -592,7 +593,7 @@ grandparent: Playback Restrictions
         <p>
           Pour plus de détails sur la configuration du lecteur natif pour Android ou iOS, consultez le <a href="https://sdks.support.brightcove.com/features/license-protection-with-sdks.html">Protection de clé/licence avec les SDK natifs</a> document.
         </p>
-        <strong>Votre propre joueur</strong>
+        <strong>Votre propre Lecteur</strong>
         <p>
           Si vous utilisez uniquement le JWT avec votre lecteur, aucune configuration supplémentaire n'est nécessaire. Si vous utilisez les droits de lecture avec votre lecteur, consultez le <a href="/playback-restrictions/getting-started/implementing-playback-rights.html#Configure_your_player">Configurez votre lecteur</a> section du document Mise en œuvre des droits de lecture.
         </p>
@@ -601,13 +602,13 @@ grandparent: Playback Restrictions
 
     <h3>Remarques</h3>
     <ul>
-      <li>Pour utiliser le <code translate="No">ua</code> , <code translate="No">maxip</code> et <code translate="No">maxu</code> réclamations, vous avez besoin des éléments suivants :
+      <li>Pour utiliser le <code translate="No">ua</code> , <code translate="No">maxip</code> et <code translate="No">maxu</code> réclamations, vous avez besoin des éléments suivants:
         <ul>
           <li>Le contenu doit être crypté</li>
           <li>Votre compte doit avoir des JWT requis sur les demandes de licence (protection des clés de licence activée). Contactez votre gestionnaire de compte pour plus de détails.</li>
         </ul>
       </li>
-      <li>Pour utiliser le <code translate="No">climit</code> et <code translate="No">dlimit</code> réclamations, vous avez besoin des éléments suivants :
+      <li>Pour utiliser le <code translate="No">climit</code> et <code translate="No">dlimit</code> réclamations, vous avez besoin des éléments suivants:
         <ul>
           <li>Le contenu doit être crypté avec DRM</li>
           <li>Votre compte doit être activé pour CSL avec l'indicateur Vérifier les droits activé. Contactez votre gestionnaire de compte pour plus de détails.</li>
@@ -626,7 +627,7 @@ grandparent: Playback Restrictions
     <h3>Cas d'utilisation</h3>
     <p>Vous pouvez utiliser cette fonctionnalité lorsque votre contenu doit être public mais à partir d'une demande de confiance. Par exemple, les diffuseurs régionaux avec un contenu exclusif crypté avec HLSe veulent s'assurer que seules les demandes de sa plate-forme accèdent au contenu. Cela signifie que les téléspectateurs peuvent uniquement diffuser du contenu à partir de votre plate-forme. Ils ne pourront pas le diffuser en dehors de la plate-forme, même avec les URL de diffusion.</p>
 
-    <aside class="bcls-aside bcls-aside--information"> Notez que la mise en œuvre des droits de lecture pour les vidéos avec protection DRM et/ou HLSe empêchera la lecture des vidéos dans le lecteur de prévisualisation du module Média de Studio. Pour activer l'aperçu, Brightcove a implémenté <a href="/cms/references/reference.html#tag/Clear-Sources">sources claires</a> points de terminaison pour l'API CMS.
+    <aside class="bcls-aside bcls-aside--information"> Notez que la mise en œuvre des droits de lecture pour les vidéos avec protection DRM et/ou HLSe empêchera la lecture des vidéos dans le lecteur de prévisualisation du module Média de Studio. Pour activer l'aperçu, Brightcove a implémenté <a href="/cms/references/reference.html#tag/Clear-Sources">sources claires</a> points de terminaison pour l'CMS API.
 
     <p>Ces points de terminaison peuvent également être utilisés pour permettre aux utilisateurs internes ou tiers de prévisualiser les vidéos s'ils disposent d'informations d'identification API valides pour récupérer les URL non protégées. Cependant, sachez que :</p>
     <ul>
@@ -639,7 +640,7 @@ grandparent: Playback Restrictions
     <p>Pour configurer votre compte pour la protection des clés de licence, contactez votre gestionnaire de compte pour activer l'indicateur de protection des clés de licence.</p>
 
     <h3>Utilisation de la protection des clés de licence</h3>
-    <p>Pour utiliser la protection des clés de licence, procédez comme suit :</p>
+    <p>Pour utiliser la protection des clés de licence, procédez comme suit:</p>
     <ol class="bcls-tasklist-restart">
       <li>
         <p>Mettre en œuvre un middleware</p>
@@ -647,11 +648,11 @@ grandparent: Playback Restrictions
       </li>
       <li>
         <p>Créer un JWT</p>
-        <p>Avec cette fonctionnalité activée, chaque clé ou demande de licence pour déchiffrer le contenu nécessite un jeton Web JSON valide (JWT signé avec votre clé privée). Pour plus de détails, consultez le <a href="https://general.support.brightcove.com/developer/create-json-web-token.html">Créer un <span translate="No">Jeton Web JSON</span> (JWT)</a> document.</p>
+        <p>Avec cette fonctionnalité activée, chaque clé ou demande de licence pour déchiffrer le contenu nécessite un jeton Web JSON valide (JWT signé avec votre clé privée). Pour plus de détails, consultez le <a href="https://general.support.brightcove.com/developer/create-json-web-token.html">Créer un <span>Jeton Web JSON</span> (JWT)</a> document.</p>
       </li>
       <li>
         <p>Configurer le lecteur</p>
-        <p>Le jeton est transmis avec la demande de lecture. Si le jeton n'est pas valide ou a expiré, l'accès au contenu sera restreint. Le joueur doit être configuré pour utiliser le jeton.</p>
+        <p>Le jeton est transmis avec la demande de lecture. Si le jeton n'est pas valide ou a expiré, l'accès au contenu sera restreint. Le Lecteur doit être configuré pour utiliser le jeton.</p>
 
         <strong>Lecteur Web</strong>
         <p>
@@ -661,7 +662,7 @@ grandparent: Playback Restrictions
         <p>
           Pour plus de détails sur la configuration du lecteur natif pour Android ou iOS, consultez le <a href="https://sdks.support.brightcove.com/features/license-protection-with-sdks.html">Protection de clé/licence avec les SDK natifs</a> document.
         </p>
-        <strong>Votre propre joueur</strong>
+        <strong>Votre propre Lecteur</strong>
         <p>
           Pour utiliser le JWT avec votre lecteur, aucune configuration supplémentaire n'est requise.
         </p>
@@ -676,13 +677,13 @@ grandparent: Playback Restrictions
     </ul>
 
     <h3 id="Limitations">Limites</h3>
-    <p>Les limitations suivantes s'appliquent à cette fonctionnalité :</p>
+    <p>Les limitations suivantes s'appliquent à cette fonctionnalité:</p>
     <ul>
       <li>
         Pour HLSe (AES-128), le jeton sera ajouté à la demande de manifeste principal et se propagera à l'URL de la clé de chiffrement. Étant donné que ces URL sont ajoutées au manifeste principal, les clients doivent envisager de restreindre le nombre d'utilisations pour minimiser l'exposition de leur contenu.
       </li>
       <li>
-        Pour HLSe (AES-128), les joueurs feront plusieurs demandes lors de la lecture d'une vidéo, généralement une par rendu. Les <a href="https://general.support.brightcove.com/developer/create-json-web-token.html#Claims_for_Playback_Restrictions">réclamation maxu</a> doit être suffisamment élevé pour tenir compte de ces demandes. Vous devriez envisager des réclamations supplémentaires pour minimiser l'exposition de votre contenu. Le changement de rendu demandera une nouvelle licence.
+        Pour HLSe (AES-128), les Lecteurs feront plusieurs demandes lors de la lecture d'une vidéo, généralement une par rendu. Les <a href="https://general.support.brightcove.com/developer/create-json-web-token.html#Claims_for_Playback_Restrictions">réclamation maxu</a> doit être suffisamment élevé pour tenir compte de ces demandes. Vous devriez envisager des réclamations supplémentaires pour minimiser l'exposition de votre contenu. Le changement de rendu demandera une nouvelle licence.
       </li>
       <li>
         Suivi de la <a href="https://general.support.brightcove.com/developer/create-json-web-token.html#Claims_for_Playback_Restrictions">réclamations maxu et maxip</a> est finalement cohérent. Cela signifie que si un jeton utilisant ces revendications est réutilisé plusieurs fois en succession rapide, il est possible de voir ce jeton accepté plus de fois que ces revendications ne le déclarent. Le suivi devient cohérent en quelques secondes et après cette fenêtre, le jeton sera bloqué comme prévu.

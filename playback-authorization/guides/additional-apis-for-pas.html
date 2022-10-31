@@ -1,5 +1,5 @@
 ---
-title: 'API supplémentaires pour le service d'autorisation de lecture' la
+title: "API supplémentaires pour le service d'autorisation de lecture"
 description: "Dans cette rubrique, vous découvrirez les API supplémentaires disponibles pour la protection du contenu lors de l'utilisation du service d'autorisation de lecture de Brightcove."
 parent: Guides 
 grandparent: Playback Authorization
@@ -23,7 +23,7 @@ layout: staging
     </p>
 
     <p>
-      Des API supplémentaires sont à votre disposition pour gérer votre contenu à l'aide de PAS. Ils vous permettent d'effectuer les opérations suivantes :
+      Des API supplémentaires sont à votre disposition pour gérer votre contenu à l'aide de PAS. Ils vous permettent d'effectuer les opérations suivantes:
     </p>
     <ul>
       <li>
@@ -50,20 +50,20 @@ layout: staging
 
     <h3>URL de base</h3>
     <p>
-      L'URL de base de l'API Blacklist est :
+      L'URL de base de l'API Blacklist est:
     </p>
     <pre><code class="language-http" translate="No">https://playback-auth.api.brightcove.com</code></pre>
 
     <h3>Chemin du compte</h3>
     <p>
-      Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base :
+      Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base:
     </p>
     <pre><code class="language-http" translate="No">https://playback-auth.api.brightcove.com/v1/accounts/{accountID}/blacklist
 </code></pre>
 
     <h3>Autorisation</h3>
     <p>
-      Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization :
+      Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization:
     </p>
     <pre><code class="language-http" translate="No">Authorization:  Bearer  {access_token}</code></pre>
     <p>
@@ -82,29 +82,29 @@ layout: staging
 
     <h3>Gérer les jetons sur liste noire</h3>
     <p>
-      Les mises à jour de la liste noire peuvent prendre jusqu'à une minute pour se propager dans le système. L'API Blacklist prend en charge les requêtes suivantes :
+      Les mises à jour de la liste noire peuvent prendre jusqu'à une minute pour se propager dans le système. L'API Blacklist prend en charge les requêtes suivantes:
     </p>
 
-    <h4>Ajouter un jeton à la liste noire :</h4>
+    <h4>Ajouter un jeton à la liste noire:</h4>
     <pre><code class="language-http" translate="No">PUT  (no  req  body)/v1/accounts/{accountID}/blacklist/tokens/{token}
 </code></pre>
     <p>
       L'intégralité de la chaîne JWT encodée est incluse dans le chemin.
     </p>
 
-    <h4>Afficher la liste noire actuelle :</h4>
+    <h4>Afficher la liste noire actuelle:</h4>
     <pre><code class="language-http" translate="No">GET  /v1/accounts/{accountId}/blacklist
 </code></pre>
     <br />
 
-    <h4>Vérifiez si un token est sur la liste noire :</h4>
+    <h4>Vérifiez si un token est sur la liste noire:</h4>
     <pre><code class="language-http" translate="No">GET  /v1/accounts/{accountID}/blacklist/tokens/{token}
 </code></pre>
     <p>
       L'intégralité de la chaîne JWT encodée est incluse dans le chemin.
     </p>
     <p>
-      Réponses :
+      Réponses:
     </p>
     <ul>
       <li>
@@ -115,7 +115,7 @@ layout: staging
       </li>
     </ul>
 
-    <h4>Supprimer un jeton de la liste noire :</h4>
+    <h4>Supprimer un jeton de la liste noire:</h4>
     <pre><code class="language-http" translate="No">DELETE  /v1/accounts/{accountID}/blacklist/tokens/{token}
 </code></pre>
     <p>
@@ -132,26 +132,26 @@ layout: staging
 
     <h3>API d'audit</h3>
     <p>
-      Voici les détails de l'API d'audit :
+      Voici les détails de l'API d'audit:
     </p>
 
     <h3>URL de base</h3>
     <p>
-      L'URL de base de l'API d'audit est :
+      L'URL de base de l'API d'audit est:
     </p>
     <pre><code class="language-http" translate="No">https://playback-auth.api.brightcove.com
 </code></pre>
 
     <h3>Chemin du compte</h3>
     <p>
-      Dans tous les cas, les demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base :
+      Dans tous les cas, les demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base:
     </p>
     <pre><code class="language-http" translate="No">https://playback-auth.api.brightcove.com/v1/audit/accounts/{accountID}
 </code></pre>
 
     <h3>Autorisation</h3>
     <p>
-      Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization :
+      Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization:
     </p>
     <pre><code class="language-http" translate="No">Authorization:  Bearer  {access_token}
 </code></pre>
@@ -171,7 +171,7 @@ layout: staging
 
     <h3>Générer des rapports</h3>
     <p>
-      Utilisez l'API d'audit pour générer un rapport d'accès quotidien avec les détails de la session en procédant comme suit :
+      Utilisez l'API d'audit pour générer un rapport d'accès quotidien avec les détails de la session en procédant comme suit:
     </p>
     <aside class="bcls-aside  bcls-aside--information">
       <p>
@@ -256,17 +256,17 @@ layout: staging
               </td>
             </tr>
             <tr>
-              <td>Type de contenu : application/json</td>
+              <td>Type de contenu: application/json</td>
             </tr>
           </tbody>
         </table>
 
         <h4>Réponse</h4>
-        <p>Exemple de réponse (200 OK) :</p>
+        <p>Exemple de réponse (200 OK):</p>
 
         <pre class="line-numbers">
 <code class="language-json" translate="No">{
-	&quot;executionID&quot;:  &quot;abcdef-asfdag-dvsbcd&quot;
+  &quot;executionID&quot;:  &quot;abcdef-asfdag-dvsbcd&quot;
 }</code></pre>
 
         <p>
@@ -316,17 +316,17 @@ layout: staging
               </td>
             </tr>
             <tr>
-              <td>Type de contenu : application/json</td>
+              <td>Type de contenu: application/json</td>
             </tr>
           </tbody>
         </table>
 
         <h4>Réponse</h4>
-        <p>Exemple de réponse (200 OK) :</p>
+        <p>Exemple de réponse (200 OK):</p>
 
         <pre class="line-numbers">
 <code class="language-json" translate="No">{
-	&quot;status&quot;:  &quot;completed&quot;
+  &quot;status&quot;:  &quot;completed&quot;
 }
 </code></pre>
 
@@ -345,7 +345,7 @@ layout: staging
             <tr>
               <td><code translate="No">status</code></td>
               <td>Chaîne de caractères</td>
-              <td>Valeurs : "terminé", "traitement", "échec"</td>
+              <td>Valeurs: "terminé", "traitement", "échec"</td>
             </tr>
           </tbody>
         </table>
@@ -374,13 +374,13 @@ layout: staging
               </td>
             </tr>
             <tr>
-              <td>Type de contenu : application/json</td>
+              <td>Type de contenu: application/json</td>
             </tr>
           </tbody>
         </table>
 
         <h4>Réponse</h4>
-        <p>Exemple de réponse (200 OK) :</p>
+        <p>Exemple de réponse (200 OK):</p>
 
         <pre class="line-numbers">
 <code class="language-json" translate="No">{
@@ -423,7 +423,7 @@ layout: staging
     <h2 id="Limitations">Limites</h2>
 
     <p>
-      Les limitations suivantes s'appliquent avec la version initiale de cette fonctionnalité :
+      Les limitations suivantes s'appliquent avec la version initiale de cette fonctionnalité:
     </p>
     <ul>
       <li>

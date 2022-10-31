@@ -1,6 +1,6 @@
 ---
 title: Réduction de la latence pour les flux en direct
-description: 'Cette rubrique explique comment réduire la latence de vos flux Brightcove Live.'
+description: "Cette rubrique explique comment réduire la latence de vos flux Brightcove Live."
 parent: Guides 
 grandparent: Live API
 ---
@@ -14,11 +14,11 @@ grandparent: Live API
 
 <p>La latence est le délai entre le moment où quelque chose est enregistré dans la vie réelle et le moment où il est vu dans un lecteur vidéo. Il faut bien sûr du temps réel pour transmettre un signal de la source via Internet à un lecteur de téléspectateurs. La latence est aggravée par le fait que la vidéo en ligne est transmise en morceaux discrets, appelés segments.</p>
 
-<p>La latence peut être réduite en raccourcissant la longueur des segments vidéo, et les sections suivantes détailleront comment vous pouvez le faire. Sachez toutefois qu'il existe un compromis : pour assurer une lecture ininterrompue, le lecteur télécharge quelques segments vidéo avant la position de lecture actuelle (c'est ce qu'on appelle la mise en mémoire tampon), afin qu'ils soient prêts en cas de besoin. Si vous réduisez la longueur des segments, le lecteur pré-extrait moins de données vidéo et les chances d'une pause de lecture pendant que le lecteur met en mémoire tampon des segments supplémentaires augmentent.</p>
+<p>La latence peut être réduite en raccourcissant la longueur des segments vidéo, et les sections suivantes détailleront comment vous pouvez le faire. Sachez toutefois qu'il existe un compromis: pour assurer une lecture ininterrompue, le lecteur télécharge quelques segments vidéo avant la position de lecture actuelle (c'est ce qu'on appelle la mise en mémoire tampon), afin qu'ils soient prêts en cas de besoin. Si vous réduisez la longueur des segments, le lecteur pré-extrait moins de données vidéo et les chances d'une pause de lecture pendant que le lecteur met en mémoire tampon des segments supplémentaires augmentent.</p>
 
 <h3>Limitations supplémentaires</h3>
 
-<p>Les limitations suivantes s'appliquent aux diffusions en direct utilisant une latence réduite :</p>
+<p>Les limitations suivantes s'appliquent aux diffusions en direct utilisant une latence réduite:</p>
 
 <ul>
 	<li>SSAI est <strong>ne pas</strong> prise en charge</li>
@@ -31,7 +31,7 @@ grandparent: Live API
 <section class="bcls-section">
 <h2 id="Creating_Reduced_Latency_Live_Profile">Création d'un profil en direct à latence réduite</h2>
 
-<p>Pour réduire la latence, vous devrez créer un profil Live personnalisé. Suivez les étapes ci-dessous :</p>
+<p>Pour réduire la latence, vous devrez créer un profil Live personnalisé. Suivez les étapes ci-dessous:</p>
 
 <ol class="bcls-tasklist-restart">
 	<li>Connectez-vous à Studio</li>
@@ -40,7 +40,7 @@ grandparent: Live API
 	<figcaption class="bcls-caption--image">Aller à Ingérer des profils</figcaption>
 	</figure>
 	</li>
-	<li>Sélectionnez l'un des <strong>Habitent</strong> ingérer des profils avec pas plus de <strong>4</strong> rendus :
+	<li>Sélectionnez l'un des <strong>Habitent</strong> ingérer des profils avec pas plus de <strong>4</strong> rendus:
 	<figure class="bcls-figure"><img class="bcls-image" alt="Select a Live Profile" src="/assets/images/general/18954/select_ingest_profile.png" />
 	<figcaption class="bcls-caption--image">Sélectionnez un profil en direct</figcaption>
 	</figure>
@@ -49,7 +49,7 @@ grandparent: Live API
 	<li>Clique sur le <strong>Dupliquer</strong> bouton pour créer un nouveau profil basé sur celui-ci</li>
 	<li>Dans le nouveau profil, modifiez le <code translate="No">name</code> à "Low Latency Profile" (ou comme vous voulez l'appeler)</li>
 	<li>Pour chacun des <code translate="No">renditions</code> , changer la <code translate="No">segment_seconds</code> à <code translate="No">2</code> pour réduire la longueur des segments à 2 secondes</li>
-	<li>L'ensemble de votre profil devrait ressembler à ceci :
+	<li>L'ensemble de votre profil devrait ressembler à ceci:
 	<pre class="line-numbers">
 <code class="language-json" translate="No">{
   "model_version": 1,
@@ -113,7 +113,7 @@ grandparent: Live API
   "packages": []
 }</code></pre>
 	</li>
-	<li>Pour utiliser ce profil, sélectionnez lorsque vous créez un nouvel événement en direct dans le module en direct :
+	<li>Pour utiliser ce profil, sélectionnez lorsque vous créez un nouvel événement en direct dans le module en direct:
 	<figure class="bcls-figure"><img class="bcls-image" alt="Create Live Event" src="/assets/images/general/18954/create-live-event.png" />
 	<figcaption class="bcls-caption--image">Créer un événement en direct</figcaption>
 	</figure>
@@ -122,8 +122,8 @@ grandparent: Live API
 </section>
 
 <section class="bcls-section">
-<h2 id="Using_the_Live_API">Utilisation de l'API en direct</h2>
+<h2 id="Using_the_Live_API">Utilisation de l'Live API</h2>
 
-<p>Si vous souhaitez une latence réduite et que vous utilisez l'API Live pour créer vos tâches en direct, créez simplement la tâche comme vous le faites normalement, mais incluez <strong>pas plus de 4 interprétations</strong> , Et mettre <code translate="No">segment_seconds</code> pour chaque interprétation à <code translate="No">2</code>. Assurez-vous également de respecter les autres limitations énumérées dans le <a href="#Introduction">introduction</a>.</p>
+<p>Si vous souhaitez une latence réduite et que vous utilisez le Live API pour créer vos tâches en direct, créez simplement la tâche comme vous le faites normalement, mais incluez <strong>pas plus de 4 interprétations</strong> , Et mettre <code translate="No">segment_seconds</code> pour chaque interprétation à <code translate="No">2</code>. Assurez-vous également de respecter les autres limitations énumérées dans le <a href="#Introduction">introduction</a>.</p>
 </section>
 </article>

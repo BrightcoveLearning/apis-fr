@@ -1,6 +1,6 @@
 Dimension:---
 title: ' <code translate="No">video</code>'
-description: 'Dans cette rubrique, vous découvrirez les <span translate="No">API d'analyse</span> <code translate="No">video</code> dimension. Les <code translate="No">video</code> dimension fournit des analyses par vidéo. REMARQUE : si vous souhaitez inclure une "vidéo". champs (comme <code translate="No">video.name</code> ) dans la réponse, vos identifiants client doivent inclure le CMS : Autorisation de lecture vidéo. Notez également que même si vous ne pouvez pas revenir <code translate="No">video.custom_fields</code> , vous pouvez retourner <code translate="No">video.custom_fields.{field_name}</code>'
+description: "Dans cette rubrique, vous découvrirez les Analytics API <code translate="No">video</code> dimension. Les <code translate="No">video</code> dimension fournit des analyses par vidéo. REMARQUE: si vous souhaitez inclure une "vidéo". champs (comme <code translate="No">video.name</code> ) dans la réponse, vos identifiants client doivent inclure le CMS: Autorisation de lecture vidéo. Notez également que même si vous ne pouvez pas revenir <code translate="No">video.custom_fields</code> , vous pouvez retourner <code translate="No">video.custom_fields.{field_name}</code>"
 parent: Dimension Guides 
 grandparent: Analytics API
 ---
@@ -10,7 +10,7 @@ grandparent: Analytics API
     <section class="bcls-section">
     <h2 id="urlParams">Paramètres d'URL</h2>
 
-    <p>Les rapports de l'API Analytics prennent en charge les paramètres d'URL suivants.</p>
+    <p>Les rapports de Analytics API prennent en charge les paramètres d'URL suivants.</p>
 
     <table class="bcls-table">
       <caption class="bcls-caption--table">Paramètres d'URL</caption>
@@ -111,8 +111,8 @@ grandparent: Analytics API
     <p>Les champs suivants peuvent être renvoyés pour la dimension.</p>
 
     <ul id="fields">
-      <li><code translate="No">ad_mode_begin</code>- le nombre de fois où le joueur est entré en mode publicité</li>
-      <li><code translate="No">ad_mode_complete</code>- le nombre de fois où le joueur a terminé le mode publicité</li>
+      <li><code translate="No">ad_mode_begin</code>- le nombre de fois où le Lecteur est entré en mode publicité</li>
+      <li><code translate="No">ad_mode_complete</code>- le nombre de fois où le Lecteur a terminé le mode publicité</li>
       <li><code translate="No">bytes_delivered</code>- nombre total d'octets délivrés aux machines clientes pour le lecteur et les médias associés</li>
       <li><code translate="No">engagement_score</code>- le score d'engagement d'une vidéo</li>
       <li><code translate="No">play_request</code>- nombre total de fois où la lecture vidéo a été demandée</li>
@@ -124,7 +124,7 @@ grandparent: Analytics API
       <li><code translate="No">video_engagement_25</code>- le nombre total de vues au point de 25% de la durée de la vidéo</li>
       <li><code translate="No">video_engagement_50</code>- le nombre total de vues au point de 50 pour cent de la durée de la vidéo</li>
       <li><code translate="No">video_engagement_75</code>- le nombre total de vues à 75 % de la durée de la vidéo&lt;</li>
-      <li><code translate="No">video_impression</code>- le nombre total de fois où la vidéo a été chargée dans les lecteurs</li>
+      <li><code translate="No">video_impression</code>- le nombre total de fois où la vidéo a été chargée dans les Lecteurs</li>
       <li><code translate="No">video_name</code>- le nom de la vidéo au moment de l'impression la plus récente dans la période</li>
       <li><code translate="No">video_percent_viewed</code>- la somme du pourcentage de la vidéo visionnée pour toutes les vues vidéo. Par exemple, s'il y avait deux vues dans la période et que le pourcentage de vues dans une vue était de 78 % et de 59 % dans l'autre, le <code translate="No">video_percent_viewed</code> retourné serait <samp translate="No">137</samp>.</li>
       <li><code translate="No">video_seconds_viewed</code>- nombre total de secondes vues pour chaque vue vidéo</li>
@@ -153,7 +153,7 @@ grandparent: Analytics API
 
     <p>Utilisée comme filtre, une dimension permet d'affiner les résultats.</p>
 
-    <p id="filters">Filtrer les valeurs : identifiants vidéo sous forme de liste délimitée par des virgules ou video.q=={video field}:{value}</p>
+    <p id="filters">Filtrer les valeurs: identifiants vidéo sous forme de liste délimitée par des virgules ou video.q=={video field}:{value}</p>
     </section>
 
     <section class="bcls-section">
@@ -168,13 +168,13 @@ grandparent: Analytics API
     <h3>Demande de dimension</h3>
 
     <pre class="line-numbers language-http code-toolbar">
-    <code class="language-http" id="dimensionRequest"><span class="token header-name keyword"><span class="token header-name keyword">https :</span></span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=video</code></pre>
+    <code class="language-http" id="dimensionRequest"><span class="token header-name keyword"><span class="token header-name keyword">https:</span></span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=video</code></pre>
     <button class="bcls-button" id="sendDimensionRequest">Tester cette demande</button>
 
     <h3>Demande de filtre</h3>
 
     <pre class="line-numbers language-http">
-    <code class="language-http" id="filterRequest"><span class="token header-name keyword">https :</span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=video&amp;where=video==4093643993001,1754276206001</code></pre>
+    <code class="language-http" id="filterRequest"><span class="token header-name keyword">https:</span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=video&amp;where=video==4093643993001,1754276206001</code></pre>
     <button class="bcls-button" id="sendFilterRequest">Tester cette demande</button>
 
     <h3>Réponse</h3>

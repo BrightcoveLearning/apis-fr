@@ -1,6 +1,6 @@
 ---
-title: 'Gestion des listes de lecture à l'aide de l'API CMS'
-description: 'Cette rubrique explique comment créer, mettre à jour ou supprimer des listes de lecture à l'aide de l'API CMS.'
+title: "Gestion des listes de lecture à l'aide de le CMS API"
+description: "Cette rubrique explique comment créer, mettre à jour ou supprimer des listes de lecture à l'aide de CMS API."
 parent: Managing Videos/Assets 
 grandparent: CMS API
 ---
@@ -10,7 +10,7 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="intro">introduction</h2>
     <img alt="Sample Playlist" style="float:right;" src="/assets/images/cms/managing-videos/sample-playlist.png" />
-    <p>Les listes de lecture vous permettent de regrouper un ensemble de vidéos connexes afin qu'elles puissent être chargées dans un lecteur et visionnées en groupe. Les <span translate="No">API CMS</span> contient un ensemble de méthodes d'écriture que vous pouvez utiliser pour créer, mettre à jour ou supprimer des listes de lecture :</p>
+    <p>Les listes de lecture vous permettent de regrouper un ensemble de vidéos connexes afin qu'elles puissent être chargées dans un lecteur et visionnées en groupe. Les CMS API contient un ensemble de méthodes d'écriture que vous pouvez utiliser pour créer, mettre à jour ou supprimer des listes de lecture:</p>
     
     <ul>
       <li><a href="#create">Créer une liste de lecture</a></li>
@@ -24,7 +24,7 @@ grandparent: CMS API
     <section id="authentication" class="bcls-section">
     <h2>Authentification</h2>
     
-    <p class="BCL-aside">Demandes au <span translate="No">API CMS</span> nécessitent un en-tête d'autorisation contenant vos jetons d'accès. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a>.</p>
+    <p class="BCL-aside">Demandes au CMS API nécessitent un en-tête d'autorisation contenant vos jetons d'accès. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a>.</p>
     </section>
     
     <section class="section">
@@ -123,7 +123,7 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="Search_field">Champ de recherche</h2>
     
-    <p>Pour tous les types de playlists intelligentes, la collection de vidéos est assemblée dynamiquement en fonction du <code translate="No">search</code> valeur du champ pour la liste de lecture. La valeur du champ de recherche doit être une chaîne de recherche valide pour une balise <a href="/cms/searching/cms-and-playback-apis-video-search-v2.html">chaîne de recherche</a> pour l'API CMS. Vous trouverez ci-dessous quelques exemples avec des explications sur les vidéos qu'ils retourneront.</p>
+    <p>Pour tous les types de playlists intelligentes, la collection de vidéos est assemblée dynamiquement en fonction du <code translate="No">search</code> valeur du champ pour la liste de lecture. La valeur du champ de recherche doit être une chaîne de recherche valide pour une balise <a href="/cms/searching/cms-and-playback-apis-video-search-v2.html">chaîne de recherche</a> pour l'CMS API. Vous trouverez ci-dessous quelques exemples avec des explications sur les vidéos qu'ils retourneront.</p>
     
     <aside class="bcls-aside bcls-aside--warning">Actuellement, les listes de lecture ne peuvent être construites qu'à partir d'une recherche d'un ou plusieurs tags (séparés par des virgules). De plus, vous ne pouvez pas rechercher des vidéos qui <strong>ne pas</strong> avoir une étiquette particulière.</aside>
     
@@ -155,7 +155,7 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="get_count_of_videos">Obtenir le nombre de vidéos</h2>
     
-    <p>Vous pouvez obtenir le décompte des vidéos d'une liste de lecture (soit intelligente, soit manuelle) en utilisant le <code translate="No">counts</code> point final :</p>
+    <p>Vous pouvez obtenir le décompte des vidéos d'une liste de lecture (soit intelligente, soit manuelle) en utilisant le <code translate="No">counts</code> point final:</p>
     
     <pre class="line-numbers">
     <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/<span class="bcls-input">account_id</span>/playlists/<span class="bcls-input">playlist_id</span>/videos</code></pre>
@@ -173,7 +173,7 @@ grandparent: CMS API
     
     <h3>Corps de la demande</h3>
     
-    <p>Vous pouvez inclure de nombreux (mais pas tous !) des champs de métadonnées vidéo dans votre demande. Tu <strong>doit</strong> inclure au moins un <code translate="No">name</code> et <code translate="No">type</code> pour la liste de lecture. Vous trouverez ci-dessous deux exemples, l'un créant une playlist EXPLICITE, le second créant une playlist intelligente de type ACTIVATED_NEWEST_TO_OLDEST, comprenant des vidéos comportant deux balises :</p>
+    <p>Vous pouvez inclure de nombreux (mais pas tous !) des champs de métadonnées vidéo dans votre demande. Tu <strong>doit</strong> inclure au moins un <code translate="No">name</code> et <code translate="No">type</code> pour la liste de lecture. Vous trouverez ci-dessous deux exemples, l'un créant une playlist EXPLICITE, le second créant une playlist intelligente de type ACTIVATED_NEWEST_TO_OLDEST, comprenant des vidéos comportant deux balises:</p>
     
     <h4>Pour la liste de lecture EXPLICITE</h4>
     

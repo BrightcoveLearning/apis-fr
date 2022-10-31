@@ -1,6 +1,6 @@
 ---
 title: 'Démarrage rapide: Utilisation des sorties RTMP pour les événements en direct'
-description: 'Ce didacticiel vous guidera à travers la création de sorties RTMP pour configurer des événements en direct sur YouTube Live et Facebook Live.'
+description: "Ce didacticiel vous guidera à travers la création de sorties RTMP pour configurer des événements en direct sur YouTube Live et Facebook Live."
 parent: Code Samples 
 grandparent: Live API
 ---
@@ -31,11 +31,11 @@ grandparent: Live API
 <section class="bcls-section">
 <h2 id="create_a_live_job">Créer un emploi en direct</h2>
 
-<p>Tout d'abord, nous allons créer un emploi réel. Vous aurez besoin d'un <code translate="No">API-KEY</code> pour l'API en direct. Si ce n'est pas le cas et que vous souhaitez obtenir un accès, veuillez contacter votre gestionnaire de compte.</p>
+<p>Tout d'abord, nous allons créer un emploi réel. Vous aurez besoin d'un <code translate="No">API-KEY</code> pour l'Live API. Si ce n'est pas le cas et que vous souhaitez obtenir un accès, veuillez contacter votre gestionnaire de compte.</p>
 
 <ol class="bcls-tasklist-restart">
 	<li>
-	<p>Copiez et collez ce qui suit <span translate="No">boucle</span> commande dans un éditeur de texte :</p>
+	<p>Copiez et collez ce qui suit <span>boucle</span> commande dans un éditeur de texte:</p>
 
 	<pre class="line-numbers">
 <code class="language-bash" translate="No">curl -X POST \
@@ -98,7 +98,7 @@ grandparent: Live API
 	</li>
 	<li>Après avoir apporté ces modifications, copiez et collez le code dans Terminal ou dans l'application de ligne de commande que vous utilisez et exécutez-le.</li>
 	<li>
-	<p>La réponse devrait ressembler à ceci :</p>
+	<p>La réponse devrait ressembler à ceci:</p>
 
 	<pre class="line-numbers">
 <code class="language-json" translate="No">{
@@ -131,7 +131,7 @@ grandparent: Live API
 	<li>Vivement recommandé: Framerate = suivre la source</li>
 </ul>
 
-<p>Voici la configuration que nous avons utilisée pour cette expérience :</p>
+<p>Voici la configuration que nous avons utilisée pour cette expérience:</p>
 
 <figure class="bcls-figure"><img alt="elemental-live-job-config" title="Elemental live config" src="/assets/images/live-api/18697/elemental-live-job-config-v1-small.png" />
 <figcaption class="bcls-caption--image">Configuration élémentaire en direct</figcaption>
@@ -141,7 +141,7 @@ grandparent: Live API
 <section class="bcls-section">
 <h2 id="test_playback">Tester la lecture</h2>
 
-<p>Vous pouvez utiliser ceci <a href="https://videojs.github.io/videojs-contrib-hls/">Page de démonstration VideoJS HLS</a> pour tester la lecture, collez simplement la valeur <code translate="No">playback_url</code> renvoyé dans la réponse de la tâche de création :</p>
+<p>Vous pouvez utiliser ceci <a href="https://videojs.github.io/videojs-contrib-hls/">Page de démonstration VideoJS HLS</a> pour tester la lecture, collez simplement la valeur <code translate="No">playback_url</code> renvoyé dans la réponse de la tâche de création:</p>
 
 <figure class="bcls-figure"><img alt="videojs-hls-playback" title="VideoJS HLS playback demo page" src="/assets/images/live-api/18697/videojs-hls-playback-small.png" />
 <figcaption class="bcls-caption--image">Page de démonstration de lecture VideoJS HLS</figcaption>
@@ -162,14 +162,14 @@ grandparent: Live API
 	</figure>
 	</li>
 	<li>
-	<p>Cliquez sur "Encodeur live streaming" :</p>
+	<p>Cliquez sur "Encodeur live streaming":</p>
 
 	<figure class="bcls-figure"><img alt="youtube-encoder-live" title="YouTube encoder live source" src="/assets/images/live-api/18697/youtube-encoder-live-small.png" />
 	<figcaption class="bcls-caption--image">Source en direct de l'encodeur YouTube</figcaption>
 	</figure>
 	</li>
 	<li>
-	<p>Configurez les métadonnées YouTube de votre événement en direct et utilisez les données "Configuration de l'encodeur" pour connecter le flux en direct Brightcove à YouTube :</p>
+	<p>Configurez les métadonnées YouTube de votre événement en direct et utilisez les données "Configuration de l'encodeur" pour connecter le flux en direct Brightcove à YouTube:</p>
 
 	<figure class="bcls-figure"><img alt="youtube-encoder-setup" title="YouTube encoder setup" src="/assets/images/live-api/18697/youtube-encoder-setup-small.png" />
 	<figcaption class="bcls-caption--image">Configuration de l'encodeur YouTube</figcaption>
@@ -179,7 +179,7 @@ grandparent: Live API
 	<p>Maintenant que nous avons configuré YouTube en direct, nous allons créer la sortie RTMP correspondante à partir de notre travail en direct.</p>
 	</li>
 	<li>
-	<p>Copiez le <span translate="No">boucle</span> commande ci-dessous dans un éditeur de texte :</p>
+	<p>Copiez le <span>boucle</span> commande ci-dessous dans un éditeur de texte:</p>
 
 	<pre class="line-numbers">
 <code class="language-bash" translate="No">curl -X POST \
@@ -201,7 +201,7 @@ grandparent: Live API
 	</li>
 	<li>Collez le code modifié dans votre application de ligne de commande et exécutez-le.</li>
 	<li>
-	<p>La réponse devrait ressembler à ceci :</p>
+	<p>La réponse devrait ressembler à ceci:</p>
 
 	<pre class="line-numbers">
 <code class="language-json" translate="No">{
@@ -236,14 +236,14 @@ grandparent: Live API
 	<p>Cliquez sur <strong>Vidéo en direct</strong></p>
 	</li>
 	<li>
-	<p>Cliquez sur <strong>relier</strong> et la clé de flux pour obtenir les données nécessaires pour connecter votre tâche en direct Brightcove :</p>
+	<p>Cliquez sur <strong>relier</strong> et la clé de flux pour obtenir les données nécessaires pour connecter votre tâche en direct Brightcove:</p>
 
 	<figure class="bcls-figure"><img alt="facebook-live-config" title="Facebook live config" src="/assets/images/live-api/18697/facebook-live-config-small.png" />
 	<figcaption class="bcls-caption--image">Configuration en direct de Facebook</figcaption>
 	</figure>
 	</li>
 	<li>
-	<p>Ensuite, créez une sortie en direct pour le travail en direct Brightcove à l'aide de « l'URL du serveur » et de la « clé de diffusion » de Facebook. Copiez le <span translate="No">boucle</span> commande ci-dessous et collez-la dans un éditeur de texte :</p>
+	<p>Ensuite, créez une sortie en direct pour le travail en direct Brightcove à l'aide de « l'URL du serveur » et de la « clé de diffusion » de Facebook. Copiez le <span>boucle</span> commande ci-dessous et collez-la dans un éditeur de texte:</p>
 
 	<pre class="line-numbers">
 <code class="language-bash" translate="No">curl -X POST \
@@ -264,7 +264,7 @@ grandparent: Live API
 	</ul>
 	</li>
 	<li>
-	<p>La réponse devrait ressembler à ceci :</p>
+	<p>La réponse devrait ressembler à ceci:</p>
 
 	<pre class="line-numbers">
 <code class="language-json" translate="No">{

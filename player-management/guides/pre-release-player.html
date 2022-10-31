@@ -1,6 +1,6 @@
 ---
-title: 'Joueur de pré-version'
-description: 'Dans cette rubrique, vous apprendrez à créer un lecteur qui utilise toujours la dernière version préliminaire.'
+title: 'Lecteur de pré-version'
+description: "Dans cette rubrique, vous apprendrez à créer un lecteur qui utilise toujours la dernière version préliminaire."
 
 parent: 'Guides' 
 grandparent: Player Management API
@@ -22,16 +22,16 @@ grandparent: Player Management API
   <section class="bcls-section">
     <h2 id="Why_a_pre-release_player">Pourquoi un lecteur de pré-version ?</h2>
     <p>Vous souhaiterez peut-être tester fréquemment la dernière version de Brightcove Player, y compris les versions préliminaires. Ce document vous montre comment configurer un lecteur qui sera mis à jour à chaque fois qu'une nouvelle pré-version est disponible. En réglant le <code translate="No">"version_alias": "prerelease"</code> option de configuration, vous pouvez être sûr que ce lecteur aura toujours la dernière version préliminaire.</p>
-    <p>Dans les Studios <strong translate="No">JOUEURS</strong> module, vous pouvez configurer un lecteur pour qu'il utilise toujours la dernière pré-version :</p>
+    <p>Dans les Studios <strong translate="No">Lecteurs</strong> module, vous pouvez configurer un lecteur pour qu'il utilise toujours la dernière pré-version:</p>
     <figure class="bcls-figure"><img class="bcls-image" alt="Set version alias in Studio" src="/assets/images/player-management/guides/studio-make-prerelease.png" /></figure>
   </section>
   <section class="bcls-section">
     <h2 id="How_it_works">Comment ça fonctionne</h2>
-    <p>Chaque fois qu'une nouvelle version préliminaire est publiée pour la version majeure actuelle, l'API de gestion des joueurs republie tous les lecteurs qui ont l'alias de la version préliminaire sur leur branche principale.</p>
+    <p>Chaque fois qu'une nouvelle version préliminaire est publiée pour la version majeure actuelle, l'Ingestion Profiles API republie tous les Lecteurs qui ont l'alias de la version préliminaire sur leur branche principale.</p>
   </section>
   <section class="bcls-section">
     <h2 id="Creating_a_pre-release_player">Créer un lecteur de pré-version avec une API</h2>
-    <p>L'instruction curl suivante crée un lecteur à l'aide de l'API de gestion des lecteurs pour toujours utiliser la dernière version préliminaire :</p>
+    <p>L'instruction curl suivante crée un lecteur à l'aide de l'API de gestion des Lecteurs pour toujours utiliser la dernière version préliminaire:</p>
     <pre class="line-numbers">
   <code class="language-bash" translate="No">curl \
     --header "Content-Type: application/json" \
@@ -72,7 +72,7 @@ grandparent: Player Management API
       "policy_key": "BCpkADaw...lB71l9h"
     }
   }</code></pre>
-    <aside class="bcls-aside bcls-aside--information">Noter: Configuration du lecteur <code translate="No">GET</code> les demandes de joueurs avec l'alias de version ne contiendront pas la version du joueur associé. Cependant, lorsqu'une demande d'aperçu ou de publication est reçue pour un lecteur avec la version préliminaire <code translate="No">version_alias</code> , la version préliminaire correcte est extraite de la base de données de l'API de gestion du lecteur et ajoutée à la configuration du lecteur avant la publication. Cela signifie que la version du lecteur peut être trouvée dans le <strong translate="No">config.json</strong> fichier (comme indiqué juste ci-dessus). Voici un exemple <code translate="No">GET</code> demander:
+    <aside class="bcls-aside bcls-aside--information">Noter: Configuration du lecteur <code translate="No">GET</code> les demandes de Lecteurs avec l'alias de version ne contiendront pas la version du Lecteur associé. Cependant, lorsqu'une demande d'aperçu ou de publication est reçue pour un lecteur avec la version préliminaire <code translate="No">version_alias</code> , la version préliminaire correcte est extraite de la base de données de l'API de gestion du lecteur et ajoutée à la configuration du lecteur avant la publication. Cela signifie que la version du lecteur peut être trouvée dans le <strong translate="No">config.json</strong> fichier (comme indiqué juste ci-dessus). Voici un exemple <code translate="No">GET</code> demander:
       <pre class="line-numbers">
   <code class="language-json" translate="No">{
     "video_cloud": {

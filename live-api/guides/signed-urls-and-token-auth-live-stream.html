@@ -1,6 +1,6 @@
 ---
 title: URL signées et authentification de jeton avec un flux en direct
-description: 'Dans cette rubrique, vous apprendrez à utiliser les URL signées et l'authentification par jeton pour empêcher les utilisateurs finaux de pouvoir lire votre flux en direct sans autorisation appropriée.'
+description: "Dans cette rubrique, vous apprendrez à utiliser les URL signées et l'authentification par jeton pour empêcher les utilisateurs finaux de pouvoir lire votre flux en direct sans autorisation appropriée."
 parent: Guides 
 grandparent: Live API
 ---
@@ -21,7 +21,7 @@ grandparent: Live API
 <section id="Implementation" class="bcls-section">
 <h2>Mise en œuvre</h2>
 
-<aside class="bcls-aside bcls-aside--information">Remarque : si vous créez votre propre jeton et que vous l'ajoutez à l'URL, vous ne devez effectuer que l'étape 1.</aside>
+<aside class="bcls-aside bcls-aside--information">Remarque: si vous créez votre propre jeton et que vous l'ajoutez à l'URL, vous ne devez effectuer que l'étape 1.</aside>
 
 <h3>Étape 1: Création de l'emploi en direct</h3>
 
@@ -45,7 +45,7 @@ grandparent: Live API
     }
   }]</code></pre>
 
-<p>Les champs concernés sont décrits dans le tableau suivant :</p>
+<p>Les champs concernés sont décrits dans le tableau suivant:</p>
 
 <table class="bcls-table">
 	<caption class="bcls-caption--table">Champs TTL pour les travaux en direct</caption>
@@ -73,14 +73,14 @@ grandparent: Live API
 
 <h3>Étape 2: Après la création de l'emploi en direct</h3>
 
-<aside class="bcls-aside bcls-aside--information">Ne terminez cette étape que si vous êtes <strong>ne pas</strong> créer votre propre jeton et souhaitez plutôt que l'API Live génère une URL tokenisée.</aside>
+<aside class="bcls-aside bcls-aside--information">Ne terminez cette étape que si vous êtes <strong>ne pas</strong> créer votre propre jeton et souhaitez plutôt que le Live API génère une URL tokenisée.</aside>
 
 <p>Une fois la tâche en direct créée, vous devez effectuer une autre demande pour générer les URL du manifeste principal. Pour ce faire, envoyez un <code translate="No">POST</code> demande à:</p>
 
 <pre class="line-numbers">
   <code class="language-http" translate="No">https://api.bcovlive.io/v1/jobs/<span class="bcls-input">JOB_ID</span>/authurls</code></pre>
 
-<p>Incluez le JSON suivant comme corps de la requête :</p>
+<p>Incluez le JSON suivant comme corps de la requête:</p>
 
 <pre class="line-numbers">
   <code class="language-json" translate="No">{

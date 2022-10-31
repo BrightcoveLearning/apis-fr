@@ -1,7 +1,6 @@
 ---
 title: 'Rapport sur le contenu audio uniquement'
-description: 'Si vous avez du contenu audio uniquement dans votre vidéothèque, vous trouverez peut-être utile d'exécuter un rapport affichant uniquement ces vidéos audio uniquement. Cet exemple vous montre comment procéder.'
-
+description: "Si vous avez du contenu audio uniquement dans votre vidéothèque, vous trouverez peut-être utile d'exécuter un rapport affichant uniquement ces vidéos audio uniquement. Cet exemple vous montre comment procéder."
 parent: 'Code Samples' 
 grandparent: CMS API
 ---
@@ -15,14 +14,14 @@ grandparent: CMS API
 
     <p>Video Cloud vous permet d'utiliser du contenu uniquement audio sous forme de vidéos sans piste vidéo. Cependant, il ne signale en aucun cas ces vidéos comme "audio uniquement". Par conséquent, si vous disposez d'une grande bibliothèque de contenus audio et vidéo mixtes, il peut ne pas être évident de créer un rapport sur votre contenu uniquement audio.</p>
 
-    <p>Il existe des propriétés dans les rendus qui vous indiqueront s'il s'agit uniquement d'audio, mais les propriétés sont différentes pour les vidéos qui ont été ingérées à l'aide du système d'acquisition hérité ou à l'aide du système Dynamic Delivery :</p>
+    <p>Il existe des propriétés dans les rendus qui vous indiqueront s'il s'agit uniquement d'audio, mais les propriétés sont différentes pour les vidéos qui ont été ingérées à l'aide du système d'acquisition hérité ou à l'aide du système Dynamic Delivery:</p>
 
     <ul>
       <li>Pour les anciennes vidéos d'ingestion, chaque rendu aura un <code translate="No">audio_only</code> propriété qui est un booléen</li>
       <li>Pour les vidéos Dynamic Delivery, chaque rendu aura un <code translate="No">media_type</code> propriété qui sera définie sur <code translate="No">audio</code> ou <code translate="No">video</code></li>
     </ul>
 
-    <p>Dans l'exemple d'application ici, nous utilisons une fonction qui vérifie les deux cas :</p>
+    <p>Dans l'exemple d'application ici, nous utilisons une fonction qui vérifie les deux cas:</p>
 
     <pre class="line-numbers">
         <code class="language-javascript" translate="No">function isAudio(rendition) {
@@ -37,9 +36,9 @@ grandparent: CMS API
     <h3>Remarques sur cet échantillon</h3>
 
     <ul>
-      <li>Toute vidéo dans Video Cloud peut avoir des rendus audio uniquement. Cet exemple identifie le contenu qui a <strong>seul</strong> rendus audio, et vérifie donc chaque rendu. Il serait simple de modifier le code pour produire un rapport sur le contenu comportant au moins un rendu audio uniquement. C'est la seule modification que vous devez apporter à l'exemple de code :
+      <li>Toute vidéo dans Video Cloud peut avoir des rendus audio uniquement. Cet exemple identifie le contenu qui a <strong>seul</strong> rendus audio, et vérifie donc chaque rendu. Il serait simple de modifier le code pour produire un rapport sur le contenu comportant au moins un rendu audio uniquement. C'est la seule modification que vous devez apporter à l'exemple de code:
 
-        <p>Code existant (à trouver sur du contenu audio uniquement) :</p>
+        <p>Code existant (à trouver sur du contenu audio uniquement):</p>
 
         <pre class="line-numbers">
         <code class="language-javascript" translate="No">function processRenditions(video, renditions) {
@@ -66,7 +65,7 @@ grandparent: CMS API
             }
           }</code></pre>
 
-        <p>Version de la fonction permettant d'identifier tout contenu comportant des rendus uniquement audio :</p>
+        <p>Version de la fonction permettant d'identifier tout contenu comportant des rendus uniquement audio:</p>
 
         <pre class="line-numbers">
         <code class="language-javascript" translate="No">function processRenditions(video, renditions) {
@@ -100,15 +99,15 @@ grandparent: CMS API
         <h2 id="getCredentials">Obtenir des informations d'identification</h2>
       </summary>
 
-      <p>Pour utiliser le <span translate="No">API CMS</span> vous aurez besoin des informations d'identification appropriées.</p>
+      <p>Pour utiliser le CMS API vous aurez besoin des informations d'identification appropriées.</p>
 
-      <p>Le moyen le plus simple d'obtenir des informations d'identification dans la plupart des cas consiste à utiliser la section Authentification de l'API d'administration de Studio (nécessite des autorisations d'administrateur sur votre compte). Voir <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a> pour les détails. Dans la plupart des cas, vous souhaitez probablement simplement obtenir des autorisations pour tous <span translate="No">API CMS</span> opération:</p>
+      <p>Le moyen le plus simple d'obtenir des informations d'identification dans la plupart des cas consiste à utiliser la section Authentification de l'API d'administration de Studio (nécessite des autorisations d'administrateur sur votre compte). Voir <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a> pour les détails. Dans la plupart des cas, vous souhaitez probablement simplement obtenir des autorisations pour tous CMS API opération:</p>
 
       <figure class="bcls-figure"><img class="bcls-image" alt="CMS API Permissions" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/cms-api/cms-permissions.png" />
-        <figcaption class="bcls-caption--image">Autorisations API CMS</figcaption>
+        <figcaption class="bcls-caption--image">Autorisations CMS API</figcaption>
       </figure>
 
-      <p>Si les autorisations dont vous avez besoin ne sont pas disponibles dans Studio, ou si vous préférez les obtenir directement à partir de l'API OAuth, utilisez votre choix de <strong>Obtenir les informations d'identification du client</strong> documents énumérés ci-dessous. Quelle que soit l'option que vous choisissez, vous devrez demander les autorisations de fonctionnement correctes. Les éléments suivants peuvent être utilisés avec cURL ou Postman pour obtenir toutes les autorisations pour l'API CMS :</p>
+      <p>Si les autorisations dont vous avez besoin ne sont pas disponibles dans Studio, ou si vous préférez les obtenir directement à partir de OAuth API, utilisez votre choix de <strong>Obtenir les informations d'identification du client</strong> documents énumérés ci-dessous. Quelle que soit l'option que vous choisissez, vous devrez demander les autorisations de fonctionnement correctes. Les éléments suivants peuvent être utilisés avec cURL ou Postman pour obtenir toutes les autorisations pour l'CMS API:</p>
 
       <pre class="line-numbers">
           <code class="language-json" translate="No">"operations": [
@@ -119,8 +118,8 @@ grandparent: CMS API
           ]</code></pre>
 
       <ul>
-        <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">OAuth : Obtenir les informations d'identification du client à l'aide de cURL</a></li>
-        <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">OAuth : Obtenez les informations d'identification du client à l'aide de Postman</a></li>
+        <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">OAuth: Obtenir les informations d'identification du client à l'aide de cURL</a></li>
+        <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">OAuth: Obtenez les informations d'identification du client à l'aide de Postman</a></li>
       </ul>
     </details>
   </section>
@@ -132,7 +131,7 @@ grandparent: CMS API
       Retrouvez tout le code associé à cet exemple dans ce <a href="https://github.com/BrightcoveLearning/18729-cms-api-sample-report-audio-only-content">Dépôt GitHub</a>.
     </p>
     <h3>Exemple d'application</h3>
-    <p class="codepen" data-height="1400" data-theme-id="34967" data-default-tab="result" data-user="rcrooks1969" data-slug-hash="ZwyVJL" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="CMS API Sample: Audio Content Report"><span>Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/ZwyVJL/"> <span translate="No">API CMS</span> Échantillon: Rapport sur le contenu audio</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</span></p>
+    <p class="codepen" data-height="1400" data-theme-id="34967" data-default-tab="result" data-user="rcrooks1969" data-slug-hash="ZwyVJL" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="CMS API Sample: Audio Content Report"><span>Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/ZwyVJL/"> CMS API Échantillon: Rapport sur le contenu audio</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</span></p>
     <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
   </section>
 
@@ -142,7 +141,7 @@ grandparent: CMS API
         <h2 id="Using_the_CodePen">Utiliser le CodePen</h2>
       </summary>
 
-      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus :</p>
+      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus:</p>
 
       <ul>
         <li>Basculez l'affichage réel du lecteur en cliquant sur le bouton <strong>Résultat</strong> bouton.</li>

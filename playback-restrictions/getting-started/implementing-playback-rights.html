@@ -1,5 +1,6 @@
 ---
-title: Mise en œuvre de la description des droits de lecture : "Dans cette rubrique, vous apprendrez à gérer la lecture vidéo à l'aide des droits de lecture Brightcove."
+title: Mise en œuvre des droits de lecture
+description: "Dans cette rubrique, vous apprendrez à gérer la lecture vidéo à l'aide des droits de lecture Brightcove."
 parent: Getting Started 
 grandparent: Playback Rights
 ---
@@ -22,7 +23,7 @@ grandparent: Playback Rights
   <ul>
     <li>Lorsque vous ingérez une vidéo, un droit de lecture par défaut est créé qui permet de diffuser à tout le monde, partout, à tout moment.</li>
     <li>Si une vidéo existante n'a pas de droit de lecture, le retranscodage de la vidéo ne créera PAS de droit de lecture par défaut.</li>
-    <li>Le droit de lecture par défaut a le champ : <code translate="No">is_default</code> mis à <code translate="No">true</code>. Après l'ingestion, vous pouvez réattribuer la valeur par défaut.</li>
+    <li>Le droit de lecture par défaut a le champ: <code translate="No">is_default</code> mis à <code translate="No">true</code>. Après l'ingestion, vous pouvez réattribuer la valeur par défaut.</li>
   </ul>
 </aside>
 
@@ -40,7 +41,7 @@ grandparent: Playback Rights
   Vous pouvez avoir des règles d'autorisation et de blocage pour la plupart des droits. Les pays sont les seuls où il n'est peut-être pas logique d'avoir les deux.
 </p>
 
-<p>Les organigrammes suivants montrent comment fonctionne le processus de validation :</p>
+<p>Les organigrammes suivants montrent comment fonctionne le processus de validation:</p>
 <ol class="bcls-tasklist-restart">
   <li>Contrôles géographiques</li>
   <li>Vérification de l'horaire</li>
@@ -68,7 +69,7 @@ grandparent: Playback Rights
 <p>Si les vérifications géographiques réussissent, continuez avec les vérifications supplémentaires dans le diagramme suivant.</p>
 
 <h3>Contrôles de validation supplémentaires</h3>
-<p>Si les contrôles géographiques réussissent, les contrôles suivants sont traités dans l'ordre :</p>
+<p>Si les contrôles géographiques réussissent, les contrôles suivants sont traités dans l'ordre:</p>
 <ol>
   <li>Vérification de l'horaire</li>
   <li>Vérification de procuration</li>
@@ -83,7 +84,7 @@ grandparent: Playback Rights
 <section class="bcls-section">
 <h2 id="Workflow">Flux de travail</h2>
 
-<p>Pour gérer les restrictions de lecture, procédez comme suit :</p>
+<p>Pour gérer les restrictions de lecture, procédez comme suit:</p>
 <ol class="bcls-tasklist-restart">
   <li>
     <a href="#Set_up_your_account">Configurez votre compte</a>
@@ -119,7 +120,7 @@ grandparent: Playback Rights
   </li>
   <li>
     <p>
-      Avec n'importe quelle page de Studio ouverte, ouvrez les outils de développement pour le navigateur, accédez à la console et collez le code suivant :
+      Avec n'importe quelle page de Studio ouverte, ouvrez les outils de développement pour le navigateur, accédez à la console et collez le code suivant:
     </p>
     <pre class="line-numbers"><code class="language-javascript" translate="No">var cookiesArray = document.cookie.split(";;";), cookiesObj = {}, i, tmpArray = [];
 for (i = 0; i &lt; cookiesArray.length; i++) {
@@ -144,18 +145,18 @@ window.prompt(";BC_TOKEN:", cookiesObj.BC_TOKEN);</code></pre>
 </p>
 <ol class="bcls-tasklist">
   <li>
-    Le moyen le plus simple de créer des informations d'identification client pour l'API des droits de lecture consiste à utiliser <a href="/oauth/code-samples/oauth-api-sample-create-client-credentials.html">cette application en ligne</a> et assurez-vous d'inclure ces autorisations lorsque vous créez les informations d'identification :
+    Le moyen le plus simple de créer des informations d'identification client pour l'API des droits de lecture consiste à utiliser <a href="/oauth/code-samples/oauth-api-sample-create-client-credentials.html">cette application en ligne</a> et assurez-vous d'inclure ces autorisations lorsque vous créez les informations d'identification:
     <figure class="bcls-figure">
       <img class="bcls-image" src="/assets/images/playback-rights/getting-started/playback-rights-permissions.png" alt="Playback Rights Permissions">
       <figcaption class="bcls-caption--image">Autorisations des droits de lecture</figcaption>
     </figure>
   </li>
-  <li>Si vous préférez générer vos identifiants à l'aide de l'API OAuth directement, continuez avec les étapes suivantes.</li>
+  <li>Si vous préférez générer vos identifiants à l'aide de OAuth API directement, continuez avec les étapes suivantes.</li>
   <li>
     <p>
   Voici un exemple de demande client OAuth avec les autorisations nécessaires. Voir <a href="/oauth/guides/get-your-bc-token.html">Obtenir votre BC_TOKEN</a> pour plus d'informations sur l'obtention de votre BC_TOKEN.
 </p>
-<pre class="line-numbers"><code class="language-curl">curl \\ --include \\ --header ";Autorisation : BC_TOKEN <span class="bcls-input">votre BC_TOKEN</span>"; \\ --data { name=demo&amp;maximum_scope=[{ ";identity";: { ";type";: ";video-cloud-account", ";account-id";: <span class="bcls-input">votre identifiant de compte</span> }, ";operations" ; : [ "video-cloud/playback-auth/playback-rights/read", "video-cloud/playback-auth/playback-rights/write", "video-cloud/video/read" , "video-cloud/video/create", "video-cloud/video/update", "video-cloud/video/delete", "video-cloud/playback-auth/key/read", "video-cloud/ lecture-auth/clé/écriture" ; ] }] } \\ https://oauth.brightcove.com/v4/client_credentials</code></pre>
+<pre class="line-numbers"><code class="language-curl">curl \\ --include \\ --header ";Autorisation: BC_TOKEN <span class="bcls-input">votre BC_TOKEN</span>"; \\ --data { name=demo&amp;maximum_scope=[{ ";identity";: { ";type";: ";video-cloud-account", ";account-id";: <span class="bcls-input">votre identifiant de compte</span> }, ";operations" ;: [ "video-cloud/playback-auth/playback-rights/read", "video-cloud/playback-auth/playback-rights/write", "video-cloud/video/read" , "video-cloud/video/create", "video-cloud/video/update", "video-cloud/video/delete", "video-cloud/playback-auth/key/read", "video-cloud/ lecture-auth/clé/écriture" ; ] }] } \\ https://oauth.brightcove.com/v4/client_credentials</code></pre>
 
 <aside class="bcls-aside bcls-aside--information">Il n'est peut-être pas recommandé de générer un seul client avec toutes les stratégies.</aside>
   </li>
@@ -177,19 +178,19 @@ window.prompt(";BC_TOKEN:", cookiesObj.BC_TOKEN);</code></pre>
 
 <h3>URL de base</h3>
 <p>
-  L'URL de base de l'API est :
+  L'URL de base de l'API est:
 </p>
 <pre><code class="language-http" translate="No">https://playback-rights.api.brightcove.com/v1</code></pre>
 
 <h3>Chemin du compte</h3>
 <p>
-  Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base :
+  Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base:
 </p>
 <pre><code class="language-http" translate="No">https://playback-rights.api.brightcove.com/v1/accounts/{accountID}</code></pre>
 
 <h3>Autorisation</h3>
 <p>
-  Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization :
+  Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization:
 </p>
 <pre><code class="language-http" translate="No">Authorization: Bearer {access_token}</code></pre>
 <p>
@@ -273,7 +274,7 @@ window.prompt(";BC_TOKEN:", cookiesObj.BC_TOKEN);</code></pre>
 <pre><code class="language-http" translate="No">GET /v1/accounts/{accountID}/playback_rights/{playbackRightsID}</code></pre>
 <br />
 
-<h4>Mettre à jour un droit de lecture spécifique :</h4>
+<h4>Mettre à jour un droit de lecture spécifique:</h4>
 <pre class="line-numbers"><code class="language-http" translate="No">PUT /v1/accounts/{accountID}/playback_rights/{playbackRightsID}
   Content-Type: application/json
   Body: {playback rights object}</code></pre>
@@ -281,13 +282,13 @@ window.prompt(";BC_TOKEN:", cookiesObj.BC_TOKEN);</code></pre>
     Pour une liste des champs valides, consultez le <a href="#Request_body">Corps de la demande</a> section.
   </p>
 
-<h4>Supprimer un droit de lecture spécifique :</h4>
+<h4>Supprimer un droit de lecture spécifique:</h4>
 <pre><code class="language-http" translate="No">DELETE /v1/accounts/{accountID}/playback_rights/{playbackRightsID}</code></pre>
 <br />
 
 <h4 id="Request_body">Corps de la demande</h4>
 <p>
-  Voici un exemple de tous les champs que vous pouvez inclure dans le corps de la requête :
+  Voici un exemple de tous les champs que vous pouvez inclure dans le corps de la requête:
 </p>
 <pre class="line-numbers"><code class="language-json" translate="No">{
   ";geo";: {
@@ -363,7 +364,7 @@ window.prompt(";BC_TOKEN:", cookiesObj.BC_TOKEN);</code></pre>
     <tr>
       <td><code translate="No">allowed_days</code></td>
       <td>Chaîne de caractères</td>
-      <td>Tableau de noms en minuscules de 3 lettres pour les jours pendant lesquels la ressource est autorisée à être récupérée. Un ou plusieurs de : <code translate="No">mon, tue, wed, thu, fri, sat, sun</code></td>
+      <td>Tableau de noms en minuscules de 3 lettres pour les jours pendant lesquels la ressource est autorisée à être récupérée. Un ou plusieurs de: <code translate="No">mon, tue, wed, thu, fri, sat, sun</code></td>
     </tr>
     <tr>
       <td><code translate="No">allowed_domains</code>, <code translate="No">blocked_domains</code></td>
@@ -491,30 +492,30 @@ window.prompt(";BC_TOKEN:", cookiesObj.BC_TOKEN);</code></pre>
 <section class="bcls-section">
 <h2 id="Associate_restrictions_with_a_video">Associer des restrictions à une vidéo</h2>
 
-<p>Utilisez le <span translate="No">API CMS</span> pour associer un identifiant de droits de lecture à une vidéo. Vous utiliserez l'identifiant des droits de lecture que vous avez créé à l'étape précédente.</p>
+<p>Utilisez le CMS API pour associer un identifiant de droits de lecture à une vidéo. Vous utiliserez l'identifiant des droits de lecture que vous avez créé à l'étape précédente.</p>
 
 <aside class="bcls-aside bcls-aside--information">Notez que si les restrictions ne sont pas au niveau de l'utilisateur, le JWT n'est pas requis, et il peut être désactivé avec <code translate="No">allow_insecure</code> les bons paramètres de lecture.</aside>
 
-<h3 id="CMS_API">API CMS</h3>
+<h3 id="CMS_API">CMS API</h3>
 <p>
   Chaque objet de restriction des droits de lecture peut être utilisé avec une ou plusieurs vidéos.
 </p>
 
 <h3>URL de base</h3>
 <p>
-  L'URL de base de l'API est :
+  L'URL de base de l'API est:
 </p>
 <pre><code class="language-http" translate="No">https://cms.api.brightcove.com/v1</code></pre>
 
 <h3>Chemin du compte</h3>
 <p>
-  Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base :
+  Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base:
 </p>
 <pre><code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/{accountId}</code></pre>
 
 <h3>Autorisation</h3>
 <p>
-  Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization :
+  Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization:
 </p>
 <pre><code class="language-http" translate="No">Authorization: Bearer {access_token}</code></pre>
 <p>
@@ -536,10 +537,10 @@ window.prompt(";BC_TOKEN:", cookiesObj.BC_TOKEN);</code></pre>
 
 <h3>Gérer les restrictions</h3>
 <p>
-  Les <span translate="No">API CMS</span> prend en charge les nombreux types de requêtes. Pour mettre à jour une vidéo, utilisez les éléments suivants :
+  Les CMS API prend en charge les nombreux types de requêtes. Pour mettre à jour une vidéo, utilisez les éléments suivants:
 </p>
 
-  <h4>Mettre à jour une vidéo :</h4>
+  <h4>Mettre à jour une vidéo:</h4>
   <p>
     Associer un <code translate="No">playback_rights_id</code> avec une vidéo. Cet identifiant doit exister dans l'API des droits de lecture, que vous avez créée à l'étape précédente.
   </p>
@@ -559,26 +560,26 @@ window.prompt(";BC_TOKEN:", cookiesObj.BC_TOKEN);</code></pre>
 </details>
 <br />
 
-  <h4>Obtenez une vidéo spécifique :</h4>
+  <h4>Obtenez une vidéo spécifique:</h4>
 <pre><code class="language-http" translate="No">GET /v1/accounts/{account_id}/videos/{video_ids}</code></pre>
 
 <p>
-  Pour plus de détails sur l'utilisation de l'API, consultez le <a href="/cms/references/reference.html">Référence de l'API CMS</a>.
+  Pour plus de détails sur l'utilisation de l'API, consultez le <a href="/cms/references/reference.html">Référence de CMS API</a>.
 </p>
 </section>
 
 <!-- <section class="bcls-section">
 <h2 id="Define_user_level_restrictions">Define user-level restrictions</h2>
 <p>
-  If you want user-level restrictions, you will need a <span translate="No">JSON Web Token</span> (JWT) configured with claims associated with your restrictions.
+  If you want user-level restrictions, you will need a <span>JSON Web Token</span> (JWT) configured with claims associated with your restrictions.
 </p>
 <h3>Steps</h3>
 <p>
-  To create a <span translate="No">JSON Web Token</span> (JWT) to pass to your player, follow these steps:
+  To create a <span>JSON Web Token</span> (JWT) to pass to your player, follow these steps:
 <ol class="bcls-tasklist-restart">
   <li>
     <h3 id="Determine_restrictions">Determine restrictions</h3>
-    <p>Determine the type of user-level restrictions you want to use from the list below. Include the necessary JWT claims when you create your <span translate="No">JSON Web Token</span> (JWT).</p>
+    <p>Determine the type of user-level restrictions you want to use from the list below. Include the necessary JWT claims when you create your <span>JSON Web Token</span> (JWT).</p>
   <h4>Device limits</h4>
   <p>
     When a DRM license request is made, the user's device is registered and a unique id is assigned. The device limit is checked and enforced with each license request. To use this restriction, generate a JWT with the current user id (uid).
@@ -597,7 +598,7 @@ window.prompt(";BC_TOKEN:", cookiesObj.BC_TOKEN);</code></pre>
 
   <h4>Tags</h4>
   <p>
-    Based on the <code translate="No">tags</code> claim, the <span translate="No">JSON Web Token</span> (JWT) will specify the group of videos that the user is entitled to watch. You can group videos with tags using the <strong>Media Module</strong> in Brightcove's Video Cloud Studio.
+    Based on the <code translate="No">tags</code> claim, the <span>JSON Web Token</span> (JWT) will specify the group of videos that the user is entitled to watch. You can group videos with tags using the <strong>Media Module</strong> in Brightcove's Video Cloud Studio.
   </p>
   <p>
     The Playback Authorization Service will check the tags associated with each video. If at least one of the tags matches the list in the JWT token, then the video is viewable.
@@ -608,8 +609,8 @@ window.prompt(";BC_TOKEN:", cookiesObj.BC_TOKEN);</code></pre>
   <aside class="bcls-aside bcls-aside--information">You are limited to an array of 40 tags in the JWT token.</aside>
   </li>
   <li>
-    <h3 id="Create_a_JSON_Web_Token">Create a <span translate="No">JSON Web Token</span></h3>
-    <p>To create a token to use when communicating with Brightcove's Playback API, see the <a href="https://general.support.brightcove.com/developer/create-jwt.html">Creating a <span translate="No">JSON Web Token</span> (JWT)</a> document.</p>
+    <h3 id="Create_a_JSON_Web_Token">Create a <span>JSON Web Token</span></h3>
+    <p>To create a token to use when communicating with Brightcove's Playback API, see the <a href="https://general.support.brightcove.com/developer/create-jwt.html">Creating a <span>JSON Web Token</span> (JWT)</a> document.</p>
   </li>
 </ol>
 </section> -->
@@ -617,7 +618,7 @@ window.prompt(";BC_TOKEN:", cookiesObj.BC_TOKEN);</code></pre>
 <section class="bcls-section">
 <h2 id="Configure_your_player">Configurez votre lecteur</h2>
 <p>
-  Par défaut, Brightcove Player communique avec l'API de lecture Brightcove (PAPI). Un nouveau système pour gérer les restrictions de lecture se trouve devant l'API de lecture. Pour configurer votre lecteur, consultez ce qui suit :
+  Par défaut, Brightcove Player communique avec le Playback API Brightcove (PAPI). Un nouveau système pour gérer les restrictions de lecture se trouve devant le Playback API. Pour configurer votre lecteur, consultez ce qui suit:
 </p>
 <h3>Lecteur Web</h3>
 <p>
@@ -628,17 +629,17 @@ window.prompt(";BC_TOKEN:", cookiesObj.BC_TOKEN);</code></pre>
   Pour configurer le lecteur natif pour Android ou iOS, consultez le <a href="https://sdks.support.brightcove.com/features/playback-restrictions-with-sdks.html">Restrictions de lecture avec les SDK natifs</a> document.
 </p>
 
-<h3>Votre propre joueur</h3>
+<h3>Votre propre Lecteur</h3>
 <p>
-  Si votre contenu se trouve dans la bibliothèque Video Cloud, mais que vous utilisez votre propre lecteur, vous pouvez appeler l'API de lecture comme indiqué dans le <a href="/playback/getting-started/overview-playback-api.html">Aperçu: API de lecture</a> document. Remplacez l'URL de base par ce qui suit :
+  Si votre contenu se trouve dans la bibliothèque Video Cloud, mais que vous utilisez votre propre lecteur, vous pouvez appeler le Playback API comme indiqué dans le <a href="/playback/getting-started/overview-playback-api.html">Aperçu: Playback API</a> document. Remplacez l'URL de base par ce qui suit:
 </p>
 <pre ><code class="language-http" translate="No">https://edge-auth.api.brigthcove.com</code></pre>
 <p>
-  Au lieu d'utiliser une clé de stratégie, vous utiliserez le jeton Web JSON (JWT) pour l'authentification :
+  Au lieu d'utiliser une clé de stratégie, vous utiliserez le jeton Web JSON (JWT) pour l'authentification:
 </p>
 <pre ><code class="language-http" translate="No">Authorization: Bearer {JWT}</code></pre>
 <p>
-  Voici un exemple de Curl :
+  Voici un exemple de Curl:
 </p>
 <pre class="line-numbers"><code class="language-curl">curl -X GET\\ -H' Autorisation : Porteur {JWT}'  \\ https://edge-auth.api.brightcove.com/playback/v1/accounts/{your_account_id}/vidéos/{your_video_id}</code></pre>
 </section>

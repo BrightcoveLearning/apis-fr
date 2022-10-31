@@ -1,6 +1,6 @@
 ---
-title: 'API sociale : Référence d'erreur'
-description: 'Cette rubrique fournit une référence pour les erreurs de l'API sociale.'
+title: "Social API: Référence d'erreur"
+description: "Cette rubrique fournit une référence pour les erreurs de Social API."
 parent: References 
 grandparent: Social API
 ---
@@ -60,7 +60,7 @@ grandparent: Social API
   <section class="bcls-section">
     <h2 id="social_sharing_errors">Erreurs de partage social</h2>
     <p>Les erreurs de partage social ne sont pas renvoyées en tant que réponse d'erreur distincte à la demande d'API, mais plutôt dans un <code translate="No">errors</code> tableau dans la réponse normale.</p>
-    <p>Si l'opération de partage a échoué, l'API signalera <code translate="No">"result": "ERROR"</code> et renvoie un objet d'erreur contenant :</p>
+    <p>Si l'opération de partage a échoué, l'API signalera <code translate="No">"result": "ERROR"</code> et renvoie un objet d'erreur contenant:</p>
     <ul>
       <li><code translate="No">error_code</code>- Le code d'erreur renvoyé enregistré par le serveur, depuis la plateforme sociale, le cas échéant.</li>
       <li><code translate="No">error_message</code>- Le message d'erreur enregistré par le serveur, ou renvoyé par la plateforme sociale, le cas échéant.</li>
@@ -74,7 +74,7 @@ grandparent: Social API
     "message": "Upload error: Received Facebook error response of type OAuthException: (#100) sponsor_id requires publishing profile/page to be verified or branding partner. (code 100, subcode null)"
   }
 ]</code></pre>
-    <p>Consultez la documentation de la plate-forme sociale spécifique pour plus d'informations sur les erreurs qu'elles renvoient :</p>
+    <p>Consultez la documentation de la plate-forme sociale spécifique pour plus d'informations sur les erreurs qu'elles renvoient:</p>
     <ul>
       <li><a href="https://developers.google.com/youtube/v3/docs/errors">Youtube</a></li>
       <li>Facebook<a href="https://developers.facebook.com/docs/graph-api/video-uploads#errors"></a></li>

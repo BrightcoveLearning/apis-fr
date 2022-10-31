@@ -1,7 +1,6 @@
 ---
 title: 'Ingérer des fichiers WebVTT'
-description: 'L'ingestion dynamique peut être utilisée pour ingérer des fichiers WebVTT (pour les légendes, les sous-titres, les chapitres, etc.) avec votre vidéo, ou séparément, une fois la vidéo ingérée. Pour les vidéos Dynamic Delivery, vous pouvez également ingérer des sous-titres SRT, DFXP ou SCC. Cette rubrique explique les détails de l'ajout de fichiers de pistes de texte à vos vidéos à l'aide de l'API Dynamic Ingest.'
-
+description: "Dynamic Ingest API peut être utilisée pour ingérer des fichiers WebVTT (pour les légendes, les sous-titres, les chapitres, etc.) avec votre vidéo, ou séparément, une fois la vidéo ingérée. Pour les vidéos Dynamic Delivery, vous pouvez également ingérer des sous-titres SRT, DFXP ou SCC. Cette rubrique explique les détails de l'ajout de fichiers de pistes de texte à vos vidéos à l'aide de Dynamic Ingest API."
 parent: 'Ingest Guides' 
 grandparent: Dynamic Ingest API
 ---
@@ -11,7 +10,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="setup">Installer</h2>
     
-    <p>La configuration des requêtes d'ingestion dynamique est la même, que vous ingérez une vidéo, des images, un fichier WebVTT ou tous :</p>
+    <p>La configuration des requêtes d'ingestion dynamique est la même, que vous ingérez une vidéo, des images, un fichier WebVTT ou tous:</p>
     
     <dl>
       <dt>URL de demande</dt>
@@ -30,13 +29,13 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="s3">Remarque sur S3</h2>
     
-    <p>Si votre WebVTT doit être extrait d'un compartiment S3 protégé, vous devrez définir une stratégie de compartiment pour permettre à Video Cloud d'accéder aux fichiers. Voir <a href="/dynamic-ingest/general/using-dynamic-ingest-s3.html#setPolicy">Utilisation de l'ingestion dynamique avec S3</a> pour les détails.</p>
+    <p>Si votre WebVTT doit être extrait d'un compartiment S3 protégé, vous devrez définir une stratégie de compartiment pour permettre à Video Cloud d'accéder aux fichiers. Voir <a href="/dynamic-ingest/general/using-dynamic-ingest-s3.html#setPolicy">Utilisation de Dynamic Ingest API avec S3</a> pour les détails.</p>
     </section>
     
     <section class="bcls-section">
     <h2 id="ingestWebVTT">Ingérer des fichiers WebVTT</h2>
     
-    <p>Vous pouvez également ajouter des sous-titres WebVTT à votre vidéo ou les télécharger pour une vidéo existante à l'aide de Dynamic Ingest :</p>
+    <p>Vous pouvez également ajouter des sous-titres WebVTT à votre vidéo ou les télécharger pour une vidéo existante à l'aide de Dynamic Ingest:</p>
     
     <h3>Ajouter des pistes de texte lors de l'ingestion vidéo</h3>
     
@@ -133,7 +132,7 @@ grandparent: Dynamic Ingest API
       <li>Le texte des sous-titres doit être codé en UTF-8 pour s'afficher correctement dans les langues à double octet telles que le japonais et le coréen.</li>
       <li>La valeur par défaut n'est pas par piste, mais définie sur vrai pour toutes les pistes de la même langue (<code translate="No">srclang</code>).</li>
       <li>Pour les images et les pistes de texte, seules les URL publiques HTTP ou HTTPS ou les URL S3 signées sont prises en charge.</li>
-      <li>pour les pistes de texte, Dynamic Ingest les ajoute/ajoute à la liste vtt de la vidéo même s'il s'agit d'une demande de réencodage. Vous devriez utiliser le <a href="/cms/managing-videos/using-cms-api-add-webvtt-captions-text-tracks.html">API CMS</a> pour les gérer (mettre à jour/supprimer).</li>
+      <li>pour les pistes de texte, Dynamic Ingest les ajoute/ajoute à la liste vtt de la vidéo même s'il s'agit d'une demande de réencodage. Vous devriez utiliser le <a href="/cms/managing-videos/using-cms-api-add-webvtt-captions-text-tracks.html">CMS API</a> pour les gérer (mettre à jour/supprimer).</li>
       <li>Dynamic Ingest accepte jusqu'à 100 pistes de texte à la fois.</li>
       <li>Même si <code translate="No">"mime_type": "text/vtt"</code> est généralement pris en charge pour WebVTT, Dynamic Ingest ne <strong>ne pas</strong> autorisent actuellement ce champ pour l'ingestion de pistes de texte.</li>
     </ol>

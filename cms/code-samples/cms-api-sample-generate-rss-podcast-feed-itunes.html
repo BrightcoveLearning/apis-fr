@@ -1,7 +1,6 @@
 ---
 title: 'Flux RSS Podcast pour iTunes'
-description: 'Dans cet exemple, vous apprendrez à utiliser le <span translate="No">API CMS</span> pour générer un flux de podcast RSS pour Apple iTunes.'
-
+description: "Dans cet exemple, vous apprendrez à utiliser le CMS API pour générer un flux de podcast RSS pour Apple iTunes."
 parent: 'Code Samples' 
 grandparent: CMS API
 ---
@@ -15,10 +14,10 @@ grandparent: CMS API
 
     <aside class="bcls-aside bcls-aside--information">Cet exemple et le code associé sont fournis comme guide pour le développement de votre production. Le code n'est pas certifié pour une utilisation en production ni officiellement pris en charge.</aside>
 
-    <p><strong>Remarque : si vous saisissez toutes les informations requises, mais qu'aucun flux n'est généré ou qu'il ne contient aucune vidéo, veuillez consulter le <a href="#troubleshooting">Dépannage</a> rubrique ci-dessous.</strong></p>
+    <p><strong>Remarque: si vous saisissez toutes les informations requises, mais qu'aucun flux n'est généré ou qu'il ne contient aucune vidéo, veuillez consulter le <a href="#troubleshooting">Dépannage</a> rubrique ci-dessous.</strong></p>
 
     <section class="bcls-subsection">
-      <h3>Ce dont vous avez besoin pour utiliser cette application :</h3>
+      <h3>Ce dont vous avez besoin pour utiliser cette application:</h3>
 
       <ul>
         <li>Toutes les vidéos renvoyées dans la recherche seront incluses dans le flux. Par conséquent, vous devez utiliser une balise ou un champ personnalisé pour identifier exactement les vidéos que vous souhaitez inclure.</li>
@@ -62,15 +61,15 @@ grandparent: CMS API
         <h2 id="getCredentials">Obtenir des informations d'identification</h2>
       </summary>
 
-      <p>Pour utiliser le <span translate="No">API CMS</span> vous aurez besoin des informations d'identification appropriées.</p>
+      <p>Pour utiliser le CMS API vous aurez besoin des informations d'identification appropriées.</p>
 
-      <p>Le moyen le plus simple d'obtenir des informations d'identification dans la plupart des cas consiste à utiliser la section Authentification de l'API d'administration de Studio (nécessite des autorisations d'administrateur sur votre compte). Voir <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a> pour les détails. Dans la plupart des cas, vous souhaitez probablement simplement obtenir des autorisations pour tous <span translate="No">API CMS</span> opération:</p>
+      <p>Le moyen le plus simple d'obtenir des informations d'identification dans la plupart des cas consiste à utiliser la section Authentification de l'API d'administration de Studio (nécessite des autorisations d'administrateur sur votre compte). Voir <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a> pour les détails. Dans la plupart des cas, vous souhaitez probablement simplement obtenir des autorisations pour tous CMS API opération:</p>
 
       <figure class="bcls-figure"><img class="bcls-image" alt="CMS API Permissions" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/cms-api/cms-permissions.png" />
-        <figcaption class="bcls-caption--image">Autorisations API CMS</figcaption>
+        <figcaption class="bcls-caption--image">Autorisations CMS API</figcaption>
       </figure>
 
-      <p>Si les autorisations dont vous avez besoin ne sont pas disponibles dans Studio, ou si vous préférez les obtenir directement à partir de l'API OAuth, utilisez votre choix de <strong>Obtenir les informations d'identification du client</strong> documents énumérés ci-dessous. Quelle que soit l'option que vous choisissez, vous devrez demander les autorisations de fonctionnement correctes. Les éléments suivants peuvent être utilisés avec cURL ou Postman pour obtenir toutes les autorisations pour l'API CMS :</p>
+      <p>Si les autorisations dont vous avez besoin ne sont pas disponibles dans Studio, ou si vous préférez les obtenir directement à partir de OAuth API, utilisez votre choix de <strong>Obtenir les informations d'identification du client</strong> documents énumérés ci-dessous. Quelle que soit l'option que vous choisissez, vous devrez demander les autorisations de fonctionnement correctes. Les éléments suivants peuvent être utilisés avec cURL ou Postman pour obtenir toutes les autorisations pour l'CMS API:</p>
 
       <pre class="line-numbers">
         <code class="language-json" translate="No">"operations": [
@@ -78,8 +77,8 @@ grandparent: CMS API
         ]</code></pre>
 
       <ul>
-        <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">OAuth : Obtenir les informations d'identification du client à l'aide de cURL</a></li>
-        <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">OAuth : Obtenez les informations d'identification du client à l'aide de Postman</a></li>
+        <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">OAuth: Obtenir les informations d'identification du client à l'aide de cURL</a></li>
+        <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">OAuth: Obtenez les informations d'identification du client à l'aide de Postman</a></li>
       </ul>
     </details>
   </section>
@@ -91,7 +90,7 @@ grandparent: CMS API
       Retrouvez tout le code associé à cet exemple dans ce <a href="https://github.com/BrightcoveLearning/18561-cms-api-sample-generate-mrss-feed-itunes">Dépôt GitHub</a>.
     </p>
 
-    <p data-height="2000" data-theme-id="34967" data-slug-hash="MVdZKp" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="CMS API Sample: Generate RSS Podcast Feed for iTunes" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/MVdZKp/">Exemple d'API CMS : Générer un flux RSS Podcast pour iTunes</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
+    <p data-height="2000" data-theme-id="34967" data-slug-hash="MVdZKp" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="CMS API Sample: Generate RSS Podcast Feed for iTunes" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/MVdZKp/">Exemple d'CMS API: Générer un flux RSS Podcast pour iTunes</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
     <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
   </section>
 
@@ -101,7 +100,7 @@ grandparent: CMS API
         <h2 id="Using_the_CodePen">Utiliser le CodePen</h2>
       </summary>
 
-      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus :</p>
+      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus:</p>
 
       <ul>
         <li>Basculez l'affichage réel du lecteur en cliquant sur le bouton <strong>Résultat</strong> bouton.</li>
@@ -271,11 +270,11 @@ grandparent: CMS API
   <section class="bcls-section">
     <h2 id="troubleshooting">Dépannage</h2>
 
-    <p>Si vous rencontrez des problèmes avec cette application, voici quelques points à vérifier :</p>
+    <p>Si vous rencontrez des problèmes avec cette application, voici quelques points à vérifier:</p>
 
     <ul>
       <li>
-        <p>Si le flux généré ne contient aucune vidéo, assurez-vous que les vidéos que vous souhaitez inclure ont des rendus MP4. Vous pouvez le vérifier à l'aide de l'API CMS, mais le moyen le plus simple consiste à consulter la liste des fichiers vidéo dans le module Studio Media et à vous assurer qu'au moins un rendu peut être téléchargé :</p>
+        <p>Si le flux généré ne contient aucune vidéo, assurez-vous que les vidéos que vous souhaitez inclure ont des rendus MP4. Vous pouvez le vérifier à l'aide de CMS API, mais le moyen le plus simple consiste à consulter la liste des fichiers vidéo dans le module Studio Media et à vous assurer qu'au moins un rendu peut être téléchargé:</p>
 
         <figure class="bcls-figure"><img class="bcls-image" alt="Downloadable Rendition" src="/assets/images/cms/code-samples/downloadable-rendition.png" />
           <figcaption class="bcls-caption--image">Rendu téléchargeable</figcaption>
@@ -284,7 +283,7 @@ grandparent: CMS API
         <p>Si aucun des rendus ne peut être téléchargé, vous devrez remplacer ou retranscoder la vidéo à l'aide d'un profil d'acquisition qui inclut les rendus MP4 (progressifs).</p>
       </li>
       <li>
-        <p>Si vos vidéos ont des rendus MP4, mais que votre flux ne contient toujours aucune vidéo, vérifiez que la chaîne de recherche que vous utilisez renvoie les bonnes vidéos. Une façon de le faire est de copier l'URL de la demande ci-dessous, de remplacer <code translate="No">{account_id}</code> et <code translate="No">{search_string}</code> avec votre identifiant de compte et la chaîne de recherche, et essayez la demande dans notre <a href="/general/concepts-api-tester.html">Testeur d'API</a> pour vous assurer qu'il renvoie les vidéos que vous attendez :</p>
+        <p>Si vos vidéos ont des rendus MP4, mais que votre flux ne contient toujours aucune vidéo, vérifiez que la chaîne de recherche que vous utilisez renvoie les bonnes vidéos. Une façon de le faire est de copier l'URL de la demande ci-dessous, de remplacer <code translate="No">{account_id}</code> et <code translate="No">{search_string}</code> avec votre identifiant de compte et la chaîne de recherche, et essayez la demande dans notre <a href="/general/concepts-api-tester.html">Testeur d'API</a> pour vous assurer qu'il renvoie les vidéos que vous attendez:</p>
 
         <pre>
         <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/<span class="bcls-input">{account_id}</span>/videos?q=<span class="bcls-input">{search_string}</span></code></pre>

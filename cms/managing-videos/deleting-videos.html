@@ -1,6 +1,6 @@
 ---
 title: 'Suppression de vidéos'
-description: 'Dans cette rubrique, vous apprendrez à supprimer une ou plusieurs vidéos à l'aide de l'API CMS.'
+description: "Dans cette rubrique, vous apprendrez à supprimer une ou plusieurs vidéos à l'aide de CMS API."
 parent: Managing Videos/Assets 
 grandparent: CMS API
 ---
@@ -9,11 +9,11 @@ grandparent: CMS API
   <summary>{{ page.description }}</summary>
   <section class="bcls-section">
     <h2 id="introduction">introduction</h2>
-      <p>Vous devez probablement supprimer des vidéos de temps en temps, car elles ne sont plus pertinentes ou pour d'autres raisons. Cela peut être fait en <a href="https://studio.support.brightcove.com/media/getting-started-media-module.html#delete">Studio</a> ou, comme expliqué ci-dessous, en utilisant l'API CMS.</p>
+      <p>Vous devez probablement supprimer des vidéos de temps en temps, car elles ne sont plus pertinentes ou pour d'autres raisons. Cela peut être fait en <a href="https://studio.support.brightcove.com/media/getting-started-media-module.html#delete">Studio</a> ou, comme expliqué ci-dessous, en utilisant l'CMS API.</p>
       <p>Le processus est simple, mais il y a certaines choses que vous devez savoir :</p>
       <ul>
         <li>La suppression de la vidéo ne peut pas être annulée.</li>
-        <li>En raison de la mise en cache, les vidéos supprimées ne disparaissent pas immédiatement du système Video Cloud ou d'Internet. La seule façon de rendre une vidéo immédiatement indisponible est de la supprimer de tous les lecteurs.</li>
+        <li>En raison de la mise en cache, les vidéos supprimées ne disparaissent pas immédiatement du système Video Cloud ou d'Internet. La seule façon de rendre une vidéo immédiatement indisponible est de la supprimer de tous les Lecteurs.</li>
         <li>Bien que vous puissiez supprimer plusieurs vidéos, le nombre de vidéos pouvant être supprimées à la fois est limité par la longueur maximale des URL pour les requêtes API. En règle générale, vous pouvez en supprimer jusqu'à 100 avec une seule demande.</li>
       </ul>
   </section>
@@ -24,7 +24,7 @@ grandparent: CMS API
         <h4>Méthode HTTP</h4>
         <p><code translate="No">DELETE</code></p>
         <h4>Authentification</h4>
-        <p>Un jeton d'accès, <a href="/cms/getting-started/overview-cms-api.html#General_Information">le même que chaque <span translate="No">API CMS</span> demander</a>.</p>
+        <p>Un jeton d'accès, <a href="/cms/getting-started/overview-cms-api.html#General_Information">le même que chaque CMS API demander</a>.</p>
         <h4>Corps de la demande</h4>
         <p>Rien.</p>
         <h4>Réponse</h4>
@@ -35,7 +35,7 @@ grandparent: CMS API
           <figcaption class="bcls-caption--image">Suppression de 2 vidéos (insomnie)</figcaption>
         </figure>
         <h5>Remarques</h5>
-        <p>La suppression échouera pour une vidéo incluse dans une liste de lecture, renvoyant cette erreur de conflit 409 :</p>
+        <p>La suppression échouera pour une vidéo incluse dans une liste de lecture, renvoyant cette erreur de conflit 409:</p>
 <pre class="line-numbers"><code class="language-json" translate="No">[
   {
     "error_code": "REFERENCES_EXIST",

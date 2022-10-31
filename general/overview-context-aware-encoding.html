@@ -1,6 +1,6 @@
 ---
-title: 'Présentation de l'encodage contextuel'
-description: 'Cette rubrique fournit une vue d'ensemble du codage contextuel.'
+title: "Présentation de l'encodage contextuel"
+description: "Cette rubrique fournit une vue d'ensemble du codage contextuel."
 parent: General Information
 ---
  
@@ -29,7 +29,7 @@ parent: General Information
   <section class="bcls-section">
     <h2 id="abr">Streaming à débit adaptatif - comment en sommes-nous arrivés là</h2>
     <p>La plupart des vidéos diffusées sur Internet utilisent aujourd'hui des technologies de diffusion en continu à débit binaire adaptatif (ABR), telles que HLS et MPEG-DASH, pour optimiser la lecture vidéo. Un flux ABR contient plusieurs copies de la même vidéo, appelées « rendus », qui sont encodées à différentes résolutions et débits binaires. Lorsqu'un utilisateur appuie sur le bouton de lecture, le lecteur reçoit un manifeste qui répertorie les rendus disponibles pour la lecture. Le lecteur choisit le rendu approprié à lire en fonction de plusieurs facteurs, notamment la bande passante actuellement disponible, la plénitude de la mémoire tampon et la taille de la fenêtre de lecture. Au fur et à mesure que ces facteurs changent au cours de la lecture, le lecteur peut passer à un rendu de qualité supérieure ou à un rendu de qualité inférieure, garantissant que le spectateur obtient la meilleure qualité vidéo possible avec une mise en mémoire tampon minimale.</p>
-    <p>Les services de streaming créent généralement une configuration d'encodage unique pour l'ensemble de leur contenu : un ensemble prédéterminé de rendus ABR, souvent appelé « échelle », qui est utilisé pour encoder chaque élément de contenu. Décider de la liste des résolutions et des débits à mettre dans une échelle ABR est une science inexacte. Dans certains cas, les échelles ABR peuvent être adaptées à un cas d'utilisation spécifique - l'animation, par exemple, peut être codée à des débits binaires inférieurs car le contenu est généralement moins complexe.</p>
+    <p>Les services de streaming créent généralement une configuration d'encodage unique pour l'ensemble de leur contenu: un ensemble prédéterminé de rendus ABR, souvent appelé « échelle », qui est utilisé pour encoder chaque élément de contenu. Décider de la liste des résolutions et des débits à mettre dans une échelle ABR est une science inexacte. Dans certains cas, les échelles ABR peuvent être adaptées à un cas d'utilisation spécifique - l'animation, par exemple, peut être codée à des débits binaires inférieurs car le contenu est généralement moins complexe.</p>
   </section>
   <section class="bcls-section">
     <h2 id="problem">Le problème avec l'ABR statique</h2>

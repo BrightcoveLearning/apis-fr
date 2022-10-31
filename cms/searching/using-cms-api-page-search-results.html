@@ -1,6 +1,6 @@
 ---
 title: 'Résultats de la recherche de pages'
-description: 'Dans cette rubrique, vous apprendrez comment implémenter la pagination pour les résultats de <span translate="No">API CMS</span> demandes, lorsque la demande correspond à plus d'articles que vous ne pouvez en retourner à la fois. Cela vous permet de gérer de grands ensembles de résultats dans des groupes plus petits, ce qui améliore les performances. Un maximum de 100 enregistrements seront renvoyés à partir d'une seule demande à l'API CMS, mais pour les grands ensembles de résultats, nous vous recommandons de récupérer 25 éléments par demande pour de meilleures performances.'
+description: "Dans cette rubrique, vous apprendrez comment implémenter la pagination pour les résultats de CMS API demandes, lorsque la demande correspond à plus d'articles que vous ne pouvez en retourner à la fois. Cela vous permet de gérer de grands ensembles de résultats dans des groupes plus petits, ce qui améliore les performances. Un maximum de 100 enregistrements seront renvoyés à partir d'une seule demande à l'CMS API, mais pour les grands ensembles de résultats, nous vous recommandons de récupérer 25 éléments par demande pour de meilleures performances."
 parent: Searching 
 grandparent: CMS API
 ---
@@ -10,15 +10,15 @@ grandparent: CMS API
   <section id="Procedure" class="bcls-section">
     <h2>Procédure</h2>
     
-    <p>Pour gérer la pagination des données, vous suivrez ces étapes :</p>
+    <p>Pour gérer la pagination des données, vous suivrez ces étapes:</p>
     
     <ul>
       <li>Obtenez un décompte du nombre total d'enregistrements dans l'ensemble de résultats.</li>
       <li>Calculez le nombre de pages de votre ensemble de résultats.</li>
-      <li>Faites une boucle et appelez le <span translate="No">API CMS</span> pour chaque page de données.</li>
+      <li>Faites une boucle et appelez le CMS API pour chaque page de données.</li>
     </ul>
     
-    <aside class="bcls-aside bcls-aside--information">Demandes au <span translate="No">API CMS</span> nécessitent un en-tête d'autorisation contenant vos jetons d'accès. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a>.</aside>
+    <aside class="bcls-aside bcls-aside--information">Demandes au CMS API nécessitent un en-tête d'autorisation contenant vos jetons d'accès. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a>.</aside>
     </section>
     
     <section class="bcls-section" id="getrecordcount">
@@ -26,7 +26,7 @@ grandparent: CMS API
     
     <p>Tout d'abord, vous devez connaître le nombre total de vidéos dans votre ensemble de résultats. La réponse dans le jeu de résultats variera en fonction de vos critères de recherche. Utilisez le <code translate="No">counts</code> ressource pour renvoyer un nombre total d'enregistrements dans votre ensemble de résultats.</p>
     
-    <p>Exemple: Obtenez le nombre total de vidéos dans votre compte :</p>
+    <p>Exemple: Obtenez le nombre total de vidéos dans votre compte:</p>
     
     <pre class="line-numbers">
     <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/921483702001/counts/videos</code></pre>
@@ -38,7 +38,7 @@ grandparent: CMS API
         "count" : 74
     }</code></pre>
     
-    <p>Vous pouvez également limiter le nombre en utilisant l'option <code translate="No">q</code> paramètre. Pour plus d'informations sur l'utilisation des critères de recherche avec ce paramètre, consultez le <a href="/cms/searching/cms-and-playback-apis-video-search-v2.html">Utilisation de l'API CMS : Rechercher des vidéos</a> document.</p>
+    <p>Vous pouvez également limiter le nombre en utilisant l'option <code translate="No">q</code> paramètre. Pour plus d'informations sur l'utilisation des critères de recherche avec ce paramètre, consultez le <a href="/cms/searching/cms-and-playback-apis-video-search-v2.html">Utilisation de CMS API: Rechercher des vidéos</a> document.</p>
     
     <p>Exemple: Ici, nous obtenons le nombre de vidéos qui ont une valeur de balise de <strong>faune</strong>.</p>
     
@@ -60,7 +60,7 @@ grandparent: CMS API
     
     <p>Vous pouvez définir une taille de page fixe, ou si vous affichez des données vidéo sur une page Web, vous pouvez laisser l'utilisateur définir dynamiquement la taille de la page (c'est-à-dire le nombre d'objets de données vidéo par page).</p>
     
-    <p>Exemple JavaScript :</p>
+    <p>Exemple JavaScript:</p>
     
     <pre class="line-numbers">
     <code class="language-javascript" translate="No">var numberOfPages = Math.ceil(jsonData.count / pageSize);</code></pre>
@@ -69,14 +69,14 @@ grandparent: CMS API
     <section class="bcls-section" id="retrievepages">
     <h2>Récupérer des pages</h2>
     
-    <p>Parcourez le nombre de pages que vous avez calculé à l'étape précédente et appelez le <span translate="No">API CMS</span> avec le <code translate="No">limit</code> et <code translate="No">offset</code> paramètres pour récupérer des sous-ensembles successifs de données.</p>
+    <p>Parcourez le nombre de pages que vous avez calculé à l'étape précédente et appelez le CMS API avec le <code translate="No">limit</code> et <code translate="No">offset</code> paramètres pour récupérer des sous-ensembles successifs de données.</p>
     
     <p>Cet exemple renvoie 10 vidéos en commençant par la 21e vidéo de votre ensemble de résultats.</p>
     
     <pre class="line-numbers">
     <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/921483702001/videos?limit=10&amp;offset=20</code></pre>
     
-    <p>Vous pouvez également inclure l'option <code translate="No">q</code> paramètre. Pour plus d'informations sur l'utilisation des critères de recherche avec ce paramètre, consultez le <a href="/cms/searching/cms-and-playback-apis-video-search-v2.html">Utilisation de l'API CMS : Rechercher des vidéos</a> document.</p>
+    <p>Vous pouvez également inclure l'option <code translate="No">q</code> paramètre. Pour plus d'informations sur l'utilisation des critères de recherche avec ce paramètre, consultez le <a href="/cms/searching/cms-and-playback-apis-video-search-v2.html">Utilisation de CMS API: Rechercher des vidéos</a> document.</p>
     
     <p>Cette demande renvoie 2 vidéos en commençant par la 5e vidéo de l'ensemble de résultats de vidéos dont la valeur de balise est <strong>faune</strong>.</p>
     

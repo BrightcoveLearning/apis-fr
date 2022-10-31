@@ -1,6 +1,6 @@
 ---
 title: 'Clé de politique du lecteur'
-description: 'Dans cette rubrique, vous découvrirez la création et l'utilisation des clés de stratégie pour votre compte.'
+description: "Dans cette rubrique, vous découvrirez la création et l'utilisation des clés de stratégie pour votre compte."
 parent: Getting Started 
 grandparent: Policy API
 ---
@@ -23,26 +23,26 @@ grandparent: Policy API
   <summary>{{ page.description }}</summary>
   <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
-    <p>La clé de stratégie est utilisée pour récupérer le contenu vidéo et de liste de lecture de votre bibliothèque Video Cloud à l'aide de l'API de lecture. Étant donné que la clé de stratégie est définie sur le lecteur, elle vous permet de restreindre l'accès à votre contenu au niveau du lecteur. Vous pouvez également contrôler la disponibilité du contenu au niveau de la vidéo en utilisant le <a href="https://studio.support.brightcove.com/media/configuring-video-availability.html">Module multimédia de Video Cloud Studio</a>.</p>
-    <p>Lorsque vous créez un Brightcove Player, une clé de stratégie est automatiquement générée pour chaque lecteur. Cette clé est associée à votre compte Brightcove et contrôle quelles vidéos peuvent être visionnées et quand elles peuvent être visionnées, à condition que les vidéos soient stockées dans Video Cloud. Par exemple, des clés de stratégie sont nécessaires pour limiter l'accès en fonction de :</p>
+    <p>La clé de stratégie est utilisée pour récupérer le contenu vidéo et de liste de lecture de votre bibliothèque Video Cloud à l'aide de le Playback API. Étant donné que la clé de stratégie est définie sur le lecteur, elle vous permet de restreindre l'accès à votre contenu au niveau du lecteur. Vous pouvez également contrôler la disponibilité du contenu au niveau de la vidéo en utilisant le <a href="https://studio.support.brightcove.com/media/configuring-video-availability.html">Module multimédia de Video Cloud Studio</a>.</p>
+    <p>Lorsque vous créez un Brightcove Player, une clé de stratégie est automatiquement générée pour chaque lecteur. Cette clé est associée à votre compte Brightcove et contrôle quelles vidéos peuvent être visionnées et quand elles peuvent être visionnées, à condition que les vidéos soient stockées dans Video Cloud. Par exemple, des clés de stratégie sont nécessaires pour limiter l'accès en fonction de:</p>
     <ul>
       <li>Compte</li>
       <li>Restrictions de domaine, le cas échéant</li>
       <li>Géo-restrictions, le cas échéant</li>
     </ul>
-    <p>Pour plus d'informations sur les clés de stratégie, consultez le <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Aperçu: API de règles</a> document.</p>
+    <p>Pour plus d'informations sur les clés de stratégie, consultez le <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Aperçu: Policy API</a> document.</p>
     <aside class="bcls-aside bcls-aside--information">Remarques:
       <ul>
         <li>La clé de politique est uniquement utilisée pour contrôler les vidéos stockées dans Video Cloud. Si vous utilisez le Brightcove Player autonome, il n'est pas nécessaire d'accéder ou de récupérer la clé de stratégie.</li>
-        <li>Les clés de stratégie générées pour les nouveaux lecteurs Brightcove ne sont pas activées pour la recherche par défaut. Pour rechercher des vidéos à partir de l'API de lecture, vous devez utiliser l'API de stratégie pour créer une nouvelle clé de stratégie activée pour la recherche. Pour plus de détails, consultez le <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Présentation de l'API des règles</a> document.</li>
+        <li>Les clés de stratégie générées pour les nouveaux Lecteurs Brightcove ne sont pas activées pour la recherche par défaut. Pour rechercher des vidéos à partir de le Playback API, vous devez utiliser l'API de stratégie pour créer une nouvelle clé de stratégie activée pour la recherche. Pour plus de détails, consultez le <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Présentation de l'API des règles</a> document.</li>
       </ul>
     </aside>
   </section>
   <section class="bcls-section">
     <h2 id="Getting_the_policy_key">Obtention de la clé de stratégie</h2>
-    <p>La clé de stratégie est automatiquement générée et gérée pour vous. Ainsi, dans la plupart des cas, vous n'aurez pas besoin de le demander ou de le gérer. Le moyen le plus simple de récupérer votre clé de stratégie est de procéder comme suit :</p>
+    <p>La clé de stratégie est automatiquement générée et gérée pour vous. Ainsi, dans la plupart des cas, vous n'aurez pas besoin de le demander ou de le gérer. Le moyen le plus simple de récupérer votre clé de stratégie est de procéder comme suit:</p>
     <ol class="bcls-tasklist">
-      <li>Ouvrez le <strong>JOUEURS</strong> module et soit créer un nouveau lecteur, soit localiser le lecteur auquel vous souhaitez ajouter le plugin.</li>
+      <li>Ouvrez le <strong>Lecteurs</strong> module et soit créer un nouveau lecteur, soit localiser le lecteur auquel vous souhaitez ajouter le plugin.</li>
       <li>Sélectionnez le lien du lecteur pour ouvrir les propriétés du lecteur.</li>
       <li>
         <p>Dans le menu de navigation de gauche, sélectionnez <strong>Éditeur JSON</strong>.</p>
@@ -51,9 +51,9 @@ grandparent: Policy API
         </figure>
       </li>
       <li>
-        <p>Dans le code JSON affiché, vous verrez la clé de stratégie :</p>
+        <p>Dans le code JSON affiché, vous verrez la clé de stratégie:</p>
         <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Policy key for the player" src="//learning-services-media.brightcove.com/doc-assets/player-development/publishing/policy-keys/policy-studio.png" />
-          <figcaption class="bcls-caption--image">Clé de politique pour le joueur</figcaption>
+          <figcaption class="bcls-caption--image">Clé de politique pour le Lecteur</figcaption>
         </figure>
       </li>
     </ol>
@@ -61,21 +61,21 @@ grandparent: Policy API
   </section>
   <section class="bcls-section">
     <h2 id="Using_policy_keys">Utilisation des clés de stratégie</h2>
-    <p>La clé de stratégie peut être utilisée pour authentifier les demandes adressées à l'API Playback. L'API de lecture est destinée à être utilisée au moment de l'exécution dans des pages Web ou des applications mobiles pour la gestion générale des médias et l'intégration avec d'autres systèmes. Pour plus de détails, consultez le <a href="https://apis.support.brightcove.com/playback/">API de lecture</a> sommaire.</p>
+    <p>La clé de stratégie peut être utilisée pour authentifier les demandes adressées à le Playback API. le Playback API est destinée à être utilisée au moment de l'exécution dans des pages Web ou des applications mobiles pour la gestion générale des médias et l'intégration avec d'autres systèmes. Pour plus de détails, consultez le <a href="https://apis.support.brightcove.com/playback/">Playback API</a> sommaire.</p>
   </section>
   <section class="bcls-section">
     <h2 id="Policy_keys_vs_API_credentials">Clés de stratégie par rapport aux informations d'identification de l'API</h2>
-    <p>La clé de stratégie est utilisée pour accéder à l'API de lecture, tandis que les informations d'identification de l'API sont utilisées pour accéder à votre contenu dans les autres API Video Cloud.</p>
+    <p>La clé de stratégie est utilisée pour accéder à le Playback API, tandis que les informations d'identification de l'API sont utilisées pour accéder à votre contenu dans les autres API Video Cloud.</p>
     <h3>Clés de stratégie</h3>
     <p>La clé de stratégie est utilisée pour la récupération côté client des actifs de votre bibliothèque Video Cloud. Voici les détails:</p>
     <ul>
-      <li>Accédez à vos données vidéo/playlist à l'aide de l'API de lecture</li>
+      <li>Accédez à vos données vidéo/playlist à l'aide de le Playback API</li>
       <li>Lecture seulement</li>
-      <li>Vos données vidéo/playlist sont mises en cache sur le serveur par l'API Playback</li>
-      <li>Utilisez le <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">API de règles</a> pour faire ce qui suit :
+      <li>Vos données vidéo/playlist sont mises en cache sur le serveur par le Playback API</li>
+      <li>Utilisez le <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Policy API</a> pour faire ce qui suit :
         <ul>
           <li>Créez des clés de stratégie. Vous devez contacter le support client pour révoquer une clé de stratégie.</li>
-          <li>Définissez des restrictions de domaine et des restrictions géographiques au niveau de la stratégie. Les restrictions sont appliquées par les joueurs qui utilisent la clé de stratégie.</li>
+          <li>Définissez des restrictions de domaine et des restrictions géographiques au niveau de la stratégie. Les restrictions sont appliquées par les Lecteurs qui utilisent la clé de stratégie.</li>
         </ul>
       </li>
     </ul>
@@ -85,15 +85,15 @@ grandparent: Policy API
     <ul>
       <li><a href="https://apis.support.brightcove.com/getting-started/getting-started-brightcove-apis.html">Accédez à vos données à l'aide des API Video Cloud</a>. Vous aurez besoin des informations d'identification client pour le compte et les API que vous souhaitez utiliser.</li>
       <li>Lire, insérer, mettre à jour, supprimer</li>
-      <li>Vos données vidéo/playlist ne sont pas mises en cache sur le serveur par l'API CMS</li>
+      <li>Vos données vidéo/playlist ne sont pas mises en cache sur le serveur par l'CMS API</li>
       <li>Utilisation <a href="https://studio.support.brightcove.com/admin/managing-api-authentication-credentials.html">Interface utilisateur d'authentification API de Video Cloud</a> pour créer et gérer les identifiants API</li>
     </ul>
   </section>
   <section class="bcls-section">
     <h2 id="Managing_policy_keys">Gestion des clés de stratégie</h2>
-    <p>Vous pouvez gérer vos clés de stratégie comme suit :</p>
+    <p>Vous pouvez gérer vos clés de stratégie comme suit:</p>
     <h3>Obtention</h3>
-    <p>Il n'existe aucun moyen de mettre à jour une clé de stratégie. Tu peux soit <a href="#Getting_the_policy_key">obtenir la clé de la politique</a> à partir d'un lecteur existant dans votre compte Video Cloud, ou vous pouvez créer une clé de politique en utilisant le <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">API de règles</a>.</p>
+    <p>Il n'existe aucun moyen de mettre à jour une clé de stratégie. Tu peux soit <a href="#Getting_the_policy_key">obtenir la clé de la politique</a> à partir d'un lecteur existant dans votre compte Video Cloud, ou vous pouvez créer une clé de politique en utilisant le <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Policy API</a>.</p>
     <h3>Révocation</h3>
     <p>Pour révoquer une clé de stratégie, vous devez contacter <a href="https://supportportal.brightcove.com/s/login/?language=en_US">service client</a>.</p>
     <aside class="bcls-aside bcls-aside--information">Les clés de politique ne sont PAS révoquées lorsqu'un lecteur est supprimé. Cela signifie que si vous utilisez une clé de stratégie d'un lecteur, puis supprimez le lecteur, vous pouvez toujours continuer à utiliser la clé de stratégie.</aside>

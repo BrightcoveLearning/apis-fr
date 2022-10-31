@@ -1,6 +1,6 @@
 ---
 title: Ingérer via un flux MRSS
-description: 'Vous pouvez ingérer des vidéos et des ressources dans Video Cloud à l'aide du flux MRSS décrit dans cet article.'
+description: "Vous pouvez ingérer des vidéos et des ressources dans Video Cloud à l'aide du flux MRSS décrit dans cet article."
 parent: MRSS ingestion
 layout: staging
 ---
@@ -41,11 +41,11 @@ layout: staging
     <ol class="bcls-tasklist-restart">
       <li>Hébergez un ou plusieurs fichiers (vidéos, vignettes et fichiers de sous-titres codés) sur un serveur Web. Les URL doivent être accessibles au public.</li>
       <li>
-        Créé un <a href="/mrss-ingestion/getting-started/xml-manifest-for-ingestion-via-mrss.html">fichier manifeste XML</a>. Assurez-vous que les entrées du fichier référencent les fichiers sur votre serveur. En particulier, la valeur de la <code translate="No">&lt;media:content&gt;</code> éléments <code translate="No">href</code> attribut <strong><em>doit</em></strong> être une URL HTTP vers le fichier sur votre serveur, comme dans l'exemple suivant :
+        Créé un <a href="/mrss-ingestion/getting-started/xml-manifest-for-ingestion-via-mrss.html">fichier manifeste XML</a>. Assurez-vous que les entrées du fichier référencent les fichiers sur votre serveur. En particulier, la valeur de la <code translate="No">&lt;media:content&gt;</code> éléments <code translate="No">href</code> attribut <strong><em>doit</em></strong> être une URL HTTP vers le fichier sur votre serveur, comme dans l'exemple suivant:
         <pre><code class="language-xml" translate="No">&lt;media:content url="http://mysite.com/upload/lacrosse_70.mov" /&gt;</code></pre>
       </li>
       <li>
-        Hébergez le fichier manifeste XML sur l'un des emplacements MRSS que vous avez fournis. <strong><em>Assurez-vous que le nom de fichier et le chemin correspondent exactement à l'un des chemins que vous avez fournis à Brightcove</em>.</strong> <aside class="bcls-aside bcls-aside--information">Noter: Malheureusement, le concept de « journalisation client » ne s'applique pas au traitement basé sur les flux MRSS. Le meilleur moyen de vérifier que votre flux est traité avec succès est de vérifier l'apparence de vos éléments, soit avec <a href="https://studio.support.brightcove.com/media/getting-started-media-module.html">Studio Nuage Vidéo</a> ou le Nuage Vidéo <a href="/cms/getting-started/overview-cms-api.html">API CMS</a>.</aside>
+        Hébergez le fichier manifeste XML sur l'un des emplacements MRSS que vous avez fournis. <strong><em>Assurez-vous que le nom de fichier et le chemin correspondent exactement à l'un des chemins que vous avez fournis à Brightcove</em>.</strong> <aside class="bcls-aside bcls-aside--information">Noter: Malheureusement, le concept de « journalisation client » ne s'applique pas au traitement basé sur les flux MRSS. Le meilleur moyen de vérifier que votre flux est traité avec succès est de vérifier l'apparence de vos éléments, soit avec <a href="https://studio.support.brightcove.com/media/getting-started-media-module.html">Studio Nuage Vidéo</a> ou le Nuage Vidéo <a href="/cms/getting-started/overview-cms-api.html">CMS API</a>.</aside>
       </li>
     </ol>
   </section>

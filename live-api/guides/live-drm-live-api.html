@@ -1,6 +1,6 @@
 ---
-title: DRM en direct via l'API en direct
-description: 'Cette rubrique couvre l'ajout de DRM pour les flux en direct via l'API LIve.'
+title: DRM en direct via l'Live API
+description: "Cette rubrique couvre l'ajout de DRM pour les flux en direct via le Live API."
 parent: Guides 
 grandparent: Live API
 ---
@@ -14,11 +14,11 @@ grandparent: Live API
 <p>DRM peut être ajouté aux travaux en direct en incluant le <code translate="No">DRM</code> dans le corps de la demande lorsque vous créez la tâche. Les <code translate="No">DRM</code> l'objet a deux propriétés :</p>
 
 <ul>
-	<li><code translate="No">modes</code> défini sur un tableau ou sur un ou plusieurs des éléments suivants : "all", "fairplay", "playready", "widevine", "widevine:dash" ou "widevine:hls"</li>
+	<li><code translate="No">modes</code> défini sur un tableau ou sur un ou plusieurs des éléments suivants: "all", "fairplay", "playready", "widevine", "widevine:dash" ou "widevine:hls"</li>
 	<li><code translate="No">token_expires_in</code> défini sur un nombre compris entre 43200 (par défaut) et 31622400 (le nombre de secondes avant l'expiration du jeton)</li>
 </ul>
 
-<p>Réglage <code translate="No">mode</code> à tous entraînera l'application de tous les types de DRM disponibles aux sorties. Par défaut, le DRM est appliqué aux sorties comme suit :</p>
+<p>Réglage <code translate="No">mode</code> à tous entraînera l'application de tous les types de DRM disponibles aux sorties. Par défaut, le DRM est appliqué aux sorties comme suit:</p>
 
 <ul>
 	<li>FairPlay : appliqué aux sorties HLS</li>
@@ -36,7 +36,7 @@ grandparent: Live API
 
 <h3 id="all_modes">Tous les modes DRM</h3>
 
-<p>Voici un exemple de corps de requête pour packager les sorties avec tous les types de DRM disponibles :</p>
+<p>Voici un exemple de corps de requête pour packager les sorties avec tous les types de DRM disponibles:</p>
 
 <pre class="line-numbers">
   <code class="language-json" translate="No">{
@@ -64,7 +64,7 @@ grandparent: Live API
       }]
   }</code></pre>
 
-<p>La réponse à la demande ressemblera à ceci :</p>
+<p>La réponse à la demande ressemblera à ceci:</p>
 
 <pre class="line-numbers">
   <code class="language-json" translate="No">{

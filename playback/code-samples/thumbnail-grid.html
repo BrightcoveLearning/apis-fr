@@ -1,6 +1,6 @@
 ---
 title: 'Grille de vignettes vidéo'
-description: 'Dans cet exemple, vous apprendrez à utiliser l'API Playback pour récupérer un groupe de vidéos par ID, les afficher dans une grille et lancer des vidéos dans un lecteur lorsque l'utilisateur clique sur une vignette - en d'autres termes, créer une vidéo simple portail.'
+description: "Dans cet exemple, vous apprendrez à utiliser le Playback API pour récupérer un groupe de vidéos par ID, les afficher dans une grille et lancer des vidéos dans un lecteur lorsque l'utilisateur clique sur une vignette - en d'autres termes, créer une vidéo simple portail."
 parent: Code Samples 
 grandparent: Playback API
 ---
@@ -17,30 +17,30 @@ grandparent: Playback API
     <p>Tout ce dont vous aurez besoin pour construire ce portail sont :</p>
     <ul>
       <li>Un compte Video Cloud</li>
-      <li>Une clé de stratégie activée pour la recherche pour authentifier une demande auprès de l'API Playback</li>
+      <li>Une clé de stratégie activée pour la recherche pour authentifier une demande auprès de le Playback API</li>
       <li>Quelques compétences en développement Web (HTML, CSS et JavaScript)</li>
     </ul>
   </section>
   <section class="bcls-section">
     <h2 id="Design_considerations">Considérations sur la conception</h2>
     <h3>Obtenir des données vidéo</h3>
-    <p>Bien que soit le <span translate="No">API CMS</span> ou l'API de lecture peut être utilisée pour récupérer des données vidéo, l'API de lecture est le choix évident ici pour plusieurs raisons :</p>
+    <p>Bien que soit le CMS API ou le Playback API peut être utilisée pour récupérer des données vidéo, le Playback API est le choix évident ici pour plusieurs raisons:</p>
     <ul>
       <li>Étant donné que les données de réponse sont mises en cache (jusqu'à 20 minutes), elles sont beaucoup plus rapides</li>
-      <li>Il renvoie toutes les données dont vous avez besoin pour lire une vidéo, tandis que le <span translate="No">API CMS</span> nécessite deux requêtes distinctes pour obtenir les métadonnées vidéo et les sources vidéo</li>
+      <li>Il renvoie toutes les données dont vous avez besoin pour lire une vidéo, tandis que le CMS API nécessite deux requêtes distinctes pour obtenir les métadonnées vidéo et les sources vidéo</li>
       <li>Il est compatible CORS, ce qui signifie que vous n'avez pas besoin de router la requête API via une application proxy côté serveur</li>
     </ul>
-    <p>Cependant, l'API Playback propose deux manières de récupérer des données vidéo. Il existe une méthode de base pour obtenir une vidéo par identifiant (ou identifiant de référence), et nous pourrions facilement parcourir un tableau d'identifiants pour demander chacun. Ce n'est cependant pas très efficace.</p>
-    <p>Une meilleure option consiste à utiliser la méthode de recherche de vidéos, qui nous permet de trouver toutes les vidéos par identifiant et de les renvoyer en une seule demande. Le paramètre de recherche de la requête ressemblera à ceci :</p>
+    <p>Cependant, le Playback API propose deux manières de récupérer des données vidéo. Il existe une méthode de base pour obtenir une vidéo par identifiant (ou identifiant de référence), et nous pourrions facilement parcourir un tableau d'identifiants pour demander chacun. Ce n'est cependant pas très efficace.</p>
+    <p>Une meilleure option consiste à utiliser la méthode de recherche de vidéos, qui nous permet de trouver toutes les vidéos par identifiant et de les renvoyer en une seule demande. Le paramètre de recherche de la requête ressemblera à ceci:</p>
     <pre><code class="language-http" translate="No">q=<span class="bcls-highlight">id:6543217890</span>%20<span class="bcls-highlight">id:1234567890</span>%20<span class="bcls-highlight">id:987654321</span>...</code></pre>
-    <p>Les <strong><code translate="No">%20</code></strong> dans cette chaîne de recherche se trouve un espace codé par URI. Pour plus d'informations sur la syntaxe de recherche, consultez <a href="https://apis.support.brightcove.com/cms/searching/cmsplayback-api-videos-search.html">CMS/API de lecture : Recherche de vidéos</a>.</p>
-    <h3>Le joueur</h3>
+    <p>Les <strong><code translate="No">%20</code></strong> dans cette chaîne de recherche se trouve un espace codé par URI. Pour plus d'informations sur la syntaxe de recherche, consultez <a href="https://apis.support.brightcove.com/cms/searching/cmsplayback-api-videos-search.html">CMS/Playback API: Recherche de vidéos</a>.</p>
+    <h3>Le Lecteur</h3>
     <p>Il n'y a pas d'exigences particulières pour le lecteur - le Brightcove Player par défaut fonctionnerait bien.</p>
     <p>Certains utilisateurs peuvent ne regarder aucune vidéo du tout, il est donc inutile d'utiliser la bande passante pour charger un lecteur jusqu'à ce que cela soit nécessaire. Nous utiliserons le <a href="https://player.support.brightcove.com/publish/brightcove-player-loader.html">Chargeur de lecteur Brightcove</a> pour charger dynamiquement un lecteur la première fois qu'une vidéo est sélectionnée pour la lecture. Pour maximiser les performances, nous préchargerons également le Brightcove Player JavaScript, mais le chargeur de lecteur le fera automatiquement s'il n'est pas déjà présent.</p>
   </section>
   <section class="bcls-section">
     <h2 id="policy_key">Obtenir une clé de stratégie</h2>
-    <p>Les clés de stratégie sont générées automatiquement pour tous les lecteurs Brightcove. Pour des raisons de sécurité, cependant, les clés de stratégie standard ne permettent pas de rechercher des vidéos à l'aide de l'API de lecture. Pour cet exemple, nous voulons une clé de recherche. Vous pouvez en créer un en utilisant le <a href="https://apis.support.brightcove.com/policy/index.html">API de règles</a> , mais le moyen le plus simple est d'utiliser le <a href="https://apis.support.brightcove.com/policy/getting-started/quick-start-policy-api.html">Exemple d'application d'apprentissage Brightcove</a> et assurez-vous de cocher l'option pour obtenir une clé de recherche.</p>
+    <p>Les clés de stratégie sont générées automatiquement pour tous les Lecteurs Brightcove. Pour des raisons de sécurité, cependant, les clés de stratégie standard ne permettent pas de rechercher des vidéos à l'aide de le Playback API. Pour cet exemple, nous voulons une clé de recherche. Vous pouvez en créer un en utilisant le <a href="https://apis.support.brightcove.com/policy/index.html">Policy API</a> , mais le moyen le plus simple est d'utiliser le <a href="https://apis.support.brightcove.com/policy/getting-started/quick-start-policy-api.html">Exemple d'application d'apprentissage Brightcove</a> et assurez-vous de cocher l'option pour obtenir une clé de recherche.</p>
   </section>
   <section class="bcls-section">
     <h2 id="sample_app">Exemple d'application</h2>
@@ -55,7 +55,7 @@ grandparent: Playback API
   <section class="bcls-section">
     <details>
       <summary><h2 id="Using_the_CodePen">Utiliser le CodePen</h2></summary>
-      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus :</p>
+      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus:</p>
       
       <ul>
         <li>Basculez l'affichage réel du lecteur en cliquant sur le bouton <strong>Résultat</strong> bouton.</li>

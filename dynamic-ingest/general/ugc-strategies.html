@@ -1,7 +1,6 @@
 ---
 title: 'Stratégies UGC'
-description: 'Dans cette rubrique, vous apprendrez les stratégies et les meilleures pratiques d'utilisation de Video Cloud pour intégrer le contenu généré par l'utilisateur (UGC) à votre présence sur le Web.'
-
+description: "Dans cette rubrique, vous apprendrez les stratégies et les meilleures pratiques d'utilisation de Video Cloud pour intégrer le contenu généré par l'utilisateur (UGC) à votre présence sur le Web."
 parent: 'General Information' 
 grandparent: Dynamic Ingest API
 ---
@@ -22,11 +21,11 @@ grandparent: Dynamic Ingest API
       <li><a href="#intermediate">Mettre en place un serveur intermédiaire</a> pour héberger votre formulaire de téléchargement et recevoir les vidéos.</li>
       <li><a href="#uploadform">Créer un formulaire de téléchargement</a> où vos utilisateurs peuvent télécharger leurs vidéos et métadonnées.</li>
       <li><a href="#review">Revoir les vidéos</a> avant leur publication. Appliquez le filtre éditorial de votre choix aux vidéos générées par les utilisateurs.</li>
-      <li>Ingérez les vidéos générées par l'utilisateur depuis le serveur intermédiaire vers votre bibliothèque multimédia Video Cloud. Vous pouvez utiliser <a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">Intégration dynamique</a> pour transférer vos vidéos dans Video Cloud, ou utilisez <a href="/dynamic-ingest/getting-started/source-file-upload-api-dynamic-ingest.html">API de téléchargement de fichier source pour l'ingestion dynamique</a> si vous ne pouvez pas utiliser un référentiel à partir duquel Dynamic Ingest peut extraire directement.</li>
+      <li>Ingérez les vidéos générées par l'utilisateur depuis le serveur intermédiaire vers votre bibliothèque multimédia Video Cloud. Vous pouvez utiliser <a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">Intégration dynamique</a> pour transférer vos vidéos dans Video Cloud, ou utilisez <a href="/dynamic-ingest/getting-started/source-file-upload-api-dynamic-ingest.html">API de téléchargement de fichier source pour Dynamic Ingest API</a> si vous ne pouvez pas utiliser un référentiel à partir duquel Dynamic Ingest peut extraire directement.</li>
       <li><a href="#publish">Publier</a> votre choix des vidéos générées par les utilisateurs sur vos pages Web. Vous pouvez utiliser des listes de lecture intelligentes pour le contenu dynamique.</li>
     </ol>
     
-    <p>Ce diagramme montre le flux de travail recommandé :</p>
+    <p>Ce diagramme montre le flux de travail recommandé:</p>
     
     <figure class="bcls-figure"><img class="bcls-image" alt="UGC Workflow" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/di-api/guides/ugc/ugc-workflow.svg" />
     <figcaption class="bcls-caption--image">Flux de travail UGC</figcaption>
@@ -62,9 +61,9 @@ grandparent: Dynamic Ingest API
     <section id="intermediate" class="bcls-section">
     <h2>Mettre en place un référentiel intermédiaire</h2>
     
-    <p>Vous ne voulez pas que le contenu généré par les utilisateurs aille directement dans votre bibliothèque multimédia Video Cloud, à moins que vous ne puissiez vraiment faire confiance à tous vos utilisateurs. Au lieu de cela, vous devez utiliser un référentiel intermédiaire : les utilisateurs téléchargent leurs vidéos dans le référentiel intermédiaire, puis vous utilisez Dynamic Ingest pour déplacer les vidéos du serveur intermédiaire vers votre bibliothèque multimédia Video Cloud.</p>
+    <p>Vous ne voulez pas que le contenu généré par les utilisateurs aille directement dans votre bibliothèque multimédia Video Cloud, à moins que vous ne puissiez vraiment faire confiance à tous vos utilisateurs. Au lieu de cela, vous devez utiliser un référentiel intermédiaire: les utilisateurs téléchargent leurs vidéos dans le référentiel intermédiaire, puis vous utilisez Dynamic Ingest pour déplacer les vidéos du serveur intermédiaire vers votre bibliothèque multimédia Video Cloud.</p>
     
-    <p>Nous vous recommandons d'utiliser un compartiment S3 pour votre référentiel intermédiaire, car il est très facile de configurer l'ingestion dynamique à partir de S3, que le compartiment soit public ou protégé.</p>
+    <p>Nous vous recommandons d'utiliser un compartiment S3 pour votre référentiel intermédiaire, car il est très facile de configurer Dynamic Ingest API à partir de S3, que le compartiment soit public ou protégé.</p>
     </section>
     
     <section id="uploadform" class="bcls-section">
@@ -76,14 +75,14 @@ grandparent: Dynamic Ingest API
     <section id="intermediate2BC" class="bcls-section">
     <h2>Ingérer la vidéo</h2>
     
-    <p>Lorsque vous êtes prêt, vous pouvez ingérer le contenu UGC sur votre compte Video Cloud à l'aide de Dynamic Ingest. Deux requêtes API sont impliquées :</p>
+    <p>Lorsque vous êtes prêt, vous pouvez ingérer le contenu UGC sur votre compte Video Cloud à l'aide de Dynamic Ingest. Deux requêtes API sont impliquées:</p>
     
     <ol>
-      <li>UNE <a href="/dynamic-ingest/references/reference.html#api-Video-Create_Video_Object">Créer une vidéo</a> demande à l'API CMS, qui crée l'objet vidéo dans le système Video Cloud et ajoute des métadonnées telles que la description et les balises.</li>
+      <li>UNE <a href="/dynamic-ingest/references/reference.html#api-Video-Create_Video_Object">Créer une vidéo</a> demande à l'CMS API, qui crée l'objet vidéo dans le système Video Cloud et ajoute des métadonnées telles que la description et les balises.</li>
       <li>Les <a href="/dynamic-ingest/references/reference.html#api-Ingest-Ingest_Media_Asset">Demande d'ingestion</a> , qui extrait le fichier vidéo et le transcode.</li>
     </ol>
     
-    <p>Voir le <a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">Présentation de l'API d'ingestion dynamique</a> pour plus d'informations.</p>
+    <p>Voir le <a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">Présentation de Dynamic Ingest API</a> pour plus d'informations.</p>
     </section>
     
     <section id="publish" class="bcls-section">

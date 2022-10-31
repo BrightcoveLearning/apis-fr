@@ -1,5 +1,6 @@
 ---
-title: Description de « Limitation des flux simultanés par spectateur » : "Dans cette rubrique, vous apprendrez à limiter les flux simultanés lors de l'utilisation des restrictions de lecture Brightcove."
+title: Limitation des flux simultanés par spectateur
+description: "Dans cette rubrique, vous apprendrez à limiter les flux simultanés lors de l'utilisation des restrictions de lecture Brightcove."
 parent: Guides 
 grandparent: Playback Restrictions
 ---
@@ -38,7 +39,7 @@ grandparent: Playback Restrictions
     </p>
     <ol class="bcls-tasklist">
       <li>
-        <p>Déterminer les valeurs des réclamations :</p>
+        <p>Déterminer les valeurs des réclamations:</p>
         <ul>
           <li>Les <code translate="No">climit</code> La revendication indique le nombre d'observateurs ou de flux pouvant être lus en même temps. </li>
           <li>
@@ -50,10 +51,10 @@ grandparent: Playback Restrictions
           </li>
         </ul>
       </li>
-      <li>Créez un jeton Web JSON (JWT) avec des revendications associées aux limites de flux simultanées souhaitées. Pour plus de détails voir le <a href="https://general.support.brightcove.com/developer/create-jwt.html">Créer un <span translate="No">Jeton Web JSON</span> (JWT)</a> document.
+      <li>Créez un jeton Web JSON (JWT) avec des revendications associées aux limites de flux simultanées souhaitées. Pour plus de détails voir le <a href="https://general.support.brightcove.com/developer/create-jwt.html">Créer un <span>Jeton Web JSON</span> (JWT)</a> document.
       </li>
       <li>
-        Configurez votre lecteur pour utiliser les restrictions de lecture et passez le <span translate="No">Jeton Web JSON</span> (JWT) lors de la récupération de votre contenu vidéo. Pour plus de détails, consultez le <a href="/playback-rights/getting-started/implementing-epa.html#Configure_your_player">Configurez votre lecteur</a> section du document Mise en œuvre du service de gestion des droits de lecture.
+        Configurez votre lecteur pour utiliser les restrictions de lecture et passez le <span>Jeton Web JSON</span> (JWT) lors de la récupération de votre contenu vidéo. Pour plus de détails, consultez le <a href="/playback-rights/getting-started/implementing-epa.html#Configure_your_player">Configurez votre lecteur</a> section du document Mise en œuvre du service de gestion des droits de lecture.
       </li>
     </ol>
 
@@ -174,7 +175,7 @@ grandparent: Playback Restrictions
     <h3>Versions plus anciennes</h3>
     <p>Les anciennes versions de Brightcove Player utilisent d'abord la valeur par défaut du navigateur Chromium Edge, PlayReady. Dans ce cas, vous devez effectuer les vérifications de licence à mi-parcours manuellement.</p>
     <p>
-      Pour mettre en place un renouvellement de licence manuel dans vos lecteurs, consultez <a href="https://docs.microsoft.com/en-us/playready/features/concurrency-limiting">Limitation de la concurrence de Microsoft</a> document.
+      Pour mettre en place un renouvellement de licence manuel dans vos Lecteurs, consultez <a href="https://docs.microsoft.com/en-us/playready/features/concurrency-limiting">Limitation de la concurrence de Microsoft</a> document.
     </p>
   </section>
 
@@ -188,14 +189,14 @@ grandparent: Playback Restrictions
   <section class="bcls-section">
     <h2 id="Notes">Remarques</h2>
     <p>
-      Les remarques suivantes s'appliquent à cette fonctionnalité :
+      Les remarques suivantes s'appliquent à cette fonctionnalité:
     </p>
     <ul>
       <li>
-        La demande de renouvellement de licence manuelle doit être mise en œuvre dans les cas suivants :
+        La demande de renouvellement de licence manuelle doit être mise en œuvre dans les cas suivants:
         <ul>
           <li>
-            Limite de simultanéité dans les lecteurs non Brightcove, sauf lorsqu'ils sont protégés par Widevine
+            Limite de simultanéité dans les Lecteurs non Brightcove, sauf lorsqu'ils sont protégés par Widevine
           </li>
           <li>
             Limite de simultanéité pour PlayReady sur tous les appareils, sauf lors de l'utilisation de Brightcove Player v6.48.x ou plus récent

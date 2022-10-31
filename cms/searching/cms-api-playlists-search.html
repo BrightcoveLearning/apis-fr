@@ -1,6 +1,6 @@
 ---
-title: 'API CMS : Recherche de listes de lecture'
-description: 'Dans cette rubrique, vous apprendrez à rechercher des listes de lecture dans votre compte Video Cloud. Les <span translate="No">API CMS</span> fournit un moyen par programmation de rechercher des listes de lecture dans votre bibliothèque Video Cloud. Ici, nous allons examiner la syntaxe de recherche.'
+title: 'CMS API: Recherche de listes de lecture'
+description: "Dans cette rubrique, vous apprendrez à rechercher des listes de lecture dans votre compte Video Cloud. Les CMS API fournit un moyen par programmation de rechercher des listes de lecture dans votre bibliothèque Video Cloud. Ici, nous allons examiner la syntaxe de recherche."
 parent: Searching 
 grandparent: CMS API
 ---
@@ -12,7 +12,7 @@ grandparent: CMS API
 
     <p>Les listes de lecture d'un compte peuvent être recherchées en fournissant un <code translate="No">q</code> à l'appel ci-dessus de la même manière que la fonctionnalité de recherche vidéo fournie. Sachez cependant que <a href="#fields">un nombre beaucoup plus petit de champs peut être recherché</a> , et que seules les propriétés de la playlist sont recherchées, pas les propriétés des vidéos contenues dans la playlist.</p>
 
-    <p>Tous les termes non qualifiés/par défaut rechercheront toute correspondance de texte dans le champ name, reference_id ou id d'une liste de lecture, par exemple une recherche de <code translate="No">?q=news+2016</code> correspondrait à l'un des éléments suivants s'ils existent :</p>
+    <p>Tous les termes non qualifiés/par défaut rechercheront toute correspondance de texte dans le champ name, reference_id ou id d'une liste de lecture, par exemple une recherche de <code translate="No">?q=news+2016</code> correspondrait à l'un des éléments suivants s'ils existent:</p>
 
     <ul>
       <li>Une liste de lecture avec le nom de <code translate="No">Exciting 2016 News</code></li>
@@ -20,7 +20,7 @@ grandparent: CMS API
       <li>Une liste de lecture avec un <code translate="No">reference_id</code> de <code translate="No">news 2016</code></li>
     </ul>
 
-    <aside class="bcls-aside bcls-aside--information"><code translate="No">+</code> est utilisé comme un espace codé dans les exemples (pas un "+" littéral)</aside> <aside class="bcls-aside bcls-aside--information">Demandes au <span translate="No">API CMS</span> nécessitent un en-tête d'autorisation contenant vos jetons d'accès. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a>.</aside>
+    <aside class="bcls-aside bcls-aside--information"><code translate="No">+</code> est utilisé comme un espace codé dans les exemples (pas un "+" littéral)</aside> <aside class="bcls-aside bcls-aside--information">Demandes au CMS API nécessitent un en-tête d'autorisation contenant vos jetons d'accès. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a>.</aside>
 
     <p>Comme suggéré ci-dessus, plusieurs termes fournis sont <code translate="No">OR</code>'ed ensemble, et les chaînes contenant un ou plusieurs des termes fournis seront renvoyées. Les valeurs fournies sont <a href="#stemming">tige</a> , de sorte que les variations sur les mots seront mises en correspondance. La correspondance de préfixe est <strong>ne pas</strong> actuellement pris en charge. Ainsi, par exemple, une recherche de <code translate="No">p*</code> ne renverra pas de résultats commençant par "p" ni une recherche de <code translate="No">play*</code> renvoie les résultats contenant "playlist".</p>
     </section>
@@ -28,7 +28,7 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="Ignored_words">Mots ignorés</h2>
 
-    <p>Certains mots sont ignorés dans les chaînes de recherche car ils sont si courants qu'ils sont susceptibles de renvoyer de nombreux résultats sans rapport avec ce que vous recherchez réellement. Vous trouverez ci-dessous une liste de mots ignorés par la recherche :</p>
+    <p>Certains mots sont ignorés dans les chaînes de recherche car ils sont si courants qu'ils sont susceptibles de renvoyer de nombreux résultats sans rapport avec ce que vous recherchez réellement. Vous trouverez ci-dessous une liste de mots ignorés par la recherche:</p>
 
     <p>"un", "un", "et", "sont", "comme", "à", "être", "mais", "par", "pour", "si", "dans", "dans ", "est", "il", "non", "pas", "de", "sur", "ou", "tel", "que", "le", "leur", "alors", "là", "ces", "ils", "ceci", "à", "était", "sera", "avec"</p>
     </section>
@@ -38,7 +38,7 @@ grandparent: CMS API
 
     <p>Des champs spécifiques peuvent être interrogés en utilisant le <code translate="No">{field:}{value}</code> syntaxe telle que <code translate="No">?q=news+2016+type:EXPLICIT</code>. Les champs fournis de cette manière doivent correspondre exactement. Comme d'autres termes, ceux-ci seront <code translate="No">OR</code>'ed.</p>
 
-    <p>Les champs suivants sont actuellement pris en charge :</p>
+    <p>Les champs suivants sont actuellement pris en charge:</p>
 
     <ul>
       <li>taper</li>
@@ -53,7 +53,7 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="required_terms">Conditions requises</h2>
 
-    <p>Vous pouvez exiger des termes en les préfixant avec un code URI <code translate="No">+</code> signe (%2B) - exemple : <code translate="No">q=name:%2Bnews+%2B2016</code> (qui renverrait uniquement les listes de lecture avec des noms comprenant à la fois "news" et "2016").</p>
+    <p>Vous pouvez exiger des termes en les préfixant avec un code URI <code translate="No">+</code> signe (%2B) - exemple: <code translate="No">q=name:%2Bnews+%2B2016</code> (qui renverrait uniquement les listes de lecture avec des noms comprenant à la fois "news" et "2016").</p>
 
     <aside class="bcls-aside bcls-aside--warning">Vous ne pouvez pas combiner des termes facultatifs et obligatoires - si vous effectuez une recherche sur <code translate="No">q=name:news+%2B2016</code> , les <code translate="No">%2B</code> devant "2016" sera ignoré, et toutes les listes de lecture avec des noms contenant "news" OU "2016" seront retournées.</aside>
     </section>
@@ -72,10 +72,10 @@ grandparent: CMS API
 
     <section class="bcls-section">
       <h2 id="and_or">ET/OU</h2>
-      <p>Vous pouvez combiner des conditions de recherche avec <code translate="No">AND</code> et <code translate="No">OR</code> Opérateurs logiques. Pour éviter toute ambiguïté (est <code translate="No">AND</code> un opérateur ou une partie de la chaîne de recherche ?), vous devez mettre les termes qui précèdent les opérateurs logiques entre parenthèses comme ceci :</p>
+      <p>Vous pouvez combiner des conditions de recherche avec <code translate="No">AND</code> et <code translate="No">OR</code> Opérateurs logiques. Pour éviter toute ambiguïté (est <code translate="No">AND</code> un opérateur ou une partie de la chaîne de recherche ?), vous devez mettre les termes qui précèdent les opérateurs logiques entre parenthèses comme ceci:</p>
     <pre><code class="language-http" translate="No">q=(Really Short Videos) AND type:EXPLICIT</code></pre>
 
-      <p>Encodée, cette requête de recherche ressemblerait à ceci :</p>
+      <p>Encodée, cette requête de recherche ressemblerait à ceci:</p>
 
     <pre><code class="language-http" translate="No">q=name:%28Really%20Short%20Videos%29%20type:EXPLICIT</code></pre>
     </section>

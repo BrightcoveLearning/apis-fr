@@ -1,6 +1,6 @@
 ---
 title: 'Aperçu: API OAuth'
-description: 'L'implémentation Brightcove d'OAuth2 vous permet d'obtenir des jetons d'accès pour diverses API Brightcove.'
+description: "L'implémentation Brightcove d'OAuth2 vous permet d'obtenir des jetons d'accès pour diverses API Brightcove."
 parent: Getting Started 
 grandparent: OAuth API
 ---
@@ -10,11 +10,11 @@ grandparent: OAuth API
     <section class="bcls-section">
     <h2 id="Overview">Aperçu</h2>
     
-    <p>La mise en œuvre de Brightcove se compose de deux parties :</p>
+    <p>La mise en œuvre de Brightcove se compose de deux parties:</p>
     
     <ul>
       <li>
-      <p>L'API OAuth - donne accès à toutes les fonctionnalités OAuth disponibles</p>
+      <p>OAuth API - donne accès à toutes les fonctionnalités OAuth disponibles</p>
       </li>
       <li>
       <p>L'interface utilisateur des informations d'identification OAuth - accessible via l'interface Paramètres du compte dans Studio, l'interface utilisateur fournit un moyen simple d'enregistrer des applications qui utiliseront les API Brightcove et de générer un ID client et un secret client pour elles. Voir <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a> pour obtenir des instructions sur l'utilisation de l'interface utilisateur OAuth.</p>
@@ -62,7 +62,7 @@ grandparent: OAuth API
     <section class="bcls-section">
     <h2 id="Base_URL">URL de base</h2>
     
-    <p>L'URL de base de l'API OAuth est :</p>
+    <p>L'URL de base de OAuth API est:</p>
     
     <pre class="line-numbers">
     <code class="language-http" translate="No">https://oauth.brightcove.com/v4
@@ -81,27 +81,27 @@ grandparent: OAuth API
     
     <h3>Application d'organisation</h3>
     
-    <p>Dans ce scénario, vous disposez d'une application qui doit interagir avec une ou plusieurs API Brightcove, uniquement pour le ou les comptes qui appartiennent à votre organisation. L'application n'est liée à aucun utilisateur spécifique. Dans ce cas, le workflow ressemble à ceci :</p>
+    <p>Dans ce scénario, vous disposez d'une application qui doit interagir avec une ou plusieurs API Brightcove, uniquement pour le ou les comptes qui appartiennent à votre organisation. L'application n'est liée à aucun utilisateur spécifique. Dans ce cas, le workflow ressemble à ceci:</p>
     
     <figure class="bcls-figure"><img class="bcls-image" alt="Client credential workflow for organizational app" src="/assets/images/oauth/getting-started/client-credentials-workflow.png" />
     <figcaption class="bcls-caption--image">Workflow d'informations d'identification client pour l'application organisationnelle</figcaption>
     </figure>
     
-    <p>Pour mettre en œuvre ce scénario, procédez comme suit :</p>
+    <p>Pour mettre en œuvre ce scénario, procédez comme suit:</p>
     
     <ol>
       <li>
       <p>À l'aide de l'interface utilisateur OAuth ou du service OAuth, obtenez un identifiant client et un secret pour votre application - l'interface utilisateur vous permet d'obtenir un identifiant client et un secret pour un ou plusieurs comptes. Il s'agit d'une opération ponctuelle.</p>
       </li>
       <li>
-      <p>Ajoutez une logique à votre application côté serveur pour envoyer des requêtes à l'API OAuth pour des jetons d'accès. La mise en œuvre dépendra de la langue de votre application (et vous êtes encouragé à utiliser un <a href="#Client_samples_and_libraries">bibliothèque OAuth2</a> pour votre langue si possible), mais l'appel que vous passerez sera une requête POST à :</p>
+      <p>Ajoutez une logique à votre application côté serveur pour envoyer des requêtes à OAuth API pour des jetons d'accès. La mise en œuvre dépendra de la langue de votre application (et vous êtes encouragé à utiliser un <a href="#Client_samples_and_libraries">bibliothèque OAuth2</a> pour votre langue si possible), mais l'appel que vous passerez sera une requête POST à :</p>
     
       <pre class="line-numbers">
     <code class="language-http" translate="No">https://oauth.brightcove.com/v4/access_token
     </code>
     </pre>
     
-      <p>Les <code translate="No">client_id</code> et <code translate="No">client_secret</code> sont passés en tant que <code translate="No">username:password</code> dans un en-tête d'autorisation de base :</p>
+      <p>Les <code translate="No">client_id</code> et <code translate="No">client_secret</code> sont passés en tant que <code translate="No">username:password</code> dans un en-tête d'autorisation de base:</p>
     
       <pre class="line-numbers">
     <code translate="No">Authorization: Basic {client_id}:{client_secret}
@@ -110,7 +110,7 @@ grandparent: OAuth API
     
       <p>L'ensemble <code translate="No">{client_id}:{client_secret}</code> la chaîne doit être encodée en Base64 (dans Node.js, par exemple, vous pouvez utiliser le <code translate="No">Buffer.toString("base64")</code> méthode). CURL effectue l'encodage BASE64 automatiquement, vous pouvez donc simplement transmettre les informations d'identification comme <code translate="No">user {client_id}:{client_secret}</code>. Vous devez également inclure un <code translate="No">Content-Type: application/x-www-form-urlencoded</code> entête.</p>
     
-      <p>Le corps de la requête contiendra la paire clé/valeur <code translate="No">grant_type=client_credentials</code>. A noter que depuis le <code translate="No">Content-type</code> est <code translate="No">x-www-form-urlencoded</code> , vous pouvez également simplement ajouter ceci à l'URL de la requête en tant que paramètre :</p>
+      <p>Le corps de la requête contiendra la paire clé/valeur <code translate="No">grant_type=client_credentials</code>. A noter que depuis le <code translate="No">Content-type</code> est <code translate="No">x-www-form-urlencoded</code> , vous pouvez également simplement ajouter ceci à l'URL de la requête en tant que paramètre:</p>
     
       <pre>
     <code class="language-http" translate="No">https://oauth.brightcove.com/v4/access_token?grant_type=client_credentials</code></pre>
@@ -146,7 +146,7 @@ grandparent: OAuth API
     </pre>
       </li>
       <li>
-      <p>Le corps de la réponse ressemblera à ce qui suit :</p>
+      <p>Le corps de la réponse ressemblera à ce qui suit:</p>
     
       <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -175,7 +175,7 @@ grandparent: OAuth API
     <section class="bcls-section">
     <h2 id="General_Authorization">Autorisation générale</h2>
     
-    <p>Ce scénario s'applique principalement aux partenaires Brightcove qui créeront des applications pouvant être utilisées par les utilisateurs de Brightcove dans diverses organisations. Le workflow de ce scénario ressemble à ce qui suit :</p>
+    <p>Ce scénario s'applique principalement aux partenaires Brightcove qui créeront des applications pouvant être utilisées par les utilisateurs de Brightcove dans diverses organisations. Le workflow de ce scénario ressemble à ce qui suit:</p>
     
     <figure class="bcls-figure"><img class="bcls-image" alt="Client Credential Workflow for Multi-Organization App" src="/assets/images/oauth/getting-started/authorization-workflow.png" />
     <figcaption class="bcls-caption--image">Flux de travail des informations d'identification client pour l'application multi-organisations</figcaption>
@@ -187,14 +187,14 @@ grandparent: OAuth API
     <section class="bcls-section">
     <h2 id="Get_Client_Credentials">Obtenir les informations d'identification du client</h2>
     
-    <p>Le moyen le plus simple d'obtenir les informations d'identification du client (le <code translate="No">client_id</code> et <code translate="No">client_secret</code> ) est d'utiliser le <a href="/general/managing-api-authentication-credentials.html">Interface utilisateur OAuth</a>. Cependant, si vous préférez les obtenir directement auprès du service OAuth, vous pouvez le faire en faisant une demande POST à <code class="language-http" translate="No">https://oauth.brightcove.com/v4/client_credentials</code> , en passant les en-têtes suivants :</p>
+    <p>Le moyen le plus simple d'obtenir les informations d'identification du client (le <code translate="No">client_id</code> et <code translate="No">client_secret</code> ) est d'utiliser le <a href="/general/managing-api-authentication-credentials.html">Interface utilisateur OAuth</a>. Cependant, si vous préférez les obtenir directement auprès du service OAuth, vous pouvez le faire en faisant une demande POST à <code class="language-http" translate="No">https://oauth.brightcove.com/v4/client_credentials</code> , en passant les en-têtes suivants:</p>
     
     <ul>
       <li><code translate="No">Content-Type: application/json</code></li>
       <li><code translate="No">Authorization: BC_TOKEN <em>your BC_TOKEN</em></code></li>
     </ul>
     
-    <p>Vous devez également envoyer un objet JSON en tant que charge utile :</p>
+    <p>Vous devez également envoyer un objet JSON en tant que charge utile:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -233,7 +233,7 @@ grandparent: OAuth API
     
     <p>La seule chose qui variera ici est la <code translate="No">operations</code> value, qui dépendra de l'API à laquelle vous souhaitez accéder et si vous souhaitez accéder en lecture, en écriture ou aux deux opérations. Voir <a href="/oauth/guides/api-operations-client-credentials-requests.html">Opérations d'API pour les demandes d'informations d'identification client</a> pour une liste de toutes les opérations actuellement prises en charge.</p>
     
-    <p>Pour obtenir des guides détaillés sur l'obtention des informations d'identification client à l'aide de curl ou de Postman, consultez :</p>
+    <p>Pour obtenir des guides détaillés sur l'obtention des informations d'identification client à l'aide de curl ou de Postman, consultez:</p>
     
     <ul>
       <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">Obtenir les informations d'identification du client à l'aide de CURL</a></li>
@@ -252,7 +252,7 @@ grandparent: OAuth API
     <figcaption class="bcls-caption--image">Séquence d'application unique</figcaption>
     </figure>
     
-    <p>Si, à la place, vous créez plusieurs applications qui nécessitent des appels aux API Brightcove, ou si vous créez une application Web côté client, il est plus logique de consolider le code pour obtenir les jetons d'accès dans un seul proxy. Dans ce cas, la séquence d'opérations ressemblera à ceci :</p>
+    <p>Si, à la place, vous créez plusieurs applications qui nécessitent des appels aux API Brightcove, ou si vous créez une application Web côté client, il est plus logique de consolider le code pour obtenir les jetons d'accès dans un seul proxy. Dans ce cas, la séquence d'opérations ressemblera à ceci:</p>
     
     <figure class="bcls-figure"><img class="bcls-image" alt="Proxy Sequence" src="/assets/images/oauth/getting-started/Proxy.svg" />
     <figcaption class="bcls-caption--image">Séquence proxy</figcaption>
@@ -266,7 +266,7 @@ grandparent: OAuth API
     
     <p>Nous avons créé <a href="https://github.com/BrightcoveLearning/oauth-client-examples">exemples d'implémentations clientes</a> en plusieurs langues pour vous donner des modèles d'implémentations.</p>
     
-    <p>Il existe également des bibliothèques OAuth2 disponibles pour un certain nombre de langages, et nous vous encourageons généralement à utiliser ces bibliothèques dans la mesure du possible, plutôt que de créer une interaction avec l'API OAuth. Vous trouverez ci-dessous une liste partielle des bibliothèques disponibles. Pour une liste plus complète, voir <a href="http://oauth.net/2/">http://oauth.net/2/</a></p>
+    <p>Il existe également des bibliothèques OAuth2 disponibles pour un certain nombre de langages, et nous vous encourageons généralement à utiliser ces bibliothèques dans la mesure du possible, plutôt que de créer une interaction avec OAuth API. Vous trouverez ci-dessous une liste partielle des bibliothèques disponibles. Pour une liste plus complète, voir <a href="http://oauth.net/2/">http://oauth.net/2/</a></p>
     
     <dl><!-- <dt>Node JS/JavaScript</dt>
     <dd>

@@ -1,7 +1,6 @@
 ---
-title: 'Testeur d'API d'ingestion dynamique'
-description: 'Ce testeur vous aidera à vous familiariser avec les opérations disponibles via l'API Dynamic Ingest. Les <span translate="No">API d'ingestion dynamique</span> vous permet d'ingérer des vidéos et des ressources multimédias associées dans Video Cloud.'
-
+title: 'Testeur de Dynamic Ingest API'
+description: "Ce testeur vous aidera à vous familiariser avec les opérations disponibles via Dynamic Ingest API. Les <span>Dynamic Ingest API</span> vous permet d'ingérer des vidéos et des ressources multimédias associées dans Video Cloud."
 parent: 'Code Samples' 
 grandparent: Dynamic Ingest API
 ---
@@ -26,24 +25,24 @@ grandparent: Dynamic Ingest API
         <h2 id="obtaincredentials">Obtenir des informations d'identification</h2>
       </summary>
 
-      <p>Comme la plupart des API RESTful de Brightcove, le <span translate="No">API d'ingestion dynamique</span> nécessite des jetons d'accès OAuth pour autoriser les demandes. Pour obtenir des jetons d'accès, vous devez d'abord obtenir les informations d'identification du client avec des autorisations pour les types d'opérations que vous souhaitez demander. Ce démarrage rapide effectue des demandes d'API sur un exemple de compte Brightcove Learning Services, vous n'aurez donc pas besoin d'obtenir des informations d'identification ici, mais vous devez comprendre ce qui se passe. Le CodePen envoie les informations de demande d'API à un proxy similaire à <a href="/oauth/guides/getting-access-tokens.html#php">celui-ci</a>. Le proxy accède aux informations d'identification du client à partir d'un emplacement privé et les utilise pour générer un jeton d'accès temporaire à l'aide du <a href="/oauth/getting-started/overview-oauth-api-v4.html">API OAuth</a> puis effectue la demande d'API et renvoie les données de réponse.</p>
+      <p>Comme la plupart des API RESTful de Brightcove, le <span>Dynamic Ingest API</span> nécessite des jetons d'accès OAuth pour autoriser les demandes. Pour obtenir des jetons d'accès, vous devez d'abord obtenir les informations d'identification du client avec des autorisations pour les types d'opérations que vous souhaitez demander. Ce démarrage rapide effectue des demandes d'API sur un exemple de compte Brightcove Learning Services, vous n'aurez donc pas besoin d'obtenir des informations d'identification ici, mais vous devez comprendre ce qui se passe. Le CodePen envoie les informations de demande d'API à un proxy similaire à <a href="/oauth/guides/getting-access-tokens.html#php">celui-ci</a>. Le proxy accède aux informations d'identification du client à partir d'un emplacement privé et les utilise pour générer un jeton d'accès temporaire à l'aide du <a href="/oauth/getting-started/overview-oauth-api-v4.html">API OAuth</a> puis effectue la demande d'API et renvoie les données de réponse.</p>
 
       <p>Pour essayer des demandes sur votre propre compte, obtenez vos identifiants client et utilisez l'un de nos <a href="/getting-started/concepts-testing-tools-brightcove-apis.html">Outils de test d'API</a></p>
 
       <ol>
-        <li>Pour obtenir vos identifiants, suivez les instructions dans <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'identification de l'API</a>. Il s'agit de la méthode recommandée pour obtenir vos informations d'identification client. N'oubliez pas que l'utilisation de Dynamic Ingest nécessite d'en créer un. <span translate="No">API CMS</span> POST demande également, donc en plus de l'autorisation d'ingestion, vous avez besoin d'au moins <code translate="No">video/write</code> autorisations :
+        <li>Pour obtenir vos identifiants, suivez les instructions dans <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'identification de l'API</a>. Il s'agit de la méthode recommandée pour obtenir vos informations d'identification client. N'oubliez pas que l'utilisation de Dynamic Ingest nécessite d'en créer un. CMS API POST demande également, donc en plus de l'autorisation d'ingestion, vous avez besoin d'au moins <code translate="No">video/write</code> autorisations:
 
           <figure class="bcls-figure"><img class="bcls-image" alt="Required Permissions" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/di-api/getting-started/quick-start/quick-start-required-permissions.png" />
             <figcaption class="bcls-caption--image">Autorisations requises</figcaption>
           </figure>
 
-          <p>Utilisez le <a href="/general/managing-api-authentication-credentials.html">Outils d'administration de Studio</a> pour obtenir les informations d'identification du client. Vous pouvez également obtenir des informations d'identification à l'aide de l'API OAuth, en suivant les instructions de l'un des guides répertoriés ci-dessous.</p>
+          <p>Utilisez le <a href="/general/managing-api-authentication-credentials.html">Outils d'administration de Studio</a> pour obtenir les informations d'identification du client. Vous pouvez également obtenir des informations d'identification à l'aide de OAuth API, en suivant les instructions de l'un des guides répertoriés ci-dessous.</p>
         </li>
       </ol>
 
       <ul>
-        <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">OAuth : Obtenir les informations d'identification du client à l'aide de CURL</a></li>
-        <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">OAuth : Obtenez les informations d'identification du client à l'aide de Postman</a></li>
+        <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">OAuth: Obtenir les informations d'identification du client à l'aide de CURL</a></li>
+        <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">OAuth: Obtenez les informations d'identification du client à l'aide de Postman</a></li>
       </ul>
     </details>
   </section>
@@ -51,13 +50,13 @@ grandparent: Dynamic Ingest API
   <section class="bcls-section">
     <h2 id="CodePen">Stylo de code</h2>
 
-    <p class="codepen">Utilisez le <strong>Résultat</strong> onglet de CodePen ci-dessous pour tester divers <span translate="No">API d'ingestion dynamique</span> demandes et voir à quoi ressemblent la demande et les données de réponse.</p>
+    <p class="codepen">Utilisez le <strong>Résultat</strong> onglet de CodePen ci-dessous pour tester divers <span>Dynamic Ingest API</span> demandes et voir à quoi ressemblent la demande et les données de réponse.</p>
     <h3>Code source</h3>
     <p>
       Retrouvez tout le code associé à cet exemple dans ce <a href="https://github.com/BrightcoveLearning/18499-quick-start-dynamic-ingest-api-dynamic-delivery">Dépôt GitHub</a>.
     </p>
     <h3>Exemple d'application</h3>
-    <p data-height="1000" data-theme-id="34967" data-slug-hash="VrBxNg" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="Dynamic Ingest API Tester - Dynamic Delivery" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/VrBxNg/">Testeur d'API d'ingestion dynamique - Livraison dynamique</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
+    <p data-height="1000" data-theme-id="34967" data-slug-hash="VrBxNg" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="Dynamic Ingest API Tester - Dynamic Delivery" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/VrBxNg/">Testeur de Dynamic Ingest API - Livraison dynamique</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
     <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
   </section>
 
@@ -67,7 +66,7 @@ grandparent: Dynamic Ingest API
         <h2 id="Using_the_CodePen">Utiliser le CodePen</h2>
       </summary>
 
-      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus :</p>
+      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus:</p>
 
       <ul>
         <li>Basculez l'affichage réel du lecteur en cliquant sur le bouton <strong>Résultat</strong> bouton.</li>

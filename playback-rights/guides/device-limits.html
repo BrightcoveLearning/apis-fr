@@ -1,5 +1,6 @@
 ---
-title: Description des limites de périphérique de mise en œuvre : "Dans cette rubrique, vous apprendrez comment activer les limites de périphérique pour la lecture vidéo à l'aide du service de gestion des droits de lecture de Brightcove."
+title: Description des limites de périphérique de mise en œuvre
+description: "Dans cette rubrique, vous apprendrez comment activer les limites de périphérique pour la lecture vidéo à l'aide du service de gestion des droits de lecture de Brightcove."
 parent: Guides 
 grandparent: Playback Rights
 layout: staging
@@ -16,7 +17,7 @@ layout: staging
 
     <p>Le service de gestion des droits de lecture de Brightcove vous permet de définir des limites de périphérique pour la lecture vidéo. L'appareil de chaque utilisateur est enregistré avec un identifiant unique lorsqu'une demande de licence DRM est effectuée. Vous contrôlez le nombre d'appareils par utilisateur.</p>
     <p>
-      La limite d'appareils est vérifiée et appliquée à chaque demande de licence. Pour utiliser cette restriction, vous passerez un <a href="https://general.support.brightcove.com/developer/create-jwt.html">Jeton Web JSON (JWT)</a> avec l'identifiant actuel de l'utilisateur <code translate="No">uid</code> à l'API de lecture.
+      La limite d'appareils est vérifiée et appliquée à chaque demande de licence. Pour utiliser cette restriction, vous passerez un <a href="https://general.support.brightcove.com/developer/create-jwt.html">Jeton Web JSON (JWT)</a> avec l'identifiant actuel de l'utilisateur <code translate="No">uid</code> à le Playback API.
     </p>
 
     <p>Si vous n'êtes pas familier avec cette fonction, consultez le <a href="/playback-rights/getting-started/overview-epa.html">Aperçu: Service de gestion des droits de lecture</a> document.</p>
@@ -33,7 +34,7 @@ layout: staging
   <section class="bcls-section">
     <h2 id="Implementation">Mise en œuvre</h2>
     <p>
-      Pour activer les limites d'appareils, procédez comme suit :
+      Pour activer les limites d'appareils, procédez comme suit:
     </p>
     <ol class="bcls-tasklist">
       <li>
@@ -66,7 +67,7 @@ layout: staging
         </p>
       </li>
       <li>
-        <a href="/playback-rights/getting-started/implementing-epa.html#Configure_your_player">Configurez votre lecteur</a> d'utiliser le <span translate="No">Jeton Web JSON</span> (JWT) créé à l'étape précédente.
+        <a href="/playback-rights/getting-started/implementing-epa.html#Configure_your_player">Configurez votre lecteur</a> d'utiliser le <span>Jeton Web JSON</span> (JWT) créé à l'étape précédente.
       </li>
     </ol>
   </section>
@@ -83,19 +84,19 @@ layout: staging
 
     <h3>URL de base</h3>
     <p>
-      L'URL de base de l'API est :
+      L'URL de base de l'API est:
     </p>
     <pre><code class="language-http" translate="No">https://playback-auth.api.brightcove.com/v1</code></pre>
 
     <h3>Chemin du compte</h3>
     <p>
-      Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base :
+      Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base:
     </p>
     <pre><code class="language-http" translate="No">https://playback-auth.api.brightcove.com/v1/accounts/{accountID}</code></pre>
 
     <h3>Autorisation</h3>
     <p>
-      Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization :
+      Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization:
     </p>
     <pre><code class="language-http" translate="No">Authorization: Bearer {access_token}</code></pre>
     <p>
@@ -124,7 +125,7 @@ layout: staging
     <pre><code class="language-http" translate="No">GET /v1/accounts/{accountID}/users/{userID}/devices</code></pre>
     <h5>Corps de réponse</h5>
     <p>
-      Le corps de la réponse contient un tableau de périphériques et devrait ressembler à ceci :
+      Le corps de la réponse contient un tableau de périphériques et devrait ressembler à ceci:
     </p>
     <pre class="line-numbers"><code class="language-json" translate="No">[
     {

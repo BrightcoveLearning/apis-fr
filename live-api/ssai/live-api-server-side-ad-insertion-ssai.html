@@ -1,6 +1,6 @@
 ---
-title: 'API en direct de Brightcove : Insertion d'annonces côté serveur (SSAI)' la
-description: Cette rubrique vous montre comment configurer l'insertion d'annonces côté serveur (SSAI) pour vos tâches de diffusion en direct.
+title: "Live API de Brightcove: Insertion d'annonces côté serveur (SSAI)"
+description: "Cette rubrique vous montre comment configurer l'insertion d'annonces côté serveur (SSAI) pour vos tâches de diffusion en direct."
 parent: SSAI 
 grandparent: Live API
 ---
@@ -12,31 +12,31 @@ grandparent: Live API
 <section class="bcls-section">
 <h2 id="Overview">Aperçu</h2>
 
-<p><span translate="No">SSAI</span> vous permet d'afficher des publicités lors d'un événement de diffusion en direct à des heures spécifiées. Les principales caractéristiques comprennent :</p>
+<p><span>SSAI</span> vous permet d'afficher des publicités lors d'un événement de diffusion en direct à des heures spécifiées. Les principales caractéristiques comprennent:</p>
 
 <ul>
-	<li>Insérez des publicités à l'aide de points de repère envoyés depuis votre encodeur ou créez un point de repère instantané à l'aide du <span translate="No">API en direct</span></li>
-	<li>Ingérer des éléments « slate » pour remplir tout temps publicitaire inutilisé</li>
-	<li>Évitez les bloqueurs de publicités avec des publicités qui sont cousues dans le flux en direct côté serveur</li>
+  <li>Insérez des publicités à l'aide de points de repère envoyés depuis votre encodeur ou créez un point de repère instantané à l'aide du <span>Live API</span></li>
+  <li>Ingérer des éléments « slate » pour remplir tout temps publicitaire inutilisé</li>
+  <li>Évitez les bloqueurs de publicités avec des publicités qui sont cousues dans le flux en direct côté serveur</li>
 </ul>
 
 <aside class="bcls-aside bcls-aside--information">
   <ul>
-    <li>Avant de pouvoir utiliser <span translate="No">SSAI</span> , il doit être activé pour votre compte. Contactez votre gestionnaire de compte pour plus de détails.</li>
+    <li>Avant de pouvoir utiliser <span>SSAI</span> , il doit être activé pour votre compte. Contactez votre gestionnaire de compte pour plus de détails.</li>
     <li>Notez que SSAI augmentera la bande passante Origin utilisée par le flux en direct. Lorsque les annonces sont diffusées, les manifestes HLS sont uniques à chaque session de visionneuse et ne peuvent donc pas être mis en cache, et à la place, ils seront demandés à l'origine pour chaque visionneuse. Si le DVR est également activé, cela augmente considérablement la taille des manifestes non mis en cache.</li>
  </ul>
 
 
 </aside>
 
-<p>Pour créer une diffusion en direct avec des publicités côté serveur, procédez comme suit :</p>
+<p>Pour créer une diffusion en direct avec des publicités côté serveur, procédez comme suit:</p>
 
 <ol class="bcls-tasklist-restart">
-	<li><a href="#General_information">Consultez les informations générales sur l'API Live</a></li>
-	<li><a href="#Create_an_ad_configuration">Créer une configuration d'annonce en direct</a>. Vous pouvez également le faire dans <a href="https://studio.support.brightcove.com/admin/configuring-server-side-ad-settings.html#bc-ipnav-1">Studio Nuage Vidéo</a>. Consultez les sections ci-dessous pour plus de détails sur la gestion de vos configurations d'annonces à l'aide de l'API Live.</li>
-	<li><a href="#Managing_slates">Créer des actifs d'ardoise</a>. Si vous préférez une interface utilisateur, vous pouvez <a href="https://live.support.brightcove.com/live-module/implementing-server-side-ads-live-module.html#fill_slate">gérer les ardoises dans Studio</a>.</li>
-	<li>Optionnel: <a href="/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html">Insérer des points de repère et des balises publicitaires</a>.</li>
-	<li>Maintenant, vous êtes prêt à <a href="/live-api/getting-started/quick-start-create-live-stream-using-brightcove-live-api.html">créer un flux en direct à l'aide de l'API Live</a>. Si vous préférez utiliser Studio, vous pouvez <a href="https://live.support.brightcove.com/live-module/implementing-server-side-ads-live-module.html">implémenter des publicités côté serveur dans le module Live</a></li>
+  <li><a href="#General_information">Consultez les informations générales sur le Live API</a></li>
+  <li><a href="#Create_an_ad_configuration">Créer une configuration d'annonce en direct</a>. Vous pouvez également le faire dans <a href="https://studio.support.brightcove.com/admin/configuring-server-side-ad-settings.html#bc-ipnav-1">Studio Nuage Vidéo</a>. Consultez les sections ci-dessous pour plus de détails sur la gestion de vos configurations d'annonces à l'aide de le Live API.</li>
+  <li><a href="#Managing_slates">Créer des actifs d'ardoise</a>. Si vous préférez une interface utilisateur, vous pouvez <a href="https://live.support.brightcove.com/live-module/implementing-server-side-ads-live-module.html#fill_slate">gérer les ardoises dans Studio</a>.</li>
+  <li>Optionnel: <a href="/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html">Insérer des points de repère et des balises publicitaires</a>.</li>
+  <li>Maintenant, vous êtes prêt à <a href="/live-api/getting-started/quick-start-create-live-stream-using-brightcove-live-api.html">créer un flux en direct à l'aide de le Live API</a>. Si vous préférez utiliser Studio, vous pouvez <a href="https://live.support.brightcove.com/live-module/implementing-server-side-ads-live-module.html">implémenter des publicités côté serveur dans le module Live</a></li>
 </ol>
 
 <p>Consultez le reste de ce document pour en savoir plus sur les en-têtes personnalisés, les variables de configuration des annonces, l'utilisation de DFP et les macros publicitaires.</p>
@@ -49,14 +49,14 @@ grandparent: Live API
 
 <h3>URL de base</h3>
 
-<p>L'URL de base pour l'API Live avec SSAI est :</p>
+<p>L'URL de base pour le Live API avec SSAI est:</p>
 
 <pre>
     <code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai</code></pre>
 
 <h3>Authentification</h3>
 
-<p>L'authentification des requêtes nécessite un en-tête avec une clé API :</p>
+<p>L'authentification des requêtes nécessite un en-tête avec une clé API:</p>
 
 <pre class="line-numbers">
     <code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span>
@@ -71,20 +71,20 @@ grandparent: Live API
 <p>Pour créer une nouvelle configuration d'annonce, envoyez un <code translate="No">POST</code> demande comme suit :</p>
 
 <table class="bcls-table">
-	<tbody class="bcls-table__body">
-		<tr>
-			<th>Méthode</th>
-			<td style="width:80em;"><code class="language-http" translate="No">POST</code></td>
-		</tr>
-		<tr>
-			<th>URL</th>
-			<td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/applications</code></td>
-		</tr>
-		<tr>
-			<th>Entête</th>
-			<td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
-		</tr>
-	</tbody>
+  <tbody class="bcls-table__body">
+    <tr>
+      <th>Méthode</th>
+      <td style="width:80em;"><code class="language-http" translate="No">POST</code></td>
+    </tr>
+    <tr>
+      <th>URL</th>
+      <td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/applications</code></td>
+    </tr>
+    <tr>
+      <th>Entête</th>
+      <td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
+    </tr>
+  </tbody>
 </table>
 
 <h3>Exemple de corps de requête</h3>
@@ -148,20 +148,20 @@ grandparent: Live API
 <p>La mise à jour d'une configuration d'annonce est très similaire à la création d'une. Faire un <code translate="No">PUT</code> demande comme suit :</p>
 
 <table class="bcls-table">
-	<tbody class="bcls-table__body">
-		<tr>
-			<th>Méthode</th>
-			<td style="width:80em;"><code class="language-http" translate="No">PUT</code></td>
-		</tr>
-		<tr>
-			<th>URL</th>
-			<td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/applications/application/<span class="bcls-input">Application_ID</span></code></td>
-		</tr>
-		<tr>
-			<th>Entête</th>
-			<td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
-		</tr>
-	</tbody>
+  <tbody class="bcls-table__body">
+    <tr>
+      <th>Méthode</th>
+      <td style="width:80em;"><code class="language-http" translate="No">PUT</code></td>
+    </tr>
+    <tr>
+      <th>URL</th>
+      <td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/applications/application/<span class="bcls-input">Application_ID</span></code></td>
+    </tr>
+    <tr>
+      <th>Entête</th>
+      <td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
+    </tr>
+  </tbody>
 </table>
 
 <h3>Exemple de corps de requête</h3>
@@ -224,20 +224,20 @@ grandparent: Live API
 <p>Pour récupérer toutes les configurations d'annonces d'un compte, soumettez un <code translate="No">GET </code> demande comme suit :</p>
 
 <table class="bcls-table">
-	<tbody class="bcls-table__body">
-		<tr>
-			<th>Méthode</th>
-			<td style="width:80em;"><code class="language-http" translate="No">GET</code></td>
-		</tr>
-		<tr>
-			<th>URL</th>
-			<td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/applications/account/<span class="bcls-input">Account_ID</span></code></td>
-		</tr>
-		<tr>
-			<th>Entête</th>
-			<td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
-		</tr>
-	</tbody>
+  <tbody class="bcls-table__body">
+    <tr>
+      <th>Méthode</th>
+      <td style="width:80em;"><code class="language-http" translate="No">GET</code></td>
+    </tr>
+    <tr>
+      <th>URL</th>
+      <td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/applications/account/<span class="bcls-input">Account_ID</span></code></td>
+    </tr>
+    <tr>
+      <th>Entête</th>
+      <td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
+    </tr>
+  </tbody>
 </table>
 
 <aside class="bcls-aside bcls-aside--information">Les <code translate="No">Account_ID</code> voici l'identifiant du compte réel.</aside>
@@ -284,20 +284,20 @@ grandparent: Live API
 <p>Vous pouvez également récupérer une configuration d'annonce spécifique par son <code translate="No">application_id </code> en envoyant un <code translate="No">GET</code> demande comme suit :</p>
 
 <table class="bcls-table">
-	<tbody class="bcls-table__body">
-		<tr>
-			<th>Méthode</th>
-			<td style="width:80em;"><code class="language-http" translate="No">GET</code></td>
-		</tr>
-		<tr>
-			<th>URL</th>
-			<td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/applications/application/<span class="bcls-input">Application_ID</span></code></td>
-		</tr>
-		<tr>
-			<th>Entête</th>
-			<td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
-		</tr>
-	</tbody>
+  <tbody class="bcls-table__body">
+    <tr>
+      <th>Méthode</th>
+      <td style="width:80em;"><code class="language-http" translate="No">GET</code></td>
+    </tr>
+    <tr>
+      <th>URL</th>
+      <td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/applications/application/<span class="bcls-input">Application_ID</span></code></td>
+    </tr>
+    <tr>
+      <th>Entête</th>
+      <td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
+    </tr>
+  </tbody>
 </table>
 
 <h3>Exemple de réponse</h3>
@@ -328,20 +328,20 @@ grandparent: Live API
 <p>Pour supprimer une configuration d'annonce, envoyez un <code translate="No">DELETE</code> demande comme suit :</p>
 
 <table class="bcls-table">
-	<tbody class="bcls-table__body">
-		<tr>
-			<th>Méthode</th>
-			<td style="width:80em;"><code class="language-http" translate="No">DELETE</code></td>
-		</tr>
-		<tr>
-			<th>URL</th>
-			<td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/applications/application/<span class="bcls-input">APPLICATION_ID</span></code></td>
-		</tr>
-		<tr>
-			<th>Entête</th>
-			<td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
-		</tr>
-	</tbody>
+  <tbody class="bcls-table__body">
+    <tr>
+      <th>Méthode</th>
+      <td style="width:80em;"><code class="language-http" translate="No">DELETE</code></td>
+    </tr>
+    <tr>
+      <th>URL</th>
+      <td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/applications/application/<span class="bcls-input">APPLICATION_ID</span></code></td>
+    </tr>
+    <tr>
+      <th>Entête</th>
+      <td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
+    </tr>
+  </tbody>
 </table>
 
 <h3>Exemple de réponse</h3>
@@ -365,20 +365,20 @@ grandparent: Live API
 <p>Pour ingérer un nouvel élément de source multimédia Slate, soumettez un <code translate="No">POST</code> demander:</p>
 
 <table class="bcls-table">
-	<tbody class="bcls-table__body">
-		<tr>
-			<th>Méthode</th>
-			<td style="width:80em;"><code class="language-http" translate="No">POST</code></td>
-		</tr>
-		<tr>
-			<th>URL</th>
-			<td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/slates</code></td>
-		</tr>
-		<tr>
-			<th>Entête</th>
-			<td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
-		</tr>
-	</tbody>
+  <tbody class="bcls-table__body">
+    <tr>
+      <th>Méthode</th>
+      <td style="width:80em;"><code class="language-http" translate="No">POST</code></td>
+    </tr>
+    <tr>
+      <th>URL</th>
+      <td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/slates</code></td>
+    </tr>
+    <tr>
+      <th>Entête</th>
+      <td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
+    </tr>
+  </tbody>
 </table>
 
 <h4>Exemple de corps de requête</h4>
@@ -407,27 +407,27 @@ grandparent: Live API
       "media_source_asset_description": "User identifiable description for the slate"
     }</code></pre>
 
-<aside class="bcls-aside bcls-aside--information">Remarque : ce paramètre <code translate="No">media_source_asset_default</code> est <strong>ne pas</strong> pris en charge en ce moment.</aside>
+<aside class="bcls-aside bcls-aside--information">Remarque: ce paramètre <code translate="No">media_source_asset_default</code> est <strong>ne pas</strong> pris en charge en ce moment.</aside>
 
 <h3>Supprimer l'actif de l'ardoise</h3>
 
 <p>Pour supprimer une ressource de source multimédia Slate, envoyez un <code translate="No">DELETE</code> demander:</p>
 
 <table class="bcls-table">
-	<tbody class="bcls-table__body">
-		<tr>
-			<th>Méthode</th>
-			<td style="width:80em;"><code class="language-http" translate="No">DELETE</code></td>
-		</tr>
-		<tr>
-			<th>URL</th>
-			<td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/slates/slate/<span class="bcls-input">Slate_MSA_ID</span></code></td>
-		</tr>
-		<tr>
-			<th>Entête</th>
-			<td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
-		</tr>
-	</tbody>
+  <tbody class="bcls-table__body">
+    <tr>
+      <th>Méthode</th>
+      <td style="width:80em;"><code class="language-http" translate="No">DELETE</code></td>
+    </tr>
+    <tr>
+      <th>URL</th>
+      <td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/slates/slate/<span class="bcls-input">Slate_MSA_ID</span></code></td>
+    </tr>
+    <tr>
+      <th>Entête</th>
+      <td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
+    </tr>
+  </tbody>
 </table>
 
 <h4>Exemple de réponse</h4>
@@ -447,20 +447,20 @@ grandparent: Live API
 <p>Vous pouvez récupérer un tableau de tous les actifs de la source multimédia de l'ardoise pour un compte en envoyant un <code translate="No">GET</code> demander:</p>
 
 <table class="bcls-table">
-	<tbody class="bcls-table__body">
-		<tr>
-			<th>Méthode</th>
-			<td style="width:80em;"><code class="language-http" translate="No">GET</code></td>
-		</tr>
-		<tr>
-			<th>URL</th>
-			<td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/slates/account/<span class="bcls-input">Account_ID</span></code></td>
-		</tr>
-		<tr>
-			<th>Entête</th>
-			<td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
-		</tr>
-	</tbody>
+  <tbody class="bcls-table__body">
+    <tr>
+      <th>Méthode</th>
+      <td style="width:80em;"><code class="language-http" translate="No">GET</code></td>
+    </tr>
+    <tr>
+      <th>URL</th>
+      <td><code class="language-http" translate="No">https://api.bcovlive.io/v1/ssai/slates/account/<span class="bcls-input">Account_ID</span></code></td>
+    </tr>
+    <tr>
+      <th>Entête</th>
+      <td><code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">your API KEY</span></code></td>
+    </tr>
+  </tbody>
 </table>
 
 <aside class="bcls-aside bcls-aside--information">Les <code translate="No">Account_ID </code> voici l'identifiant du compte réel.</aside>
@@ -503,35 +503,35 @@ grandparent: Live API
 
 <h3>Réponses d'annonces uniques/multiples</h3>
 
-<p>Les <code translate="No">singleadresponse </code> et <code translate="No">multiadresponse </code> les paramètres ne sont pas actuellement utilisés par <span translate="No">SSAI</span>.</p>
+<p>Les <code translate="No">singleadresponse </code> et <code translate="No">multiadresponse </code> les paramètres ne sont pas actuellement utilisés par <span>SSAI</span>.</p>
 
-<p>Habitent <span translate="No">SSAI</span> ne fait qu'un seul appel au serveur publicitaire et s'attend à ce que la réponse contienne toutes les annonces pour la pause, à l'exception du fait qu'elle suivra tous les wrappers publicitaires nécessaires avec une limite de 5 redirections par annonce. Les formats de réponse d'annonce suivants sont acceptés et seront analysés comme suit :</p>
+<p>Habitent <span>SSAI</span> ne fait qu'un seul appel au serveur publicitaire et s'attend à ce que la réponse contienne toutes les annonces pour la pause, à l'exception du fait qu'elle suivra tous les wrappers publicitaires nécessaires avec une limite de 5 redirections par annonce. Les formats de réponse d'annonce suivants sont acceptés et seront analysés comme suit:</p>
 
 <ul>
-	<li>VAST – Une seule réponse ou une série d'annonces dans une seule réponse</li>
-	<li>Règles relatives aux annonces DFP : regroupe toutes les annonces disponibles dans la réponse, y compris les annonces définies avant, mid-roll et post-roll</li>
-	<li>XML intelligent - Regroupe toutes les annonces disponibles dans la réponse, y compris les annonces définies avant, mi- et post-roll</li>
+  <li>VAST – Une seule réponse ou une série d'annonces dans une seule réponse</li>
+  <li>Règles relatives aux annonces DFP: regroupe toutes les annonces disponibles dans la réponse, y compris les annonces définies avant, mid-roll et post-roll</li>
+  <li>XML intelligent - Regroupe toutes les annonces disponibles dans la réponse, y compris les annonces définies avant, mi- et post-roll</li>
 </ul>
 </section>
 
 <section class="bcls-section">
 <h2 id="Custom_headers_for_ad_requests">En-têtes personnalisés pour les demandes d'annonces</h2>
 
-<p>Les <span translate="No">SSAI</span> La plate-forme peut transmettre des en-têtes personnalisés avec les appels publicitaires et toutes les balises utilisées par la plate-forme principale. Certains serveurs publicitaires tels que VideoPlaza nécessitent des en-têtes personnalisés.</p>
+<p>Les <span>SSAI</span> La plate-forme peut transmettre des en-têtes personnalisés avec les appels publicitaires et toutes les balises utilisées par la plate-forme principale. Certains serveurs publicitaires tels que VideoPlaza nécessitent des en-têtes personnalisés.</p>
 
 <p>Les en-têtes personnalisés sont spécifiés sous la forme d'un ensemble de paires clé-valeur dans un <code translate="No">ad_configuration_headers</code> objet, qui fait partie du <code translate="No">application_ad_configuration </code> (voir le <a href="#Create_an_ad_configuration">Créer une configuration d'annonce</a> section).</p>
 
 <h3>Remarques</h3>
 
 <ul>
-	<li>Les en-têtes standard sont gérés par défaut tels que :
-	<ul>
-		<li><code translate="No">X-Forwarded-For </code></li>
-		<li><code translate="No">X-Device-User-Agent </code></li>
-	</ul>
-	</li>
-	<li>Les valeurs d'en-tête peuvent utiliser le <a href="#Ad_configuration_variables">variables de configuration des annonces</a></li>
-	<li>Les valeurs d'en-tête peuvent également être des chaînes statiques</li>
+  <li>Les en-têtes standard sont gérés par défaut tels que:
+  <ul>
+    <li><code translate="No">X-Forwarded-For </code></li>
+    <li><code translate="No">X-Device-User-Agent </code></li>
+  </ul>
+  </li>
+  <li>Les valeurs d'en-tête peuvent utiliser le <a href="#Ad_configuration_variables">variables de configuration des annonces</a></li>
+  <li>Les valeurs d'en-tête peuvent également être des chaînes statiques</li>
 </ul>
 
 <aside class="bcls-aside bcls-aside--warning">Les en-têtes seront transmis à toutes les demandes en aval, y compris les wrappers publicitaires ou les impressions/quartiles, vous devez donc les utiliser avec prudence.</aside>
@@ -540,7 +540,7 @@ grandparent: Live API
 <section class="bcls-section">
 <h2 id="Targeting_ads_using_ad_macros">Ciblage d'annonces à l'aide de macros d'annonces</h2>
 
-<p>Lorsque vous <a href="#Create_an_ad_configuration">créer une configuration d'annonce</a> , votre tag d'emplacement publicitaire ressemblera généralement à ceci :</p>
+<p>Lorsque vous <a href="#Create_an_ad_configuration">créer une configuration d'annonce</a> , votre tag d'emplacement publicitaire ressemblera généralement à ceci:</p>
 
 <pre>
       <code class="language-http" translate="No">https://ad-provider-host.com/path/to/ad-handler?ip={{client.ipaddress}}&amp;
@@ -558,13 +558,13 @@ grandparent: Live API
   </ul>
 </aside>
 
-<p>Les valeurs des macros publicitaires peuvent être fournies des manières suivantes :</p>
+<p>Les valeurs des macros publicitaires peuvent être fournies des manières suivantes:</p>
 
 <ul>
-	<li><a href="#Using_header_information">Utilisation des informations d'en-tête</a></li>
-	<li><a href="#Appending_the_URL">Ajout de l'URL</a></li>
-	<li><a href="#Adding_URLs_dynamically">Ajout dynamique d'URL</a></li>
-	<li><a href="#Using_manual_cue_points">Utilisation de points de repère manuels</a></li>
+  <li><a href="#Using_header_information">Utilisation des informations d'en-tête</a></li>
+  <li><a href="#Appending_the_URL">Ajout de l'URL</a></li>
+  <li><a href="#Adding_URLs_dynamically">Ajout dynamique d'URL</a></li>
+  <li><a href="#Using_manual_cue_points">Utilisation de points de repère manuels</a></li>
 </ul>
 
 <h3 id="Using_header_information">Utilisation des informations d'en-tête</h3>
@@ -573,7 +573,7 @@ grandparent: Live API
 
 <h3 id="Appending_the_URL">Ajout de l'URL</h3>
 
-<p>Des valeurs de session supplémentaires peuvent être ajoutées à l'URL du flux en direct, comme ceci :</p>
+<p>Des valeurs de session supplémentaires peuvent être ajoutées à l'URL du flux en direct, comme ceci:</p>
 
 <pre>
       <code class="language-http" translate="No">http://playback.bcovlive.io/e058d9f2737e18/us-west-2/NA/
@@ -581,7 +581,7 @@ grandparent: Live API
 
 <h3 id="Adding_URLs_dynamically">Ajout dynamique d'URL</h3>
 
-<p>Vous pouvez ajouter des URL de manière dynamique, à l'aide de Javascript et de l'API Brightcove Player :</p>
+<p>Vous pouvez ajouter des URL de manière dynamique, à l'aide de Javascript et de l'API Brightcove Player:</p>
 
 <pre class="line-numbers">
       <code class="language-html" translate="No">&lt;!DOCTYPE html&gt;
@@ -622,35 +622,35 @@ grandparent: Live API
 <section class="bcls-section">
 <h2 id="Ad_configuration_variables">Variables de configuration des annonces</h2>
 
-<p>Les variables de configuration des annonces, également appelées balises, peuvent être utilisées dans les demandes de gestion des configurations des annonces. Pour plus de détails, consultez le <a href="/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Beacons">API en direct : Points de repère et balises publicitaires avec SSAI</a> document.</p>
+<p>Les variables de configuration des annonces, également appelées balises, peuvent être utilisées dans les demandes de gestion des configurations des annonces. Pour plus de détails, consultez le <a href="/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Beacons">Live API: Points de repère et balises publicitaires avec SSAI</a> document.</p>
 </section>
 
 <section class="bcls-section">
 <h2 id="Using_manual_cue_points">Utilisation de points de repère manuels</h2>
 
-<p>Les valeurs de coupures publicitaires spécifiques peuvent être envoyées avec la demande d'insertion manuelle de point de repère. Pour plus de détails, consultez le <a href="/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Manual_cue_point_insertion">API en direct : Points de repère et balises publicitaires</a> document.</p>
+<p>Les valeurs de coupures publicitaires spécifiques peuvent être envoyées avec la demande d'insertion manuelle de point de repère. Pour plus de détails, consultez le <a href="/live-api/ssai/live-api-cue-points-and-ad-beacons-ssai.html#Manual_cue_point_insertion">Live API: Points de repère et balises publicitaires</a> document.</p>
 </section>
 
 <section class="bcls-section">
 <h2 id="Known_issues">Problèmes connus</h2>
 
 <ul>
-	<li>SSAI exige que la vidéo diffusée en direct ait une piste audio.</li>
-	<li>Si le VAST renvoyé a le même ID d'annonce, le serveur ne demandera pas le contenu de l'annonce, même si l'URL de l'annonce utilise des variables dynamiques pour en faire une URL unique. Cela fait <strong>ne pas</strong> s'appliquent si vous utilisez DFP pour les annonces.</li>
-	<li>Avec DFP, même si vous pouvez utiliser le même ID d'annonce, il doit toujours y avoir un ID de création différent. En d'autres termes, vous ne pouvez pas effectuer un simple échange du MediaFile.</li>
-	<li>
-	<p>Si une coupure publicitaire a une durée inférieure à la durée MAX de l'URL de l'annonce (min_ad_duration=0&amp;max_ad_duration=300000), si l'annonce est renvoyée plus longtemps que la coupure publicitaire, l'annonce ne sera pas diffusée.</p>
-	</li>
-	<li>
-	<p>Les annonces VPAID ou cliquables ne sont pas prises en charge pour <span translate="No">Brightcove Live SSAI</span>.</p>
-	</li>
-	<li>
-	<p>Lorsqu'une coupure publicitaire a un temps restant plus court que les secondes du segment du flux et qu'une ardoise est affichée, l'ardoise est affichée pour la durée de son segment et la coupure publicitaire réelle sera plus longue que prévu.</p>
+  <li>SSAI exige que la vidéo diffusée en direct ait une piste audio.</li>
+  <li>Si le VAST renvoyé a le même ID d'annonce, le serveur ne demandera pas le contenu de l'annonce, même si l'URL de l'annonce utilise des variables dynamiques pour en faire une URL unique. Cela fait <strong>ne pas</strong> s'appliquent si vous utilisez DFP pour les annonces.</li>
+  <li>Avec DFP, même si vous pouvez utiliser le même ID d'annonce, il doit toujours y avoir un ID de création différent. En d'autres termes, vous ne pouvez pas effectuer un simple échange du MediaFile.</li>
+  <li>
+  <p>Si une coupure publicitaire a une durée inférieure à la durée MAX de l'URL de l'annonce (min_ad_duration=0&amp;max_ad_duration=300000), si l'annonce est renvoyée plus longtemps que la coupure publicitaire, l'annonce ne sera pas diffusée.</p>
+  </li>
+  <li>
+  <p>Les annonces VPAID ou cliquables ne sont pas prises en charge pour <span>Brightcove Live SSAI</span>.</p>
+  </li>
+  <li>
+  <p>Lorsqu'une coupure publicitaire a un temps restant plus court que les secondes du segment du flux et qu'une ardoise est affichée, l'ardoise est affichée pour la durée de son segment et la coupure publicitaire réelle sera plus longue que prévu.</p>
    <li>
      <p>Ce qui précède peut entraîner la réduction de l'une des coupures publicitaires suivantes en fonction de la durée de latence, pour tenter de ramener la session à la limite du direct.</p></li>
-	</li>
-	<li>La première fois que l'annonce est vue par notre système, elle ne sera pas diffusée tant qu'elle n'aura pas été transcodée et prête à être diffusée.</li>
-	<li>VMAP pour Live SSAI n'est actuellement pas pris en charge.</li>
+  </li>
+  <li>La première fois que l'annonce est vue par notre système, elle ne sera pas diffusée tant qu'elle n'aura pas été transcodée et prête à être diffusée.</li>
+  <li>VMAP pour Live SSAI n'est actuellement pas pris en charge.</li>
 </ul>
 </section>
 {% endraw %}

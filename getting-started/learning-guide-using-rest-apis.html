@@ -1,6 +1,6 @@
 ---
-title: 'Guide d'apprentissage : Utilisation des API REST'
-description: 'Dans cette rubrique, vous obtiendrez d'abord un aperçu de haut niveau de l'utilisation des API REST dans les applications Web via <code translate="No">XMLHttpRequest()</code> et un mandataire. Ensuite, plus tard dans le document, une plongée plus approfondie discutera de l'exemple de code. Le premier exemple utilise le <span translate="No">API d'analyse</span> pour récupérer et afficher dans la barre de contrôle du lecteur Brightcove le nombre de vues de la vidéo actuellement dans le lecteur. Le deuxième exemple, un peu plus complexe, utilise le <span translate="No">API d'analyse</span> en conjonction avec le catalogue Brightcove Player pour récupérer les vidéos les plus populaires d'un compte et les afficher dans une liste de lecture. La discussion du code dans ce document se concentrera sur la récupération des données souhaitées à partir de l'API REST correcte.'
+title: "Guide d'apprentissage: Utilisation des API REST"
+description: "Dans cette rubrique, vous obtiendrez d'abord un aperçu de haut niveau de l'utilisation des API REST dans les applications Web via <code>XMLHttpRequest()</code> et un mandataire. Ensuite, plus tard dans le document, une plongée plus approfondie discutera de l'exemple de code. Le premier exemple utilise le Analytics API pour récupérer et afficher dans la barre de contrôle du lecteur Brightcove le nombre de vues de la vidéo actuellement dans le lecteur. Le deuxième exemple, un peu plus complexe, utilise le Analytics API en conjonction avec le catalogue Brightcove Player pour récupérer les vidéos les plus populaires d'un compte et les afficher dans une liste de lecture. La discussion du code dans ce document se concentrera sur la récupération des données souhaitées à partir de l'API REST correcte."
 parent: Getting Started
 ---
 
@@ -25,19 +25,19 @@ parent: Getting Started
       <li><strong>Serveur proxy</strong>: Pour des raisons de sécurité, les API REST n'accepteront pas les demandes de données directement du client, car cela encouragerait l'envoi d'informations confidentielles, telles que les informations d'identification du client, depuis le client. Cela signifie qu'un proxy servira d'intermédiaire entre le client et l'API REST. Le proxy utilisé dans les exemples est écrit en PHP et discuté plus loin dans ce document. Le proxy doit être installé sur un serveur sous votre contrôle, et peut être écrit dans la langue de votre choix. La configuration suggérée du proxy permet de l'écrire une seule fois et de l'utiliser par l'une des API.</li>
       <li><strong>API REST</strong>: Brightcove fournit un ensemble complet d'API pour personnaliser, étendre et intégrer la plate-forme Brightcove. Voir le <a href="https://apis.support.brightcove.com/getting-started/getting-started-brightcove-apis.html">Aperçu: API Video Cloud</a> document pour plus d'informations.</li>
     </ul>
-    <p>Le diagramme suivant montre l'interaction entre les trois entités principales du processus pour récupérer les données de l'une des API REST de Brightcove :</p>
+    <p>Le diagramme suivant montre l'interaction entre les trois entités principales du processus pour récupérer les données de l'une des API REST de Brightcove:</p>
     <figure class="bcls-figure"><img class="bcls-image" alt="Basic Pieces Overview" src="//learning-services-media.brightcove.com/doc-assets/player-development/architecture/proxy-API-call/client-proxy-api.png" /></figure>
   </section>
   <section class="bcls-section">
     <h2 id="Client_functionality_overview">Présentation des fonctionnalités du client</h2>
     <p>Le code côté client change de manière significative en fonction de l'API à partir de laquelle vous demandez des données. Comme mentionné ci-dessus, le proxy est une écriture unique et ne modifie pas un morceau de code, et les API sont maintenues par Brightcove. C'est pourquoi le document mettra l'accent sur l'apprentissage de la modification du code client pour récupérer les données souhaitées à partir de l'une des API.</p>
-    <p>Le diagramme ci-dessous se concentre sur les parties clés du code client, à savoir :</p>
+    <p>Le diagramme ci-dessous se concentre sur les parties clés du code client, à savoir:</p>
     <ul>
       <li>La fonction qui rend le <code translate="No">HTTPRequest</code> au mandataire. Pour éviter toute ambiguïté, la fonction est nommée <code translate="No">makeRequest()</code>. Il est représenté sur le côté droit du schéma ci-dessous.</li>
       <li>Le code qui rassemble les informations requises pour la demande. Il est représenté en haut à gauche du schéma. Ce code est généralement assez simple et utilise des concepts bien connus même des programmeurs débutants.</li>
       <li>L'appel qui exécute l'appel mentionné précédemment <code translate="No">makeRequest()</code> fonction. Il est représenté en bas à gauche du schéma. L'appel passe une fonction à <code translate="No">makeRequest()</code> comme paramètre. Puis dans <code translate="No">makeRequest()</code> cette fonction est appelée. Ceci est un exemple de définition anonyme <strong>rappeler</strong> fonction.</li>
     </ul>
-    <p>Vous voyez les deux sections dans le diagramme intitulées <strong>Activité asynchrone</strong>. Bien que représenté dans le diagramme à deux endroits différents, il s'agit en fait de la même activité asynchrone, et représente le temps inconnu qu'il faut pour :</p>
+    <p>Vous voyez les deux sections dans le diagramme intitulées <strong>Activité asynchrone</strong>. Bien que représenté dans le diagramme à deux endroits différents, il s'agit en fait de la même activité asynchrone, et représente le temps inconnu qu'il faut pour:</p>
     <ul>
       <li>Le client pour envoyer la demande au proxy.</li>
       <li>Le proxy pour demander des données à l'API.</li>
@@ -50,103 +50,103 @@ parent: Getting Started
   <section class="bcls-section">
     <h2 id="Example_code_walkthrough">Exemple de procédure pas à pas</h2>
     <p>Plutôt que de considérer le code comme un seul élément, il sera présenté et discuté en sections. Certaines des sections se rapporteront au diagramme ci-dessus.</p>
-    <h3>Code de joueur standard</h3>
+    <h3>Code de Lecteur standard</h3>
     <p>Cette section de code contient le code d'intégration de base de Brightcove Player dans la page.</p>
     <ul>
-      <li>Lignes 11-21 : Code Brightcove Player standard avec l'ajout d'un&nbsp;<code translate="No">id</code> attribut ajouté.</li>
+      <li>Lignes 11-21: Code Brightcove Player standard avec l'ajout d'un&nbsp;<code translate="No">id</code> attribut ajouté.</li>
     </ul>
     <pre class="line-numbers">
-	<code class="language-html" translate="No">&lt;!doctype html&gt;
-	&lt;html&gt;
-	
-	&lt;head&gt;
-		&lt;meta charset="UTF-8"&gt;
-		&lt;title&gt;Untitled Document&lt;/title&gt;
-	&lt;/head&gt;
-	
-	&lt;body&gt;
-	
-	&lt;video-js id="myPlayerID"
-		data-video-id="3851380732001"
-		data-account="1752604059001"
-		data-player="HkAzSmB0l"
-		data-embed="default"
-		data-application-id
-		class="video-js"
-		controls
-		width="640"
-		height="360"&gt;&lt;/video-js&gt;
-	&lt;script src="https://players.brightcove.net/1752604059001/HkAzSmB0l_default/index.min.js"&gt;&lt;/script&gt;</code></pre>
+  <code class="language-html" translate="No">&lt;!doctype html&gt;
+  &lt;html&gt;
+  
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Untitled Document&lt;/title&gt;
+  &lt;/head&gt;
+  
+  &lt;body&gt;
+  
+  &lt;video-js id="myPlayerID"
+    data-video-id="3851380732001"
+    data-account="1752604059001"
+    data-player="HkAzSmB0l"
+    data-embed="default"
+    data-application-id
+    class="video-js"
+    controls
+    width="640"
+    height="360"&gt;&lt;/video-js&gt;
+  &lt;script src="https://players.brightcove.net/1752604059001/HkAzSmB0l_default/index.min.js"&gt;&lt;/script&gt;</code></pre>
     <h3>Se préparer à passer un appel</h3>
     <p>Cette section de code initialise les variables et se prépare à faire l'appel à <code translate="No">makeRequest()</code>. De manière générale, pour une demande de lecture, vous devrez fournir les informations suivantes :</p>
     <ol>
-      <li>L'URL du proxy que vous utiliserez, par exemple (bien sûr, cela doit être un proxy sous votre contrôle) :
+      <li>L'URL du proxy que vous utiliserez, par exemple (bien sûr, cela doit être un proxy sous votre contrôle):
         <pre class="line-numbers">
-	<code class="language-html" translate="No">https://solutions.brightcove.com/bcls/bcls-proxy/doc-samples-proxy-v2.php</code></pre>
+  <code class="language-html" translate="No">https://solutions.brightcove.com/bcls/bcls-proxy/doc-samples-proxy-v2.php</code></pre>
       </li>
-      <li>L'URL nécessaire à la demande réelle, normalement construite de manière dynamique :
+      <li>L'URL nécessaire à la demande réelle, normalement construite de manière dynamique:
         <pre class="line-numbers">
-	<code class="language-html" translate="No">https://analytics.api.brightcove.com/v1/alltime/accounts/1752604059001/videos/4825279519001</code></pre>
+  <code class="language-html" translate="No">https://analytics.api.brightcove.com/v1/alltime/accounts/1752604059001/videos/4825279519001</code></pre>
       </li>
       <li>La méthode HTTP, par exemple <code translate="No">GET</code>.</li>
     </ol>
-    <p>Un exemple suit :</p>
+    <p>Un exemple suit:</p>
     <ul>
-      <li>Ligne 1: Code standard pour attendre que le joueur soit prêt à interagir avec.</li>
-      <li>Lignes 2-4 : Créez/définissez des valeurs pour les variables nécessaires plus tard dans le code.</li>
-      <li>Lignes 7-12 : Attends le <code translate="No">loadstart</code> événement afin que le <code translate="No">mediainfo</code> l'objet est rempli. Affectez des variables pour contenir les valeurs nécessaires au <span translate="No">API d'analyse</span> point final.</li>
-      <li>Ligne 13 : Définissez la méthode HTTP pour l'appel.</li>
+      <li>Ligne 1: Code standard pour attendre que le Lecteur soit prêt à interagir avec.</li>
+      <li>Lignes 2-4: Créez/définissez des valeurs pour les variables nécessaires plus tard dans le code.</li>
+      <li>Lignes 7-12: Attends le <code translate="No">loadstart</code> événement afin que le <code translate="No">mediainfo</code> l'objet est rempli. Affectez des variables pour contenir les valeurs nécessaires au Analytics API point final.</li>
+      <li>Ligne 13: Définissez la méthode HTTP pour l'appel.</li>
     </ul>
     <pre class="line-numbers">
-	<code class="language-javascript" translate="No">videojs.getPlayer('myPlayerID').ready(function() {
-	&nbsp; var myPlayer = this,
-		accountId = myPlayer.bcinfo.accountId,
-		options = {};
-	
-		// +++ Wait for loadstart event so can use mediainfo object +++
-		myPlayer.on('loadstart', function() {
-			var videoId = myPlayer.mediainfo.id,
-			baseURL = 'https://analytics.api.brightcove.com/v1/alltime/accounts/',
-			endPoint = accountId + '/videos/' + videoId;
-			options.proxyURL = "https://solutions.brightcove.com/bcls/bcls-proxy/doc-samples-proxy-v2.php";
-			options.url = baseURL + endPoint;
-			options.requestType = "GET";</code></pre>
+  <code class="language-javascript" translate="No">videojs.getPlayer('myPlayerID').ready(function() {
+  &nbsp; var myPlayer = this,
+    accountId = myPlayer.bcinfo.accountId,
+    options = {};
+  
+    // +++ Wait for loadstart event so can use mediainfo object +++
+    myPlayer.on('loadstart', function() {
+      var videoId = myPlayer.mediainfo.id,
+      baseURL = 'https://analytics.api.brightcove.com/v1/alltime/accounts/',
+      endPoint = accountId + '/videos/' + videoId;
+      options.proxyURL = "https://solutions.brightcove.com/bcls/bcls-proxy/doc-samples-proxy-v2.php";
+      options.url = baseURL + endPoint;
+      options.requestType = "GET";</code></pre>
     <aside class="bcls-aside bcls-aside--information">Noter: Les lignes 9, 10 et 12 pourraient facilement être placées en une seule longue ligne. Le code a été écrit comme indiqué pour éviter les longues lignes qui impliquent un défilement pour l'afficher, et également pour faciliter la réutilisation du code.</aside>
     <h3>Appel <code translate="No">makeRequest()</code></h3>
     <p>Cette section de code fait l'appel à <code translate="No">makeRequest()</code> fonction. Notez que deux paramètres sont passés. Le premier étant l'objet d'options qui contient les informations pour le point de terminaison, et le second est la fonction de rappel. N'oubliez pas qu'il s'agit d'un appel asynchrone, de sorte que la fonction de rappel définie de manière anonyme ne sera pas appelée tant que les données n'auront pas été renvoyées par l'API REST au <code translate="No">makeRequest()</code> fonction.</p>
     <ul>
-      <li>Ligne 1: Appeler le <code translate="No">makeRequest()</code> fonction, en passant les valeurs requises pour l'appel dans le <code translate="No">options</code> objet. Dans ce cas, l'objet contient les éléments suivants :
+      <li>Ligne 1: Appeler le <code translate="No">makeRequest()</code> fonction, en passant les valeurs requises pour l'appel dans le <code translate="No">options</code> objet. Dans ce cas, l'objet contient les éléments suivants:
         <figure class="bcls-figure"><img class="bcls-image" alt="options object" src="//learning-services-media.brightcove.com/doc-assets/player-development/architecture/proxy-API-call/options-object-console.png" /></figure>
       </li>
-      <li>Lignes 3-13 : La fonction de rappel est définie comme une fonction anonyme (surlignée en jaune). N'oubliez pas que cette fonction est un paramètre et n'est PAS appelée ici mais plus tard dans le code.</li>
-      <li>Lignes 6, 8, 10 : <code translate="No">console.log()</code> déclarations qui affichent :
+      <li>Lignes 3-13: La fonction de rappel est définie comme une fonction anonyme (surlignée en jaune). N'oubliez pas que cette fonction est un paramètre et n'est PAS appelée ici mais plus tard dans le code.</li>
+      <li>Lignes 6, 8, 10: <code translate="No">console.log()</code> déclarations qui affichent:
         <ul>
           <li>La chaîne JSON brute renvoyée par l'appel d'API.</li>
           <li>L'objet JSON généré par le <code translate="No">JSON.parse()</code> méthode qui effectue la conversion de chaîne en objet.</li>
           <li>Le nombre de vues réelles, extrait de l'objet à l'aide de simples <code translate="No">object.property</code> notation.</li>
         </ul>
       </li>
-      <li>Ligne 12 : Appelle la fonction qui affiche le nombre de vues dans la barre de contrôle.</li>
+      <li>Ligne 12: Appelle la fonction qui affiche le nombre de vues dans la barre de contrôle.</li>
     </ul>
     <p>La capture d'écran suivante de la console montre les données réelles affichées à partir du <code translate="No">console.log</code> déclarations :</p>
     <figure class="bcls-figure"><img class="bcls-image" alt="Processing of data in callback function" src="//learning-services-media.brightcove.com/doc-assets/player-development/architecture/proxy-API-call/console-data-process-callback-function.png" /></figure>
     <pre class="line-numbers">
-	<code class="language-javascript" translate="No">// +++ Make the request to the <span translate="No">Analytics API</span> +++
-	// Extract views from data returned by Analytics API
-	makeRequest(options, <span class="bcls-highlight">function(viewsRaw) {
-	var viewsCount;
-	// Remove console.log command for production code
-	console.log('viewsRaw', viewsRaw);
-	viewsObject = JSON.parse(viewsRaw);
-	console.log('viewsObject', viewsObject);
-	viewsCount = viewsObject.alltime_video_views;
-	console.log('views', viewsCount);
-	// Call function to place data in controlbar
-	placeCountInControlbar(viewsCount);
-	}</span>);</code></pre>
+  <code class="language-javascript" translate="No">// +++ Make the request to the Analytics API +++
+  // Extract views from data returned by Analytics API
+  makeRequest(options, <span class="bcls-highlight">function(viewsRaw) {
+  var viewsCount;
+  // Remove console.log command for production code
+  console.log('viewsRaw', viewsRaw);
+  viewsObject = JSON.parse(viewsRaw);
+  console.log('viewsObject', viewsObject);
+  viewsCount = viewsObject.alltime_video_views;
+  console.log('views', viewsCount);
+  // Call function to place data in controlbar
+  placeCountInControlbar(viewsCount);
+  }</span>);</code></pre>
     <h3>Réel <code translate="No">makeRequest()</code> fonction</h3>
     <p>Cette section du document examine le code qui définit réellement le <code translate="No">makeRequest()</code> fonction. Le code qui définit la fonction est écrit de telle manière qu'il n'a PAS besoin d'être modifié, mais utilisé à plusieurs reprises tel quel. Vous pouvez trouver des cas extrêmes que ce n'est pas vrai, mais pour la grande majorité des utilisations, ce code n'a PAS besoin d'être modifié.</p>
-    <aside class="bcls-aside bcls-aside--tip">Un concept clé pour comprendre <code translate="No">makeRequest()</code> fonction est d'acquérir des connaissances sur la façon dont le <code translate="No">XMLHttpRequest</code> l'objet se comporte. Les <code translate="No">XMLHttpRequest.onreadystatechange</code> est un gestionnaire d'événement qui est appelé chaque fois que le <code translate="No">readyState</code> les changements d'attributs. La valeur qui lui est affectée est le code de fonction du gestionnaire d'événements que vous écrivez. Le tableau suivant indique les valeurs <code translate="No">readyState</code> attribut peut avoir, et ce que chaque valeur signifie :
+    <aside class="bcls-aside bcls-aside--tip">Un concept clé pour comprendre <code translate="No">makeRequest()</code> fonction est d'acquérir des connaissances sur la façon dont le <code translate="No">XMLHttpRequest</code> l'objet se comporte. Les <code translate="No">XMLHttpRequest.onreadystatechange</code> est un gestionnaire d'événement qui est appelé chaque fois que le <code translate="No">readyState</code> les changements d'attributs. La valeur qui lui est affectée est le code de fonction du gestionnaire d'événements que vous écrivez. Le tableau suivant indique les valeurs <code translate="No">readyState</code> attribut peut avoir, et ce que chaque valeur signifie:
       <table class="bcls-table">
         <thead class="bcls-table__head">
           <tr>
@@ -185,140 +185,140 @@ parent: Getting Started
       </table>
       <p>Vous verrez dans le code exactement comment le gestionnaire d'événements est utilisé.</p>
     </aside>
-    <p>Une discussion ligne par ligne du code suit :</p>
+    <p>Une discussion ligne par ligne du code suit:</p>
     <ul>
-      <li>Lignes 1-6 : Définition de fonction et création de variables. Un point clé est qu'un nouveau <code translate="No">XMLHttpRequest</code> l'objet est créé.</li>
-      <li>Lignes 8, 26 : Définit la fonction de gestionnaire d'événements pour <code translate="No">readyState</code> changements.</li>
-      <li>Lignes 9, 23, 25 : Utiliser un <code translate="No">try-catch</code> en cas d'échec de la demande à un niveau élevé.</li>
-      <li>Lignes 10, 11 : Utilisation <code translate="No">if</code> instructions pour être sûr que la demande est terminée (<code translate="No">readyState</code> est 4) et terminé avec succès, l'état est dans la plage 200. Ce qui suit montre la journalisation de la console du <code translate="No">readyState</code> et <code translate="No">status</code> valeurs dans la définition du gestionnaire d'événements :
+      <li>Lignes 1-6: Définition de fonction et création de variables. Un point clé est qu'un nouveau <code translate="No">XMLHttpRequest</code> l'objet est créé.</li>
+      <li>Lignes 8, 26: Définit la fonction de gestionnaire d'événements pour <code translate="No">readyState</code> changements.</li>
+      <li>Lignes 9, 23, 25: Utiliser un <code translate="No">try-catch</code> en cas d'échec de la demande à un niveau élevé.</li>
+      <li>Lignes 10, 11: Utilisation <code translate="No">if</code> instructions pour être sûr que la demande est terminée (<code translate="No">readyState</code> est 4) et terminé avec succès, l'état est dans la plage 200. Ce qui suit montre la journalisation de la console du <code translate="No">readyState</code> et <code translate="No">status</code> valeurs dans la définition du gestionnaire d'événements:
         <figure class="bcls-figure"><img class="bcls-image" alt="Logging readyState and status" src="//learning-services-media.brightcove.com/doc-assets/player-development/architecture/proxy-API-call/console-readystate-and-status.png" /></figure>
       </li>
-      <li>Ligne 18 : La fonction de rappel est exécutée. Cela transmet les données renvoyées de l'API à la fonction de rappel comme détaillé dans le <strong>Appelez makeRequest()</strong> rubrique ci-dessus.</li>
-      <li>Ligne 33 : Définissez le gestionnaire d'événements pour le <code translate="No">XMLHttpRequest.onreadystatechange</code> un événement.</li>
-      <li>Ligne 35 : Initialise la requête au proxy.</li>
-      <li>Ligne 38 : Envoie la requête, qui est asynchrone.</li>
+      <li>Ligne 18: La fonction de rappel est exécutée. Cela transmet les données renvoyées de l'API à la fonction de rappel comme détaillé dans le <strong>Appelez makeRequest()</strong> rubrique ci-dessus.</li>
+      <li>Ligne 33: Définissez le gestionnaire d'événements pour le <code translate="No">XMLHttpRequest.onreadystatechange</code> un événement.</li>
+      <li>Ligne 35: Initialise la requête au proxy.</li>
+      <li>Ligne 38: Envoie la requête, qui est asynchrone.</li>
     </ul>
     <pre class="line-numbers">
-	<code class="language-javascript" translate="No">function makeRequest(options, callback) {
-	var httpRequest = new XMLHttpRequest(),
-	response,
-	requestParams,
-	dataString,
-	proxyURL = options.proxyURL,
-	// response handler
-	getResponse = function() {
-	try {
-		if (httpRequest.readyState === 4) {
-			if (httpRequest.status &gt;= 200 &amp;&amp; httpRequest.status &lt; 300) {
-				response = httpRequest.responseText;
-				// some API requests return '{null}' for empty responses - breaks JSON.parse
-				if (response === '{null}') {
-					response = null;
-				}
-				// return the response
-				callback(response);
-			} else {
-				alert('There was a problem with the request. Request returned ' + httpRequest.status);
-			}
-		}
-	} catch (e) {
-		alert('Caught Exception: ' + e);
-	}
-	};
-	/**
-	* set up request data
-	* the proxy used here takes the following request body:
-	* JSON.stringify(options)
-	*/
-	// set response handler
-	httpRequest.onreadystatechange = getResponse;
-	// open the request
-	httpRequest.open('POST', proxyURL);
-	// set headers if there is a set header line, remove it
-	// open and send request
-	httpRequest.send(JSON.stringify(options));
-	}</code></pre>
+  <code class="language-javascript" translate="No">function makeRequest(options, callback) {
+  var httpRequest = new XMLHttpRequest(),
+  response,
+  requestParams,
+  dataString,
+  proxyURL = options.proxyURL,
+  // response handler
+  getResponse = function() {
+  try {
+    if (httpRequest.readyState === 4) {
+      if (httpRequest.status &gt;= 200 &amp;&amp; httpRequest.status &lt; 300) {
+        response = httpRequest.responseText;
+        // some API requests return '{null}' for empty responses - breaks JSON.parse
+        if (response === '{null}') {
+          response = null;
+        }
+        // return the response
+        callback(response);
+      } else {
+        alert('There was a problem with the request. Request returned ' + httpRequest.status);
+      }
+    }
+  } catch (e) {
+    alert('Caught Exception: ' + e);
+  }
+  };
+  /**
+  * set up request data
+  * the proxy used here takes the following request body:
+  * JSON.stringify(options)
+  */
+  // set response handler
+  httpRequest.onreadystatechange = getResponse;
+  // open the request
+  httpRequest.open('POST', proxyURL);
+  // set headers if there is a set header line, remove it
+  // open and send request
+  httpRequest.send(JSON.stringify(options));
+  }</code></pre>
     <h3>Afficher les données renvoyées</h3>
     <p>Ce code montre comment placer les données renvoyées dans la barre de contrôle. Cette fonction est appelée à la fin de la fonction de rappel, illustrée dans <strong>Appelez makeRequest()</strong> rubrique ci-dessus.</p>
     <ul>
-      <li>Lignes 5, 16 : Définir la fonction.</li>
-      <li>Ligne 6 : Créer une variable pour le <code translate="No">spacer</code> élément dans la barre de contrôle.</li>
-      <li>Ligne 7 : Créer dynamiquement un <code translate="No">div</code> élément.</li>
-      <li>Ligne 9 : Placer une étiquette et la valeur des vues dans le nouveau <code translate="No">div</code> élément.</li>
-      <li>Ligne 11 : Utiliser JavaScript <code translate="No">document.getElementsByClassName()</code> méthode pour obtenir la barre de contrôle <code translate="No">spacer</code> élément.</li>
-      <li>Ligne 13 : Stylisez le <code translate="No">spacer</code> pour afficher le total des vues justifiées à droite et en bas à 10px du haut de la <code translate="No">spacer</code>.</li>
-      <li>Ligne 15 : Ajoutez l'élément nouvellement créé, rempli et stylisé au <code translate="No">spacer</code>.</li>
+      <li>Lignes 5, 16: Définir la fonction.</li>
+      <li>Ligne 6: Créer une variable pour le <code translate="No">spacer</code> élément dans la barre de contrôle.</li>
+      <li>Ligne 7: Créer dynamiquement un <code translate="No">div</code> élément.</li>
+      <li>Ligne 9: Placer une étiquette et la valeur des vues dans le nouveau <code translate="No">div</code> élément.</li>
+      <li>Ligne 11: Utiliser JavaScript <code translate="No">document.getElementsByClassName()</code> méthode pour obtenir la barre de contrôle <code translate="No">spacer</code> élément.</li>
+      <li>Ligne 13: Stylisez le <code translate="No">spacer</code> pour afficher le total des vues justifiées à droite et en bas à 10px du haut de la <code translate="No">spacer</code>.</li>
+      <li>Ligne 15: Ajoutez l'élément nouvellement créé, rempli et stylisé au <code translate="No">spacer</code>.</li>
     </ul>
     <pre class="line-numbers">
-	<code class="language-javascript" translate="No">/**
-	* Dynamically build a div that is then
-	* placed in the controlbar's spacer element
-	*/
-	function placeCountInControlbar(viewsCount) {
-	var spacer,
-	newElement = document.createElement('div');
-	//Place data in div
-	newElement.innerHTML = "Total Views: " + viewsCount;
-	//Get the spacer in the controlbar
-	spacer = document.getElementsByClassName('vjs-spacer')[0];
-	//Right justify content in the spacer and add top margin
-	spacer.setAttribute('style', 'justify-content: flex-end; margin-top: 10px');
-	//Add the dynamically built div to the spacer in the controlbar
-	spacer.appendChild(newElement);
-	}</code></pre>
+  <code class="language-javascript" translate="No">/**
+  * Dynamically build a div that is then
+  * placed in the controlbar's spacer element
+  */
+  function placeCountInControlbar(viewsCount) {
+  var spacer,
+  newElement = document.createElement('div');
+  //Place data in div
+  newElement.innerHTML = "Total Views: " + viewsCount;
+  //Get the spacer in the controlbar
+  spacer = document.getElementsByClassName('vjs-spacer')[0];
+  //Right justify content in the spacer and add top margin
+  spacer.setAttribute('style', 'justify-content: flex-end; margin-top: 10px');
+  //Add the dynamically built div to the spacer in the controlbar
+  spacer.appendChild(newElement);
+  }</code></pre>
     <h3>Liste complète des codes</h3>
-    <p>Le code complet et fonctionnel se trouve dans ce référentiel GitHub : <a href="https://github.com/BrightcoveLearning/learning-guide-using-rest-apis/blob/master/display-views-in-controlbar.html">afficher-vues-dans-controlbar.html</a>.</p>
+    <p>Le code complet et fonctionnel se trouve dans ce référentiel GitHub: <a href="https://github.com/BrightcoveLearning/learning-guide-using-rest-apis/blob/master/display-views-in-controlbar.html">afficher-vues-dans-controlbar.html</a>.</p>
   </section>
   <section class="bcls-section">
     <h2 id="Simple_debugging">Débogage simple</h2>
     <p>Comme vous le voyez, plusieurs éléments sont impliqués lors de l'utilisation des API REST. Cela peut présenter des défis lorsqu'une application ne fonctionne pas correctement. Par où commencer le débogage ?</p>
     <p>Quelques suggestions simples sont faites dans cette section et constituent un excellent point de départ pour votre aventure de débogage. Les deux sections suivantes vous donnent un moyen de voir les informations les plus élémentaires dont vous avez besoin, ce qui est transmis pour passer l'appel et ce qui est renvoyé.</p>
     <h3>Vérification des options d'appel</h3>
-    <p>Le code côté client discuté dans ce document consiste essentiellement à fournir les options correctes à utiliser avec le proxy, et à son tour l'API réelle. Donc, savoir que les options sont correctes est essentiel au bon fonctionnement de votre code. Un moyen simple de le faire est de se connecter à la console le <code translate="No">options</code> objet juste avant qu'ils ne soient passés dans le <code translate="No">makeRequest</code> fonction où ils sont utilisés :</p>
+    <p>Le code côté client discuté dans ce document consiste essentiellement à fournir les options correctes à utiliser avec le proxy, et à son tour l'API réelle. Donc, savoir que les options sont correctes est essentiel au bon fonctionnement de votre code. Un moyen simple de le faire est de se connecter à la console le <code translate="No">options</code> objet juste avant qu'ils ne soient passés dans le <code translate="No">makeRequest</code> fonction où ils sont utilisés:</p>
     <figure class="bcls-figure"><img class="bcls-image" alt="debugging code log options" src="//learning-services-media.brightcove.com/doc-assets/player-development/architecture/proxy-API-call/debugging-code-log-options.png" /></figure>
-    <p>Le contenu de l'objet options variera en fonction de ce que vous essayez de faire, mais certaines bases seront toujours présentes, à savoir :</p>
+    <p>Le contenu de l'objet options variera en fonction de ce que vous essayez de faire, mais certaines bases seront toujours présentes, à savoir:</p>
     <ul>
       <li>L'identifiant du compte. Il peut s'agir d'une propriété distincte ou d'une partie de l'URL du point de terminaison de l'API.</li>
       <li>L'URL du proxy, qui dépendra de l'endroit où vous stockez votre proxy.</li>
       <li>Le type de méthode HTTP, par exemple <code translate="No">GET</code> , <code translate="No">POST</code> ou <code translate="No">PATCH</code>.</li>
       <li>L'URL du point de terminaison de l'API utilisée par le proxy pour effectuer la demande réelle à partir de l'API. Par exemple:
         <pre class="line-numbers">
-	<code class="language-html" translate="No">https://players.api.brightcove.com/v2/accounts/57838016001/players
-	https://edge.api.brightcove.com/playback/v1/accounts/1752604059001/videos/5842800655001
-	https://analytics.api.brightcove.com/v1/alltime/accounts/1752604059001/videos/4093643993001</code></pre>
+  <code class="language-html" translate="No">https://players.api.brightcove.com/v2/accounts/57838016001/players
+  https://edge.api.brightcove.com/playback/v1/accounts/1752604059001/videos/5842800655001
+  https://analytics.api.brightcove.com/v1/alltime/accounts/1752604059001/videos/4093643993001</code></pre>
       </li>
     </ul>
-    <p>D'autres propriétés peuvent être requises dans l'objet options en fonction de la requête API. Voici un exemple de ce que vous verriez dans la console lors de la journalisation de l'objet options pour faire une demande pour tous les joueurs d'un compte spécifique :</p>
+    <p>D'autres propriétés peuvent être requises dans l'objet options en fonction de la requête API. Voici un exemple de ce que vous verriez dans la console lors de la journalisation de l'objet options pour faire une demande pour tous les Lecteurs d'un compte spécifique:</p>
     <figure class="bcls-figure"><img class="bcls-image" alt="debugging options simple" src="//learning-services-media.brightcove.com/doc-assets/player-development/architecture/proxy-API-call/debugging-options-simple.png" /></figure>
-    <p>Voici un objet d'options enregistré un peu plus complexe utilisé lors de la mise à jour des joueurs :</p>
+    <p>Voici un objet d'options enregistré un peu plus complexe utilisé lors de la mise à jour des Lecteurs:</p>
     <figure class="bcls-figure"><img class="bcls-image" alt="debugging options" src="//learning-services-media.brightcove.com/doc-assets/player-development/architecture/proxy-API-call/debugging-options.png" /></figure>
     <h3>Affichage des données renvoyées</h3>
     <p>Ce qui est renvoyé varie en fonction des données que vous avez demandées et si une erreur est renvoyée. Mais peu importe ce qui est renvoyé, vous voudrez probablement voir quelles données sont renvoyées. Un moyen simple de le faire est de se connecter à la console le raw <code translate="No">response</code> données juste après l'appel au <code translate="No">makeRequest</code> fonction:</p>
     <figure class="bcls-figure"><img class="bcls-image" alt="debugging code log options" src="//learning-services-media.brightcove.com/doc-assets/player-development/architecture/proxy-API-call/debugging-code-log-response.png" /></figure>
-    <p>Ce qui sera retourné a des possibilités presque infinies, mais voici quelques exemples. Le premier montre le début d'une réponse lorsque l'on demande tous les joueurs d'un compte :</p>
+    <p>Ce qui sera retourné a des possibilités presque infinies, mais voici quelques exemples. Le premier montre le début d'une réponse lorsque l'on demande tous les Lecteurs d'un compte:</p>
     <figure class="bcls-figure"><img class="bcls-image" alt="debugging response on players request" src="//learning-services-media.brightcove.com/doc-assets/player-development/architecture/proxy-API-call/debugging-response-multiple-players.png" /></figure>
-    <aside class="bcls-aside bcls-aside--tip">C'est un bon exemple lorsque la visualisation de la réponse peut être extrêmement utile car elle montre que les informations du joueur sont stockées dans un tableau nommé <code translate="No">items</code>.</aside>
-    <p>Voici la réponse après avoir mis à jour les joueurs, en utilisant le <code translate="No">PATCH</code> Méthode HTTP :</p>
+    <aside class="bcls-aside bcls-aside--tip">C'est un bon exemple lorsque la visualisation de la réponse peut être extrêmement utile car elle montre que les informations du Lecteur sont stockées dans un tableau nommé <code translate="No">items</code>.</aside>
+    <p>Voici la réponse après avoir mis à jour les Lecteurs, en utilisant le <code translate="No">PATCH</code> Méthode HTTP:</p>
     <figure class="bcls-figure"><img class="bcls-image" alt="debugging response on player patch" src="//learning-services-media.brightcove.com/doc-assets/player-development/architecture/proxy-API-call/debugging-response-on-player-patch.png" /></figure>
-    <p>Voici une vue plus joliment formatée des données dans la première réponse :</p>
+    <p>Voici une vue plus joliment formatée des données dans la première réponse:</p>
     <pre class="line-numbers">
-	<code class="language-json" translate="No">{
-		"id": "1OHQdsTAr",
-		"preview_url": "http://preview-players.brightcove.net/v2/accounts/.../master/index.html",
-		"preview_embed_in_page": "http://preview-players.brightcove.net/v2/accounts/.../master/in_page.embed",
-		"preview_embed_code": "&lt;iframe src='//preview-players.brightcove.net/v2/accounts/.../master/index.html' ...&gt;&lt;/iframe&gt;"
-	}</code></pre>
-    <p>Et enfin, voici une réponse très précieuse à partir du moment où une erreur s'est produite. Dans ce cas, un compte était utilisé sans les informations d'identification appropriées :</p>
+  <code class="language-json" translate="No">{
+    "id": "1OHQdsTAr",
+    "preview_url": "http://preview-players.brightcove.net/v2/accounts/.../master/index.html",
+    "preview_embed_in_page": "http://preview-players.brightcove.net/v2/accounts/.../master/in_page.embed",
+    "preview_embed_code": "&lt;iframe src='//preview-players.brightcove.net/v2/accounts/.../master/index.html' ...&gt;&lt;/iframe&gt;"
+  }</code></pre>
+    <p>Et enfin, voici une réponse très précieuse à partir du moment où une erreur s'est produite. Dans ce cas, un compte était utilisé sans les informations d'identification appropriées:</p>
     <figure class="bcls-figure"><img class="bcls-image" alt="debugging response on error" src="//learning-services-media.brightcove.com/doc-assets/player-development/architecture/proxy-API-call/debugging-response-on-error.png" /></figure>
   </section>
   <h3>Autres conseils de dépannage</h3>
   <p>Si vous rencontrez des problèmes, voici d'autres éléments à rechercher.</p>
   <dl>
     <dt>Aucune réponse</dt>
-    <dd>Il y a plusieurs choses à vérifier si vous obtenez une réponse vide :
+    <dd>Il y a plusieurs choses à vérifier si vous obtenez une réponse vide:
       <ul>
         <li>Vérifiez la référence de l'API pour vous assurer que la demande renvoie une réponse. Certains ne renvoient qu'une réponse 201 ou 204 sans contenu (en particulier, mais pas seulement, les requêtes DELETE). Vous devrez ajuster votre code pour gérer ce cas.</li>
-        <li>Vérifiez la section Réseau des outils de développement dans votre navigateur pour vous assurer que vous voyez un appel réussi au proxy (ce serveur peut être temporairement indisponible) :
+        <li>Vérifiez la section Réseau des outils de développement dans votre navigateur pour vous assurer que vous voyez un appel réussi au proxy (ce serveur peut être temporairement indisponible):
           <figure class="bcls-figure"><img class="bcls-image" alt="Developer Tools Network Section" src="/assets/images/getting-started/developer-tools-network.png" />
             <figcaption class="bcls-caption--image">Section du réseau des outils de développement</figcaption>
           </figure>
@@ -330,7 +330,7 @@ parent: Getting Started
       <ul>
         <li>Voir l'élément précédent - essayer d'analyser un sting vide lèvera une exception JSON</li>
         <li>
-          <p>Regardez la réponse et assurez-vous qu'il s'agit d'une chaîne JSON (commençant par un <code translate="No">{</code> ou un <code translate="No">[</code>). Il existe quelques cas où une requête peut ne pas renvoyer JSON - un <span translate="No">API d'analyse</span> appel, par exemple, si vous définissez le <code translate="No">format</code> paramètre à <code translate="No">csv</code> ou <code translate="No">xlxs</code>. Encore une fois, si vous faites ce genre de demandes, vous devrez ajuster votre code pour gérer les réponses non JSON.</p>
+          <p>Regardez la réponse et assurez-vous qu'il s'agit d'une chaîne JSON (commençant par un <code translate="No">{</code> ou un <code translate="No">[</code>). Il existe quelques cas où une requête peut ne pas renvoyer JSON - un Analytics API appel, par exemple, si vous définissez le <code translate="No">format</code> paramètre à <code translate="No">csv</code> ou <code translate="No">xlxs</code>. Encore une fois, si vous faites ce genre de demandes, vous devrez ajuster votre code pour gérer les réponses non JSON.</p>
         </li>
         <li>Dans la plupart des cas, les erreurs renvoyées par les API sont également au format JSON, mais il existe quelques exceptions où l'erreur est renvoyée sous forme de texte brut ou HTML.</li>
       </ul>
@@ -339,192 +339,192 @@ parent: Getting Started
   <section class="bcls-section">
     <h2 id="Proxy_code">Code proxy</h2>
     <p>Comme mentionné précédemment, la procuration peut être rédigée dans la langue de votre choix. Les exemples de documentation de l'API Brightcove utilisent un proxy écrit en PHP. La mise en œuvre du proxy étant donc dépendante du langage, le code PHP ci-dessous ne sera pas analysé en détail dans ce document.</p>
-    <p>Les fonctionnalités de base fournies par un proxy doivent inclure :</p>
+    <p>Les fonctionnalités de base fournies par un proxy doivent inclure:</p>
     <ol>
       <li>Accepter la demande du client.</li>
-      <li>Obtenez un <strong>jeton d'authentification</strong> à partir de l'API OAuth.</li>
+      <li>Obtenez un <strong>jeton d'authentification</strong> à partir de OAuth API.</li>
       <li>Envoyez le jeton d'authentification et la demande de données (point de terminaison) à l'API prévue.</li>
       <li>Recevoir les données de l'API.</li>
       <li>Renvoyer les données au client.</li>
     </ol>
     <pre class="line-numbers">
-	<code class="language-javascript" translate="No">&lt;?php
-	/**
-	 * proxy for Brightcove RESTful APIs
-	 * gets an access token, makes the request, and returns the response
-	 * Accessing:
-	 *     (note you should **always** access the proxy via HTTPS)
-	 *     Method: POST
-	 *     request body (accessed via php://input) is a JSON object with the following properties
-	 *
-	 * {string} url - the URL for the API request
-	 * {string} [requestType=GET] - HTTP method for the request
-	 * {string} [requestBody] - JSON data to be sent with write requests
-	 * {string} [client_id] - OAuth2 client id with sufficient permissions for the request
-	 * {string} [client_secret] - OAuth2 client secret with sufficient permissions for the request
-	 *
-	 * Example:
-	 * {
-	 *    "url": "https://cms.api.brightcove.com/v1/accounts/57838016001/video",
-	 *    "requestType": "PATCH",
-	 *    "client_id": "0072bebf-0616-442c-84de-7215bb176061",
-	 *    "client_secret": "7M0vMete8vP_Dmb9oIRdUN1S5lrqTvgtVvdfsasd",
-	 *    "requestBody": "{\"description\":\"Updated video description\"}"
-	 * }
-	 *
-	 * if client_id and client_secret are not included in the request, default values will be used
-	 *
-	 * @returns {string} $response - JSON response received from the API
-	 */
-	
-	// security checks
-	// if you want to do some basic security checks, such as checking the origin of the
-	// the request against some white list, this would be a good place to do it
-	// CORS enablement and other headers
-	header("Access-Control-Allow-Origin: *");
-	header("Content-type: application/json");
-	header("X-Content-Type-Options: nosniff");
-	header("X-XSS-Protection");
-	
-	// default account values
-	// if you work on one Brightcove account, put in the values below
-	// if you do not provide defaults, the client id, and client secret must
-	// be sent in the request body for each request
-	$default_client_id     = 'YOUR_CLIENT_ID';
-	$default_client_secret = 'YOUR_CLIENT_SECRET';
-	
-	// get request body
-	$requestData = json_decode(file_get_contents('php://input'));
-	
-	// set up access token request
-	// check to see if client id and secret were passed with the request
-	// and if so, use them instead of defaults
-	if (isset($requestData-&gt;client_id)) {
-			$client_id = $requestData-&gt;client_id;
-	}
-	
-	if (isset($requestData-&gt;client_secret)) {
-			$client_secret = $requestData-&gt;client_secret;
-	}
-	
-	$auth_string = "{$client_id}:{$client_secret}";
-	
-	// make the request to get an access token
-	$request = "https://oauth.brightcove.com/v4/access_token?grant_type=client_credentials";
-	$curl          = curl_init($request);
-	curl_setopt($curl, CURLOPT_USERPWD, $auth_string);
-	curl_setopt($curl, CURLOPT_POST, TRUE);
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-	curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-		'Content-type: application/x-www-form-urlencoded',
-	));
-	
-	$response = curl_exec($curl);
-	$curl_info = curl_getinfo($curl);
-	$php_log = array(
-		"php_error_info" =&gt; $curl_info
-	);
-	$curl_error = curl_error($curl);
-	
-	curl_close($curl);
-	
-	// Check for errors
-	// it's useful to log as much info as possible for debugging
-	if ($response === FALSE) {
-		log_error($php_log, $curl_error);
-	}
-	
-	// Decode the response and get access token
-	$responseData = json_decode($response, TRUE);
-	$access_token = $responseData["access_token"];
-	// get request type or default to GET
-	$method = "GET";
-	if ($requestData-&gt;requestType) {
-			$method = $requestData-&gt;requestType;
-	}
-	
-	// get the URL and authorization info from the form data
-	$request = $requestData-&gt;url;
-	// check for a request body sent with the request
-	if (isset($requestData-&gt;requestBody)) {
-		$data = $requestData-&gt;requestBody;
-	}
-		$curl = curl_init($request);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-			'Content-type: application/json',
-			"Authorization: Bearer {$access_token}"
-		));
-		switch ($method)
-			{
-				case "POST":
-					curl_setopt($curl, CURLOPT_POST, TRUE);
-					if ($requestData-&gt;requestBody) {
-						curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-					}
-					break;
-				case "PUT":
-					// don't use CURLOPT_PUT; it is not reliable
-					curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
-					if ($requestData-&gt;requestBody) {
-						curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-					}
-					break;
-				case "PATCH":
-					curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
-					if ($requestData-&gt;requestBody) {
-						curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-					}
-					break;
-				case "DELETE":
-					curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
-					if ($requestData-&gt;requestBody) {
-						curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-					}
-					break;
-				default:
-					// GET request, nothing to do;
-			}
-		$response = curl_exec($curl);
-		$curl_info = curl_getinfo($curl);
-		$php_log = array(
-			"php_error_info" =&gt; $curl_info
-		);
-		$curl_error = curl_error($curl);
-		curl_close($curl);
-	
-	// Check for errors and log them if any
-	// note that logging will fail unless
-	// the file log.txt exists in the same
-	// directory as the proxy and is writable
-	
-	if ($response === FALSE) {
-		log_error($php_log, $curl_error);
-	}
-	
-	function log_error($php_log, $curl_error) {
-		$logEntry = "\nError:\n". "\n".date("Y-m-d H:i:s"). " UTC \n" .$curl_error. "\n".json_encode($php_log, JSON_PRETTY_PRINT);
-		$logFileLocation = "log.txt";
-		$fileHandle      = fopen($logFileLocation, 'a') or die("-1");
-		fwrite($fileHandle, $logEntry);
-		fclose($fileHandle);
-		echo "Error: there was a problem with your API call"+
-		die(json_encode($php_log, JSON_PRETTY_PRINT));
-	}
-	
-	// return the response to the AJAX caller
-	echo $response;
-	?&gt;</code></pre>
-    <p>Bien que le code complet du serveur proxy soit affiché ci-dessus, il se trouve également dans le référentiel GitHub : <a href="https://github.com/BrightcoveLearning/sample-proxy-apps">exemples-proxy-apps</a> dans le <strong>php</strong> dossier.</p>
+  <code class="language-javascript" translate="No">&lt;?php
+  /**
+   * proxy for Brightcove RESTful APIs
+   * gets an access token, makes the request, and returns the response
+   * Accessing:
+   *     (note you should **always** access the proxy via HTTPS)
+   *     Method: POST
+   *     request body (accessed via php://input) is a JSON object with the following properties
+   *
+   * {string} url - the URL for the API request
+   * {string} [requestType=GET] - HTTP method for the request
+   * {string} [requestBody] - JSON data to be sent with write requests
+   * {string} [client_id] - OAuth2 client id with sufficient permissions for the request
+   * {string} [client_secret] - OAuth2 client secret with sufficient permissions for the request
+   *
+   * Example:
+   * {
+   *    "url": "https://cms.api.brightcove.com/v1/accounts/57838016001/video",
+   *    "requestType": "PATCH",
+   *    "client_id": "0072bebf-0616-442c-84de-7215bb176061",
+   *    "client_secret": "7M0vMete8vP_Dmb9oIRdUN1S5lrqTvgtVvdfsasd",
+   *    "requestBody": "{\"description\":\"Updated video description\"}"
+   * }
+   *
+   * if client_id and client_secret are not included in the request, default values will be used
+   *
+   * @returns {string} $response - JSON response received from the API
+   */
+  
+  // security checks
+  // if you want to do some basic security checks, such as checking the origin of the
+  // the request against some white list, this would be a good place to do it
+  // CORS enablement and other headers
+  header("Access-Control-Allow-Origin: *");
+  header("Content-type: application/json");
+  header("X-Content-Type-Options: nosniff");
+  header("X-XSS-Protection");
+  
+  // default account values
+  // if you work on one Brightcove account, put in the values below
+  // if you do not provide defaults, the client id, and client secret must
+  // be sent in the request body for each request
+  $default_client_id     = 'YOUR_CLIENT_ID';
+  $default_client_secret = 'YOUR_CLIENT_SECRET';
+  
+  // get request body
+  $requestData = json_decode(file_get_contents('php://input'));
+  
+  // set up access token request
+  // check to see if client id and secret were passed with the request
+  // and if so, use them instead of defaults
+  if (isset($requestData-&gt;client_id)) {
+      $client_id = $requestData-&gt;client_id;
+  }
+  
+  if (isset($requestData-&gt;client_secret)) {
+      $client_secret = $requestData-&gt;client_secret;
+  }
+  
+  $auth_string = "{$client_id}:{$client_secret}";
+  
+  // make the request to get an access token
+  $request = "https://oauth.brightcove.com/v4/access_token?grant_type=client_credentials";
+  $curl          = curl_init($request);
+  curl_setopt($curl, CURLOPT_USERPWD, $auth_string);
+  curl_setopt($curl, CURLOPT_POST, TRUE);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+  curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    'Content-type: application/x-www-form-urlencoded',
+  ));
+  
+  $response = curl_exec($curl);
+  $curl_info = curl_getinfo($curl);
+  $php_log = array(
+    "php_error_info" =&gt; $curl_info
+  );
+  $curl_error = curl_error($curl);
+  
+  curl_close($curl);
+  
+  // Check for errors
+  // it's useful to log as much info as possible for debugging
+  if ($response === FALSE) {
+    log_error($php_log, $curl_error);
+  }
+  
+  // Decode the response and get access token
+  $responseData = json_decode($response, TRUE);
+  $access_token = $responseData["access_token"];
+  // get request type or default to GET
+  $method = "GET";
+  if ($requestData-&gt;requestType) {
+      $method = $requestData-&gt;requestType;
+  }
+  
+  // get the URL and authorization info from the form data
+  $request = $requestData-&gt;url;
+  // check for a request body sent with the request
+  if (isset($requestData-&gt;requestBody)) {
+    $data = $requestData-&gt;requestBody;
+  }
+    $curl = curl_init($request);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+      'Content-type: application/json',
+      "Authorization: Bearer {$access_token}"
+    ));
+    switch ($method)
+      {
+        case "POST":
+          curl_setopt($curl, CURLOPT_POST, TRUE);
+          if ($requestData-&gt;requestBody) {
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+          }
+          break;
+        case "PUT":
+          // don't use CURLOPT_PUT; it is not reliable
+          curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+          if ($requestData-&gt;requestBody) {
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+          }
+          break;
+        case "PATCH":
+          curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+          if ($requestData-&gt;requestBody) {
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+          }
+          break;
+        case "DELETE":
+          curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+          if ($requestData-&gt;requestBody) {
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+          }
+          break;
+        default:
+          // GET request, nothing to do;
+      }
+    $response = curl_exec($curl);
+    $curl_info = curl_getinfo($curl);
+    $php_log = array(
+      "php_error_info" =&gt; $curl_info
+    );
+    $curl_error = curl_error($curl);
+    curl_close($curl);
+  
+  // Check for errors and log them if any
+  // note that logging will fail unless
+  // the file log.txt exists in the same
+  // directory as the proxy and is writable
+  
+  if ($response === FALSE) {
+    log_error($php_log, $curl_error);
+  }
+  
+  function log_error($php_log, $curl_error) {
+    $logEntry = "\nError:\n". "\n".date("Y-m-d H:i:s"). " UTC \n" .$curl_error. "\n".json_encode($php_log, JSON_PRETTY_PRINT);
+    $logFileLocation = "log.txt";
+    $fileHandle      = fopen($logFileLocation, 'a') or die("-1");
+    fwrite($fileHandle, $logEntry);
+    fclose($fileHandle);
+    echo "Error: there was a problem with your API call"+
+    die(json_encode($php_log, JSON_PRETTY_PRINT));
+  }
+  
+  // return the response to the AJAX caller
+  echo $response;
+  ?&gt;</code></pre>
+    <p>Bien que le code complet du serveur proxy soit affiché ci-dessus, il se trouve également dans le référentiel GitHub: <a href="https://github.com/BrightcoveLearning/sample-proxy-apps">exemples-proxy-apps</a> dans le <strong>php</strong> dossier.</p>
   </section>
   <section class="bcls-section">
     <h2 id="Example_2">Exemple 2</h2>
     <p>Ce deuxième exemple est plus complexe que celui détaillé précédemment. Cet exemple affiche les 10 vidéos les plus populaires d'un compte dans une playlist. Les principales étapes du code sont :</p>
     <ol>
-      <li>Demande de la <span translate="No">API d'analyse</span> les 10 vidéos avec le plus de vues dans un compte. Cette étape implique un appel asynchrone à l'aide d'une fonction de rappel.</li>
-      <li>Du retour <span translate="No">API d'analyse</span> données, extrayez uniquement les ID vidéo et placez-les dans un tableau. Une fonction d'assistance est écrite pour extraire les identifiants des données renvoyées.</li>
+      <li>Demande de la Analytics API les 10 vidéos avec le plus de vues dans un compte. Cette étape implique un appel asynchrone à l'aide d'une fonction de rappel.</li>
+      <li>Du retour Analytics API données, extrayez uniquement les ID vidéo et placez-les dans un tableau. Une fonction d'assistance est écrite pour extraire les identifiants des données renvoyées.</li>
       <li>Demandez les objets vidéo complets pour chacune des vidéos dans la liste des ID du tableau. Cette étape consiste à boucler sur le tableau et à demander les objets vidéo à l'aide <code translate="No">player.catalog.getVideo()</code>. Bien sûr, cela implique plusieurs appels asynchrones utilisant le <code translate="No">catalog</code>. Une fonction d'assistance est écrite pour récupérer les objets vidéo en fonction des ID et placer les objets dans un tableau.</li>
       <li>Placez le tableau d'objets vidéo dans la liste de lecture pour un lecteur compatible avec les listes de lecture.</li>
     </ol>
@@ -534,25 +534,25 @@ parent: Getting Started
       </li>
       <li>Ligne 3 : Créez une variable pour contenir les données renvoyées analysées JSON.</li>
       <li>Ligne 5 : Analyser les données renvoyées pour les convertir d'une chaîne en un objet.</li>
-      <li>Ligne 7 : Utilisez la fonction d'assistance pour extraire les ID vidéo des données renvoyées. Malheureusement, le <span translate="No">API d'analyse</span> ne renvoie pas les objets vidéo complets, les ID sont donc nécessaires pour accéder aux objets complets.</li>
-      <li>Lignes 9-12 : Appeler le <code translate="No">getVideoData</code> fonction d'assistance qui utilise une fonction de rappel pour remplir le <code translate="No">videoObjects</code> tableau basé sur les ID passés.</li>
-      <li>Ligne 11 : Remplissez la liste de lecture avec le tableau d'objets vidéo.</li>
+      <li>Ligne 7: Utilisez la fonction d'assistance pour extraire les ID vidéo des données renvoyées. Malheureusement, le Analytics API ne renvoie pas les objets vidéo complets, les ID sont donc nécessaires pour accéder aux objets complets.</li>
+      <li>Lignes 9-12: Appeler le <code translate="No">getVideoData</code> fonction d'assistance qui utilise une fonction de rappel pour remplir le <code translate="No">videoObjects</code> tableau basé sur les ID passés.</li>
+      <li>Ligne 11: Remplissez la liste de lecture avec le tableau d'objets vidéo.</li>
     </ul>
     <pre class="line-numbers">
-	<code class="language-javascript" translate="No">// +++ Make the <span translate="No">CMS API</span> request to get matching video IDs +++
-	makeRequest(options, <span class="bcls-highlight">function(mostWatchedVideos) {
-		var JSONmostWatchedVideos;
-		// Convert response string into JSON
-		JSONmostWatchedVideos = JSON.parse(mostWatchedVideos);
-		// Extract the needed video IDs into an array
-		videoData = extractVideoData(JSONmostWatchedVideos);
-		// Get video objects based on array of video IDs
-		getVideoData(videoData, function(videoObjects) {
-			// Add the most watched videos list to the player as a playlist
-			myPlayer.playlist(videoObjects);
-		});</span>
-	});</code></pre>
+  <code class="language-javascript" translate="No">// +++ Make the CMS API request to get matching video IDs +++
+  makeRequest(options, <span class="bcls-highlight">function(mostWatchedVideos) {
+    var JSONmostWatchedVideos;
+    // Convert response string into JSON
+    JSONmostWatchedVideos = JSON.parse(mostWatchedVideos);
+    // Extract the needed video IDs into an array
+    videoData = extractVideoData(JSONmostWatchedVideos);
+    // Get video objects based on array of video IDs
+    getVideoData(videoData, function(videoObjects) {
+      // Add the most watched videos list to the player as a playlist
+      myPlayer.playlist(videoObjects);
+    });</span>
+  });</code></pre>
     <h3>Liste complète des codes</h3>
-    <p>L'exemple complet et fonctionnel se trouve dans ce CodePen : <a href="https://codepen.io/team/rcrooks1969/pen/zRzZNG/">Vidéos les plus regardées dans une liste de lecture</a>.</p>
+    <p>L'exemple complet et fonctionnel se trouve dans ce CodePen: <a href="https://codepen.io/team/rcrooks1969/pen/zRzZNG/">Vidéos les plus regardées dans une liste de lecture</a>.</p>
   </section>
 </article>

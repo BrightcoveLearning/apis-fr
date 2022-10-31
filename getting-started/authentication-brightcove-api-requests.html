@@ -1,6 +1,6 @@
 ---
-title: 'Authentification pour les demandes d'API'
-description: 'Cette rubrique couvre l'authentification pour les demandes aux API REST de Brightcove.'
+title: "Authentification pour les demandes d'API"
+description: "Cette rubrique couvre l'authentification pour les demandes aux API REST de Brightcove."
 parent: General 
 grandparent: Home
 ---
@@ -12,23 +12,23 @@ grandparent: Home
 
     <p>La plupart des API REST de Brightcove utilisent OAuth2 comme base d'authentification, et nous examinerons plus en détail la mise en œuvre d'OAuth dans les sections qui suivent.</p>
 
-    <p>Cependant, notez tout d'abord que deux API utilisent des approches différentes pour l'authentification :</p>
+    <p>Cependant, notez tout d'abord que deux API utilisent des approches différentes pour l'authentification:</p>
 
     <section class="bcls-subsection">
-      <h3 id="policy_key">Authentification par clé de stratégie : API de lecture</h3>
+      <h3 id="policy_key">Authentification par clé de stratégie: Playback API</h3>
 
-      <p>Les <a href="/playback/index.html">API de lecture</a> utilisé principalement pour récupérer des données de vidéo et de liste de lecture à partir de lecteurs ou de portails Web, utilise un <code translate="No">policy_key</code> , pour l'authentification, généralement passé en argument dans un <code translate="No">Accept</code> entête:</p>
+      <p>Les <a href="/playback/index.html">Playback API</a> utilisé principalement pour récupérer des données de vidéo et de liste de lecture à partir de Lecteurs ou de portails Web, utilise un <code translate="No">policy_key</code> , pour l'authentification, généralement passé en argument dans un <code translate="No">Accept</code> entête:</p>
 
       <pre>
         <code class="language-http" translate="No">Accept: application/json;pk={policy_key}</code></pre>
 
-      <p>Les clés de stratégie sont générées automatiquement pour les lecteurs Brightcove et peuvent être extraites d'un <a href="/policy/getting-started/policy-keys.html#Getting_the_policy_key">configuration du lecteur</a> , ou généré à l'aide du <a href="/policy/index.html">API de règles</a></p>
+      <p>Les clés de stratégie sont générées automatiquement pour les Lecteurs Brightcove et peuvent être extraites d'un <a href="/policy/getting-started/policy-keys.html#Getting_the_policy_key">configuration du lecteur</a> , ou généré à l'aide du <a href="/policy/index.html">Policy API</a></p>
     </section>
 
     <section class="bcls-subsection">
-      <h3 id="authentication_api_key">Authentification par clé API : API en direct</h3>
+      <h3 id="authentication_api_key">Authentification par clé API: Live API</h3>
 
-      <p>Les <a href="https://live.support.brightcove.com/live-api/">API en direct</a> utilise une clé API qui est fournie lorsque votre compte est configuré pour authentifier les demandes. La clé API est transmise dans un <code translate="No">X-API-KEY</code> entête:</p>
+      <p>Les <a href="https://live.support.brightcove.com/live-api/">Live API</a> utilise une clé API qui est fournie lorsque votre compte est configuré pour authentifier les demandes. La clé API est transmise dans un <code translate="No">X-API-KEY</code> entête:</p>
 
       <pre>
         <code class="language-http" translate="No">X-API-KEY : {YOUR_APIKey}</code></pre>
@@ -41,21 +41,21 @@ grandparent: Home
     <p>Les autres API REST pour Video Cloud utilisent OAuth2 pour l'authentification. Pour ceux qui connaissent OAuth2, nous utilisons un flux d'informations d'identification client. Il s'agit de deux opérations :</p>
 
     <ol>
-      <li><strong>Obtenez les informations d'identification du client :</strong> il s'agit d'une opération ponctuelle qui s'effectue le plus facilement à l'aide du <strong>Authentification API</strong> page des outils d'administration dans Studio. Voir <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a> pour plus de détails et des instructions étape par étape.</li>
-      <li><strong>Obtenez un jeton d'accès :</strong> chaque requête API doit contenir un jeton d'accès envoyé dans un <code translate="No">Authorization</code> entête:
+      <li><strong>Obtenez les informations d'identification du client:</strong> il s'agit d'une opération ponctuelle qui s'effectue le plus facilement à l'aide du <strong>Authentification API</strong> page des outils d'administration dans Studio. Voir <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a> pour plus de détails et des instructions étape par étape.</li>
+      <li><strong>Obtenez un jeton d'accès:</strong> chaque requête API doit contenir un jeton d'accès envoyé dans un <code translate="No">Authorization</code> entête:
         <pre>
         <code class="language-http" translate="No">Authorization: Bearer {access_token}</code></pre>
 
         <p>Les jetons d'accès vivent pendant cinq minutes, donc à moins que vous n'exécutiez un processus qui générera des demandes d'API répétées, vous voudrez probablement en obtenir un nouveau pour chaque demande.</p>
 
-        <p>Les jetons d'accès sont obtenus en envoyant les informations d'identification du client dans une demande à l'API OAuth de Brightcove. Voir <a href="/oauth/guides/getting-access-tokens.html">Obtenir des jetons d'accès</a> pour tous les détails. Il y a aussi <a href="/oauth/code-samples/oauth-api-sample-get-access-token.html">exemple d'application</a> vous pouvez utiliser pour obtenir un jeton unique pour tester les appels d'API. Il y a aussi des instructions pour configurer les clients REST populaires <a href="/general/use-postman-api-requests.html">Facteur</a> et <a href="/general/use-insomnia-api-requests.html">Insomnie</a>.</p>
+        <p>Les jetons d'accès sont obtenus en envoyant les informations d'identification du client dans une demande à OAuth API de Brightcove. Voir <a href="/oauth/guides/getting-access-tokens.html">Obtenir des jetons d'accès</a> pour tous les détails. Il y a aussi <a href="/oauth/code-samples/oauth-api-sample-get-access-token.html">exemple d'application</a> vous pouvez utiliser pour obtenir un jeton unique pour tester les appels d'API. Il y a aussi des instructions pour configurer les clients REST populaires <a href="/general/use-postman-api-requests.html">Facteur</a> et <a href="/general/use-insomnia-api-requests.html">Insomnie</a>.</p>
       </li>
     </ol>
   </section>
   <section class="bcls-section" id="stepsGetCredentials">
-    <h2>Identifiants du client via l'API OAuth</h2>
+    <h2>Identifiants du client via OAuth API</h2>
 
-    <p>Si vous souhaitez ou devez créer des informations d'identification client à l'aide de l'API OAuth, voici les étapes qui vous guideront pour obtenir vos informations d'identification client. Vous devrez d'abord obtenir votre BC_TOKEN, qui est utilisé pour vous authentifier pour la demande d'informations d'identification client.</p>
+    <p>Si vous souhaitez ou devez créer des informations d'identification client à l'aide de OAuth API, voici les étapes qui vous guideront pour obtenir vos informations d'identification client. Vous devrez d'abord obtenir votre BC_TOKEN, qui est utilisé pour vous authentifier pour la demande d'informations d'identification client.</p>
 
     <h3>Obtenir votre <code translate="No">BC_TOKEN</code> et numéro de compte</h3>
 
@@ -63,12 +63,12 @@ grandparent: Home
 
     <ol class="bcls-tasklist">
       <li>Connectez-vous à Studio comme vous le faites normalement.</li>
-      <li>Vous avez besoin de votre numéro de compte (appelé ID éditeur dans Studio), que vous pouvez obtenir en accédant aux informations de votre compte dans Studio :
+      <li>Vous avez besoin de votre numéro de compte (appelé ID éditeur dans Studio), que vous pouvez obtenir en accédant aux informations de votre compte dans Studio:
         <figure class="bcls-figure"><img class="bcls-image" alt="Account ID" src="/assets/images/getting-started/account-info-studio.png" />
           <figcaption class="bcls-caption--image">identifiant de compte</figcaption>
         </figure>
       </li>
-      <li>Avec n'importe quelle page de Studio ouverte, ouvrez les outils de développement pour le navigateur, accédez à la console et collez le code suivant :
+      <li>Avec n'importe quelle page de Studio ouverte, ouvrez les outils de développement pour le navigateur, accédez à la console et collez le code suivant:
         <pre class="line-numbers">
       <code class="language-javascript" translate="No">var cookiesArray = document.cookie.split(";"), cookiesObj = {}, i, tmpArray = [];
       for (i = 0; i &lt; cookiesArray.length; i++) {
@@ -87,7 +87,7 @@ grandparent: Home
         </figure>
       </li>
       <li>Si vous avez votre BC_TOKEN, passez à la <a href="#getCredentials">Obtenir les informations d'identification du client</a> section; si, pour une raison quelconque, vous n'avez pas obtenu votre BC_TOKEN en suivant les étapes précédentes, accédez simplement à la console, tapez <code translate="No">document.cookies</code> , et appuyez sur retour.</li>
-      <li>Tous les cookies de la page seront renvoyés dans une liste séparée par des points-virgules. Recherchez le cookie BC_TOKEN dans la liste et copiez la valeur :
+      <li>Tous les cookies de la page seront renvoyés dans une liste séparée par des points-virgules. Recherchez le cookie BC_TOKEN dans la liste et copiez la valeur:
         <figure class="bcls-figure"><img class="bcls-image" alt="Get BC_TOKEN from Console" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/ingest-profiles-api/guides/get-access-token-console.png" />
           <figcaption class="bcls-caption--image">Obtenez BC_TOKEN à partir de la console</figcaption>
         </figure>
@@ -99,7 +99,7 @@ grandparent: Home
     <p>Nous sommes maintenant prêts à appeler le service OAuth pour récupérer les informations d'identification du client. Nous devons spécifier un nom d'application client pour lequel nous demandons des informations d'identification - le nom est arbitraire, destiné à vous aider à savoir à quoi servent les informations d'identification - et ici, nous utiliserons simplement "ingest-profiles-api-client". Nous devons également spécifier la portée des opérations auxquelles nous voulons accéder dans un tableau, et nous utiliserons ici. Les opérations disponibles sont indiquées dans <a href="/oauth/guides/api-operations-client-credentials-requests.html">Opérations d'API pour les demandes d'informations d'identification client</a>. Dans les étapes ci-dessous, vous spécifierez les opérations requises pour l'API Ingest Profiles.</p>
 
     <ol class="bcls-tasklist">
-      <li>Modifiez la commande curl suivante, puis collez-la dans la ligne de commande et appuyez sur <strong>Revenir</strong>. Vous devez fournir vos valeurs spécifiques pour les trois valeurs suivantes :
+      <li>Modifiez la commande curl suivante, puis collez-la dans la ligne de commande et appuyez sur <strong>Revenir</strong>. Vous devez fournir vos valeurs spécifiques pour les trois valeurs suivantes:
 
         <ul>
           <li><em><strong>votre BC_TOKEN</strong></em></li>
@@ -125,7 +125,7 @@ grandparent: Home
           }]' \
       https://oauth.brightcove.com/v4/client_credentials</code></pre>
       </li>
-      <li>La réponse devrait ressembler à ceci (formatage ajouté) :
+      <li>La réponse devrait ressembler à ceci (formatage ajouté):
         <pre class="line-numbers">
       <code class="language-json" translate="No">{
         "redirect_url": null,
@@ -163,18 +163,18 @@ grandparent: Home
   </section>
 
   <section class="bcls-section" id="accessToken">
-    <h2>Jetons d'accès via l'API OAuth</h2>
+    <h2>Jetons d'accès via OAuth API</h2>
 
     <p>Les jetons d'accès, contrairement aux informations d'identification client, sont de courte durée - actuellement, ils expirent dans 5 minutes. Vous devrez en obtenir un nouveau pour chaque demande d'API. Vous pouvez, bien sûr, intégrer une logique dans une application pour vérifier le jeton d'accès le plus récent pour voir s'il a expiré, mais les demandes à l'API Ingest Profiles sont susceptibles d'être rares, il n'y a donc aucune bonne raison de le faire .</p>
 
     <p>En fait, l'API peut être une API que vous utiliserez assez rarement pour qu'il ne soit pas du tout utile de créer une application autour d'elle. Une alternative serait d'utiliser <a href="/assets/downloads/api-tester.sh.zip">ce script shell</a> que Brightcove Learning Services a construit. Il vous permet de saisir votre identifiant client et votre secret, la demande et la méthode de l'API, ainsi que toutes les données de demande. Il obtient alors un <code translate="No">access_token</code> , effectue la demande d'API et renvoie la réponse. (Notez que le script shell utilise cURL, qui est installé nativement sur Mac MacOS et d'autres systèmes Unix/Linux, ou <a href="https://general.support.brightcove.com/developer/concepts-set-curl.html">peut être installé sur Windows</a>.</p>
 
-    <p>Pour récupérer les jetons d'accès, vous faites une demande POST à :</p>
+    <p>Pour récupérer les jetons d'accès, vous faites une demande POST à:</p>
 
     <pre class="line-numbers">
       <code class="language-http" translate="No">https://oauth.brightcove.com/v4/access_token</code></pre>
 
-    <p>Vous devez transmettre les en-têtes suivants avec cet appel :</p>
+    <p>Vous devez transmettre les en-têtes suivants avec cet appel:</p>
 
     <ul>
       <li><code translate="No">Content-Type: application/x-www-form-urlencoded</code></li>
@@ -183,12 +183,12 @@ grandparent: Home
 
     <p>L'ensemble <code translate="No">{client_id}:{client_secret}</code> la chaîne doit être encodée en Base64 (curl encode automatiquement la chaîne en Base64 si vous la passez comme <code translate="No">--user</code> crédits; dans d'autres langues, vous devrez gérer vous-même l'encodage Base64).</p>
 
-    <p>Vous devez également envoyer la paire clé/valeur suivante en tant que corps de la requête ou en tant que paramètre d'URL :</p>
+    <p>Vous devez également envoyer la paire clé/valeur suivante en tant que corps de la requête ou en tant que paramètre d'URL:</p>
 
     <pre class="line-numbers">
       <code class="language-bash" translate="No">grant_type=client_credentials</code></pre>
 
-    <p>La réponse ressemblera à ceci (assez imprimé ici pour plus de lisibilité) :</p>
+    <p>La réponse ressemblera à ceci (assez imprimé ici pour plus de lisibilité):</p>
 
     <pre class="line-numbers">
       <code class="language-json" translate="No">{
@@ -197,7 +197,7 @@ grandparent: Home
           "expires_in": 300
       }</code></pre>
 
-    <p>Les <code translate="No">access_token</code> la valeur est ce que vous devez passer dans un <code translate="No">Authorization</code> header avec votre appel API sous cette forme :</p>
+    <p>Les <code translate="No">access_token</code> la valeur est ce que vous devez passer dans un <code translate="No">Authorization</code> header avec votre appel API sous cette forme:</p>
 
     <pre class="line-numbers">
       <code class="language-bash" translate="No">Authorization: Bearer {access_token}</code></pre>

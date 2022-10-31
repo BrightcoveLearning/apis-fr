@@ -1,6 +1,6 @@
 ---
-title: 'Référence des champs vidéo de l'API CMS'
-description: 'Il s'agit d'une référence aux champs vidéo renvoyés par l'API CMS.'
+title: 'Référence des champs vidéo de CMS API'
+description: "Il s'agit d'une référence aux champs vidéo renvoyés par l'CMS API."
 parent: References 
 grandparent: CMS API
 ---
@@ -11,7 +11,7 @@ grandparent: CMS API
   <h2 id="videoFields">Champs vidéo</h2>
   
   <aside class="bcls-aside bcls-aside--information">
-  <p>Consultez les liens suivants pour voir quels champs peuvent être définis lorsque vous créez ou mettez à jour une vidéo :</p>
+  <p>Consultez les liens suivants pour voir quels champs peuvent être définis lorsque vous créez ou mettez à jour une vidéo:</p>
   
   <ul>
     <li><a href="/cms/references/reference.html#api-videoGroup-Create_Video">Champs pouvant être paramétrés lors de la création d'une vidéo</a></li>
@@ -47,7 +47,7 @@ grandparent: CMS API
       <tr>
         <td ><code translate="No">complete</code></td>
         <td >booléen</td>
-        <td >Si le traitement est terminé — Remarque : lorsque vous créez une nouvelle vidéo, la propriété complete est automatiquement définie sur <code translate="No">false</code>. Dès qu'un rendu existe pour la vidéo, la propriété complète sera automatiquement définie sur <code translate="No">true</code></td>
+        <td >Si le traitement est terminé — Remarque: lorsque vous créez une nouvelle vidéo, la propriété complete est automatiquement définie sur <code translate="No">false</code>. Dès qu'un rendu existe pour la vidéo, la propriété complète sera automatiquement définie sur <code translate="No">true</code></td>
       </tr>
       <tr>
         <td ><code translate="No">created_at</code></td>
@@ -77,7 +77,7 @@ grandparent: CMS API
       <tr>
         <td ><code translate="No">delivery_type</code></td>
         <td >Chaîne de caractères</td>
-        <td >Type de livraison pour la vidéo :
+        <td >Type de livraison pour la vidéo:
         <ul>
           <li><code translate="No">dynamic_origin</code>- livraison dynamique</li>
           <li><code translate="No">live_origin</code>- diffusion en direct de Brightcove Live</li>
@@ -90,7 +90,7 @@ grandparent: CMS API
       <tr>
         <td ><code translate="No">description</code></td>
         <td >Chaîne de caractères; remplace l'ancien shortDescription</td>
-        <td >Brève description de la vidéo (longueur maximale : 248 caractères à un octet)</td>
+        <td >Brève description de la vidéo (longueur maximale: 248 caractères à un octet)</td>
       </tr>
       <tr>
         <td ><code translate="No">digital_master_id</code></td>
@@ -155,7 +155,7 @@ grandparent: CMS API
       <tr>
         <td ><code translate="No">name</code></td>
         <td >Chaîne de caractères</td>
-        <td >Le nom de la vidéo (longueur maximale : 248 caractères à un octet)</td>
+        <td >Le nom de la vidéo (longueur maximale: 248 caractères à un octet)</td>
       </tr>
       <tr>
         <td ><code translate="No">offline_enabled</code></td>
@@ -242,7 +242,7 @@ grandparent: CMS API
     <li class="bcls-footnote" id="note1-2"><sup>[1-2]<strong></strong> </sup> La modification peut avoir été effectuée par un utilisateur ou le système Video Cloud</li>
     <li class="bcls-footnote" id="note1-3"><sup>[1-3]<strong></strong> </sup> La géo-restriction est un module complémentaire payant de Video Cloud ; si vous souhaitez acheter une fonction de filtrage géographique, contactez votre responsable de compte</li>
     <li class="bcls-footnote" id="note1-4"><sup>[1-4]<strong></strong> </sup> <code translate="No">state</code> peut être réglé sur <code translate="No">ACTIVE</code> ou <code translate="No">INACTIVE</code> , mais <strong>ne pas</strong> à <code translate="No">PENDING</code> ou <code translate="No">DELETED</code>.</li>
-    <li class="bcls-footnote" id="note1-5"><sup>[1-5]<strong></strong> </sup> Notez les limitations suivantes pour les balises :
+    <li class="bcls-footnote" id="note1-5"><sup>[1-5]<strong></strong> </sup> Notez les limitations suivantes pour les balises:
     <ul>
       <li>Les balises peuvent contenir jusqu'à 128 caractères. Si des balises ont plus de 128 caractères, une erreur s'affichera lorsque vous tenterez d'enregistrer les modifications</li>
       <li>Les balises ne peuvent pas contenir de virgules ; par exemple, une balise de <code translate="No">roof, attic + front yard</code> n'est pas pris en charge</li>
@@ -796,7 +796,7 @@ grandparent: CMS API
       <tr>
         <td ><code translate="No">by_reference</code></td>
         <td >booléen</td>
-        <td >Il est vrai que cette vidéo est partagée par référence (sera toujours <code translate="No">true</code> pour les vidéos partagées via l'API CMS)</td>
+        <td >Il est vrai que cette vidéo est partagée par référence (sera toujours <code translate="No">true</code> pour les vidéos partagées via l'CMS API)</td>
       </tr>
     </tbody>
   </table>
@@ -839,7 +839,7 @@ grandparent: CMS API
       <tr>
         <td ><code translate="No">kind</code></td>
         <td >Chaîne de caractères</td>
-        <td >Comment la piste est destinée à être utilisée : "sous-titres", "légendes", "descriptions", "chapitres", "métadonnées"</td>
+        <td >Comment la piste est destinée à être utilisée: "sous-titres", "légendes", "descriptions", "chapitres", "métadonnées"</td>
       </tr>
       <tr>
         <td ><code translate="No">mime_type</code></td>
@@ -895,7 +895,7 @@ grandparent: CMS API
       <tr>
         <td ><code translate="No">type</code></td>
         <td >Chaîne de caractères</td>
-        <td >Le type du programme de mise à jour - soit :
+        <td >Le type du programme de mise à jour - soit:
         <ul>
           <li><code translate="No">user</code>- un utilisateur dans Studio</li>
           <li><code translate="No">api-key</code>- un utilisateur via une API</li>
@@ -934,7 +934,7 @@ grandparent: CMS API
       <tr>
         <td ><code translate="No">type</code></td>
         <td >Chaîne de caractères</td>
-        <td >Le type du programme de mise à jour - soit :
+        <td >Le type du programme de mise à jour - soit:
         <ul>
           <li><code translate="No">user</code>- un utilisateur dans Studio</li>
           <li><code translate="No">api-key</code>- un utilisateur via une API</li>
@@ -972,7 +972,7 @@ grandparent: CMS API
       <tr>
         <td ><code translate="No">language</code></td>
         <td >Chaîne de caractères</td>
-        <td >La langue de cette variante au format du code langue-pays (exemples : en-US, es-ES). Noter que <code translate="No">language</code> n'est inclus que lorsque vous créez une variante - vous ne devez PAS l'inclure lors de la mise à jour de la variante</td>
+        <td >La langue de cette variante au format du code langue-pays (exemples: en-US, es-ES). Noter que <code translate="No">language</code> n'est inclus que lorsque vous créez une variante - vous ne devez PAS l'inclure lors de la mise à jour de la variante</td>
       </tr>
       <tr>
         <td ><code translate="No">name</code></td>
@@ -992,7 +992,7 @@ grandparent: CMS API
       <tr>
         <td ><code translate="No">custom_fields</code></td>
         <td >Objet</td>
-        <td >carte de <code translate="No">fieldname: value </code>paires, où les valeurs sont pour cette langue ; les valeurs ont une longueur maximale de 1024 caractères à un octet. Remarque : veillez à utiliser le <strong>interne</strong> nom pour le champ, pas le nom d'affichage/td&gt;
+        <td >carte de <code translate="No">fieldname: value </code>paires, où les valeurs sont pour cette langue ; les valeurs ont une longueur maximale de 1024 caractères à un octet. Remarque: veillez à utiliser le <strong>interne</strong> nom pour le champ, pas le nom d'affichage/td&gt;
       </tr>
     </tbody>
   </table>

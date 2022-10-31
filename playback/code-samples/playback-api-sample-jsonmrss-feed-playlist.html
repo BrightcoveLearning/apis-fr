@@ -1,6 +1,6 @@
 ---
-title: 'Flux JSON/MRSS à partir d'une liste de lecture'
-description: 'Dans cet exemple, vous apprendrez à récupérer une liste de lecture à l'aide de l'API Playback et à générer un flux vidéo JSON ou MRSS à partir des données. Cela peut également être fait avec l'API CMS, mais l'utilisation de l'API Playback vous permet de créer une application côté client pure, sans avoir à acheminer la demande d'API via un proxy côté serveur.'
+title: "Flux JSON/MRSS à partir d'une liste de lecture"
+description: "Dans cet exemple, vous apprendrez à récupérer une liste de lecture à l'aide de le Playback API et à générer un flux vidéo JSON ou MRSS à partir des données. Cela peut également être fait avec l'CMS API, mais l'utilisation de le Playback API vous permet de créer une application côté client pure, sans avoir à acheminer la demande d'API via un proxy côté serveur."
 parent: Code Samples 
 grandparent: Playback API
 ---
@@ -22,7 +22,7 @@ grandparent: Playback API
     
     <p>Pour la sécurité de votre contenu, les URL des vidéos et des ressources renvoyées par les API Brightcove sont <strong>signé</strong> , ce qui signifie qu'ils incluent un jeton qui n'est valable que pour une courte période - généralement quelques heures, mais cela peut varier en fonction de la configuration du compte. Cela signifie que les URL dans le code MRSS généré par cet outil ne seront valables que pour la période de temps.</p>
     
-    <p>Vous pouvez gérer cela de l'une des deux manières suivantes :</p>
+    <p>Vous pouvez gérer cela de l'une des deux manières suivantes:</p>
     
     <ul>
       <li>Vous pouvez demander à l'assistance Brightcove d'augmenter la "durée de vie" des jetons attachés aux URL multimédias de votre compte. La valeur peut être définie sur n'importe quelle période jusqu'à un an. Cependant, sachez qu'il s'agit d'un paramètre au niveau du compte et que le changement s'appliquera à toutes vos vidéos.</li>
@@ -36,7 +36,7 @@ grandparent: Playback API
     
     <ul>
       <li>Un identifiant de liste de lecture Video Cloud, que vous pouvez obtenir à partir de <a href="https://studio.support.brightcove.com/media/creating-and-managing-playlists.html">Studio</a></li>
-      <li>Une clé de politique pour votre compte Video Cloud, que vous pouvez obtenir à partir de n'importe quel <a href="/policy/getting-started/policy-keys.html">Lecteur Brightcove</a> dans votre compte, ou à partir du <a href="/policy/getting-started/quick-start-policy-api.html">API de règles</a></li>
+      <li>Une clé de politique pour votre compte Video Cloud, que vous pouvez obtenir à partir de n'importe quel <a href="/policy/getting-started/policy-keys.html">Lecteur Brightcove</a> dans votre compte, ou à partir du <a href="/policy/getting-started/quick-start-policy-api.html">Policy API</a></li>
     </ul>
     
     <h3><strong>Optionnel</strong></h3>
@@ -51,6 +51,6 @@ grandparent: Playback API
     
     <p>Retrouvez tout le code associé à cet exemple dans <a href="https://github.com/BrightcoveLearning/18335-playback-api-sample-jsonmrss-feed-playlist">ce référentiel GitHub</a>.</p>
     
-    <p data-height="900" data-theme-id="34967" data-slug-hash="yqdEjZ" data-default-tab="result" data-user="rcrooks1969" data-pen-title="Playback API: MRSS from Playlist" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/yqdEjZ/">API de lecture : MRSS de la liste de lecture</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
+    <p data-height="900" data-theme-id="34967" data-slug-hash="yqdEjZ" data-default-tab="result" data-user="rcrooks1969" data-pen-title="Playback API: MRSS from Playlist" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/yqdEjZ/">Playback API: MRSS de la liste de lecture</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
     <script async src="https://static.codepen.io/assets/embed/ei.js"></script></section>
     </article>

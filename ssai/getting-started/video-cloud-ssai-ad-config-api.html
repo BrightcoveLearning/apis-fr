@@ -1,5 +1,5 @@
 ---
-title: 'API vidéo Cloud SSAI' la
+title: 'API vidéo Cloud SSAI'
 description: Dans cette rubrique, vous apprendrez à utiliser l'API Server-Side Ad Insertion (SSAI) pour créer et gérer des configurations publicitaires.
 parent: Getting Started 
 grandparent: SSAI API
@@ -23,25 +23,25 @@ grandparent: SSAI API
 <section class="bcls-section">
 <h2 id="General_information">informations générales</h2>
 
-<p>Les informations suivantes concernent toutes les demandes d'API SSAI.</p>
+<p>Les informations suivantes concernent toutes les demandes d'SSAI API.</p>
 
 <h3>URL de base</h3>
 
-<p>L'URL de base de l'API SSAI est :</p>
+<p>L'URL de base de SSAI API est:</p>
 
 <pre>
 <code class="language-http" translate="No">https://ssai.api.brightcove.com/v1</code></pre>
 
 <h4>Chemin du compte</h4>
 
-<p>Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme <code translate="No">accounts</code> suivi de votre identifiant de compte à l'URL de base :</p>
+<p>Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme <code translate="No">accounts</code> suivi de votre identifiant de compte à l'URL de base:</p>
 
 <pre>
 <code class="language-http" translate="No">https://ssai.api.brightcove.com/v1<strong>/accounts/</strong><span class="bcls-input">your account id</span></code></pre>
 
 <h3>Authentification</h3>
 
-<p>L'authentification des demandes nécessite un en-tête d'autorisation :</p>
+<p>L'authentification des demandes nécessite un en-tête d'autorisation:</p>
 
 <pre>
 <code class="language-http" translate="No">Authorization: Bearer <span class="bcls-input">your access token</span></code></pre>
@@ -50,10 +50,10 @@ grandparent: SSAI API
 
 <h3>Opérations</h3>
 
-<p>Lorsque vous demandez les informations d'identification du client, vous devrez spécifier le type d'accès au compte ou les opérations que vous souhaitez. Voici une liste des opérations actuellement prises en charge pour l'API SSAI :</p>
+<p>Lorsque vous demandez les informations d'identification du client, vous devrez spécifier le type d'accès au compte ou les opérations que vous souhaitez. Voici une liste des opérations actuellement prises en charge pour SSAI API:</p>
 
 <ul>
-	<li>Données SSAI :
+	<li>Données SSAI:
 	<p><code translate="No">video-cloud/ssai/read</code><br />
 	<code translate="No">video-cloud/ssai/all</code></p>
 	</li>
@@ -63,7 +63,7 @@ grandparent: SSAI API
 <section class="bcls-section">
 <h2 id="Manage_ad_configurations">Gérer les configurations d'annonces</h2>
 
-<p>L'API prend en charge les requêtes GET et PUT suivantes :</p>
+<p>L'API prend en charge les requêtes GET et PUT suivantes:</p>
 
 <ul>
 	<li><a href="#List_ad_configurations">Répertorier les configurations d'annonces</a></li>
@@ -91,12 +91,12 @@ grandparent: SSAI API
 			<td>Autorisation: Porteur <span class="bcls-input">votre jeton d'accès</span></td>
 		</tr>
 		<tr>
-			<td>Type de contenu : application/json</td>
+			<td>Type de contenu: application/json</td>
 		</tr>
 	</tbody>
 </table>
 
-<p>Exemple de réponse :</p>
+<p>Exemple de réponse:</p>
 
 <pre class="line-numbers">
 <code class="language-json" translate="No">{% raw %}[
@@ -136,12 +136,12 @@ grandparent: SSAI API
 			<td>Autorisation: Porteur <span class="bcls-input">votre jeton d'accès</span></td>
 		</tr>
 		<tr>
-			<td>Type de contenu : application/json</td>
+			<td>Type de contenu: application/json</td>
 		</tr>
 	</tbody>
 </table>
 
-<p>Exemple de corps :</p>
+<p>Exemple de corps:</p>
 
 <pre class="line-numbers">
 <code class="language-json" translate="No">{% raw %}{
@@ -179,13 +179,13 @@ grandparent: SSAI API
 			<td>Autorisation: Porteur <span class="bcls-input">votre jeton d'accès</span></td>
 		</tr>
 		<tr>
-			<td>Type de contenu : application/json</td>
+			<td>Type de contenu: application/json</td>
 		</tr>
 	</tbody>
 </table>
 
 <details>
-	<summary>Exemple de réponse :</summary>
+	<summary>Exemple de réponse:</summary>
 	
 	<pre class="line-numbers">
 	<code class="language-json" translate="No">{% raw %}{
@@ -260,7 +260,7 @@ grandparent: SSAI API
 			<td>Autorisation: Porteur <span class="bcls-input">votre jeton d'accès</span></td>
 		</tr>
 		<tr>
-			<td>Type de contenu : application/json</td>
+			<td>Type de contenu: application/json</td>
 		</tr>
 		<tr>
 			<th>Corps de l'échantillon</th>
@@ -275,7 +275,7 @@ grandparent: SSAI API
 </table>
 
 <details>
-	<summary>Exemple de réponse :</summary>
+	<summary>Exemple de réponse:</summary>
 	
 	<pre class="line-numbers">
 	<code class="language-json" translate="No">{% raw %}{
@@ -396,7 +396,7 @@ grandparent: SSAI API
 		<tr>
 			<td><code translate="No">beacon_templates</code></td>
 			<td>Déployer</td>
-			<td>Un ensemble de balises à tirer (exemple : balises tierces)</td>
+			<td>Un ensemble de balises à tirer (exemple: balises tierces)</td>
 		</tr>
 		<tr>
 			<td><code translate="No">beacon_templates[].type</code></td>
@@ -451,7 +451,7 @@ grandparent: SSAI API
 <section class="bcls-section">
 <h2 id="Ad_variables">Variables publicitaires</h2>
 
-<p>Variables dans le <strong>URL du modèle</strong> sont identifiés par des accolades doubles (<code translate="No">{% raw %}{{ … }}{% endraw %}</code> ) avec des espaces facultatifs avant et après le chemin de la variable. Toutes les variables sont préfixées par l'un des trois espaces de noms :</p>
+<p>Variables dans le <strong>URL du modèle</strong> sont identifiés par des accolades doubles (<code translate="No">{% raw %}{{ … }}{% endraw %}</code> ) avec des espaces facultatifs avant et après le chemin de la variable. Toutes les variables sont préfixées par l'un des trois espaces de noms:</p>
 
 <ul>
 	<li><a href="#System_variables">système</a></li>
@@ -540,13 +540,13 @@ grandparent: SSAI API
 
 <p>Les paramètres de requête fournis sur le point d'entrée VMAP/Manifest sont disponibles sous le <code translate="No">url</code> espace de noms. Contrairement aux variables sous d'autres espaces de noms, ces paramètres ne sont pas codés en URL lors de l'insertion dans le modèle. Si les valeurs des variables doivent être encodées en URL pour aller au fournisseur de publicité, elles devront être encodées en double sur l'url du point d'entrée.</p>
 
-<p>Les variables d'URL sont identifiées comme : <code translate="No">{% raw %}{{url.*}}{% endraw %}</code></p>
+<p>Les variables d'URL sont identifiées comme: <code translate="No">{% raw %}{{url.*}}{% endraw %}</code></p>
 
 <h3 id="Metadata_variables">Variables de métadonnées</h3>
 
 <p>Les variables de métadonnées sont celles qui décrivent le contenu vidéo, dérivées des sources de données Video Cloud et Dynamic Delivery. Les valeurs sont codées en URL avant d'être insérées dans les modèles d'URL.</p>
 
-<p>Les variables de métadonnées sont identifiées comme : <code translate="No">{% raw %}{{metadata.*}}{% endraw %}</code></p>
+<p>Les variables de métadonnées sont identifiées comme: <code translate="No">{% raw %}{{metadata.*}}{% endraw %}</code></p>
 
 <table class="bcls-table">
 	<thead class="bcls-table__head">
@@ -606,7 +606,7 @@ grandparent: SSAI API
 <section class="bcls-section">
 <h2 id="Entrypoint_URL_parameters">Paramètres d'URL du point d'entrée</h2>
 
-<p>Il existe une poignée de paramètres de requête qui peuvent être ajoutés à l'URL du point d'entrée SSAI (VMAP ou manifeste) afin de modifier certains comportements :</p>
+<p>Il existe une poignée de paramètres de requête qui peuvent être ajoutés à l'URL du point d'entrée SSAI (VMAP ou manifeste) afin de modifier certains comportements:</p>
 
 <table class="bcls-table">
 	<thead class="bcls-table__head">
@@ -649,14 +649,14 @@ grandparent: SSAI API
               When you prefix an Ad variable with , then a client-side macro will be appended to the end of the VMAP and SRC fields in the catalog response, when SSAI is being used. Then, the Brightcove player will run those strings through the client-side macro replacement logic.
             </p> -->
 
-<p>Les macros côté client sont préfixées par : <code translate="No">{% raw %}{{page.*}}{% endraw %}</code></p>
+<p>Les macros côté client sont préfixées par: <code translate="No">{% raw %}{{page.*}}{% endraw %}</code></p>
 
-<p>Par exemple, pour ajouter le <code translate="No">document.referrer</code> et un <code translate="No">pageVariable</code> variable de fenêtre DOM, vous les préfixeriez avec <code translate="No">page</code> dans le modèle d'annonce comme suit :</p>
+<p>Par exemple, pour ajouter le <code translate="No">document.referrer</code> et un <code translate="No">pageVariable</code> variable de fenêtre DOM, vous les préfixeriez avec <code translate="No">page</code> dans le modèle d'annonce comme suit:</p>
 
 <pre>
 <code class="language-html" translate="No">{% raw %}https://adserver.com/{{page.document.referrer}}/{{page.pageVariable.whateverIwant}}{% endraw %}</code></pre>
 
-<p>L'API de lecture revient <code translate="No">document.referrer</code> et <code translate="No">pageVariable.whateverIwant</code> ajouté aux URL VMAP et SRC. Le lecteur Brightcove exécute ensuite sa logique de remplacement de macro côté client pour remplacer les valeurs appropriées, avant d'envoyer la demande :</p>
+<p>le Playback API revient <code translate="No">document.referrer</code> et <code translate="No">pageVariable.whateverIwant</code> ajouté aux URL VMAP et SRC. Le lecteur Brightcove exécute ensuite sa logique de remplacement de macro côté client pour remplacer les valeurs appropriées, avant d'envoyer la demande:</p>
 
 <pre>
 <code class="language-html" translate="No">{% raw %}https://bolt-prefix/blah.vmap?document.referrer={document.referrer}&amp;pageVariable.whateverIwant={pageVariable.whateverIwant}{% endraw %}</code></pre>

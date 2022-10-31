@@ -1,6 +1,6 @@
 ---
 title: 'API de suppression du maître numérique'
-description: 'Cette rubrique explique comment supprimer les masters numériques de vos vidéos à l'aide de l'API CMS.'
+description: "Cette rubrique explique comment supprimer les masters numériques de vos vidéos à l'aide de CMS API."
 parent: Managing Videos/Assets 
 grandparent: CMS API
 ---
@@ -10,7 +10,7 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
 
-    <p>Les <a href="/cms/references/reference.html#operation/DeleteDigitalMaster">API CMS</a> dispose d'une fonction permettant de supprimer le master numérique (fichier source d'une vidéo) dans le catalogue Video Cloud. Cela vous permettra d'effectuer des tâches de nettoyage ponctuelles pour réduire la taille de votre contenu géré.</p>
+    <p>Les <a href="/cms/references/reference.html#operation/DeleteDigitalMaster">CMS API</a> dispose d'une fonction permettant de supprimer le master numérique (fichier source d'une vidéo) dans le catalogue Video Cloud. Cela vous permettra d'effectuer des tâches de nettoyage ponctuelles pour réduire la taille de votre contenu géré.</p>
 
     <p>Pour comprendre comment les masters sont archivés et comment vous pouvez empêcher qu'ils soient archivés - si c'est ce que vous voulez faire - voir <a href="/ingest-profiles/guides/archiving-masters.html">Archivage des masters</a>.</p>
     </section>
@@ -19,38 +19,38 @@ grandparent: CMS API
     <h2 id="Requirements">Conditions</h2>
 
     <ul>
-      <li>La suppression des masters numériques peut être effectuée à l'aide de la <span translate="No">API CMS</span> <strong>seul</strong> - cette option ne sera pas disponible dans Studio.</li>
+      <li>La suppression des masters numériques peut être effectuée à l'aide de la CMS API <strong>seul</strong> - cette option ne sera pas disponible dans Studio.</li>
     </ul>
     </section>
 
     <section class="bcls-section">
     <h2 id="Implications_of_deleting_masters">Implications de la suppression des masters</h2>
 
-    <p>Avant de continuer, assurez-vous de bien comprendre les implications suivantes de la suppression des masters numériques :</p>
+    <p>Avant de continuer, assurez-vous de bien comprendre les implications suivantes de la suppression des masters numériques:</p>
 
     <ul>
-      <li>Vous ne pourrez plus retranscoder une vidéo une fois son master supprimé. Si vous avez besoin de nouveaux rendus, vous devrez remplacer la vidéo par <a href="https://studio.support.brightcove.com/media/replacing-video-source-file.html">Studio</a> ou la <a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html#replaceVideo">API d'ingestion dynamique</a>.</li>
+      <li>Vous ne pourrez plus retranscoder une vidéo une fois son master supprimé. Si vous avez besoin de nouveaux rendus, vous devrez remplacer la vidéo par <a href="https://studio.support.brightcove.com/media/replacing-video-source-file.html">Studio</a> ou la <a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html#replaceVideo">Dynamic Ingest API</a>.</li>
       <li>La gestion des vidéos via l'approvisionnement par lots (obsolète) ne fonctionnera plus. Utilisez le <a href="/cms/index.html">CMS</a> et <a href="/dynamic-ingest/index.html">Intégration dynamique</a> API à la place.</li>
       <li>La suppression d'un master numérique est une <strong>permanent</strong> opération. Nous <strong>ne peut pas</strong> restaurer les masters numériques supprimés.</li>
     </ul>
     </section>
 
     <section class="bcls-section">
-    <h2 id="Before_deleting_master">Étapes : suppression d'un master numérique</h2>
+    <h2 id="Before_deleting_master">Étapes: suppression d'un master numérique</h2>
 
     <p>Suivez les étapes suivantes pour supprimer un master numérique.</p>
 
     <ol class="bcls-tasklist">
       <li>Etre sur <strong>vous avez votre propre copie du master</strong> au cas où vous en auriez besoin.</li>
       <li>Si vous devez retranscoder des vidéos, faites-le avant de supprimer le master. Après la suppression du maître <strong>vous ne pourrez plus retranscoder la vidéo.</strong></li>
-      <li>Obtenez les informations d'identification client nécessaires pour l'opération. Les informations d'identification du client doivent inclure des autorisations pour les opérations suivantes :
+      <li>Obtenez les informations d'identification client nécessaires pour l'opération. Les informations d'identification du client doivent inclure des autorisations pour les opérations suivantes:
       <pre>
       <code class="language-json" translate="No">[
           "video-cloud/asset/delete",
           "video-cloud/video/read"
       ]</code></pre>
 
-      <p>Ces autorisations sont <strong>ne pas</strong> disponible dans l'interface utilisateur de Studio, vous devrez donc utiliser le <a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">API OAuth</a> pour les obtenir. Vous trouverez ci-dessous une commande cURL qui fera l'affaire si vous remplacez les éléments en surbrillance par vos propres informations :</p>
+      <p>Ces autorisations sont <strong>ne pas</strong> disponible dans l'interface utilisateur de Studio, vous devrez donc utiliser le <a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">API OAuth</a> pour les obtenir. Vous trouverez ci-dessous une commande cURL qui fera l'affaire si vous remplacez les éléments en surbrillance par vos propres informations:</p>
 
       <pre class="line-numbers">
       <code class="language-bash" translate="No">curl --request POST \
@@ -74,7 +74,7 @@ grandparent: CMS API
         "name": "Delete-Masters"
       }'</code></pre>
 
-      <p>Pour obtenir votre BC_TOKEN, ouvrez n'importe quelle page Studio (vous devez être administrateur sur le compte), ouvrez la console JavaScript dans votre navigateur, collez le code Javascript ci-dessous et appuyez sur retour (entrée) :</p>
+      <p>Pour obtenir votre BC_TOKEN, ouvrez n'importe quelle page Studio (vous devez être administrateur sur le compte), ouvrez la console JavaScript dans votre navigateur, collez le code Javascript ci-dessous et appuyez sur retour (entrée):</p>
 
       <pre class="line-numbers">
       <code class="language-javascript" translate="No">var cookiesArray = document.cookie.split(";"), cookiesObj = {}, i, tmpArray = [];

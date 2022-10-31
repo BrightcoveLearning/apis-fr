@@ -1,6 +1,6 @@
 ---
 title: 'Utilisation de la redondance en direct'
-description: 'Les groupes redondants vous permettent de combiner 2 tâches en direct ou plus en un seul flux avec basculement automatique pour une lecture fiable et ininterrompue. Ce guide vous guidera à travers la création d'un groupe redondant, l'ajout de tâches et le forçage d'un basculement à l'aide de l'API Live.'
+description: "Les groupes redondants vous permettent de combiner 2 tâches en direct ou plus en un seul flux avec basculement automatique pour une lecture fiable et ininterrompue. Ce guide vous guidera à travers la création d'un groupe redondant, l'ajout de tâches et le forçage d'un basculement à l'aide de le Live API."
 parent: Guides 
 grandparent: Live API
 ---
@@ -12,7 +12,7 @@ grandparent: Live API
     
     <p>La fonction de redondance de Brightcove Live permet d'assurer des performances fiables pour vos événements en direct en créant un flux de sauvegarde vers lequel Live basculera automatiquement au cas où le premier flux cesserait de fonctionner.</p>
     
-    <p>Notez que toutes les requêtes à l'API Live nécessitent les en-têtes suivants :</p>
+    <p>Notez que toutes les requêtes à le Live API nécessitent les en-têtes suivants:</p>
     
     <table class="bcls-table">
       <caption class="bcls-caption--table">En-têtes de requête API</caption>
@@ -45,7 +45,7 @@ grandparent: Live API
     
     <p>Il n'y a aucune restriction sur les régions dans lesquelles ces emplois peuvent être créés, cependant, il est recommandé qu'ils soient situés relativement proches les uns des autres.</p>
     
-    <p>Une fois les tâches en direct créées, conservez les ID de tâche pour plus tard. Le corps de la requête que vous utiliserez pour ajouter ces travaux à un groupe redondant (voir les sections ci-dessous) ressemblera à ceci :</p>
+    <p>Une fois les tâches en direct créées, conservez les ID de tâche pour plus tard. Le corps de la requête que vous utiliserez pour ajouter ces travaux à un groupe redondant (voir les sections ci-dessous) ressemblera à ceci:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">[
@@ -66,7 +66,7 @@ grandparent: Live API
     <pre>
     <code class="language-http" translate="No">https://api.bcovlive.io/v1/redundantgroups</code></pre>
     
-    <p>Voici un exemple de corps de requête :</p>
+    <p>Voici un exemple de corps de requête:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -77,7 +77,7 @@ grandparent: Live API
       "live_dvr_sliding_window_duration": 1800
     }</code></pre>
     
-    <p>Le tableau ci-dessous contient une liste complète des champs pour le corps de la demande. Dans plusieurs cas, ceux-ci sont identiques aux champs utilisés pour créer un travail réel. Voir le <a href="/live-api/references/reference.html">Référence de l'API en direct</a> pour plus de détails sur les champs.</p>
+    <p>Le tableau ci-dessous contient une liste complète des champs pour le corps de la demande. Dans plusieurs cas, ceux-ci sont identiques aux champs utilisés pour créer un travail réel. Voir le <a href="/live-api/references/reference.html">Référence de l'Live API</a> pour plus de détails sur les champs.</p>
     
     <table class="bcls-table">
       <caption class="bcls-caption--table">Créer des champs de groupe redondants</caption>
@@ -153,7 +153,7 @@ grandparent: Live API
       </tbody>
     </table>
     
-    <p>La réponse ressemblera à ceci :</p>
+    <p>La réponse ressemblera à ceci:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -207,7 +207,7 @@ grandparent: Live API
         <li><code translate="No">waiting</code></li>
       </ul>
       <p>Il y a aussi <code translate="No">page_size</code> paramètre qui peut être défini sur un nombre entier jusqu'à 1000. Le défaut <code translate="No">page_size</code> est de 10.</p>
-      <p>La réponse ressemblera à ceci :</p>
+      <p>La réponse ressemblera à ceci:</p>
 <pre class="line-numbers"><code class="language-json" translate="No">{
   "redundant_groups": [
     {
@@ -277,7 +277,7 @@ grandparent: Live API
     <pre>
     <code class="language-http" translate="No">https://api.bcovlive.io/v1/redundantgroups/{redundant_group_id}/jobs</code></pre>
     
-    <p>Les identifiants de tâche en direct sont spécifiés dans le corps de la requête comme ceci :</p>
+    <p>Les identifiants de tâche en direct sont spécifiés dans le corps de la requête comme ceci:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">[
@@ -289,7 +289,7 @@ grandparent: Live API
       }
     ]</code></pre>
     
-    <p>Il existe quelques propriétés facultatives supplémentaires pour les objets de tâche - le tableau suivant montre tous les champs :</p>
+    <p>Il existe quelques propriétés facultatives supplémentaires pour les objets de tâche - le tableau suivant montre tous les champs:</p>
     
     <table class="bcls-table">
       <caption class="bcls-caption--table">Ajouter des champs de demande de travaux en direct</caption>
@@ -334,7 +334,7 @@ grandparent: Live API
     <pre>
     <code class="language-http" translate="No">https://api.bcovlive.io/v1/redundantgroups/{redundant_group_id}</code></pre>
     
-    <p>La réponse ressemblera à ce qui suit :</p>
+    <p>La réponse ressemblera à ce qui suit:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -424,7 +424,7 @@ grandparent: Live API
     <pre>
     <code class="language-http" translate="No">https://api.bcovlive.io/v1/redundantgroups/{redundant_group_id}/cuepoint</code></pre>
     
-    <p>Incluez un corps de requête comme celui-ci :</p>
+    <p>Incluez un corps de requête comme celui-ci:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -448,7 +448,7 @@ grandparent: Live API
     <pre>
     <code class="language-http" translate="No">https://api.bcovlive.io/v1/redundantgroups/{redundant_group_id}/switch</code></pre>
     
-    <p>Le corps de la requête ressemble à ceci :</p>
+    <p>Le corps de la requête ressemble à ceci:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{

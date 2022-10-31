@@ -1,6 +1,6 @@
 ---
-title: 'API en direct : Points d'entrée statiques'
-description: 'Cette rubrique explique les points d'entrée statiques et comment les implémenter à l'aide de l'API Live.'
+title: "Live API: Points d'entrée statiques"
+description: "Cette rubrique explique les points d'entrée statiques et comment les implémenter à l'aide de le Live API."
 parent: Guides 
 grandparent: Live API
 ---
@@ -22,7 +22,7 @@ grandparent: Live API
 <section class="bcls-section">
 <h2 id="Creating_a_static_entry_point">Création d'un point d'entrée statique</h2>
 
-<p>Le standard <a href="/live-api/references/reference.html#api-Live_Jobs-Create_a_Live_Job">Créer un travail</a> L'opération will est utilisée, mais pour l'ajout de points d'entrée statiques, une propriété devra être ajoutée à la demande de travail :</p>
+<p>Le standard <a href="/live-api/references/reference.html#api-Live_Jobs-Create_a_Live_Job">Créer un travail</a> L'opération will est utilisée, mais pour l'ajout de points d'entrée statiques, une propriété devra être ajoutée à la demande de travail:</p>
 
 <pre>
 <code class="language-json" translate="No">"static": true</code></pre>
@@ -36,33 +36,33 @@ grandparent: Live API
 <p>Une fois qu'une tâche SEP est activée, elle se désactivera automatiquement après un certain temps si l'encodeur n'est pas démarré. Les règles sont les suivantes:</p>
 
 <ul>
-	<li>Si la <code translate="No">event_length</code> est supérieure à 30 minutes, le travail se terminera automatiquement dans 30 minutes par défaut - si vous souhaitez modifier le temps d'attente, vous devrez contacter le support. La désactivation automatique ne peut pas être désactivée.</li>
-	<li>Si la <code translate="No">event_length&nbsp;</code>la valeur est inférieure à la <code translate="No">reconnect_time</code> , le travail se terminera dans le délai défini pour <code translate="No">event_length</code>.</li>
+  <li>Si la <code translate="No">event_length</code> est supérieure à 30 minutes, le travail se terminera automatiquement dans 30 minutes par défaut - si vous souhaitez modifier le temps d'attente, vous devrez contacter le support. La désactivation automatique ne peut pas être désactivée.</li>
+  <li>Si la <code translate="No">event_length&nbsp;</code>la valeur est inférieure à la <code translate="No">reconnect_time</code> , le travail se terminera dans le délai défini pour <code translate="No">event_length</code>.</li>
 </ul>
 </section>
 
 <section class="bcls-section">
 <h2 id="Activate_static_entry_point_stream">Activer la diffusion en direct SEP</h2>
 
-<p>Pour activer un flux en direct de point d'entrée statique, envoyez la requête suivante à l'API Live :</p>
+<p>Pour activer un flux en direct de point d'entrée statique, envoyez la requête suivante à le Live API:</p>
 
 <aside class="bcls-aside bcls-aside--information">Pour pouvoir ingérer dans un point d'entrée statique, vous devez <code translate="No">activate</code> Demande d'API.</aside>
 
 <table class="bcls-table">
-	<caption class="bcls-caption--table">Flux SEP actif</caption>
-	<tbody class="bcls-table__body">
-		<tr>
-			<th>Méthode</th>
-			<td><code translate="No">PUT</code></td>
-		</tr>
-		<tr>
-			<th>Point de terminaison</th>
-			<td>
-			<pre>
+  <caption class="bcls-caption--table">Flux SEP actif</caption>
+  <tbody class="bcls-table__body">
+    <tr>
+      <th>Méthode</th>
+      <td><code translate="No">PUT</code></td>
+    </tr>
+    <tr>
+      <th>Point de terminaison</th>
+      <td>
+      <pre>
 <code class="language-http" translate="No">https://api.bcovlive.io/v1/jobs/<span class="bcls-input">{jobID}</span>/<strong>activate</strong></code></pre>
-			</td>
-		</tr>
-	</tbody>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <p>Aucun corps de requête n'est requis.</p>
@@ -73,23 +73,23 @@ grandparent: Live API
 
 <aside class="bcls-aside bcls-aside--warning">Arrêtez toujours l'encodeur avant de désactiver le flux. La désactivation peut ne pas se produire immédiatement, ce qui vous donne un contrôle exact sur le moment où vos téléspectateurs cessent de recevoir du contenu.</aside>
 
-<p>Pour désactiver un flux en direct de point d'entrée statique, envoyez la requête suivante à l'API Live :</p>
+<p>Pour désactiver un flux en direct de point d'entrée statique, envoyez la requête suivante à le Live API:</p>
 
 <table class="bcls-table">
-	<caption class="bcls-caption--table">Flux SEP actif</caption>
-	<tbody class="bcls-table__body">
-		<tr>
-			<th>Méthode</th>
-			<td><code translate="No">PUT</code></td>
-		</tr>
-		<tr>
-			<th>Point de terminaison</th>
-			<td>
-			<pre>
+  <caption class="bcls-caption--table">Flux SEP actif</caption>
+  <tbody class="bcls-table__body">
+    <tr>
+      <th>Méthode</th>
+      <td><code translate="No">PUT</code></td>
+    </tr>
+    <tr>
+      <th>Point de terminaison</th>
+      <td>
+      <pre>
 <code class="language-http" translate="No">https://api.bcovlive.io/v1/jobs/<span class="bcls-input">{jobID}</span>/<strong>deactivate</strong></code></pre>
-			</td>
-		</tr>
-	</tbody>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <aside class="bcls-aside bcls-aside--information">Lorsque vous désactivez un point d'entrée statique, les dernières secondes du flux restent lisibles.</aside>
@@ -107,40 +107,40 @@ grandparent: Live API
 <h2 id="Limitations">Limites</h2>
 
 <ul>
-	<li>Live to VOD ne peut pas être configuré pour archiver le flux à la fin.
-	<p style="font-weight:bold;">Alternatives :</p>
+  <li>Live to VOD ne peut pas être configuré pour archiver le flux à la fin.
+  <p style="font-weight:bold;">Alternatives :</p>
 
-	<ul>
-		<li>Utilisation <a href="/live-api/guides/live-api-creating-vod-clips.html">coupure</a> pour archiver l'intégralité de l'événement en direct en tant que VOD. La fenêtre d'écrêtage sera disponible pour la durée standard après un événement ou jusqu'à la prochaine activation du SEP (selon la plus courte des deux).</li>
-	</ul>
-	</li>
-	<li>Les paramètres du travail ne peuvent pas être modifiés. Ils sont actuellement liés aux paramètres qui ont initialement créé le SEP.</li>
-	<li>L'activation du flux peut prendre jusqu'à 60 secondes pour que le point d'entrée soit disponible.
-	<p style="font-weight:bold;">Meilleur entrainement:</p>
+  <ul>
+    <li>Utilisation <a href="/live-api/guides/live-api-creating-vod-clips.html">coupure</a> pour archiver l'intégralité de l'événement en direct en tant que VOD. La fenêtre d'écrêtage sera disponible pour la durée standard après un événement ou jusqu'à la prochaine activation du SEP (selon la plus courte des deux).</li>
+  </ul>
+  </li>
+  <li>Les paramètres du travail ne peuvent pas être modifiés. Ils sont actuellement liés aux paramètres qui ont initialement créé le SEP.</li>
+  <li>L'activation du flux peut prendre jusqu'à 60 secondes pour que le point d'entrée soit disponible.
+  <p style="font-weight:bold;">Meilleur entrainement:</p>
 
-	<p>Implémentez les notifications de la plate-forme Live pour les changements d'état des tâches afin d'obtenir des mises à jour en temps réel lorsqu'une tâche SEP est réellement prête.</p>
+  <p>Implémentez les notifications de la plate-forme Live pour les changements d'état des tâches afin d'obtenir des mises à jour en temps réel lorsqu'une tâche SEP est réellement prête.</p>
 
-	<p style="font-weight:bold;">Alternatives :</p>
+  <p style="font-weight:bold;">Alternatives :</p>
 
-	<ol>
-		<li>Activez le flux au moins 60 secondes avant de démarrer l'encodeur.</li>
-		<li>Si l'encodeur a une nouvelle tentative intégrée (Wirecast, Elemental, etc.), le flux peut être connecté immédiatement (bien qu'il puisse y avoir quelques erreurs) et les encodeurs se reconnecteront dès que le point d'entrée sera disponible.</li>
-	</ol>
-	</li>
-	<li>Reconnect_time est toujours applicable pour les travaux SEP sur les déconnexions de l'encodeur. Si l'heure de reconnexion est atteinte, la tâche SEP sera remise à l'état désactivé.
-	<p style="font-weight:bold;">Meilleur entrainement:</p>
+  <ol>
+    <li>Activez le flux au moins 60 secondes avant de démarrer l'encodeur.</li>
+    <li>Si l'encodeur a une nouvelle tentative intégrée (Wirecast, Elemental, etc.), le flux peut être connecté immédiatement (bien qu'il puisse y avoir quelques erreurs) et les encodeurs se reconnecteront dès que le point d'entrée sera disponible.</li>
+  </ol>
+  </li>
+  <li>Reconnect_time est toujours applicable pour les travaux SEP sur les déconnexions de l'encodeur. Si l'heure de reconnexion est atteinte, la tâche SEP sera remise à l'état désactivé.
+  <p style="font-weight:bold;">Meilleur entrainement:</p>
 
-	<p>Désactivez toujours un flux via les API lorsqu'un travail se termine et définissez l'heure de reconnexion sur une fenêtre de temps d'attente acceptable en cas de déconnexion (les coûts d'heure d'entrée sont cumulés pendant cette période d'attente).</p>
-	</li>
-	<li>Chaque compte ne se verra attribuer que 3 emplois SEP disponibles <em>par région</em>. Si vous atteignez la limite, vous devrez <a href="/live-api/references/reference.html#operation/CancelLiveJob">Annuler</a> l'un de vos travaux SEP avant de pouvoir en créer un nouveau.
-	<p>Si vous avez atteint le nombre maximal de tâches SEP et tentez d'en créer une autre, l'erreur suivante sera renvoyée :</p>
+  <p>Désactivez toujours un flux via les API lorsqu'un travail se termine et définissez l'heure de reconnexion sur une fenêtre de temps d'attente acceptable en cas de déconnexion (les coûts d'heure d'entrée sont cumulés pendant cette période d'attente).</p>
+  </li>
+  <li>Chaque compte ne se verra attribuer que 3 emplois SEP disponibles <em>par région</em>. Si vous atteignez la limite, vous devrez <a href="/live-api/references/reference.html#operation/CancelLiveJob">Annuler</a> l'un de vos travaux SEP avant de pouvoir en créer un nouveau.
+  <p>Si vous avez atteint le nombre maximal de tâches SEP et tentez d'en créer une autre, l'erreur suivante sera renvoyée:</p>
 
-	<pre class="line-numbers">
+  <pre class="line-numbers">
 <code class="language-json" translate="No">{
   "error": "You've reached the number of static entry points jobs you can create for your account"
 }</code></pre>
       </li>
-      <li>Si vous essayez d'activer plus de 5 tâches SEP à la fois, vous recevrez une erreur semblable à la suivante :
+      <li>Si vous essayez d'activer plus de 5 tâches SEP à la fois, vous recevrez une erreur semblable à la suivante:
 <pre class="line-numbers"><code class="language-json" translate="No">{
   “message”:“Allocating additional streaming capacity to the region. Please retry your request.: no_streaming_capacity_in_region”,
   “statusCode”:500,
@@ -156,10 +156,10 @@ grandparent: Live API
 <h2 id="Notes">Remarques</h2>
 
 <dl>
-	<dt>Coupure des tâches SEP après la désactivation</dt>
-	<dd>Les utilisateurs peuvent créer des clips jusqu'à la prochaine activation du flux, ou pendant 7 jours, selon la durée la plus courte. Lorsque le flux est réactivé, les sessions d'enregistrement précédentes sont supprimées du serveur et ne peuvent plus être coupées.</dd>
-	<dt>Quelle est la durée du champ stream_start_time lorsqu'un SEP est utilisé ?</dt>
-	<dd>Lorsqu'un SEP est activé, cela sera considéré comme l'heure de début.</dd>
+  <dt>Coupure des tâches SEP après la désactivation</dt>
+  <dd>Les utilisateurs peuvent créer des clips jusqu'à la prochaine activation du flux, ou pendant 7 jours, selon la durée la plus courte. Lorsque le flux est réactivé, les sessions d'enregistrement précédentes sont supprimées du serveur et ne peuvent plus être coupées.</dd>
+  <dt>Quelle est la durée du champ stream_start_time lorsqu'un SEP est utilisé ?</dt>
+  <dd>Lorsqu'un SEP est activé, cela sera considéré comme l'heure de début.</dd>
 </dl>
 </section>
 </article>

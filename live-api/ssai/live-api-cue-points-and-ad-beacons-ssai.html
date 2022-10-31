@@ -1,6 +1,6 @@
 ---
-title: 'API en direct : Points de repère et balises publicitaires avec SSAI' la
-description: Dans cette rubrique, vous apprendrez à gérer les points de repère et les balises publicitaires lors de l'utilisation de l'insertion d'annonces côté serveur (SSAI) de Brightcove pour vos tâches de diffusion en direct.
+title: 'Live API: Points de repère et balises publicitaires avec SSAI'
+description: "Dans cette rubrique, vous apprendrez à gérer les points de repère et les balises publicitaires lors de l'utilisation de l'insertion d'annonces côté serveur (SSAI) de Brightcove pour vos tâches de diffusion en direct."
 parent: SSAI 
 grandparent: Live API
 ---
@@ -13,12 +13,12 @@ grandparent: Live API
  <section class="bcls-section">
   <h2 id="Overview">Aperçu</h2>
   
-  <p>Insertion d'annonces côté serveur <span translate="No">(SSAI)</span> vous permet d'afficher des publicités lors d'un événement de diffusion en direct à des heures spécifiées. Pour des informations générales, consultez le <a href="/live-api/ssai/live-api-server-side-ad-insertion-ssai.html">API en direct : Insertion d'annonces côté serveur <span translate="No">(SSAI)</span></a> document.</p>
+  <p>Insertion d'annonces côté serveur <span>(SSAI)</span> vous permet d'afficher des publicités lors d'un événement de diffusion en direct à des heures spécifiées. Pour des informations générales, consultez le <a href="/live-api/ssai/live-api-server-side-ad-insertion-ssai.html">Live API: Insertion d'annonces côté serveur <span>(SSAI)</span></a> document.</p>
   
   <aside class="bcls-aside bcls-aside--information">
     
     <ul>
-      <li>Avant de pouvoir utiliser <span translate="No">SSAI</span> , il doit être activé pour votre compte. Contactez votre gestionnaire de compte pour plus de détails.</li>
+      <li>Avant de pouvoir utiliser <span>SSAI</span> , il doit être activé pour votre compte. Contactez votre gestionnaire de compte pour plus de détails.</li>
    </ul>
   
   </aside>
@@ -27,16 +27,16 @@ grandparent: Live API
   <section class="bcls-section">
   <h2 id="Cue_points">Points de repère</h2>
   
-  <p>Les coupures publicitaires sont déclenchées par des points de repère, qui peuvent être spécifiés de deux manières :</p>
+  <p>Les coupures publicitaires sont déclenchées par des points de repère, qui peuvent être spécifiés de deux manières:</p>
   
   <ul>
     <li>Envoyé à Brightcove par l'encodeur</li>
-    <li>Points de repère immédiats créés via le <span translate="No">API en direct</span></li>
+    <li>Points de repère immédiats créés via le <span>Live API</span></li>
   </ul>
   
   <h3>De l'encodeur</h3>
   
-  <p>Le système de diffusion en direct Brightcove peut interpréter les points de repère soumis par l'encodeur au format AMF :</p>
+  <p>Le système de diffusion en direct Brightcove peut interpréter les points de repère soumis par l'encodeur au format AMF:</p>
   
   <pre class="line-numbers">
   <code class="language-bash" translate="No">AMFDataList
@@ -45,7 +45,7 @@ grandparent: Live API
     time: 1.9889, //Difference from PTS of THIS packet to the first PTS of the 1st video frame in the adbreak
     name: "scte35",
     type: "event",
-    ad_server_data: "eyJrZXkiOiJ2YWx1ZSJ9",	// optional introduced by Brightcove. It is a base64 encoded json map of parameters e.g. {"key":"value"}
+    ad_server_data: "eyJrZXkiOiJ2YWx1ZSJ9", // optional introduced by Brightcove. It is a base64 encoded json map of parameters e.g. {"key":"value"}
     parameters: {Obj[]:
       type: "avail_in",
       duration: 12.0
@@ -65,7 +65,7 @@ grandparent: Live API
   <section class="bcls-section">
   <h2 id="Manual_cue_point_insertion">Insertion manuelle de points de repère</h2>
   
-  <p>Vous pouvez créer des points de repère immédiats en utilisant le <span translate="No">API en direct</span> en envoyant un <code translate="No">POST</code> demander:</p>
+  <p>Vous pouvez créer des points de repère immédiats en utilisant le <span>Live API</span> en envoyant un <code translate="No">POST</code> demander:</p>
   
   <table class="bcls-table">
     <tbody class="bcls-table__body">
@@ -84,7 +84,7 @@ grandparent: Live API
     </tbody>
   </table>
   
-  <p>Incluez un corps de requête spécifiant les éléments suivants :</p>
+  <p>Incluez un corps de requête spécifiant les éléments suivants:</p>
   
   <table class="bcls-table">
     <thead class="bcls-table__head">
@@ -123,7 +123,7 @@ grandparent: Live API
   
   <p>La durée du point de repère inséré doit être <strong>au moins deux fois la longueur des segments</strong> dans le travail.</p>
   
-  <p>Par exemple, l'insertion d'un <strong>Point de repère de 10 secondes</strong> dans un travail avec <code translate="No">"segment_seconds"=4</code> , fonctionnera bien. Cependant, l'insertion du même point de repère dans un travail avec <code translate="No">"segment_seconds"=6</code> entraînera l'erreur suivante :</p>
+  <p>Par exemple, l'insertion d'un <strong>Point de repère de 10 secondes</strong> dans un travail avec <code translate="No">"segment_seconds"=4</code> , fonctionnera bien. Cependant, l'insertion du même point de repère dans un travail avec <code translate="No">"segment_seconds"=6</code> entraînera l'erreur suivante:</p>
   
   <pre>
   <code class="language-json" translate="No">"error": "The parameter duration should be greater than
@@ -167,7 +167,7 @@ grandparent: Live API
   <section class="bcls-section">
   <h2 id="Beacons">Balises</h2>
   
-  <p>Les balises sont des points de données sur la lecture envoyés à des analyses tierces pour savoir si et combien d'annonces ont été lues. Dans cette section, nous examinerons les types de balises qui peuvent être définis à l'aide de la <span translate="No">API en direct</span> , et les variables qui peuvent être utilisées pour fournir les données. La section suivante détaillera les requêtes API utilisées pour créer et gérer des ensembles de balises.</p>
+  <p>Les balises sont des points de données sur la lecture envoyés à des analyses tierces pour savoir si et combien d'annonces ont été lues. Dans cette section, nous examinerons les types de balises qui peuvent être définis à l'aide de la <span>Live API</span> , et les variables qui peuvent être utilisées pour fournir les données. La section suivante détaillera les requêtes API utilisées pour créer et gérer des ensembles de balises.</p>
   
   <h3>Types de balises</h3>
   
@@ -225,7 +225,7 @@ grandparent: Live API
   
   <h3>Variables balise/annonce</h3>
   
-  <p>Le tableau ci-dessous montre les variables que vous pouvez utiliser pour fournir des données pour les URL de balise. Pour inclure une variable, entourez-la d'accolades doubles, comme ceci : <code translate="No"><span class="bcls-highlight">{{</span>job.job_id<span class="bcls-highlight">}}</span></code>. Voir la section suivante sur la gestion des jeux de balises pour des exemples complets.</p>
+  <p>Le tableau ci-dessous montre les variables que vous pouvez utiliser pour fournir des données pour les URL de balise. Pour inclure une variable, entourez-la d'accolades doubles, comme ceci: <code translate="No"><span class="bcls-highlight">{{</span>job.job_id<span class="bcls-highlight">}}</span></code>. Voir la section suivante sur la gestion des jeux de balises pour des exemples complets.</p>
   <aside class="bcls-aside bcls-aside--information">Noter:
     <ul>
       <li>​La longueur maximale autorisée pour les noms de variables est de 256 et pour la valeur, elle est de 1024.</li>
@@ -318,7 +318,7 @@ grandparent: Live API
       <tr>
         <td style="width:20%"><code translate="No">client.referrer</code></td>
         <td style="text-align:left;width:60%;">
-        <div style="word-wrap:break-word;">valeur de l'en-tête du référent http lors de la création de la session (remarque : c'est l'orthographe correcte)</div>
+        <div style="word-wrap:break-word;">valeur de l'en-tête du référent http lors de la création de la session (remarque: c'est l'orthographe correcte)</div>
         </td>
       </tr>
       <tr>
@@ -372,7 +372,7 @@ grandparent: Live API
       <tr>
         <td style="width:20%"><code translate="No">live.adbreak.timestamputc.session</code></td>
         <td style="text-align:left;width:60%;">
-        <div style="word-wrap:break-word;">temps d'époque en millisecondes à partir de la liste de morceaux ssai. Cette valeur indique l'heure du morceau de sortie dans la liste de morceaux ssai. Étant donné que le contenu publicitaire et l'espace publicitaire ne sont généralement PAS les mêmes, après la 1ère <code translate="No">live.adbreak.timestamputc.origin</code> est différent de <code translate="No">live.adbreak.timestamputc.session</code>. Cette valeur tient compte des ajustements de temps qui ont été effectués dans le <span translate="No">SSAI</span> liste de morceaux.</div>
+        <div style="word-wrap:break-word;">temps d'époque en millisecondes à partir de la liste de morceaux ssai. Cette valeur indique l'heure du morceau de sortie dans la liste de morceaux ssai. Étant donné que le contenu publicitaire et l'espace publicitaire ne sont généralement PAS les mêmes, après la 1ère <code translate="No">live.adbreak.timestamputc.origin</code> est différent de <code translate="No">live.adbreak.timestamputc.session</code>. Cette valeur tient compte des ajustements de temps qui ont été effectués dans le <span>SSAI</span> liste de morceaux.</div>
         </td>
       </tr>
     </tbody>
@@ -436,7 +436,7 @@ grandparent: Live API
   
   <p>Cette section fournit des détails sur les demandes d'API pour gérer les ensembles de balises. Voir la section précédente pour les types et les variables de balise.</p>
   
-  <p>Pour ajouter un jeu de balises à une tâche en direct, créez d'abord le jeu de balises, puis incluez l'ID lorsque vous créez la tâche, comme ceci :</p>
+  <p>Pour ajouter un jeu de balises à une tâche en direct, créez d'abord le jeu de balises, puis incluez l'ID lorsque vous créez la tâche, comme ceci:</p>
   
   <pre class="line-numbers">
   <code class="language-json" translate="No">{
@@ -624,7 +624,7 @@ grandparent: Live API
   
   <h3>Obtenir des ensembles de balises pour l'utilisateur demandeur</h3>
   
-  <p>Vous pouvez également obtenir les jeux de balises pour le compte de l'utilisateur demandeur sans inclure l'identifiant du compte dans l'URL de la demande :</p>
+  <p>Vous pouvez également obtenir les jeux de balises pour le compte de l'utilisateur demandeur sans inclure l'identifiant du compte dans l'URL de la demande:</p>
   
   <table class="bcls-table">
     <tbody class="bcls-table__body">
@@ -727,7 +727,7 @@ grandparent: Live API
   
   <h4>Exemple de réponse</h4>
   
-  <p>La réponse ressemblera à ceci :</p>
+  <p>La réponse ressemblera à ceci:</p>
   
   <pre class="line-numbers">
   <code class="language-json" translate="No">{

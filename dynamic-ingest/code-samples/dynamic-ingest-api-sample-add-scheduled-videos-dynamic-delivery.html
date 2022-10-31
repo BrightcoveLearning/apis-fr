@@ -1,7 +1,6 @@
 ---
 title: 'Ajouter des vidéos programmées'
-description: 'Dans cet exemple, vous apprendrez à programmer des vidéos pour qu'elles deviennent disponibles à un moment ultérieur, afin qu'elles ne soient pas lues accidentellement avant qu'elles ne le devraient.'
-
+description: "Dans cet exemple, vous apprendrez à programmer des vidéos pour qu'elles deviennent disponibles à un moment ultérieur, afin qu'elles ne soient pas lues accidentellement avant qu'elles ne le devraient."
 parent: 'Code Samples' 
 grandparent: Dynamic Ingest API
 ---
@@ -15,7 +14,7 @@ grandparent: Dynamic Ingest API
 
     <p>Lorsque vous ajoutez une nouvelle vidéo à votre compte, il se peut que vous ne souhaitiez pas publier la vidéo pour la visualisation avant un certain temps dans le futur. Cependant, la vidéo est potentiellement jouable dès qu'un rendu jouable est créé. En plus de quelqu'un qui publie la vidéo par erreur, elle peut apparaître dans une liste de lecture intelligente car elle correspond aux critères de recherche qui sélectionnent les vidéos pour la liste.</p>
 
-    <p>Le meilleur moyen d'éviter une sortie prématurée accidentelle est de programmer la vidéo au moment où vous souhaitez qu'elle soit disponible au moment où vous l'ingérez. Vous pouvez le faire simplement en incluant un <code translate="No">schedule</code> objet dans le corps de la requête pour le <span translate="No">API CMS</span> appel qui crée la vidéo :</p>
+    <p>Le meilleur moyen d'éviter une sortie prématurée accidentelle est de programmer la vidéo au moment où vous souhaitez qu'elle soit disponible au moment où vous l'ingérez. Vous pouvez le faire simplement en incluant un <code translate="No">schedule</code> objet dans le corps de la requête pour le CMS API appel qui crée la vidéo:</p>
 
     <pre class="line-numbers">
               <code class="language-json" translate="No">{
@@ -26,7 +25,7 @@ grandparent: Dynamic Ingest API
                 }
               }</code></pre>
 
-    <p>Les <code translate="No">starts_at</code> et <code translate="No">ends_at</code> les valeurs peuvent être des horodatages ISO 8601 complets, ou vous pouvez simplement inclure la partie date, comme indiqué ici. Les deux champs sont facultatifs : en omettant le <code translate="No">starts_at</code> champ signifie que la vidéo sera disponible immédiatement ; en omettant le <code translate="No">ends_at</code> signifie que la vidéo sera disponible indéfiniment.</p>
+    <p>Les <code translate="No">starts_at</code> et <code translate="No">ends_at</code> les valeurs peuvent être des horodatages ISO 8601 complets, ou vous pouvez simplement inclure la partie date, comme indiqué ici. Les deux champs sont facultatifs: en omettant le <code translate="No">starts_at</code> champ signifie que la vidéo sera disponible immédiatement ; en omettant le <code translate="No">ends_at</code> signifie que la vidéo sera disponible indéfiniment.</p>
   </section>
 
   <section class="bcls-section">
@@ -35,26 +34,26 @@ grandparent: Dynamic Ingest API
         <h2 id="gettingCredentials">Obtenir des informations d'identification</h2>
       </summary>
 
-      <p>Pour obtenir un <code translate="No">client_id</code> et <code translate="No">client_secret</code> , vous devrez accéder à l'interface utilisateur OAuth et enregistrer cette application :</p>
+      <p>Pour obtenir un <code translate="No">client_id</code> et <code translate="No">client_secret</code> , vous devrez accéder à l'interface utilisateur OAuth et enregistrer cette application:</p>
 
       <ul>
         <li><a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a></li>
       </ul>
 
-      <p>Voici les autorisations dont vous aurez besoin :</p>
+      <p>Voici les autorisations dont vous aurez besoin:</p>
 
       <figure class="bcls-figure"><img class="bcls-image" alt="Dynamic Ingest Permissions" src="/assets/images/dynamic-ingest/code-samples/di-permissions.png" />
         <figcaption class="bcls-caption--image">Autorisations d'ingestion dynamique</figcaption>
       </figure>
 
-      <p>Vous pouvez également obtenir vos informations d'identification via CURL ou Postman - voir :</p>
+      <p>Vous pouvez également obtenir vos informations d'identification via CURL ou Postman - voir:</p>
 
       <ul>
         <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">Obtenir les informations d'identification du client à l'aide de CURL</a></li>
         <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">Obtenez les informations d'identification du client à l'aide de Postman</a></li>
       </ul>
 
-      <p>Si vous obtenez des informations d'identification directement de l'API, voici les autorisations dont vous avez besoin :</p>
+      <p>Si vous obtenez des informations d'identification directement de l'API, voici les autorisations dont vous avez besoin:</p>
 
       <pre class="line-numbers">
                   <code class="language-json" translate="No">[
@@ -78,7 +77,7 @@ grandparent: Dynamic Ingest API
       Retrouvez tout le code associé à cet exemple dans ce <a href="https://github.com/BrightcoveLearning/18498-dynamic-ingest-api-sample-add-scheduled-videos-dynamic-delivery">Dépôt GitHub</a>.
     </p>
     <h3>Exemple d'application</h3>
-    <p data-height="1200" data-theme-id="dark" data-slug-hash="XELReG" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="Dynamic Ingest API Sample: Add Scheduled Videos (Dynamic Delivery)" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/XELReG/">Exemple d'API d'ingestion dynamique : Ajouter des vidéos programmées (diffusion dynamique)</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
+    <p data-height="1200" data-theme-id="dark" data-slug-hash="XELReG" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="Dynamic Ingest API Sample: Add Scheduled Videos (Dynamic Delivery)" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/XELReG/">Exemple de Dynamic Ingest API: Ajouter des vidéos programmées (diffusion dynamique)</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
     <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
   </section>
 
@@ -88,7 +87,7 @@ grandparent: Dynamic Ingest API
         <h2 id="Using_the_CodePen">Utiliser le CodePen</h2>
       </summary>
 
-      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus :</p>
+      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus:</p>
 
       <ul>
         <li>Basculez l'affichage réel du lecteur en cliquant sur le bouton <strong>Résultat</strong> bouton.</li>

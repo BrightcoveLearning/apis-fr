@@ -1,6 +1,6 @@
 ---
 title: 'Guide OAuth'
-description: 'Brightcove a créé un <a href="/oauth/index.html">Système OAuth 2</a> qui peut être utilisé dans toutes nos nouvelles API pour l'autorisation. Cette rubrique vous montre comment utiliser OAuth pour communiquer avec l'API Player Management.'
+description: "Brightcove a créé un Système OAuth 2 qui peut être utilisé dans toutes nos nouvelles API pour l'autorisation. Cette rubrique vous montre comment utiliser OAuth pour communiquer avec l'API Player Management."
 parent: Getting Started 
 grandparent: Player Management API
 ---
@@ -12,16 +12,16 @@ grandparent: Player Management API
     
     <p>Vous n'avez besoin de rien savoir sur OAuth pour utiliser le système, et nous vous expliquerons tout ce que vous devez faire pour commencer ci-dessous. Pour une présentation détaillée d'OAuth, consultez le <a href="/oauth/index.html">API Brightcove OAuth</a> documents.</p>
     
-    <p>Pour utiliser l'authentification OAuth, procédez comme suit :</p>
+    <p>Pour utiliser l'authentification OAuth, procédez comme suit:</p>
     
     <ol>
       <li><a href="#credentials">Obtenez vos identifiants client</a></li>
       <li><a href="#accesstoken">Obtenez votre jeton d'accès</a></li>
-      <li><a href="#playermgmtapi">Appel <span translate="No">API de gestion des joueurs</span></a></li>
+      <li><a href="#playermgmtapi">Appel <span>Ingestion Profiles API</span></a></li>
       <li><a href="#proxy">Pour simplifier les étapes 2 et 3, utilisez un proxy côté serveur</a></li>
     </ol>
     
-    <p>Lorsque vous travaillez avec le <span translate="No">API de gestion des joueurs</span> , vous pouvez également utiliser l'authentification de base. Pour plus de détails, consultez le <a href="/player-management/getting-started/step-step-player-management.html">Pas à pas: Gestion des joueurs</a> document.</p>
+    <p>Lorsque vous travaillez avec le <span>Ingestion Profiles API</span> , vous pouvez également utiliser l'authentification de base. Pour plus de détails, consultez le <a href="/player-management/getting-started/step-step-player-management.html">Pas à pas: Gestion des Lecteurs</a> document.</p>
     </section>
     
     <section class="bcls-section">
@@ -31,18 +31,18 @@ grandparent: Player Management API
     
     <p>Il y a 2 façons d'obtenir vos identifiants :</p>
     
-    <p>Voici les opérations pour lesquelles vous avez besoin d'autorisations :</p>
+    <p>Voici les opérations pour lesquelles vous avez besoin d'autorisations:</p>
     
     <ul>
       <li>La méthode préférée consiste à utiliser l'interface utilisateur d'administration de Studio comme décrit dans le <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a> document.</li>
       <li>Vous pouvez également utiliser cURL comme indiqué dans le <a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">Obtenir les informations d'identification du client à l'aide de cURL</a> document.
       <ol>
-        <li>En atelier :
+        <li>En atelier:
         <figure class="bcls-figure"><img class="bcls-image" alt="Player Management API Permissions" src="/assets/images/player-management/getting-started/player-operations.png" />
-        <figcaption class="bcls-caption--image">Autorisations de l'API de gestion des joueurs</figcaption>
+        <figcaption class="bcls-caption--image">Autorisations de l'Ingestion Profiles API</figcaption>
         </figure>
         </li>
-        <li>Pour obtenir des identifiants via l'API OAuth :
+        <li>Pour obtenir des identifiants via OAuth API:
         <ul>
           <li><code translate="No">video-cloud/player/read</code></li>
           <li><code translate="No">video-cloud/player/all</code></li>
@@ -60,7 +60,7 @@ grandparent: Player Management API
     
     <p>Les informations d'identification client que vous avez obtenues à l'étape précédente sont utilisées pour demander votre jeton d'accès ( <code translate="No">access_token</code>), qui fournit ensuite l'autorisation d'effectuer un appel d'API. Étant donné que ce jeton n'est valide que pendant 5 minutes, dans la plupart des cas, vous devrez en obtenir un pour chaque appel d'API que vous effectuez.</p>
     
-    <p>Suivez ces étapes pour obtenir votre jeton d'accès à l'aide de cURL :</p>
+    <p>Suivez ces étapes pour obtenir votre jeton d'accès à l'aide de cURL:</p>
     
     <ol class="bcls-tasklist">
       <li>
@@ -82,7 +82,7 @@ grandparent: Player Management API
               https://oauth.brightcove.com/v4/access_token</code></pre>
       <!-- <p><code data-gist-id="dc39e4e6a6eaab089f15" data-gist-hide-footer="true" data-gist-line="5-10"></code></p></li> --></li>
       <li>
-      <p>Votre réponse devrait ressembler à ceci :</p>
+      <p>Votre réponse devrait ressembler à ceci:</p>
     
       <pre class="line-numbers">
     <code class="language-json" translate="No">{"access_token":"AGUq5IQzLzrRvs8CNbhYlBFeB1_B6jTJrcE8grFHEJaPRsPeEg3-S_Apgv8VKiZ-nzxjDGtKwAco9q3z8tdzrxq76k6B9tUXk9HYQOIYgqziWbuvA50VaW8AK2MQFc0G3-woH_kgQxNQUaVNEpE1sePE9GUb2u9FfeQyLw8XQE_QfriYwkkcQoaGOusoIpujx8H6dLFovPuH5F5N3OSxNYhNZrdOhJwkdN7oe076j3xwNRarHn5IRPYKzjOMbqDk552aAhJxo2pYWoDh3q63pBrzre4Bj1rCHKJPifPEMrgPWzG1Uz1BPhQb5_ubr4P8mtnhCjJn4zzT_1-C8ActMUof45kVFhG4VTWRA8rh05THqEBj_TzPIR7L1t5oHhLo5ziILNSp7mZRM3folvYJC6YIhY7M4qLNGR5iq3nerlv5Ufr_bI-1AnP7a68JasawDpZxjfoGf3h6cwIZJr2uG_iU4FO9Ig-Gotaqv5mLWmUgR-DJ3sfRADc",
@@ -91,19 +91,19 @@ grandparent: Player Management API
       <!-- <p><code data-gist-id="dc39e4e6a6eaab089f15" data-gist-hide-footer="true" data-gist-line="13-14"></code></p></li> --></li>
     </ol>
     
-    <p>Avec votre jeton d'accès, vous êtes prêt à communiquer avec le <span translate="No">API de gestion des joueurs</span>.</p>
+    <p>Avec votre jeton d'accès, vous êtes prêt à communiquer avec le <span>Ingestion Profiles API</span>.</p>
     </section>
     
     <section class="bcls-section">
-    <h2 id="playermgmtapi">Appel <span translate="No">API de gestion des joueurs</span></h2>
+    <h2 id="playermgmtapi">Appel <span>Ingestion Profiles API</span></h2>
     
-    <p>Pour utiliser OAuth pour communiquer avec le <span translate="No">API de gestion des joueurs</span> , vous aurez besoin du jeton d'accès que vous avez généré dans la section précédente. N'oubliez pas que ce jeton expire après 5 minutes, vous devrez donc peut-être répéter les étapes de la section précédente si votre jeton d'accès a expiré.</p>
+    <p>Pour utiliser OAuth pour communiquer avec le <span>Ingestion Profiles API</span> , vous aurez besoin du jeton d'accès que vous avez généré dans la section précédente. N'oubliez pas que ce jeton expire après 5 minutes, vous devrez donc peut-être répéter les étapes de la section précédente si votre jeton d'accès a expiré.</p>
     
-    <p>Suivez ces étapes pour obtenir les informations de configuration du lecteur à l'aide de cURL :</p>
+    <p>Suivez ces étapes pour obtenir les informations de configuration du lecteur à l'aide de cURL:</p>
     
     <ol class="bcls-tasklist">
       <li>
-      <p>Dans votre ligne de commande, utilisez le <code translate="No">export</code> pour définir les valeurs de votre jeton d'accès, identifiant de compte et identifiant de joueur.</p>
+      <p>Dans votre ligne de commande, utilisez le <code translate="No">export</code> pour définir les valeurs de votre jeton d'accès, identifiant de compte et identifiant de Lecteur.</p>
     
       <pre class="line-numbers">
     <code class="language-bash" translate="No">export ACCESS_TOKEN=your access token value
@@ -121,7 +121,7 @@ grandparent: Player Management API
               https://players.api.brightcove.com/v2/accounts/{account_id}/players/{player_id}/configuration</code></pre>
       <!-- <p><code data-gist-id="dc39e4e6a6eaab089f15" data-gist-hide-footer="true" data-gist-line="23-27"></code></p></li> --></li>
       <li>
-      <p>Votre réponse devrait ressembler à ceci :</p>
+      <p>Votre réponse devrait ressembler à ceci:</p>
     
       <pre class="line-numbers">
     <code class="language-json" translate="No">{"video_cloud":{"video":null,"policy_key":"BCpkADawqM3VpA66ktTO5bdLTmz6kLGMvGZrSyp-YTvbc4MHllmDmuwzEseO1uTeYYRqygGHhB_MgMaM6ndh5ch-cKYtMFx3LerHyziID8M19b162eeIXKYaxDf8uh4OsLTxVijM-qT1N5QR"},
@@ -132,7 +132,7 @@ grandparent: Player Management API
       <!-- <p><code data-gist-id="dc39e4e6a6eaab089f15" data-gist-hide-footer="true" data-gist-line="30-34"></code></p></li> --></li>
     </ol>
     
-    <p>Pour connaître toutes les demandes que vous pouvez adresser au <span translate="No">API de gestion des joueurs</span> , voir le <a href="/player-management/references/reference.html">Brightcove <span translate="No">API de gestion des joueurs</span></a> document de référence.</p>
+    <p>Pour connaître toutes les demandes que vous pouvez adresser au <span>Ingestion Profiles API</span> , voir le <a href="/player-management/references/reference.html">Brightcove <span>Ingestion Profiles API</span></a> document de référence.</p>
     </section>
     </article>
  

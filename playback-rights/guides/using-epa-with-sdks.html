@@ -1,5 +1,6 @@
 ---
-title: Description de « Utilisation des droits de lecture avec les SDK natifs » : "Dans cette rubrique, vous apprendrez à utiliser les droits de lecture de Brightcove avec les kits SDK natifs de Brightcove."
+title: Description de « Utilisation des droits de lecture avec les SDK natifs
+description: "Dans cette rubrique, vous apprendrez à utiliser les droits de lecture de Brightcove avec les kits SDK natifs de Brightcove."
 parent: Guides 
 grandparent: Playback Rights
 layout: staging
@@ -14,11 +15,11 @@ layout: staging
   <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
     <p>
-      Par défaut, les SDK natifs communiquent avec l'API de lecture Brightcove pour récupérer le contenu de votre vidéo et de votre liste de lecture. Un nouveau système de gestion des droits et des restrictions de lecture se trouve devant l'API de lecture et fournit une autorisation de lecture à l'aide de licences DRM.
+      Par défaut, les SDK natifs communiquent avec le Playback API Brightcove pour récupérer le contenu de votre vidéo et de votre liste de lecture. Un nouveau système de gestion des droits et des restrictions de lecture se trouve devant le Playback API et fournit une autorisation de lecture à l'aide de licences DRM.
     </p>
     <p>Si vous n'êtes pas familier avec cette fonction, consultez le <a href="/playback-rights/getting-started/overview-epa.html">Aperçu: Service de gestion des droits de lecture</a> document.</p>
     <p>
-      Faire des demandes en utilisant les droits de lecture :
+      Faire des demandes en utilisant les droits de lecture:
     </p>
     <ul>
       <li>
@@ -32,9 +33,9 @@ layout: staging
 
   <section class="bcls-section">
     <h2 id="Android_implementation">Implémentation Android</h2>
-    <aside class="bcls-aside bcls-aside--information">Remarque : avec cette implémentation, toute restriction de contenu configurée avec des clés de stratégie sera ignorée.</aside>
+    <aside class="bcls-aside bcls-aside--information">Remarque: avec cette implémentation, toute restriction de contenu configurée avec des clés de stratégie sera ignorée.</aside>
     <p>
-      Pour effectuer des demandes d'API de lecture qui vérifient les droits et les restrictions de lecture, procédez comme suit :
+      Pour effectuer des demandes d'Playback API qui vérifient les droits et les restrictions de lecture, procédez comme suit:
     </p>
     <ol class="bcls-tasklist__restart">
       <li>
@@ -48,7 +49,7 @@ layout: staging
       </li>
       <li>
         <p>
-          Par défaut, le SDK natif pour Android envoie une requête à l'API de lecture s'il dispose d'une clé de stratégie. Pour utiliser les droits de lecture, n'envoyez pas la clé de stratégie avec votre demande.
+          Par défaut, le SDK natif pour Android envoie une requête à le Playback API s'il dispose d'une clé de stratégie. Pour utiliser les droits de lecture, n'envoyez pas la clé de stratégie avec votre demande.
         </p>
         <p>
           Créer une instance de <code translate="No">com.brightcove.player.edge.Catalog</code> , sans fournir de clé de stratégie. Voici un exemple:
@@ -57,7 +58,7 @@ layout: staging
 <code class="language-java" translate="No">Catalog catalog = new Catalog.Builder(eventEmitter, accountId).build();</code></pre>
         <br />
         <p>
-          Si vous suivez l'exemple d'application Brightcove, il obtient l'identifiant du compte comme indiqué ici :
+          Si vous suivez l'exemple d'application Brightcove, il obtient l'identifiant du compte comme indiqué ici:
         </p>
         <pre>
 <code class="language-java" translate="No">getString(R.string.account)</code></pre>
@@ -79,10 +80,10 @@ layout: staging
 
   <section class="bcls-section">
     <h2 id="iOS_implementation">Implémentation iOS</h2>
-    <aside class="bcls-aside bcls-aside--information">Remarque : avec cette implémentation, toute restriction de contenu configurée avec des clés de stratégie sera ignorée.</aside>
+    <aside class="bcls-aside bcls-aside--information">Remarque: avec cette implémentation, toute restriction de contenu configurée avec des clés de stratégie sera ignorée.</aside>
 
     <p>
-      Pour effectuer des demandes d'API de lecture qui vérifient les droits et les restrictions de lecture, procédez comme suit :
+      Pour effectuer des demandes d'Playback API qui vérifient les droits et les restrictions de lecture, procédez comme suit:
     </p>
     <ol class="bcls-tasklist__restart">
       <li>
@@ -93,7 +94,7 @@ layout: staging
       </li>
       <li>
         <p>
-          Par défaut, le SDK natif pour iOS envoie une requête à l'API de lecture s'il dispose d'une clé de stratégie. Pour utiliser les droits de lecture, n'envoyez pas la clé de stratégie avec votre demande.
+          Par défaut, le SDK natif pour iOS envoie une requête à le Playback API s'il dispose d'une clé de stratégie. Pour utiliser les droits de lecture, n'envoyez pas la clé de stratégie avec votre demande.
         </p>
         <p>
           Créer une instance de <code translate="No">BCOVPlaybackService</code> , en définissant la clé de stratégie sur <code translate="No">nil</code>. Voici un exemple:

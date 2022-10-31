@@ -1,7 +1,6 @@
 ---
-title: 'API d'analyse : Métriques en direct'
-description: 'Cette rubrique explique les métriques d'analyse disponibles pour les flux en direct.'
-
+title: 'Analytics API: Métriques en direct'
+description: "Cette rubrique explique les métriques d'analyse disponibles pour les flux en direct."
 parent: 'General Information' 
 grandparent: Analytics API
 ---
@@ -11,9 +10,9 @@ grandparent: Analytics API
   <section class="bcls-section">
     <h2 id="introduction">introduction</h2>
 
-    <p>Métriques de lecture pour les diffusions en direct diffusées par le <strong>Brightcove en direct</strong> service sont disponibles en temps réel, via le <strong>API d'analyse</strong>. Ces données sont saisies pour <em>flux en direct</em> seul; La lecture VOD n'est pas incluse.</p>
+    <p>Métriques de lecture pour les diffusions en direct diffusées par le <strong>Brightcove en direct</strong> service sont disponibles en temps réel, via le <strong>Analytics API</strong>. Ces données sont saisies pour <em>flux en direct</em> seul; La lecture VOD n'est pas incluse.</p>
 
-    <p>L'API fournit des métriques de diffusion en direct via 2 points de terminaison :</p>
+    <p>L'API fournit des métriques de diffusion en direct via 2 points de terminaison:</p>
     <ul>
       <li><code translate="No">/v1/timeseries</code></li>
       <li><code translate="No">/v1/events</code></li>
@@ -244,11 +243,11 @@ grandparent: Analytics API
 
   <h3 id="export">Exportation</h3>
 
-  <p>Le point de terminaison Events fournit également un rapport téléchargeable :</p>
+  <p>Le point de terminaison Events fournit également un rapport téléchargeable:</p>
 
   <p><code translate="No">/v1/events/accounts/{account_id}/videos/{video_id}/export?format=xlsx</code></p>
 
-  <p>La réponse est un <strong>XLSX</strong> fichier avec des métriques en direct sur 4 feuilles :</p>
+  <p>La réponse est un <strong>XLSX</strong> fichier avec des métriques en direct sur 4 feuilles:</p>
   <ul>
     <li>Sommaire</li>
     <li>Utilisateurs concurrents</li>

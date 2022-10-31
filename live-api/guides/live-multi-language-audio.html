@@ -1,8 +1,8 @@
 ---
-title: Description audio multilingue en direct : Cette rubrique explique comment créer une tâche en direct avec plusieurs pistes audio dans différentes langues.
+title: Audio multilingue
+description: Cette rubrique explique comment créer une tâche en direct avec plusieurs pistes audio dans différentes langues.
 parent: Guides 
 grandparent: Live API
-layout: staging
 ---
  <h1>{{ page.title }}</h1>
 <article class="bcls-article">
@@ -11,8 +11,8 @@ layout: staging
   <section class="bcls-section">
     <h2 id="Requirements">Conditions</h2>
     <ul>
-      <li>Un compte configuré pour l'API Live avec la fonction audio multilingue activée (contactez votre gestionnaire de compte pour plus de détails)</li>
-      <li>Une clé API pour l'API Live (fournie lors de la création du compte)</li>
+      <li>Un compte configuré pour le Live API avec la fonction audio multilingue activée (contactez votre gestionnaire de compte pour plus de détails)</li>
+      <li>Une clé API pour le Live API (fournie lors de la création du compte)</li>
       <li>Un encodeur qui prend en charge le protocole RTP. La prise en charge audio multilingue est limitée à <code translate="No">rtp</code> ou <code translate="No">rtp-fec</code> protocole.</li>
       <li>Le PID de chaque piste audio doit être connu lors de la création du Job.</li>
     </ul>
@@ -20,7 +20,7 @@ layout: staging
   <section class="bcls-section">
     <h2 id="Create_your_Live_Job">Créez votre emploi en direct</h2>
 
-    <p>Afin d'ajouter plusieurs pistes audio à votre tâche, une liste de pistes audio doit être fournie dans le corps de la demande lors de la création d'une tâche en direct :</p>
+    <p>Afin d'ajouter plusieurs pistes audio à votre tâche, une liste de pistes audio doit être fournie dans le corps de la demande lors de la création d'une tâche en direct:</p>
 <pre class="line-numbers"><code class="language-json" translate="No">{
   "live_stream": true,
   "region": "us-west-2",
@@ -57,13 +57,13 @@ layout: staging
           <tr>
               <td><code translate="No">variant</code></td>
               <td>
-                <strong>Optionnel</strong>. Correspond aux valeurs du schéma de rôle DASH : principal, alternatif, commentaire, supplémentaire, dub. Utilisé dans le rôle DASH <code translate="No">urn:mpeg:dash:role:2011</code>. Par défaut à <code translate="No">main</code>.
+                <strong>Optionnel</strong>. Correspond aux valeurs du schéma de rôle DASH: principal, alternatif, commentaire, supplémentaire, dub. Utilisé dans le rôle DASH <code translate="No">urn:mpeg:dash:role:2011</code>. Par défaut à <code translate="No">main</code>.
                 <p>HLS &gt; CARACTÉRISTIQUES voir <a href="https://tools.ietf.org/html/rfc8216#section-4.3.4.1">https://tools.ietf.org/html/rfc8216#section-4.3.4.1</a></p>
               </td>
           </tr>
           <tr>
               <td><code translate="No">label</code></td>
-              <td><strong>Optionnel</strong>. Une description textuelle à utiliser pour la piste, de préférence à utiliser par le joueur dans la mesure du possible. Utilisé dans: HLS &gt; <code translate="No">NAME</code> champ. Par défaut à la <code translate="No">language</code> avec un identifiant pour chaque piste par exemple <code translate="No">en-0</code> si non spécifié.</td>
+              <td><strong>Optionnel</strong>. Une description textuelle à utiliser pour la piste, de préférence à utiliser par le Lecteur dans la mesure du possible. Utilisé dans: HLS &gt; <code translate="No">NAME</code> champ. Par défaut à la <code translate="No">language</code> avec un identifiant pour chaque piste par exemple <code translate="No">en-0</code> si non spécifié.</td>
           </tr>
           <tr>
               <td><code translate="No">streams</code>[]</td>
@@ -195,7 +195,7 @@ layout: staging
   </section>
   <section class="bcls-section">
     <h2 id="DRM Playback">DRM_Lecture</h2>
-    <p>Actuellement, DRM n'est pris en charge que via le service de rattrapage (timeshift). Ajoutez ces champs à votre corps de demande de demande de création d'emploi :</p>
+    <p>Actuellement, DRM n'est pris en charge que via le service de rattrapage (timeshift). Ajoutez ces champs à votre corps de demande de demande de création d'emploi:</p>
 <pre class="line-numbers"><code class="language-json" translate="No">{
   "drm": {
     "modes": [

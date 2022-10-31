@@ -1,7 +1,6 @@
 ---
-title: 'Notifications pour l'ingestion dynamique'
-description: 'Dans cette rubrique, vous découvrirez les notifications pour les tâches d'ingestion Dynamic Delivery soumises à l'aide de l'API Dynamic Ingest.'
-
+title: 'Notifications pour Dynamic Ingest API'
+description: "Dans cette rubrique, vous découvrirez les notifications pour les tâches d'ingestion Dynamic Delivery soumises à l'aide de Dynamic Ingest API."
 parent: 'General Information' 
 grandparent: Dynamic Ingest API
 ---
@@ -9,7 +8,7 @@ grandparent: Dynamic Ingest API
 <article class="bcls-article">
   <summary>{{ page.description }}</summary>
     <section class="bcls-section">
-    <h2 id="diAPI">Notifications d'API d'ingestion dynamique</h2>
+    <h2 id="diAPI">Notifications de Dynamic Ingest API</h2>
     
     <p>Vous pouvez spécifier une ou plusieurs URL de rappel pour recevoir des notifications des résultats du processus d'ingestion. Les URL que vous spécifiez doivent être destinées aux applications qui peuvent accepter les requêtes POST. Les notifications seront envoyées au format JSON.</p>
     
@@ -18,7 +17,7 @@ grandparent: Dynamic Ingest API
     <ul>
       <li>Jusqu'à 10 abonnés pour les notifications d'erreurs sont pris en charge. Vous pouvez inclure plus de 10 URL auxquelles envoyer les notifications, mais seules les 10 premières seront traitées</li>
       <li>Les URL se terminant par une barre oblique (/) ne seront pas acceptées ; par exemple, l'url "https://my.domain.com/notification-receiver" fonctionne, mais "https://my.domain.com/notification-receiver/" ne fonctionne pas</li>
-      <li>Alternativement, vous pouvez utiliser le <a href="/cms/references/reference.html#api-videoGroup-Get_Status_of_Ingest_Jobs">API d'état de l'API CMS</a> pour obtenir l'état des tâches d'ingestion pour une vidéo particulière.</li>
+      <li>Alternativement, vous pouvez utiliser le <a href="/cms/references/reference.html#api-videoGroup-Get_Status_of_Ingest_Jobs">API d'état de CMS API</a> pour obtenir l'état des tâches d'ingestion pour une vidéo particulière.</li>
     </ul>
     </aside>
     
@@ -34,7 +33,7 @@ grandparent: Dynamic Ingest API
       <li>Veut recevoir des rappels sur deux points de terminaison situés respectivement à http://host1/path1 et http://host2/path2</li>
     </ul>
     
-    <p>La requête DI ressemblerait à ceci :</p>
+    <p>La requête DI ressemblerait à ceci:</p>
     
     <h4>Demande POST</h4>
     <textarea class="bcls-code" translate="No">https://ingest.api.brightcove.com/v1/accounts/57838016001/videos/5199670523001/ingest-requests</textarea>
@@ -52,7 +51,7 @@ grandparent: Dynamic Ingest API
     
     <h3>Exemple de notification</h3>
     
-    <p>Les notifications sont envoyées en tant que requêtes POST avec la notification dans le corps de la requête en tant que JSON <sup> <strong> <a href="#note1">[1]</a> </strong> </sup>. Voici un ensemble complet de notifications d'une tâche d'ingestion vidéo typique :</p>
+    <p>Les notifications sont envoyées en tant que requêtes POST avec la notification dans le corps de la requête en tant que JSON <sup> <strong> <a href="#note1">[1]</a> </strong> </sup>. Voici un ensemble complet de notifications d'une tâche d'ingestion vidéo typique:</p>
     
     <pre class="line-numbers"><code class="language-json" translate="No">{
       "entity": "default\/audio192",
@@ -301,7 +300,7 @@ grandparent: Dynamic Ingest API
         </tr>
         <tr>
           <td><code translate="No">entityType</code></td>
-          <td>le type d'actif faisant l'objet de la déclaration - par exemple : TITLE (une vidéo), DIGITAL_MASTER, ASSET (un rendu, un fichier de sous-titres ou une image)</td>
+          <td>le type d'actif faisant l'objet de la déclaration - par exemple: TITLE (une vidéo), DIGITAL_MASTER, ASSET (un rendu, un fichier de sous-titres ou une image)</td>
         </tr>
         <tr>
           <td><code translate="No">bitrate</code></td>

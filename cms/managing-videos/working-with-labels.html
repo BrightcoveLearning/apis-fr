@@ -1,6 +1,6 @@
 ---
 title: 'Travailler avec des étiquettes'
-description: 'Dans cette rubrique, vous apprendrez à créer, gérer et utiliser des étiquettes à l'aide de l'API CMS.'
+description: "Dans cette rubrique, vous apprendrez à créer, gérer et utiliser des étiquettes à l'aide de CMS API."
 parent: Managing Videos/Assets 
 grandparent: CMS API
 ---
@@ -10,7 +10,7 @@ grandparent: CMS API
   <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
     <aside class="bcls-aside bcls-aside--tip">Notez que les libellés ne sont pas automatiquement activés pour les comptes. Pour activer les libellés pour votre compte, <a href="https://supportportal.brightcove.com/s/login/">contacter l'assistance Brightcove</a>.</aside>
-    <p>Les étiquettes sont similaires aux balises. Vous pouvez les ajouter à des vidéos, puis les utiliser pour rechercher un groupe de vidéos, mais elles présentent des avantages distincts :</p>
+    <p>Les étiquettes sont similaires aux balises. Vous pouvez les ajouter à des vidéos, puis les utiliser pour rechercher un groupe de vidéos, mais elles présentent des avantages distincts:</p>
     <ul>
       <li>
         Les libellés sont créés au niveau du compte et appliqués aux vidéos.
@@ -19,7 +19,7 @@ grandparent: CMS API
       </li>
       <li>
         Les étiquettes sont créées sous forme de chemin hiérarchique, comme <code translate="No">/nature/birds/shore_birds</code>.
-        <p>Cela signifie que vous pouvez rechercher (ou créer une playlist basée sur) un chemin partiel ou complet :
+        <p>Cela signifie que vous pouvez rechercher (ou créer une playlist basée sur) un chemin partiel ou complet:
           <ul>
             <li><code translate="No">q=labels:/nature</code>- renvoie toutes les vidéos qui ont le label <code translate="No">nature</code></li>
             <li><code translate="No">q=labels:/nature/birds</code>- renvoie le <code translate="No">birds</code> sous-groupe de la <code translate="No">nature</code> vidéos</li>
@@ -31,8 +31,8 @@ grandparent: CMS API
   </section>
   <section class="bcls-section">
     <h2 id="creating_managing_labels">Création et gestion des étiquettes</h2>
-    <p>Les étiquettes de votre compte peuvent être créées et gérées à l'aide du <span translate="No">API CMS</span> <code translate="No">/v1/accounts/{account_id}/labels</code> extrémités.</p>
-    <p>Notez que tous les points de terminaison d'API indiqués ci-dessous seront ajoutés à l'URL de base du CMS :</p>
+    <p>Les étiquettes de votre compte peuvent être créées et gérées à l'aide du CMS API <code translate="No">/v1/accounts/{account_id}/labels</code> extrémités.</p>
+    <p>Notez que tous les points de terminaison d'API indiqués ci-dessous seront ajoutés à l'URL de base du CMS:</p>
     <pre><code class="language-http" translate="No">https://cms.api.brightcove.com</code></pre>
     <h3>Création d'une étiquette</h3>
     <p>De nouvelles étiquettes peuvent être créées en envoyant le chemin complet dans un <code translate="No">POST</code> demander:</p>
@@ -42,12 +42,12 @@ grandparent: CMS API
 <pre class="line-numbers"><code class="language-json" translate="No">{
   "path": "/nature/birds/shore_birds/"
 }</code></pre>
-    <p>Noter que <em>tous</em> des étiquettes dans le chemin qui n'existent pas déjà seront créées. Si vous souhaitez ajouter un autre groupe de <code translate="No">forest_birds</code> , vous enverriez :</p>
+    <p>Noter que <em>tous</em> des étiquettes dans le chemin qui n'existent pas déjà seront créées. Si vous souhaitez ajouter un autre groupe de <code translate="No">forest_birds</code> , vous enverriez:</p>
 <pre class="line-numbers"><code class="language-json" translate="No">{
   "path": "/nature/birds/forest_birds/"
 }</code></pre>
     <p>Cette fois, seuls les <code translate="No">forest_birds</code> sous-étiquette, sera créé, car <code translate="No">nature</code> et <code translate="No">birds</code> existe déjà.</p>
-    <p>De même, si vous souhaitez ajouter un nouveau sous-groupe <code translate="No">sandpipers</code> à <code translate="No">shore_birds</code> , vous enverriez :</p>
+    <p>De même, si vous souhaitez ajouter un nouveau sous-groupe <code translate="No">sandpipers</code> à <code translate="No">shore_birds</code> , vous enverriez:</p>
 <pre class="line-numbers"><code class="language-json" translate="No">{
   "path": "/nature/birds/shore_birds/sandpipers"
 }</code></pre>
@@ -79,7 +79,7 @@ grandparent: CMS API
 <pre class="line-numbers"><code class="language-json" translate="No">{
   "new_label": "coastal_birds"
 }</code></pre>
-    <p>Notez que le <code translate="No">new_label</code> valeur remplacera le dernier élément dans le <code translate="No">{path}</code> inclus dans la demande. Donc si à la place vous vouliez remplacer <code translate="No">/birds</code> avec <code translate="No">/avian</code> , la requête et le corps ressembleraient à ceci :</p>
+    <p>Notez que le <code translate="No">new_label</code> valeur remplacera le dernier élément dans le <code translate="No">{path}</code> inclus dans la demande. Donc si à la place vous vouliez remplacer <code translate="No">/birds</code> avec <code translate="No">/avian</code> , la requête et le corps ressembleraient à ceci:</p>
     <h5>Point de terminaison</h5>
     <pre><code class="language-http" translate="No">/v1/accounts/1234567890/labels/by_path//nature/birds/</code></pre>
     <h5>Corps de la demande</h5>
@@ -95,7 +95,7 @@ grandparent: CMS API
 }</code></pre>
     <h3>Supprimer une étiquette</h3>
     <p>La suppression d'une étiquette utilise un <code translate="No">DELETE</code> demande envoyée au même point de terminaison que la demande de mise à jour. Seul le chemin se terminant par cette sous-étiquette (et les chemins qui ont des sous-étiquettes supplémentaires) seront supprimés, tandis que les étiquettes de niveau supérieur sont conservées.</p>
-    <p>Par exemple, supposons que vous ayez ces trois chemins d'étiquettes :</p>
+    <p>Par exemple, supposons que vous ayez ces trois chemins d'étiquettes:</p>
     <pre><code translate="No">
       /nature/wildlife/avian/coastal_birds
       /nature/wildlife/avian/coastal_birds/sandpipers
@@ -106,13 +106,13 @@ grandparent: CMS API
   </section>
   <section class="bcls-section">
     <h2 id="adding_labels_videos">Ajouter et mettre à jour des étiquettes aux vidéos</h2>
-    <p>Ajoutez des libellés aux vidéos sous la forme d'un tableau de chemins de libellés complets :</p>
+    <p>Ajoutez des libellés aux vidéos sous la forme d'un tableau de chemins de libellés complets:</p>
     <pre class="line-numbers"><code class="language-json" translate="No">[
       "/nature/wildlife/avian/coastal_birds",
       "/nature/wildlife/avian/coastal_birds/sandpipers"
 ]</code></pre>
     <p>Le tableau d'étiquettes peut être inclus dans un <a href="/cms/references/reference.html#operation/CreateVideo">demande de création de vidéo (POST)</a> ou un <a href="/cms/references/reference.html#operation/UpdateVideo">demande de mise à jour vidéo (PATCH)</a>.</p>
-    <p>Pour mettre à jour les étiquettes vidéo, envoyez le tableau de vidéos complet et mis à jour dans un <a href="/cms/references/reference.html#operation/UpdateVideo">demande de mise à jour vidéo (PATCH)</a>. Ainsi, par exemple, pour ajouter le <code translate="No">/nature/wildlife/avian/forest_birds</code> , vous enverriez le tableau :</p>
+    <p>Pour mettre à jour les étiquettes vidéo, envoyez le tableau de vidéos complet et mis à jour dans un <a href="/cms/references/reference.html#operation/UpdateVideo">demande de mise à jour vidéo (PATCH)</a>. Ainsi, par exemple, pour ajouter le <code translate="No">/nature/wildlife/avian/forest_birds</code> , vous enverriez le tableau:</p>
     <pre class="line-numbers"><code class="language-json" translate="No">[
       "/nature/wildlife/avian/coastal_birds",
       "/nature/wildlife/avian/coastal_birds/sandpipers",
@@ -122,7 +122,7 @@ grandparent: CMS API
   </section>
   <section class="bcls-section">
     <h2 id="searching_videos_label">Recherche de vidéos par libellés</h2>
-    <p>Vous pouvez rechercher des vidéos en <code translate="No">labels</code> tout comme vous pouvez le faire avec d'autres champs pris en charge pour la recherche. Comme mentionné dans l'introduction, l'ajout de sous-étiquettes au chemin de recherche filtre les résultats de la recherche :</p>
+    <p>Vous pouvez rechercher des vidéos en <code translate="No">labels</code> tout comme vous pouvez le faire avec d'autres champs pris en charge pour la recherche. Comme mentionné dans l'introduction, l'ajout de sous-étiquettes au chemin de recherche filtre les résultats de la recherche:</p>
     <table class="bcls-table">
       <caption class="bcls-caption--table">Recherche par exemples d'étiquettes</caption>
       <thead class="bcls-table__head">

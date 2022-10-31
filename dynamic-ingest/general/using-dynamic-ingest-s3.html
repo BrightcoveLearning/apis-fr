@@ -1,7 +1,6 @@
 ---
-title: 'Utilisation de l'ingestion dynamique avec S3'
-description: 'Dans cette rubrique, vous apprendrez à ingérer des vidéos à partir de votre compte Amazon S3 à l'aide de l'API Dynamic Ingest.'
-
+title: 'Utilisation de Dynamic Ingest API avec S3'
+description: "Dans cette rubrique, vous apprendrez à ingérer des vidéos à partir de votre compte Amazon S3 à l'aide de Dynamic Ingest API."
 parent: 'General Information' 
 grandparent: Dynamic Ingest API
 ---
@@ -19,7 +18,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="setPolicy">Définition de la stratégie S3</h2>
     
-    <p>Pour configurer votre politique afin d'autoriser Dynamic Ingest à accéder à vos vidéos, accédez à la <a href="http://aws.amazon.com/console/">Console AWS</a>. Sélectionnez votre compartiment, puis sélectionnez l'onglet « Autorisations », puis cliquez sur le bouton « Politique du compartiment ». Sur la dernière ligne cliquez <strong>Ajouter une stratégie de compartiment</strong>. Vous trouverez ci-dessous notre politique recommandée :</p>
+    <p>Pour configurer votre politique afin d'autoriser Dynamic Ingest à accéder à vos vidéos, accédez à la <a href="http://aws.amazon.com/console/">Console AWS</a>. Sélectionnez votre compartiment, puis sélectionnez l'onglet « Autorisations », puis cliquez sur le bouton « Politique du compartiment ». Sur la dernière ligne cliquez <strong>Ajouter une stratégie de compartiment</strong>. Vous trouverez ci-dessous notre politique recommandée:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -52,7 +51,7 @@ grandparent: Dynamic Ingest API
      ]
      }</code></pre>
     
-    <p>Il n'y a que <strong>un changement que vous devez faire</strong> à cette règle de compartiment avant qu'elle ne soit prête :</p>
+    <p>Il n'y a que <strong>un changement que vous devez faire</strong> à cette règle de compartiment avant qu'elle ne soit prête:</p>
     
     <ol class="bcls-tasklist">
       <li>

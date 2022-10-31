@@ -1,6 +1,6 @@
 ---
-title: 'Livraison d'URL statique'
-description: 'Dans cette rubrique, vous apprendrez à utiliser les URL statiques de Brightcove Playback API v2.'
+title: "Livraison d'URL statique"
+description: "Dans cette rubrique, vous apprendrez à utiliser les URL statiques de Brightcove Playback API v2."
 parent: Guides 
 grandparent: Playback API
 ---
@@ -28,31 +28,31 @@ grandparent: Playback API
 
     <p>Brightcove fournit des URL statiques vers des fichiers manifestes vidéo pour les ressources de votre bibliothèque Video Cloud. Cela vous donne la possibilité de gérer votre contenu dans votre propre CMS et de le diffuser à l'aide d'un schéma de sécurité personnalisé. </p>
 
-    <p>Ceci est important pour les clients qui ont une architecture existante qui n'autorise pas un appel d'API Playback avant d'avoir besoin des URL du manifeste. Le joueur peut également utiliser cette fonction, réduisant le temps de démarrage de la lecture en éliminant un appel.</p>
+    <p>Ceci est important pour les clients qui ont une architecture existante qui n'autorise pas un appel d'API Playback avant d'avoir besoin des URL du manifeste. Le Lecteur peut également utiliser cette fonction, réduisant le temps de démarrage de la lecture en éliminant un appel.</p>
 
-    <p>Voir aussi le <a href="/playback/references/reference_v2.html#tag/Static-URLs">Référence de l'API de lecture v2</a>.</p>
+    <p>Voir aussi le <a href="/playback/references/reference_v2.html#tag/Static-URLs">Référence de le Playback API v2</a>.</p>
   </section>
 
   <section class="bcls-section">
     <h2 id="Requirements">Conditions</h2>
     <p>
-      Les exigences suivantes sont requises pour les URL statiques :
+      Les exigences suivantes sont requises pour les URL statiques:
     </p>
     <ul>
-      <li>API de lecture Brightcove v2</li>
+      <li>Playback API Brightcove v2</li>
       <li>Vos actifs sont ingérés pour la livraison dynamique</li>
     </ul>
     <!-- <h3>Account setup</h3>
       <p>
-        To sign the <span translate="No">JSON Web Token</span> (JWT), your Brightcove account needs to be enabled for Playback Authorization Service. Contact your account manager to have this done.
+        To sign the <span>JSON Web Token</span> (JWT), your Brightcove account needs to be enabled for Playback Authorization Service. Contact your account manager to have this done.
       </p> -->
     <h3>Inscription aux analyses </h3>
-    <p>Avec les URL statiques, vous intégrez l'API de lecture sans utiliser Brightcove Player. Bien que Brightcove Player envoie automatiquement des données d'analyse à Brightcove, vous utiliserez l'API de collecte de données pour le faire.</p>
+    <p>Avec les URL statiques, vous intégrez le Playback API sans utiliser Brightcove Player. Bien que Brightcove Player envoie automatiquement des données d'analyse à Brightcove, vous utiliserez Data Collection API pour le faire.</p>
     <p>
-      Si vous n'êtes pas familier avec l'API de collecte de données, consultez le <a href="https://apis.support.brightcove.com/data-collection/getting-started/overview-data-collection-api-v2.html">Aperçu: API de collecte de données</a> document.
+      Si vous n'êtes pas familier avec Data Collection API, consultez le <a href="https://apis.support.brightcove.com/data-collection/getting-started/overview-data-collection-api-v2.html">Aperçu: Data Collection API</a> document.
     </p>
     <p>
-      Pour plus de détails sur l'envoi d'informations au collecteur de données, consultez le <a href="https://apis.support.brightcove.com/data-collection/getting-started/data-collection-api-sample.html">Exemple d'API de collecte de données</a>.
+      Pour plus de détails sur l'envoi d'informations au collecteur de données, consultez le <a href="https://apis.support.brightcove.com/data-collection/getting-started/data-collection-api-sample.html">Exemple d'Data Collection API</a>.
     </p>
   </section>
 
@@ -72,12 +72,12 @@ grandparent: Playback API
   <section class="bcls-section">
     <h2 id="Static_URLs">URL statiques</h2>
     <p>
-      Avec l'API de lecture v2 de Brightcove, les URL statiques sont désormais disponibles.
+      Avec le Playback API v2 de Brightcove, les URL statiques sont désormais disponibles.
     </p>
 
     <h3>Caractéristiques</h3>
     <p>
-      Voici les fonctionnalités associées aux URL statiques :
+      Voici les fonctionnalités associées aux URL statiques:
     </p>
     <table class="bcls-table">
       <thead class="bcls-table__head">
@@ -89,7 +89,7 @@ grandparent: Playback API
       <tbody class="bcls-table__body">
         <tr>
           <td>Vidéo à la demande (VOD)</td>
-          <td>Formats vidéo pris en charge via Dynamic Delivery uniquement :
+          <td>Formats vidéo pris en charge via Dynamic Delivery uniquement:
             <ul>
               <li>
                 HLS
@@ -159,7 +159,7 @@ grandparent: Playback API
   <section class="bcls-section">
     <h2 id="Implementing_Static_URLs">Implémentation d'URL statiques</h2>
 
-    <p>Les URL statiques incluent les éléments suivants :</p>
+    <p>Les URL statiques incluent les éléments suivants:</p>
     <ul>
       <li>
         identifiant de compte
@@ -175,19 +175,19 @@ grandparent: Playback API
       </li>
     </ul>
     <p>
-      Les URL statiques sont sécurisées à l'aide d'un fichier généré et signé par le client <span translate="No">Jeton Web JSON</span> (JWT). Avec ce jeton, vous pouvez configurer et appliquer des aspects de la livraison. Pour plus de détails, consultez le <a href="#Creating_a_JSON_Web_Token">Créer un <span translate="No">Jeton Web JSON</span></a> section.
+      Les URL statiques sont sécurisées à l'aide d'un fichier généré et signé par le client <span>Jeton Web JSON</span> (JWT). Avec ce jeton, vous pouvez configurer et appliquer des aspects de la livraison. Pour plus de détails, consultez le <a href="#Creating_a_JSON_Web_Token">Créer un <span>Jeton Web JSON</span></a> section.
     </p>
     <!-- <p>
       For manifests & VMAPs, the response will be returned directly. For MP4s it will 302 to the right CDN URL. DRM is not necessary to include here. This is controlled by flags on the account & video themselves. You  can use a claim in the JWT, if necessary, to switch between DRM types on the fly.
     </p> -->
     <h3>Domaine</h3>
     <p>
-      Le domaine utilisé pour les URL statiques est l'URL Playback API v2 (PAPIv2) :
+      Le domaine utilisé pour les URL statiques est l'URL Playback API v2 (PAPIv2):
     </p>
     <pre><code class="language-html" translate="No">https://playback.brightcovecdn.com/playback/v1/</code></pre>
     <h3>Points de terminaison</h3>
     <p>
-      Exemples d'URL statiques pour chaque type de livraison :
+      Exemples d'URL statiques pour chaque type de livraison:
     </p>
     <table class="bcls-table">
       <thead class="bcls-table__head">
@@ -270,8 +270,8 @@ grandparent: Playback API
   </section>
 
   <section class="bcls-section">
-    <h2 id="Creating_a_JSON_Web_Token">Créer un <span translate="No">Jeton Web JSON</span></h2>
-    <p>Pour créer un jeton à utiliser lors de la communication avec l'API de lecture de Brightcove, consultez le <a href="https://general.support.brightcove.com/developer/create-json-web-token.html">Créer un <span translate="No">Jeton Web JSON</span> (JWT)</a> document. Vous y trouverez les revendications qui peuvent être utilisées pour la livraison d'URL statiques.</p>
+    <h2 id="Creating_a_JSON_Web_Token">Créer un <span>Jeton Web JSON</span></h2>
+    <p>Pour créer un jeton à utiliser lors de la communication avec le Playback API de Brightcove, consultez le <a href="https://general.support.brightcove.com/developer/create-json-web-token.html">Créer un <span>Jeton Web JSON</span> (JWT)</a> document. Vous y trouverez les revendications qui peuvent être utilisées pour la livraison d'URL statiques.</p>
 
   </section>
 
@@ -284,22 +284,22 @@ grandparent: Playback API
     </p>
     <h3>Demande de licence Widevine</h3>
     <p>
-      Vous pouvez utiliser le point de terminaison suivant pour obtenir la licence DRM pour Widevine :
+      Vous pouvez utiliser le point de terminaison suivant pour obtenir la licence DRM pour Widevine:
     </p>
     <pre><code class="language-html" translate="No">/accounts/{account_id}/videos/{video_id}/licenses/cenc/widevine?bcov_auth={JWT}</code></pre>
     <h3>Certificat d'application FairPlay</h3>
     <p>
-      Pour les certificats d'application FairPlay, le point de terminaison est :
+      Pour les certificats d'application FairPlay, le point de terminaison est:
     </p>
     <pre><code class="language-http" translate="No">/accounts/{account_id}/fairplay_app_cert</code></pre>
     <h3>Point de terminaison PlayReady</h3>
-    <p>Pour PlayReady, le point de terminaison de la demande de licence est :</p>
+    <p>Pour PlayReady, le point de terminaison de la demande de licence est:</p>
     <pre><code class="language-http" translate="No">/accounts/{account_id}/videos/{video_id}/licenses/cenc/playready?bcov_auth={JWT}</code></pre>
   </section>
 
   <section class="bcls-section">
     <h2 id="Notes">Remarques</h2>
-    <p>Les remarques suivantes s'appliquent à la livraison d'URL statique :</p>
+    <p>Les remarques suivantes s'appliquent à la livraison d'URL statique:</p>
     <ul>
       <li>
         Les sous-titres dans le manifeste sont pris en charge. Les sous-titres hors bande seront pris en charge dans une future version.

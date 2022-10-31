@@ -1,7 +1,7 @@
 ---
 title: 'Désactiver les mises à jour automatiques du lecteur'
-description: '<p>Cette rubrique explique comment désactiver les mises à jour automatiques du lecteur, ainsi que configurer un lecteur sur une version spécifique.</p>
-<p class="BCL-aside">Noter: Ce document utilise des instructions curl pour effectuer des opérations à l'aide de l'API Player Management. Dans les instructions curl, vous verrez les valeurs de <strong>$EMAIL</strong> , <strong>{account_id}</strong> et <strong>{player_id}</strong>. Vous devez soit créer des variables d'environnement par ces noms et affecter les valeurs correspondantes, soit fournir les valeurs littérales des variables.</p>'
+description: "<p>Cette rubrique explique comment désactiver les mises à jour automatiques du lecteur, ainsi que configurer un lecteur sur une version spécifique.</p>
+<p>Noter: Ce document utilise des instructions curl pour effectuer des opérations à l'aide de l'API Player Management. Dans les instructions curl, vous verrez les valeurs de <strong>$EMAIL</strong> , <strong>{account_id}</strong> et <strong>{player_id}</strong>. Vous devez soit créer des variables d'environnement par ces noms et affecter les valeurs correspondantes, soit fournir les valeurs littérales des variables.</p>"
 parent: Guides 
 grandparent: Player Management API
 ---
@@ -9,15 +9,15 @@ grandparent: Player Management API
 <article class="bcls-article">
   <summary>{{ page.description }}</summary>
   <section id="intro" class="bcls-section">
-    <h2>Mises à jour automatiques des joueurs</h2>
+    <h2>Mises à jour automatiques des Lecteurs</h2>
     
-    <p>Par défaut, Brightcove met automatiquement à jour tous les lecteurs régulièrement afin qu'ils puissent profiter des nouvelles fonctionnalités et correctifs sans aucun effort de la part de nos clients. Bien que Brightcove ne recommande pas de désactiver les mises à jour dans la plupart des cas, Brightcove se rend compte que de temps en temps certains clients préféreraient que vos joueurs restent complètement intacts (par exemple, vous avez effectué des tests rigoureux en vue d'un grand événement et vous ne vouloir tout risquer de changer).</p>
+    <p>Par défaut, Brightcove met automatiquement à jour tous les Lecteurs régulièrement afin qu'ils puissent profiter des nouvelles fonctionnalités et correctifs sans aucun effort de la part de nos clients. Bien que Brightcove ne recommande pas de désactiver les mises à jour dans la plupart des cas, Brightcove se rend compte que de temps en temps certains clients préféreraient que vos Lecteurs restent complètement intacts (par exemple, vous avez effectué des tests rigoureux en vue d'un grand événement et vous ne vouloir tout risquer de changer).</p>
     </section>
     
     <section class="bcls-section" id="optingOut">
     <h2>Désactiver les mises à jour automatiques</h2>
     
-    <p>Si vous ressentez le besoin de désactiver les mises à jour du lecteur pendant un certain temps, le moyen le plus simple consiste à appliquer un PATCH à la configuration de votre lecteur. L'instruction curl suivante effectue cette tâche :</p>
+    <p>Si vous ressentez le besoin de désactiver les mises à jour du lecteur pendant un certain temps, le moyen le plus simple consiste à appliquer un PATCH à la configuration de votre lecteur. L'instruction curl suivante effectue cette tâche:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -34,7 +34,7 @@ grandparent: Player Management API
     https://players.api.brightcove.com/v2/accounts/{account_id}/players/{player_id}/configuration</code></pre>
     <!-- <p><code data-gist-id="aca204104c1057ca1f2e" data-gist-hide-footer="true" data-gist-line="1-12"></code></p> -->
     
-    <p>Cela ajoute le paramètre verrouillé à votre lecteur de prévisualisation. Le PATCH n'affecte initialement que votre lecteur de prévisualisation, vous devez donc publier votre lecteur. Vous pouvez le faire dans Studio ou en utilisant l'instruction curl suivante :</p>
+    <p>Cela ajoute le paramètre verrouillé à votre lecteur de prévisualisation. Le PATCH n'affecte initialement que votre lecteur de prévisualisation, vous devez donc publier votre lecteur. Vous pouvez le faire dans Studio ou en utilisant l'instruction curl suivante:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -47,7 +47,7 @@ grandparent: Player Management API
     <section class="bcls-section" id="optIn">
     <h2>Réactiver les mises à jour automatiques</h2>
     
-    <p>Lorsque vous êtes prêt à réactiver les mises à jour, il vous suffit d'appliquer une autre mise à jour, en définissant <code translate="No">locked</code> à <code translate="No">false</code> puis republiez le lecteur. Tout d'abord, vous changez verrouillé en faux :</p>
+    <p>Lorsque vous êtes prêt à réactiver les mises à jour, il vous suffit d'appliquer une autre mise à jour, en définissant <code translate="No">locked</code> à <code translate="No">false</code> puis republiez le lecteur. Tout d'abord, vous changez verrouillé en faux:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -64,7 +64,7 @@ grandparent: Player Management API
         https://players.api.brightcove.com/v2/accounts/{account_id}/players/{player_id}/configuration</code></pre>
     <!-- <p><code data-gist-id="aca204104c1057ca1f2e" data-gist-hide-footer="true" data-gist-line="40-51"></code></p> -->
     
-    <p>Cela mettra à jour votre lecteur de prévisualisation vers la version actuelle du modèle de lecteur s'il est différent de ce que vous avez actuellement. Vous devez tester avec l'URL de prévisualisation du lecteur renvoyée par cet appel pour vous assurer que votre lecteur fonctionne toujours comme prévu. Une fois satisfait, vous publiez ensuite le lecteur pour que le nouveau lecteur soit mis en ligne :</p>
+    <p>Cela mettra à jour votre lecteur de prévisualisation vers la version actuelle du modèle de lecteur s'il est différent de ce que vous avez actuellement. Vous devez tester avec l'URL de prévisualisation du lecteur renvoyée par cet appel pour vous assurer que votre lecteur fonctionne toujours comme prévu. Une fois satisfait, vous publiez ensuite le lecteur pour que le nouveau lecteur soit mis en ligne:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -77,7 +77,7 @@ grandparent: Player Management API
     <section id="specificversion" class="bcls-section">
     <h2>Passer à une version spécifique</h2>
     
-    <p>Vous souhaiterez peut-être passer votre lecteur à une version spécifique. Vous pouvez vous désabonner des mises à jour, mais vous souhaitez utiliser une version spécifique fournie après votre désactivation des mises à jour. Pour ce faire : utilisez l'instruction curl suivante, en substituant bien sûr la version spécifique du lecteur que vous souhaitez :</p>
+    <p>Vous souhaiterez peut-être passer votre lecteur à une version spécifique. Vous pouvez vous désabonner des mises à jour, mais vous souhaitez utiliser une version spécifique fournie après votre désactivation des mises à jour. Pour ce faire: utilisez l'instruction curl suivante, en substituant bien sûr la version spécifique du lecteur que vous souhaitez:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -94,7 +94,7 @@ grandparent: Player Management API
         https://players.api.brightcove.com/v2/accounts/{account_id}/players/{player_id}/configuration</code></pre>
     <!-- <p><code data-gist-id="aca204104c1057ca1f2e" data-gist-hide-footer="true" data-gist-line="56-67"></code></p> -->
     
-    <p>Notez que vous pouvez définir la version et désactiver les mises à jour en même temps :</p>
+    <p>Notez que vous pouvez définir la version et désactiver les mises à jour en même temps:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -111,7 +111,7 @@ grandparent: Player Management API
         }' \
         https://players.api.brightcove.com/v2/accounts/{account_id}/players/{player_id}/configuration</code></pre>
     
-    <p>Comme pour toute mise à jour PATCH, vous devez publier le lecteur une fois que vous êtes satisfait des modifications :</p>
+    <p>Comme pour toute mise à jour PATCH, vous devez publier le lecteur une fois que vous êtes satisfait des modifications:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \

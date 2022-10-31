@@ -1,6 +1,6 @@
 ---
 title: 'Définir les propriétés de la vidéo à 360 degrés'
-description: 'Dans cette rubrique, vous apprendrez à définir les propriétés d'une vidéo à 360° à l'aide de l'API CMS. Nous utiliserons l'interface Postman pour envoyer nos demandes et afficher les réponses de l'API.'
+description: "Dans cette rubrique, vous apprendrez à définir les propriétés d'une vidéo à 360° à l'aide de CMS API. Nous utiliserons l'interface Postman pour envoyer nos demandes et afficher les réponses de l'API."
 parent: Managing Videos/Assets 
 grandparent: CMS API
 ---
@@ -12,9 +12,9 @@ grandparent: CMS API
     
     <p>Pour identifier une vidéo en tant que vidéo 360°, la propriété de projection doit être définie. Vous pouvez soit définir cette propriété <a href="https://studio.support.brightcove.com/media/editing-video-properties-using-media-module.html">en utilisant le module multimédia dans Studio</a> , ou vous pouvez le faire par programmation, comme indiqué dans cette rubrique.</p>
     
-    <aside class="bcls-aside bcls-aside--tip">Cet exemple utilise l'application Postman pour mettre à jour les propriétés vidéo avec l'API CMS. Découvrez comment démarrer avec le <a href="/general/use-postman-api-requests.html">Utiliser Postman pour les requêtes HTTP</a> document.</aside>
+    <aside class="bcls-aside bcls-aside--tip">Cet exemple utilise l'application Postman pour mettre à jour les propriétés vidéo avec l'CMS API. Découvrez comment démarrer avec le <a href="/general/use-postman-api-requests.html">Utiliser Postman pour les requêtes HTTP</a> document.</aside>
     
-    <p>Dans cette rubrique, vous effectuerez les tâches suivantes :</p>
+    <p>Dans cette rubrique, vous effectuerez les tâches suivantes:</p>
     
     <ul>
       <li><a href="#Get_client_credentials">Obtenir les informations d'identification du client</a></li>
@@ -29,7 +29,7 @@ grandparent: CMS API
     <p>Pour travailler avec les API Brightcove, vous aurez besoin des informations d'identification client pour le compte et les API que vous souhaitez utiliser.</p>
     
     <ol class="bcls-tasklist">
-      <li>Obtenez vos informations d'identification client dans Studio en suivant les instructions dans <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a>. Dans les étapes ci-dessous, nous effectuerons des demandes d'API de gestion des joueurs à l'aide de Postman, vos informations d'identification doivent donc avoir au moins les autorisations suivantes :
+      <li>Obtenez vos informations d'identification client dans Studio en suivant les instructions dans <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a>. Dans les étapes ci-dessous, nous effectuerons des demandes d'Ingestion Profiles API à l'aide de Postman, vos informations d'identification doivent donc avoir au moins les autorisations suivantes:
     
       <ul>
         <li>
@@ -47,7 +47,7 @@ grandparent: CMS API
     <section id="Retrieve_video_information" class="bcls-section">
     <h2>Récupérer les informations de la vidéo</h2>
     
-    <p>Une fois que vous avez téléchargé votre vidéo sur Video Cloud Studio, vous êtes prêt à récupérer les informations vidéo de l'API CMS. Pour plus d'informations sur le téléchargement de vidéos, consultez le <a href="https://studio.support.brightcove.com/media/uploading-videos-using-upload-module.html">Téléchargement de vidéos à l'aide du module de téléchargement</a> document.</p>
+    <p>Une fois que vous avez téléchargé votre vidéo sur Video Cloud Studio, vous êtes prêt à récupérer les informations vidéo de CMS API. Pour plus d'informations sur le téléchargement de vidéos, consultez le <a href="https://studio.support.brightcove.com/media/uploading-videos-using-upload-module.html">Téléchargement de vidéos à l'aide du module de téléchargement</a> document.</p>
     
     <ol class="bcls-tasklist">
       <li>Ouvrez l'application Postman.</li>
@@ -56,7 +56,7 @@ grandparent: CMS API
       <figcaption class="bcls-caption--image">Jeton d'accès</figcaption>
       </figure>
       </li>
-      <li>Faire un <strong>AVOIR</strong> demande à l'API CMS, en utilisant le <strong>Obtenir la vidéo par ID</strong> syntaxe. Pour ce faire, entrez l'URL suivante dans le <strong>Entrez l'URL de la demande</strong> champ, en remplaçant votre identifiant de compte par <code translate="No">{account_id}</code> et votre identifiant vidéo pour <code translate="No">{video_id}</code>:
+      <li>Faire un <strong>AVOIR</strong> demande à l'CMS API, en utilisant le <strong>Obtenir la vidéo par ID</strong> syntaxe. Pour ce faire, entrez l'URL suivante dans le <strong>Entrez l'URL de la demande</strong> champ, en remplaçant votre identifiant de compte par <code translate="No">{account_id}</code> et votre identifiant vidéo pour <code translate="No">{video_id}</code>:
       <pre class="line-numbers">
     <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/{account_id}/videos/{video_id}</code></pre>
       </li>
@@ -95,7 +95,7 @@ grandparent: CMS API
       <figcaption class="bcls-caption--image">Corps de la demande</figcaption>
       </figure>
       </li>
-      <li>Pour les données brutes, saisissez le code JSON suivant pour le corps (la capture d'écran suivant le JSON montre comment la requête doit apparaître) :
+      <li>Pour les données brutes, saisissez le code JSON suivant pour le corps (la capture d'écran suivant le JSON montre comment la requête doit apparaître):
       <pre class="line-numbers">
     <code class="language-json" translate="No">{
         "projection" : "equirectangular"

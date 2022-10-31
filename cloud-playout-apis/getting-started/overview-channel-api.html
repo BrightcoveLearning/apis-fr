@@ -1,6 +1,6 @@
 ---
 title: 'Aperçu: API de canaux'
-description: 'Avec les points de terminaison Channel Manager, vous pouvez créer une chaîne Cloud Playout, ajouter des ressources et des événements en direct à la liste de lecture, puis activer, démarrer, arrêter et supprimer la chaîne.'
+description: "Avec les points de terminaison Channel Manager, vous pouvez créer une chaîne Cloud Playout, ajouter des ressources et des événements en direct à la liste de lecture, puis activer, démarrer, arrêter et supprimer la chaîne."
 parent: Getting Started 
 grandparent: Cloud Playout APIs
 ---
@@ -12,17 +12,17 @@ grandparent: Cloud Playout APIs
     <ul>
       <li>Une application enregistrée avec les étendues d'authentification de l'API Cloud Playout activées dans le cloud vidéo. (<code>Interface utilisateur Studio -&gt; Administrateur -&gt; Authentification API</code>)</li>
     </ul>
-    <aside class="bcls-aside bcls-aside--information language-editable"> Notez qu'en plus des opérations Cloud Playout Channel, vous devrez également utiliser l'API CMS pour gérer ce contenu, nous vous recommandons donc d'obtenir toutes les autorisations nécessaires pour vos identifiants client :
+    <aside class="bcls-aside bcls-aside--information language-editable"> Notez qu'en plus des opérations Cloud Playout Channel, vous devrez également utiliser l'CMS API pour gérer ce contenu, nous vous recommandons donc d'obtenir toutes les autorisations nécessaires pour vos identifiants client:
       <figure class="bcls-figure">
         <img class="bcls-image" src="/assets/images/cloud-playout/permissions-channel-api.png" alt="Cloud Player and CMS API Permissions">
-        <figcaption class="bcls-caption--image">Autorisations du lecteur cloud et de l'API CMS</figcaption>
+        <figcaption class="bcls-caption--image">Autorisations du lecteur cloud et de CMS API</figcaption>
       </figure>
       <p>Voir <a href="/getting-started/authentication-brightcove-api-requests.html">Authentification pour l'API Brightcove pour plus d'informations.</a></p>
     </aside>
   </section>
   <section class="bcls-section">
     <h2 id="creating-a-cloudplayoutchannelmanager-workflow">Création d'un workflow CloudPlayoutChannelManager</h2>
-    <p>Vous trouverez ci-dessous le workflow typique de gestion des canaux Cloud Playout :</p>
+    <p>Vous trouverez ci-dessous le workflow typique de gestion des canaux Cloud Playout:</p>
     <ul>
     <li>Créer une chaîne</li>
     <li>Ajouter des ressources et des événements en direct à la liste de lecture</li>
@@ -112,7 +112,7 @@ Authorization: Bearer <span class="bc-input">{token}</span></code></pre>
   </section>
   <section class="bcls-section">
     <h2 id="Add_content">Ajouter du contenu à la liste de lecture</h2>
-    <p>L'étape suivante consiste à ajouter du contenu au contenu de la chaîne. Pour cela, vous utiliserez le <a href="/cloud-playout-apis/references/reference-cms-interactions.html">API CMS</a> (notez qu'il s'agit d'une version abrégée de l'ensemble <a href="/cms/references/reference.html">Référence de l'API CMS</a> comprenant uniquement les opérations relatives à Cloud Playout et avec des descriptions plus appropriées à Cloud Playout).</p>
+    <p>L'étape suivante consiste à ajouter du contenu au contenu de la chaîne. Pour cela, vous utiliserez le <a href="/cloud-playout-apis/references/reference-cms-interactions.html">CMS API</a> (notez qu'il s'agit d'une version abrégée de l'ensemble <a href="/cms/references/reference.html">Référence de CMS API</a> comprenant uniquement les opérations relatives à Cloud Playout et avec des descriptions plus appropriées à Cloud Playout).</p>
     <p>Obtenez le playlist_id de la chaîne (à partir de la réponse à la demande de création de chaîne ou à partir d'une demande d'obtention de chaîne). Il s'agit de la playlist dans laquelle nous gérons nos actifs pour notre chaîne Cloud Playout.</p>
     <h3>Demande d'échantillon</h3>
     <h4>Demander</h4>
@@ -155,7 +155,7 @@ Authorization: Bearer <span class="bc-input">{token}</span></code></pre>
   </section>
   <section class="bcls-section">
     <h2 id="add_live_event">Ajouter un événement en direct</h2>
-    <p>Pour ajouter un événement en direct à une chaîne, vous <strong>créer une vidéo</strong> demande à l'API CMS, en prenant soin d'inclure des balises spéciales qui l'identifieront comme un événement en direct Cloud Playout.</p>
+    <p>Pour ajouter un événement en direct à une chaîne, vous <strong>créer une vidéo</strong> demande à l'CMS API, en prenant soin d'inclure des balises spéciales qui l'identifieront comme un événement en direct Cloud Playout.</p>
     <h3>Demande d'échantillon</h3>
     <h4>Demander</h4>
     <p>Faire un <code translate="No">POST</code> demande à:</p>
@@ -227,7 +227,7 @@ Authorization: Bearer <span class="bc-input">{token}</span></code></pre>
   "playback_rights_id": "primary"
 }</code></pre>
 </details>
-    <p>Veuillez vous référer au <a href="/cloud-playout-apis/references/reference-cms-interactions.html">Référence de l'API CMS pour Cloud Playout</a> pour plus d'exemples liés à la gestion des ressources dans Cloud Playout.</p>
+    <p>Veuillez vous référer au <a href="/cloud-playout-apis/references/reference-cms-interactions.html">Référence de CMS API pour Cloud Playout</a> pour plus d'exemples liés à la gestion des ressources dans Cloud Playout.</p>
   </section>
   <section class="bcls-section">
     <h2 id="get-channel">Obtenir la chaîne</h2>
@@ -296,7 +296,7 @@ Authorization: Bearer <span class="bc-input">{token}</span></code></pre>
   </section>
   <section class="bcls-section">
     <h2 id="activate-channel">Activer une chaîne</h2>
-      <aside class="bcls-aside bcls-aside--warning language-editable">Remarque : assurez-vous qu'au moins un élément de contenu a été ajouté à la liste de lecture de la chaîne avant d'activer la chaîne !</aside>
+      <aside class="bcls-aside bcls-aside--warning language-editable">Remarque: assurez-vous qu'au moins un élément de contenu a été ajouté à la liste de lecture de la chaîne avant d'activer la chaîne !</aside>
       <p>Activez un canal en faisant la demande ci-dessous. Aucun corps de requête n'est requis.</p>
       <h3>Demande d'échantillon</h3>
       <h4>Demander</h4>
@@ -315,7 +315,7 @@ Authorization: Bearer <span class="bc-input">{token}</span></code></pre>
     </section>
   <section class="bcls-section">
     <h2 id="start-channel">Démarrer une chaîne</h2>
-      <aside class="bcls-aside bcls-aside--warning language-editable">Remarque : assurez-vous que la chaîne est <strong>déjà activé</strong> et est en <strong>PROGRAMMÉ</strong> état avant de démarrer la chaîne !</aside>
+      <aside class="bcls-aside bcls-aside--warning language-editable">Remarque: assurez-vous que la chaîne est <strong>déjà activé</strong> et est en <strong>PROGRAMMÉ</strong> état avant de démarrer la chaîne !</aside>
       <p>Démarrez une chaîne en faisant la demande ci-dessous. Aucun corps de requête n'est requis.</p>
       <h3>Demande d'échantillon</h3>
       <h4>Demander</h4>
@@ -334,7 +334,7 @@ Authorization: Bearer <span class="bc-input">{token}</span></code></pre>
     </section>
   <section class="bcls-section">
     <h2 id="stop-channel">Arrêter une chaîne</h2>
-      <aside class="bcls-aside bcls-aside--warning language-editable">Remarque : assurez-vous que la chaîne est en <strong>FONCTIONNEMENT</strong> état avant d'arrêter le canal !</aside>
+      <aside class="bcls-aside bcls-aside--warning language-editable">Remarque: assurez-vous que la chaîne est en <strong>FONCTIONNEMENT</strong> état avant d'arrêter le canal !</aside>
       <p>Arrêtez une chaîne en faisant la demande ci-dessous. Aucun corps de requête n'est requis.</p>
       <h3>Demande d'échantillon</h3>
       <h4>Demander</h4>
@@ -353,7 +353,7 @@ Authorization: Bearer <span class="bc-input">{token}</span></code></pre>
     </section>
   <section class="bcls-section">
     <h2 id="delete-channel">Supprimer une chaîne</h2>
-      <aside class="bcls-aside bcls-aside--warning language-editable">Remarque : assurez-vous que le canal n'est pas dans l'un ou l'autre <strong>CRÉATION/DÉMARRAGE</strong> état avant de supprimer une chaîne !</aside>
+      <aside class="bcls-aside bcls-aside--warning language-editable">Remarque: assurez-vous que le canal n'est pas dans l'un ou l'autre <strong>CRÉATION/DÉMARRAGE</strong> état avant de supprimer une chaîne !</aside>
       <p>Supprimez une chaîne en faisant la demande ci-dessous. Aucun corps de requête n'est requis.</p>
       <h3>Demande d'échantillon</h3>
       <h4>Demander</h4>

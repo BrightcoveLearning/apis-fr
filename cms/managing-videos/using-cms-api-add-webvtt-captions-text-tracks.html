@@ -1,6 +1,6 @@
 ---
 title: 'Ajouter des sous-titres WebVTT (pistes de texte)'
-description: 'Dans cette rubrique, vous apprendrez à utiliser les <span translate="No">API CMS</span> pour ajouter des pistes de texte WebVTT pour les légendes ou les chapitres à vos vidéos.'
+description: "Dans cette rubrique, vous apprendrez à utiliser les CMS API pour ajouter des pistes de texte WebVTT pour les légendes ou les chapitres à vos vidéos."
 parent: Managing Videos/Assets 
 grandparent: CMS API
 ---
@@ -10,16 +10,16 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
     
-    <p>Les sous-titres WebVTT (pistes de texte) ne peuvent pas être ajoutés lorsque vous créez initialement la vidéo à l'aide d'une requête POST :</p>
+    <p>Les sous-titres WebVTT (pistes de texte) ne peuvent pas être ajoutés lorsque vous créez initialement la vidéo à l'aide d'une requête POST:</p>
     
     <ul>
       <li>Pour les pistes de texte à ingérer dans Video Cloud, les pistes peuvent être incluses dans la requête Dynamic Ingest pour ingérer la vidéo - voir <a href="/dynamic-ingest/ingest-guides/ingesting-webvtt-files-text-trackscaptions.html">Ingérer des fichiers WebVTT</a> pour les détails.</li>
-      <li>Si les pistes de texte doivent être hébergées dans un emplacement distant, elles peuvent être ajoutées à la vidéo à l'aide d'un <code translate="No">PATCH</code> demande de mise à jour des métadonnées de la vidéo. Voir le <a href="/cms/code-samples/cms-api-sample-update-videos.html">Exemple d'API CMS : Mettre à jour les vidéos</a> pour un exemple de demande de mise à jour.</li>
+      <li>Si les pistes de texte doivent être hébergées dans un emplacement distant, elles peuvent être ajoutées à la vidéo à l'aide d'un <code translate="No">PATCH</code> demande de mise à jour des métadonnées de la vidéo. Voir le <a href="/cms/code-samples/cms-api-sample-update-videos.html">Exemple d'CMS API: Mettre à jour les vidéos</a> pour un exemple de demande de mise à jour.</li>
     </ul>
     
     <p>Que les pistes de texte soient ingérées ou distantes, vous pouvez utiliser un <code translate="No">PATCH</code> demande de mise à jour des métadonnées associées aux pistes de texte (telles que la <code translate="No">scrlang</code> ou <code translate="No">label</code> , ou si les pistes de texte sont les <code translate="No">default</code> pour la vidéo).</p>
 
-		<p>Regarde aussi <a href="/cms/managing-videos/managing-text-tracks.html">Gestion des pistes de texte à l'aide de l'API CMS</a> pour plus d'informations sur les différences de traitement des métadonnées des pistes de texte selon que les pistes de texte sont distantes, ingérées avec un profil d'acquisition statique ou ingérées avec un profil d'acquisition dynamique.</p>
+		<p>Regarde aussi <a href="/cms/managing-videos/managing-text-tracks.html">Gestion des pistes de texte à l'aide de CMS API</a> pour plus d'informations sur les différences de traitement des métadonnées des pistes de texte selon que les pistes de texte sont distantes, ingérées avec un profil d'acquisition statique ou ingérées avec un profil d'acquisition dynamique.</p>
     
     <h3>Remarques</h3>
     
@@ -33,13 +33,13 @@ grandparent: CMS API
     <section id="Remote_or_ingested" class="bcls-section">
     <h2>À distance ou ingéré</h2>
     
-    <aside class="bcls-aside bcls-aside--information">La méthode expliquée dans ce document consiste à ajouter des fichiers WebVTT distants à vos vidéos. Vous pouvez également <a href="/dynamic-ingest/ingest-guides/ingesting-webvtt-files-text-trackscaptions.html">ingérer des fichiers WebVTT</a> vers Video Cloud à l'aide de l'API Dynamic Ingest.</aside>
+    <aside class="bcls-aside bcls-aside--information">La méthode expliquée dans ce document consiste à ajouter des fichiers WebVTT distants à vos vidéos. Vous pouvez également <a href="/dynamic-ingest/ingest-guides/ingesting-webvtt-files-text-trackscaptions.html">ingérer des fichiers WebVTT</a> vers Video Cloud à l'aide de Dynamic Ingest API.</aside>
     </section>
     
     <section class="section">
     <h2 id="authorization">Autorisation</h2>
     
-    <p class="BCL-aside">Demandes au <span translate="No">API CMS</span> nécessitent un en-tête d'autorisation contenant vos jetons d'accès. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a>.</p>
+    <p class="BCL-aside">Demandes au CMS API nécessitent un en-tête d'autorisation contenant vos jetons d'accès. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a>.</p>
     
     <p>Les opérations dont vous aurez besoin pour mettre à jour les métadonnées de la vidéo sont <code translate="No">video-cloud/video/update</code> ou <code translate="No">video-cloud/video/all</code>.</p>
     </section>
@@ -52,9 +52,9 @@ grandparent: CMS API
     <pre class="line-numbers">
               <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/{account_id}/videos/{video_ID}</code></pre>
     
-    <h3>Corps de la requête :</h3>
+    <h3>Corps de la requête:</h3>
     
-    <p>Le corps de la requête sera un objet JSON contenant un tableau de pistes de texte :</p>
+    <p>Le corps de la requête sera un objet JSON contenant un tableau de pistes de texte:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{"text_tracks" : [ {
@@ -99,10 +99,10 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="replaceTracks">Remplacement des pistes de texte</h2>
     
-    <p>Le remplacement des pistes de texte existantes (téléchargées ou distantes) est un processus en deux étapes :</p>
+    <p>Le remplacement des pistes de texte existantes (téléchargées ou distantes) est un processus en deux étapes:</p>
     
     <ol class="bcls-tasklist">
-      <li>Supprimer les pistes de texte existantes via un <span translate="No">API CMS</span> mise à jour (PATCH) :
+      <li>Supprimer les pistes de texte existantes via un CMS API mise à jour (PATCH):
       <h4>Requête API (PATCH)</h4>
     
       <pre class="line-numbers">
@@ -115,7 +115,7 @@ grandparent: CMS API
           "text_tracks": []
       }</code></pre>
       </li>
-      <li>Si vous ajoutez des pistes de texte distantes, ajoutez-les via un autre <span translate="No">API CMS</span> mise à jour (PATCH) (facultatif - si vous téléchargez des pistes de texte, passez à l'étape suivante) :
+      <li>Si vous ajoutez des pistes de texte distantes, ajoutez-les via un autre CMS API mise à jour (PATCH) (facultatif - si vous téléchargez des pistes de texte, passez à l'étape suivante):
       <h4>Requête API (PATCH)</h4>
     
       <pre class="line-numbers">
@@ -143,7 +143,7 @@ grandparent: CMS API
         ]
     }</code></pre>
       </li>
-      <li>Si vous importez plutôt de nouvelles pistes de texte, ajoutez-les via une requête POST à l'API Dynamic Ingest :
+      <li>Si vous importez plutôt de nouvelles pistes de texte, ajoutez-les via une requête POST à Dynamic Ingest API:
       <h4>Requête API (POST)</h4>
     
       <pre class="line-numbers">
@@ -171,7 +171,7 @@ grandparent: CMS API
         ]
     }</code></pre>
       </li>
-      <li>Faire une demande GET au <span translate="No">API CMS</span> pour vérifier que vos nouvelles pistes de texte sont associées à la vidéo :
+      <li>Faire une demande GET au CMS API pour vérifier que vos nouvelles pistes de texte sont associées à la vidéo:
       <pre class="line-numbers">
               <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/<span class="bcls-input">account_id</span>/videos/<span class="bcls-input">video_id</span></code></pre>
       </li>

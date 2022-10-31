@@ -1,5 +1,6 @@
 ---
-title: Restrictions de lecture avec la description des diffusions en direct : Dans cette rubrique, vous apprendrez à utiliser les restrictions de lecture avec les diffusions en direct.
+title: Restrictions de lecture avec les diffusions en direct
+description: Dans cette rubrique, vous apprendrez à utiliser les restrictions de lecture avec les diffusions en direct.
 parent: Guides 
 grandparent: Live API
 ---
@@ -11,20 +12,20 @@ grandparent: Live API
 
   <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
-    <p>Les restrictions de lecture peuvent être activées pour une tâche en direct afin d'étendre les protections fournies par DRM, notamment :</p>
+    <p>Les restrictions de lecture peuvent être activées pour une tâche en direct afin d'étendre les protections fournies par DRM, notamment:</p>
     <ul>
       <li>Limiter la lecture à un agent utilisateur particulier</li>
       <li>Limiter le nombre d'adresses IP</li>
       <li>limiter le nombre total d'utilisateurs</li>
     </ul>
 
-    <p>Pour un ensemble complet de restrictions, vous pouvez les configurer à l'aide de l'API des droits de lecture. Dans ce cas, vous associeriez le <code translate="No">playback_rights_id</code> avec une vidéo. Pour plus de détails, consultez le <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Asset_level_restrictions">Restrictions au niveau des actifs</a> section de l'aperçu : Document sur les restrictions de lecture Brightcove.</p>
+    <p>Pour un ensemble complet de restrictions, vous pouvez les configurer à l'aide de l'API des droits de lecture. Dans ce cas, vous associeriez le <code translate="No">playback_rights_id</code> avec une vidéo. Pour plus de détails, consultez le <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Asset_level_restrictions">Restrictions au niveau des actifs</a> section de l'aperçu: Document sur les restrictions de lecture Brightcove.</p>
 
-    <p>Pour les restrictions d'exécution, vous pouvez spécifier les revendications JSON Web Token (JWT). Ces restrictions incluent la simultanéité de flux et les limites d'appareils. Pour plus de détails, consultez le <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Restrictions d'exécution</a> section de l'aperçu : Document sur les restrictions de lecture Brightcove.</p>
+    <p>Pour les restrictions d'exécution, vous pouvez spécifier les revendications JSON Web Token (JWT). Ces restrictions incluent la simultanéité de flux et les limites d'appareils. Pour plus de détails, consultez le <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Restrictions d'exécution</a> section de l'aperçu: Document sur les restrictions de lecture Brightcove.</p>
 
-    <p>Avec les flux en direct, vous pouvez également remplacer le DRM CRT pour un utilisateur. Pour plus de détails, consultez le <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#License_Keys_Protection">Protection des clés de licence</a> section de l'aperçu : Document sur les restrictions de lecture Brightcove.</p>
+    <p>Avec les flux en direct, vous pouvez également remplacer le DRM CRT pour un utilisateur. Pour plus de détails, consultez le <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#License_Keys_Protection">Protection des clés de licence</a> section de l'aperçu: Document sur les restrictions de lecture Brightcove.</p>
 
-    <p>Quel que soit le mode que vous choisissez, la demande de travail doit inclure un <code translate="No">videocloud.video</code> attribut pour qu'une vidéo Video Cloud soit créée et liée à la tâche en direct. Les <code translate="No">playback_rights_id</code> L'attribut peut être mis à jour sur la vidéo Video Cloud pour modifier les restrictions de lecture via le <a href="https://apis.support.brightcove.com/cms/references/reference.html#operation/UpdateVideo">API CMS</a>.</p>
+    <p>Quel que soit le mode que vous choisissez, la demande de travail doit inclure un <code translate="No">videocloud.video</code> attribut pour qu'une vidéo Video Cloud soit créée et liée à la tâche en direct. Les <code translate="No">playback_rights_id</code> L'attribut peut être mis à jour sur la vidéo Video Cloud pour modifier les restrictions de lecture via le <a href="https://apis.support.brightcove.com/cms/references/reference.html#operation/UpdateVideo">CMS API</a>.</p>
     <p>Vous devrez également <a href="https://general.support.brightcove.com/developer/create-json-web-token.html">créer un jeton Web JSON (JWT)</a> avec les réclamations appropriées. Le JWT devra être inclus dans toutes les demandes de serveur de licences. Si vous implémentez votre propre lecteur, vous devrez passer cette valeur soit dans un <code translate="No">BCOV-Auth</code> en-tête ou <code translate="No">bcov_auth</code> paramètre de requête (en plus du jeton DRM).</p>
   </section>
 
@@ -46,7 +47,7 @@ grandparent: Live API
       </li>
       <li>
         <h4><code translate="No">videocloud.video</code> objet:</h4>
-        <aside class="bcls-aside bcls-aside--information">Notez que ce champ doit être ajouté à la vidéo à l'aide de l'API CMS <em>après</em> vous créez le travail en direct, car il ne peut pas être ajouté lors de la création de la vidéo.</aside>
+        <aside class="bcls-aside bcls-aside--information">Notez que ce champ doit être ajouté à la vidéo à l'aide de CMS API <em>après</em> vous créez le travail en direct, car il ne peut pas être ajouté lors de la création de la vidéo.</aside>
         <dl>
           <dt><code translate="No">playback_rights_id</code>(chaîne de caractères)</dt>
           <dd>Associe les restrictions de lecture spécifiées à une vidéo.</dd>
@@ -56,7 +57,7 @@ grandparent: Live API
 
     <h3 id="Sample_request_response">Exemple de demande et de réponse</h3>
     <p>Vous trouverez ci-dessous un exemple de corps de demande d'API Live pour la création d'une tâche Live avec des restrictions de lecture.</p>
-    <aside class="bcls-aside bcls-aside--information">Il existe également une demande d'API CMS pour mettre à jour la vidéo créée pour le travail en direct avec le <code translate="No">playback_rights_id</code>. (Ce champ ne peut être ajouté qu'avec un <strong>mettre à jour la vidéo</strong> demande, et doit donc être ajouté après que la demande Live API a créé la vidéo.)</aside>
+    <aside class="bcls-aside bcls-aside--information">Il existe également une demande d'CMS API pour mettre à jour la vidéo créée pour le travail en direct avec le <code translate="No">playback_rights_id</code>. (Ce champ ne peut être ajouté qu'avec un <strong>mettre à jour la vidéo</strong> demande, et doit donc être ajouté après que la demande Live API a créé la vidéo.)</aside>
 
     <h3>Exemple de corps de requête</h3>
 <pre class="line-numbers"><code class="language-json" translate="No">{
@@ -215,18 +216,18 @@ grandparent: Live API
 
   <section class="bcls-section">
     <h2 id="Add_restrictions_to_the_live_job">Ajouter des restrictions au travail en direct</h2>
-    <p>Après avoir créé le flux en direct, vous pouvez ajouter des restrictions de lecture à la vidéo créée pour le travail en direct à l'aide de la <a href="https://apis.support.brightcove.com/cms/getting-started/overview-cms-api.html">API CMS</a>.</p>
+    <p>Après avoir créé le flux en direct, vous pouvez ajouter des restrictions de lecture à la vidéo créée pour le travail en direct à l'aide de la <a href="https://apis.support.brightcove.com/cms/getting-started/overview-cms-api.html">CMS API</a>.</p>
     
-    <h3>Demande d'API CMS</h3>
-    <p>Pour ajouter l'identifiant des droits de lecture à la vidéo, envoyez un <a href="https://apis.support.brightcove.com/cms/references/reference.html#operation/UpdateVideo">Mettre à jour la vidéo</a> requête à l'API CMS avec le corps de requête suivant :</p>
+    <h3>Demande d'CMS API</h3>
+    <p>Pour ajouter l'identifiant des droits de lecture à la vidéo, envoyez un <a href="https://apis.support.brightcove.com/cms/references/reference.html#operation/UpdateVideo">Mettre à jour la vidéo</a> requête à l'CMS API avec le corps de requête suivant:</p>
 <pre class="line-numbers"><code class="language-json" translate="No">{
-	"playback_rights_id": "<span class="bcls-input">your playback_rights_id</span>"
+  "playback_rights_id": "<span class="bcls-input">your playback_rights_id</span>"
 }</code></pre>
   </section>
 
   <section class="bcls-section">
     <h2 id="Deliver_the_stream">Livrer le flux</h2>
-    <p>Si vous utilisez le lecteur Web Brightcove ou l'un des SDK de lecteur natif Brightcove pour diffuser le flux en direct, la mise en œuvre des restrictions de lecture est la même que pour la VOD. Voir ce qui suit :</p>
+    <p>Si vous utilisez le lecteur Web Brightcove ou l'un des SDK de lecteur natif Brightcove pour diffuser le flux en direct, la mise en œuvre des restrictions de lecture est la même que pour la VOD. Voir ce qui suit:</p>
     <ul>
       <li><a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/implementing-playback-rights.html#Configure_your_player">Configurez votre lecteur</a> section du document Mise en œuvre des droits de lecture</li>
     </ul>

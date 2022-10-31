@@ -1,7 +1,6 @@
 ---
-title: 'Utilisation de l'encodage contextuel'
-description: 'Dans cette rubrique, vous apprendrez à utiliser l'encodage contextuel (CAE) pour ingérer votre contenu vidéo dans Video Cloud.'
-
+title: "Utilisation de l'encodage contextuel"
+description: "Dans cette rubrique, vous apprendrez à utiliser l'encodage contextuel (CAE) pour ingérer votre contenu vidéo dans Video Cloud."
 parent: 'Ingest Guides' 
 grandparent: Dynamic Ingest API
 ---
@@ -17,7 +16,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="Limitations">Limites</h2>
     
-    <p>Les fonctionnalités suivantes ne sont actuellement pas prises en charge :</p>
+    <p>Les fonctionnalités suivantes ne sont actuellement pas prises en charge:</p>
     
     <ul>
       <li>Prise en charge avancée des codecs (H.265, VP9, etc.)</li>
@@ -29,13 +28,13 @@ grandparent: Dynamic Ingest API
     
     <h3>Conditions préalables</h3>
     
-    <p>Les clients qui souhaitent utiliser le codage contextuel doivent répondre aux exigences suivantes :</p>
+    <p>Les clients qui souhaitent utiliser le codage contextuel doivent répondre aux exigences suivantes:</p>
     
     <ol>
       <li>Client Cloud vidéo</li>
       <li>La livraison dynamique est activée pour leur compte Video Cloud</li>
       <li>Ils n'utilisent plus les anciennes API Brightcove</li>
-      <li>À l'aise avec le <a href="/ingest-profiles/getting-started/overview-ingest-profiles-api-dynamic-delivery-context-aware-encoding.html">Ingérer l'API des profils</a> et le <a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">API d'ingestion dynamique</a></li>
+      <li>À l'aise avec le <a href="/ingest-profiles/getting-started/overview-ingest-profiles-api-dynamic-delivery-context-aware-encoding.html">Ingérer Ingest Profiles API</a> et le <a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">Dynamic Ingest API</a></li>
     </ol>
     
     <p class="BCL-aside">Noter: L'encodage contextuel est une fonctionnalité qui n'est pas disponible pour tous les clients de Video Cloud. Si vous avez des questions sur l'utilisation ou non de l'encodage contextuel, veuillez contacter votre responsable de compte.</p>
@@ -57,17 +56,17 @@ grandparent: Dynamic Ingest API
       </thead>
       <tbody class="bcls-table__body">
         <tr>
-          <td><span translate="No">multi-plateforme-standard-dynamique</span></td>
+          <td><span>multi-plateforme-standard-dynamique</span></td>
           <td>Résolution plafonnée à 720p et débit binaire à 2 MBPS</td>
           <td>Usage général. Pour la livraison à une gamme d'appareils de bureau et mobiles</td>
         </tr>
         <tr>
-          <td><span translate="No">multi-plateforme-étendu-dynamique</span></td>
+          <td><span>multi-plateforme-étendu-dynamique</span></td>
           <td>Ajoute un rendu 1080p et étend le débit binaire maximal à ~4 Mbps</td>
           <td>À utiliser lorsque la qualité 1080p est critique. Par exemple, les clients diffusant du contenu HD sur de grands écrans</td>
         </tr>
         <tr>
-          <td><span translate="No">dynamique à faible bande passante</span></td>
+          <td><span>dynamique à faible bande passante</span></td>
           <td>Déplace l'échelle d'encodage vers des rendus à débit binaire inférieur. Plafonné à 720p</td>
           <td>Pour les cas d'utilisation et les régions où la rareté de la bande passante est une préoccupation majeure</td>
         </tr>
@@ -78,15 +77,15 @@ grandparent: Dynamic Ingest API
     
     <h3>Utilisation de préréglages pour encoder du contenu</h3>
     
-    <p>Une fois votre compte activé pour CAE, les trois profils répertoriés ci-dessus seront disponibles dans les sections outil de téléchargement et profils d'ingestion de studio. De même, ces profils peuvent être utilisés avec le <a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">API d'ingestion dynamique</a> , comme tout autre profil d'ingestion.</p>
+    <p>Une fois votre compte activé pour CAE, les trois profils répertoriés ci-dessus seront disponibles dans les sections outil de téléchargement et profils d'ingestion de studio. De même, ces profils peuvent être utilisés avec le <a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">Dynamic Ingest API</a> , comme tout autre profil d'ingestion.</p>
     
     <h3>Détails du préréglage</h3>
     
     <p>Un sous-ensemble des paramètres de chacun des profils CAE est répertorié ci-dessous.</p>
     
-    <h4><span translate="No">Norme multiplateforme</span></h4>
+    <h4><span>Norme multiplateforme</span></h4>
     
-    <p>(Dernière mise à jour : 12/07/17)</p>
+    <p>(Dernière mise à jour: 12/07/17)</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">"dynamic_profile_options":
@@ -104,7 +103,7 @@ grandparent: Dynamic Ingest API
           "select_baseline_profile_configuration": true,
     }</code></pre>
     
-    <h4><span translate="No">Multiplateforme étendu</span></h4>
+    <h4><span>Multiplateforme étendu</span></h4>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">"dynamic_profile_options":
@@ -122,9 +121,9 @@ grandparent: Dynamic Ingest API
           "select_baseline_profile_configuration": true,
     }</code></pre>
     
-    <h4><span translate="No">Bande passante limitée</span></h4>
+    <h4><span>Bande passante limitée</span></h4>
     
-    <p>(Dernière mise à jour : 12/07/17)</p>
+    <p>(Dernière mise à jour: 12/07/17)</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">"dynamic_profile_options":
@@ -197,7 +196,7 @@ grandparent: Dynamic Ingest API
   }
 }</code></pre>
     
-    <p>Pour plus de détails, veuillez consulter les documents pour le <a href="/ingest-profiles/">Ingérer l'API des profils</a> et <a href="/dynamic-ingest/index.html">API d'ingestion dynamique</a>.</p>
+    <p>Pour plus de détails, veuillez consulter les documents pour le <a href="/ingest-profiles/">Ingérer Ingest Profiles API</a> et <a href="/dynamic-ingest/index.html">Dynamic Ingest API</a>.</p>
     </section>
     
     <section class="bcls-section">

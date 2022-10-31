@@ -1,6 +1,6 @@
 ---
 title: 'Ajouter un géofiltrage'
-description: 'Dans cette rubrique, vous apprendrez à gérer les propriétés de restriction géographique des vidéos à l'aide de l'API CMS. Les <span translate="No">API CMS</span> vous permet d'ajouter des propriétés de filtrage géographique aux vidéos pour fournir une liste des pays dans lesquels elles peuvent (ou ne peuvent pas) être visionnées.'
+description: "Dans cette rubrique, vous apprendrez à gérer les propriétés de restriction géographique des vidéos à l'aide de CMS API. Les CMS API vous permet d'ajouter des propriétés de filtrage géographique aux vidéos pour fournir une liste des pays dans lesquels elles peuvent (ou ne peuvent pas) être visionnées."
 parent: Managing Videos/Assets 
 grandparent: CMS API
 ---
@@ -10,9 +10,9 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="introduction">introduction</h2>
     
-    <p>Des propriétés de géofiltrage peuvent être ajoutées lors de la création initiale de la vidéo à l'aide d'une requête POST ou à l'aide d'une requête PATCH pour mettre à jour les métadonnées de la vidéo. Voir <a href="/cms/code-samples/cms-api-sample-update-videos.html">Mettre à jour les vidéos en utilisant <span translate="No">API CMS</span></a> pour un exemple de demande de mise à jour.</p>
+    <p>Des propriétés de géofiltrage peuvent être ajoutées lors de la création initiale de la vidéo à l'aide d'une requête POST ou à l'aide d'une requête PATCH pour mettre à jour les métadonnées de la vidéo. Voir <a href="/cms/code-samples/cms-api-sample-update-videos.html">Mettre à jour les vidéos en utilisant CMS API</a> pour un exemple de demande de mise à jour.</p>
     
-    <aside class="bcls-aside bcls-aside--information">Au lieu ou en plus d'appliquer un filtrage géographique au niveau de la vidéo, vous pouvez <a href="/policy/getting-started/policy-keys.html#geoRestriction">appliquer le filtrage géographique aux lecteurs Brightcove via des clés de stratégie</a>. Video Cloud examine à la fois les politiques de filtrage géographique au niveau de la vidéo et du lecteur, et applique les deux. Si un pays est exclu par l'une ou l'autre des règles, la vidéo ne sera pas disponible dans le pays.
+    <aside class="bcls-aside bcls-aside--information">Au lieu ou en plus d'appliquer un filtrage géographique au niveau de la vidéo, vous pouvez <a href="/policy/getting-started/policy-keys.html#geoRestriction">appliquer le filtrage géographique aux Lecteurs Brightcove via des clés de stratégie</a>. Video Cloud examine à la fois les politiques de filtrage géographique au niveau de la vidéo et du lecteur, et applique les deux. Si un pays est exclu par l'une ou l'autre des règles, la vidéo ne sera pas disponible dans le pays.
     
     <p>Notez que les codes de pays doivent être saisis <strong>minuscule</strong>.</p>
     
@@ -29,7 +29,7 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="authorization">Autorisation</h2>
     
-    <aside class="bcls-aside bcls-aside--information">Demandes au <span translate="No">API CMS</span> nécessitent un en-tête d'autorisation contenant vos jetons d'accès. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a>.</aside>
+    <aside class="bcls-aside bcls-aside--information">Demandes au CMS API nécessitent un en-tête d'autorisation contenant vos jetons d'accès. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a>.</aside>
     
     <p>Les opérations pour lesquelles vous aurez besoin d'autorisations pour mettre à jour les métadonnées de la vidéo sont <code translate="No">video-cloud/video/update</code> ou <code translate="No">video-cloud/video/all</code>.</p>
     </section>
@@ -75,9 +75,9 @@ grandparent: CMS API
     <pre class="line-numbers">
     <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/{account_id}/videos/{video_ID}</code></pre>
     
-    <h3>Corps de la requête :</h3>
+    <h3>Corps de la requête:</h3>
     
-    <p>Le corps de la requête sera un objet JSON contenant un tableau d'abréviations de pays à inclure ou à exclure :</p>
+    <p>Le corps de la requête sera un objet JSON contenant un tableau d'abréviations de pays à inclure ou à exclure:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{"geo" : {

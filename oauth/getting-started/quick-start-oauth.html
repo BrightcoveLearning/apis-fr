@@ -1,6 +1,6 @@
 ---
 title: 'Démarrage rapide: API OAuth'
-description: 'Ce didacticiel vous guide tout au long des étapes pour obtenir les informations d'identification du client et un jeton d'accès à l'aide de l'API OAuth.'
+description: "Ce didacticiel vous guide tout au long des étapes pour obtenir les informations d'identification du client et un jeton d'accès à l'aide de OAuth API."
 parent: Getting Started 
 grandparent: OAuth API
 ---
@@ -26,7 +26,7 @@ grandparent: OAuth API
       <li>Obtenez un <code translate="No">access_token</code> qui fournit l'autorisation de faire un appel API - le access_token est valide pendant 5 minutes, donc dans la plupart des cas, vous en obtiendrez un pour chaque appel API que vous effectuez</li>
     </ul>
     
-    <p class="bcls-aside bcls-aside--information">Il existe également une interface utilisateur dans Studio que vous pouvez utiliser pour <a href="/general/managing-api-authentication-credentials.html">obtenir et gérer les informations d'identification des clients</a>. Il est recommandé d'utiliser l'interface utilisateur dans la mesure du possible. Pour les nouvelles API, les informations d'identification peuvent ne pas être disponibles via l'interface utilisateur pendant un certain temps, auquel cas vous pouvez obtenir des informations d'identification directement à partir de l'API OAuth, comme vous apprendrez à le faire dans les étapes qui suivent.</p>
+    <p class="bcls-aside bcls-aside--information">Il existe également une interface utilisateur dans Studio que vous pouvez utiliser pour <a href="/general/managing-api-authentication-credentials.html">obtenir et gérer les informations d'identification des clients</a>. Il est recommandé d'utiliser l'interface utilisateur dans la mesure du possible. Pour les nouvelles API, les informations d'identification peuvent ne pas être disponibles via l'interface utilisateur pendant un certain temps, auquel cas vous pouvez obtenir des informations d'identification directement à partir de OAuth API, comme vous apprendrez à le faire dans les étapes qui suivent.</p>
     </section>
     
     <section class="bcls-section">
@@ -37,7 +37,7 @@ grandparent: OAuth API
     <h3>Pas</h3>
     
     <ol class="bcls-tasklist">
-      <li>Assurez-vous que cURL est disponible comme expliqué dans <a href="#requirements">Conditions</a> ; vous pouvez tester en allant sur une ligne de commande et en tapant <code translate="No">curl</code> et en appuyant sur retour - si cURL est installé, vous devriez voir un message comme celui-ci :
+      <li>Assurez-vous que cURL est disponible comme expliqué dans <a href="#requirements">Conditions</a> ; vous pouvez tester en allant sur une ligne de commande et en tapant <code translate="No">curl</code> et en appuyant sur retour - si cURL est installé, vous devriez voir un message comme celui-ci:
     
       <pre class="line-numbers">
         <code class="language-bash" translate="No">curl: try 'curl --help' or 'curl --manual' for more information</code></pre>
@@ -60,14 +60,14 @@ grandparent: OAuth API
       <li>Sélectionnez Informations sur le compte dans la liste déroulante.</li>
       <li>Copiez votre identifiant de compte à partir de la page Informations sur le compte et enregistrez-le - vous en aurez besoin dans une étape ultérieure.</li>
       <li>Ouvrez maintenant la console de développement du navigateur - dans la plupart des navigateurs, vous pouvez le faire en appuyant sur OPTION-CMD-i (Mac) ou ALT-CTRL-i (Windows), ou vous devriez également pouvoir trouver un élément de menu.</li>
-      <li>Dans la console, collez le code JavaScript suivant et appuyez sur Entrée pour afficher votre BC_TOKEN dans une boîte de dialogue modale :<br />
+      <li>Dans la console, collez le code JavaScript suivant et appuyez sur Entrée pour afficher votre BC_TOKEN dans une boîte de dialogue modale:<br />
 <textarea class="bcls-code" translate="No" style="height:13em;">var cookiesArray = document.cookie.split(";"), cookiesObj = {} , je, tmpArray = []; pour (i = 0; i &lt; cookiesTableau.length; i++) { tmpArray = cookiesArray[i].split("="); if (tmpArray[0].indexOf('BC_TOKEN') &gt; -1) { cookiesObj.BC_TOKEN = tmpArray[1]; } } window.prompt("BC_TOKEN:", cookiesObj.BC_TOKEN);
       </textarea></li>
       <li>Copiez le BC_TOKEN dans le presse-papiers.</li>
-      <li>Saisissez votre identifiant de compte et BC_TOKEN ici :
+      <li>Saisissez votre identifiant de compte et BC_TOKEN ici:
       <p>Identifiant de compte: <input id="account_id" type="text" placeholder="876457237" /></p>
     
-      <p>BC_TOKEN :<br />
+      <p>BC_TOKEN:<br />
       <textarea id="BC_TOKEN" class="bcls-code" translate="No" placeholder="EnTxTg5fValF5Mso-TiOxmUI2Ooa59KJmXMiprB-Z4SZYumeNGkx6VToR0CvYGxxN0lVKH6BqE2dTF9iPyEJt3BewgJVEih2RFBKjYAtl8thJmPCkI6"></textarea></p>
     
       <p><button id="enterAccoutInputs" class="bcls-button">Soumettre l'identifiant et BC_TOKEN</button></p>
@@ -77,8 +77,8 @@ grandparent: OAuth API
     <h4>Faire la demande d'identifiants</h4>
     
     <ol class="bcls-tasklist">
-      <li>Pour obtenir vos informations d'identification client, copiez et collez la commande cURL suivante sur votre ligne de commande et appuyez sur Entrée :<textarea id="getCredentialsCall" class="bcls-code" style="height:7en;">Votre commande cURL apparaîtra ici après avoir entré votre identifiant de compte et BC_TOKEN</textarea></li>
-      <li>La réponse devrait ressembler à ceci (formatage ajouté) :
+      <li>Pour obtenir vos informations d'identification client, copiez et collez la commande cURL suivante sur votre ligne de commande et appuyez sur Entrée:<textarea id="getCredentialsCall" class="bcls-code" style="height:7en;">Votre commande cURL apparaîtra ici après avoir entré votre identifiant de compte et BC_TOKEN</textarea></li>
+      <li>La réponse devrait ressembler à ceci (formatage ajouté):
       <pre class="line-numbers">
         <code class="language-json" translate="No">{"redirect_url":null,"maximum_scope":[{"identity":
         {"type":"video-cloud-account","account-id":57838016001},
@@ -96,7 +96,7 @@ grandparent: OAuth API
       <fieldset class="bcls-fieldset"><legend>Identifiants du client</legend>
       <p>identité du client: <input id="client_id" type="text" /></p>
     
-      <p>client_secret : <input id="client_secret" type="text" /></p>
+      <p>client_secret: <input id="client_secret" type="text" /></p>
     
       <p><button id="enterCredentialInputs" class="bcls-button">Soumettre l'identifiant et BC_TOKEN</button></p>
       </fieldset>
@@ -107,22 +107,22 @@ grandparent: OAuth API
     <section class="bcls-section">
     <h2 id="Get_access_tokens">Obtenez des jetons d'accès</h2>
     
-    <p>Les <code translate="No">client_id</code> et <code translate="No">client_secret</code> vous avez obtenu dans les étapes précédentes sont utilisés comme un <em>Identifiant Mot de passe</em> combinaison pour l'authentification lorsque vous demandez un <code translate="No">access_token</code>. Dans cURL, que nous utiliserons ici, vous pouvez les transmettre comme <code class="language-bash" translate="No">--user</code> paramètre. Dans d'autres langues, vous les transmettrez dans un en-tête d'autorisation de base avec votre requête HTTP :</p>
+    <p>Les <code translate="No">client_id</code> et <code translate="No">client_secret</code> vous avez obtenu dans les étapes précédentes sont utilisés comme un <em>Identifiant Mot de passe</em> combinaison pour l'authentification lorsque vous demandez un <code translate="No">access_token</code>. Dans cURL, que nous utiliserons ici, vous pouvez les transmettre comme <code class="language-bash" translate="No">--user</code> paramètre. Dans d'autres langues, vous les transmettrez dans un en-tête d'autorisation de base avec votre requête HTTP:</p>
     
     <pre class="line-numbers">
         <code class="language-http" translate="No">Authorization: Basic {client_id:client_secret}</code></pre>
     
-    <p class="BCL-aside">Remarque : l'intégralité du client_id : client_secret <em>doit</em> être encodé en Base64 pour être accepté par l'API OAuth. cURL encodera automatiquement en Base64 les informations d'identification --user, mais dans d'autres langues, vous devrez les encoder vous-même en Base64.</p>
+    <p class="BCL-aside">Remarque: l'intégralité du client_id: client_secret <em>doit</em> être encodé en Base64 pour être accepté par OAuth API. cURL encodera automatiquement en Base64 les informations d'identification --user, mais dans d'autres langues, vous devrez les encoder vous-même en Base64.</p>
     
     <h3>Pas</h3>
     
     <ol class="bcls-tasklist">
-      <li>Pour obtenir votre access_token, copiez et collez la commande cURL suivante dans votre ligne de commande et appuyez sur Entrée :<textarea id="getTokenCall" class="bcls-code">Votre commande cURL apparaîtra ici après avoir entré votre client_id et client_secret</textarea></li>
-      <li>La sortie devrait ressembler à ceci :
+      <li>Pour obtenir votre access_token, copiez et collez la commande cURL suivante dans votre ligne de commande et appuyez sur Entrée:<textarea id="getTokenCall" class="bcls-code">Votre commande cURL apparaîtra ici après avoir entré votre client_id et client_secret</textarea></li>
+      <li>La sortie devrait ressembler à ceci:
       <pre class="line-numbers">
         <code class="language-json" translate="No">{<strong>"access_token":"ACkkpftcuhyzqdf4ftxm304za3anhziG0Ni5-S_dplxMNYNrSrBZRgJL3sf_U38ZZVDdgkmWtrb0_GRZj-VzWOAFWgpEYwgwIWLjcGsTI-9QMUMNv2eFj33clsWFHnGLzgtdcILXpR-wPM0LzKKzRahodwofPfuExYCej18Wpt1x7DxOJDySEjCGOWiTuZVKp1QjG0_nqD9T3TpK3Cchv0suVRTGkYrs15qYSKdxh2-e5XbUiKKptNl8ryvMriavPN66fOh17c09Q0525OPqejkU6uERPTw-sTLU_QjJbRV6psxoSVYKRAetsBikH9XRJbZCSt2JP88O"</strong>,"token_type":"Bearer",<strong>"expires_in":300</strong>}</code></pre>
       </li>
-      <li>Ce jeton peut être utilisé pour authentifier les appels à l'API de gestion des joueurs pendant 5 minutes (vous devez ensuite obtenir un nouveau jeton). Le jeton est passé dans l'en-tête Authorization avec la requête HTTP :
+      <li>Ce jeton peut être utilisé pour authentifier les appels à l'Ingestion Profiles API pendant 5 minutes (vous devez ensuite obtenir un nouveau jeton). Le jeton est passé dans l'en-tête Authorization avec la requête HTTP:
       <pre class="line-numbers">
         <code class="language-http" translate="No">Authorization: Bearer <em>access_token value</em></code></pre>
       </li>

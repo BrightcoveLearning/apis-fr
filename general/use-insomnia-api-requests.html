@@ -1,6 +1,6 @@
 ---
 title: 'Utiliser Insomnia pour les requêtes API'
-description: 'Dans cette rubrique, vous apprendrez à configurer le célèbre client HTTP Insomnia pour envoyer des requêtes aux API RESTful de Brightcove.'
+description: "Dans cette rubrique, vous apprendrez à configurer le célèbre client HTTP Insomnia pour envoyer des requêtes aux API RESTful de Brightcove."
 parent: General Information
 ---
  <h1>{{ page.title }}</h1>
@@ -8,26 +8,26 @@ parent: General Information
   <summary>{{ page.description }}</summary>
   <section class="bcls-section">
     <h2 id="introduction">introduction</h2>
-    <p>Certains trouvent que les instructions curl et la ligne de commande, utilisées pour de nombreux exemples dans notre documentation sur les API de plate-forme, sont difficiles et intimidantes. Pour ceux-ci, il existe de nombreux outils pour envoyer des requêtes HTTP aux services basés sur REST, qui incluent la plupart des API Brightcove. Ce document vous montrera comment utiliser un outil populaire, le <a href="https://insomnia.rest"><span translate="No">Insomnie</span> application</a>.</p>
+    <p>Certains trouvent que les instructions curl et la ligne de commande, utilisées pour de nombreux exemples dans notre documentation sur les API de plate-forme, sont difficiles et intimidantes. Pour ceux-ci, il existe de nombreux outils pour envoyer des requêtes HTTP aux services basés sur REST, qui incluent la plupart des API Brightcove. Ce document vous montrera comment utiliser un outil populaire, le <a href="https://insomnia.rest"><span>Insomnie</span> application</a>.</p>
   </section>
   <section class="bcls-section">
-    <h2 id="Install_insomnia">Installer <span translate="No">Insomnie</span></h2>
-    <p>Avoir <span translate="No">Insomnie</span> de <a href="https://insomnia.rest"><span translate="No">https://insomnia.rest</span></a>. <span translate="No">Insomnie</span> peut être installé sur les systèmes Mac, Linux ou Windows.</p>
+    <h2 id="Install_insomnia">Installer <span>Insomnie</span></h2>
+    <p>Avoir <span>Insomnie</span> de <a href="https://insomnia.rest"><span>https://insomnia.rest</span></a>. <span>Insomnie</span> peut être installé sur les systèmes Mac, Linux ou Windows.</p>
 		</section>
 		<section class="bcls-section">
 			<h2 id="authentication">Authentification</h2>
-    <p><span translate="No">Insomnie</span> peut être utilisé pour envoyer des requêtes à l'une des API RESTful de Brightcove. La plupart des API utilisent OAuth2 pour l'authentification, et nous verrons comment le configurer dans <span translate="no">Insomnie</span> plus loin dans ce document. Cependant, vous pouvez également l'utiliser pour les API qui n'utilisent pas OAuth, en définissant simplement l'en-tête approprié.</p>
+    <p><span>Insomnie</span> peut être utilisé pour envoyer des requêtes à l'une des API RESTful de Brightcove. La plupart des API utilisent OAuth2 pour l'authentification, et nous verrons comment le configurer dans <span>Insomnie</span> plus loin dans ce document. Cependant, vous pouvez également l'utiliser pour les API qui n'utilisent pas OAuth, en définissant simplement l'en-tête approprié.</p>
     <figure class="bcls-figure"><img class="bcls-image" alt="Set Header in Insomnia" src="/assets/images/general/insomnia/18462-set-header.png" />
-      <figcaption class="bcls-caption--image">Définir l'en-tête dans <span translate="No">Insomnie</span></figcaption>
+      <figcaption class="bcls-caption--image">Définir l'en-tête dans <span>Insomnie</span></figcaption>
     </figure>
-    <p>Voici à quoi ressemblera cet en-tête pour les requêtes avec des méthodes d'authentification autres que Oauth2 :</p>
+    <p>Voici à quoi ressemblera cet en-tête pour les requêtes avec des méthodes d'authentification autres que Oauth2:</p>
     <dl>
-      <dt ><a href="/playback/index.html"><span translate="No">API de lecture</span></a></dt>
+      <dt ><a href="/playback/index.html"><span>Playback API</span></a></dt>
       <dd >
         <pre>
   <code class="language-http" translate="No">BCOV-Policy: <span class="bcls-input">YOUR_POLICY_KEY</span></code></pre>
       </dd>
-      <dt ><a href="https://live.support.brightcove.com/live-api/"><span translate="No">API en direct</span></a></dt>
+      <dt ><a href="https://live.support.brightcove.com/live-api/"><span>Live API</span></a></dt>
       <dd >
         <pre>
   <code class="language-http" translate="No">X-API-KEY: <span class="bcls-input">YOUR_API_KEY</span></code></pre>
@@ -41,7 +41,7 @@ parent: General Information
   </section>
   <section class="bcls-section">
     <h2 id="getCredentials">Obtenir les informations d'identification du client</h2>
-    <p>Pour travailler avec la plupart des API Brightcove, vous aurez besoin des informations d'identification client pour le compte et les API que vous souhaitez utiliser. Obtenez vos informations d'identification client dans Studio en suivant les instructions dans <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a>. Dans les étapes ci-dessous, nous allons faire <span translate="No">API CMS</span> requêtes utilisant <span translate="No">Insomnie</span> , vos identifiants doivent donc avoir au moins les autorisations suivantes :</p>
+    <p>Pour travailler avec la plupart des API Brightcove, vous aurez besoin des informations d'identification client pour le compte et les API que vous souhaitez utiliser. Obtenez vos informations d'identification client dans Studio en suivant les instructions dans <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a>. Dans les étapes ci-dessous, nous allons faire CMS API requêtes utilisant <span>Insomnie</span> , vos identifiants doivent donc avoir au moins les autorisations suivantes:</p>
     <ul>
       <li><strong>Vidéos</strong>: <strong>Lire écrire</strong></li>
     </ul>
@@ -49,14 +49,14 @@ parent: General Information
     <aside class="bcls-aside bcls-aside--information">Afin de générer des informations d'identification client, vous devez disposer d'autorisations d'administrateur pour Studio ou demander à quelqu'un de votre organisation disposant d'autorisations d'administrateur de générer les informations d'identification pour vous.</aside>
   </section>
   <section class="bcls-section">
-    <h2 id="usingInsomnia">À l'aide de <span translate="No">Insomnie</span></h2>
-    <p>Une fois que vous avez vos informations d'identification client, vous êtes prêt à commencer à utiliser <span translate="No">Insomnie</span>. <span translate="No">Insomnie</span> fera beaucoup de travail de configuration pour vous si vous importez la spécification OpenAPI pour l'API CMS, que nous mettons à votre disposition. Les étapes ci-dessous vous guident tout au long de la création de certaines <strong>API CMS</strong> requêtes utilisant <span translate="No">Insomnie</span>.</p>
-    <h3>Mise en place d'un <span translate="No">Insomnie</span> collection pour l'API CMS</h3>
-		<h4>Obtenez la spécification OpenAPI pour l'API CMS</h4>
+    <h2 id="usingInsomnia">À l'aide de <span>Insomnie</span></h2>
+    <p>Une fois que vous avez vos informations d'identification client, vous êtes prêt à commencer à utiliser <span>Insomnie</span>. <span>Insomnie</span> fera beaucoup de travail de configuration pour vous si vous importez la spécification OpenAPI pour l'CMS API, que nous mettons à votre disposition. Les étapes ci-dessous vous guident tout au long de la création de certaines <strong>CMS API</strong> requêtes utilisant <span>Insomnie</span>.</p>
+    <h3>Mise en place d'un <span>Insomnie</span> collection pour l'CMS API</h3>
+		<h4>Obtenez la spécification OpenAPI pour l'CMS API</h4>
 		<ol class="bcls-tasklist-restart">
-			<li>Ouvrez le <a href="/cms/references/reference.html">Référence de l'API CMS</a>.</li>
+			<li>Ouvrez le <a href="/cms/references/reference.html">Référence de CMS API</a>.</li>
 			<li>
-				Clique le <strong>Télécharger</strong> bouton et enregistrez le <code translate="no">openapi.yaml</code> fichier dans un endroit où vous pourrez le retrouver :
+				Clique le <strong>Télécharger</strong> bouton et enregistrez le <code translate="no">openapi.yaml</code> fichier dans un endroit où vous pourrez le retrouver:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/insomnia/download-cms-api-openapi-spec.png" alt="Download Open API Specification">
 					<figcaption class="bcls-caption--image">Télécharger la spécification de l'API ouverte</figcaption>
@@ -65,8 +65,8 @@ parent: General Information
 		</ol>
 		<h4>Importer la spécification OpenAPI dans Insomnia</h4>
     <ol class="bcls-tasklist-restart">
-      <li>Lancer le <span translate="No">Insomnie</span> application.</li>
-      <li>Cliquez sur la liste déroulante à côté <span translate="No">Insomnie</span> et sélectionnez <strong>Importer / Exporter</strong>:
+      <li>Lancer le <span>Insomnie</span> application.</li>
+      <li>Cliquez sur la liste déroulante à côté <span>Insomnie</span> et sélectionnez <strong>Importer / Exporter</strong>:
         <figure class="bcls-figure"><img class="bcls-image" alt="Import/Export" src="/assets/images/general/insomnia/import-export.png" />
           <figcaption class="bcls-caption--image">Importer / Exporter</figcaption>
         </figure>
@@ -79,7 +79,7 @@ parent: General Information
 				</figure>
 			</li>
 			<li>
-				Sélectionnez le <code translate="no">openapi.yaml</code> que vous avez téléchargé, puis choisissez d'importer les données dans l'espace de travail actuel ou d'en créer un nouveau. L'un ou l'autre fonctionnera, mais nous vous recommandons de créer un nouvel espace de travail pour chaque API :
+				Sélectionnez le <code translate="no">openapi.yaml</code> que vous avez téléchargé, puis choisissez d'importer les données dans l'espace de travail actuel ou d'en créer un nouveau. L'un ou l'autre fonctionnera, mais nous vous recommandons de créer un nouvel espace de travail pour chaque API:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/insomnia/create-new-workspace.png" alt="Create New Workspace">
 					<figcaption class="bcls-caption--image">Créer un nouvel espace de travail</figcaption>
@@ -94,18 +94,18 @@ parent: General Information
 			</li>
 			<li>Vous verrez une boîte de dialogue confirmant que les données ont été importées.</li>
 			<li>
-				Cliquer sur <strong>Tableau de bord</strong> dans le coin supérieur gauche pour voir vos espaces de travail. Si vous avez créé un nouvel espace de travail, vous le verrez s'afficher avec le nom approprié :
+				Cliquer sur <strong>Tableau de bord</strong> dans le coin supérieur gauche pour voir vos espaces de travail. Si vous avez créé un nouvel espace de travail, vous le verrez s'afficher avec le nom approprié:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/insomnia/cms-api-workspace.png" alt="CMS API Workspace">
-					<figcaption class="bcls-caption--image">Espace de travail API CMS</figcaption>
+					<figcaption class="bcls-caption--image">Espace de travail CMS API</figcaption>
 				</figure>
 			</li>
       <li>Cliquez sur l'espace de travail pour l'ouvrir.</li>
 			<li>
-				Vous verrez une liste de dossiers contenant les différents groupes de requêtes pour l'API CMS, ainsi qu'un nouvel environnement OpenAPI :
+				Vous verrez une liste de dossiers contenant les différents groupes de requêtes pour l'CMS API, ainsi qu'un nouvel environnement OpenAPI:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/insomnia/cms-api-evironment-and-request-folders.png" alt="CMS API Requests and Environment">
-					<figcaption class="bcls-caption--image">Environnement et requêtes d'API CMS</figcaption>
+					<figcaption class="bcls-caption--image">Environnement et requêtes d'CMS API</figcaption>
 				</figure>
 			</li>
     </ol>
@@ -122,7 +122,7 @@ parent: General Information
 				</figure>
 			</li>
 			<li>
-				Vous verrez les variables d'environnement qui <span translate="no">Insomnie</span> créé à partir de la spécification OpenAPI sous la forme de JSON :
+				Vous verrez les variables d'environnement qui <span>Insomnie</span> créé à partir de la spécification OpenAPI sous la forme de JSON:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/insomnia/environment-json.png" alt="Environment Variables">
 					<figcaption class="bcls-caption--image">Variables d'environnement</figcaption>
@@ -138,7 +138,7 @@ parent: General Information
 				</ul>
 			</li>
 			<li>
-				Lorsque vous avez terminé, l'environnement JSON devrait ressembler à ceci :
+				Lorsque vous avez terminé, l'environnement JSON devrait ressembler à ceci:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/insomnia/environment-vars-added.png" alt="Environment Variables Added">
 					<figcaption class="bcls-caption--image">Variables d'environnement ajoutées</figcaption>
@@ -173,31 +173,31 @@ parent: General Information
 				</figure>
       </li>
       <li>
-				Dans le <strong>URL du jeton d'accès</strong> champ, commencez à taper "access_token_url" - vous verrez le menu de saisie semi-automatique et sélectionnez votre <code translate="no">access_token_url</code> variable d'environnement :
+				Dans le <strong>URL du jeton d'accès</strong> champ, commencez à taper "access_token_url" - vous verrez le menu de saisie semi-automatique et sélectionnez votre <code translate="no">access_token_url</code> variable d'environnement:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/insomnia/access-token-url.png" alt="Autocomplete for Variables">
 					<figcaption class="bcls-caption--image">Saisie semi-automatique pour les variables</figcaption>
 				</figure>
       </li>
       <li>
-				Répétez l'étape précédente pour remplir le <strong>identité du client</strong> et <strong>Secret du client</strong> champs avec votre <code translate="no">identité du client</code> et <code translate="no">client_secret</code> variables :
+				Répétez l'étape précédente pour remplir le <strong>identité du client</strong> et <strong>Secret du client</strong> champs avec votre <code translate="no">identité du client</code> et <code translate="no">client_secret</code> variables:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/insomnia/auth-variables.png" alt="Auth Variables">
 					<figcaption class="bcls-caption--image">Variables d'authentification</figcaption>
 				</figure>
 			</li>
       <li>
-				Faites défiler vers le bas pour voir le <strong>Récupérer le jeton</strong> bouton et cliquez dessus. Assurez-vous que le champ Access Token est renseigné avec un jeton :
+				Faites défiler vers le bas pour voir le <strong>Récupérer le jeton</strong> bouton et cliquez dessus. Assurez-vous que le champ Access Token est renseigné avec un jeton:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/insomnia/access-token.png" alt="Access Token">
 					<figcaption class="bcls-caption--image">Jeton d'accès</figcaption>
 				</figure>
 			</li>
-      <li>Cliquez sur <strong>Récupérer des jetons</strong> pour s'assurer que cela fonctionne. Vous devriez voir une réponse comme celle-ci :
+      <li>Cliquez sur <strong>Récupérer des jetons</strong> pour s'assurer que cela fonctionne. Vous devriez voir une réponse comme celle-ci:
         <figure class="bcls-figure"><img class="bcls-image" alt="Access Token" src="/assets/images/general/insomnia/18462-access-token.png" />
           <figcaption class="bcls-caption--image">Jeton d'accès</figcaption>
         </figure>
-        <aside class="bcls-aside bcls-aside--information">L'une des caractéristiques intéressantes de <span translate="No">Insomnie</span> est-ce qu'une fois que vous avez configuré cela, vous le faites <strong>ne pas</strong> devez actualiser le jeton manuellement - <span translate="No">Insomnie</span> en obtiendra de nouveaux automatiquement au fur et à mesure de leurs besoins.</aside>
+        <aside class="bcls-aside bcls-aside--information">L'une des caractéristiques intéressantes de <span>Insomnie</span> est-ce qu'une fois que vous avez configuré cela, vous le faites <strong>ne pas</strong> devez actualiser le jeton manuellement - <span>Insomnie</span> en obtiendra de nouveaux automatiquement au fur et à mesure de leurs besoins.</aside>
       </li>
 			<li>
 				Allez au <strong>Entête</strong> onglet et supprimez le <strong>Autorisation</strong> header (l'authentification que vous venez de mettre en place s'occupera de la tête - celle-ci la cassera):
@@ -220,14 +220,14 @@ parent: General Information
 		<ol class="bcls-tasklist-restart">
 			<li>Puisqu'il s'agit d'un <code translate="no">AVOIR</code> demande, il vous suffit de cliquer <strong>Envoyer</strong>.</li>
 			<li>
-				Vous devriez voir la réponse JSON apparaître dans la zone Réponse :
+				Vous devriez voir la réponse JSON apparaître dans la zone Réponse:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/insomnia/get-response.png" alt="API Response">
 					<figcaption class="bcls-caption--image">Réponse de l'API</figcaption>
 				</figure>
 			</li>
 			<li>
-				Notez que vous pouvez récupérer différents ensembles de vidéos en utilisant <strong>Mettre en doute</strong> paramètres. Clique le <strong>Mettre en doute</strong> onglet pour la demande, et vous verrez que <span class="”notranslate”">Insomnie</span> l'a rempli sur la base de la spécification OpenAPI. Vérifiez simplement le(s) paramètre(s) que vous souhaitez utiliser et définissez les valeurs :
+				Notez que vous pouvez récupérer différents ensembles de vidéos en utilisant <strong>Mettre en doute</strong> paramètres. Clique le <strong>Mettre en doute</strong> onglet pour la demande, et vous verrez que <span class="”notranslate”">Insomnie</span> l'a rempli sur la base de la spécification OpenAPI. Vérifiez simplement le(s) paramètre(s) que vous souhaitez utiliser et définissez les valeurs:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/insomnia/query-params.png" alt="Query Params">
 					<figcaption class="bcls-caption--image">Paramètres de requête</figcaption>
@@ -237,7 +237,7 @@ parent: General Information
 	</section>
   <section class="bcls-section">
     <h2 id="postRequest">Envoyer un <code translate="No">POST</code> demander</h2>
-    <p>Maintenant, nous allons envoyer un <code translate="No">POST</code> demande avec quelques données. Dans ce cas, nous allons créer un nouvel objet vidéo à l'aide de l'API CMS. Commencez par sélectionner le <strong>Créer une vidéo</strong> demande dans le <strong>Vidéos</strong> dossier.</p>
+    <p>Maintenant, nous allons envoyer un <code translate="No">POST</code> demande avec quelques données. Dans ce cas, nous allons créer un nouvel objet vidéo à l'aide de CMS API. Commencez par sélectionner le <strong>Créer une vidéo</strong> demande dans le <strong>Vidéos</strong> dossier.</p>
     <ol class="bcls-tasklist-restart">
 			<li>Répétez toutes les étapes de la <a href="#Set_up_authentication">Configurer l'authentification</a> section ci-dessus pour configurer l'authentification pour cette nouvelle demande.</li>
 			<li>
@@ -258,7 +258,7 @@ parent: General Information
     <p>Une autre fonctionnalité intéressante de <span class="”notranslate”">Insomnie</span> est qu'il va générer du code pour faire des requêtes dans de nombreuses langues différentes.</p>
     <ol class="bcls-tasklist-restart">
       <li>
-        Survolez le menu déroulant pour une demande :
+        Survolez le menu déroulant pour une demande:
         <figure class="bcls-figure">
           <img class="bcls-image" src="/assets/images/general/insomnia/dropdown-menu-for-requests.png" alt="Request Dropdown Menu">
           <figcaption class="bcls-caption--image">Menu déroulant de demande</figcaption>
@@ -272,21 +272,21 @@ parent: General Information
         </figure>
       </li>
       <li>
-        Dans le <strong>Générer le code client</strong> boîte de dialogue qui s'ouvre, choisissez la langue pour laquelle vous souhaitez coder :
+        Dans le <strong>Générer le code client</strong> boîte de dialogue qui s'ouvre, choisissez la langue pour laquelle vous souhaitez coder:
         <figure class="bcls-figure">
           <img class="bcls-image" src="/assets/images/general/insomnia/choose-code-type.png" alt="Select the Language">
           <figcaption class="bcls-caption--image">Sélectionnez la langue</figcaption>
         </figure>
       </li>
       <li>
-        Pour de nombreuses langues, vous pouvez également sélectionner des variantes qui peuvent être mieux adaptées au type d'application que vous créez :
+        Pour de nombreuses langues, vous pouvez également sélectionner des variantes qui peuvent être mieux adaptées au type d'application que vous créez:
         <figure class="bcls-figure">
           <img class="bcls-image" src="/assets/images/general/insomnia/choose-code-variants.png" alt="Select Code Variant">
           <figcaption class="bcls-caption--image">Sélectionnez la variante de code</figcaption>
         </figure>
       </li>
       <li>
-        Il existe également un bouton pratique pour copier le code dans votre presse-papiers :
+        Il existe également un bouton pratique pour copier le code dans votre presse-papiers:
         <figure class="bcls-figure">
           <img class="bcls-image" src="/assets/images/general/insomnia/view-copy-code.png" alt="View and Copy Code">
           <figcaption class="bcls-caption--image">Afficher et copier le code</figcaption>
@@ -296,6 +296,6 @@ parent: General Information
   </section>
   <section class="bcls-section">
     <h2 id="Conclusion">Conclusion</h2>
-    <p>Vous connaissez maintenant les bases de l'utilisation <span translate="No">Insomnie</span> pour faire des requêtes aux API Brightcove. Notez que si vous choisissez de mettre à niveau votre <span translate="No">Insomnie</span> compte à un compte d'équipe, vous pouvez également synchroniser toutes vos demandes et environnements et les partager avec d'autres membres de l'équipe.</p>
+    <p>Vous connaissez maintenant les bases de l'utilisation <span>Insomnie</span> pour faire des requêtes aux API Brightcove. Notez que si vous choisissez de mettre à niveau votre <span>Insomnie</span> compte à un compte d'équipe, vous pouvez également synchroniser toutes vos demandes et environnements et les partager avec d'autres membres de l'équipe.</p>
   </section>
 </article>

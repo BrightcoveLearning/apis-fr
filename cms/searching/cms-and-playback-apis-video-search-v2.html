@@ -1,6 +1,6 @@
 ---
-title: 'API CMS : Recherche vidéo v2'
-description: 'Cette rubrique explique la syntaxe d'utilisation de la version 2 de la recherche vidéo, prise en charge par l'API CMS.'
+title: 'CMS API: Recherche vidéo v2'
+description: "Cette rubrique explique la syntaxe d'utilisation de la version 2 de la recherche vidéo, prise en charge par l'CMS API."
 parent: Searching 
 grandparent: CMS API
 ---
@@ -10,23 +10,23 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="introduction">introduction</h2>
 
-    <p >La version 2 de la recherche vidéo utilisée par le <span translate="No">API CMS</span> simplifie la syntaxe et la rend plus simple à utiliser.</p>
+    <p >La version 2 de la recherche vidéo utilisée par le CMS API simplifie la syntaxe et la rend plus simple à utiliser.</p>
 
     <aside class="bcls-aside bcls-aside--warning"> <strong>Remarques:</strong>
       <ul>
-        <li>La syntaxe de recherche v2 est prise en charge par le <span translate="No">API CMS</span> seulement toi <strong>ne peut pas utiliser cette syntaxe avec l'API Playback</strong>.</li>
-        <li>La syntaxe de recherche d'origine est toujours prise en charge par les API CMS et Playback.</li>
+        <li>La syntaxe de recherche v2 est prise en charge par le CMS API seulement toi <strong>ne peut pas utiliser cette syntaxe avec le Playback API</strong>.</li>
+        <li>La syntaxe de recherche d'origine est toujours prise en charge par les CMS API et Playback.</li>
       </ul>
     </aside>
 
-    <p >Le choix de la syntaxe à utiliser consiste simplement à choisir le paramètre d'URL approprié :</p>
+    <p >Le choix de la syntaxe à utiliser consiste simplement à choisir le paramètre d'URL approprié:</p>
 
     <ul>
-      <li>Pour utiliser la nouvelle recherche v2 :
+      <li>Pour utiliser la nouvelle recherche v2:
       <pre>
     <code class="language-http" translate="No">.../videos?<span class="bcls-highlight">query</span>={search_string}</code></pre>
       </li>
-      <li>Pour utiliser la recherche d'origine :
+      <li>Pour utiliser la recherche d'origine:
       <pre>
     <code class="language-http" translate="No">.../videos?<span class="bcls-highlight">q</span>={search_string}</code></pre>
       </li>
@@ -60,7 +60,7 @@ grandparent: CMS API
       </tbody>
     </table>
 
-    <p >Lorsque vous ne fournissez aucun nom de champ à rechercher, la demande recherchera cette valeur dans les champs suivants :</p>
+    <p >Lorsque vous ne fournissez aucun nom de champ à rechercher, la demande recherchera cette valeur dans les champs suivants:</p>
 
     <ul id="default_fields">
       <li><code translate="No">id</code></li>
@@ -74,7 +74,7 @@ grandparent: CMS API
       <li><code translate="No">custom_field_name</code>(recherche un champ personnalisé nommé spécifique)</li>
     </ul>
 
-    <p >Les champs pris en charge pour la recherche sont :</p>
+    <p >Les champs pris en charge pour la recherche sont:</p>
 
     <table class="bcls-table" id="supported_search_fields">
       <caption class="bcls-caption--table">Champs de recherche pris en charge</caption>
@@ -194,7 +194,7 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="search_for_a_phrase">Recherche d'expression</h2>
 
-    <p >Vous pouvez rechercher une phrase (plutôt qu'un seul mot) en plaçant entre guillemets :</p>
+    <p >Vous pouvez rechercher une phrase (plutôt qu'un seul mot) en plaçant entre guillemets:</p>
 
     <ul>
       <li><code translate="No">"blue heron"</code></li>
@@ -205,7 +205,7 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="date_times">Date/Heures</h2>
 
-    <p >Vous pouvez effectuer une recherche sur un intervalle date-heure en utilisant :</p>
+    <p >Vous pouvez effectuer une recherche sur un intervalle date-heure en utilisant:</p>
 
     <p ><code translate="No">[{start} TO {end}]</code></p>
 
@@ -213,7 +213,7 @@ grandparent: CMS API
 
     <p ><code translate="No">[2019-09-30T00:00:00.000Z TO 2019-09-30T00:00:00.000Z]</code></p>
 
-    <p >Les valeurs date-heure sont spécifiées au format ISO 8601 :</p>
+    <p >Les valeurs date-heure sont spécifiées au format ISO 8601:</p>
 
     <table class="bcls-table">
       <caption class="bcls-caption--table">Formats date/heure</caption>

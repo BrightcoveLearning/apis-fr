@@ -1,6 +1,6 @@
 ---
-title: 'Mise en œuvre des règles de livraison' la
-description: « Dans cette rubrique, vous apprendrez à mettre en œuvre les règles de livraison de Brightcove, qui vous permettent de personnaliser la façon dont vos médias sont livrés pour répondre à vos objectifs commerciaux.
+title: 'Mise en œuvre des règles de livraison'
+description: "Dans cette rubrique, vous apprendrez à mettre en œuvre les règles de livraison de Brightcove, qui vous permettent de personnaliser la façon dont vos médias sont livrés pour répondre à vos objectifs commerciaux."
 parent: Getting started 
 grandparent: Delivery Rules API
 ---
@@ -22,7 +22,7 @@ grandparent: Delivery Rules API
     <strong>Actions</strong> - Paramètres "Alors" qui définissent comment le manifeste est modifié
   </li>
 </ul>
-<p>Pour plus de détails sur les règles de livraison, consultez ce qui suit :</p>
+<p>Pour plus de détails sur les règles de livraison, consultez ce qui suit:</p>
 <ul>
   <li>
     <a href="/delivery-rules/getting-started/overview-delivery-rules.html">Aperçu: Règles de livraison</a>
@@ -55,16 +55,16 @@ grandparent: Delivery Rules API
 <section class="bcls-section">
 <h2 id="Conditions">Conditions</h2>
 
-<p>Les conditions « si », prises en charge dans la première phase, sont les suivantes :</p>
+<p>Les conditions « si », prises en charge dans la première phase, sont les suivantes:</p>
 
 <ul>
   <li>
     <p>
-      <strong>Demande explicite</strong> - Un identifiant de configuration est l'identifiant d'une action que vous avez créée. Vous utiliserez cet identifiant pour passer à l'API Playback lors de l'exécution. Cet identifiant est mappé aux valeurs de configuration qui permettent aux services sous-jacents de prendre des décisions exploitées par l'API Playback pour renvoyer les données de réponse appropriées.
+      <strong>Demande explicite</strong> - Un identifiant de configuration est l'identifiant d'une action que vous avez créée. Vous utiliserez cet identifiant pour passer à le Playback API lors de l'exécution. Cet identifiant est mappé aux valeurs de configuration qui permettent aux services sous-jacents de prendre des décisions exploitées par le Playback API pour renvoyer les données de réponse appropriées.
     </p>
   </li>
   <li>
-    <strong>Groupe de périphériques</strong> - Type de périphérique détecté par l'analyse de l'agent utilisateur. Les groupes actuellement pris en charge comprennent :
+    <strong>Groupe de périphériques</strong> - Type de périphérique détecté par l'analyse de l'agent utilisateur. Les groupes actuellement pris en charge comprennent:
     <ul>
       <li>
         Android
@@ -115,7 +115,7 @@ grandparent: Delivery Rules API
     &nbsp;
   </li>
   <li>
-    <strong>Géographie</strong> - Localisation physique de l'appareil demandeur :
+    <strong>Géographie</strong> - Localisation physique de l'appareil demandeur:
     <ul>
       <li>
         Continent
@@ -132,7 +132,7 @@ grandparent: Delivery Rules API
 <section class="bcls-section">
 <h2 id="Actions">Actions</h2>
 
-<p>Les actions, ou paramètres « alors », pris en charge dans la première phase sont les suivants :</p>
+<p>Les actions, ou paramètres « alors », pris en charge dans la première phase sont les suivants:</p>
 
 <ul>
   <li>
@@ -195,32 +195,32 @@ grandparent: Delivery Rules API
 <section class="bcls-section">
 <h2 id="Defining_rules">Définir des règles</h2>
 
-<p>Utilisez l'API des règles de livraison pour personnaliser la livraison des médias.</p>
+<p>Utilisez l'Delivery Rules API pour personnaliser la livraison des médias.</p>
 
-<h3 id="Delivery_Rules_API">API de règles de livraison</h3>
+<h3 id="Delivery_Rules_API">Policy API de livraison</h3>
 <p>
-  Les <a href="https://apis.support.brightcove.com/delivery-rules/references/reference.html">API de règles de livraison</a> vous permet de définir des conditions et des actions pour contrôler votre diffusion multimédia.
+  Les <a href="https://apis.support.brightcove.com/delivery-rules/references/reference.html">Policy API de livraison</a> vous permet de définir des conditions et des actions pour contrôler votre diffusion multimédia.
 </p>
-<p>Les <a href="#API_Response">réponse</a> de l'API des règles de livraison contient un <code translate="No">conditions</code> déployer. Ce tableau vous permet de créer plusieurs <code translate="No">if</code> / <code translate="No">then</code> conditions où chaque <code translate="No">then</code> pointe vers un ou plusieurs <a href="#Response_body_for_actions">identifiants d'action</a>.</p>
+<p>Les <a href="#API_Response">réponse</a> du Delivery Rules API contient un <code translate="No">conditions</code> déployer. Ce tableau vous permet de créer plusieurs <code translate="No">if</code> / <code translate="No">then</code> conditions où chaque <code translate="No">then</code> pointe vers un ou plusieurs <a href="#Response_body_for_actions">identifiants d'action</a>.</p>
 <p>Même s'il n'y a pas de méthodes pour ajouter ou supprimer <code translate="No">conditions</code> , vous pouvez le faire en mettant à jour le <code translate="No">conditions</code> déployer.</p>
 
 <!-- <aside class="bcls-aside bcls-aside--tip">Since each account has one conditions block, you will update the block to add or remove conditions.</aside> -->
 
 <h3>URL de base</h3>
 <p>
-  L'URL de base de l'API est :
+  L'URL de base de l'API est:
 </p>
 <pre><code class="language-http" translate="No">https://delivery-rules.api.brightcove.com</code></pre>
 
 <h3>Chemin du compte</h3>
 <p>
-  Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base :
+  Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base:
 </p>
 <pre><code class="language-http" translate="No">https://delivery-rules.api.brightcove.com/accounts/{accountID}</code></pre>
 
 <h3>Autorisation</h3>
 <p>
-  Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization :
+  Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization:
 </p>
 <pre><code class="language-http" translate="No">Authorization: Bearer {access_token}</code></pre>
 <p>
@@ -242,7 +242,7 @@ grandparent: Delivery Rules API
 
 <h3>Gérer les règles</h3>
 <p>
-  L'API des règles de livraison prend en charge les requêtes suivantes. Pour plus de détails sur l'API, consultez le <a href="https://apis.support.brightcove.com/delivery-rules/references/reference.html">Référence de l'API des règles de livraison</a>.
+  L'Delivery Rules API prend en charge les requêtes suivantes. Pour plus de détails sur l'API, consultez le <a href="https://apis.support.brightcove.com/delivery-rules/references/reference.html">Référence du Delivery Rules API</a>.
 </p>
 
 <h4>Obtenir les règles de livraison</h4>
@@ -367,7 +367,7 @@ grandparent: Delivery Rules API
 ]</code></pre>
 <br />
 <p>
-  Voici les détails des champs pour les conditions :
+  Voici les détails des champs pour les conditions:
 </p>
 <table class="bcls-table">
   <thead class="bcls-table__head">
@@ -443,7 +443,7 @@ grandparent: Delivery Rules API
 }</code></pre>
 
 <p>
-  Voici les détails des champs pour les actions :
+  Voici les détails des champs pour les actions:
 </p>
 <table class="bcls-table">
   <thead class="bcls-table__head">
@@ -534,7 +534,7 @@ grandparent: Delivery Rules API
 }</code></pre>
 
 <p>
-  En plus des champs d'actions dans la demande, la réponse de l'API inclut le champ généré suivant :
+  En plus des champs d'actions dans la demande, la réponse de l'API inclut le champ généré suivant:
 </p>
 <table class="bcls-table">
   <thead class="bcls-table__head">
@@ -680,7 +680,7 @@ grandparent: Delivery Rules API
 <section class="bcls-section">
 <h2 id="Limitations">Limites</h2>
 
-<p>Il existe quelques limitations connues lors de l'utilisation des règles de livraison :</p>
+<p>Il existe quelques limitations connues lors de l'utilisation des règles de livraison:</p>
 <ul>
   <!-- <li>
     <strong>CDN Providers</strong> - A customer may only have one CDN configuration from a given provider. For instance, it will be possible to switch between Akamai and Cloudfront, but not between two separate Akamai configurations.

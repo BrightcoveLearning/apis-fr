@@ -1,6 +1,6 @@
 ---
 title: 'Problèmes connus des API de la plate-forme'
-description: 'Il s'agit d'une compilation des problèmes connus de l'API de la plate-forme.'
+description: "Il s'agit d'une compilation des problèmes connus de l'API de la plate-forme."
 parent: General Information 
 grandparent: Home
 ---
@@ -8,7 +8,7 @@ grandparent: Home
 <article class="bcls-article">
   <summary>{{ page.description }}</summary>
   <section class="bcls-section">
-    <h2 id="Analytics_API">API d'analyse</h2>
+    <h2 id="Analytics_API">Analytics API</h2>
       <dl>
         <dt>Demander des champs vidéo ou lecteur dans le <code translate="No">fields</code> sans les demander comme dimensions</dt>
         <dd>
@@ -21,19 +21,19 @@ grandparent: Home
       </dl>
   </section>
   <section class="bcls-section">
-    <h2 id="CMS_API">API CMS</h2>
+    <h2 id="CMS_API">CMS API</h2>
         <dl>
           <dt>Dans certains cas, le <code translate="No">original_filename </code> se corrompt</dt>
           <dd>Dans certains cas, le <code translate="No">original_filename </code> champ pour les vidéos est corrompu et ne contiendra pas le vrai nom de fichier.</dd>
           <dt>Les balises ne doivent pas contenir de virgules</dt>
           <dd>Si vous essayez d'ajouter une balise à une vidéo qui contient une virgule (par ex. "SomeCo, Inc") la demande échouera avec une erreur "balise illégale"</dd>
         <dt>Vidéos programmées</dt>
-        <dd>Étant donné que l'API de lecture et le catalogue mettent en cache les vidéos pendant 10 à 15 minutes, un lecteur demandant une vidéo dont la disponibilité est prévue au cours des prochaines minutes (jusqu'à 20) peut ne pas être en mesure d'obtenir une vidéo lisible tant que le cache n'est pas actualisé.</dd>
+        <dd>Étant donné que le Playback API et le catalogue mettent en cache les vidéos pendant 10 à 15 minutes, un lecteur demandant une vidéo dont la disponibilité est prévue au cours des prochaines minutes (jusqu'à 20) peut ne pas être en mesure d'obtenir une vidéo lisible tant que le cache n'est pas actualisé.</dd>
         <dt><code translate="No">has_digital_master</code></dt>
         <dd>
           <p>Si vous utilisez ce champ pour tester si une vidéo peut être retranscodée, il n'est pas fiable pour les vidéos partagées, car ce sera vrai si la vidéo d'origine a un master, mais ne peut toujours pas être retranscodé par le compte affilié.</p>
 
-          <p><strong>solution de contournement</strong>: Si des vidéos sont partagées sur le compte, vous devez tester les deux <code translate="No">has_digital_master = true </code> et <code translate="No">sharing.by_external_account = false </code>. Exemple de code (JavaScript) :</p>
+          <p><strong>solution de contournement</strong>: Si des vidéos sont partagées sur le compte, vous devez tester les deux <code translate="No">has_digital_master = true </code> et <code translate="No">sharing.by_external_account = false </code>. Exemple de code (JavaScript):</p>
 
 <pre class="line-numbers"><code class="language-javascript" translate="No">var video={some_video_object}
 if (video.sharing !== null) {
@@ -45,6 +45,6 @@ if (video.sharing !== null) {
 }</code></pre>
         </dd>
         <dt>ID de référence en double autorisé pour les listes de lecture lors de l'utilisation de mise à jour/PATCH</dt>
-        <dd>Lorsque vous mettez à jour une liste de lecture <code translate="No">reference_id</code> en utilisant le <span translate="No">API CMS</span> (ou le module Media, puisqu'il utilise la même requête API), un identifiant de référence déjà utilisé pour une autre playlist sera autorisé.</dd>
+        <dd>Lorsque vous mettez à jour une liste de lecture <code translate="No">reference_id</code> en utilisant le CMS API (ou le module Media, puisqu'il utilise la même requête API), un identifiant de référence déjà utilisé pour une autre playlist sera autorisé.</dd>
       </dl>
   </section>

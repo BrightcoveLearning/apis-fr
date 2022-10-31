@@ -1,6 +1,6 @@
 ---
 title: 'Présentation de Git'
-description: 'Dans cette rubrique, vous apprendrez les concepts de base de l'utilisation de Git, qui est une partie essentielle de l'API du système de livraison.'
+description: "Dans cette rubrique, vous apprendrez les concepts de base de l'utilisation de Git, qui est une partie essentielle de l'API du système de livraison."
 parent: Delivery System API 
 grandparent: Home
 ---
@@ -8,23 +8,23 @@ grandparent: Home
 <article class="bcls-article">
   <summary>{{ page.description }}</summary>
     <section class="bcls-section">
-    <h2 id="Overview">Utilisation de Git : Aperçu</h2>
+    <h2 id="Overview">Utilisation de Git: Aperçu</h2>
     
     <p>Git est une partie essentielle du système de livraison, et nous encourageons tous les utilisateurs qui ne sont pas encore familiarisés avec ses concepts à en savoir plus sur <a href="//git-scm.com/documentation">le site Git</a>. Il y a aussi des trucs pratiques <a href="//services.github.com/resources/">Aide-mémoire Git</a> là à utiliser.</p>
     
-    <p>Git doit être installé pour utiliser les API du système de livraison, et vous pouvez le faire à l'adresse <a href="//git-scm.com/documentation">le site Git</a>. Les exemples de ligne de commande que nous donnons ne peuvent généralement pas être utilisés directement tels qu'ils sont écrits, cependant, car un certain nombre d'espaces réservés sont utilisés. Remplacez la variable ou la valeur d'environnement par ce qui suit : <em>IDENTIFIANT DE COMPTE</em>, <em>REPO_NAME</em>, <em>JETON D'ACCÈS</em>, <em>NOM D'UTILISATEUR</em></p>
+    <p>Git doit être installé pour utiliser les API du système de livraison, et vous pouvez le faire à l'adresse <a href="//git-scm.com/documentation">le site Git</a>. Les exemples de ligne de commande que nous donnons ne peuvent généralement pas être utilisés directement tels qu'ils sont écrits, cependant, car un certain nombre d'espaces réservés sont utilisés. Remplacez la variable ou la valeur d'environnement par ce qui suit: <em>IDENTIFIANT DE COMPTE</em>, <em>REPO_NAME</em>, <em>JETON D'ACCÈS</em>, <em>NOM D'UTILISATEUR</em></p>
     </section>
     
     <section class="bcls-section">
-    <h2 id="gitAuthorize">Utilisation de Git : Autoriser</h2>
+    <h2 id="gitAuthorize">Utilisation de Git: Autoriser</h2>
     
-    <p>Contrairement aux API REST, vous ne pouvez autoriser que d'une seule manière avec Git : via l'authentification de base en utilisant votre nom d'utilisateur et votre mot de passe Brightcove. Il n'est actuellement pas possible d'utiliser des jetons d'accès OAuth avec Git.</p>
+    <p>Contrairement aux API REST, vous ne pouvez autoriser que d'une seule manière avec Git: via l'authentification de base en utilisant votre nom d'utilisateur et votre mot de passe Brightcove. Il n'est actuellement pas possible d'utiliser des jetons d'accès OAuth avec Git.</p>
     
     <p>Git devrait vous demander votre nom d'utilisateur et votre mot de passe, et vous ne verrez donc aucune mention d'authentification dans les exemples ci-dessous.</p>
     </section>
     
     <section class="bcls-section">
-    <h2 id="gitCreate">Git : Créer/Mettre à jour le dépôt</h2>
+    <h2 id="gitCreate">Git: Créer/Mettre à jour le dépôt</h2>
     
     <p>Avec Git installé et un référentiel créé via REST, vous pouvez commencer à créer votre référentiel local à utiliser. Un dépôt local créé en créant simplement un répertoire, puis en initialisant Git dans ce répertoire en utilisant le <strong>git init</strong> commander.</p>
     
@@ -50,11 +50,11 @@ grandparent: Home
     </section>
     
     <section class="bcls-section">
-    <h2 id="pushRepo">Utilisation de Git : Pousser le dépôt</h2>
+    <h2 id="pushRepo">Utilisation de Git: Pousser le dépôt</h2>
     
     <p>Les détails sur l'endroit où les différents fichiers sont poussés sont donnés dans la sortie du <strong>git pousser</strong>. Vous pouvez également trouver l'URL de base de tout référentiel dans les appels d'API REST vers l'URL du référentiel. Tous les fichiers sont stockés sur un CDN afin qu'ils puissent être consultés rapidement par tous les utilisateurs.</p>
     
-    <p>Si vous créez votre propre lecteur entièrement personnalisé, vous devez savoir que nous ne pouvons garantir que les mises à jour de tous les fichiers auront lieu simultanément dans un client typique comme un navigateur. Par conséquent, il est fortement recommandé aux utilisateurs des API du système de livraison d'utiliser une stratégie de gestion des versions qui garantit que les fichiers étroitement couplés sont demandés ensemble après une mise à jour. Une stratégie pour y parvenir consiste à effectuer les mises à jour dans un emplacement entièrement nouveau plutôt que d'écraser les fichiers existants. Cela garantit que les fichiers demandés sont les sources d'origine car il n'y a aucune chance qu'il y ait une copie en cache dans notre service. Cependant, vous devez vous attendre à ce que les premières demandes de ces copies non mises en cache prennent plus de temps que d'habitude. Pour être clair, si vous créez des lecteurs à l'aide des API de gestion des lecteurs et n'utilisez pas directement les API du système de livraison, vous n'avez pas à vous en soucier car les problèmes de cache sont traités pour vous.</p>
+    <p>Si vous créez votre propre lecteur entièrement personnalisé, vous devez savoir que nous ne pouvons garantir que les mises à jour de tous les fichiers auront lieu simultanément dans un client typique comme un navigateur. Par conséquent, il est fortement recommandé aux utilisateurs des API du système de livraison d'utiliser une stratégie de gestion des versions qui garantit que les fichiers étroitement couplés sont demandés ensemble après une mise à jour. Une stratégie pour y parvenir consiste à effectuer les mises à jour dans un emplacement entièrement nouveau plutôt que d'écraser les fichiers existants. Cela garantit que les fichiers demandés sont les sources d'origine car il n'y a aucune chance qu'il y ait une copie en cache dans notre service. Cependant, vous devez vous attendre à ce que les premières demandes de ces copies non mises en cache prennent plus de temps que d'habitude. Pour être clair, si vous créez des Lecteurs à l'aide des API de gestion des Lecteurs et n'utilisez pas directement les API du système de livraison, vous n'avez pas à vous en soucier car les problèmes de cache sont traités pour vous.</p>
     
     <p>Le temps total qu'il vous faut pour voir les mises à jour reflétées sur votre site en direct dépend d'un certain nombre de facteurs. Plus important encore, ces facteurs incluent la mise en cache du navigateur et le temps nécessaire pour terminer une demande de purge à partir de nos nœuds périphériques. En règle générale, cela ne devrait pas prendre plus de cinq minutes à partir de la dernière fois que vous avez poussé vers un repo. En effet, les fichiers que nous servons sont mis en cache dans un navigateur pendant cinq minutes par défaut et cela ne prend qu'environ une minute en moyenne pour que tous nos nœuds périphériques soient effacés. Cependant, sous une charge de service de pointe, le temps de purge peut être beaucoup plus long, jusqu'à 10 minutes. Dans le pire des cas, il faudrait (toujours déterminer ce temps) pour que toutes les couches de mise en cache soient effacées et que vos mises à jour soient enfin mises en ligne. Cela ne devrait jamais se produire à moins que la demande de purge n'ait échoué ou ait expiré et que notre gestionnaire de cache de secours ait été requis pour actualiser votre contenu.</p>
     </section>
@@ -62,7 +62,7 @@ grandparent: Home
     <section class="bcls-section">
     <h2 id="Viewing_your_changes">Affichage de vos modifications</h2>
     
-    <p>Après avoir apporté des modifications, vous aimeriez probablement voir ce que vous avez fait. Vous pouvez le faire en utilisant le <strong translate="No">gitk</strong> commander. Lorsque vous utilisez cette commande dans votre Git initialisé directement, une interface graphique apparaîtra vous montrant votre travail. Un exemple simple apparaît comme suit :</p>
+    <p>Après avoir apporté des modifications, vous aimeriez probablement voir ce que vous avez fait. Vous pouvez le faire en utilisant le <strong translate="No">gitk</strong> commander. Lorsque vous utilisez cette commande dans votre Git initialisé directement, une interface graphique apparaîtra vous montrant votre travail. Un exemple simple apparaît comme suit:</p>
     
     <figure class="bcls-figure"><img class="bcls-image" alt="gitk GUI" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/delivery-system/gitk-gui.png" /></figure>
     
@@ -70,21 +70,21 @@ grandparent: Home
     </section>
     
     <section class="bcls-section">
-    <h2 id="cloneRepo">Utilisation de Git : Cloner le dépôt</h2>
+    <h2 id="cloneRepo">Utilisation de Git: Cloner le dépôt</h2>
     
-    <p>Vous pouvez copier un référentiel déjà stocké par Brightcove sur votre système local. En termes Git, cela s'appelle le clonage d'un dépôt. Cela vous permet non seulement d'obtenir un référentiel créé par une autre personne de votre organisation, mais également de récupérer les référentiels créés par les API de gestion des joueurs.</p>
+    <p>Vous pouvez copier un référentiel déjà stocké par Brightcove sur votre système local. En termes Git, cela s'appelle le clonage d'un dépôt. Cela vous permet non seulement d'obtenir un référentiel créé par une autre personne de votre organisation, mais également de récupérer les référentiels créés par les Ingestion Profiles API.</p>
     
     <pre>
           <code translate="No">git clone https://repos.api.brightcove.com/v1/accounts/{account_id}/repos/$REPO_NAME/$ACCESS_TOKEN</code></pre>
     </section>
     
     <section class="bcls-section">
-    <h2 id="gitErrors">Réponses d'erreur : Git</h2>
+    <h2 id="gitErrors">Réponses d'erreur: Git</h2>
     
-    <p>Les réponses d'erreur pour les appels Git sont limitées à tout ce que votre client Git peut prendre en charge :</p>
+    <p>Les réponses d'erreur pour les appels Git sont limitées à tout ce que votre client Git peut prendre en charge:</p>
     
     <ul>
-      <li>Si vous essayez d'appeler un dépôt qui n'existe pas, vous recevrez généralement un message concernant <strong>git-upload-pack introuvable : avez-vous exécuté git update-server-info sur le serveur ?</strong>. Vérifiez que l'URL du dépôt est correcte.</li>
+      <li>Si vous essayez d'appeler un dépôt qui n'existe pas, vous recevrez généralement un message concernant <strong>git-upload-pack introuvable: avez-vous exécuté git update-server-info sur le serveur ?</strong>. Vérifiez que l'URL du dépôt est correcte.</li>
       <li>Si votre appel ne peut pas être authentifié ou autorisé, vous serez généralement invité à saisir un mot de passe. Quittez cette demande de mot de passe et essayez à nouveau de consulter le guide OAuth pour vous assurer que vous disposez d'un jeton d'accès valide.</li>
     </ul>
     </section>

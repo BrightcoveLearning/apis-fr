@@ -1,6 +1,6 @@
 ---
-title: 'Démarrage rapide: API de lecture'
-description: 'Dans ce démarrage rapide, vous expérimenterez l'obtention de vidéos et de listes de lecture par identifiant, puis la génération d'affichages HTML des données.'
+title: 'Démarrage rapide: Playback API'
+description: "Dans ce démarrage rapide, vous expérimenterez l'obtention de vidéos et de listes de lecture par identifiant, puis la génération d'affichages HTML des données."
 parent: Getting Started 
 grandparent: Playback API
 ---
@@ -10,7 +10,7 @@ grandparent: Playback API
     <section id="introduction" class="bcls-section">
     <h2>introduction</h2>
     
-    <p >L'API Playback comporte quatre opérations :</p>
+    <p >le Playback API comporte quatre opérations:</p>
     
     <ul>
       <li>Obtenir une vidéo par identifiant</li>
@@ -19,27 +19,27 @@ grandparent: Playback API
       <li>Obtenir une liste de lecture par identifiant de référence</li>
     </ul>
     
-    <aside class="bcls-aside bcls-aside--information">L'API de lecture est destinée à une utilisation côté client par des pages Web ou des applications mobiles - pour la gestion générale des médias ou l'intégration de Video Cloud avec vos systèmes, utilisez le <a href="/cms/getting-started/overview-cms-api.html">API CMS</a> au lieu.</aside> <aside class="bcls-aside bcls-aside--tip">
+    <aside class="bcls-aside bcls-aside--information">le Playback API est destinée à une utilisation côté client par des pages Web ou des applications mobiles - pour la gestion générale des médias ou l'intégration de Video Cloud avec vos systèmes, utilisez le <a href="/cms/getting-started/overview-cms-api.html">CMS API</a> au lieu.</aside> <aside class="bcls-aside bcls-aside--tip">
     <p >Si vous souhaitez uniquement des informations sur la vidéo actuellement dans le lecteur, vous pouvez utiliser le <code translate="No">mediainfo</code> objet au lieu de faire un appel API Playback.</p>
     
-    <p >Les <code translate="No">mediainfo</code> L'objet contient des informations sur la vidéo actuellement chargée dans le lecteur, tandis que l'API de lecture peut récupérer des informations sur n'importe quelle vidéo. Pour plus de détails, consultez le <a href="https://player.support.brightcove.com/references/video-metadata-mediainfo.html">Métadonnées vidéo de mediainfo</a> document.</p>
+    <p >Les <code translate="No">mediainfo</code> L'objet contient des informations sur la vidéo actuellement chargée dans le lecteur, tandis que le Playback API peut récupérer des informations sur n'importe quelle vidéo. Pour plus de détails, consultez le <a href="https://player.support.brightcove.com/references/video-metadata-mediainfo.html">Métadonnées vidéo de mediainfo</a> document.</p>
     </aside>
     </section>
     
     <section class="bcls-section">
     <h2 id="authentication">Authentification</h2>
     
-    <p >Les demandes d'API de lecture sont authentifiées à l'aide d'une chaîne de clé de stratégie chiffrée. Le CodePen ci-dessous contient une clé de stratégie pour un exemple de compte Brightcove, vous pouvez donc l'utiliser si vous le souhaitez. Vous pouvez obtenir des clés de stratégie pour votre compte en utilisant soit le <a href="/policy/getting-started/policy-keys.html">API de règles</a> ou de <a href="/policy/getting-started/policy-keys.html">l'un de vos lecteurs Brightcove</a>.</p>
+    <p >Les demandes d'Playback API sont authentifiées à l'aide d'une chaîne de clé de stratégie chiffrée. Le CodePen ci-dessous contient une clé de stratégie pour un exemple de compte Brightcove, vous pouvez donc l'utiliser si vous le souhaitez. Vous pouvez obtenir des clés de stratégie pour votre compte en utilisant soit le <a href="/policy/getting-started/policy-keys.html">Policy API</a> ou de <a href="/policy/getting-started/policy-keys.html">l'un de vos Lecteurs Brightcove</a>.</p>
     </section>
     
     <section class="bcls-section">
     <h2 id="instructions">Instructions</h2>
     
-    <p >Utilisez le CodePen ci-dessous pour explorer l'API :</p>
+    <p >Utilisez le CodePen ci-dessous pour explorer l'API:</p>
     
     <ol class="bcls-tasklist">
       <li>Commencez par faire simplement des demandes de vidéo et de liste de lecture pour un exemple de compte Brightcove pour voir les résultats.</li>
-      <li>Ensuite, essayez d'obtenir votre propre clé de stratégie en utilisant soit le <a href="/policy/getting-started/policy-keys.html">API de règles</a> ou de <a href="/policy/getting-started/policy-keys.html">l'un de vos lecteurs Brightcove</a>.</li>
+      <li>Ensuite, essayez d'obtenir votre propre clé de stratégie en utilisant soit le <a href="/policy/getting-started/policy-keys.html">Policy API</a> ou de <a href="/policy/getting-started/policy-keys.html">l'un de vos Lecteurs Brightcove</a>.</li>
       <li>Dans le formulaire CodePen ci-dessous, remplacez l'identifiant du compte, la clé de stratégie, l'identifiant vidéo et l'identifiant de la playlist par vos propres valeurs.</li>
       <li>Essayez de modifier le CSS pour personnaliser l'affichage des données vidéo.</li>
       <li>Essayez de modifier le JavaScript pour récupérer les vidéos et la liste de lecture par identifiant de référence au lieu d'identifiant.</li>
@@ -49,7 +49,7 @@ grandparent: Playback API
     <section class="bcls-section">
     <h2 id="createPlayback">Stylo de code</h2>
     
-    <p data-height="800" data-theme-id="dark" data-slug-hash="NamOrG" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="Playback API Search Test" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/NamOrG/">Test de recherche d'API de lecture</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
+    <p data-height="800" data-theme-id="dark" data-slug-hash="NamOrG" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="Playback API Search Test" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/NamOrG/">Test de recherche d'Playback API</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
     <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script><!-- <p data-height="606" data-theme-id="14832" data-slug-hash="zGmbWY" data-default-tab="result" data-user="bcls" class="codepen">See the Pen <a href="http://codepen.io/team/bcls/pen/zGmbWY/">Playback API Test</a> by Brightcove Learning Services (<a href="http://codepen.io/bcls">@bcls</a>) on <a href="http://codepen.io">CodePen</a>.</p>
     <script async src="//assets.codepen.io/assets/embed/ei.js"></script></section> --></section>
     </article>

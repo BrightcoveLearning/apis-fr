@@ -1,6 +1,6 @@
 ---
-title: 'Aperçu: API de lecture'
-description: 'L'API de lecture est utilisée pour récupérer les données de vidéo et de liste de lecture à partir de Video Cloud. Il est généralement utilisé pour transmettre des données vidéo à un lecteur sur une page Web ou dans une application mobile.'
+title: 'Aperçu: Playback API'
+description: "le Playback API est utilisée pour récupérer les données de vidéo et de liste de lecture à partir de Video Cloud. Il est généralement utilisé pour transmettre des données vidéo à un lecteur sur une page Web ou dans une application mobile."
 parent: Getting Started 
 grandparent: Playback API
 ---
@@ -10,43 +10,43 @@ grandparent: Playback API
     <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
 
-    <p>L'API de lecture est une API à faible latence destinée à être utilisée côté client pour récupérer des données de vidéo ou de liste de lecture à partir de pages Web ou d'applications mobiles. Il est <strong><em>ne pas</em></strong> une API générale de gestion des médias à utiliser pour intégrer Video Cloud à votre CMS ou à d'autres systèmes - pour cela, vous devez utiliser le <a href="/cms/getting-started/overview-cms-api.html">API CMS</a>.</p>
+    <p>le Playback API est une API à faible latence destinée à être utilisée côté client pour récupérer des données de vidéo ou de liste de lecture à partir de pages Web ou d'applications mobiles. Il est <strong><em>ne pas</em></strong> une API générale de gestion des médias à utiliser pour intégrer Video Cloud à votre CMS ou à d'autres systèmes - pour cela, vous devez utiliser le <a href="/cms/getting-started/overview-cms-api.html">CMS API</a>.</p>
 
-    <p>Les résultats de l'API de lecture sont filtrés pour ne renvoyer que les vidéos jouables (état = ACTIVE, indicateur d'ingestion terminée = vrai, et dans des données/heures correctes si planifié). Cela signifie que le lecteur pourra lire la vidéo dès qu'un rendu existe, même si d'autres sont encore en cours de traitement. Si vous devez récupérer des vidéos qui ne sont pas actuellement lisibles, vous devez à nouveau utiliser le <a href="/cms/getting-started/overview-cms-api.html">API CMS</a> au lieu.</p>
+    <p>Les résultats de le Playback API sont filtrés pour ne renvoyer que les vidéos jouables (état = ACTIVE, indicateur d'ingestion terminée = vrai, et dans des données/heures correctes si planifié). Cela signifie que le lecteur pourra lire la vidéo dès qu'un rendu existe, même si d'autres sont encore en cours de traitement. Si vous devez récupérer des vidéos qui ne sont pas actuellement lisibles, vous devez à nouveau utiliser le <a href="/cms/getting-started/overview-cms-api.html">CMS API</a> au lieu.</p>
 
-    <p>Sachez également que pour maximiser les performances, les données vidéo auxquelles accède l'API de lecture sont mises en cache pendant une courte période. La durée de mise en cache d'un identifiant d'ensemble de données particulier varie, mais peut aller jusqu'à 20 minutes.</p>
+    <p>Sachez également que pour maximiser les performances, les données vidéo auxquelles accède le Playback API sont mises en cache pendant une courte période. La durée de mise en cache d'un identifiant d'ensemble de données particulier varie, mais peut aller jusqu'à 20 minutes.</p>
 
     <p>Voir aussi le <a href="/playback/references/reference_v1.html">Référence API</a>.</p>
 
     <aside class="bcls-aside bcls-aside--tip">
     <p >Si vous souhaitez uniquement des informations sur la vidéo actuellement dans le lecteur, vous pouvez utiliser le <code translate="No">mediainfo</code> objet au lieu de faire un appel API Playback.</p>
 
-    <p>Les <code translate="No">mediainfo</code> L'objet contient des informations sur la vidéo actuellement chargée dans le lecteur, tandis que l'API de lecture peut récupérer des informations sur n'importe quelle vidéo. Pour plus de détails, consultez le <a href="https://player.support.brightcove.com/references/video-metadata-mediainfo.html">Métadonnées vidéo de mediainfo</a> document.</p>
+    <p>Les <code translate="No">mediainfo</code> L'objet contient des informations sur la vidéo actuellement chargée dans le lecteur, tandis que le Playback API peut récupérer des informations sur n'importe quelle vidéo. Pour plus de détails, consultez le <a href="https://player.support.brightcove.com/references/video-metadata-mediainfo.html">Métadonnées vidéo de mediainfo</a> document.</p>
     </aside>
     </section>
 
     <section class="bcls-section">
     <h2 id="Use_cases">Cas d'utilisation</h2>
 
-    <p>Les <a href="https://player.support.brightcove.com/getting-started/">Lecteur Brightcove</a> et le <a href="https://sdks.support.brightcove.com/">Lecteurs SDK Brightcove</a> inclure des méthodes de catalogue identiques aux méthodes de l'API de lecture, et pour la plupart, vous pouvez simplement les utiliser si vous ne faites que récupérer des vidéos ou des listes de lecture au moment de l'exécution pour les lire.</p>
+    <p>Les <a href="https://player.support.brightcove.com/getting-started/">Lecteur Brightcove</a> et le <a href="https://sdks.support.brightcove.com/">Lecteurs SDK Brightcove</a> inclure des méthodes de catalogue identiques aux méthodes de le Playback API, et pour la plupart, vous pouvez simplement les utiliser si vous ne faites que récupérer des vidéos ou des listes de lecture au moment de l'exécution pour les lire.</p>
 
     <p>Cependant, vous souhaiterez peut-être fournir une vue de la vidéo ou des listes de lecture dans un écran d'application mobile où aucun lecteur n'est présent.</p>
 
     <p>De plus, il peut arriver que vous souhaitiez récupérer des vidéos ou des listes de lecture pour afficher des informations les concernant, sans avoir de lecteur à l'écran, comme la page de destination d'un portail vidéo, par exemple.</p>
 
-    <p>L'API de lecture est utile dans ces cas.</p>
+    <p>le Playback API est utile dans ces cas.</p>
     </section>
 
     <section class="bcls-section">
     <h2 id="General_Information">Informations générales</h2>
 
     <aside class="bcls-aside bcls-aside--information">
-    <p>L'API de lecture ne prend actuellement pas en charge les demandes provenant d'adresses IP utilisant le protocole IPv6.</p>
+    <p>le Playback API ne prend actuellement pas en charge les demandes provenant d'adresses IP utilisant le protocole IPv6.</p>
     </aside>
 
     <h3>URL de base</h3>
 
-    <p>L'URL de base de l'API Playback est :</p>
+    <p>L'URL de base de le Playback API est:</p>
 
     <pre >
 <code class="language-http" translate="No">https://edge.api.brightcove.com/playback/v1</code></pre>
@@ -54,20 +54,20 @@ grandparent: Playback API
     <aside class="bcls-aside bcls-aside--warning">
     <ul>
       <li>Tu dois utiliser <strong>https</strong> comme protocole.</li>
-      <li>Clients utilisant la restriction IP <strong>doit</strong> utilisation <code translate="No">https://edge-elb.api.brightcove.com/playback/v1</code> au lieu de l'URL standard ; pour plus de détails sur les lecteurs utilisés en dehors de l'Amérique du Nord avec des restrictions IP, assurez-vous de consulter les informations dans le <a href="/player-management/guides/player-configuration-guide.html#iprestrictions">Guide de configuration du lecteur</a> pour éviter les problèmes qui pourraient survenir.</li>
+      <li>Clients utilisant la restriction IP <strong>doit</strong> utilisation <code translate="No">https://edge-elb.api.brightcove.com/playback/v1</code> au lieu de l'URL standard ; pour plus de détails sur les Lecteurs utilisés en dehors de l'Amérique du Nord avec des restrictions IP, assurez-vous de consulter les informations dans le <a href="/player-management/guides/player-configuration-guide.html#iprestrictions">Guide de configuration du lecteur</a> pour éviter les problèmes qui pourraient survenir.</li>
     </ul>
     </aside>
 
     <h4>Chemin du compte</h4>
 
-    <p>Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme <code translate="No">accounts</code> suivi de votre identifiant de compte à l'URL de base :</p>
+    <p>Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme <code translate="No">accounts</code> suivi de votre identifiant de compte à l'URL de base:</p>
 
     <pre>
 <code class="language-http" translate="No">https://edge.api.brightcove.com/playback/v1/<strong>accounts/{account_id}</strong></code></pre>
 
     <h3>Authentification</h3>
 
-    <p>Les demandes sont authentifiées par une clé de stratégie, qui peut être transmise de l'une des trois manières suivantes :</p>
+    <p>Les demandes sont authentifiées par une clé de stratégie, qui peut être transmise de l'une des trois manières suivantes:</p>
 
     <ol class="bcls-tasklist">
       <li>Dans une dispute à un <code translate="No">Accept</code> entête:
@@ -89,12 +89,12 @@ grandparent: Playback API
 
     <h3>Obtention d'une clé de stratégie</h3>
 
-    <p>Vous pouvez obtenir une clé de stratégie de trois manières :</p>
+    <p>Vous pouvez obtenir une clé de stratégie de trois manières:</p>
 
     <ol class="bcls-tasklist-restart">
-      <li>Chaque lecteur Brightcove en reçoit un automatiquement. Vous pouvez trouver des instructions pour obtenir la clé de politique d'un joueur dans <a href="/policy/getting-started/policy-keys.html">ce document</a>. Étant donné que les clés de stratégie sont valables pour l'ensemble du compte, vous pouvez les utiliser, que ce lecteur soit ou non intégré à la page.</li>
+      <li>Chaque lecteur Brightcove en reçoit un automatiquement. Vous pouvez trouver des instructions pour obtenir la clé de politique d'un Lecteur dans <a href="/policy/getting-started/policy-keys.html">ce document</a>. Étant donné que les clés de stratégie sont valables pour l'ensemble du compte, vous pouvez les utiliser, que ce lecteur soit ou non intégré à la page.</li>
       <li>Vous pouvez générer une clé de stratégie de base à l'aide de la <a href="/policy/getting-started/quick-start-policy-api.html">Démarrage rapide des clés de stratégie</a></li>
-      <li>Vous pouvez faire une demande au <a href="/policy/getting-started/policy-keys.html">API de règles</a></li>
+      <li>Vous pouvez faire une demande au <a href="/policy/getting-started/policy-keys.html">Policy API</a></li>
     </ol>
     </section>
 
@@ -107,7 +107,7 @@ grandparent: Playback API
     <section class="bcls-section">
     <h2 id="avoid_hardcoded_urls">Évitez les URL codées en dur</h2>
 
-    <p>Les URL des vignettes, affiches, fichiers vidéo et autres médias ne doivent jamais être codées en dur dans vos pages ou applications. Les <span translate="No">API de lecture</span> renverra la dernière version mise en cache des URL des fichiers multimédias, mais les URL elles-mêmes sont susceptibles de changer. Vous devriez utiliser le <span translate="No">API CMS</span> ( ou <span translate="No">API de lecture</span> ) demande de récupérer ces URL à chaque chargement de la page ou de les mettre en cache pendant six heures au maximum.</p>
+    <p>Les URL des vignettes, affiches, fichiers vidéo et autres médias ne doivent jamais être codées en dur dans vos pages ou applications. Les <span>Playback API</span> renverra la dernière version mise en cache des URL des fichiers multimédias, mais les URL elles-mêmes sont susceptibles de changer. Vous devriez utiliser le CMS API ( ou <span>Playback API</span> ) demande de récupérer ces URL à chaque chargement de la page ou de les mettre en cache pendant six heures au maximum.</p>
 
     <h3>Mettre en cache les URL des vidéos et des images</h3>
 
@@ -117,7 +117,7 @@ grandparent: Playback API
     <section class="bcls-section">
     <h2 id="Methods">Méthodes</h2>
 
-    <p>L'API prend uniquement en charge les requêtes GET suivantes, des types suivants :</p>
+    <p>L'API prend uniquement en charge les requêtes GET suivantes, des types suivants:</p>
 
     <ul>
       <li><a href="#Get_video_by_id">obtenir la vidéo par identifiant</a></li>
@@ -324,9 +324,9 @@ grandparent: Playback API
     <section class="bcls-section">
     <h2 id="Search_videos">Rechercher des vidéos</h2>
 
-    <p>Vous devez utiliser un <a href="/policy/getting-started/overview-policy-api.html#Search_videos">Clé de stratégie activée pour la recherche</a> , lors de la recherche de vidéos à l'aide de l'API de lecture. Pour plus de détails, consultez le <a href="/playback/references/reference_v1.html#api-videoGroup-Get_Videos">Référence de l'API de lecture</a> document.</p>
+    <p>Vous devez utiliser un <a href="/policy/getting-started/overview-policy-api.html#Search_videos">Clé de stratégie activée pour la recherche</a> , lors de la recherche de vidéos à l'aide de le Playback API. Pour plus de détails, consultez le <a href="/playback/references/reference_v1.html#api-videoGroup-Get_Videos">Référence de le Playback API</a> document.</p>
 
-    <aside class="bcls-aside bcls-aside--information">La recherche de l'API Playback a une limite de 100 vidéos par demande avec un plafond de 1000 vidéos. Lorsque vous devez retourner plus de 1000 vidéos, vous devez utiliser le <a href="/cms/index.html">API CMS</a>.</aside>
+    <aside class="bcls-aside bcls-aside--information">La recherche de le Playback API a une limite de 100 vidéos par demande avec un plafond de 1000 vidéos. Lorsque vous devez retourner plus de 1000 vidéos, vous devez utiliser le <a href="/cms/index.html">CMS API</a>.</aside>
 
     <h3 id="Parameters">Paramètres</h3>
 
@@ -359,15 +359,15 @@ grandparent: Playback API
           Commencer avec <code translate="No">-</code> pour trier par ordre décroissant.<br />
           Si une valeur pour <code translate="No">q</code> est fourni, le tri par défaut est par « score » (pertinence des résultats de la recherche par rapport à la requête d'origine).<br />
           Si aucune valeur pour <code translate="No">q</code> est fourni, le tri par défaut est par <code translate="No">updated_at</code> descendant.<br />
-          Les champs suivants sont valides pour le tri : <code translate="No">name</code> , <code translate="No">reference_id</code> , <code translate="No">created_at</code> , <code translate="No">published_at</code> , <code translate="No">updated_at</code> , <code translate="No">schedule_starts_at</code> , <code translate="No">schedule_ends_at</code> , <code translate="No">state</code> , <code translate="No">plays_total</code> , et <code translate="No">plays_trailing_week</code><br />
-          Pour plus de détails, consultez le <a href="/playback/references/reference_v1.html#api-videoGroup-Get_Videos">Obtenir des vidéos</a> section de la référence de l'API Playback</td>
+          Les champs suivants sont valides pour le tri: <code translate="No">name</code> , <code translate="No">reference_id</code> , <code translate="No">created_at</code> , <code translate="No">published_at</code> , <code translate="No">updated_at</code> , <code translate="No">schedule_starts_at</code> , <code translate="No">schedule_ends_at</code> , <code translate="No">state</code> , <code translate="No">plays_total</code> , et <code translate="No">plays_trailing_week</code><br />
+          Pour plus de détails, consultez le <a href="/playback/references/reference_v1.html#api-videoGroup-Get_Videos">Obtenir des vidéos</a> section de la référence de le Playback API</td>
         </tr>
       </tbody>
     </table>
 
     <h3 id="search">Utilisation des paramètres de recherche</h3>
 
-    <p>de Brightcove <span translate="No">API de lecture</span> fournit un moyen programmatique de rechercher des vidéos dans votre <span translate="No"><span translate="No">Nuage vidéo</span> </span> une bibliothèque.</p>
+    <p>de Brightcove <span>Playback API</span> fournit un moyen programmatique de rechercher des vidéos dans votre <span><span>Nuage vidéo</span> </span> une bibliothèque.</p>
 
     <p>Pour effectuer des recherches basiques et complexes sur vos données vidéo, vous utiliserez le <code translate="No">q</code> paramètre:</p>
 
@@ -380,7 +380,7 @@ grandparent: Playback API
 
     <p>Utilisez le <code translate="No"><a href="#Parameters">limit</a></code> paramètre pour spécifier le nombre d'articles que vous souhaitez retourner sur une demande - jusqu'à 100. Vous pouvez alors utiliser le <code translate="No"><a href="#Parameters">offset</a></code> paramètre pour parcourir les ensembles de résultats qui sont plus grands que le <code translate="No">limit</code>. Les <code translate="No">offset</code> est le nombre d'éléments à ignorer.</p>
 
-    <p>Par exemple, la recherche suivante renvoie les vidéos 51-75 de l'ensemble de résultats total, en supposant que l'ensemble de résultats total comporte au moins 75 vidéos :</p>
+    <p>Par exemple, la recherche suivante renvoie les vidéos 51-75 de l'ensemble de résultats total, en supposant que l'ensemble de résultats total comporte au moins 75 vidéos:</p>
 
     <pre >
 <code class="language-http" translate="No">/videos?q=updated_at:2014-01-01..2014-06-30&amp;limit=25&amp;offset=50</code></pre>
@@ -389,7 +389,7 @@ grandparent: Playback API
 
     <h4>Meilleures pratiques de pagination</h4>
 
-    <p>Lorsque vous parcourez votre ensemble de résultats à partir de l'API Playback, il est recommandé de suivre ces étapes :</p>
+    <p>Lorsque vous parcourez votre ensemble de résultats à partir de le Playback API, il est recommandé de suivre ces étapes:</p>
 
     <ol  class="bcls-tasklist-restart">
       <li>Utilisez le <code translate="No"><a href="/cms/references/reference.html#api-videoGroup-Get_Videos">limit</a></code> et <code translate="No"><a href="/cms/references/reference.html#api-videoGroup-Get_Videos">offset</a></code> paramètres pour renvoyer des groupes de données de votre jeu de résultats.
@@ -403,7 +403,7 @@ grandparent: Playback API
   "videos": [ ... ]
 }</code></pre>
 
-      <aside class="bcls-aside bcls-aside--information">N'oubliez pas que la recherche de l'API de lecture est limitée à 1 000 vidéos.</aside>
+      <aside class="bcls-aside bcls-aside--information">N'oubliez pas que la recherche de le Playback API est limitée à 1 000 vidéos.</aside>
       </li>
       <li>Le total <code translate="No">count</code> de vidéos de votre première demande peuvent être utilisées pour déterminer le nombre de pages supplémentaires que vous devrez demander.<br />
       <br />
@@ -425,8 +425,8 @@ grandparent: Playback API
       <li>créé à</li>
       <li>publié_à</li>
       <li>mis à jour_à</li>
-      <li>schedule_starts_at (remarque : c'est le <strong>sorte</strong> champ - le <strong>le champ de recherche est <code translate="No">schedule.starts_at</code></strong>)</li>
-      <li>schedule_ends_at (remarque : c'est le <strong>sorte</strong> champ - le <strong>le champ de recherche est <code translate="No">schedule.ends_at</code></strong>)</li>
+      <li>schedule_starts_at (remarque: c'est le <strong>sorte</strong> champ - le <strong>le champ de recherche est <code translate="No">schedule.starts_at</code></strong>)</li>
+      <li>schedule_ends_at (remarque: c'est le <strong>sorte</strong> champ - le <strong>le champ de recherche est <code translate="No">schedule.ends_at</code></strong>)</li>
       <li>Etat</li>
       <li>lectures_total<sup>[1-2]<strong><a href="#note1-2"></a></strong></sup></li>
       <li>play_trailing_week<sup>[1-2]<strong><a href="#note1-2"></a></strong></sup></li>
@@ -441,11 +441,11 @@ grandparent: Playback API
 
     <h4 id="largeDataSets">Toutes les vidéos et les grands ensembles de données</h4>
 
-    <p>Si vous récupérez toutes les vidéos de votre compte, ou un grand nombre de vidéos, vous devez être conscient de certaines choses :</p>
+    <p>Si vous récupérez toutes les vidéos de votre compte, ou un grand nombre de vidéos, vous devez être conscient de certaines choses:</p>
 
     <ol class="bcls-tasklist-restart">
       <li>Vous pourriez être tenté d'utiliser le plus grand permis <code translate="No">limit</code> (100), mais il est préférable de récupérer les vidéos par lots de 25 ou moins pour minimiser le risque d'expiration des requêtes API</li>
-      <li>Lorsque vous parcourez de grands ensembles de données, il est possible que les données vidéo soient mises à jour pendant l'opération, ce qui peut entraîner un décalage des éléments dans les réponses :
+      <li>Lorsque vous parcourez de grands ensembles de données, il est possible que les données vidéo soient mises à jour pendant l'opération, ce qui peut entraîner un décalage des éléments dans les réponses:
       <ul>
         <li>Vous pouvez voir un élément répété sur des pages successives</li>
         <li>Un élément peut être manqué, car il est passé à un ensemble de réponses précédent</li>
@@ -483,7 +483,7 @@ grandparent: Playback API
 
     <h4>Réponse d'erreur</h4>
 
-    <p>si vous essayez d'utiliser le point de terminaison Get Videos avec une clé de stratégie qui n'est PAS activée pour la recherche, vous recevrez le message d'erreur suivant de l'API de lecture :</p>
+    <p>si vous essayez d'utiliser le point de terminaison Get Videos avec une clé de stratégie qui n'est PAS activée pour la recherche, vous recevrez le message d'erreur suivant de le Playback API:</p>
 
     <pre class="line-numbers">
 <code class="language-json" translate="No">[
@@ -499,7 +499,7 @@ grandparent: Playback API
     <section class="bcls-section">
     <h2 id="Find_related_videos">Trouver des vidéos similaires</h2>
 
-    <p>L'API de lecture vous permet de rechercher dans votre compte des vidéos liées à la vidéo spécifiée. Basé sur <code translate="No">name</code> et <code translate="No">short description</code> de la vidéo spécifiée, l'API recherchera toute correspondance partielle dans les champs suivants :</p>
+    <p>le Playback API vous permet de rechercher dans votre compte des vidéos liées à la vidéo spécifiée. Basé sur <code translate="No">name</code> et <code translate="No">short description</code> de la vidéo spécifiée, l'API recherchera toute correspondance partielle dans les champs suivants:</p>
 
     <ul>
       <li><code translate="No">name</code></li>
@@ -512,14 +512,14 @@ grandparent: Playback API
 
     <aside class="bcls-aside bcls-aside--information">Remarques:
     <ul>
-      <li>Vous devez utiliser un <a href="/policy/getting-started/overview-policy-api.html#Search_videos">Clé de stratégie activée pour la recherche</a> , lors de la recherche de vidéos similaires à l'aide de l'API de lecture.</li>
+      <li>Vous devez utiliser un <a href="/policy/getting-started/overview-policy-api.html#Search_videos">Clé de stratégie activée pour la recherche</a> , lors de la recherche de vidéos similaires à l'aide de le Playback API.</li>
       <li>Les résultats de réponse pour ce point de terminaison sont susceptibles de changer à mesure que nous améliorons l'algorithme de recherche de vidéos associées. Si vous ne voulez pas que vos résultats changent, ou si vous voulez un contrôle précis sur la recherche de vidéos similaires, vous devez utiliser le <a href="#Search_videos">rechercher des vidéos</a> Fonctionnalité.</li>
     </ul>
     </aside>
 
     <h3>Paramètres</h3>
 
-    <p>Les paramètres d'URL suivants peuvent être utilisés pour les demandes de vidéos liées à GET :</p>
+    <p>Les paramètres d'URL suivants peuvent être utilisés pour les demandes de vidéos liées à GET:</p>
 
     <table class="bcls-table">
       <caption class="bcls-caption--table">OBTENIR des vidéos connexes Demander des paramètres</caption>
@@ -585,7 +585,7 @@ grandparent: Playback API
 
     <h4>Réponse d'erreur</h4>
 
-    <p>Si vous essayez d'utiliser le point de terminaison associé à la recherche avec une clé de stratégie qui n'est PAS activée pour la recherche, vous recevrez le message d'erreur suivant de l'API de lecture :</p>
+    <p>Si vous essayez d'utiliser le point de terminaison associé à la recherche avec une clé de stratégie qui n'est PAS activée pour la recherche, vous recevrez le message d'erreur suivant de le Playback API:</p>
 
     <pre class="line-numbers">
 <code class="language-json" translate="No">[
@@ -612,13 +612,13 @@ grandparent: Playback API
 
     <h3 id="Get_video_with_SSAI">Obtenez une vidéo avec SSAI</h3>
 
-    <p>Pour renvoyer une vidéo avec SSAI, ajoutez votre identifiant de configuration d'annonce en tant que paramètre d'URL à votre demande d'API de lecture. Avec cette demande, vous pouvez utiliser soit un identifiant vidéo, soit un identifiant de référence vidéo.</p>
+    <p>Pour renvoyer une vidéo avec SSAI, ajoutez votre identifiant de configuration d'annonce en tant que paramètre d'URL à votre demande d'Playback API. Avec cette demande, vous pouvez utiliser soit un identifiant vidéo, soit un identifiant de référence vidéo.</p>
 
     <aside class="bcls-aside bcls-aside--information">Pour utiliser l'insertion d'annonces côté serveur (SSAI), vos vidéos doivent être <a href="https://studio.support.brightcove.com/admin/creating-ingest-profiles-context-aware-encoding.html">ingéré pour la livraison dynamique</a>.</aside>
 
     <h4>Point de terminaison avec paramètre d'URL</h4>
 
-    <p>Ajoutez votre <code translate="No">ad_config_id</code> à la fin de la requête de l'API Playback :</p>
+    <p>Ajoutez votre <code translate="No">ad_config_id</code> à la fin de la requête de le Playback API:</p>
 
     <pre >
 <code class="language-http" translate="No">https://edge.api.brightcove.com/playback/v1/accounts/{account_id}/videos/{video_id}?ad_config_id={ad_config_id}</code></pre>
@@ -628,7 +628,7 @@ grandparent: Playback API
     <pre >
 <code class="language-http" translate="No">https://edge.api.brightcove.com/playback/v1/accounts/1752604059001/videos/5565662146001?ad_config_id=1234abcd</code></pre>
 
-    <p>Dans l'exemple de réponse ci-dessous, vous remarquerez les éléments suivants :</p>
+    <p>Dans l'exemple de réponse ci-dessous, vous remarquerez les éléments suivants:</p>
 
     <ul>
       <li>La réponse est similaire à celle si vous n'avez pas inclus d'ID de configuration d'annonce.</li>
@@ -669,9 +669,9 @@ grandparent: Playback API
 
     <h3 id="Require_ad_config_id">Exiger ad_config_id</h3>
 
-    <p>À l'aide de l'API Policy, vous pouvez créer une clé de stratégie qui vous oblige à inclure le <code translate="No">ad_config_id</code> Paramètre d'URL lors des requêtes à l'API Playback. Pour plus de détails sur la configuration de cette fonction, consultez le <a href="/policy/references/reference.html#operation/CreateAPolicyKey">Référence de l'API de stratégie</a> document.</p>
+    <p>À l'aide de le Policy API, vous pouvez créer une clé de stratégie qui vous oblige à inclure le <code translate="No">ad_config_id</code> Paramètre d'URL lors des requêtes à le Playback API. Pour plus de détails sur la configuration de cette fonction, consultez le <a href="/policy/references/reference.html#operation/CreateAPolicyKey">Référence de l'API de stratégie</a> document.</p>
 
-    <p>Lorsque la clé de stratégie est définie pour exiger un <code translate="No">ad_config_id</code> , et que vous ne l'ajoutez pas à une demande d'API Playback, vous obtiendrez l'erreur suivante :</p>
+    <p>Lorsque la clé de stratégie est définie pour exiger un <code translate="No">ad_config_id</code> , et que vous ne l'ajoutez pas à une demande d'API Playback, vous obtiendrez l'erreur suivante:</p>
 
     <pre class="line-numbers">
 <code class="language-json" translate="No">[
@@ -1162,16 +1162,16 @@ grandparent: Playback API
 
     <h3>WebVTT externe</h3>
 
-    <p>Les sous-titres WebVTT externes sont des fichiers texte distincts de la vidéo. Vous pouvez associer des fichiers de sous-titres à une vidéo comme suit :</p>
+    <p>Les sous-titres WebVTT externes sont des fichiers texte distincts de la vidéo. Vous pouvez associer des fichiers de sous-titres à une vidéo comme suit:</p>
 
     <ul>
       <li><a href="https://studio.support.brightcove.com/media/adding-captions-videos-using-media-module.html">Ajout de sous-titres à l'aide du module multimédia</a></li>
-      <li><a href="/cms/managing-videos/using-cms-api-add-webvtt-captions-text-tracks.html">Ajout de sous-titres à l'aide de l'API CMS</a></li>
+      <li><a href="/cms/managing-videos/using-cms-api-add-webvtt-captions-text-tracks.html">Ajout de sous-titres à l'aide de CMS API</a></li>
     </ul>
 
     <h4>Exemple de réponse</h4>
 
-    <p>Vous trouverez ci-dessous un exemple de réponse de l'API de lecture où un fichier de sous-titres WebVTT a été ajouté à une vidéo à l'aide du module Média. Notez que la piste de texte <code translate="No">src</code> les propriétés pointent vers un fichier de sous-titres externe.</p>
+    <p>Vous trouverez ci-dessous un exemple de réponse de le Playback API où un fichier de sous-titres WebVTT a été ajouté à une vidéo à l'aide du module Média. Notez que la piste de texte <code translate="No">src</code> les propriétés pointent vers un fichier de sous-titres externe.</p>
 
     <pre class="line-numbers">
 <code class="language-json" translate="No">{
@@ -1197,16 +1197,16 @@ grandparent: Playback API
 
     <h3>WebVTT dans le manifeste</h3>
 
-    <p>Les sous-titres WebVTT dans le manifeste sont ingérés avec vos vidéos. Cela peut être fait lorsque vous ingérez votre vidéo pour la première fois ou après que votre vidéo a été ingérée. Vous pouvez créer des sous-titres dans le manifeste comme suit :</p>
+    <p>Les sous-titres WebVTT dans le manifeste sont ingérés avec vos vidéos. Cela peut être fait lorsque vous ingérez votre vidéo pour la première fois ou après que votre vidéo a été ingérée. Vous pouvez créer des sous-titres dans le manifeste comme suit:</p>
 
     <ul>
       <li><a href="/dynamic-ingest/ingest-guides/ingesting-webvtt-files-text-trackscaptions.html">Ingérer des fichiers WebVTT</a></li>
-      <li><a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html#ingest_captions">Ingérer des sous-titres à l'aide de l'API Dynamic Ingest</a></li>
+      <li><a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html#ingest_captions">Ingérer des sous-titres à l'aide de Dynamic Ingest API</a></li>
     </ul>
 
     <h4>Exemple de réponse</h4>
 
-    <p>Vous trouverez ci-dessous un exemple de réponse de l'API de lecture dans laquelle un fichier de sous-titres WebVTT a été ajouté à une vidéo à l'aide du Dynamic&nbsp;Ingérer l'API. Notez que la piste de texte <code translate="No">src</code> les propriétés pointent vers des fichiers Brightcove internes.</p>
+    <p>Vous trouverez ci-dessous un exemple de réponse de le Playback API dans laquelle un fichier de sous-titres WebVTT a été ajouté à une vidéo à l'aide du Dynamic&nbsp;Ingérer l'API. Notez que la piste de texte <code translate="No">src</code> les propriétés pointent vers des fichiers Brightcove internes.</p>
 
     <pre class="line-numbers">
 <code class="language-json" translate="No">{

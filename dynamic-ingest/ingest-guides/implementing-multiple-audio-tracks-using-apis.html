@@ -1,7 +1,6 @@
 ---
 title: 'Implémentation de plusieurs pistes audio'
-description: 'Cette rubrique explique comment ajouter et gérer plusieurs pistes audio pour les vidéos à l'aide des API Dynamic Ingest et CMS.'
-
+description: "Cette rubrique explique comment ajouter et gérer plusieurs pistes audio pour les vidéos à l'aide des Dynamic Ingest API et CMS."
 parent: 'Ingest Guides' 
 grandparent: Dynamic Ingest API
 ---
@@ -11,7 +10,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="introduction">introduction</h2>
 
-    <p>La possibilité d'associer plusieurs pistes audio à un seul titre peut être utile dans plusieurs scénarios clés :</p>
+    <p>La possibilité d'associer plusieurs pistes audio à un seul titre peut être utile dans plusieurs scénarios clés:</p>
 
     <ul>
       <li>Lecture de la même vidéo dans différentes langues pour une portée plus large à l'échelle mondiale </li>
@@ -39,7 +38,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="setup">Installer</h2>
 
-    <p>La configuration pour <span translate="No">Intégration dynamique</span> les requêtes sont les mêmes, que vous ingérez une vidéo, des images, des pistes audio, <span translate="No">WebVTT</span> fichiers, ou tous ceux-ci :</p>
+    <p>La configuration pour <span>Intégration dynamique</span> les requêtes sont les mêmes, que vous ingérez une vidéo, des images, des pistes audio, <span>WebVTT</span> fichiers, ou tous ceux-ci:</p>
 
     <dl>
       <dt >URL de demande</dt>
@@ -58,7 +57,7 @@ grandparent: Dynamic Ingest API
 
     <h3>Remarque sur S3</h3>
 
-    <p>Si vos fichiers source seront extraits d'un compartiment S3 protégé, vous devrez définir une stratégie de compartiment pour autoriser <span translate="No">Nuage vidéo</span> pour accéder aux fichiers. Voir <a href="/dynamic-ingest/general/using-dynamic-ingest-s3.html#setPolicy">À l'aide de <span translate="No">Intégration dynamique</span> avec S3</a> pour les détails.</p>
+    <p>Si vos fichiers source seront extraits d'un compartiment S3 protégé, vous devrez définir une stratégie de compartiment pour autoriser <span>Nuage vidéo</span> pour accéder aux fichiers. Voir <a href="/dynamic-ingest/general/using-dynamic-ingest-s3.html#setPolicy">À l'aide de <span>Intégration dynamique</span> avec S3</a> pour les détails.</p>
     </section>
 
     <section class="bcls-section">
@@ -67,26 +66,26 @@ grandparent: Dynamic Ingest API
       <h2 id="gettingCredentials">Obtenir des informations d'identification</h2>
     </summary>
 
-    <p>Pour obtenir un <code translate="No">client_id</code> et <code translate="No">client_secret</code> , vous devrez accéder à l'interface utilisateur OAuth et enregistrer cette application :</p>
+    <p>Pour obtenir un <code translate="No">client_id</code> et <code translate="No">client_secret</code> , vous devrez accéder à l'interface utilisateur OAuth et enregistrer cette application:</p>
 
     <ul>
       <li><a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a></li>
     </ul>
 
-    <p>Voici les autorisations dont vous aurez besoin :</p>
+    <p>Voici les autorisations dont vous aurez besoin:</p>
 
     <figure class="bcls-figure"><img class="bcls-image" alt="Dynamic Ingest Permissions" src="/assets/images/dynamic-ingest/code-samples/di-permissions.png" />
-    <figcaption class="bcls-caption--image"><span translate="No">Intégration dynamique</span> Autorisations</figcaption>
+    <figcaption class="bcls-caption--image"><span>Intégration dynamique</span> Autorisations</figcaption>
     </figure>
 
-    <p>Vous pouvez également obtenir vos identifiants via <span translate="No">BOUCLE</span> ou <span translate="No">Facteur</span> - voir:</p>
+    <p>Vous pouvez également obtenir vos identifiants via <span>BOUCLE</span> ou <span>Facteur</span> - voir:</p>
 
     <ul>
-      <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">Obtenir les informations d'identification du client en utilisant <span translate="No">BOUCLE</span></a></li>
-      <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">Obtenir les informations d'identification du client en utilisant <span translate="No">Facteur</span></a></li>
+      <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">Obtenir les informations d'identification du client en utilisant <span>BOUCLE</span></a></li>
+      <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">Obtenir les informations d'identification du client en utilisant <span>Facteur</span></a></li>
     </ul>
 
-    <p>Si vous obtenez des informations d'identification directement de l'API, voici les autorisations dont vous avez besoin :</p>
+    <p>Si vous obtenez des informations d'identification directement de l'API, voici les autorisations dont vous avez besoin:</p>
 
     <pre class="line-numbers">
       <code class="language-json" translate="No">[
@@ -101,7 +100,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="workflow">Flux de travail</h2>
 
-    <p>Il existe deux principaux cas d'utilisation :</p>
+    <p>Il existe deux principaux cas d'utilisation:</p>
 
     <ul>
       <li>Ingérer une nouvelle vidéo avec plusieurs pistes audio
@@ -122,7 +121,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="Audio_track_metadata">Métadonnées de la piste audio</h2>
 
-    <p>Certains champs de métadonnées sont attachés aux pistes audio - certains d'entre eux sont définis lorsque vous ingérez les pistes, tandis que d'autres sont créés par <span translate="No">Nuage vidéo</span>. Certains de ces champs sont en lecture seule et d'autres peuvent être mis à jour par vous. Les champs de métadonnées seront détaillés ci-dessous dans le contexte des demandes d'API pertinentes, mais deux d'entre eux en particulier nécessitent quelques explications ici, car ils sont cruciaux pour déterminer comment le Brightcove Player gérera les multiples pistes audio.</p>
+    <p>Certains champs de métadonnées sont attachés aux pistes audio - certains d'entre eux sont définis lorsque vous ingérez les pistes, tandis que d'autres sont créés par <span>Nuage vidéo</span>. Certains de ces champs sont en lecture seule et d'autres peuvent être mis à jour par vous. Les champs de métadonnées seront détaillés ci-dessous dans le contexte des demandes d'API pertinentes, mais deux d'entre eux en particulier nécessitent quelques explications ici, car ils sont cruciaux pour déterminer comment le Brightcove Player gérera les multiples pistes audio.</p>
 
     <h3><code translate="No">language</code></h3>
 
@@ -152,7 +151,7 @@ grandparent: Dynamic Ingest API
 
     <h3>Nouvelle vidéo avec plusieurs pistes audio</h3>
 
-    <h4>Créez l'objet vidéo (<span translate="No">API CMS</span>)</h4>
+    <h4>Créez l'objet vidéo (CMS API)</h4>
 
     <ol class="blcs-tasklist">
       <li>Vous pouvez ajouter plusieurs éléments de métadonnées vidéo lors de la création de l'objet vidéo, mais ici nous n'ajouterons que le minimum : un <code translate="No">name</code> pour la vidéo :
@@ -168,7 +167,7 @@ grandparent: Dynamic Ingest API
 
     <h4>Ingérer les pistes vidéo et audio</h4>
 
-    <p>Ensuite, nous ingérerons les pistes vidéo et audio (nous pourrions ajouter d'autres éléments tels que des images et des pistes de texte, mais nous resterons simples ici). La seule chose que vous pourriez trouver un peu déroutante, c'est que <code translate="No">audio_tracks</code> apparaît deux fois dans le JSON pour le corps de la requête :</p>
+    <p>Ensuite, nous ingérerons les pistes vidéo et audio (nous pourrions ajouter d'autres éléments tels que des images et des pistes de texte, mais nous resterons simples ici). La seule chose que vous pourriez trouver un peu déroutante, c'est que <code translate="No">audio_tracks</code> apparaît deux fois dans le JSON pour le corps de la requête:</p>
 
     <ul>
       <li>Un <code translate="No">audio_tracks</code> objet dans le <code translate="No">master</code> L'objet contient des métadonnées pour la piste audio incluse dans le fichier vidéo (le cas échéant - ceci est également appelé le multiplexage dans l'audio) - cela inclura uniquement les métadonnées, sans URL pour le fichier audio, car la piste audio est déjà incluse dans le fichier vidéo. N'oubliez pas que la piste audio encodée peut être compressée en stéréo, 5.1, 7.1 tant qu'elle est conforme aux règles de <a href="https://zencoder.support.brightcove.com/general-information/supported-video-and-audio-formats-codecs-and-containers.html#audio_concerns">Formats audio</a> et, comme indiqué dans le <a href="#Known_issues">Problèmes connus</a> , au-delà de la définition d'un audio par défaut, il n'y a pas d'autre moyen de commander les pistes audio</li>
@@ -176,7 +175,7 @@ grandparent: Dynamic Ingest API
     </ul>
 
     <ol class="bcls-tasklist">
-      <li>Les données JSON à envoyer dans le corps de la requête sont les suivantes :
+      <li>Les données JSON à envoyer dans le corps de la requête sont les suivantes:
       <pre class="line-numbers">
       <code class="language-json" translate="No">{
         "master": {
@@ -215,7 +214,7 @@ grandparent: Dynamic Ingest API
 
     <h3 id="Add_audio_tracks_to_an_existing_video">Ajouter des pistes audio à une vidéo existante</h3>
 
-    <p>Pour ajouter des pistes audio supplémentaires à une vidéo existante, la procédure est la même, sauf que vous n'avez pas besoin d'en faire la demande au <span translate="No">API CMS</span> pour créer la vidéo, car elle existe déjà. Et dans la demande au <span translate="No">Intégration dynamique</span> API, vous n'aurez pas besoin d'inclure l'URL du fichier vidéo ou le <code translate="No">audio_tracks</code> sous <code translate="No">master</code> fournissant les métadonnées pour l'audio multiplexé. Cependant, vous souhaitez inclure les métadonnées de la piste audio multiplexée dans la vidéo existante. Il est également important de se rappeler que la piste audio doit être compressée en suivant les règles de <a href="https://zencoder.support.brightcove.com/general-information/supported-video-and-audio-formats-codecs-and-containers.html#audio_concerns">Formats audio</a>. Ainsi, le JSON pour la demande d'ingestion ressemblera à ceci :</p>
+    <p>Pour ajouter des pistes audio supplémentaires à une vidéo existante, la procédure est la même, sauf que vous n'avez pas besoin d'en faire la demande au CMS API pour créer la vidéo, car elle existe déjà. Et dans la demande au <span>Intégration dynamique</span> API, vous n'aurez pas besoin d'inclure l'URL du fichier vidéo ou le <code translate="No">audio_tracks</code> sous <code translate="No">master</code> fournissant les métadonnées pour l'audio multiplexé. Cependant, vous souhaitez inclure les métadonnées de la piste audio multiplexée dans la vidéo existante. Il est également important de se rappeler que la piste audio doit être compressée en suivant les règles de <a href="https://zencoder.support.brightcove.com/general-information/supported-video-and-audio-formats-codecs-and-containers.html#audio_concerns">Formats audio</a>. Ainsi, le JSON pour la demande d'ingestion ressemblera à ceci:</p>
 
     <pre class="line-numbers">
       <code class="language-json" translate="No">{
@@ -266,7 +265,7 @@ grandparent: Dynamic Ingest API
         <tr>
           <td><code translate="No">master.audio_tracks.variant</code></td>
           <td>Chaîne de caractères</td>
-          <td>Le type de piste audio : <code translate="No">main</code>|<code translate="No">alternate</code>|<code translate="No">dub</code>|<code translate="No">commentary</code>|<code translate="No">descriptive</code> (<code translate="No">main</code> serait généralement utilisé pour le multiplexage audio)</td>
+          <td>Le type de piste audio: <code translate="No">main</code>|<code translate="No">alternate</code>|<code translate="No">dub</code>|<code translate="No">commentary</code>|<code translate="No">descriptive</code> (<code translate="No">main</code> serait généralement utilisé pour le multiplexage audio)</td>
         </tr>
         <tr>
           <td><code translate="No">audio_tracks</code></td>
@@ -296,7 +295,7 @@ grandparent: Dynamic Ingest API
         <tr>
           <td><code translate="No">audio_tracks.masters.variant</code></td>
           <td>Chaîne de caractères</td>
-          <td>Le type de piste audio : <code translate="No">main</code>|<code translate="No">alternate</code>|<code translate="No">dub</code>|<code translate="No">commentary</code>|<code translate="No">descriptive</code> (<code translate="No">main</code> serait généralement utilisé pour le multiplexage audio)</td>
+          <td>Le type de piste audio: <code translate="No">main</code>|<code translate="No">alternate</code>|<code translate="No">dub</code>|<code translate="No">commentary</code>|<code translate="No">descriptive</code> (<code translate="No">main</code> serait généralement utilisé pour le multiplexage audio)</td>
         </tr>
       </tbody>
     </table>
@@ -305,7 +304,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="Notifications">Notifications</h2>
 
-    <p>Si vous spécifiez un ou plusieurs <strong>rappeler</strong> URL (comme dans l'exemple JSON pour la requête d'ingestion ci-dessus), <span translate="No">Nuage vidéo</span> enverra une notification pour chacune des pistes audio que vous ingérez. Les notifications ressembleront à ceci :</p>
+    <p>Si vous spécifiez un ou plusieurs <strong>rappeler</strong> URL (comme dans l'exemple JSON pour la requête d'ingestion ci-dessus), <span>Nuage vidéo</span> enverra une notification pour chacune des pistes audio que vous ingérez. Les notifications ressembleront à ceci:</p>
 
     <pre class="line-numbers">
       <code class="language-json" translate="No">{
@@ -328,7 +327,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="Managing_audio_tracks">Gestion des pistes audio</h2>
 
-    <p>Une fois que vous avez ingéré les pistes audio, vous pouvez les gérer via le <span translate="No">API CMS</span>.</p>
+    <p>Une fois que vous avez ingéré les pistes audio, vous pouvez les gérer via le CMS API.</p>
 
     <h3>Obtenir toutes les métadonnées de piste audio pour une vidéo</h3>
 
@@ -376,7 +375,7 @@ grandparent: Dynamic Ingest API
         }
       ]</code></pre>
 
-    <p>Vous pouvez également afficher ces informations dans Studio en visionnant la vidéo dans le module Média :</p>
+    <p>Vous pouvez également afficher ces informations dans Studio en visionnant la vidéo dans le module Média:</p>
 
     <figure class="bcls-figure"><img class="bcls-image" alt="Audio Track Information in Studio" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/di-api/guides/multiple-audio-tracks/audio-tracks-in-studio.png" />
     <figcaption class="bcls-caption--image">Informations sur les pistes audio dans Studio</figcaption>
@@ -398,7 +397,7 @@ grandparent: Dynamic Ingest API
     <pre class="line-numbers">
       <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/<span class="bcls-input">account_id</span>/videos/<span class="bcls-input">video id</span>/audio_tracks/<span class="bcls-input">audio_track_id</span></code></pre>
 
-    <p>Dans le corps de la requête, incluez le(s) champ(s) que vous souhaitez modifier - par exemple :</p>
+    <p>Dans le corps de la requête, incluez le(s) champ(s) que vous souhaitez modifier - par exemple:</p>
 
     <pre class="line-numbers">
       <code class="language-json" translate="No">{
@@ -408,7 +407,7 @@ grandparent: Dynamic Ingest API
 
     <h3>Supprimer une piste audio</h3>
 
-    <p>Pour supprimer une piste audio, envoyez une demande DELETE à :</p>
+    <p>Pour supprimer une piste audio, envoyez une demande DELETE à:</p>
 
     <pre class="line-numbers">
       <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/<span class="bcls-input">account_id</span>/videos/<span class="bcls-input">video id</span>/audio_tracks/<span class="bcls-input">audio_track_id</span></code></pre>
@@ -442,7 +441,7 @@ grandparent: Dynamic Ingest API
           <td><code translate="No">variant</code></td>
           <td>Chaîne de caractères</td>
           <td>Non</td>
-          <td>Le type de piste audio : <code translate="No">main</code>|<code translate="No">alternate</code>|<code translate="No">dub</code>|<code translate="No">commentary</code>|<code translate="No">descriptive</code> (<code translate="No">main</code> serait généralement utilisé pour le multiplexage audio)</td>
+          <td>Le type de piste audio: <code translate="No">main</code>|<code translate="No">alternate</code>|<code translate="No">dub</code>|<code translate="No">commentary</code>|<code translate="No">descriptive</code> (<code translate="No">main</code> serait généralement utilisé pour le multiplexage audio)</td>
         </tr>
         <tr>
           <td><code translate="No">duration</code></td>
@@ -469,7 +468,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="Playback">Relecture</h2>
 
-    <p>Pour plus d'informations sur la façon dont les lecteurs Web et SDK de Brightcove gèrent plusieurs pistes audio, consultez :</p>
+    <p>Pour plus d'informations sur la façon dont les Lecteurs Web et SDK de Brightcove gèrent plusieurs pistes audio, consultez:</p>
 
     <ul>
       <li><a href="https://player.support.brightcove.com/general/multiple-audio-tracks.html">Plusieurs pistes audio (lecteur Web)</a></li>
@@ -484,7 +483,7 @@ grandparent: Dynamic Ingest API
       <dt >Masters audio non stockés</dt>
       <dd >
       <ul>
-        <li><span translate="No">Nuage vidéo</span> volonté <strong>ne pas</strong> stocker les masters audio</li>
+        <li><span>Nuage vidéo</span> volonté <strong>ne pas</strong> stocker les masters audio</li>
         <li>Si vous retranscodez la vidéo à partir du master vidéo, les pistes audio supplémentaires seront perdues et devront être rajoutées à l'aide de la <a href="#Add_audio_tracks_to_an_existing_video">Ajouter des pistes audio à une vidéo existante</a> méthode décrite ci-dessus</li>
       </ul>
       </dd>
@@ -493,7 +492,7 @@ grandparent: Dynamic Ingest API
       <dt ><code translate="No">HLSv3</code>, <code translate="No">HLS</code> avec audio et vidéo dans le même segment</dt>
       <dd >
       <ul>
-        <li>L'API de lecture ne reviendra pas <code translate="No">HLSv3</code> manifeste</li>
+        <li>le Playback API ne reviendra pas <code translate="No">HLSv3</code> manifeste</li>
         <li>Tous <code translate="No">HLS</code> les manifestes incluront la vidéo/audio démultiplexé</li>
       </ul>
       </dd>
@@ -511,7 +510,7 @@ grandparent: Dynamic Ingest API
       <dt >Classement des pistes audio au-delà de la piste "par défaut"</dt>
       <dd >
       <ul>
-        <li>Vous pouvez choisir une piste audio par défaut avec <span translate="No">API CMS</span> par titre en définissant le <code translate="No">is_default</code> champ à <code translate="No">true</code></li>
+        <li>Vous pouvez choisir une piste audio par défaut avec CMS API par titre en définissant le <code translate="No">is_default</code> champ à <code translate="No">true</code></li>
         <li>Il existe également un compte par défaut, qui peut être défini par le support</li>
         <li>Cela n'affectera que la piste "par défaut" dans les manifestes HLS</li>
         <li>Aucune autre commande n'est possible</li>
@@ -532,7 +531,7 @@ grandparent: Dynamic Ingest API
       </ul>
       </dd>
       <dt >Vidéo "<code translate="No">duration</code>"</dt>
-      <dd >La vidéo <code translate="No">duration</code> signalé par le catalogue/API de lecture peut être incorrect si les pistes audio ont des durées différentes.</dd>
+      <dd >La vidéo <code translate="No">duration</code> signalé par le catalogue/Playback API peut être incorrect si les pistes audio ont des durées différentes.</dd>
     </dl>
     </section>
     </article>

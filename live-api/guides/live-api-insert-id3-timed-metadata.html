@@ -1,6 +1,6 @@
 ---
-title: 'API en direct : Insérer des métadonnées temporelles ID3'
-description: 'Cette rubrique explique comment insérer des métadonnées temporelles ID3 dans votre flux en direct à l'aide de l'API en direct.'
+title: 'Live API: Insérer des métadonnées temporelles ID3'
+description: "Cette rubrique explique comment insérer des métadonnées temporelles ID3 dans votre flux en direct à l'aide de l'Live API."
 parent: Guides 
 grandparent: Live API
 ---
@@ -30,13 +30,13 @@ grandparent: Live API
 <aside class="bcls-aside bcls-aside--warning">Noter:
 <ul>
   <li>Seul <code translate="No">id3_tag</code> objet peut être soumis dans une demande</li>
-	<li>Si vous utilisez le <code translate="No">timecode </code> propriété, le travail ne stocke que la demande d'insertion la plus récente</li>
-	<li>Si vous utilisez le <code translate="No">timecode </code> propriété, l'encodeur doit envoyer un timecode au format SMPTE (HH:MM:SS:FF) stocké dans la propriété tc via OnFI</li>
-	<li>Encodeurs logiciels tels que Wirecast et OBS <strong>ne pas</strong> prend en charge l'envoi de timecode via des paquets OnFI dans le flux RTMP</li>
-	<li>Encodeurs matériels élémentaires <strong>faire</strong> prend en charge l'envoi de timecode via des paquets OnFI dans le flux RTMP</li>
-	<li>Balise d'état ID3v2 <code translate="No">name</code> peut contenir jusqu'à 4 caractères.</li>
-	<li><code translate="No">value</code> peut aller jusqu'à 256 Ko.</li>
-	<li><code translate="No">Timecode</code> est facultatif - lorsqu'il est omis, l'insertion sera immédiate.</li>
+  <li>Si vous utilisez le <code translate="No">timecode </code> propriété, le travail ne stocke que la demande d'insertion la plus récente</li>
+  <li>Si vous utilisez le <code translate="No">timecode </code> propriété, l'encodeur doit envoyer un timecode au format SMPTE (HH:MM:SS:FF) stocké dans la propriété tc via OnFI</li>
+  <li>Encodeurs logiciels tels que Wirecast et OBS <strong>ne pas</strong> prend en charge l'envoi de timecode via des paquets OnFI dans le flux RTMP</li>
+  <li>Encodeurs matériels élémentaires <strong>faire</strong> prend en charge l'envoi de timecode via des paquets OnFI dans le flux RTMP</li>
+  <li>Balise d'état ID3v2 <code translate="No">name</code> peut contenir jusqu'à 4 caractères.</li>
+  <li><code translate="No">value</code> peut aller jusqu'à 256 Ko.</li>
+  <li><code translate="No">Timecode</code> est facultatif - lorsqu'il est omis, l'insertion sera immédiate.</li>
 </ul>
 </aside>
 
@@ -89,7 +89,7 @@ profile_2/chunklist_vod.m3u8
 #EXT-X-STREAM-INF:BANDWIDTH=1118208,CODECS="avc1.77.31,mp4a.40.2",RESOLUTION=640x360
 profile_3/chunklist_vod.m3u8</code></pre>
 
-<p>La liste complète des playlists de rendus/profils sera&nbsp;ressemblent à ces URL "profile_0" et "profile_1" :</p>
+<p>La liste complète des playlists de rendus/profils sera&nbsp;ressemblent à ces URL "profile_0" et "profile_1":</p>
 
 <pre>
 <code class="language-html" translate="No">https://bcovlive-a.akamaihd.net/ade7a7b3aaea4a4d8107fb8bb262381e/eu-central-1/52725330351/profile_0/chunklist_vod.m3u8</code></pre>
@@ -131,11 +131,11 @@ curl -i "https://bcovlive-a.akamaihd.net/ade7a7b3aaea4a4d8107fb8bb262381e/eu-cen
 
 
 
-	
+  
     <li>Si vous utilisez Safari&nbsp;navigateur, vous pouvez lire la liste de lecture principale ou l'une des listes de morceaux. Ensuite, ouvrez l'onglet du réseau de développeurs et recherchez « chunklist ». Sélectionnez l'un d'entre eux et regardez l'onglet Aperçu.</li>
     <figure class="bcls-figure"><img alt="" class="bcls-image--no-border" width="750" height="400" src="/assets/images/live-api/18758/0.png" /></figure>
-	<li>Si vous n'avez pas Safari, vous pouvez appliquer le même processus dans un autre navigateur en utilisant le lecteur Akamai dans <code class="language-html" translate="No">http://players.akamai.com/hls/</code>. Chargez la liste de lecture dans Akamai Player, puis ouvrez l'onglet réseau de votre navigateur et recherchez la « chunklist ».</li>
-	<li>Si vous avez un mandataire, comme "Charles", c'est le même principe. Lisez l'une des listes de lecture VOD dans le lecteur Safari ou Akamai HLS, puis filtrez les résultats dans votre proxy pour consulter l'une des listes de morceaux renvoyées.</li>
+  <li>Si vous n'avez pas Safari, vous pouvez appliquer le même processus dans un autre navigateur en utilisant le lecteur Akamai dans <code class="language-html" translate="No">http://players.akamai.com/hls/</code>. Chargez la liste de lecture dans Akamai Player, puis ouvrez l'onglet réseau de votre navigateur et recherchez la « chunklist ».</li>
+  <li>Si vous avez un mandataire, comme "Charles", c'est le même principe. Lisez l'une des listes de lecture VOD dans le lecteur Safari ou Akamai HLS, puis filtrez les résultats dans votre proxy pour consulter l'une des listes de morceaux renvoyées.</li>
 </ol>
 </section>
 </article>

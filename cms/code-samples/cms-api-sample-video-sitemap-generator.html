@@ -1,7 +1,6 @@
 ---
 title: 'Générateur de plan de site vidéo'
-description: 'Cet exemple montre comment générer un plan de site vidéo à l'aide de l'API CMS.'
-
+description: "Cet exemple montre comment générer un plan de site vidéo à l'aide de CMS API."
 parent: 'Code Samples' 
 grandparent: CMS API
 ---
@@ -13,12 +12,12 @@ grandparent: CMS API
 
     <aside class="bcls-aside bcls-aside--information">Cet exemple et le code associé sont fournis comme guide pour le développement de votre production. Le code n'est pas certifié pour une utilisation en production ni officiellement pris en charge.</aside>
 
-    <p>Avant d'utiliser cette application, vous devez lire <a href="https://studio.support.brightcove.com/general/making-your-video-content-indexable.html">Rendre votre contenu vidéo indexable</a> pour mieux comprendre le but des plans de site vidéo et les stratégies pour automatiser leur génération à l'aide de l'API CMS. La génération du XML pour le plan du site est assez simple. Le plus grand défi est que vous devez inclure une URL unique pour chaque vidéo, et le <span translate="No">API CMS</span> n'a pas automatiquement accès à ces informations. Pour surmonter cela, vous pouvez faire plusieurs choses :</p>
+    <p>Avant d'utiliser cette application, vous devez lire <a href="https://studio.support.brightcove.com/general/making-your-video-content-indexable.html">Rendre votre contenu vidéo indexable</a> pour mieux comprendre le but des plans de site vidéo et les stratégies pour automatiser leur génération à l'aide de CMS API. La génération du XML pour le plan du site est assez simple. Le plus grand défi est que vous devez inclure une URL unique pour chaque vidéo, et le CMS API n'a pas automatiquement accès à ces informations. Pour surmonter cela, vous pouvez faire plusieurs choses :</p>
 
     <ol>
       <li>Ajoutez l'URL où la vidéo est publiée aux métadonnées de la vidéo. La façon la plus simple de le faire serait de créer un <a href="https://studio.support.brightcove.com/admin/creating-custom-metadata-fields.html">champ de métadonnées personnalisé</a> pour stocker l'URL.</li>
       <li>Hébergez les vidéos sur une seule page, en utilisant un paramètre d'URL pour spécifier la vidéo <code translate="No">id</code> ou <code translate="No">reference_id</code> que JavaScript personnalisé dans la page utilisera pour charger la vidéo dans le lecteur.
-        <p>Il existe différentes manières d'obtenir la valeur d'un paramètre d'URL spécifique pour la page. Vous trouverez ci-dessous une fonction que nous utilisons dans certains de nos exemples d'applications :</p>
+        <p>Il existe différentes manières d'obtenir la valeur d'un paramètre d'URL spécifique pour la page. Vous trouverez ci-dessous une fonction que nous utilisons dans certains de nos exemples d'applications:</p>
 
         <pre class="line-numbers">
             <code class="language-javascript" translate="No">/**
@@ -43,10 +42,10 @@ grandparent: CMS API
 
     <p>L'exemple d'application ci-dessous vous permet d'utiliser l'une ou l'autre méthode - il vous suffit de lui dire laquelle en saisissant les informations dans les champs appropriés.</p>
 
-    <h3>Remarques sur l'exemple d'application :</h3>
+    <h3>Remarques sur l'exemple d'application:</h3>
 
     <ol>
-      <li>L'application fait une demande au <span translate="No">API d'analyse</span> pour obtenir les vues vidéo de tous les temps, donc si les informations d'identification client que vous fournissez n'incluent pas les autorisations pour l'API Analytics, l'application échouera.</li>
+      <li>L'application fait une demande au Analytics API pour obtenir les vues vidéo de tous les temps, donc si les informations d'identification client que vous fournissez n'incluent pas les autorisations pour Analytics API, l'application échouera.</li>
       <li>Le nombre maximum de vidéos pouvant être incluses est de 50 000 et la taille du fichier est également limitée à 50 Mo, que vous pourriez atteindre avec moins de 50 000 vidéos. Si vous avez plus de vidéos que cela à inclure, vous devrez les diviser en plusieurs plans de site et ajouter un fichier d'index de plan de site. Voir <a href="https://support.google.com/webmasters/answer/80471">Documentation du plan du site de Google</a> pour plus d'informations.</li>
       <li>Le plan du site généré par l'exemple d'application n'inclut pas certaines des balises facultatives pour les vidéos (voir le document Google référencé ci-dessus pour plus d'informations à leur sujet). Si vous souhaitez les inclure, vous pouvez prendre le code de cette application et créer une version modifiée. Il y a des commentaires dans le code JavaScript et HTML pour indiquer ce que vous devez faire.
         <table class="bcls-table">
@@ -88,7 +87,7 @@ grandparent: CMS API
           </tbody>
         </table>
       </li>
-      <li>Les vidéos seront ignorées si elles ne remplissent pas les conditions nécessaires, comme suit :
+      <li>Les vidéos seront ignorées si elles ne remplissent pas les conditions nécessaires, comme suit:
         <ul>
           <li>Si vous stockez l'URL de la page vidéo dans un champ personnalisé, toute vidéo qui n'a pas de valeur pour ce champ personnalisé</li>
           <li>Si vous utilisez une seule page pour héberger vos vidéos et que vous utilisez le <code translate="No">reference_id</code> pour les inclure, et la vidéo n'a pas <code translate="No">reference_id</code></li>
@@ -114,15 +113,15 @@ grandparent: CMS API
         <h2 id="getCredentials">Obtenir des informations d'identification</h2>
       </summary>
 
-      <p>Pour utiliser le <span translate="No">API CMS</span> vous aurez besoin des informations d'identification appropriées.</p>
+      <p>Pour utiliser le CMS API vous aurez besoin des informations d'identification appropriées.</p>
 
-      <p>Le moyen le plus simple d'obtenir des informations d'identification dans la plupart des cas consiste à utiliser la section Authentification de l'API d'administration de Studio (nécessite des autorisations d'administrateur sur votre compte). Voir <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a> pour les détails. Dans la plupart des cas, vous souhaitez probablement simplement obtenir des autorisations pour tous <span translate="No">API CMS</span> opération:</p>
+      <p>Le moyen le plus simple d'obtenir des informations d'identification dans la plupart des cas consiste à utiliser la section Authentification de l'API d'administration de Studio (nécessite des autorisations d'administrateur sur votre compte). Voir <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a> pour les détails. Dans la plupart des cas, vous souhaitez probablement simplement obtenir des autorisations pour tous CMS API opération:</p>
 
       <figure class="bcls-figure"><img class="bcls-image" alt="CMS API Permissions" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/cms-api/cms-permissions.png" />
-        <figcaption class="bcls-caption--image">Autorisations API CMS</figcaption>
+        <figcaption class="bcls-caption--image">Autorisations CMS API</figcaption>
       </figure>
 
-      <p>Si les autorisations dont vous avez besoin ne sont pas disponibles dans Studio, ou si vous préférez les obtenir directement à partir de l'API OAuth, utilisez votre choix de <strong>Obtenir les informations d'identification du client</strong> documents énumérés ci-dessous. Quelle que soit l'option que vous choisissez, vous devrez demander les autorisations de fonctionnement correctes. Les éléments suivants peuvent être utilisés avec cURL, Postman ou notre application en ligne pour obtenir toutes les autorisations pour l'API CMS :</p>
+      <p>Si les autorisations dont vous avez besoin ne sont pas disponibles dans Studio, ou si vous préférez les obtenir directement à partir de OAuth API, utilisez votre choix de <strong>Obtenir les informations d'identification du client</strong> documents énumérés ci-dessous. Quelle que soit l'option que vous choisissez, vous devrez demander les autorisations de fonctionnement correctes. Les éléments suivants peuvent être utilisés avec cURL, Postman ou notre application en ligne pour obtenir toutes les autorisations pour l'CMS API:</p>
 
       <pre class="line-numbers">
               <code class="language-json" translate="No">"operations": [
@@ -134,9 +133,9 @@ grandparent: CMS API
               ]</code></pre>
 
       <ul>
-        <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">OAuth : Obtenir les informations d'identification du client à l'aide de cURL</a></li>
-        <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">OAuth : Obtenez les informations d'identification du client à l'aide de Postman</a></li>
-        <li><a href="/oauth/code-samples/oauth-api-sample-create-client-credentials.html">Exemple d'API OAuth : Créer des informations d'identification client</a></li>
+        <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">OAuth: Obtenir les informations d'identification du client à l'aide de cURL</a></li>
+        <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">OAuth: Obtenez les informations d'identification du client à l'aide de Postman</a></li>
+        <li><a href="/oauth/code-samples/oauth-api-sample-create-client-credentials.html">Exemple d'API OAuth: Créer des informations d'identification client</a></li>
       </ul>
     </details>
   </section>
@@ -146,7 +145,7 @@ grandparent: CMS API
     <h3>Code source</h3>
     <p>Retrouvez tout le code associé à cet exemple dans ce <a href="https://github.com/BrightcoveLearning/18739-cms-api-sample-video-sitemap-generator">Dépôt GitHub</a>.</p>
     <h3>Exemple d'application</h3>
-    <p class="codepen" data-height="1200" data-theme-id="34967" data-default-tab="result" data-user="rcrooks1969" data-slug-hash="VRLNJp" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="CMS API Sample: Video Sitemap Generator"><span>Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/VRLNJp/"> <span translate="No">API CMS</span> Échantillon: Générateur de plan de site vidéo</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</span></p>
+    <p class="codepen" data-height="1200" data-theme-id="34967" data-default-tab="result" data-user="rcrooks1969" data-slug-hash="VRLNJp" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="CMS API Sample: Video Sitemap Generator"><span>Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/VRLNJp/"> CMS API Échantillon: Générateur de plan de site vidéo</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</span></p>
     <script async="async" src="https://static.codepen.io/assets/embed/ei.js"></script>
   </section>
 
@@ -156,7 +155,7 @@ grandparent: CMS API
         <h2 id="Using_the_CodePen">Utiliser le CodePen</h2>
       </summary>
 
-      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus :</p>
+      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus:</p>
 
       <ul>
         <li>Basculez l'affichage réel du lecteur en cliquant sur le bouton <strong>Résultat</strong> bouton.</li>
@@ -170,7 +169,7 @@ grandparent: CMS API
   <section class="bcls-section">
     <h2 id="Single_page">Une seule page</h2>
 
-    <p>Comme mentionné ci-dessus, vous pouvez créer une page HTML qui peut être utilisée pour l'emplacement de chaque vidéo. L'application modifiera l'URL de la page en utilisant un paramètre de requête qui définit l'ID vidéo que la page doit utiliser. Par exemple, l'application générera un JSON contenant des URL d'emplacement similaires aux suivantes pour l'emplacement des pages vidéo :</p>
+    <p>Comme mentionné ci-dessus, vous pouvez créer une page HTML qui peut être utilisée pour l'emplacement de chaque vidéo. L'application modifiera l'URL de la page en utilisant un paramètre de requête qui définit l'ID vidéo que la page doit utiliser. Par exemple, l'application générera un JSON contenant des URL d'emplacement similaires aux suivantes pour l'emplacement des pages vidéo:</p>
 
     <pre class="line-numbers">
             <code class="language-json" translate="No">&lt;loc&gt;
@@ -183,7 +182,7 @@ grandparent: CMS API
 
     <p>Notez que seul l'ID de la vidéo change.</p>
 
-    <p>La page HTML proprement dite lit le <strong>ID vidéo</strong> Le paramètre URL génère ensuite dynamiquement un lecteur à l'aide de l'ID vidéo obtenu à partir de l'URL. La page HTML entière apparaît comme suit :</p>
+    <p>La page HTML proprement dite lit le <strong>ID vidéo</strong> Le paramètre URL génère ensuite dynamiquement un lecteur à l'aide de l'ID vidéo obtenu à partir de l'URL. La page HTML entière apparaît comme suit:</p>
 
     <pre class="line-numbers">
             <code class="language-html" translate="No">&lt;!doctype html&gt;
@@ -268,7 +267,7 @@ grandparent: CMS API
             
             &lt;/html&gt;</code></pre>
 
-    <p>Vous devrez entrer votre numéro de compte. Pour une explication complète du code, voir le <a href="https://player.support.brightcove.com/code-samples/brightcove-player-sample-loading-player-dynamically.html">Exemple de lecteur Brightcove : Chargement dynamique du lecteur</a> document.</p>
+    <p>Vous devrez entrer votre numéro de compte. Pour une explication complète du code, voir le <a href="https://player.support.brightcove.com/code-samples/brightcove-player-sample-loading-player-dynamically.html">Exemple de lecteur Brightcove: Chargement dynamique du lecteur</a> document.</p>
   </section>
 
     <section class="bcls-section">

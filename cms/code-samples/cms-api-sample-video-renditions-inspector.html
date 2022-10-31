@@ -1,6 +1,6 @@
 ---
 title: 'Inspecteur des rendus vidéo'
-description: 'Dans cette rubrique, vous apprendrez à utiliser les <span translate="No">API CMS</span> pour inspecter les rendus de toutes les vidéos d'un compte.'
+description: "Dans cette rubrique, vous apprendrez à utiliser les CMS API pour inspecter les rendus de toutes les vidéos d'un compte."
 parent: Code Samples 
 grandparent: CMS API
 ---
@@ -12,7 +12,7 @@ grandparent: CMS API
 
     <aside class="bcls-aside bcls-aside--information">Cet exemple et le code associé sont fournis comme guide pour le développement de votre production. Le code n'est pas certifié pour une utilisation en production ni officiellement pris en charge.</aside> <aside class="bcls-aside bcls-aside--information">Notez que cette application a été conçue pour aider les clients de Brightcove à migrer de l'ancien Smart Player vers le nouveau Brightcove Player. Il a été construit autour de vidéos ajoutées à l'aide de l'ancien système d'ingestion et ne renvoie pas de résultats significatifs pour les vidéos Dynamic Delivery.</aside>
 
-    <p>Cet outil génère un rapport qui comprend les éléments suivants :</p>
+    <p>Cet outil génère un rapport qui comprend les éléments suivants:</p>
 
     <ul>
       <li>Résumé montrant combien de vidéos ont <strong>non</strong> Rendus HLS ou MP4 ou les deux</li>
@@ -30,20 +30,20 @@ grandparent: CMS API
         <h2 id="obtaincredentials">Obtenir des informations d'identification</h2>
       </summary>
 
-      <p>Comme la plupart des API RESTful de Brightcove, le <span translate="No">API CMS</span> nécessite des jetons d'accès OAuth pour autoriser les demandes. Pour obtenir des jetons d'accès, vous devez d'abord obtenir les informations d'identification du client avec des autorisations pour les types d'opérations que vous souhaitez demander.</p>
+      <p>Comme la plupart des API RESTful de Brightcove, le CMS API nécessite des jetons d'accès OAuth pour autoriser les demandes. Pour obtenir des jetons d'accès, vous devez d'abord obtenir les informations d'identification du client avec des autorisations pour les types d'opérations que vous souhaitez demander.</p>
 
       <ol>
-        <li>Pour obtenir vos identifiants, suivez les instructions dans <a href="https://studio.support.brightcove.com/admin/managing-api-authentication-credentials.html">Gestion des informations d'identification de l'API</a>. Il s'agit de la méthode recommandée pour obtenir vos informations d'identification client. Cet échantillon ne nécessite que <code translate="No">Video Read</code> autorisations, mais dans la plupart des cas, vous souhaiterez probablement obtenir toutes les autorisations :
+        <li>Pour obtenir vos identifiants, suivez les instructions dans <a href="https://studio.support.brightcove.com/admin/managing-api-authentication-credentials.html">Gestion des informations d'identification de l'API</a>. Il s'agit de la méthode recommandée pour obtenir vos informations d'identification client. Cet échantillon ne nécessite que <code translate="No">Video Read</code> autorisations, mais dans la plupart des cas, vous souhaiterez probablement obtenir toutes les autorisations:
 
           <figure class="bcls-figure"><img class="bcls-image" alt="required permissions" width="466" height="178" src="//learning-services-media.brightcove.com/doc-assets/player-development/publishing/video-renditions-inspector/quick-start-required-permissions.png" /></figure>
 
-          <p>Vous pouvez également obtenir des informations d'identification à l'aide de l'API OAuth, en suivant les instructions de l'un des guides répertoriés ci-dessous :</p>
+          <p>Vous pouvez également obtenir des informations d'identification à l'aide de OAuth API, en suivant les instructions de l'un des guides répertoriés ci-dessous:</p>
         </li>
       </ol>
 
       <ul>
-        <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">OAuth : Obtenir les informations d'identification du client à l'aide de CURL</a></li>
-        <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">OAuth : Obtenez les informations d'identification du client à l'aide de Postman</a></li>
+        <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">OAuth: Obtenir les informations d'identification du client à l'aide de CURL</a></li>
+        <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">OAuth: Obtenez les informations d'identification du client à l'aide de Postman</a></li>
       </ul>
     </details>
   </section>
@@ -63,7 +63,7 @@ grandparent: CMS API
         <h2 id="Using_the_CodePen">Utiliser le CodePen</h2>
       </summary>
 
-      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus :</p>
+      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus:</p>
 
       <ul>
         <li>Basculez l'affichage réel de l'application en cliquant sur le bouton <strong>Résultat</strong> bouton.</li>

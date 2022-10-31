@@ -1,6 +1,6 @@
 ---
-title: 'Intégration des lecteurs Brightcove dans un CMS'
-description: 'Cette rubrique fournit des conseils sur la fourniture d'une boîte de dialogue aux utilisateurs CMS pour leur permettre d'intégrer un Brightcove Player dans une page.'
+title: 'Intégration des Lecteurs Brightcove dans un CMS'
+description: "Cette rubrique fournit des conseils sur la fourniture d'une boîte de dialogue aux utilisateurs CMS pour leur permettre d'intégrer un Brightcove Player dans une page."
 parent: Guides 
 grandparent: Player Management API
 ---
@@ -28,7 +28,7 @@ grandparent: Player Management API
     <h2 id="Player_embed_dialog_behavior">Comportement de la boîte de dialogue d'intégration du lecteur</h2>
     <p>Il devrait y avoir une boîte de dialogue permettant à l'utilisateur de contrôler le formatage du lecteur sur la page Web. Cette boîte de dialogue doit permettre à l'utilisateur de définir les champs répertoriés ci-dessous. L'hypothèse est que l'utilisateur a déjà sélectionné un compte Brightcove et une vidéo ou une liste de lecture avant que cette boîte de dialogue ne s'affiche. Sinon, la sélection du compte Brightcove et de la vidéo ou de la liste de lecture doit s'effectuer en premier, comme décrit dans <a href="#appendix_a">Annexe A</a> au dessous de.</p>
     <ol>
-      <li><strong>Joueur</strong>: L'utilisateur doit pouvoir choisir un lecteur parmi les lecteurs Brightcove disponibles. S'ils intègrent un lecteur vidéo, seuls les lecteurs non compatibles avec la liste de lecture doivent être disponibles. S'ils intègrent un lecteur de liste de lecture, seuls les lecteurs compatibles avec la liste de lecture devraient être disponibles.</li>
+      <li><strong>Lecteur</strong>: L'utilisateur doit pouvoir choisir un lecteur parmi les Lecteurs Brightcove disponibles. S'ils intègrent un lecteur vidéo, seuls les Lecteurs non compatibles avec la liste de lecture doivent être disponibles. S'ils intègrent un lecteur de liste de lecture, seuls les Lecteurs compatibles avec la liste de lecture devraient être disponibles.</li>
       <li><strong>Lecture automatique</strong>: L'utilisateur doit pouvoir activer/désactiver la lecture automatique. La valeur par défaut est désactivée.</li>
       <li><strong>Muet</strong>: L'utilisateur doit pouvoir activer/désactiver la fonction Muet. La valeur par défaut est désactivée.</li>
       <li><strong>Type d'intégration</strong>: L'utilisateur doit pouvoir choisir entre le code d'intégration iFrame et Javascript.
@@ -40,7 +40,7 @@ grandparent: Player Management API
       <li><strong>Dimensionnement</strong>: L'utilisateur doit pouvoir choisir entre Responsive<sup>[1-1]<strong><a href="#note1-1"></a></strong></sup> ou Taille fixe<sup>[1-2]<strong><a href="#note1-2"></a></strong></sup>.
         <ol type="a">
           <li>Pour un lecteur vidéo, la valeur par défaut doit être Responsive.</li>
-          <li>Pour un lecteur de liste de lecture :
+          <li>Pour un lecteur de liste de lecture:
             <ol type="i">
               <li>Si iFrame, la valeur par défaut doit être Responsive.</li>
               <li>Si Javascript, la valeur par défaut doit être Fixe.</li>
@@ -77,18 +77,18 @@ grandparent: Player Management API
     <h2 id="Related_Brightcove_documentation">Documentation Brightcove associée</h2>
     <h3>Aide générale sur l'intégration de Video Cloud avec votre CMS</h3>
     <p><a href="https://apis.support.brightcove.com/general/integrating-your-cms-video-cloud.html">Intégration de votre CMS avec Video Cloud</a></p>
-    <h3>Obtenir une liste de joueurs</h3>
-    <p><a href="https://apis.support.brightcove.com/player-management/references/reference.html#operation/GetPlayers">Référence de l'API de gestion des joueurs</a></p>
-    <h3>Identifier les lecteurs de playlist</h3>
+    <h3>Obtenir une liste de Lecteurs</h3>
+    <p><a href="https://apis.support.brightcove.com/player-management/references/reference.html#operation/GetPlayers">Référence de l'Ingestion Profiles API</a></p>
+    <h3>Identifier les Lecteurs de playlist</h3>
     <ol>
-      <li>Parcourez la liste des joueurs renvoyée par la requête API de gestion des joueurs référencée ci-dessus.</li>
+      <li>Parcourez la liste des Lecteurs renvoyée par la requête Ingestion Profiles API référencée ci-dessus.</li>
       <li>Cherchez le <code translate="No">playlist</code> champ:
         <ol type="a">
           <li>Si le champ est présent et que la valeur est <code translate="No">true</code> , c'est un lecteur de playlist</li>
           <li>Si la valeur est <code translate="No">false</code> ou la <code translate="No">playlist</code> n'existe pas, passez à l'étape suivante.</li>
         </ol>
       </li>
-      <li>Itérer à travers le <code translate="No">plugins</code> liste (le cas échéant) et recherchez un <code translate="No">registry_id</code> champ égal à <code translate="No">@brightcove/videojs-bc-playlist-ui</code> ; s'il est présent, il s'agit d'un lecteur de playlist ; sinon, ce n'est pas le cas. Voici un exemple de ce qui est renvoyé dans la liste des joueurs :
+      <li>Itérer à travers le <code translate="No">plugins</code> liste (le cas échéant) et recherchez un <code translate="No">registry_id</code> champ égal à <code translate="No">@brightcove/videojs-bc-playlist-ui</code> ; s'il est présent, il s'agit d'un lecteur de playlist ; sinon, ce n'est pas le cas. Voici un exemple de ce qui est renvoyé dans la liste des Lecteurs:
         <pre class="line-numbers">
 <code class="language-json" translate="No">"items": [
    {
@@ -390,10 +390,10 @@ src="https://players.brightcove.net/%ACCOUNTID%/%PLAYERID%_default/index .min.js
   </section>
   <section class="bcls-section">
     <h2 id="appendix_a">Annexe A</h2>
-    <p>Si une vidéo ou une liste de lecture n'est pas sélectionnée avant d'ouvrir la boîte de dialogue d'intégration du lecteur, la vidéo ou la liste de lecture (et le compte Brightcove si nécessaire) doit être sélectionnable dans la boîte de dialogue. La boîte de dialogue doit présenter à l'utilisateur les champs répertoriés ci-dessous :</p>
+    <p>Si une vidéo ou une liste de lecture n'est pas sélectionnée avant d'ouvrir la boîte de dialogue d'intégration du lecteur, la vidéo ou la liste de lecture (et le compte Brightcove si nécessaire) doit être sélectionnable dans la boîte de dialogue. La boîte de dialogue doit présenter à l'utilisateur les champs répertoriés ci-dessous:</p>
     <ol>
-      <li><strong>Compte Brightcove :</strong> L'utilisateur doit pouvoir choisir un compte Brightcove si celui-ci n'est pas déjà sélectionné.</li>
-      <li><strong>Filtre de recherche :</strong> L'utilisateur doit pouvoir saisir une chaîne de recherche pour filtrer la liste des vidéos ou des listes de lecture affichées. Si vous utilisez l'API de recherche Brightcove, la chaîne de recherche doit être codée en URI (voir l'exemple ci-dessous).</li>
+      <li><strong>Compte Brightcove:</strong> L'utilisateur doit pouvoir choisir un compte Brightcove si celui-ci n'est pas déjà sélectionné.</li>
+      <li><strong>Filtre de recherche:</strong> L'utilisateur doit pouvoir saisir une chaîne de recherche pour filtrer la liste des vidéos ou des listes de lecture affichées. Si vous utilisez l'API de recherche Brightcove, la chaîne de recherche doit être codée en URI (voir l'exemple ci-dessous).</li>
       <li><strong>Dossier:</strong> L'utilisateur doit pouvoir sélectionner un nom de dossier à partir du compte Brightcove pour filtrer la liste des vidéos affichées. L'API Brightcove ne fournit pas de filtre intégré pour les dossiers, le code client devra donc récupérer toutes les vidéos, puis filtrer par dossier. (Ne s'applique pas aux listes de lecture)</li>
       <li><strong>Limite:</strong> L'utilisateur doit pouvoir limiter le nombre de vidéos renvoyées, principalement pour améliorer les performances de la recherche. Lorsque vous utilisez la recherche Brightcove, la limite maximale pouvant être spécifiée est de 100. Pour renvoyer plus de 100 vidéos, un mécanisme de pagination doit être mis en place. De plus, si l'utilisateur a sélectionné un dossier à filtrer, le client doit demander toutes les vidéos du compte à l'aide du mécanisme de pagination, puis filtrer localement cette liste par dossier et renvoyer le nombre de vidéos spécifié par la limite d'utilisateurs. (Ne s'applique pas aux listes de lecture)</li>
       <li><strong>Trier par:</strong> L'utilisateur doit pouvoir sélectionner un champ de tri.
@@ -404,17 +404,17 @@ src="https://players.brightcove.net/%ACCOUNTID%/%PLAYERID%_default/index .min.js
       </li>
       <li><strong>Ordre de tri:</strong> L'utilisateur doit pouvoir sélectionner un ordre de tri croissant ou décroissant. La valeur par défaut doit être décroissante.</li>
     </ol>
-    <p>La boîte de dialogue doit avoir le comportement suivant :</p>
+    <p>La boîte de dialogue doit avoir le comportement suivant:</p>
     <ol>
       <li>Affichez une liste de vidéos ou de listes de lecture en fonction de la sélection de l'utilisateur ci-dessus. Autorisez l'utilisateur à sélectionner une vidéo ou une liste de lecture.</li>
-      <li>Lors de l'affichage d'une liste de vidéos :
+      <li>Lors de l'affichage d'une liste de vidéos:
         <ol type="a">
           <li>Seules les vidéos actives doivent être répertoriées.</li>
           <li>L'image miniature, le nom de la vidéo et l'ID doivent être affichés.</li>
           <li>Une seule vidéo peut être sélectionnée.</li>
         </ol>
       </li>
-      <li>Lors de l'affichage d'une liste de listes de lecture :
+      <li>Lors de l'affichage d'une liste de listes de lecture:
         <ol type="a">
           <li>Si la liste de lecture est une liste de lecture manuelle, affichez le nom de la liste de lecture, l'ID et le nombre de vidéos dans la liste de lecture.</li>
           <li>Si la liste de lecture est une liste de lecture intelligente, affichez le nom de la liste de lecture, l'ID et - à la place du nombre de vidéos.</li>
@@ -441,19 +441,19 @@ src="https://players.brightcove.net/%ACCOUNTID%/%PLAYERID%_default/index .min.js
     <h3>Exemples d'encodage URI</h3>
     <ol>
       <li>
-        <p>Chaîne de recherche : <code translate="No">great+blue</code></p>
-        <p>Chaîne dans <span translate="No">API CMS</span> l'appel doit être : <code translate="No">great%2Bblue</code></p>
-        <p>Vidéos renvoyées : tout ce qui comprend les mots : <code translate="No">great</code> ET <code translate="No">blue</code><sup>[2-1]<strong><a href="#note2-1"></a></strong></sup></p>
+        <p>Chaîne de recherche: <code translate="No">great+blue</code></p>
+        <p>Chaîne dans CMS API l'appel doit être: <code translate="No">great%2Bblue</code></p>
+        <p>Vidéos renvoyées: tout ce qui comprend les mots: <code translate="No">great</code> ET <code translate="No">blue</code><sup>[2-1]<strong><a href="#note2-1"></a></strong></sup></p>
       </li>
       <li>
-        <p>Chaîne de recherche : <code translate="No">great blue</code></p>
-        <p>Chaîne dans <span translate="No">API CMS</span> l'appel doit être : <code translate="No">great%20blue</code></p>
-        <p>Les vidéos renvoyées sont toutes celles qui incluent les mots : <code translate="No">great</code> OU <code translate="No">blue</code><sup>[2-1]<strong><a href="#note2-1"></a></strong></sup></p>
+        <p>Chaîne de recherche: <code translate="No">great blue</code></p>
+        <p>Chaîne dans CMS API l'appel doit être: <code translate="No">great%20blue</code></p>
+        <p>Les vidéos renvoyées sont toutes celles qui incluent les mots: <code translate="No">great</code> OU <code translate="No">blue</code><sup>[2-1]<strong><a href="#note2-1"></a></strong></sup></p>
       </li>
       <li>
-        <p>Chaîne de recherche : <code translate="No">"great blue"</code></p>
-        <p>Chaîne dans <span translate="No">API CMS</span> l'appel doit être : <code translate="No">%22great%20blue%22</code></p>
-        <p>Les vidéos renvoyées sont toutes celles qui incluent la phrase complète : <code translate="No">great blue</code><sup>[2-1]<strong><a href="#note2-1"></a></strong></sup></p>
+        <p>Chaîne de recherche: <code translate="No">"great blue"</code></p>
+        <p>Chaîne dans CMS API l'appel doit être: <code translate="No">%22great%20blue%22</code></p>
+        <p>Les vidéos renvoyées sont toutes celles qui incluent la phrase complète: <code translate="No">great blue</code><sup>[2-1]<strong><a href="#note2-1"></a></strong></sup></p>
       </li>
     </ol>
     <h4>Remarques</h4>

@@ -1,33 +1,33 @@
 ---
-title: 'Aperçu: API de collecte de données v2'
-description: 'Dans cette rubrique, vous obtiendrez un aperçu de l'API de collecte de données Analytics v2, qui vous permet d'ajouter des événements à vos données Video Cloud Analytics dans des situations où Brightcove ne peut pas suivre les événements directement.'
+title: 'Aperçu: Data Collection API v2'
+description: "Dans cette rubrique, vous obtiendrez un aperçu de Data Collection API Analytics v2, qui vous permet d'ajouter des événements à vos données Video Cloud Analytics dans des situations où Brightcove ne peut pas suivre les événements directement."
 parent: Data Collection API
 ---
  <h1>{{ page.title }}</h1>
 <article class="bcls-article">
   <summary>{{ page.description }}</summary>
-  <aside class="bcls-aside bcls-aside--warning"><strong>Noter:</strong> Vous ne devez PAS utiliser cette API pour suivre les événements pour le Brightcove Player ou pour les lecteurs SDK Android et iOS, car cela se produit déjà automatiquement et vous ajouteriez des données en double.</aside>
+  <aside class="bcls-aside bcls-aside--warning"><strong>Noter:</strong> Vous ne devez PAS utiliser cette API pour suivre les événements pour le Brightcove Player ou pour les Lecteurs SDK Android et iOS, car cela se produit déjà automatiquement et vous ajouteriez des données en double.</aside>
   <section class="bcls-section">
     <h2 id="introduction">introduction</h2>
 
     <p>Les données analytiques sont envoyées automatiquement par les Brightcove Players, y compris celles fournies par les SDK Native Player. Si vous êtes <strong>ne pas</strong> en utilisant un Brightcove Player pour diffuser des vidéos Video Cloud, vous devez instrumenter le lecteur que vous utilisez pour envoyer les données au Data Collector.</p>
 
-    <p>L'API de collecte de données v2 est la norme actuelle. La version v1 est obsolète. Si vous avez une implémentation v1, consultez le <a href="#changesFromV1">Changements depuis la v1</a> rubrique ci-dessous.</p>
+    <p>Data Collection API v2 est la norme actuelle. La version v1 est obsolète. Si vous avez une implémentation v1, consultez le <a href="#changesFromV1">Changements depuis la v1</a> rubrique ci-dessous.</p>
 
     <p>En plus de cet aperçu et de la <a href="/data-collection/references/reference.html">Référence API</a> , voir aussi ceci <a href="/data-collection/getting-started/data-collection-api-sample.html">exemple de mise en œuvre</a>.</p>
 
-    <p>L'API de collecte de données d'analyse est le point de terminaison des événements d'analyse en temps réel. Les données d'événement sont envoyées à Brightcove via une série de paramètres soumis via des requêtes HTTP, tels que :</p>
+    <p>Data Collection API d'analyse est le point de terminaison des événements d'analyse en temps réel. Les données d'événement sont envoyées à Brightcove via une série de paramètres soumis via des requêtes HTTP, tels que:</p>
 
     <pre style="white-space:pre-wrap;padding-top:1em;padding-bottom:1em;">
   <code class="language-http" translate="No">http://metrics.brightcove.com/v2/tracker?event=video_view&amp;amp;domain=videocloud&amp;account=123&amp;video=789
   </code>
   </pre>
 
-    <p>Ces paramètres décrivent un <strong>fait</strong> sur l'état du système lorsqu'un événement s'est produit. L'exemple ci-dessus décrit le fait qu'un <code translate="No">video_view</code> l'événement s'est produit pour la vidéo <code translate="No">789</code> pour le compte <code translate="No">123</code> (ou : un utilisateur a commencé à regarder son compte <code translate="No">123</code>la vidéo de <code translate="No">789</code>. Voir <a href="#video-cloud-events">au dessous de</a> pour une description des événements analytiques en cours suivis).</p>
+    <p>Ces paramètres décrivent un <strong>fait</strong> sur l'état du système lorsqu'un événement s'est produit. L'exemple ci-dessus décrit le fait qu'un <code translate="No">video_view</code> l'événement s'est produit pour la vidéo <code translate="No">789</code> pour le compte <code translate="No">123</code> (ou: un utilisateur a commencé à regarder son compte <code translate="No">123</code>la vidéo de <code translate="No">789</code>. Voir <a href="#video-cloud-events">au dessous de</a> pour une description des événements analytiques en cours suivis).</p>
 
     <h3 id="dimensions">Dimensions</h3>
 
-    <p>Les dimensions sont des faits qualitatifs sur l'état du système lorsqu'un événement se produit. Par exemple, si la demande est :</p>
+    <p>Les dimensions sont des faits qualitatifs sur l'état du système lorsqu'un événement se produit. Par exemple, si la demande est:</p>
 
     <pre style="white-space:pre-wrap;padding-top:1em;padding-bottom:1em;">
   <code class="language-http" translate="No">http://metrics.brightcove.com/tracker
@@ -47,13 +47,13 @@ parent: Data Collection API
 
     <p>Certains paramètres doivent être inclus avec les événements afin que le système Analytics puisse les analyser avec succès</p>
 
-    <aside class="bcls-aside bcls-aside--warning">Vous devriez <strong>ne pas</strong> envoyer <code translate="No">player</code> (ID du joueur) ou <code translate="No">player_name</code> informations pour les joueurs non-Brightcove. Utilisez plutôt le <code translate="No">destination</code> paramètre pour savoir où la vidéo a été visionnée.</aside>
+    <aside class="bcls-aside bcls-aside--warning">Vous devriez <strong>ne pas</strong> envoyer <code translate="No">player</code> (ID du Lecteur) ou <code translate="No">player_name</code> informations pour les Lecteurs non-Brightcove. Utilisez plutôt le <code translate="No">destination</code> paramètre pour savoir où la vidéo a été visionnée.</aside>
   </section>
 
   <section class="bcls-section">
     <h2 id="responseTypes">Types de réponse</h2>
 
-    <p>La réponse à une demande d'API de collecte de données analytiques comprend un code de réponse HTTP et un message lisible par l'homme.</p>
+    <p>La réponse à une demande d'Data Collection API analytiques comprend un code de réponse HTTP et un message lisible par l'homme.</p>
 
     <table class="bcls-table">
       <thead class="bcls-table__head">
@@ -71,7 +71,7 @@ parent: Data Collection API
         </tr>
         <tr>
           <td><code translate="No">400</code></td>
-          <td>Il manque un paramètre obligatoire à la requête envoyée par le client : <code translate="No">domain</code> , <code translate="No">account</code> ou <code translate="No">event</code>. (Ce statut ne sera pas renvoyé si des paramètres spécifiques au domaine sont manquants.)</td>
+          <td>Il manque un paramètre obligatoire à la requête envoyée par le client: <code translate="No">domain</code> , <code translate="No">account</code> ou <code translate="No">event</code>. (Ce statut ne sera pas renvoyé si des paramètres spécifiques au domaine sont manquants.)</td>
           <td><code translate="No">"Invalid 'event' parameter"</code></td>
         </tr>
         <tr>
@@ -86,13 +86,13 @@ parent: Data Collection API
 	<section class="bcls-section">
 		<h2 id="VOD_and_Live_Events">VOD et événements en direct</h2>
 		<h3>Événements en direct</h3>
-		<p>Les conditions suivantes doivent être remplies pour que l'API de collecte de données classe un événement comme <strong>Habitent</strong>:</p>
+		<p>Les conditions suivantes doivent être remplies pour que Data Collection API classe un événement comme <strong>Habitent</strong>:</p>
 		<ul>
 			<li>La demande doit <strong>ne pas</strong> avoir le paramètre video_duration.</li>
 			<li>La demande doit avoir un paramètre de compte.</li>
 			<li>La demande doit avoir un paramètre vidéo.</li>
 			<li>
-				Le type d'événement doit être l'un des suivants :
+				Le type d'événement doit être l'un des suivants:
 				<ul>
 					<li>video_impression<code translate="no"></code></li>
 					<li><code translate="no">vue_vidéo</code></li>
@@ -154,13 +154,13 @@ parent: Data Collection API
     <ol>
       <li>Créez le script de collecte de données pour votre lecteur.</li>
       <li>Testez dans un environnement contrôlé pendant au moins une journée.</li>
-      <li>Vérifiez les données d'analyse via le module d'analyse ou le <span translate="No">API d'analyse</span> pour vous assurer que ce qui a été collecté correspond à vos attentes.</li>
+      <li>Vérifiez les données d'analyse via le module d'analyse ou le Analytics API pour vous assurer que ce qui a été collecté correspond à vos attentes.</li>
     </ol>
 
     <h3>Envoi de la demande - éviter les problèmes CORS</h3>
 
     <aside class="bcls-aside bcls-aside--tip">
-      <p>Notez que la meilleure façon d'"envoyer" à l'API de collecte de données est de définir l'URL de la demande comme <code translate="No">src</code> valeur pour une nouvelle image ( <code translate="No">img</code> ), puis en injectant cet élément dans la page.</p>
+      <p>Notez que la meilleure façon d'"envoyer" à Data Collection API est de définir l'URL de la demande comme <code translate="No">src</code> valeur pour une nouvelle image ( <code translate="No">img</code> ), puis en injectant cet élément dans la page.</p>
 
       <p>Vous devriez utiliser la même méthode plutôt que <code translate="No">XMLHttpRequest</code> ou autre afin d'éviter <a href="https://general.support.brightcove.com/developer/concepts-cors.html">SCRO</a> problèmes.</p>
 
@@ -181,7 +181,7 @@ parent: Data Collection API
   <section class="bcls-section">
     <h2 id="encoding">Encodage URI</h2>
 
-    <p>Toutes les chaînes que vous envoyez à l'API de collecte de données qui peuvent contenir des espaces ou des caractères spéciaux <strong>doit être codé en URI</strong> pour que la demande aboutisse. Si vous soumettez la demande via JavaScript, vous pouvez utiliser le <code class="language-javascript" translate="No">encodeURI()</code> méthode pour coder la chaîne de requête. Par exemple:</p>
+    <p>Toutes les chaînes que vous envoyez à Data Collection API qui peuvent contenir des espaces ou des caractères spéciaux <strong>doit être codé en URI</strong> pour que la demande aboutisse. Si vous soumettez la demande via JavaScript, vous pouvez utiliser le <code class="language-javascript" translate="No">encodeURI()</code> méthode pour coder la chaîne de requête. Par exemple:</p>
 
     <pre class="line-numbers">
   <code class="language-javascript" translate="No">urlStr += "&amp;video=" + currentVideo.id + "&amp;video_name=" + encodeURI(currentVideo.video_name);
@@ -198,7 +198,7 @@ parent: Data Collection API
       <dt><code translate="No">player_load</code></dt>
       <dd>
         <h5>Intention/Signification</h5>
-        <p>Une session de joueur a été lancée par un utilisateur final. Cela marque le début de la session d'analyse et doit être envoyé avant tout autre événement.</p>
+        <p>Une session de Lecteur a été lancée par un utilisateur final. Cela marque le début de la session d'analyse et doit être envoyé avant tout autre événement.</p>
         <h5>Exemple</h5>
         <pre><code class="language-http" translate="No">http://metrics.brightcove.com/tracker
   ?event=player_load
@@ -232,7 +232,7 @@ parent: Data Collection API
       <dt><code translate="No">catalog_request</code></dt>
       <dd>
         <h5>Intention/Signification</h5>
-        <p>Envoyé lorsqu'une requête à l'API de lecture Video Cloud est effectuée.</p>
+        <p>Envoyé lorsqu'une requête à le Playback API Video Cloud est effectuée.</p>
         <h5>Exemple</h5>
         <pre><code class="language-http" translate="No">http://metrics.brightcove.com/tracker
   ?event=catalog_request
@@ -402,7 +402,7 @@ parent: Data Collection API
           <td>
             <p>toujours égal à <code translate="No">videocloud</code></p>
 
-            <p class="type-size">Valeurs autorisées : <code translate="No">"videocloud"</code></p>
+            <p class="type-size">Valeurs autorisées: <code translate="No">"videocloud"</code></p>
           </td>
         </tr>
         <tr>
@@ -416,7 +416,7 @@ parent: Data Collection API
           <td>
             <p>Remplacer pour spécifier le système d'exploitation du périphérique à l'origine de l'événement dans les cas où l'agent utilisateur n'est pas fiable (ignoré sauf si le système d'exploitation et le type de périphérique sont inclus ou si la valeur soumise ne figure pas dans la liste de valeurs affichée ici. <strong>Généralement pas inclus</strong>)</p>
 
-            <p class="type-size">Valeurs autorisées : <code translate="No">"android"</code> , <code translate="No">"bada"</code> , <code translate="No">"ios"</code> , <code translate="No">"linux"</code> , <code translate="No">"mac"</code> , <code translate="No">"tv"</code> , <code translate="No">"os_x"</code> , <code translate="No">"rim"</code> , <code translate="No">"sybian"</code> , <code translate="No">"windows"</code> , <code translate="No">"other"</code></p>
+            <p class="type-size">Valeurs autorisées: <code translate="No">"android"</code> , <code translate="No">"bada"</code> , <code translate="No">"ios"</code> , <code translate="No">"linux"</code> , <code translate="No">"mac"</code> , <code translate="No">"tv"</code> , <code translate="No">"os_x"</code> , <code translate="No">"rim"</code> , <code translate="No">"sybian"</code> , <code translate="No">"windows"</code> , <code translate="No">"other"</code></p>
           </td>
         </tr>
         <tr>
@@ -432,7 +432,7 @@ parent: Data Collection API
           <td>
             <p>Remplacer pour spécifier le type de périphérique à l'origine de l'événement dans les cas où l'agent utilisateur n'est pas fiable (ignoré sauf si le système d'exploitation et le type de périphérique sont inclus ou si la valeur soumise ne figure pas dans la liste de valeurs affichée ici. <strong>Généralement pas inclus</strong>)</p>
 
-            <p class="type-size">Valeurs autorisées : <code translate="No">"mobile"</code> , <code translate="No">"tablet"</code> , <code translate="No">"tv"</code> , <code translate="No">"desktop"</code> , <code translate="No">"other"</code></p>
+            <p class="type-size">Valeurs autorisées: <code translate="No">"mobile"</code> , <code translate="No">"tablet"</code> , <code translate="No">"tv"</code> , <code translate="No">"desktop"</code> , <code translate="No">"other"</code></p>
           </td>
         </tr>
         <tr>
@@ -441,7 +441,7 @@ parent: Data Collection API
           <td>
             <p>le type d'événement</p>
 
-            <p class="type-size">Valeurs autorisées : <code translate="No">"player_load"</code> , <code translate="No">"catalog_request"</code> , <code translate="No">"catalog_response"</code> , <code translate="No">"play_request"</code> , <code translate="No">"ad_mode_begin"</code> , <code translate="No">"ad_mode_complete"</code> , <code translate="No">"video_impression"</code> , <code translate="No">"video_view"</code> , <code translate="No">"video_engagement"</code> , <code translate="No">"error"</code></p>
+            <p class="type-size">Valeurs autorisées: <code translate="No">"player_load"</code> , <code translate="No">"catalog_request"</code> , <code translate="No">"catalog_response"</code> , <code translate="No">"play_request"</code> , <code translate="No">"ad_mode_begin"</code> , <code translate="No">"ad_mode_complete"</code> , <code translate="No">"video_impression"</code> , <code translate="No">"video_view"</code> , <code translate="No">"video_engagement"</code> , <code translate="No">"error"</code></p>
           </td>
         </tr>
         <tr>
@@ -525,11 +525,11 @@ parent: Data Collection API
 
     <p>Bien sûr, la façon dont un ID utilisateur unique est capturé varie d'une application à l'autre, mais par exemple, ce code suppose qu'une URL de connexion est capturée qui contient des données utilisateur uniques, telles que <strong>http://exampledomain.com/users/912389123</strong>. Cette URL unique est transmise au plugin.</p>
 
-    <p>Le code du plugin ci-dessous effectue les tâches suivantes :</p>
+    <p>Le code du plugin ci-dessous effectue les tâches suivantes:</p>
 
     <ul>
       <li>Utilise la syntaxe standard pour créer un plug-in Brightcove Player avec le nom du plug-in défini comme <code translate="No">uniqueUserForAnalyticsPlugin</code>. Le plugin accepte également un <code translate="No">options</code> objet, qui contient les données transmises au plugin.</li>
-      <li>Les <code translate="No">myPlayer</code> variable est assignée une référence au joueur. De plus, deux autres variables sont créées.</li>
+      <li>Les <code translate="No">myPlayer</code> variable est assignée une référence au Lecteur. De plus, deux autres variables sont créées.</li>
       <li>Les <code translate="No">userPath</code> variable se voit attribuer le chemin passé au plugin via le <code translate="No">options</code> objet.</li>
       <li>Les <code translate="No">uniqueViewer</code> la variable est affectée à la version analysée de la <code translate="No">userPath</code> , de sorte que seuls les chiffres de l'ID utilisateur sont affectés à la variable.</li>
       <li>Une propriété utilisateur est ajoutée au plug-in Analytics <code translate="No">settings</code> objet.</li>
@@ -591,7 +591,7 @@ parent: Data Collection API
 
     <p>Pendant la lecture Web, l'URL dans la barre d'adresse de la page où la vidéo est lue est le <code translate="No">destination</code> , et le <code translate="No">source</code> est le référent ( <code translate="No">top.document.referrer</code>).</p>
 
-    <p>Exemple :</p>
+    <p>Exemple:</p>
 
     <table class="bcls-table">
       <thead class="bcls-table__head">
@@ -644,7 +644,7 @@ parent: Data Collection API
   </code>
   </pre>
 
-    <p>le système Analytics le traitera comme suit :</p>
+    <p>le système Analytics le traitera comme suit:</p>
 
     <p>Si l'URI contient un <strong>autorité</strong> , la réponse de l'API utilisera cette autorité comme <code translate="No">destination_domain</code> et tout chemin fourni en tant que <code translate="No">destination_path</code>. Si l'URI ne contient pas d'autorité, l'API n'enregistrera pas de <code translate="No">destination_domain</code>. Les <code translate="No">destination_path</code> sera enregistré comme chemin dans l'URI. UNE <code translate="No">destination</code> sans partie hiérarchique (par exemple juste un schéma) est considérée comme invalide, de même que toute valeur sans schéma.</p>
   </section>
@@ -896,14 +896,14 @@ parent: Data Collection API
           <td><code translate="No">player_width</code> <span class="label label-optional" style="float:right;">optionnel</span></td>
           <td>Chaîne de caractères</td>
           <td>
-            <p>La largeur actuelle en pixels du joueur à la fin de la plage d'engagement</p>
+            <p>La largeur actuelle en pixels du Lecteur à la fin de la plage d'engagement</p>
           </td>
         </tr>
         <tr>
           <td><code translate="No">player_height</code> <span class="label label-optional" style="float:right;">optionnel</span></td>
           <td>Chaîne de caractères</td>
           <td>
-            <p>La hauteur de pixel actuelle du joueur à la fin de la plage d'engagement</p>
+            <p>La hauteur de pixel actuelle du Lecteur à la fin de la plage d'engagement</p>
           </td>
         </tr>
         <tr>
@@ -932,7 +932,7 @@ parent: Data Collection API
 
     <p>Les <code translate="No">video_engagement</code> L'événement est un moyen de suivre l'engagement vidéo pendant la lecture d'une vidéo et sera probablement envoyé plusieurs fois pendant la lecture. (L'instrumentation du lecteur Flash/HTML5 envoie cet événement toutes les 10 secondes, si la lecture n'est pas interrompue.) <strong>À l'heure actuelle, les événements décrivant des plages supérieures à 20 secondes sont ignorés par le système Analytics, il est donc nécessaire d'envoyer ces événements plus fréquemment.</strong></p>
 
-    <p>Il existe deux formes qu'un <code translate="No">video_engagement</code> l'événement peut prendre (autres paramètres omis par souci de concision) :</p>
+    <p>Il existe deux formes qu'un <code translate="No">video_engagement</code> l'événement peut prendre (autres paramètres omis par souci de concision):</p>
 
     <table class="bcls-table">
       <thead class="bcls-table__head">
@@ -992,7 +992,7 @@ parent: Data Collection API
   </code>
   </pre>
 
-    <h3>Champs supplémentaires pris en charge sur tous les événements :</h3>
+    <h3>Champs supplémentaires pris en charge sur tous les événements:</h3>
 
     <p><strong>device_os_version</strong>: La version du système d'exploitation utilisée par l'appareil. Lorsqu'il n'est pas spécifié, cela sera calculé en analysant la chaîne de l'agent utilisateur pour la demande de suivi.</p>
 
@@ -1000,17 +1000,17 @@ parent: Data Collection API
 
     <h3>Nouveaux événements pour la V2</h3>
 
-    <p><strong>catalogue_demande</strong>: Envoyé lorsqu'une demande à l'API du catalogue videocloud est effectuée - notez que cet événement est à usage interne et n'est pas exposé dans le module Analytics ou via l'API Analytics.</p>
+    <p><strong>catalogue_demande</strong>: Envoyé lorsqu'une demande à l'API du catalogue videocloud est effectuée - notez que cet événement est à usage interne et n'est pas exposé dans le module Analytics ou via Analytics API.</p>
 
     <ul>
-      <li><strong>catalogue_url</strong>: L'url de destination associée au <code translate="No">catalog_request</code> événement - notez que cet événement est à usage interne et n'est pas exposé dans le module Analytics ou via l'API Analytics.</li>
+      <li><strong>catalogue_url</strong>: L'url de destination associée au <code translate="No">catalog_request</code> événement - notez que cet événement est à usage interne et n'est pas exposé dans le module Analytics ou via Analytics API.</li>
     </ul>
 
-    <p><strong>catalog_response</strong>: Envoyé lorsqu'une réponse à un précédent <code translate="No">catalog_request</code> est reçu - notez que cet événement est à usage interne et n'est pas exposé dans le module Analytics ou via l'API Analytics.</p>
+    <p><strong>catalog_response</strong>: Envoyé lorsqu'une réponse à un précédent <code translate="No">catalog_request</code> est reçu - notez que cet événement est à usage interne et n'est pas exposé dans le module Analytics ou via Analytics API.</p>
 
     <ul>
-      <li><strong>catalogue_url</strong>: L'url de destination associée au <code translate="No">catalog_request</code> événement qui a déclenché cette réponse - notez que cet événement est à usage interne et n'est pas exposé dans le module Analytics ou via l'API Analytics.</li>
-      <li><strong>temps_réponse_ms</strong>: Le temps, en millisecondes, entre le <code translate="No">catalog_request</code> événement et le <code translate="No">catalog_response</code> événement - notez que cet événement est à usage interne et n'est pas exposé dans le module Analytics ou via l'API Analytics.</li>
+      <li><strong>catalogue_url</strong>: L'url de destination associée au <code translate="No">catalog_request</code> événement qui a déclenché cette réponse - notez que cet événement est à usage interne et n'est pas exposé dans le module Analytics ou via Analytics API.</li>
+      <li><strong>temps_réponse_ms</strong>: Le temps, en millisecondes, entre le <code translate="No">catalog_request</code> événement et le <code translate="No">catalog_response</code> événement - notez que cet événement est à usage interne et n'est pas exposé dans le module Analytics ou via Analytics API.</li>
     </ul>
 
     <p><strong>play_request</strong>: Envoyé lorsque la lecture est lancée soit par l'utilisateur en cliquant expressément sur le bouton de lecture, soit automatiquement lorsque la plate-forme déclenche la lecture dans un scénario de lecture automatique.</p>
@@ -1048,7 +1048,7 @@ parent: Data Collection API
       <li><strong>forward_buffer_seconds</strong>: Le nombre de secondes de vidéo résidant actuellement dans la mémoire tampon de transfert.</li>
       <li><strong>mesuré_bps</strong>: Le rapport entre le nombre de bits inclus dans le segment le plus récemment téléchargé et le temps passé à télécharger ce segment, en bits par seconde.</li>
       <li><strong>player_width</strong> La largeur actuelle en pixels du lecteur à la fin de la plage d'engagement.</li>
-      <li><strong>player_height</strong> La hauteur de pixel actuelle du joueur à la fin de la plage d'engagement.</li>
+      <li><strong>player_height</strong> La hauteur de pixel actuelle du Lecteur à la fin de la plage d'engagement.</li>
       <li><strong>drop_frames</strong>: Le nombre d'images qui ont été supprimées de la lecture vidéo pendant cette période d'engagement</li>
     </ul>
   </section>

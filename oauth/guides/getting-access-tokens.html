@@ -1,6 +1,6 @@
 ---
-title: 'Obtenir des jetons d'accès'
-description: 'Dans cette rubrique, vous apprendrez comment obtenir des jetons d'accès et vous montrerez des stratégies pour implémenter cette logique dans vos applications.'
+title: "Obtenir des jetons d'accès"
+description: "Dans cette rubrique, vous apprendrez comment obtenir des jetons d'accès et vous montrerez des stratégies pour implémenter cette logique dans vos applications."
 parent: Guides 
 grandparent: OAuth API
 ---
@@ -19,7 +19,7 @@ grandparent: OAuth API
   <pre class="line-numbers">
   <code class="language-http" translate="No">https://oauth.brightcove.com/v4/access_token</code></pre>
 
-  <p>Vous devez transmettre les en-têtes suivants avec cet appel :</p>
+  <p>Vous devez transmettre les en-têtes suivants avec cet appel:</p>
 
   <ul>
     <li><code class="language-http" translate="No">Content-Type: application/x-www-form-urlencoded</code></li>
@@ -28,14 +28,14 @@ grandparent: OAuth API
 
   <p>L'ensemble <code class="language-http" translate="No">{client_id}:{client_secret}</code> la chaîne doit être encodée en Base64 (curl encode automatiquement la chaîne en Base64 si vous la passez comme <code translate="No">--user</code> crédits; dans d'autres langues, vous devrez gérer vous-même l'encodage Base64).</p>
 
-  <p>Vous devez également envoyer la paire clé/valeur suivante en tant que corps de la requête ou en tant que paramètre d'URL :</p>
+  <p>Vous devez également envoyer la paire clé/valeur suivante en tant que corps de la requête ou en tant que paramètre d'URL:</p>
 
   <pre class="line-numbers">
   <code class="language-http" translate="No">grant_type=client_credentials</code></pre>
 
   <aside class="bcls-aside bcls-aside--information">A noter que depuis le <code translate="No">Content-Type</code> doit être <code translate="No">application/x-www-form-urlencoded</code> , la paire clé/valeur sera envoyée à l'API en tant que paramètre d'URL même si vous la placez dans le corps de la requête.</aside>
 
-  <p>La réponse ressemblera à ceci (assez imprimé ici pour plus de lisibilité) :</p>
+  <p>La réponse ressemblera à ceci (assez imprimé ici pour plus de lisibilité):</p>
 
   <pre class="line-numbers">
   <code class="language-json" translate="No">{
@@ -44,7 +44,7 @@ grandparent: OAuth API
       "expires_in": 300
   }</code></pre>
 
-  <p>Les <code translate="No">access_token</code> la valeur est ce que vous devez passer dans un <code translate="No">Authorization</code> header avec votre appel API sous cette forme :</p>
+  <p>Les <code translate="No">access_token</code> la valeur est ce que vous devez passer dans un <code translate="No">Authorization</code> header avec votre appel API sous cette forme:</p>
 
   <pre class="line-numbers">
   <code class="language-http" translate="No">Authorization: Bearer {access_token}</code></pre>
@@ -55,22 +55,22 @@ grandparent: OAuth API
   <section class="bcls-section">
   <h2 id="implementation">Stratégies de mise en œuvre</h2>
 
-  <p>Si votre application ne fait que des appels sporadiques aux API Brightcove, vous pouvez tout aussi bien ignorer le <code translate="No">expires_in</code> paramètre et récupérez simplement un nouveau jeton d'accès pour chaque appel. Dans ce cas, la séquence de traitement ressemblera à ceci :</p>
+  <p>Si votre application ne fait que des appels sporadiques aux API Brightcove, vous pouvez tout aussi bien ignorer le <code translate="No">expires_in</code> paramètre et récupérez simplement un nouveau jeton d'accès pour chaque appel. Dans ce cas, la séquence de traitement ressemblera à ceci:</p>
 
   <figure class="bcls-figure"><img class="bcls-image" alt="Get New Token" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/oauth-api/guides/get-token/get-token-new-token.png" />
   <figcaption class="bcls-caption--image">Obtenir un nouveau jeton</figcaption>
   </figure>
 
-  <p>D'un autre côté, si vous savez que votre application effectuera fréquemment de nombreux appels d'API en succession rapide (pour, par exemple, générer de longs rapports), il sera alors plus efficace de récupérer les jetons d'accès uniquement lorsque vous en avez besoin. Il existe deux manières fondamentales de procéder :</p>
+  <p>D'un autre côté, si vous savez que votre application effectuera fréquemment de nombreux appels d'API en succession rapide (pour, par exemple, générer de longs rapports), il sera alors plus efficace de récupérer les jetons d'accès uniquement lorsque vous en avez besoin. Il existe deux manières fondamentales de procéder:</p>
 
   <ol>
-    <li>Allez-y et essayez l'appel API et si vous obtenez un <code translate="No">UNAUTHORIZED</code> erreur en réponse, allez chercher un nouveau jeton et refaites l'appel d'API. Dans ce cas, la séquence de traitement ressemblera à ceci :
+    <li>Allez-y et essayez l'appel API et si vous obtenez un <code translate="No">UNAUTHORIZED</code> erreur en réponse, allez chercher un nouveau jeton et refaites l'appel d'API. Dans ce cas, la séquence de traitement ressemblera à ceci:
 
     <figure class="bcls-figure"><img class="bcls-image" alt="Get Token with Check for Call Fail" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/oauth-api/guides/get-token/get-token-check-call-fail.png" />
     <figcaption class="bcls-caption--image">Obtenir un jeton avec vérification d'échec d'appel</figcaption>
     </figure>
     </li>
-    <li>Une autre approche consisterait à ajouter le <code translate="No">expires_in</code> valeur à l'heure actuelle en secondes Epoch chaque fois que vous récupérez un jeton, puis lors des appels d'API ultérieurs, vérifiez l'heure d'expiration par rapport à l'heure actuelle pour voir si vous devez récupérer un nouveau jeton. Dans ce cas, votre séquence de traitement ressemblera à ceci :
+    <li>Une autre approche consisterait à ajouter le <code translate="No">expires_in</code> valeur à l'heure actuelle en secondes Epoch chaque fois que vous récupérez un jeton, puis lors des appels d'API ultérieurs, vérifiez l'heure d'expiration par rapport à l'heure actuelle pour voir si vous devez récupérer un nouveau jeton. Dans ce cas, votre séquence de traitement ressemblera à ceci:
     <figure class="bcls-figure"><img class="bcls-image" alt="Get Token with Check for Expiration" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/oauth-api/guides/get-token/get-token-check-expiration.png" />
     <figcaption class="bcls-caption--image">Obtenir un jeton avec vérification de l'expiration</figcaption>
     </figure>
@@ -81,7 +81,7 @@ grandparent: OAuth API
   <section class="bcls-section">
   <h2 id="Postman_and_Insomnia">Le facteur et l'insomnie</h2>
 
-  <p>Plusieurs outils de test utiles pour les API REST peuvent être configurés pour fonctionner avec le système Brightcove OAuth afin d'obtenir des jetons d'accès. Nous avons des guides qui incluent les étapes à suivre pour deux des outils multiplateformes les plus populaires :</p>
+  <p>Plusieurs outils de test utiles pour les API REST peuvent être configurés pour fonctionner avec le système Brightcove OAuth afin d'obtenir des jetons d'accès. Nous avons des guides qui incluent les étapes à suivre pour deux des outils multiplateformes les plus populaires:</p>
 
   <ul>
     <li><a href="/general/use-postman-api-requests.html">Utiliser Postman pour les demandes d'API</a></li>
@@ -96,18 +96,18 @@ grandparent: OAuth API
 
   <h3>Exemple de script shell</h3>
 
-  <p>Le premier exemple est un script shell qui implémente la première logique d'implémentation ci-dessus : il prend les entrées de l'utilisateur, obtient toujours un nouveau jeton, puis effectue l'appel d'API. Le script fonctionnera sur toutes les API Brightcove et vous pourrez le trouver utile pour tester les appels d'API lors de la création de votre application.</p>
+  <p>Le premier exemple est un script shell qui implémente la première logique d'implémentation ci-dessus: il prend les entrées de l'utilisateur, obtient toujours un nouveau jeton, puis effectue l'appel d'API. Le script fonctionnera sur toutes les API Brightcove et vous pourrez le trouver utile pour tester les appels d'API lors de la création de votre application.</p>
 
   <aside class="bcls-aside bcls-aside--information">
-  <p>Remarque : ce script utilise cURL, ainsi que l'application de ligne de commande jq. Voir <a href="https://general.support.brightcove.com/developer/concepts-set-curl.html">Configurer cURL et jq</a> pour les instructions de configuration. Le Python json.tool est également utilisé pour imprimer la réponse, mais cela devrait déjà être installé sur votre système.</p>
+  <p>Remarque: ce script utilise cURL, ainsi que l'application de ligne de commande jq. Voir <a href="https://general.support.brightcove.com/developer/concepts-set-curl.html">Configurer cURL et jq</a> pour les instructions de configuration. Le Python json.tool est également utilisé pour imprimer la réponse, mais cela devrait déjà être installé sur votre système.</p>
 
-  <p>Pour exécuter le script, enregistrez le code sous <strong>api-testeur.sh</strong> sur votre système, ouvrez une ligne de commande dans le même dossier et entrez <code translate="No">bash api-tester.sh</code> - vous serez invité à saisir les entrées suivantes :</p>
+  <p>Pour exécuter le script, enregistrez le code sous <strong>api-testeur.sh</strong> sur votre système, ouvrez une ligne de commande dans le même dossier et entrez <code translate="No">bash api-tester.sh</code> - vous serez invité à saisir les entrées suivantes:</p>
 
   <ul>
     <li>identifiant client (obligatoire)</li>
     <li>secret client (obligatoire)</li>
     <li>l'appel API complet (obligatoire)</li>
-    <li>le verbe HTTP pour l'appel : OBTENIR | POSTER | PATCH | METTRE | SUPPRIMER (obligatoire)</li>
+    <li>le verbe HTTP pour l'appel: OBTENIR | POSTER | PATCH | METTRE | SUPPRIMER (obligatoire)</li>
     <li>données pour le corps de la requête (facultatif)</li>
   </ul>
   </aside>
@@ -185,7 +185,7 @@ grandparent: OAuth API
 
   <h3 id="ruby">exemple rubis</h3>
 
-  <p>L'exemple suivant est un script Ruby qui utilise également la première logique d'implémentation : obtenez toujours un jeton, puis effectuez l'appel d'API. Cet exemple appelle l'API Analytics, mais peut être adapté pour fonctionner avec n'importe laquelle des API.</p>
+  <p>L'exemple suivant est un script Ruby qui utilise également la première logique d'implémentation: obtenez toujours un jeton, puis effectuez l'appel d'API. Cet exemple appelle Analytics API, mais peut être adapté pour fonctionner avec n'importe laquelle des API.</p>
 
   <h4>Code rubis</h4>
 
@@ -206,7 +206,7 @@ grandparent: OAuth API
 
   <h3 id="python">exemple Python</h3>
 
-  <p>Cet exemple est un script Python qui implémente la 3ème logique d'implémentation ci-dessus. Il tente de faire un <span translate="No">API d'analyse</span> appel, mais si l'appel échoue sur une erreur NON AUTORISÉE, il récupère un nouveau jeton d'accès et réessaye l'appel.</p>
+  <p>Cet exemple est un script Python qui implémente la 3ème logique d'implémentation ci-dessus. Il tente de faire un Analytics API appel, mais si l'appel échoue sur une erreur NON AUTORISÉE, il récupère un nouveau jeton d'accès et réessaye l'appel.</p>
 
   <p>Ce script lit également les informations d'identification du client à partir d'un fichier externe - le fichier de données d'identification est affiché sous le code Python.</p>
 
@@ -217,7 +217,7 @@ grandparent: OAuth API
   # This is a python script to test the CMS API.
   # To use this script, edit the configuration file brightcove_oauth.txt
   # with your brightcove account ID, and a client ID and client secret for
-  # an Oauth credential that has <span translate="No">CMS API</span> - Videos Read permission.
+  # an Oauth credential that has CMS API - Videos Read permission.
   # You can find instructions on how to generate Oauth credentials
   # https://apis.support.brightcove.com/cms/getting-started/practice-area-cms-api.html
   # This script demonstrates how to refresh the access token
@@ -275,7 +275,7 @@ grandparent: OAuth API
           data = response.read()
           result = json.loads( data )
   return result["access_token"]
-  # call <span translate="No">Analytics API</span> for video views in the last 30 days
+  # call Analytics API for video views in the last 30 days
   def getVideoViews( token , account ):
       conn = httplib.HTTPSConnection("data.brightcove.com")
       url =  "/analytics-api/videocloud/account/" + account + "/report/"
@@ -301,7 +301,7 @@ grandparent: OAuth API
   raise AuthError
   else:
   raise Exception('API_CALL_ERROR' + " error " + str(response.status) )
-  # call <span translate="No">CMS API</span> to return the number of videos in the catalog
+  # call CMS API to return the number of videos in the catalog
   def getVideos( token , account ):
       conn = httplib.HTTPSConnection("cms.api.brightcove.com")
       url =  "/v1/accounts/" + account + "/counts/videos/"

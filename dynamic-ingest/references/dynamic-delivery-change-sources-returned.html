@@ -1,6 +1,6 @@
 ---
 title: 'Modification des sources renvoyées'
-description: 'Cette rubrique explique un petit changement dans les sources renvoyées pour les vidéos Dynamic Delivery.'
+description: "Cette rubrique explique un petit changement dans les sources renvoyées pour les vidéos Dynamic Delivery."
 parent: References 
 grandparent: Dynamic Ingest API
 ---
@@ -8,9 +8,9 @@ grandparent: Dynamic Ingest API
 <article class="bcls-article">
   <summary>{{ page.description }}</summary>
     <section class="bcls-section">
-    <h2 id="">Remarque : changement de sources</h2>
+    <h2 id="">Remarque: changement de sources</h2>
     
-    <p>Au cours du mois de mars 2019, Brightcove met à jour l'infrastructure de Dynamic Delivery pour apporter une petite modification aux sources renvoyées par les API CMS/Playback, et donc livrées au Brightcove Player et aux lecteurs SDK natifs.</p>
+    <p>Au cours du mois de mars 2019, Brightcove met à jour l'infrastructure de Dynamic Delivery pour apporter une petite modification aux sources renvoyées par les CMS API/Playback, et donc livrées au Brightcove Player et aux Lecteurs SDK natifs.</p>
     
     <p>Pour la grande majorité des utilisateurs de Video Cloud, ce changement est totalement transparent. Vous n'avez rien à faire. Pour quelques clients qui ont construit des intégrations en s'appuyant sur la structure exacte des sources existantes, ces intégrations devront changer.</p>
     </section>
@@ -18,36 +18,36 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="what_is_changing">Qu'est-ce qui change ?</h2>
     
-    <p>Actuellement, la livraison dynamique renvoie 2 versions (v4 et v5) de HLS lorsque les demandes d'API de lecture arrivent. Dans certains cas particuliers, généralement la livraison à un appareil spécifique, les comptes sont également activés pour la livraison v3.</p>
+    <p>Actuellement, la livraison dynamique renvoie 2 versions (v4 et v5) de HLS lorsque les demandes d'Playback API arrivent. Dans certains cas particuliers, généralement la livraison à un appareil spécifique, les comptes sont également activés pour la livraison v3.</p>
     
-    <p>Pour chacun d'entre eux, nous renvoyons également les types de DRM suivants :</p>
+    <p>Pour chacun d'entre eux, nous renvoyons également les types de DRM suivants:</p>
     
     <ul>
-      <li>V3 : Effacer / AES-128 (si votre compte est activé pour la v3)</li>
-      <li>V4 : Clair / AES-128</li>
-      <li>V5 : Clair / AES-128 / Fairplay</li>
+      <li>V3: Effacer / AES-128 (si votre compte est activé pour la v3)</li>
+      <li>V4: Clair / AES-128</li>
+      <li>V5: Clair / AES-128 / Fairplay</li>
     </ul>
     
     <p>La seule raison pour laquelle nous livrons HLSv5 est qu'il prend en charge Fairplay - pour Clear et AES-128, la vidéo et les manifestes que nous renvoyons sont identiques.</p>
     
     <p>Cependant, étant donné que leurs URL sont différentes (elles contiennent « v4 » ou « v5 »), nous doublons la quantité de contenu que nous devons fournir et mettre en cache, ce qui est un gaspillage et a un impact sur les performances de la livraison dynamique et de SSAI.</p>
     
-    <p>Par conséquent, nous modifions l'infrastructure afin que seul le manifeste Fairplay soit renvoyé pour la v5, de sorte que l'ensemble de sources ressemblera désormais à ceci :</p>
+    <p>Par conséquent, nous modifions l'infrastructure afin que seul le manifeste Fairplay soit renvoyé pour la v5, de sorte que l'ensemble de sources ressemblera désormais à ceci:</p>
     
     <ul>
-      <li>V3 : Effacer / AES-128 (si votre compte est activé pour la v3)</li>
-      <li>V4 : Clair / AES-128</li>
-      <li>V5 : Fair-play</li>
+      <li>V3: Effacer / AES-128 (si votre compte est activé pour la v3)</li>
+      <li>V4: Clair / AES-128</li>
+      <li>V5: Fair-play</li>
     </ul>
     </section>
     
     <section class="bcls-section">
-    <h2 id="would_this_impact_my_players">Cela aurait-il un impact sur mes joueurs ?</h2>
+    <h2 id="would_this_impact_my_players">Cela aurait-il un impact sur mes Lecteurs ?</h2>
     
     <ol>
       <li>Si tu <strong>ne pas</strong> utiliser le cryptage Clear DRM ou AES-128, ce changement <strong>ça ne fait aucune différence</strong></li>
-      <li>Si tu <strong>faire</strong> utilisez le cryptage Clear DRM ou AES-128, mais laissez le joueur sélectionner la source automatiquement, ce changement <strong>ça ne fait aucune différence</strong> (le joueur sélectionnera la source v4)</li>
-      <li>Si tu <strong>faire</strong> utiliser le cryptage Clear DRM ou AES-128 et avoir écrit un code personnalisé pour forcer le lecteur à utiliser les URL sources v5, ce changement <strong>le lecteur n'a pas de source jouable</strong> - la solution est de permettre au joueur de sélectionner automatiquement la source, ou de modifier votre code pour sélectionner la source v4 à la place.</li>
+      <li>Si tu <strong>faire</strong> utilisez le cryptage Clear DRM ou AES-128, mais laissez le Lecteur sélectionner la source automatiquement, ce changement <strong>ça ne fait aucune différence</strong> (le Lecteur sélectionnera la source v4)</li>
+      <li>Si tu <strong>faire</strong> utiliser le cryptage Clear DRM ou AES-128 et avoir écrit un code personnalisé pour forcer le lecteur à utiliser les URL sources v5, ce changement <strong>le lecteur n'a pas de source jouable</strong> - la solution est de permettre au Lecteur de sélectionner automatiquement la source, ou de modifier votre code pour sélectionner la source v4 à la place.</li>
     </ol>
     </section>
     </article>

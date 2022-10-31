@@ -1,6 +1,6 @@
 ---
-title: 'Configuration pour les exemples de gestion des joueurs'
-description: 'Cette page décrit comment les échantillons de base pour le nouveau lecteur sont écrits. Cela inclut des détails sur l'authentification de base et la façon dont AJAX est utilisé dans les exemples d'API Player Management.'
+title: 'Configuration pour les exemples de gestion des Lecteurs'
+description: "Cette page décrit comment les échantillons de base pour le nouveau lecteur sont écrits. Cela inclut des détails sur l'authentification de base et la façon dont AJAX est utilisé dans les exemples d'API Player Management."
 parent: Code Samples 
 grandparent: Player Management API
 ---
@@ -12,9 +12,9 @@ grandparent: Player Management API
     
     <p>Au pas à pas : Player Management document vous avez utilisé des instructions curl pour interagir avec l'API. Lorsqu'un appel d'API a été effectué, vous avez été invité de manière interactive à saisir un mot de passe. Bien que cela fonctionne bien pour curl, ce type d'authentification interactive n'est pas réalisable lors de la création d'une application.</p>
     
-    <p>Ici, vous apprendrez comment effectuer les requêtes API à l'aide de JavaScript et XMLHttpRequest - également connu sous le nom d'AJAX - pour créer des clients Web pour les opérations de gestion des joueurs.</p>
+    <p>Ici, vous apprendrez comment effectuer les requêtes API à l'aide de JavaScript et XMLHttpRequest - également connu sous le nom d'AJAX - pour créer des clients Web pour les opérations de gestion des Lecteurs.</p>
     
-    <p>Parce que l'API de gestion des joueurs est <a href="https://general.support.brightcove.com/developer/concepts-cors.html">Compatible CORS</a> et permet une authentification de base à l'aide de vos identifiants de connexion Brightcove, il est possible de faire des demandes d'API directement à partir d'une page Web, comme nous le faisons dans les exemples d'API Player Management. Les autres API RESTful de Brightcove nécessitent une authentification via <a href="/oauth/index.html">OAuth</a>. Étant donné que l'API utilisée pour récupérer les jetons d'accès n'est pas compatible CORS (ni les API elles-mêmes), vous devez effectuer des demandes via une application côté serveur. Voir <a href="/getting-started/learning-guide-using-rest-apis.html">Utilisation des API REST</a> pour un guide sur la création d'applications hybrides avec une interface utilisateur Web et un proxy pour accéder aux API REST. C'est également l'approche que nous recommandons pour les applications utilisant l'API Player Management en production, car elle est plus sécurisée et n'envoie aucune information d'identification via des connexions HTTP.</p>
+    <p>Parce que l'Ingestion Profiles API est <a href="https://general.support.brightcove.com/developer/concepts-cors.html">Compatible CORS</a> et permet une authentification de base à l'aide de vos identifiants de connexion Brightcove, il est possible de faire des demandes d'API directement à partir d'une page Web, comme nous le faisons dans les exemples d'API Player Management. Les autres API RESTful de Brightcove nécessitent une authentification via <a href="/oauth/index.html">OAuth</a>. Étant donné que l'API utilisée pour récupérer les jetons d'accès n'est pas compatible CORS (ni les API elles-mêmes), vous devez effectuer des demandes via une application côté serveur. Voir <a href="/getting-started/learning-guide-using-rest-apis.html">Utilisation des API REST</a> pour un guide sur la création d'applications hybrides avec une interface utilisateur Web et un proxy pour accéder aux API REST. C'est également l'approche que nous recommandons pour les applications utilisant l'API Player Management en production, car elle est plus sécurisée et n'envoie aucune information d'identification via des connexions HTTP.</p>
     
     <aside class="bcls-aside bcls-aside--warning">
     <p>Les exemples d'applications mentionnés sur cette page sont destinés à vous permettre d'explorer les bases de l'API Player Management. Elles ne sont pas censées être des applications déployables prêtes pour l'entreprise. Par exemple, la validation des formulaires n'est pas exhaustive et les mots de passe sont envoyés NON via HTTPS.</p>
@@ -26,7 +26,7 @@ grandparent: Player Management API
     
     <p>Au pas à pas : Player Management document vous avez utilisé des instructions curl pour interagir avec l'API. Lorsqu'un appel d'API a été effectué, vous avez été invité de manière interactive à saisir un mot de passe. Bien que cela fonctionne bien pour curl, ce type d'authentification interactive n'est pas réalisable lors de la création d'une application.</p>
     
-    <p>Vous pouvez utiliser l'authentification de base lors de la création d'une application. Dans l'en-tête, vous devez envoyer les informations d'identification, chiffrées dans une chaîne ASCII codée en base 64. Vous pouvez utiliser le JavaScript <code translate="No">btoa()</code> méthode pour faire l'encodage. En supposant <code translate="No">account_username</code> et <code translate="No">account_password</code> sont renseignés à partir, par exemple, d'un formulaire, l'en-tête d'autorisation apparaîtrait comme suit :</p>
+    <p>Vous pouvez utiliser l'authentification de base lors de la création d'une application. Dans l'en-tête, vous devez envoyer les informations d'identification, chiffrées dans une chaîne ASCII codée en base 64. Vous pouvez utiliser le JavaScript <code translate="No">btoa()</code> méthode pour faire l'encodage. En supposant <code translate="No">account_username</code> et <code translate="No">account_password</code> sont renseignés à partir, par exemple, d'un formulaire, l'en-tête d'autorisation apparaîtrait comme suit:</p>
     
     <pre class="line-numbers">
     <code class="language-javascript" translate="No"> "Authorization": "Basic " + btoa(account_username + ":" + account_password),</code></pre>
@@ -39,7 +39,7 @@ grandparent: Player Management API
     <p>Dans cette section, vous apprendrez à utiliser AJAX en utilisant <a href="//jquery.org">jQuery</a> . jQuery encapsule les commandes impliquées dans la création de requêtes AJAX dans une fonction ajax(), et simplifie ainsi les choses pour vous en tant que développeur. Cependant, jQuery n'est pas requis pour AJAX, et dans la section qui suit, nous vous montrerons comment faire des requêtes AJAX avec du JavaScript simple.</p>
     </aside>
     
-    <p>Au lieu d'utiliser des instructions curl, ces exemples utiliseront JavaScript pour communiquer avec l'API. Cela signifie utiliser AJAX pour envoyer la demande à l'API. Un exemple de requête spécifique pourrait ressembler à ceci :</p>
+    <p>Au lieu d'utiliser des instructions curl, ces exemples utiliseront JavaScript pour communiquer avec l'API. Cela signifie utiliser AJAX pour envoyer la demande à l'API. Un exemple de requête spécifique pourrait ressembler à ceci:</p>
     
     <pre class="line-numbers">
     <code class="language-javascript" translate="No">$.ajax({
@@ -53,7 +53,7 @@ grandparent: Player Management API
         error: ajaxError
     });</code></pre>
     
-    <p>Associée <code translate="No">success</code> et <code translate="No">error</code> les gestionnaires pourraient ressembler à ceci :</p>
+    <p>Associée <code translate="No">success</code> et <code translate="No">error</code> les gestionnaires pourraient ressembler à ceci:</p>
     
     <pre class="line-numbers">
     <code class="language-javascript" translate="No">var ajaxSuccess = function (data) {
@@ -65,7 +65,7 @@ grandparent: Player Management API
         console.log(data);
     };</code></pre>
     
-    <p>Bien sûr, vous ne voulez pas coder en dur toutes les informations de l'appel AJAX comme indiqué ci-dessus, il est donc logique d'abstraire l'appel réel à une fonction réutilisable, comme indiqué ici :</p>
+    <p>Bien sûr, vous ne voulez pas coder en dur toutes les informations de l'appel AJAX comme indiqué ci-dessus, il est donc logique d'abstraire l'appel réel à une fonction réutilisable, comme indiqué ici:</p>
     
     <pre class="line-numbers">
     <code class="language-javascript" translate="No">var makeAjaxCall = function (callURL, callType, callData) {
@@ -110,7 +110,7 @@ grandparent: Player Management API
     };</code></pre>
     <!-- <code data-gist-id="9216425" data-gist-hide-footer="true" data-gist-line="49-55"></code><br /> -->
     
-    <p>Si vous avez terminé l'étape par étape : Player Management document vous savez que certains processus nécessitent plusieurs appels d'API, comme la création et la publication d'un lecteur. De plus, la logique de certaines applications peut nécessiter plusieurs appels d'API, comme obtenir une liste de tous les joueurs à afficher, puis supprimer les joueurs que l'utilisateur a marqués. Dans ces cas, vous devrez probablement modifier votre <code translate="No">success</code> gestionnaire pour exécuter une logique différente en fonction de l'appel qui vient d'être effectué avec succès. Dans ces exemples d'applications, la logique d'implémentation de ces cas d'utilisation sera implémentée à l'aide d'une variable indicateur, <code translate="No">callPurpose</code> , et un <code translate="No">case</code> déclaration utilisant ce drapeau, comme indiqué ici :</p>
+    <p>Si vous avez terminé l'étape par étape: Player Management document vous savez que certains processus nécessitent plusieurs appels d'API, comme la création et la publication d'un lecteur. De plus, la logique de certaines applications peut nécessiter plusieurs appels d'API, comme obtenir une liste de tous les Lecteurs à afficher, puis supprimer les Lecteurs que l'utilisateur a marqués. Dans ces cas, vous devrez probablement modifier votre <code translate="No">success</code> gestionnaire pour exécuter une logique différente en fonction de l'appel qui vient d'être effectué avec succès. Dans ces exemples d'applications, la logique d'implémentation de ces cas d'utilisation sera implémentée à l'aide d'une variable indicateur, <code translate="No">callPurpose</code> , et un <code translate="No">case</code> déclaration utilisant ce drapeau, comme indiqué ici:</p>
     
     <pre class="line-numbers">
     <code class="language-javascript" translate="No">var ajaxSuccess = function (data) {
@@ -129,7 +129,7 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h2 id="AJAX_without_jquery">AJAX sans jQuery</h2>
     
-    <p>Si vous préférez ne pas utiliser jQuery, faire des requêtes AJAX est un peu plus complexe, mais pas trop. Voici un exemple de code, avec des commentaires, pour vous aider à démarrer :</p>
+    <p>Si vous préférez ne pas utiliser jQuery, faire des requêtes AJAX est un peu plus complexe, mais pas trop. Voici un exemple de code, avec des commentaires, pour vous aider à démarrer:</p>
     
     <pre class="line-numbers">
     <code class="language-javascript" translate="No">/**

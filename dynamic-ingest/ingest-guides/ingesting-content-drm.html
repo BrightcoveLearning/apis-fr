@@ -1,7 +1,6 @@
 ---
 title: 'Ingérer du contenu avec DRM'
-description: 'Dans cette rubrique, vous découvrirez les options de sécurité de contenu offertes par Video Cloud. Video Cloud propose plusieurs formes de sécurité du contenu, dont certaines peuvent être utilisées ensemble.'
-
+description: "Dans cette rubrique, vous découvrirez les options de sécurité de contenu offertes par Video Cloud. Video Cloud propose plusieurs formes de sécurité du contenu, dont certaines peuvent être utilisées ensemble."
 parent: 'Ingest Guides' 
 grandparent: Dynamic Ingest API
 ---
@@ -19,9 +18,9 @@ grandparent: Dynamic Ingest API
 
     <ul>
       <li>Pour utiliser le cryptage DRM ou HLS, votre compte doit être activé pour ces fonctionnalités. Contactez votre gestionnaire de compte pour plus d'informations.</li>
-      <li>Lorsque les vidéos sont activées pour les DRM, les sources/rendus MP4 sont automatiquement masqués (ce qui signifie qu'ils existent, mais ne sont pas envoyés au lecteur en tant que sources) dans Studio, l'API CMS et l'API Playback.</li>
+      <li>Lorsque les vidéos sont activées pour les DRM, les sources/rendus MP4 sont automatiquement masqués (ce qui signifie qu'ils existent, mais ne sont pas envoyés au lecteur en tant que sources) dans Studio, l'CMS API et le Playback API.</li>
       <li>
-      <p>Les DRM sont actuellement pris en charge dans les navigateurs OS mobiles suivants :</p>
+      <p>Les DRM sont actuellement pris en charge dans les navigateurs OS mobiles suivants:</p>
 
       <ul>
         <li>Safari iOS (11.2+)</li>
@@ -42,7 +41,7 @@ grandparent: Dynamic Ingest API
 
     <aside class="bcls-aside bcls-aside--information">Si vous avez des vidéos plus anciennes dans un compte Dynamic Delivery qui ont été ingérées à l'aide du <strong>système d'ingestion hérité</strong> (pas de livraison dynamique), ils devront être retranscodés à l'aide d'un profil de livraison dynamique avant que DRM ne soit appliqué. Vidéos existantes déjà ingérées pour la diffusion dynamique <strong>n'ont pas besoin d'être retranscodés</strong> , mais comme indiqué ci-dessus, vous devez contacter le support et leur demander d'appliquer la protection DRM à ces vidéos.</aside>
 
-    <p>Si votre compte est activé pour les DRM et que vous souhaitez diffuser certains titres sans DRM, définissez le <code translate="No">drm_disabled</code> drapeau via <span translate="No">API CMS</span> à <code translate="No">true</code> en utilisant un <a href="/cms/references/reference.html#api-videoGroup-Update_Video">Mettre à jour la demande de vidéo</a>.</p>
+    <p>Si votre compte est activé pour les DRM et que vous souhaitez diffuser certains titres sans DRM, définissez le <code translate="No">drm_disabled</code> drapeau via CMS API à <code translate="No">true</code> en utilisant un <a href="/cms/references/reference.html#api-videoGroup-Update_Video">Mettre à jour la demande de vidéo</a>.</p>
 
     <h3>Demande d'échantillon</h3>
 
@@ -60,13 +59,13 @@ grandparent: Dynamic Ingest API
                   "drm_disabled": true
               }</code></pre>
 
-    <p>Vous pouvez également désactiver les DRM pour des vidéos particulières en accédant aux propriétés de la vidéo dans Studio et en cliquant sur la bascule DRM :</p>
+    <p>Vous pouvez également désactiver les DRM pour des vidéos particulières en accédant aux propriétés de la vidéo dans Studio et en cliquant sur la bascule DRM:</p>
 
     <figure class="bcls-figure"><img class="bcls-image" alt="Studio DRM Toggle" src="/assets/images/dynamic-ingest/ingest-guides/17949-studio-drm-toggle.png" />
     <figcaption class="bcls-caption--image">Bascule DRM Studio</figcaption>
     </figure>
 
-    <p>Après avoir cliqué sur la bascule, cela ressemblera à ceci :</p>
+    <p>Après avoir cliqué sur la bascule, cela ressemblera à ceci:</p>
 
     <figure class="bcls-figure"><img class="bcls-image" alt="Studio DRM Toggle Off" src="/assets/images/dynamic-ingest/ingest-guides/17949-studio-drm-toggle-off.png" />
     <figcaption class="bcls-caption--image">Désactiver Studio DRM</figcaption>

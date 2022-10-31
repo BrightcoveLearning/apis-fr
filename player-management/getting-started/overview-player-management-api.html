@@ -1,6 +1,6 @@
 ---
-title: 'Aperçu: API de gestion des joueurs'
-description: 'La gestion des lecteurs fait référence à la création, à l'édition et à la gestion des lecteurs en tant que ressource pour les éditeurs. La gestion des lecteurs est réalisée par une API REST côté serveur qui permet à ses utilisateurs de créer, configurer, prévisualiser et publier des instances de lecteur.'
+title: 'Aperçu: Ingestion Profiles API'
+description: "La gestion des Lecteurs fait référence à la création, à l'édition et à la gestion des Lecteurs en tant que ressource pour les éditeurs. La gestion des Lecteurs est réalisée par une API REST côté serveur qui permet à ses utilisateurs de créer, configurer, prévisualiser et publier des instances de lecteur."
 parent: Getting Started 
 grandparent: Player Management API
 ---
@@ -13,27 +13,27 @@ grandparent: Player Management API
     <section id="introduction" class="bcls-section">
     <h2>introduction</h2>
 
-    <p>La création et la mise à jour des joueurs se font selon une approche en deux phases. Plutôt que d'appliquer automatiquement toutes les modifications aux lecteurs de production, les modifications sont séparées en aperçu et publiées. Vous pouvez désormais effectuer toutes les mises à jour que vous souhaitez sur votre lecteur de prévisualisation sans affecter ce que voient vos utilisateurs finaux. Vous pouvez choisir de publier les modifications quand vous le souhaitez.</p>
+    <p>La création et la mise à jour des Lecteurs se font selon une approche en deux phases. Plutôt que d'appliquer automatiquement toutes les modifications aux Lecteurs de production, les modifications sont séparées en aperçu et publiées. Vous pouvez désormais effectuer toutes les mises à jour que vous souhaitez sur votre lecteur de prévisualisation sans affecter ce que voient vos utilisateurs finaux. Vous pouvez choisir de publier les modifications quand vous le souhaitez.</p>
 
-    <p>L'API de gestion des joueurs permet à un utilisateur de :</p>
+    <p>L'Ingestion Profiles API permet à un utilisateur de:</p>
 
     <ol>
-      <li>Créer un joueur</li>
+      <li>Créer un Lecteur</li>
       <li>Afficher les paramètres d'un lecteur</li>
       <li>Modifier les paramètres d'un lecteur</li>
-      <li>Lister tous les joueurs associés à l'éditeur</li>
+      <li>Lister tous les Lecteurs associés à l'éditeur</li>
       <li>Publier un player pour le mettre à disposition du consommateur</li>
     </ol>
 
     <p>Voir aussi le <a href="/player-management/references/reference.html">Référence API</a>.</p>
 
-    <aside class="bcls-aside bcls-aside--tip">Si vous n'êtes pas passé par le <a href="/player-management/getting-started/step-step-player-management.html">Pas à pas: Gestion des joueurs</a> , il est fortement suggéré de commencer par là. Vous obtiendrez la configuration de la sécurité, apprendrez quelques-unes des bases du système, puis serez prêt à approfondir ici.</aside>
+    <aside class="bcls-aside bcls-aside--tip">Si vous n'êtes pas passé par le <a href="/player-management/getting-started/step-step-player-management.html">Pas à pas: Gestion des Lecteurs</a> , il est fortement suggéré de commencer par là. Vous obtiendrez la configuration de la sécurité, apprendrez quelques-unes des bases du système, puis serez prêt à approfondir ici.</aside>
     </section>
 
     <section class="bcls-section" id="baseURL">
     <h2>URL de base</h2>
 
-    <p>L'URL de base de l'API est :</p>
+    <p>L'URL de base de l'API est:</p>
 
     <pre class="line-numbers">
     <code class="language-http" translate="No">https://players.api.brightcove.com/v2</code></pre>
@@ -42,51 +42,51 @@ grandparent: Player Management API
     <section class="bcls-section" id="understanding">
     <h2>introduction</h2>
 
-    <p>Le système de gestion des joueurs est composé de trois objets clés. Ils sont le modèle par défaut, les joueurs et les enfants joueurs.</p>
+    <p>Le système de gestion des Lecteurs est composé de trois objets clés. Ils sont le modèle par défaut, les Lecteurs et les enfants Lecteurs.</p>
 
-    <p><em>Modèle par défaut Brightcove</em> - Le modèle est un ensemble de fichiers et de paramètres utilisés comme base pour créer les expériences de visionnage présentées aux utilisateurs, et comme base pour tous les joueurs créés. Ces fichiers sont finalement compilés avec des paramètres de lecteur personnalisés et génèrent le code réel qui est chargé dans le navigateur (le lecteur). Il n'y a actuellement qu'un seul modèle qui est utilisé à l'échelle du système. En tant que tel, il n'y a aucune visibilité sur le modèle via l'API.</p>
+    <p><em>Modèle par défaut Brightcove</em> - Le modèle est un ensemble de fichiers et de paramètres utilisés comme base pour créer les expériences de visionnage présentées aux utilisateurs, et comme base pour tous les Lecteurs créés. Ces fichiers sont finalement compilés avec des paramètres de lecteur personnalisés et génèrent le code réel qui est chargé dans le navigateur (le lecteur). Il n'y a actuellement qu'un seul modèle qui est utilisé à l'échelle du système. En tant que tel, il n'y a aucune visibilité sur le modèle via l'API.</p>
 
-    <p><em>Joueurs</em> - Les lecteurs sont des paramètres spécifiques au client qui capturent des informations générales et des personnalisations à appliquer au modèle. Ces paramètres sont envoyés à l'API et un objet joueur en résulte. Les personnalisations peuvent inclure des paramètres, des styles et des plugins. Pour une liste complète des possibilités de personnalisation, voir le <a href="/player-management/guides/player-configuration-guide.html">Guide de configuration du lecteur</a>.</p>
+    <p><em>Lecteurs</em> - Les Lecteurs sont des paramètres spécifiques au client qui capturent des informations générales et des personnalisations à appliquer au modèle. Ces paramètres sont envoyés à l'API et un objet Lecteur en résulte. Les personnalisations peuvent inclure des paramètres, des styles et des plugins. Pour une liste complète des possibilités de personnalisation, voir le <a href="/player-management/guides/player-configuration-guide.html">Guide de configuration du lecteur</a>.</p>
 
-    <p><em>Enfants Joueurs</em> - Les joueurs enfants, créés à l'aide des API Embed, sont le résultat de la création de plusieurs instances d'un joueur. Le lecteur possède la majeure partie des propriétés que vous souhaitez que votre lecteur ait, puis vous pouvez utiliser un lecteur enfant pour personnaliser des sous-ensembles de propriétés sur différentes instances de lecteur. Un lecteur enfant peut uniquement définir des médias à ajouter à un lecteur donné, ou il peut définir n'importe quel paramètre ou style qui modifie le lecteur commun auquel il appartient. Les modifications apportées aux paramètres du joueur parent s'appliqueront à tous les joueurs enfants générés par le joueur parent. Vérifiez <a href="/player-management/guides/guide-embed-apis.html">Guide d'intégration des API</a> pour plus de détails.</p>
+    <p><em>Enfants Lecteurs</em> - Les Lecteurs enfants, créés à l'aide des API Embed, sont le résultat de la création de plusieurs instances d'un Lecteur. Le lecteur possède la majeure partie des propriétés que vous souhaitez que votre lecteur ait, puis vous pouvez utiliser un lecteur enfant pour personnaliser des sous-ensembles de propriétés sur différentes instances de lecteur. Un lecteur enfant peut uniquement définir des médias à ajouter à un lecteur donné, ou il peut définir n'importe quel paramètre ou style qui modifie le lecteur commun auquel il appartient. Les modifications apportées aux paramètres du Lecteur parent s'appliqueront à tous les Lecteurs enfants générés par le Lecteur parent. Vérifiez <a href="/player-management/guides/guide-embed-apis.html">Guide d'intégration des API</a> pour plus de détails.</p>
 
-    <p>Ce diagramme montre les relations entre le modèle par défaut, les joueurs et les joueurs enfants.</p>
+    <p>Ce diagramme montre les relations entre le modèle par défaut, les Lecteurs et les Lecteurs enfants.</p>
 
     <figure class="bcls-figure"><img class="bcls-image" alt="Player Entity Hierarchy" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/player-management-api/getting-started/api-overview/player-entity-hierarchy-child-player-verbiage.png" />
-    <figcaption class="bcls-caption--image">Hiérarchie des entités de joueur</figcaption>
+    <figcaption class="bcls-caption--image">Hiérarchie des entités de Lecteur</figcaption>
     </figure>
 
-    <p>Lorsque vous utilisez l'API de gestion des lecteurs pour la première fois, un lecteur par défaut Brightcove est généré dans votre compte. Cet objet joueur est pour vous de faire comme vous le souhaitez. Vous pouvez l'utiliser tel quel, modifier ses paramètres, le relooker ou ajouter des plugins. Vous pouvez choisir d'utiliser uniquement le Brightcove Default Player avec vos personnalisations, ou vous pouvez choisir de créer d'autres lecteurs pour capturer différentes apparences et paramètres pour différents emplacements sur votre site Web.</p>
+    <p>Lorsque vous utilisez l'API de gestion des Lecteurs pour la première fois, un lecteur par défaut Brightcove est généré dans votre compte. Cet objet Lecteur est pour vous de faire comme vous le souhaitez. Vous pouvez l'utiliser tel quel, modifier ses paramètres, le relooker ou ajouter des plugins. Vous pouvez choisir d'utiliser uniquement le Brightcove Default Player avec vos personnalisations, ou vous pouvez choisir de créer d'autres Lecteurs pour capturer différentes apparences et paramètres pour différents emplacements sur votre site Web.</p>
     </section>
 
     <section class="bcls-section" id="publishingOverview">
     <h2>Présentation de la publication</h2>
 
-    <p>L'une des fonctionnalités du système de gestion des lecteurs est la possibilité de séparer les modifications que vous souhaitez tester de la version de votre lecteur qui est publiée publiquement. Dans l'interface utilisateur et l'API, lorsque vous apportez des modifications à la configuration d'un lecteur, les modifications sont immédiatement disponibles via les versions d'aperçu du lecteur. Ces versions d'aperçu sont entièrement utilisables et testables. Vous pouvez partager l'URL d'aperçu pour approbation ou travailler sur l'aperçu du lecteur jusqu'à ce que vous soyez satisfait des modifications, le tout avant de publier le lecteur pour le rendre accessible au public.</p>
+    <p>L'une des fonctionnalités du système de gestion des Lecteurs est la possibilité de séparer les modifications que vous souhaitez tester de la version de votre lecteur qui est publiée publiquement. Dans l'interface utilisateur et l'API, lorsque vous apportez des modifications à la configuration d'un lecteur, les modifications sont immédiatement disponibles via les versions d'aperçu du lecteur. Ces versions d'aperçu sont entièrement utilisables et testables. Vous pouvez partager l'URL d'aperçu pour approbation ou travailler sur l'aperçu du lecteur jusqu'à ce que vous soyez satisfait des modifications, le tout avant de publier le lecteur pour le rendre accessible au public.</p>
 
     <h3>Mettre à jour les cascades</h3>
 
-    <p>La publication d'un joueur a des conséquences qui peuvent affecter les enfants joueurs. Voici les détails sur la publication :</p>
+    <p>La publication d'un Lecteur a des conséquences qui peuvent affecter les enfants Lecteurs. Voici les détails sur la publication :</p>
 
     <ul>
       <li>Une publication de lecteur déclenche une re-publication de toutes les instances de lecteur enfant créées à partir de ce lecteur.</li>
       <li>La publication d'un lecteur enfant n'affecte que ce lecteur enfant.</li>
-      <li>Une mise à jour du modèle par défaut de Brightcove (contrôlée par Brightcove) déclenchera une re-publication de tous les joueurs, et la re-publication du joueur déclenchera à son tour une re-publication de tous les joueurs enfants créés à partir de chaque joueur.</li>
+      <li>Une mise à jour du modèle par défaut de Brightcove (contrôlée par Brightcove) déclenchera une re-publication de tous les Lecteurs, et la re-publication du Lecteur déclenchera à son tour une re-publication de tous les Lecteurs enfants créés à partir de chaque Lecteur.</li>
     </ul>
 
     <p>Les paramètres sont appliqués de manière à ce que l'enfant gagne. Cela signifie que les paramètres au niveau enfant prévaudront sur les modifications apportées au niveau parent. Considérer ce qui suit:</p>
 
     <ul>
       <li>Le modèle par défaut définit une valeur CSS en rouge.</li>
-      <li>Un joueur définit la même valeur CSS comme étant blanche.</li>
-      <li>Un enfant joueur définit la même valeur CSS en bleu.</li>
+      <li>Un Lecteur définit la même valeur CSS comme étant blanche.</li>
+      <li>Un enfant Lecteur définit la même valeur CSS en bleu.</li>
     </ul>
 
     <p>Puisque l'enfant gagne, les résultats seraient :</p>
 
     <ul>
-      <li>La valeur CSS du joueur est blanche.</li>
-      <li>La valeur CSS du joueur enfant est bleue.</li>
+      <li>La valeur CSS du Lecteur est blanche.</li>
+      <li>La valeur CSS du Lecteur enfant est bleue.</li>
     </ul>
 
     <p>Ce comportement d'héritage peut être modifié si le type de données de la propriété est un tableau. Les <a href="/player-management/guides/guide-embed-apis.html"><em>Champs de tableau</em></a> La section du Guide des API d'intégration décrit les détails.</p>
@@ -101,7 +101,7 @@ grandparent: Player Management API
     <section id="ratelimiting" class="bcls-section">
     <h2>Limitation de débit</h2>
 
-    <p>L'API de gestion des joueurs a une limitation de débit pour chaque IP unique activée. Voici les limites de taux :</p>
+    <p>L'Ingestion Profiles API a une limitation de débit pour chaque IP unique activée. Voici les limites de taux:</p>
 
     <table class="bcls-table">
       <thead class="bcls-table__head">
@@ -112,7 +112,7 @@ grandparent: Player Management API
       </thead>
       <tbody class="bcls-table__body">
         <tr>
-          <td>Publier et créer (lecteurs et intégrations)</td>
+          <td>Publier et créer (Lecteurs et intégrations)</td>
           <td>60 requêtes/minute</td>
         </tr>
         <tr>
@@ -142,8 +142,8 @@ grandparent: Player Management API
 
     <ul>
       <li><strong>200</strong> Demander le succès</li>
-      <li><strong>201</strong> Créé (un joueur, une configuration)</li>
-      <li><strong>400</strong> Mauvaise requête : la syntaxe de l'appel d'API est probablement incorrecte</li>
+      <li><strong>201</strong> Créé (un Lecteur, une configuration)</li>
+      <li><strong>400</strong> Mauvaise requête: la syntaxe de l'appel d'API est probablement incorrecte</li>
       <li><strong>401</strong> Authentification invalide - vérifiez si le mot de passe a été entré correctement ou si vous avez suivi les <a href="/player-management/getting-started/oauth-guide.html">Instructions OAuth</a> correctement</li>
       <li><strong>404</strong> Introuvable - vérifiez si la ressource existe et si l'URL utilisée dans l'appel d'API est correcte</li>
       <li><strong>429</strong>Limite de débit dépassée</li>

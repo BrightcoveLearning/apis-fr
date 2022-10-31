@@ -1,6 +1,6 @@
 ---
 title: 'Partage médiatique'
-description: 'Dans cette rubrique, vous apprendrez à partager des vidéos d'un compte Video Cloud à un autre à l'aide de l'API CMS.'
+description: "Dans cette rubrique, vous apprendrez à partager des vidéos d'un compte Video Cloud à un autre à l'aide de CMS API."
 parent: Managing Videos/Assets 
 grandparent: CMS API
 ---
@@ -17,7 +17,7 @@ grandparent: CMS API
     <aside class="bcls-aside bcls-aside--information"> A noter également : 
       <ul>
         <li><strong>Le partage multimédia est disponible uniquement pour les clients Video Cloud Enterprise disposant de plusieurs comptes.</strong> Si vous souhaitez mettre à niveau votre compte Video Cloud, veuillez contacter Brightcove pour plus d'informations.</li>
-        <li>Les opérations de partage de médias de l'API CMS doivent être activées pour le compte maître et pour chaque compte affilié. <a href="https://supportportal.brightcove.com/s/login/?language=en_US">Contacter l'assistance Brightcove</a> si vous avez besoin d'activer le partage.</li>
+        <li>Les opérations de partage de médias de CMS API doivent être activées pour le compte maître et pour chaque compte affilié. <a href="https://supportportal.brightcove.com/s/login/?language=en_US">Contacter l'assistance Brightcove</a> si vous avez besoin d'activer le partage.</li>
         <li>Le partage de médias peut être bidirectionnel : chaque compte peut être un maître et un affilié pour l'autre.</li>
       </ul>
     </aside> <aside class="bcls-aside bcls-aside--information"></aside>
@@ -32,7 +32,7 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="Terminology">Terminologie</h2>
     
-    <p>Dans le partage de médias, il existe une relation entre un compte principal (qui partage des vidéos) et un ou plusieurs comptes affiliés (qui reçoivent des vidéos partagées) impliqués :</p>
+    <p>Dans le partage de médias, il existe une relation entre un compte principal (qui partage des vidéos) et un ou plusieurs comptes affiliés (qui reçoivent des vidéos partagées) impliqués:</p>
     <!-- table 1 -->
     
     <table class="bcls-table">
@@ -79,7 +79,7 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="base_URL">URL de base</h2>
     
-    <p>Comme pour tous <span translate="No">API CMS</span> requêtes, l'URL de base pour les opérations décrites ci-dessous est :</p>
+    <p>Comme pour tous CMS API requêtes, l'URL de base pour les opérations décrites ci-dessous est:</p>
     
     <pre>
       <code class="language-http" translate="No">https://cms.api.brightcove.com/v1</code></pre>
@@ -90,14 +90,14 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="authentication">Authentification</h2>
     
-    <p>L'authentification des demandes nécessite un en-tête d'autorisation :</p>
+    <p>L'authentification des demandes nécessite un en-tête d'autorisation:</p>
     
     <pre class="line-numbers">
           <code class="language-http" translate="No">Authorization: Bearer {access_token}</code></pre>
     
     <p>Les <code translate="No">access_token</code> est un jeton d'accès OAuth2 temporaire qui doit être obtenu auprès du service Brightcove OAuth. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a>.</p>
     
-    <p>Notez que toutes les opérations autour <strong>des relations</strong> nouvelles autorisations requises :</p>
+    <p>Notez que toutes les opérations autour <strong>des relations</strong> nouvelles autorisations requises:</p>
     
     <pre>
       <code translate="No">video-cloud/video/all
@@ -111,7 +111,7 @@ grandparent: CMS API
     <pre>
       <code class="language-json" translate="No">video-cloud/sharing-relationships/all</code></pre>
     
-    <p>Sur la page d'administration de l'authentification de l'API Studio, deux autorisations sont affichées :</p>
+    <p>Sur la page d'administration de l'authentification de l'API Studio, deux autorisations sont affichées:</p>
     
     <ul>
       <li><strong>Partage de lecture</strong> (équivalent à <code translate="No">video-cloud/sharing-relationships/read</code>)</li>
@@ -122,7 +122,7 @@ grandparent: CMS API
     <section class="bcls-section">
     <h2 id="restrictions_on_sharing">Restrictions de partage</h2>
     
-    <p>Par défaut, toutes les vidéos peuvent être partagées. Vous pouvez toutefois empêcher le partage si :</p>
+    <p>Par défaut, toutes les vidéos peuvent être partagées. Vous pouvez toutefois empêcher le partage si:</p>
     
     <ul>
       <li>Le compte affilié n'a pas de champ personnalisé pour lequel une valeur est définie sur la vidéo dans le compte principal</li>
@@ -135,7 +135,7 @@ grandparent: CMS API
     
     <p>Par défaut, la correspondance des champs personnalisés est <strong>ne pas</strong> forcée.</p>
     
-    <p>Si un partage vidéo échoue en raison de champs personnalisés non correspondants, vous verrez une erreur comme celle-ci dans la réponse :</p>
+    <p>Si un partage vidéo échoue en raison de champs personnalisés non correspondants, vous verrez une erreur comme celle-ci dans la réponse:</p>
     
     <pre class="line-numbers">
       <code class="language-json" translate="No">{
@@ -154,7 +154,7 @@ grandparent: CMS API
     
     <p>Par défaut, le géo-filtrage des correspondances <strong>est</strong> forcée.</p>
     
-    <p>L'erreur ressemblera à ceci :</p>
+    <p>L'erreur ressemblera à ceci:</p>
     
     <pre class="line-numbers">
       <code class="language-json" translate="No">{
@@ -204,9 +204,9 @@ grandparent: CMS API
     
     <h5 id="Resharing_videos">Repartage de vidéos</h5>
     
-    <p>Notez cependant que si le Maître <strong>re-partages</strong> la vidéo (cela ne peut être fait que via l'API CMS, pas dans Studio), tous les éléments et métadonnées (à l'exception des champs de données/d'heure) seront partagés avec les affiliés, <strong>écraser toutes les modifications apportées par les affiliés</strong>.</p>
+    <p>Notez cependant que si le Maître <strong>re-partages</strong> la vidéo (cela ne peut être fait que via l'CMS API, pas dans Studio), tous les éléments et métadonnées (à l'exception des champs de données/d'heure) seront partagés avec les affiliés, <strong>écraser toutes les modifications apportées par les affiliés</strong>.</p>
     
-    <aside class="bcls-aside bcls-aside--information">Notez qu'il existe deux façons de re-partager, qui ont des conséquences différentes :
+    <aside class="bcls-aside bcls-aside--information">Notez qu'il existe deux façons de re-partager, qui ont des conséquences différentes:
     <dl>
       <dt>Maître <em>un-parts</em> puis <em>re-partages</em> la vidéo</dt>
       <dd>Dans ce cas, la vidéo partagée précédemment sera supprimée de tous les comptes affiliés lors de la suppression du partage. Lorsque le maître partage à nouveau la vidéo, un <em>Nouveau</em> vidéo avec un <em>Nouveau</em> un identifiant unique sera ajouté à chaque compte affilié, apportant les métadonnées et les actifs du compte principal comme sur le partage d'origine.</dd>
@@ -371,16 +371,16 @@ grandparent: CMS API
         </tr>
       </tbody>
     </table>
-		<p>Remarque : pour identifier les vidéos partagées en attente d'acceptation, recherchez les vidéos qui ont <code translate="no">état:en attente</code>:</p>
+		<p>Remarque: pour identifier les vidéos partagées en attente d'acceptation, recherchez les vidéos qui ont <code translate="no">état:en attente</code>:</p>
 		<pre><code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/<span class="bcls-input">{account_id}</span>/videos?q=state:pending</code></pre>
 		<p>ou</p>
 		<pre><code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/<span class="bcls-input">{account_id}</span>/videos?query=state:PENDING</code></pre>
     </section>
     
     <section class="bcls-section">
-    <h2 id="CMS_API_operations">Requêtes API CMS - configuration</h2>
+    <h2 id="CMS_API_operations">Requêtes CMS API - configuration</h2>
     
-    <p>Cette section répertorie les <span translate="No">API CMS</span> opérations impliquées dans la mise en place du partage de médias.</p>
+    <p>Cette section répertorie les CMS API opérations impliquées dans la mise en place du partage de médias.</p>
     
     <h3>Opérations principales</h3>
     
@@ -820,9 +820,9 @@ grandparent: CMS API
     </section>
     
     <section class="bcls-section">
-    <h2 id="cms_operations_sharing">Requêtes API CMS - partage</h2>
+    <h2 id="cms_operations_sharing">Requêtes CMS API - partage</h2>
     
-    <p>Cette section détaille les <span translate="No">API CMS</span> requêtes utilisées dans le partage de vidéos. Les opérations de partage de médias sont effectuées par le compte principal. Le compte Affilié peut accepter des actions si <code translate="No">auto_accept</code> est éteint.</p>
+    <p>Cette section détaille les CMS API requêtes utilisées dans le partage de vidéos. Les opérations de partage de médias sont effectuées par le compte principal. Le compte Affilié peut accepter des actions si <code translate="No">auto_accept</code> est éteint.</p>
     
     <h3>Opérations principales</h3>
     
@@ -1122,7 +1122,7 @@ grandparent: CMS API
     
     <p>Met le <code translate="No">state</code> à <code translate="No">INACTIVE</code> de rejeter le partage.</p>
     
-    <p>Notez qu'il n'y a pas de notification spéciale indiquant qu'une vidéo a été partagée sur votre compte. Cependant, si vous <a href="/cms/searching/cms-and-playback-apis-video-search-v2.html">rechercher des vidéos</a> pour <code translate="No">state:pending</code> , qui trouvera toutes les actions non acceptées. Vous pouvez également utiliser la liste des partages en attente dans le module Studio Media pour afficher et accepter/rejeter les partages en attente :</p>
+    <p>Notez qu'il n'y a pas de notification spéciale indiquant qu'une vidéo a été partagée sur votre compte. Cependant, si vous <a href="/cms/searching/cms-and-playback-apis-video-search-v2.html">rechercher des vidéos</a> pour <code translate="No">state:pending</code> , qui trouvera toutes les actions non acceptées. Vous pouvez également utiliser la liste des partages en attente dans le module Studio Media pour afficher et accepter/rejeter les partages en attente:</p>
     
     <figure class="bcls-figure"><img class="bcls-image" alt="Pending Shares" src="/assets/images/cms/managing-videos/pending-share.png" />
     <figcaption class="bcls-caption--image">Actions en attente</figcaption>
@@ -1147,18 +1147,18 @@ grandparent: CMS API
         }
       ]</code></pre>
     
-    <p>Voir <a href="/cms/references/cms-api-error-message-reference.html#Media_sharing_errors">les <span translate="No">API CMS</span> Référence d'erreur</a> pour plus de détails.</p>
+    <p>Voir <a href="/cms/references/cms-api-error-message-reference.html#Media_sharing_errors">les CMS API Référence d'erreur</a> pour plus de détails.</p>
     </section>
     
     <section class="bcls-section">
     <h2 id="Limitations">Limites</h2>
     
-    <p>Actuellement, le partage de médias présente les limitations suivantes :</p>
+    <p>Actuellement, le partage de médias présente les limitations suivantes:</p>
     
     <ul>
-      <li>DRM : partage de médias via le <span translate="No">API CMS</span> n'est actuellement pas pris en charge pour les comptes compatibles DRM. Le partage de vidéos d'un compte non compatible DRM vers un compte compatible DRM est pris en charge, mais les vidéos partagées seront <strong>ne pas</strong> être emballé pour DRM.</li>
+      <li>DRM : partage de médias via le CMS API n'est actuellement pas pris en charge pour les comptes compatibles DRM. Le partage de vidéos d'un compte non compatible DRM vers un compte compatible DRM est pris en charge, mais les vidéos partagées seront <strong>ne pas</strong> être emballé pour DRM.</li>
       <li>
-      <p>Si le canal défini par le compte maître a défini <code translate="No">enforce_custom_fields</code> à <code translate="No">true</code> , puis partage une vidéo qui a un champ personnalisé avec une valeur qui n'est pas autorisée par le compte affilié, cette tentative de partage échouera. L'état du partage sera mis à jour avec un message d'erreur comme celui-ci :</p>
+      <p>Si le canal défini par le compte maître a défini <code translate="No">enforce_custom_fields</code> à <code translate="No">true</code> , puis partage une vidéo qui a un champ personnalisé avec une valeur qui n'est pas autorisée par le compte affilié, cette tentative de partage échouera. L'état du partage sera mis à jour avec un message d'erreur comme celui-ci:</p>
     
       <pre class="line-numbers">
       <code class="language-json" translate="No">[{"error_code": "ILLEGAL_CUSTOM_FIELD_VALUE", "error_message": "Illegal value for custom fields: [topic]"}]

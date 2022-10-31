@@ -1,18 +1,18 @@
 ---
 title: Utiliser Postman pour les demandes d'API
-description: 'Dans cette rubrique, vous apprendrez à configurer le célèbre client HTTP Postman pour envoyer des requêtes aux API RESTful de Brightcove. Bien que vous puissiez utiliser des instructions curl sur la ligne de commande pour faire des demandes, plusieurs applications vous fournissent une interface utilisateur et des fonctionnalités pour faciliter cette tâche. Ce document vous montrera comment utiliser l'un de ces outils, l'application Postman.'
+description: "Dans cette rubrique, vous apprendrez à configurer le célèbre client HTTP Postman pour envoyer des requêtes aux API RESTful de Brightcove. Bien que vous puissiez utiliser des instructions curl sur la ligne de commande pour faire des demandes, plusieurs applications vous fournissent une interface utilisateur et des fonctionnalités pour faciliter cette tâche. Ce document vous montrera comment utiliser l'un de ces outils, l'application Postman."
 parent: General Information
 ---
  <h1>{{ page.title }}</h1>
 <article class="bcls-article">
   <summary>{{ page.description }}</summary>
   <section class="bcls-section">
-    <h2 id="install">Installer <span translate="No">Facteur</span></h2>
-    <p>Avoir <span translate="No">Facteur</span> de <a translate="No" href="https://www.postman.com/downloads/">postier.com</a>. Il existe une version en ligne que vous pouvez utiliser, mais nous vous recommandons d'installer l'application de bureau.</p>
+    <h2 id="install">Installer <span>Facteur</span></h2>
+    <p>Avoir <span>Facteur</span> de <a translate="No" href="https://www.postman.com/downloads/">postier.com</a>. Il existe une version en ligne que vous pouvez utiliser, mais nous vous recommandons d'installer l'application de bureau.</p>
   </section>
   <section class="bcls-section">
     <h2 id="getCredentials">Obtenir les informations d'identification du client</h2>
-    <p>Pour travailler avec les API Brightcove, vous aurez besoin des informations d'identification client pour le compte et les API que vous souhaitez utiliser. Obtenez vos informations d'identification client dans Studio en suivant les instructions dans <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a>. Dans les étapes ci-dessous, nous effectuerons des demandes d'API CMS en utilisant <span translate="No">Facteur</span> , vos identifiants doivent donc avoir au moins les autorisations suivantes :</p>
+    <p>Pour travailler avec les API Brightcove, vous aurez besoin des informations d'identification client pour le compte et les API que vous souhaitez utiliser. Obtenez vos informations d'identification client dans Studio en suivant les instructions dans <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a>. Dans les étapes ci-dessous, nous effectuerons des demandes d'CMS API en utilisant <span>Facteur</span> , vos identifiants doivent donc avoir au moins les autorisations suivantes:</p>
     <ul>
       <li><code translate="No"><strong>Video</strong>: <strong>Read/Write</strong></code></li>
     </ul>
@@ -22,8 +22,8 @@ parent: General Information
   </section>
 	<section class="bcls-section">
 		<h2 id="get_openapi_spec">Obtenez la spécification OpenAPI</h2>
-		<p>Bien que cela ne soit pas obligatoire, vous pouvez grandement simplifier la configuration de <span translate="No">Facteur</span> consiste à importer la spécification OpenAPI pour l'API que vous souhaitez utiliser. Vous pouvez le faire pour n'importe quelle API de la plate-forme Brightcove, mais pour ce didacticiel, nous utiliserons l'API CMS.</p>
-		<p>Pour obtenir la spécification OpenAPI, accédez simplement à la <a href="/cms/references/reference.html">Référence de l'API CMS</a> et cliquez sur le <strong>Télécharger</strong> bouton:</p>
+		<p>Bien que cela ne soit pas obligatoire, vous pouvez grandement simplifier la configuration de <span>Facteur</span> consiste à importer la spécification OpenAPI pour l'API que vous souhaitez utiliser. Vous pouvez le faire pour n'importe quelle API de la plate-forme Brightcove, mais pour ce didacticiel, nous utiliserons l'CMS API.</p>
+		<p>Pour obtenir la spécification OpenAPI, accédez simplement à la <a href="/cms/references/reference.html">Référence de CMS API</a> et cliquez sur le <strong>Télécharger</strong> bouton:</p>
 		<figure class="bcls-figure">
 			<img class="bcls-image" src="/assets/images/general/postman/download-cms-api-openapi-spec.png" alt="Download OpenAPI Spec">
 			<figcaption class="bcls-caption--image">Télécharger la spécification OpenAPI</figcaption>
@@ -32,7 +32,7 @@ parent: General Information
 	</section>
 	<section class="bcls-section">
 		<h2 id="Import_openapi_spec">Importer la spécification OpenAPI</h2>
-		<p>L'étape suivante consiste à lancer l'application Postman, puis à importer la spécification OpenAPI que vous avez téléchargée :</p>
+		<p>L'étape suivante consiste à lancer l'application Postman, puis à importer la spécification OpenAPI que vous avez téléchargée:</p>
 		<div style="position: relative; display: block; max-width: 960px;"><div style="padding-top: 56.25%;"><iframe src="https://players.brightcove.net/6225316964001/Qznf2bKtV_default/index.html?videoId=6251814348001" allowfullscreen="" allow="encrypted-media" style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; width: 100%; height: 100%;"></iframe></div></div>
 	</section>
 	<section class="bcls-section">
@@ -58,13 +58,13 @@ parent: General Information
 				</figure>
 			</li>
 			<li>
-				Ouvrez le <strong>Collections</strong> et cliquez sur votre nouvelle collection d'API CMS :
+				Ouvrez le <strong>Collections</strong> et cliquez sur votre nouvelle collection d'CMS API:
 			</li>
 			<li>
 				Développez la collection et cliquez sur le <strong>vidéos</strong> dossier et sélectionnez le <strong>Obtenir des vidéos</strong> demander.
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/postman/view-collection.png" alt="CMS API Collection">
-					<figcaption class="bcls-caption--image">Collection d'API CMS</figcaption>
+					<figcaption class="bcls-caption--image">Collection d'CMS API</figcaption>
 				</figure>
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/postman/request-details.png" alt="Request Details">
@@ -72,7 +72,7 @@ parent: General Information
 				</figure>
 			</li>
 		</ol>
-		<p>Notez que Postman a configuré pour vous la plupart des détails à partir de la référence de l'API, y compris la demande elle-même et les paramètres qui peuvent y être ajoutés. De plus, vous pouvez cliquer sur le <strong>Documentation</strong> icône à droite pour afficher la documentation de la demande de la référence API :</p>
+		<p>Notez que Postman a configuré pour vous la plupart des détails à partir de la référence de l'API, y compris la demande elle-même et les paramètres qui peuvent y être ajoutés. De plus, vous pouvez cliquer sur le <strong>Documentation</strong> icône à droite pour afficher la documentation de la demande de la référence API:</p>
 		<figure class="bcls-figure">
 			<img class="bcls-image" src="/assets/images/general/postman/show-documentation.png" alt="Show Documentation">
 			<figcaption class="bcls-caption--image">Afficher la documentation</figcaption>
@@ -85,7 +85,7 @@ parent: General Information
 	</section>
 	<section class="bcls-section">
 		<h2 id="create_enviroment">Créer un environnement</h2>
-		<p>Les étapes ci-dessous vous guideront dans la configuration d'un environnement pour les demandes d'API CMS</p>
+		<p>Les étapes ci-dessous vous guideront dans la configuration d'un environnement pour les demandes d'CMS API</p>
 		<ol class="bcls-tasklist-restart">
 			<li>
 				Cliquez sur <strong>Environnements</strong> , puis <strong>Créer un environnement</strong>:
@@ -96,14 +96,14 @@ parent: General Information
 			</li>
 			<li>Donnez à l'environnement un nom comme « API Brightcove » (vous pourrez également utiliser cet environnement pour d'autres API Brightcove, en y ajoutant de nouvelles variables si nécessaire).</li>
 			<li>
-				Cliquez sur le texte "Ajouter une nouvelle variable", tapez <code translate="no">identifiant de compte</code> , puis cliquez dans le <strong>VALEUR INITIALE</strong> et saisissez votre identifiant de compte Video Cloud :
+				Cliquez sur le texte "Ajouter une nouvelle variable", tapez <code translate="no">identifiant de compte</code> , puis cliquez dans le <strong>VALEUR INITIALE</strong> et saisissez votre identifiant de compte Video Cloud:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/postman/enter-variable.png" alt="Enter Variable">
 					<figcaption class="bcls-caption--image">Saisir la variable</figcaption>
 				</figure>
 			</li>
 			<li>
-				Répétez l'étape précédente pour ajouter des variables supplémentaires :
+				Répétez l'étape précédente pour ajouter des variables supplémentaires:
 				<table class="bcls-table">
 					<caption class="bcls-caption--table">Variables d'environnement</caption>
 					<thead class="bcls-table__head">
@@ -136,7 +136,7 @@ parent: General Information
 				</figure>
 			</li>
 			<li>
-				Revenez à votre collection d'API Brightcove CMS et sélectionnez l'environnement que vous avez créé à partir du sélecteur d'environnement :
+				Revenez à votre collection d'API Brightcove CMS et sélectionnez l'environnement que vous avez créé à partir du sélecteur d'environnement:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/postman/environment-selector.png" alt="Environment Selector">
 					<figcaption class="bcls-caption--image">Sélecteur d'environnement</figcaption>
@@ -144,7 +144,7 @@ parent: General Information
 			</li>
 		</ol>
 		{% raw %}
-		<p>Les variables d'environnement peuvent être référencées en les entourant de doubles accolades - exemple : {{client_id}}. Postman vous aide avec la saisie semi-automatique lorsque vous tapez "{{...". Vous pouvez essayer ceci en revenant à la <strong>Obtenir des vidéos</strong> demande et commencez à taper "{{a" dans le <strong>Valeur</strong> champ pour la variable de chemin <code translate="no">identifiant de compte</code>:</p>
+		<p>Les variables d'environnement peuvent être référencées en les entourant de doubles accolades - exemple: {{client_id}}. Postman vous aide avec la saisie semi-automatique lorsque vous tapez "{{...". Vous pouvez essayer ceci en revenant à la <strong>Obtenir des vidéos</strong> demande et commencez à taper "{{a" dans le <strong>Valeur</strong> champ pour la variable de chemin <code translate="no">identifiant de compte</code>:</p>
 		{% endraw %}
 		<figure class="bcls-figure">
 			<img class="bcls-image" src="/assets/images/general/postman/autocomplete-variables.png" alt="Variable Autocompletion">
@@ -172,11 +172,11 @@ parent: General Information
 				</figure>
 			</li>
 			<li>
-				Saisissez les variables suivantes de votre environnement dans les champs appropriés :
+				Saisissez les variables suivantes de votre environnement dans les champs appropriés:
 				<ul>
-					<li>URL du jeton d'accès : <code>{{access_token_url}}</code></li>
+					<li>URL du jeton d'accès: <code>{{access_token_url}}</code></li>
 					<li>Identité du client: <code>{{client_id}}</code></li>
-					<li>Secret client : <code>{{client_secret}}</code></li>
+					<li>Secret client: <code>{{client_secret}}</code></li>
 				</ul>
 			</li>
 			<li>
@@ -195,7 +195,7 @@ parent: General Information
 			</li>
 		</ol>
 		{% endraw %}
-		<p>Notez que les jetons d'accès Brightcove expirent au bout de cinq minutes. Selon ce que vous faites et à quelle vitesse, vous pourrez peut-être utiliser le même jeton d'accès plusieurs fois. À son expiration, l'API CMS renvoie une erreur non autorisée :</p>
+		<p>Notez que les jetons d'accès Brightcove expirent au bout de cinq minutes. Selon ce que vous faites et à quelle vitesse, vous pourrez peut-être utiliser le même jeton d'accès plusieurs fois. À son expiration, l'CMS API renvoie une erreur non autorisée:</p>
 <pre class="line-numbers"><code class="language-json" translate="No">[
 	{
 			"error_code": "UNAUTHORIZED",
@@ -217,7 +217,7 @@ parent: General Information
 			<li>Retournez au <strong>Paramètres</strong> tab et décochez tous les Query Params (vous pouvez les utiliser, bien sûr, et changer les valeurs, mais nous n'utiliserons que les valeurs par défaut pour ce premier test).</li>
 			<li>Cliquez sur <strong>Envoyer</strong>.</li>
 			<li>
-				Vous devriez voir le code JSON apparaître dans la zone de réponse ci-dessous (un tableau d'objets de métadonnées vidéo) :
+				Vous devriez voir le code JSON apparaître dans la zone de réponse ci-dessous (un tableau d'objets de métadonnées vidéo):
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/postman/response-data.png" alt="Response Data">
 					<figcaption class="bcls-caption--image">Données de réponse</figcaption>
@@ -225,7 +225,7 @@ parent: General Information
 				<aside class="bcls-aside bcls-aside--information">N'oubliez pas que si vous obtenez une erreur non autorisée, votre jeton d'accès a expiré et vous devrez en obtenir un nouveau.</aside>
 			</li>
 			<li>
-				Nous allons maintenant essayer une demande d'écriture (Créer une vidéo). Sélectionnez cette demande dans la collection :
+				Nous allons maintenant essayer une demande d'écriture (Créer une vidéo). Sélectionnez cette demande dans la collection:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/postman/create-video-request.png" alt="Create Video Request">
 					<figcaption class="bcls-caption--image">Créer une demande de vidéo</figcaption>
@@ -233,14 +233,14 @@ parent: General Information
 			</li>
 			<li>Vous devrez à nouveau entrer <code translate="no">{{account_id}}</code> pour le <strong>Variable de chemin d'identification de compte</strong>. Vous serez <strong>NE PAS</strong> devez répéter les étapes de la section précédente pour configurer l'autorisation, car Postman transfère ces paramètres à d'autres demandes de la collection. Cependant, <strong>vous aurez toujours besoin de générer un nouveau jeton d'accès</strong>.</li>
 			<li>
-				Ensuite, allez au <strong>Corps</strong> onglet, où vous verrez un exemple de corps de requête de la référence API :
+				Ensuite, allez au <strong>Corps</strong> onglet, où vous verrez un exemple de corps de requête de la référence API:
 				<figure class="bcls-figure">
 					<img class="bcls-image" src="/assets/images/general/postman/sample-request-body.png" alt="Sample Request Body">
 					<figcaption class="bcls-caption--image">Exemple de corps de demande</figcaption>
 				</figure>
 			</li>
 			<li>
-				Ce JSON est modifiable. Le seul champ obligatoire pour une demande de création de vidéo est le <code translate="no">Nom</code> , changez donc cette valeur en "Test vidéo" et supprimez le reste du JSON afin que le corps de votre requête soit :
+				Ce JSON est modifiable. Le seul champ obligatoire pour une demande de création de vidéo est le <code translate="no">Nom</code> , changez donc cette valeur en "Test vidéo" et supprimez le reste du JSON afin que le corps de votre requête soit:
 <pre class="line-numbers"><code class="language-json" translate="No">{
 	"name": "Test video"
 }</code></pre>

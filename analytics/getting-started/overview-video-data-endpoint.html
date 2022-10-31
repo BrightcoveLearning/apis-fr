@@ -1,6 +1,6 @@
 ---
 title: 'Aperçu: Point de terminaison de données vidéo'
-description: 'Dans cette rubrique, vous apprendrez à utiliser le point de terminaison de données vidéo pour l'API Analytics.'
+description: "Dans cette rubrique, vous apprendrez à utiliser le point de terminaison de données vidéo pour Analytics API."
 parent: Getting Started 
 grandparent: Analytics API
 ---
@@ -10,13 +10,13 @@ grandparent: Analytics API
     <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
     
-    <p>Le point de terminaison de données vidéo fournit un moyen rapide d'obtenir des données spécifiques pour une vidéo particulière. Les demandes en cours renverront les vues de tous les temps pour la vidéo. À l'avenir, des données supplémentaires peuvent être renvoyées. Le cas d'utilisation principal pour ce point final serait de fournir des informations de vues de tous les temps aux joueurs sur des pages à fort trafic, où faire de gros volumes de demandes régulières au <span translate="No">API d'analyse</span> serait trop lent.</p>
+    <p>Le point de terminaison de données vidéo fournit un moyen rapide d'obtenir des données spécifiques pour une vidéo particulière. Les demandes en cours renverront les vues de tous les temps pour la vidéo. À l'avenir, des données supplémentaires peuvent être renvoyées. Le cas d'utilisation principal pour ce point final serait de fournir des informations de vues de tous les temps aux Lecteurs sur des pages à fort trafic, où faire de gros volumes de demandes régulières au Analytics API serait trop lent.</p>
     </section>
     
     <section class="bcls-section">
     <h2 id="endpoint">Point de terminaison</h2>
     
-    <p>Le point de terminaison pour les demandes de données vidéo est :</p>
+    <p>Le point de terminaison pour les demandes de données vidéo est:</p>
     
     <pre class="line-numbers" style="white-space:pre-wrap;padding-top:1em;padding-bottom:1em;">
     <code class="language-http" translate="No">https://analytics.api.brightcove.com/v1/alltime/accounts/{account_id}/videos/{video_id}</code></pre>
@@ -27,19 +27,19 @@ grandparent: Analytics API
     <div class="bcls-section">
     <h2 id="authentication">Authentification</h2>
     
-    <p>Toutes les demandes au <span translate="No">API d'analyse</span> sont authentifiés via le service OAuth de Brightcove.</p>
+    <p>Toutes les demandes au Analytics API sont authentifiés via le service OAuth de Brightcove.</p>
     
-    <p>L'authentification est basée sur un jeton d'accès passé dans un en-tête d'autorisation :</p>
+    <p>L'authentification est basée sur un jeton d'accès passé dans un en-tête d'autorisation:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">Authorization: Bearer {your token}</code></pre>
     
-    <p>Vous pouvez obtenir les informations d'identification du client pour le <span translate="No">API d'analyse</span> et utilisez-les pour récupérer des jetons d'accès temporaires - voir le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation d'OAuth</a> pour une explication des différentes approches que vous pouvez utiliser pour obtenir les informations d'identification client et les jetons d'accès, et <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'identification de l'API</a> pour plus d'informations sur l'obtention des informations d'identification client via Studio</p>
+    <p>Vous pouvez obtenir les informations d'identification du client pour le Analytics API et utilisez-les pour récupérer des jetons d'accès temporaires - voir le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation d'OAuth</a> pour une explication des différentes approches que vous pouvez utiliser pour obtenir les informations d'identification client et les jetons d'accès, et <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'identification de l'API</a> pour plus d'informations sur l'obtention des informations d'identification client via Studio</p>
     
     <div class="bcls-section">
     <h2 id="response">Réponse</h2>
     
-    <p>La réponse à une demande sera JSON sous la forme :</p>
+    <p>La réponse à une demande sera JSON sous la forme:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -51,9 +51,9 @@ grandparent: Analytics API
     <div class="bcls-section">
     <h2 id="implementation">Mise en œuvre possible</h2>
     
-    <p>Voici comment vous pouvez utiliser le point de terminaison des données vidéo pour afficher toutes les vues d'une vidéo lors de son chargement dans un lecteur :</p>
+    <p>Voici comment vous pouvez utiliser le point de terminaison des données vidéo pour afficher toutes les vues d'une vidéo lors de son chargement dans un lecteur:</p>
     
-    <aside class="bcls-aside bcls-aside--information">Remarque : ce point de terminaison est disponible uniquement pour les comptes Professional et Enterprise. Si vous souhaitez mettre à niveau votre compte, veuillez contacter Brightcove Sales ou votre gestionnaire de compte.</aside>
+    <aside class="bcls-aside bcls-aside--information">Remarque: ce point de terminaison est disponible uniquement pour les comptes Professional et Enterprise. Si vous souhaitez mettre à niveau votre compte, veuillez contacter Brightcove Sales ou votre gestionnaire de compte.</aside>
     
     <ol class="bcls-tasklist">
       <li>Configurez la mise en cache pour stocker les vues par identifiant vidéo pendant 5 à 10 minutes.</li>

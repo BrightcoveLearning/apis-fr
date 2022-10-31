@@ -1,6 +1,6 @@
 Dimension:---
 title: ' <code translate="No">date_hour</code>'
-description: 'Les <code translate="No">date_hour</code> dimension fournit des données analytiques en segments horaires. L'utilisateur peut spécifier les paramètres de et vers dans <strong>aaaa-MM-jj</strong> ou <strong>temps d'époque en millisecondes</strong> format. Pour générer un rapport sur une période d'heures, vous devrez utiliser le format en millisecondes, avec des valeurs aller et retour comprises dans les heures de début et de fin sur lesquelles vous souhaitez interroger. Toute plage de dates spécifiée par l'utilisateur sera interprétée selon le fuseau horaire actuel du compte. <code translate="No">date_hour</code> les rapports ne sont valables que pour les plages des 32 derniers jours. Si la valeur from date de plus de 32 jours, une erreur sera renvoyée.'
+description: "Les <code translate="No">date_hour</code> dimension fournit des données analytiques en segments horaires. L'utilisateur peut spécifier les paramètres de et vers dans <strong>aaaa-MM-jj</strong> ou <strong>temps d'époque en millisecondes</strong> format. Pour générer un rapport sur une période d'heures, vous devrez utiliser le format en millisecondes, avec des valeurs aller et retour comprises dans les heures de début et de fin sur lesquelles vous souhaitez interroger. Toute plage de dates spécifiée par l'utilisateur sera interprétée selon le fuseau horaire actuel du compte. <code translate="No">date_hour</code> les rapports ne sont valables que pour les plages des 32 derniers jours. Si la valeur from date de plus de 32 jours, une erreur sera renvoyée."
 parent: Dimension Guides 
 grandparent: Analytics API
 ---
@@ -16,7 +16,7 @@ grandparent: Analytics API
     <section class="bcls-section">
     <h2 id="urlParams">Paramètres d'URL</h2>
     
-    <p>Les rapports de l'API Analytics prennent en charge les paramètres d'URL suivants.</p>
+    <p>Les rapports de Analytics API prennent en charge les paramètres d'URL suivants.</p>
     
     <table class="bcls-table">
       <caption class="bcls-caption--table">Paramètres d'URL</caption>
@@ -103,14 +103,14 @@ grandparent: Analytics API
     <p>Les champs suivants peuvent être renvoyés pour la dimension.</p>
     
     <ul id="fields">
-      <li><code translate="No">ad_mode_begin</code>- le nombre de fois où le joueur est entré en mode publicité</li>
-      <li><code translate="No">ad_mode_complete</code>- le nombre de fois où le joueur a terminé le mode publicité</li>
+      <li><code translate="No">ad_mode_begin</code>- le nombre de fois où le Lecteur est entré en mode publicité</li>
+      <li><code translate="No">ad_mode_complete</code>- le nombre de fois où le Lecteur a terminé le mode publicité</li>
       <li><code translate="No">date_hour</code>- la date-heure au format date-heure ISO 8601</li>
       <li><code translate="No">engagement_score</code>- le score d'engagement moyen des vidéos</li>
       <li><code translate="No">play_request</code>- nombre total de fois où la lecture vidéo a été demandée</li>
       <li><code translate="No">play_rate</code>- le taux de lecture moyen (vues vidéo divisées par impressions) pour les vidéos</li>
-      <li><code translate="No">player_load</code>- le nombre total de chargements de joueurs</li>
-      <li><code translate="No">video_impression</code>- le nombre total de fois où les vidéos ont été chargées dans les lecteurs</li>
+      <li><code translate="No">player_load</code>- le nombre total de chargements de Lecteurs</li>
+      <li><code translate="No">video_impression</code>- le nombre total de fois où les vidéos ont été chargées dans les Lecteurs</li>
       <li><code translate="No">video_percent_viewed</code>- pourcentage total de visionnages pour toutes les vidéos (une somme, pas une moyenne)</li>
       <li><code translate="No">video_seconds_viewed</code>- le nombre total de secondes vues pour toutes les vidéos</li>
       <li><code translate="No">video_view</code>- le nombre total de fois où la lecture vidéo a commencé</li>
@@ -122,7 +122,7 @@ grandparent: Analytics API
     
     <p>Utilisée comme filtre, une dimension permet d'affiner les résultats.</p>
     
-    <p id="filters">Filtrer les valeurs : La dimension date_heure n'est pas utilisée comme filtre.</p>
+    <p id="filters">Filtrer les valeurs: La dimension date_heure n'est pas utilisée comme filtre.</p>
     </section>
     
     <section class="bcls-section">
@@ -137,7 +137,7 @@ grandparent: Analytics API
     <h3>Demande de dimension</h3>
     
     <pre class="line-numbers language-http code-toolbar">
-    <code class="language-http" id="dimensionRequest"><span class="token header-name keyword"><span class="token header-name keyword">https :</span></span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=date_hour&amp;from=-6h</code></pre>
+    <code class="language-http" id="dimensionRequest"><span class="token header-name keyword"><span class="token header-name keyword">https:</span></span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=date_hour&amp;from=-6h</code></pre>
     <button class="bcls-button" id="sendDimensionRequest">Tester cette demande</button>
     
     <h3>Demande de filtre</h3>

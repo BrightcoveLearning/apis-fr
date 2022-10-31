@@ -1,7 +1,6 @@
 ---
-title: 'Mise en file d'attente de priorité d'ingestion de livraison dynamique'
-description: 'Cette rubrique explique comment utiliser le paramètre de priorité pour optimiser le temps d'ingestion des vidéos à haute priorité.'
-
+title: "Mise en file d'attente de priorité d'ingestion de livraison dynamique"
+description: "Cette rubrique explique comment utiliser le paramètre de priorité pour optimiser le temps d'ingestion des vidéos à haute priorité."
 parent: 'Ingest Guides' 
 grandparent: Dynamic Ingest API
 ---
@@ -24,19 +23,19 @@ grandparent: Dynamic Ingest API
     
     <p>Avec la mise en file d'attente prioritaire normale, l'ingestion de livraison dynamique a une limite de 100 tâches actives par compte. Lorsque cette limite est dépassée, le système d'ingestion met en file d'attente des demandes supplémentaires pour un traitement ultérieur. La taille de la file d'attente a une limite distincte, et lorsque celle-ci est atteinte, elle rejette la demande d'ingestion au client (avec un code d'erreur 429). Lorsque les travaux sont terminés, la capacité est libérée et les travaux en file d'attente sont récupérés et traités un par un, dans l'ordre où ils ont été reçus.</p>
     
-    <p>L'état de la vidéo dans le <span translate="No">API CMS</span> ne reflète pas que le travail a été mis en file d'attente - le statut sera <code translate="No">pending </code> si le travail est en cours de traitement ou en file d'attente.</p>
+    <p>L'état de la vidéo dans le CMS API ne reflète pas que le travail a été mis en file d'attente - le statut sera <code translate="No">pending </code> si le travail est en cours de traitement ou en file d'attente.</p>
     </section>
     
     <section class="bcls-section">
     <h2 id="How_Priority_Queueing_affects_ingestion">Comment la file d'attente prioritaire affecte l'ingestion</h2>
     
-    <p>La file d'attente prioritaire permet à l'utilisateur d'ajouter un <code translate="No">priority </code> indicateur à une demande d'ingestion. Les valeurs admissibles pour <code translate="No">priority </code> sommes <code translate="No">low </code> et <code translate="No">normal </code>. Toute autre valeur entraînera le rejet de la demande avec un code d'erreur 422. Lorsque l'utilisateur ne spécifie aucune priorité, la valeur par défaut de <code translate="No">normal </code> est utilisé. Voici une brève description de la façon dont Priority Queuing modifie la façon dont les travaux sont traités à partir de la file d'attente :</p>
+    <p>La file d'attente prioritaire permet à l'utilisateur d'ajouter un <code translate="No">priority </code> indicateur à une demande d'ingestion. Les valeurs admissibles pour <code translate="No">priority </code> sommes <code translate="No">low </code> et <code translate="No">normal </code>. Toute autre valeur entraînera le rejet de la demande avec un code d'erreur 422. Lorsque l'utilisateur ne spécifie aucune priorité, la valeur par défaut de <code translate="No">normal </code> est utilisé. Voici une brève description de la façon dont Priority Queuing modifie la façon dont les travaux sont traités à partir de la file d'attente:</p>
     
     <ol>
       <li>S'il n'y a pas de travaux en file d'attente et qu'il existe une capacité pour exécuter un travail, le travail est exécuté immédiatement. Cela s'applique à la fois aux tâches de priorité faible et normale.</li>
       <li>S'il n'y a pas de capacité pour l'exécution d'un autre travail, le travail est mis en file d'attente.</li>
       <li>S'il y a des tâches dans la file d'attente, toutes les nouvelles tâches sont également mises en file d'attente. Cela signifie qu'un nouveau travail ne peut pas démarrer avant les travaux en file d'attente.</li>
-      <li>Lorsqu'il est possible d'exécuter une autre tâche et qu'il y a des tâches en file d'attente, une tâche est extraite de la file d'attente :
+      <li>Lorsqu'il est possible d'exécuter une autre tâche et qu'il y a des tâches en file d'attente, une tâche est extraite de la file d'attente:
       <ul>
         <li>S'il y a TOUT travail prioritaire normal dans la file d'attente, le travail prioritaire normal le plus ancien sera sélectionné.</li>
         <li>S'il n'y a AUCUNE tâche à priorité normale dans la file d'attente, la tâche à faible priorité la plus ancienne sera sélectionnée.</li>
@@ -66,7 +65,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="sample_request">Exemples de demandes</h2>
     
-    <p>Vous trouverez ci-dessous un exemple de corps de requête d'ingestion de faible priorité :</p>
+    <p>Vous trouverez ci-dessous un exemple de corps de requête d'ingestion de faible priorité:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -82,7 +81,7 @@ grandparent: Dynamic Ingest API
     </code>
     </pre>
     
-    <p>Et voici un exemple de tâche prioritaire normale :</p>
+    <p>Et voici un exemple de tâche prioritaire normale:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -98,7 +97,7 @@ grandparent: Dynamic Ingest API
     </code>
     </pre>
     
-    <p>A noter que depuis <code translate="No">normal </code> est la valeur par défaut, la requête précédente serait traitée exactement de la même manière que la suivante :</p>
+    <p>A noter que depuis <code translate="No">normal </code> est la valeur par défaut, la requête précédente serait traitée exactement de la même manière que la suivante:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{

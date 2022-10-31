@@ -1,6 +1,6 @@
 ---
-title: 'Mettre à jour les joueurs par programmation'
-description: 'Dans cette rubrique, vous apprendrez à utiliser l'API de gestion des lecteurs pour mettre à jour par programmation plusieurs lecteurs.'
+title: 'Mettre à jour les Lecteurs par programmation'
+description: "Dans cette rubrique, vous apprendrez à utiliser l'API de gestion des Lecteurs pour mettre à jour par programmation plusieurs Lecteurs."
 parent: Code Samples 
 grandparent: Player Management API
 ---
@@ -10,9 +10,9 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
     
-    <p>Dans cet exemple, il n'y a rien avec quoi interagir. À l'aide de l'API de gestion des lecteurs, le code fourni met à jour un ensemble filtré de lecteurs à l'aide d'un HTTP <code translate="No">PATCH</code> méthode, puis publie automatiquement les lecteurs mis à jour.</p>
+    <p>Dans cet exemple, il n'y a rien avec quoi interagir. À l'aide de l'API de gestion des Lecteurs, le code fourni met à jour un ensemble filtré de Lecteurs à l'aide d'un HTTP <code translate="No">PATCH</code> méthode, puis publie automatiquement les Lecteurs mis à jour.</p>
     
-    <p>Comme pour tous les exemples d'API, il est fortement recommandé d'étudier d'abord le <a href="/getting-started/learning-guide-using-rest-apis.html">Guide d'apprentissage : Utilisation des API REST</a> pour fournir une base sur laquelle construire plus de connaissances sur l'API REST.</p>
+    <p>Comme pour tous les exemples d'API, il est fortement recommandé d'étudier d'abord le <a href="/getting-started/learning-guide-using-rest-apis.html">Guide d'apprentissage: Utilisation des API REST</a> pour fournir une base sur laquelle construire plus de connaissances sur l'API REST.</p>
     
     <p>Le CodePen est fourni pour afficher le code discuté plus loin dans le document.</p>
     
@@ -26,36 +26,36 @@ grandparent: Player Management API
     <p>La logique de base derrière cette application est :</p>
     
     <ul>
-      <li>Récupérez tous les joueurs d'un compte spécifié, puis filtrez l'ensemble de joueurs sur ceux que vous souhaitez mettre à jour.</li>
-      <li>Construisez un tableau avec les identifiants de l'ensemble filtré de joueurs.</li>
-      <li>Définir les mises à jour souhaitées sur l'ensemble filtré de joueurs, la demande que chaque joueur soit mis à jour en conséquence.</li>
-      <li>Publiez chacun des lecteurs mis à jour.</li>
+      <li>Récupérez tous les Lecteurs d'un compte spécifié, puis filtrez l'ensemble de Lecteurs sur ceux que vous souhaitez mettre à jour.</li>
+      <li>Construisez un tableau avec les identifiants de l'ensemble filtré de Lecteurs.</li>
+      <li>Définir les mises à jour souhaitées sur l'ensemble filtré de Lecteurs, la demande que chaque Lecteur soit mis à jour en conséquence.</li>
+      <li>Publiez chacun des Lecteurs mis à jour.</li>
     </ul>
     
-    <aside class="bcls-aside bcls-aside--information">Les <code translate="No">makeRequest</code> La fonction est un code standard qui doit rarement être modifié pour être utilisé dans le processus d'utilisation des API REST de Brightcove. Pour cette raison, elle n'est pas abordée dans ce document, mais est détaillée en détail dans le <a href="/getting-started/learning-guide-using-rest-apis.html">Guide d'apprentissage : Utilisation des API REST</a> document.</aside>
+    <aside class="bcls-aside bcls-aside--information">Les <code translate="No">makeRequest</code> La fonction est un code standard qui doit rarement être modifié pour être utilisé dans le processus d'utilisation des API REST de Brightcove. Pour cette raison, elle n'est pas abordée dans ce document, mais est détaillée en détail dans le <a href="/getting-started/learning-guide-using-rest-apis.html">Guide d'apprentissage: Utilisation des API REST</a> document.</aside>
     <!-- UPDATE task 1 -->
     
-    <h3>Récupérez un ensemble filtré de joueurs et créez un tableau de leurs identifiants</h3>
+    <h3>Récupérez un ensemble filtré de Lecteurs et créez un tableau de leurs identifiants</h3>
     
     <p>Trouvez le code qui est étiqueté:</p>
     
     <pre>
     <code class="language-javascript" translate="No">// +++ Configure the request to get players and extract their IDs +++</code></pre>
     
-    <p>Après avoir défini les options à transmettre au proxy pour obtenir tous les joueurs d'un compte spécifié, le tableau de JavaScript <code translate="No">filter</code> la fonction est utilisée avec la coutume <code translate="No">filter_players</code> fonction pour filtrer l'ensemble de joueurs. Vous bouclez ensuite sur l'ensemble filtré et transférez leurs identifiants dans un autre tableau. Enfin, vous appelez la fonction qui demande que les mises à jour soient effectuées.</p>
+    <p>Après avoir défini les options à transmettre au proxy pour obtenir tous les Lecteurs d'un compte spécifié, le tableau de JavaScript <code translate="No">filter</code> la fonction est utilisée avec la coutume <code translate="No">filter_players</code> fonction pour filtrer l'ensemble de Lecteurs. Vous bouclez ensuite sur l'ensemble filtré et transférez leurs identifiants dans un autre tableau. Enfin, vous appelez la fonction qui demande que les mises à jour soient effectuées.</p>
     <!-- UPDATE task 2 -->
     
-    <h3>Demander que les mises à jour soient effectuées sur l'ensemble filtré de joueurs</h3>
+    <h3>Demander que les mises à jour soient effectuées sur l'ensemble filtré de Lecteurs</h3>
     
     <p>Trouvez le code qui est étiqueté:</p>
     
     <pre>
     <code class="language-javascript" translate="No">// +++ Configure the request to update filtered players +++</code></pre>
     
-    <p>Dans le <code translate="No">options</code> objet, vous définissez les options nécessaires pour passer au proxy. Notez que cela inclut le <code translate="No">requestBody</code> , qui définit les changements réels que vous souhaitez apporter à l'ensemble filtré de joueurs. Vous devez boucler sur chacun des identifiants de joueur dans le <code translate="No">playerIDsAra</code> et faire la demande. Notez que la fonction est appelée de manière récursive. Enfin, vous appelez la fonction qui demande que les joueurs soient publiés.</p>
+    <p>Dans le <code translate="No">options</code> objet, vous définissez les options nécessaires pour passer au proxy. Notez que cela inclut le <code translate="No">requestBody</code> , qui définit les changements réels que vous souhaitez apporter à l'ensemble filtré de Lecteurs. Vous devez boucler sur chacun des identifiants de Lecteur dans le <code translate="No">playerIDsAra</code> et faire la demande. Notez que la fonction est appelée de manière récursive. Enfin, vous appelez la fonction qui demande que les Lecteurs soient publiés.</p>
     <!-- UPDATE task 3 -->
     
-    <h3>Demander que les joueurs mis à jour soient publiés</h3>
+    <h3>Demander que les Lecteurs mis à jour soient publiés</h3>
     
     <p>Trouvez le code qui est étiqueté:</p>
     
@@ -64,7 +64,7 @@ grandparent: Player Management API
     
     <p>Ici encore, vous bouclez sur le <code translate="No">playerIDsAra</code> tableau et faire des demandes pour que le lecteur soit publié. Si ce n'est pas à la fin du tableau, la fonction est appelée de manière récursive.</p>
     
-    <p>Vous pouvez voir le code JavaScript de l'application à partir du référentiel GitHub correspondant de ce document : <a href="https://github.com/BrightcoveLearning/18693-player-management-api-sample-programmatically-update-players/blob/master/index.html">liveCustomError.js18693-player-management-api-sample-programmatically-update-players</a>.</p>
+    <p>Vous pouvez voir le code JavaScript de l'application à partir du référentiel GitHub correspondant de ce document: <a href="https://github.com/BrightcoveLearning/18693-player-management-api-sample-programmatically-update-players/blob/master/index.html">liveCustomError.js18693-player-management-api-sample-programmatically-update-players</a>.</p>
     </section>
     </article>
  

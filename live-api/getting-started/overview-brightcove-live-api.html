@@ -1,6 +1,6 @@
 ---
-title: 'Aperçu: API en direct Brightcove'
-description: 'Dans cet aperçu, vous apprendrez à quoi sert l'API Live et comment l'utiliser. Les sujets inclus dans ce document incluent les régions et les CDN AWS pris en charge, les canaux et événements en direct, et l'insertion de métadonnées temporelles ID3 dans un flux en direct.'
+title: 'Aperçu: Live API Brightcove'
+description: "Dans cet aperçu, vous apprendrez à quoi sert le Live API et comment l'utiliser. Les sujets inclus dans ce document incluent les régions et les CDN AWS pris en charge, les canaux et événements en direct, et l'insertion de métadonnées temporelles ID3 dans un flux en direct."
 parent: Getting Started 
 grandparent: Live API
 ---
@@ -11,14 +11,14 @@ grandparent: Live API
     <section class="bcls-section">
       <h2 id="introduction">introduction</h2>
 
-      <p>Les <span translate="No">API en direct</span> est une API basée sur REST qui vous permet de créer et de gérer des événements de diffusion en direct. Les fonctionnalités optionnelles incluent :</p>
+      <p>Les <span>Live API</span> est une API basée sur REST qui vous permet de créer et de gérer des événements de diffusion en direct. Les fonctionnalités optionnelles incluent:</p>
 
       <ul>
-        <li>Insertion d'annonces côté serveur ( <span translate="No">SSAI</span> )</li>
-        <li><span translate="No">AES-128</span> chiffrement</li>
+        <li>Insertion d'annonces côté serveur ( <span>SSAI</span> )</li>
+        <li><span>AES-128</span> chiffrement</li>
         <li>Créez des ressources de vidéo à la demande à partir de clips extraits du flux en direct</li>
-        <li><span translate="No">DVR</span> aptitude</li>
-        <li>Plusieurs <span translate="No">CDN</span></li>
+        <li><span>DVR</span> aptitude</li>
+        <li>Plusieurs <span>CDN</span></li>
       </ul>
 
       <p>Voir aussi le <a href="/live-api/references/reference.html">Référence API</a>.</p>
@@ -27,7 +27,7 @@ grandparent: Live API
     <section class="bcls-section">
       <h2 id="baseURL">URL de base</h2>
 
-      <p>L'URL de base pour le <span translate="No">API en direct</span> est:</p>
+      <p>L'URL de base pour le <span>Live API</span> est:</p>
 
       <pre>
       <code class="language-http" translate="No">https://api.bcovlive.io
@@ -38,7 +38,7 @@ grandparent: Live API
     <section class="bcls-section">
       <h2 id="authentication">En-têtes</h2>
 
-      <p>Toutes les demandes sont authentifiées à l'aide d'une clé API qui vous sera fournie lors de la configuration de votre compte. La clé est passée dans un <code translate="No">X-API-KEY </code> entête. UNE <code translate="No">Content-Type </code> l'en-tête est également requis :</p>
+      <p>Toutes les demandes sont authentifiées à l'aide d'une clé API qui vous sera fournie lors de la configuration de votre compte. La clé est passée dans un <code translate="No">X-API-KEY </code> entête. UNE <code translate="No">Content-Type </code> l'en-tête est également requis:</p>
 
       <pre>
       <code class="language-bash" translate="No">X-API-KEY : <span class="bcls-input" translate="No">YOUR_APIKey</span>
@@ -50,7 +50,7 @@ grandparent: Live API
     <section class="bcls-section">
       <h2 id="Support_aws_regions">Régions AWS prises en charge</h2>
 
-      <p>Les régions AWS suivantes sont prises en charge :</p>
+      <p>Les régions AWS suivantes sont prises en charge:</p>
 
       <table class="bcls-table">
         <caption class="bcls-caption--table">Régions AWS prises en charge</caption>
@@ -64,42 +64,42 @@ grandparent: Live API
         <tbody class="bcls-table__body">
           <tr>
             <td >Oregon</td>
-            <td ><span translate="No">nous-ouest-2</span></td>
+            <td ><span>nous-ouest-2</span></td>
             <td style="text-align: center;"><img alt="Yes" src="//learning-services-media.brightcove.com/doc-assets/general/images/check16.png" /></td>
           </tr>
           <tr>
             <td >Virginie</td>
-            <td ><span translate="No">nous-est-1</span></td>
+            <td ><span>nous-est-1</span></td>
             <td style="text-align: center;"><img alt="Yes" src="//learning-services-media.brightcove.com/doc-assets/general/images/check16.png" /></td>
           </tr>
           <tr>
             <td >Tokyo</td>
-            <td ><span translate="No">ap-nord-est-1</span></td>
+            <td ><span>ap-nord-est-1</span></td>
             <td style="text-align: center;"><img alt="Yes" src="//learning-services-media.brightcove.com/doc-assets/general/images/check16.png" /></td>
           </tr>
           <tr>
             <td >Singapour</td>
-            <td ><span translate="No">ap-sud-est-1</span></td>
+            <td ><span>ap-sud-est-1</span></td>
             <td style="text-align: center;"><img alt="Yes" src="//learning-services-media.brightcove.com/doc-assets/general/images/check16.png" /></td>
           </tr>
           <tr>
             <td >Sydney</td>
-            <td ><span translate="No">ap-sud-est-2</span></td>
+            <td ><span>ap-sud-est-2</span></td>
             <td style="text-align: center;"><img alt="Yes" src="//learning-services-media.brightcove.com/doc-assets/general/images/check16.png" /></td>
           </tr>
           <tr>
             <td >Bombay</td>
-            <td ><span translate="No">ap-sud-1</span></td>
+            <td ><span>ap-sud-1</span></td>
             <td style="text-align: center;"><img alt="Yes" src="//learning-services-media.brightcove.com/doc-assets/general/images/x16.png" /></td>
           </tr>
           <tr>
             <td >Francfort</td>
-            <td >eu-central-1<span translate="No"></span></td>
+            <td >eu-central-1<span></span></td>
             <td style="text-align: center;"><img alt="Yes" src="//learning-services-media.brightcove.com/doc-assets/general/images/check16.png" /></td>
           </tr>
           <tr>
             <td >Irlande</td>
-            <td ><span translate="No">eu-ouest-1</span></td>
+            <td ><span>eu-ouest-1</span></td>
             <td style="text-align: center;"><img alt="No" src="//learning-services-media.brightcove.com/doc-assets/general/images/x16.png" /></td>
           </tr>
         </tbody>
@@ -111,11 +111,11 @@ grandparent: Live API
     <section class="bcls-section">
       <h2 id="Supported_cdns">CDN pris en charge</h2>
 
-      <p>Les CDN suivants sont pris en charge pour la diffusion en direct :</p>
+      <p>Les CDN suivants sont pris en charge pour la diffusion en direct:</p>
 
       <ul>
-        <li>Akamai<span translate="No"></span></li>
-        <li>Cloudfront<span translate="No"></span></li>
+        <li>Akamai<span></span></li>
+        <li>Cloudfront<span></span></li>
       </ul>
 
       <p>D'autres CDN basés sur des fichiers devraient fonctionner, mais n'ont pas été testés et ne sont pas activement pris en charge.</p>
@@ -124,7 +124,7 @@ grandparent: Live API
     <section class="bcls-section">
       <h2 id="Channels_and_hours">Chaînes et heures de l'événement</h2>
 
-      <p>Il existe deux options d'achat pour Live :</p>
+      <p>Il existe deux options d'achat pour Live:</p>
 
       <ul>
         <li>Achetez des heures de diffusion en continu pour l'événement</li>
@@ -133,14 +133,14 @@ grandparent: Live API
 
       <p>Vous pouvez également acheter à la fois des heures de diffusion d'événements et des chaînes. Contactez votre gestionnaire de compte pour plus d'informations sur les offres.</p>
 
-      <aside class="bcls-aside bcls-aside--information"><strong>Si vous avez acheté à la fois des heures de diffusion d'événements et des chaînes</strong> , vous devez être conscient des éléments suivants :
+      <aside class="bcls-aside bcls-aside--information"><strong>Si vous avez acheté à la fois des heures de diffusion d'événements et des chaînes</strong> , vous devez être conscient des éléments suivants:
 
         <ul>
           <li>Par défaut, les travaux en direct sont facturés en fonction des heures de diffusion d'événements.</li>
-          <li>Si vous souhaitez plutôt qu'un travail soit facturé comme un travail de canal, vous <strong>doit</strong> incluez le champ suivant dans le corps de la demande lorsque vous créez la tâche en direct :
+          <li>Si vous souhaitez plutôt qu'un travail soit facturé comme un travail de canal, vous <strong>doit</strong> incluez le champ suivant dans le corps de la demande lorsque vous créez la tâche en direct:
             <p><code translate="No">"channel_type": "24x7"</code></p>
           </li>
-          <li>Les clients de canal uniquement doivent toujours inclure le champ suivant dans le corps de la demande lorsque vous créez la tâche en direct :
+          <li>Les clients de canal uniquement doivent toujours inclure le champ suivant dans le corps de la demande lorsque vous créez la tâche en direct:
             <p><code translate="No">"channel_type": "24x7"</code></p>
           </li>
           <li>Les clients qui n'ont acheté que des heures d'événement en streaming doivent <strong>ne pas</strong> comprendre <code translate="No">"channel_type": "24x7"</code> dans les demandes.</li>
@@ -157,9 +157,9 @@ grandparent: Live API
     </section>
 
     <section class="bcls-section">
-      <h2 id="dvr_capability"><span translate="No">DVR</span> aptitude</h2>
+      <h2 id="dvr_capability"><span>DVR</span> aptitude</h2>
 
-      <p>Les flux Brightcove Live ont <span translate="No">DVR</span> aptitude. Pour utiliser cette fonctionnalité, vous devez :</p>
+      <p>Les flux Brightcove Live ont <span>DVR</span> aptitude. Pour utiliser cette fonctionnalité, vous devez:</p>
 
       <ul>
         <li>Utilisez le <code translate="No">playback_url_dvr</code> URL de lecture</li>
@@ -168,13 +168,13 @@ grandparent: Live API
 
       <p>La capacité du DVR est limitée à 86 400 secondes.</p>
 
-      <p>Les <span translate="No">DVR</span> Le flux restera disponible pendant 7 jours après la fin du flux en direct.</p>
+      <p>Les <span>DVR</span> Le flux restera disponible pendant 7 jours après la fin du flux en direct.</p>
     </section>
 
     <section class="bcls-section">
       <h2 id="endpoints">Points de terminaison et opérations</h2>
 
-      <p>Les principales opérations de la <span translate="No">API en direct</span> créent et gèrent des flux en direct et génèrent des clips VOD à partir de flux en direct. Ces opérations sont effectuées via des requêtes aux points de terminaison suivants, qui sont expliqués plus en détail dans la suite du document.</p>
+      <p>Les principales opérations de la <span>Live API</span> créent et gèrent des flux en direct et génèrent des clips VOD à partir de flux en direct. Ces opérations sont effectuées via des requêtes aux points de terminaison suivants, qui sont expliqués plus en détail dans la suite du document.</p>
 
       <aside class="bcls-aside bcls-aside--information">Notez que Brightcove Live a son propre identifiant de compte, distinct de tout autre identifiant de compte. Dans les opérations API, <code translate="No">account_id</code> fait référence à votre <strong>Identifiant de compte réel</strong>.</aside>
 
@@ -223,7 +223,7 @@ grandparent: Live API
       <section class="bcls-subsection">
         <h4 id="input_protocol">Protocole d'entrée</h4>
 
-        <p>Brightcove Live prend en charge plusieurs protocoles d'entrée. Utilisez le <code translate="No">protocol</code> dans le corps de la demande lorsque vous créez le travail pour spécifier celui que vous utiliserez. Les valeurs prises en charge sont :</p>
+        <p>Brightcove Live prend en charge plusieurs protocoles d'entrée. Utilisez le <code translate="No">protocol</code> dans le corps de la demande lorsque vous créez le travail pour spécifier celui que vous utiliserez. Les valeurs prises en charge sont:</p>
 
         <ul>
           <li><code translate="No">rtmp</code>(le défaut)</li>
@@ -238,7 +238,7 @@ grandparent: Live API
 
         <p>Si tu utilises <code translate="No">rtmp</code> , vous pouvez spécifier un <code translate="No">ip_whitelist</code> pour l'entrée à la place, mais ce n'est pas obligatoire.</p>
 
-        <p>Exemple de corps de requête pour le travail RTP+FEC :</p>
+        <p>Exemple de corps de requête pour le travail RTP+FEC:</p>
 
 <pre class="line-numbers">
 <code class="language-json" translate="No">{
@@ -260,7 +260,7 @@ grandparent: Live API
 }</code></pre>
       </section>
 
-      <p>Les <a href="/live-api/getting-started/quick-start-create-live-stream-using-brightcove-live-api.html"> <span translate="No">API en direct</span> Démarrage rapide</a> vous guide tout au long de la création d'une tâche de diffusion en direct et de la configuration d'un Brightcove Player pour la lire.</p>
+      <p>Les <a href="/live-api/getting-started/quick-start-create-live-stream-using-brightcove-live-api.html"> <span>Live API</span> Démarrage rapide</a> vous guide tout au long de la création d'une tâche de diffusion en direct et de la configuration d'un Brightcove Player pour la lire.</p>
 
       <h3 id="List_Live_Jobs">Répertorier les emplois en direct</h3>
 
@@ -318,11 +318,11 @@ grandparent: Live API
     </section>
 
     <section class="bcls-section">
-      <h2 id="Managing_SSAI">Gérant <span translate="No">SSAI</span></h2>
+      <h2 id="Managing_SSAI">Gérant <span>SSAI</span></h2>
 
-      <p>Utilisation de l'insertion d'annonces côté serveur ( <span translate="No">SSAI</span>), vous pouvez insérer autant de coupures publicitaires que vous le souhaitez dans votre diffusion en direct. Vous pouvez également ingérer des actifs d'ardoise (clips VOD) pour remplir tout temps publicitaire inutilisé avec un message de retour ou tout ce que vous voulez.</p>
+      <p>Utilisation de l'insertion d'annonces côté serveur ( <span>SSAI</span>), vous pouvez insérer autant de coupures publicitaires que vous le souhaitez dans votre diffusion en direct. Vous pouvez également ingérer des actifs d'ardoise (clips VOD) pour remplir tout temps publicitaire inutilisé avec un message de retour ou tout ce que vous voulez.</p>
       <aside class="bcls-aside bcls-aside--information">Actuellement, un <strong>SRT + SSAI</strong> la configuration n'est pas prise en charge sur Brightcove Live. Cependant, il est possible d'insérer SSAI dans un flux SRT avec <strong>SCTE-35</strong> marqueurs envoyés par l'encodeur. Pour savoir comment ajouter <strong>SCTE-35</strong> marqueurs, veuillez consulter la documentation de votre encodeur.</aside>
-      <p>Plus de détails sur la mise en place <span translate="No">SSAI</span> peuvent être trouvés dans <a href="/live-api/ssai/live-api-server-side-ad-insertion-ssai.html">Insertion d'annonces côté serveur à l'aide de Brightcove <span translate="No">API en direct</span> </a> et le <a href="/live-api/references/reference.html#api-SSAI">Référence API</a>.</p>
+      <p>Plus de détails sur la mise en place <span>SSAI</span> peuvent être trouvés dans <a href="/live-api/ssai/live-api-server-side-ad-insertion-ssai.html">Insertion d'annonces côté serveur à l'aide de Brightcove <span>Live API</span> </a> et le <a href="/live-api/references/reference.html#api-SSAI">Référence API</a>.</p>
 
       <h3 id="Get_Account_Ad_Configurations">Obtenir les configurations d'annonces de compte</h3>
 
@@ -338,7 +338,7 @@ grandparent: Live API
       <code translate="No"><span class="bcls-highlight">POST</span> https://api.bcovlive.io/v1/ssai/application
         </code></pre>
 
-      <p>Créez une configuration d'annonce qui définit comment les annonces seront récupérées pour <span translate="No">SSAI</span>. Les détails des champs du corps de la requête peuvent être trouvés dans le <a href="/live-api/references/reference.html#/SSAI/CreateAdConfiguration">Référence API.</a></p>
+      <p>Créez une configuration d'annonce qui définit comment les annonces seront récupérées pour <span>SSAI</span>. Les détails des champs du corps de la requête peuvent être trouvés dans le <a href="/live-api/references/reference.html#/SSAI/CreateAdConfiguration">Référence API.</a></p>
 
       <h3 id="Get_Ad_Configuration">Obtenir la configuration de l'annonce</h3>
 
@@ -429,7 +429,7 @@ grandparent: Live API
     }
   }</code></pre>
         </li>
-        <li>La connexion initiale de l'encodeur fournit les informations de bande passante à créer avec la liste de lecture Live. Si la connexion initiale est faible, même si la configuration du travail avait un rendement élevé, la liste de lecture conservera toujours les mêmes informations sur la liste de lecture jusqu'à ce que les étapes suivantes soient effectuées :
+        <li>La connexion initiale de l'encodeur fournit les informations de bande passante à créer avec la liste de lecture Live. Si la connexion initiale est faible, même si la configuration du travail avait un rendement élevé, la liste de lecture conservera toujours les mêmes informations sur la liste de lecture jusqu'à ce que les étapes suivantes soient effectuées:
           <ul>
             <li>L'encodeur est redémarré</li>
             <li>Le cache CDN peut également avoir besoin d'être vidé</li>
@@ -441,7 +441,7 @@ grandparent: Live API
         <li>Bien que vous puissiez ajouter DASH et MP4 pour les sources distantes pour les vidéos Video Cloud, Live prend actuellement en charge <strong translate="No">HLS</strong> seul.</li>
         <li>Seul l'audio AAC est pris en charge pour les flux d'entrée.</li>
         <li>Un maximum de 5 actifs <strong>en attente, non commencé</strong> les travaux sont autorisés à tout moment.
-          <p>Limitations supplémentaires sur les tâches simultanées :</p>
+          <p>Limitations supplémentaires sur les tâches simultanées:</p>
 
           <ul>
             <li>Le nombre de <code translate="No">channel</code> (24x7) jobs est limité à 0 ou à un petit nombre par région (selon le type de compte).</li>

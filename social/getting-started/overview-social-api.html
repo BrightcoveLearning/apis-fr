@@ -1,6 +1,6 @@
 ---
-title: 'Aperçu: API sociale'
-description: 'Cette rubrique fournit une vue d'ensemble de l'API Social.'
+title: 'Aperçu: Social API'
+description: "Cette rubrique fournit une vue d'ensemble de l'API Social."
 parent: Getting Started 
 grandparent: Social API
 ---
@@ -9,27 +9,27 @@ grandparent: Social API
   <summary>{{ page.description }}</summary>
   <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
-    <p>L'API sociale permet d'obtenir le statut de partage social et l'historique de vos vidéos. Il est principalement destiné à faciliter les intégrations CMS, pour permettre à vos utilisateurs de visualiser ces informations dans votre propre système CMS.</p>
+    <p>Social API permet d'obtenir le statut de partage social et l'historique de vos vidéos. Il est principalement destiné à faciliter les intégrations CMS, pour permettre à vos utilisateurs de visualiser ces informations dans votre propre système CMS.</p>
     <p>Pour plus de détails sur les demandes, consultez le <a href="/social/references/reference.html">Référence API</a>.</p>
   </section>
   <section class="bcls-section">
     <h2 id="base_url">URL de base</h2>
-    <p>L'URL de base de l'API est :</p>
+    <p>L'URL de base de l'API est:</p>
     <pre>
   <code class="language-http" translate="No">https://edge.social.api.brightcove.com/v1</code></pre>
   </section>
   <section class="bcls-section">
     <h2 id="authentication">Authentification</h2>
-    <p>L'authentification des demandes nécessite un <span translate="No">En-tête d'autorisation</span> :</p>
+    <p>L'authentification des demandes nécessite un <span>En-tête d'autorisation</span> :</p>
     <pre class="line-numbers">
         <code class="language-http" translate="No">Authorization: Bearer {access_token}</code></pre>
-    <p>Les <code translate="No">access_token</code> est un jeton d'accès OAuth2 temporaire qui doit être obtenu auprès du <span translate="No">Brightcove OAuth</span> service. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a> sujet.</p>
+    <p>Les <code translate="No">access_token</code> est un jeton d'accès OAuth2 temporaire qui doit être obtenu auprès du <span>Brightcove OAuth</span> service. Pour plus de détails sur la façon d'obtenir les informations d'identification client et de les utiliser pour récupérer des jetons d'accès, consultez le <a href="/oauth/getting-started/overview-oauth-api-v4.html">Présentation de Brightcove OAuth</a> sujet.</p>
     <h3>Opérations</h3>
-    <p>Lorsque vous demandez les informations d'identification du client, vous devrez spécifier le type d'accès au compte ou les opérations que vous souhaitez. Ce qui suit est une liste des opérations actuellement prises en charge pour le <span translate="No">API sociale</span> :</p>
+    <p>Lorsque vous demandez les informations d'identification du client, vous devrez spécifier le type d'accès au compte ou les opérations que vous souhaitez. Ce qui suit est une liste des opérations actuellement prises en charge pour le <span>Social API</span> :</p>
     <ul>
       <li><code translate="No">video-cloud/social/status/read</code></li>
     </ul>
-    <p>Notez que même si l'API sociale est en version bêta, les autorisations pour elle sont <strong>ne pas</strong> disponible dans la section Admin Studio pour la gestion des informations d'identification de l'API. Au lieu de cela, vous devrez utiliser l'API OAuth pour créer vos informations d'identification. Cependant, Brightcove Learning Services a créé un <a href="/oauth/code-samples/oauth-api-sample-create-client-credentials.html">outil en ligne simple</a> pour faire ça.</p>
+    <p>Notez que même si Social API est en version bêta, les autorisations pour elle sont <strong>ne pas</strong> disponible dans la section Admin Studio pour la gestion des informations d'identification de l'API. Au lieu de cela, vous devrez utiliser OAuth API pour créer vos informations d'identification. Cependant, Brightcove Learning Services a créé un <a href="/oauth/code-samples/oauth-api-sample-create-client-credentials.html">outil en ligne simple</a> pour faire ça.</p>
   </section>
   <section class="bcls-section">
     <h2 id="Summary_of_requests">Résumé des demandes</h2>

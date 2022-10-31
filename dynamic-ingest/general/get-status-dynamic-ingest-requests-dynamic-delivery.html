@@ -1,7 +1,6 @@
 ---
-title: 'Obtenir l'état des demandes d'ingestion dynamique'
-description: 'Lorsque vous utilisez le <span translate="No">API d'ingestion dynamique</span> pour ajouter des vidéos à votre compte Video Cloud, ce que vous voulez le plus savoir, c'est quand la vidéo a été traitée et si les rendus ont été créés avec succès ou non.'
-
+title: "Obtenir l'état des demandes d'ingestion dynamique"
+description: "Lorsque vous utilisez le <span>Dynamic Ingest API</span> pour ajouter des vidéos à votre compte Video Cloud, ce que vous voulez le plus savoir, c'est quand la vidéo a été traitée et si les rendus ont été créés avec succès ou non."
 parent: 'General Information' 
 grandparent: Dynamic Ingest API
 ---
@@ -11,7 +10,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="introduction">introduction</h2>
 
-    <p>Ce document explique comment vous pouvez suivre l'état des travaux en faisant des demandes d'état au <span translate="No">API CMS</span> ou en utilisant <span translate="No">API d'ingestion dynamique</span> <a href="/dynamic-ingest/general/notifications-dynamic-delivery-video-cloud.html">avis</a>. Nous fournissons également un exemple d'application de tableau de bord qui automatise le processus</p>
+    <p>Ce document explique comment vous pouvez suivre l'état des travaux en faisant des demandes d'état au CMS API ou en utilisant <span>Dynamic Ingest API</span> <a href="/dynamic-ingest/general/notifications-dynamic-delivery-video-cloud.html">avis</a>. Nous fournissons également un exemple d'application de tableau de bord qui automatise le processus</p>
 
     <p>Notez que l'état des tâches d'ingestion n'est disponible que pour les tâches soumises au cours des 7 derniers jours.</p>
     </section>
@@ -19,14 +18,14 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="requesting_status">Statut de la demande</h2>
 
-    <p>Vous obtenez le statut des tâches d'ingestion dynamiques (ingestion, remplacement ou retranscodage) à l'aide de <a href="/cms/references/reference.html#operation/GetStatusOfIngestJob">ces <span translate="No">API CMS</span> points de terminaison</a> - notez que ces points de terminaison fonctionnent pour <strong>Tâches de livraison dynamique uniquement</strong>:</p>
+    <p>Vous obtenez le statut des tâches d'ingestion dynamiques (ingestion, remplacement ou retranscodage) à l'aide de <a href="/cms/references/reference.html#operation/GetStatusOfIngestJob">ces CMS API points de terminaison</a> - notez que ces points de terminaison fonctionnent pour <strong>Tâches de livraison dynamique uniquement</strong>:</p>
 
     <h3>Obtenez le statut pour tous les travaux</h3>
 
     <pre>
     <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/{account_id}/videos/{video_id}/ingest_jobs</code></pre>
 
-    <p>La réponse ressemblera à ceci :</p>
+    <p>La réponse ressemblera à ceci:</p>
 
     <pre class="line-numbers">
      <code class="language-json" translate="No">[
@@ -61,7 +60,7 @@ grandparent: Dynamic Ingest API
     <pre>
     <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/{account_id}/videos/{video_id}/ingest_jobs/{job_id}</code></pre>
 
-    <p>La réponse ressemblera à ceci :</p>
+    <p>La réponse ressemblera à ceci:</p>
 
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -81,7 +80,7 @@ grandparent: Dynamic Ingest API
 
     <ul>
       <li><code translate="No">processing</code>: traitement, la vidéo n'est pas encore lisible</li>
-      <li><code translate="No">publishing</code> : au moins un rendu lisible a été créé et la vidéo est en cours de préparation pour la lecture</li>
+      <li><code translate="No">publishing</code>: au moins un rendu lisible a été créé et la vidéo est en cours de préparation pour la lecture</li>
       <li><code translate="No">published</code>: au moins un rendu est disponible pour la lecture</li>
       <li><code translate="No">finished</code>: au moins un rendu audio/vidéo a été traité</li>
       <li><code translate="No">failed</code>: le traitement a échoué ; si vous n'arrivez pas à comprendre ce qui s'est mal passé, contactez l'assistance</li>
@@ -93,7 +92,7 @@ grandparent: Dynamic Ingest API
 
     <p>Bien que la méthode de statut de la demande décrite ci-dessus fonctionne, si vous attendez un état particulier (<code translate="No">published</code> ou <code translate="No">finished</code>), il est préférable de laisser Brightcove vous avertir lorsque ces événements se produisent plutôt que de devoir continuer à demander le statut jusqu'à ce que vous obteniez la réponse que vous recherchez. Nous allons maintenant voir comment vous pouvez créer une application autour de la gestion des notifications.</p>
 
-    <p>Les notifications Dynamic Ingest vous donnent toutes les informations dont vous avez besoin pour savoir quand votre vidéo est prête - il vous suffit de savoir quoi rechercher... et de définir ce que "prêt" signifie pour vos systèmes. Ce diagramme résume le flux de travail :</p>
+    <p>Les notifications Dynamic Ingest vous donnent toutes les informations dont vous avez besoin pour savoir quand votre vidéo est prête - il vous suffit de savoir quoi rechercher... et de définir ce que "prêt" signifie pour vos systèmes. Ce diagramme résume le flux de travail:</p>
 
     <figure class="bcls-figure"><img class="bcls-image" alt="Ingest Status Workflow" src="/assets/images/dynamic-ingest/general/ingestion-status-architecture.svg" />
     <figcaption class="bcls-caption--image">Flux de travail de statut d'ingestion</figcaption>
@@ -103,7 +102,7 @@ grandparent: Dynamic Ingest API
     <section id="Dynamic_Ingest_Notifications" class="bcls-section">
     <h2>Notifications d'ingestion dynamique</h2>
 
-    <p>Le service de notification Dynamic Ingest vous envoie des notifications pour plusieurs types d'événements. Les deux qui sont les plus utiles pour déterminer quand la vidéo est "prête" sont celles qui indiquent que des rendus particuliers ont été créés et celle qui indique que tout le traitement est terminé. Voici des exemples de chacun :</p>
+    <p>Le service de notification Dynamic Ingest vous envoie des notifications pour plusieurs types d'événements. Les deux qui sont les plus utiles pour déterminer quand la vidéo est "prête" sont celles qui indiquent que des rendus particuliers ont été créés et celle qui indique que tout le traitement est terminé. Voici des exemples de chacun:</p>
 
     <h3>Notification de création de rendu dynamique</h3>
 
@@ -129,7 +128,7 @@ grandparent: Dynamic Ingest API
     <figcaption class="bcls-caption--image">Notification de rendu créé</figcaption>
     </figure>
 
-    <p>Remarque dans cet exemple :</p>
+    <p>Remarque dans cet exemple:</p>
 
     <ul>
       <li>Les <code translate="No">videoId </code> la valeur vous permet de savoir à quelle vidéo le rendu est destiné (au cas où plusieurs tâches d'ingestion seraient en cours d'exécution)</li>
@@ -157,14 +156,14 @@ grandparent: Dynamic Ingest API
     <figcaption class="bcls-caption--image">Notification de traitement terminé</figcaption>
     </figure>
 
-    <p>Remarque dans cet exemple :</p>
+    <p>Remarque dans cet exemple:</p>
 
     <ul>
       <li>Les <code translate="No">videoId </code> et <code translate="No">jobId </code> les valeurs vous permettent de savoir à quelle vidéo il s'agit (au cas où plusieurs tâches d'ingestion seraient en cours d'exécution)</li>
       <li>Si la <code translate="No">status </code> la valeur est "SUCCESS", la vidéo a été traitée avec succès</li>
     </ul>
 
-    <p>Pour recevoir des notifications, vous devez inclure un champ « rappels » en vous <span translate="No">API d'ingestion dynamique</span> requêtes, pointant vers une ou plusieurs adresses de rappel :</p>
+    <p>Pour recevoir des notifications, vous devez inclure un champ « rappels » en vous <span>Dynamic Ingest API</span> requêtes, pointant vers une ou plusieurs adresses de rappel:</p>
 
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -180,10 +179,10 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section" id="sample">
     <h2>Exemple de tableau de bord</h2>
 
-    <p>Cette section explique comment les notifications peuvent être rassemblées pour créer un tableau de bord simple pour l'API Dynamic Ingest. Le gestionnaire de notifications analyse les notifications du <span translate="No">API d'ingestion dynamique</span> pour identifier le traitement des notifications complètes. Il ajoute ensuite les notifications vidéo dans un tableau d'objets pour chaque vidéo dans un fichier JSON. Le tableau de bord lui-même est une page HTML qui importe le fichier JSON pour obtenir les données de notification. Il utilise les identifiants pour faire une demande au <a href="/cms/getting-started/overview-cms-api.html">API CMS</a> pour obtenir les métadonnées de la vidéo.</p>
+    <p>Cette section explique comment les notifications peuvent être rassemblées pour créer un tableau de bord simple pour Dynamic Ingest API. Le gestionnaire de notifications analyse les notifications du <span>Dynamic Ingest API</span> pour identifier le traitement des notifications complètes. Il ajoute ensuite les notifications vidéo dans un tableau d'objets pour chaque vidéo dans un fichier JSON. Le tableau de bord lui-même est une page HTML qui importe le fichier JSON pour obtenir les données de notification. Il utilise les identifiants pour faire une demande au <a href="/cms/getting-started/overview-cms-api.html">CMS API</a> pour obtenir les métadonnées de la vidéo.</p>
     <!-- You can view the dashboard <a href="//solutions.brightcove.com/bcls/di-api/di-log.html">here</a> --><!-- <p>All the files for this app, along with instructions for setting it up for your account, are in <a href="https://github.com/BrightcoveLearning/dynamic-ingest-dashboard">this repository</a>.</p> -->
 
-    <p>Voici l'architecture de haut niveau de l'application :</p>
+    <p>Voici l'architecture de haut niveau de l'application:</p>
 
     <figure class="bcls-figure"><img class="bcls-image" alt="Ingest Dashboard Architecture" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/general-information/di-status/ingestion-dashboard-architecture.svg" />
     <figcaption class="bcls-caption--image">Ingérer l'architecture du tableau de bord</figcaption>
@@ -191,19 +190,19 @@ grandparent: Dynamic Ingest API
 
     <h3>Les parties de l'application</h3>
 
-    <p>Le gestionnaire de notifications est intégré à PHP - il recherche le traitement des notifications complètes et ajoute l'identifiant vidéo à un tableau dans un fichier JavaScript séparé :</p>
+    <p>Le gestionnaire de notifications est intégré à PHP - il recherche le traitement des notifications complètes et ajoute l'identifiant vidéo à un tableau dans un fichier JavaScript séparé:</p>
 
     <pre class="line-numbers">
     <code class="language-php">&lt;?php // POST won't work for JSON data $problem = "No errors"; try { $json = file_get_contents('php://input'); $decoded = json_decode($json, true); } catch (Exception $e) { $problem = $e-&gt;getMessage(); echo $problem; } // full notification $notification = json_encode($decoded, JSON_PRETTY_PRINT); // Begin by extracting the useful parts of the notification // for Dynamic Delivery, look for 'videoId' if (isset($decoded["videoId"])) { $videoId = $decoded["videoId"]; } elseif (isset($decoded["entity"])) { $videoId = $decoded["entity"]; } else { $videoId = null; } if (isset($decoded["entityType"])) { $entityType = $decoded["entityType"]; } else { $entityType = null; } if (isset($decoded["status"])) { $status = $decoded["status"]; } else { $status = null; } if (isset($decoded["action"])) { $action = $decoded["action"]; } else { $action = null; } // if notification is for completed title, act if (($entityType == 'TITLE') &amp;&amp; ($action == 'CREATE')) { if (($status == 'SUCCESS') || ($status == 'FAILED')) { $newLine = "\nvideoIdArray.unshift(".$videoId.");"; // Tell PHP where it can find the log file and tell PHP to open it // and add the string we created earlier to it. $logFileLocation = "video-ids.js"; $fileHandle = fopen($logFileLocation, 'a') or die("-1"); chmod($logFileLocation, 0777); fwrite($fileHandle, $newLine); fclose($fileHandle); } } // save full notification for audit trail $logEntry = $notification.",\n"; $logFileLocation = "full-log.txt"; $fileHandle = fopen($logFileLocation, 'a') or die("-1"); chmod($logFileLocation, 0777); fwrite($fileHandle, $logEntry); fclose($fileHandle); echo "Dynamic Ingest callback app is running"; ?&gt; </code>
       </pre>
 
-    <h4>Fichier JSON :</h4>
+    <h4>Fichier JSON:</h4>
 
     <p>Le fichier JSON est initialement un tableau vide ( <code translate="No">[] </code> ) - les données sont ajoutées par le gestionnaire de notification.</p>
 
     <h4>Tableau de bord</h4>
 
-    <p>Le tableau de bord comprend le code HTML et JavaScript pour récupérer les données de notification et des données vidéo supplémentaires à partir du <span translate="No">API CMS</span> et écris les résultats dans un tableau :</p>
+    <p>Le tableau de bord comprend le code HTML et JavaScript pour récupérer les données de notification et des données vidéo supplémentaires à partir du CMS API et écris les résultats dans un tableau :</p>
 
     <pre class="line-numbers">
       <code class="language-html" translate="No">&lt;!DOCTYPE html&gt;
@@ -394,7 +393,7 @@ grandparent: Dynamic Ingest API
             submitRequest(requestOptions, proxyURL, 'video');
           }
           /**
-          * initiates the <span translate="No">CMS API</span> requests
+          * initiates the CMS API requests
           */
           function getVideoInfo() {
             iMax = videoDataArray.length;
@@ -406,7 +405,7 @@ grandparent: Dynamic Ingest API
             }
           }
           /**
-          * make the <span translate="No">CMS API</span> requests
+          * make the CMS API requests
           * @param {Object} options request options
           * @param (String) url URL to send request to
           * @param (String) type the request type
@@ -512,12 +511,12 @@ grandparent: Dynamic Ingest API
     <h4>Procuration</h4>
 
     <pre class="line-numbers">
-    <code class="language-php">&lt;?php /** * brightcove-learning-proxy.php - proxy pour les API RESTful Brightcove * obtient un jeton d'accès, effectue la demande et renvoie la réponse * Accès : * URL : https://solutions.brightcove.com/ bcls/bcls-proxy/bcsl-proxy.php * (notez que vous devez *toujours* accéder au proxy via HTTPS) * Méthode : POSTER * * @poster {string} url - l'URL de la requête API * @post {string} [requestType=GET] - Méthode HTTP pour la requête * @post {string} [requestBody=null] - Données JSON à envoyer avec les demandes d'écriture * * @returns {string} $response - Réponse JSON reçue de l'API */ // En-tête d'activation CORS ("Access-Control-Allow-Origin: *"); // configurer la demande de jeton d'accès $data = array(); // // modifiez les valeurs ci-dessous pour utiliser ce proxy avec un autre compte // $client_id = "YOUR_CLIENT_ID_HERE"; $client_secret = "VOTRE_CLIENT_SECRET_ICI" ; $ chaîne_auth = "{$client_id}:{$client_secret}"; $request = "https://oauth.brightcove.com/v4/access_token?grant_type=client_credentials"; $ch = curl_init($request); curl_setopt_array($ch, array( CURLOPT_POST =&gt; TRUE, CURLOPT_RETURNTRANSFER =&gt; TRUE , CURLOPT_SSL_VERIFYPEER =&gt; FALSE, CURLOPT_USERPWD =&gt; $auth_string, CURLOPT_HTTPHEADER =&gt; array( 'Content-type: application/x-www-form-urlencoded', ), CURLOPT_POSTFIELDS =&gt; $data )); $response($ch curl_ ); curl_close($ch); // Vérifier les erreurs if ($response === FALSE) { die(curl_error($ch)); } // Décode la réponse $responseData = json_decode($response, TRUE); $access_token = $responseData["access_token"] ; // configure l'appel d'API // obtient les données si ($_POST["requestBody"]) { $data = json_decode($_POST["requestBody"]); } autre { $data = array(); } // obtient le type de requête ou par défaut GET if ($_POST["requestType"]) { $method = $_POST["requestType"]; } autre { $method = "GET"; } // récupère l'URL et les informations d'autorisation à partir des données du formulaire $request = $_POST["url"]; //envoyer la requête http $ch = curl_init($request); curl_setopt_array($ch, array( CURLOPT_CUSTOMREQUEST =&gt; $method, CURLOPT_RETURNTRANSFER =&gt; TRUE, CURLOPT_SSL_VERIFYPEER =&gt; FALSE, CURLOPT_HTTPHEADER =&gt; array( 'Content-type: application/json', " Porteur {$access_token}", ), CURLOPT_POSTFIELDS =&gt; json_encode($data) )); $response = curl_exec($ch); curl_close($ch); // Vérifier les erreurs si ($response === FALSE) { echo "Error: "+$response; die(curl_error($ch)); } // Décode la réponse // $responseData = json_decode($response, TRUE); // renvoie la réponse à l'appelant AJAX echo $response; ?&gt; </code>
+    <code class="language-php">&lt;?php /** * brightcove-learning-proxy.php - proxy pour les API RESTful Brightcove * obtient un jeton d'accès, effectue la demande et renvoie la réponse * Accès: * URL: https://solutions.brightcove.com/ bcls/bcls-proxy/bcsl-proxy.php * (notez que vous devez *toujours* accéder au proxy via HTTPS) * Méthode: POSTER * * @poster {string} url - l'URL de la requête API * @post {string} [requestType=GET] - Méthode HTTP pour la requête * @post {string} [requestBody=null] - Données JSON à envoyer avec les demandes d'écriture * * @returns {string} $response - Réponse JSON reçue de l'API */ // En-tête d'activation CORS ("Access-Control-Allow-Origin: *"); // configurer la demande de jeton d'accès $data = array(); // // modifiez les valeurs ci-dessous pour utiliser ce proxy avec un autre compte // $client_id = "YOUR_CLIENT_ID_HERE"; $client_secret = "VOTRE_CLIENT_SECRET_ICI" ; $ chaîne_auth = "{$client_id}:{$client_secret}"; $request = "https://oauth.brightcove.com/v4/access_token?grant_type=client_credentials"; $ch = curl_init($request); curl_setopt_array($ch, array( CURLOPT_POST =&gt; TRUE, CURLOPT_RETURNTRANSFER =&gt; TRUE , CURLOPT_SSL_VERIFYPEER =&gt; FALSE, CURLOPT_USERPWD =&gt; $auth_string, CURLOPT_HTTPHEADER =&gt; array( 'Content-type: application/x-www-form-urlencoded', ), CURLOPT_POSTFIELDS =&gt; $data )); $response($ch curl_ ); curl_close($ch); // Vérifier les erreurs if ($response === FALSE) { die(curl_error($ch)); } // Décode la réponse $responseData = json_decode($response, TRUE); $access_token = $responseData["access_token"] ; // configure l'appel d'API // obtient les données si ($_POST["requestBody"]) { $data = json_decode($_POST["requestBody"]); } autre { $data = array(); } // obtient le type de requête ou par défaut GET if ($_POST["requestType"]) { $method = $_POST["requestType"]; } autre { $method = "GET"; } // récupère l'URL et les informations d'autorisation à partir des données du formulaire $request = $_POST["url"]; //envoyer la requête http $ch = curl_init($request); curl_setopt_array($ch, array( CURLOPT_CUSTOMREQUEST =&gt; $method, CURLOPT_RETURNTRANSFER =&gt; TRUE, CURLOPT_SSL_VERIFYPEER =&gt; FALSE, CURLOPT_HTTPHEADER =&gt; array( 'Content-type: application/json', " Porteur {$access_token}", ), CURLOPT_POSTFIELDS =&gt; json_encode($data) )); $response = curl_exec($ch); curl_close($ch); // Vérifier les erreurs si ($response === FALSE) { echo "Error: "+$response; die(curl_error($ch)); } // Décode la réponse // $responseData = json_decode($response, TRUE); // renvoie la réponse à l'appelant AJAX echo $response; ?&gt; </code>
     </pre>
 
     <h4>Effacer le journal</h4>
 
-    <p>Cette application PHP simple restaure simplement le fichier JavaScript à son état d'origine, en effaçant les anciens identifiants vidéo :</p>
+    <p>Cette application PHP simple restaure simplement le fichier JavaScript à son état d'origine, en effaçant les anciens identifiants vidéo:</p>
 
     <pre class="line-numbers">
     <code class="language-php">&lt;?php $logFileLocation = "di.json"; $freshContent = array (); $encodedContent = json_encode($freshContent); file_put_contents($logFileLocation, $encodedContent); echo 'Fichier journal effacé - &lt;a href="di-log.html"&gt;retourner au tableau de bord&lt;/a&gt;' ; ?&gt; </code>

@@ -1,6 +1,6 @@
 ---
-title: 'Rapport vidéo par joueur et jour'
-description: 'L'interface utilisateur d'analyse de Video Cloud Studio propose un certain nombre de rapports prêts à l'emploi, mais vous pouvez créer des rapports supplémentaires à l'aide de <span translate="No">API d'analyse</span> qui sont adaptés à vos besoins spécifiques. Dans cet exemple, nous allons créer un rapport sur toutes les vidéos du compte, regroupées par joueur, indiquant le nombre total de vues, le pourcentage de vues terminées, le nombre moyen de secondes vues par vue et le nombre total de secondes vues pour chaque jour dans la période choisie.'
+title: 'Rapport vidéo par Lecteur et jour'
+description: "L'interface utilisateur d'analyse de Video Cloud Studio propose un certain nombre de rapports prêts à l'emploi, mais vous pouvez créer des rapports supplémentaires à l'aide de Analytics API qui sont adaptés à vos besoins spécifiques. Dans cet exemple, nous allons créer un rapport sur toutes les vidéos du compte, regroupées par Lecteur, indiquant le nombre total de vues, le pourcentage de vues terminées, le nombre moyen de secondes vues par vue et le nombre total de secondes vues pour chaque jour dans la période choisie."
 parent: Code Samples 
 grandparent: Analytics API
 ---
@@ -16,7 +16,7 @@ grandparent: Analytics API
   <section class="bcls-section">
     <h2 id="Dependencies">Dépendances</h2>
 
-    <p>Bibliothèques tierces utilisées dans cet exemple :</p>
+    <p>Bibliothèques tierces utilisées dans cet exemple:</p>
 
     <ul>
       <li>Datepickr<a href="https://github.com/joshsalverda/datepickr"></a></li>
@@ -29,26 +29,26 @@ grandparent: Analytics API
         <h2 id="gettingCredentials">Obtenir des informations d'identification</h2>
       </summary>
 
-      <p>Pour obtenir un <code translate="No">client_id</code> et <code translate="No">client_secret</code> , vous devrez accéder à l'interface utilisateur OAuth et enregistrer cette application :</p>
+      <p>Pour obtenir un <code translate="No">client_id</code> et <code translate="No">client_secret</code> , vous devrez accéder à l'interface utilisateur OAuth et enregistrer cette application:</p>
 
       <ul>
         <li><a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a></li>
       </ul>
 
-      <p>Voici les autorisations dont vous aurez besoin :</p>
+      <p>Voici les autorisations dont vous aurez besoin:</p>
 
       <figure class="bcls-figure"><img class="bcls-image" alt="Analytics API Permissions" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/analytics-api/aapi-permissions.png" />
-        <figcaption class="bcls-caption--image">Autorisations de l'API Analytics</figcaption>
+        <figcaption class="bcls-caption--image">Autorisations de Analytics API</figcaption>
       </figure>
 
-      <p>Vous pouvez également obtenir vos informations d'identification via CURL ou Postman - voir :</p>
+      <p>Vous pouvez également obtenir vos informations d'identification via CURL ou Postman - voir:</p>
 
       <ul>
         <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">Obtenir les informations d'identification du client à l'aide de CURL</a></li>
         <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">Obtenez les informations d'identification du client à l'aide de Postman</a></li>
       </ul>
 
-      <p>Si vous obtenez des informations d'identification directement de l'API, voici les autorisations dont vous avez besoin :</p>
+      <p>Si vous obtenez des informations d'identification directement de l'API, voici les autorisations dont vous avez besoin:</p>
 
       <pre class="line-numbers">
       <code class="language-json" translate="No">[
@@ -63,7 +63,7 @@ grandparent: Analytics API
     <h3>Code source</h3>
     <p>Retrouvez tout le code associé à cet exemple dans ce <a href="https://github.com/BrightcoveLearning/17988-video-report-player-and-day">Dépôt GitHub</a>.</p>
     <h3>Exemple d'application</h3>
-    <p data-height="1200" data-theme-id="34967" data-slug-hash="pLYvEV" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="Analytics API Sample: Video Report by Player and Day" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/pLYvEV/">Exemple d'API d'analyse : Rapport vidéo par joueur et jour</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
+    <p data-height="1200" data-theme-id="34967" data-slug-hash="pLYvEV" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="Analytics API Sample: Video Report by Player and Day" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/pLYvEV/">Exemple d'Analytics API: Rapport vidéo par Lecteur et jour</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
     <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
   </section>
 
@@ -73,7 +73,7 @@ grandparent: Analytics API
         <h2 id="Using_the_CodePen">Utiliser le CodePen</h2>
       </summary>
 
-      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus :</p>
+      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus:</p>
 
       <ul>
         <li>Basculez l'affichage réel de l'application en cliquant sur le bouton <strong>Résultat</strong> bouton.</li>

@@ -1,6 +1,6 @@
 Dimension:---
 title: ' <code translate="No">social_platform</code>'
-description: 'Dans cette rubrique, vous découvrirez les <span translate="No">API d'analyse</span> <code translate="No">social_platform</code> dimension. Les <code translate="No">social_platform</code> dimension fournit des analyses pour les plateformes sociales telles que Twitter, Facebook et YouTube, si vous avez distribué vos vidéos sur ces plateformes à l'aide du module Video Cloud Radius.'
+description: "Dans cette rubrique, vous découvrirez les Analytics API <code translate="No">social_platform</code> dimension. Les <code translate="No">social_platform</code> dimension fournit des analyses pour les plateformes sociales telles que Twitter, Facebook et YouTube, si vous avez distribué vos vidéos sur ces plateformes à l'aide du module Video Cloud Radius."
 parent: Dimension Guides 
 grandparent: Analytics API
 ---
@@ -10,7 +10,7 @@ grandparent: Analytics API
     <section class="bcls-section">
     <h2 id="urlParams">Paramètres d'URL</h2>
     
-    <p>Les rapports de l'API Analytics prennent en charge les paramètres d'URL suivants.</p>
+    <p>Les rapports de Analytics API prennent en charge les paramètres d'URL suivants.</p>
     
     <table class="bcls-table">
       <caption class="bcls-caption--table">Paramètres d'URL</caption>
@@ -124,7 +124,7 @@ grandparent: Analytics API
     
     <p>Utilisée comme filtre, une dimension permet d'affiner les résultats.</p>
     
-    <p id="filters">Filtrer les valeurs : facebook, twitter, youtube</p>
+    <p id="filters">Filtrer les valeurs: facebook, twitter, youtube</p>
     </section>
     
     <section class="bcls-section">
@@ -139,13 +139,13 @@ grandparent: Analytics API
     <h3>Demande de dimension</h3>
     
     <pre class="line-numbers language-http code-toolbar">
-    <code class="language-http" id="dimensionRequest"><span class="token header-name keyword"><span class="token header-name keyword">https :</span></span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=social_platform</code></pre>
+    <code class="language-http" id="dimensionRequest"><span class="token header-name keyword"><span class="token header-name keyword">https:</span></span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=social_platform</code></pre>
     <button class="bcls-button" id="sendDimensionRequest">Tester cette demande</button>
     
     <h3>Demande de filtre</h3>
     
     <pre class="line-numbers language-http">
-    <code class="language-http" id="filterRequest"><span class="token header-name keyword">https :</span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=account&amp;where=social_platform==twitter</code></pre>
+    <code class="language-http" id="filterRequest"><span class="token header-name keyword">https:</span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=account&amp;where=social_platform==twitter</code></pre>
     <button class="bcls-button" id="sendFilterRequest">Tester cette demande</button>
     
     <h3>Réponse</h3>

@@ -1,6 +1,6 @@
 ---
 title: 'Recherche de catalogue Architecture'
-description: 'Dans cette rubrique, vous découvrirez l'architecture de la technologie de recherche de catalogue utilisée à la fois pour le CMS et les API de lecture.'
+description: "Dans cette rubrique, vous découvrirez l'architecture de la technologie de recherche de catalogue utilisée à la fois pour le CMS et les Playback API."
 parent: Guides 
 grandparent: Playback API
 ---
@@ -10,7 +10,7 @@ grandparent: Playback API
     <section class="bcls-section">
     <h2 id="Overview">Aperçu</h2>
     
-    <p >En avril 2019, la fonctionnalité de recherche de catalogue a été mise à niveau vers Elasticsearch. Cette mise à niveau offre un certain nombre d'avantages, dont les principaux sont une pertinence et une précision améliorées et des performances considérablement améliorées - le temps de réponse est beaucoup plus cohérent et généralement deux fois plus rapide. Cette nouvelle fonctionnalité affectera l'API CMS, l'API Playback, la recherche interactive Studio et les méthodes de recherche dans le catalogue.</p>
+    <p >En avril 2019, la fonctionnalité de recherche de catalogue a été mise à niveau vers Elasticsearch. Cette mise à niveau offre un certain nombre d'avantages, dont les principaux sont une pertinence et une précision améliorées et des performances considérablement améliorées - le temps de réponse est beaucoup plus cohérent et généralement deux fois plus rapide. Cette nouvelle fonctionnalité affectera l'CMS API, le Playback API, la recherche interactive Studio et les méthodes de recherche dans le catalogue.</p>
     
     <p >Bien que Brightcove ait investi beaucoup d'efforts pour rendre les résultats Elasticsearch cohérents, il existe des différences, et il existe une petite possibilité que si vous avez codé des dépendances spécifiques aux résultats de recherche, votre intégration ne se comporte pas comme prévu.</p>
     </section>
@@ -65,20 +65,20 @@ grandparent: Playback API
     
     <h3>Jouable uniquement</h3>
     
-    <p >Il existe deux mécanismes pour restreindre une recherche aux vidéos actuellement lisibles : la requête peut inclure un indicateur, ou la requête elle-même peut nécessiter un certain aspect de la jouabilité.</p>
+    <p >Il existe deux mécanismes pour restreindre une recherche aux vidéos actuellement lisibles: la requête peut inclure un indicateur, ou la requête elle-même peut nécessiter un certain aspect de la jouabilité.</p>
     
     <ul>
       <li>Existant : ceci est interrogé en fonction de la valeur d'un champ qui est mis à jour</li>
-      <li>Elasticsearch : cette requête est basée sur des plages de dates calculées</li>
+      <li>Elasticsearch: cette requête est basée sur des plages de dates calculées</li>
     </ul>
     
     <p >Elasticsearch devrait généralement être plus précis et produire de meilleurs résultats (il y a un décalage associé au mécanisme existant, et le mécanisme de maintenance des indicateurs n'est pas entièrement fiable).</p>
     
     <h3>Précision de l'index</h3>
     
-    <p >L'index Elasticsearch est « plus récent » que l'index existant et a tendance à refléter les mises à jour plus rapidement — ce n'est pas toujours le cas, mais en général, l'expérience avec Elasticsearch est que les résultats refléteront plus précisément l'état des données du catalogue sous-jacent. Les systèmes existants et Elasticsearch sont des systèmes distribués et ne sont donc pas entièrement cohérents dans les résultats qu'ils renvoient : une requête répétée sur l'un ou l'autre système peut potentiellement renvoyer des résultats différents (en particulier dans le cas où plusieurs opérations de suppression s'exécutent simultanément).</p>
+    <p >L'index Elasticsearch est « plus récent » que l'index existant et a tendance à refléter les mises à jour plus rapidement — ce n'est pas toujours le cas, mais en général, l'expérience avec Elasticsearch est que les résultats refléteront plus précisément l'état des données du catalogue sous-jacent. Les systèmes existants et Elasticsearch sont des systèmes distribués et ne sont donc pas entièrement cohérents dans les résultats qu'ils renvoient: une requête répétée sur l'un ou l'autre système peut potentiellement renvoyer des résultats différents (en particulier dans le cas où plusieurs opérations de suppression s'exécutent simultanément).</p>
     
-    <p >Les résultats de recherche existants changent en fonction de l'état de la partition à laquelle un compte est attribué — l'état global d'une partition particulière peut (et a) un impact sur les résultats d'une requête particulière : Elasticsearch n'a pas cette lacune.</p>
+    <p >Les résultats de recherche existants changent en fonction de l'état de la partition à laquelle un compte est attribué — l'état global d'une partition particulière peut (et a) un impact sur les résultats d'une requête particulière: Elasticsearch n'a pas cette lacune.</p>
     </section>
     
     <section class="bcls-section">
@@ -92,12 +92,12 @@ grandparent: Playback API
       <code class="language-html" translate="No">Video#1: has the title “Don’t look into the light”
       Video#2: has the title “Using a lighter to make a campfire”</code></pre>
     
-    <p >L'utilisateur souhaite retourner toutes les vidéos qui doivent avoir le mot « light ». En utilisant l'API CMS, la requête ressemblerait à :</p>
+    <p >L'utilisateur souhaite retourner toutes les vidéos qui doivent avoir le mot « light ». En utilisant l'CMS API, la requête ressemblerait à:</p>
     
     <pre>
       <code class="language-html" translate="No">q=%2Blight or q=+light</code></pre>
     
-    <p >Avec la recherche existante, cela renverra les deux vidéos dans l'ordre :</p>
+    <p >Avec la recherche existante, cela renverra les deux vidéos dans l'ordre:</p>
     
     <pre>
       <code class="language-html" translate="No">Video#2 - “Using a lighter to make a campfire”
@@ -110,7 +110,7 @@ grandparent: Playback API
       <li><strong>Précision</strong>: « Utiliser un briquet pour faire un feu de camp » ne devrait même pas apparaître dans le jeu de résultats, car le mot « lumière » n'apparaît pas du tout dans le titre de la vidéo.</li>
     </ul>
     
-    <p >Avec Elasticsearch, cela ne renverra qu'une seule vidéo :</p>
+    <p >Avec Elasticsearch, cela ne renverra qu'une seule vidéo:</p>
     
     <pre>
       <code class="language-html" translate="No">Video#1 - “Don’t look into the light”</code></pre>
@@ -124,7 +124,7 @@ grandparent: Playback API
     
     <h3>Exemple 2</h3>
     
-    <p >Comme décrit dans notre <a href="/cms/searching/cms-and-playback-apis-video-search-v2.html#Stemming">Documentation de l'API CMS pour le stemming</a> , la recherche de radical est prise en charge, mais pas les recherches de mots partielles. Disons donc qu'il y a 5 vidéos avec les titres suivants :</p>
+    <p >Comme décrit dans notre <a href="/cms/searching/cms-and-playback-apis-video-search-v2.html#Stemming">Documentation de CMS API pour le stemming</a> , la recherche de radical est prise en charge, mais pas les recherches de mots partielles. Disons donc qu'il y a 5 vidéos avec les titres suivants :</p>
     
     <pre>
       <code class="language-html" translate="No">Video#1 - "Parking Ban Announced"
@@ -133,14 +133,14 @@ grandparent: Playback API
       Video#4 - "Bank Holiday"
       Video#5 - "Bandit Captured"</code></pre>
     
-    <p >L'utilisateur souhaite retourner toutes les vidéos qui doivent avoir le mot <strong>interdire</strong> dans le champ du nom. En utilisant l'API CMS, la requête ressemblerait à :</p>
+    <p >L'utilisateur souhaite retourner toutes les vidéos qui doivent avoir le mot <strong>interdire</strong> dans le champ du nom. En utilisant l'CMS API, la requête ressemblerait à:</p>
     
     <pre>
       <code class="language-html" translate="No">q=%2Bname%3Aban or q=+name:ban</code></pre>
     
     <p >On s'attend à ce que « Ban », « Bannir » et « Bannir » produisent des résultats de recherche, car « Ban » est une racine des trois.</p>
     
-    <p >Cependant, avec le système de recherche actuel, les cinq vidéos seront renvoyées dans cet ordre :</p>
+    <p >Cependant, avec le système de recherche actuel, les cinq vidéos seront renvoyées dans cet ordre:</p>
     
     <pre>
       <code class="language-html" translate="No">Video#2 - "Parking to be Banned"

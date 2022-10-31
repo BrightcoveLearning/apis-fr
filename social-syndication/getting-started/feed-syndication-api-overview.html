@@ -1,6 +1,6 @@
 ---
-title: 'Aperçu: API de syndication sociale'
-description: 'L'API de flux de syndication sociale est une API accessible au public qui permet à toute personne possédant des identifiants de compte et de syndication de récupérer un flux MRSS généré à l'aide de l'API de configuration de syndication.'
+title: 'Aperçu: Social Syndication API'
+description: "L'API de flux de syndication sociale est une API accessible au public qui permet à toute personne possédant des identifiants de compte et de syndication de récupérer un flux MRSS généré à l'aide de l'API de configuration de syndication."
 parent: Social Syndication API
 ---
  <h1>{{ page.title }}</h1>
@@ -8,7 +8,7 @@ parent: Social Syndication API
   <summary>{{ page.description }}</summary>
   <p>L'API Brightcove Syndication Feed est une API publique permettant de récupérer les flux MRSS créés à l'aide du <a href="/social-syndication/getting-started/public-syndication-api-overview.html">API de configuration de syndication</a>.</p>
   <p>L'API de configuration de syndication peut également être utilisée pour récupérer des flux en ouvrant simplement le <code translate="No">syndication_url</code> renvoyé dans l'objet de syndication dans un navigateur, mais l'API de flux est différente en ce sens qu'elle ne nécessite aucune authentification - toute personne disposant de la bonne URL peut récupérer le flux.</p>
-  <p>Les principaux cas d'utilisation pour récupérer des flux à l'aide d'une API ou d'une autre sont les suivants :</p>
+  <p>Les principaux cas d'utilisation pour récupérer des flux à l'aide d'une API ou d'une autre sont les suivants:</p>
   <ul>
     <li>Si vous souhaitez uniquement héberger le flux vous-même, pour les abonnés, par exemple, vous utiliserez l'API de configuration de syndication pour récupérer le flux.</li>
     <li>Si vous avez des partenaires de syndication que vous souhaitez donner au flux à utiliser et à héberger de la manière qu'ils souhaitent, vous pouvez donner l'URL de l'API de flux avec le <code translate="No">syndication_id</code> pour récupérer directement les flux.</li>
@@ -18,7 +18,7 @@ parent: Social Syndication API
     <h2 id="OpenAPI_Specification">Référence API / URL de base</h2>
 
     <p>Les <a href="/social-syndication/references/feed-reference.html">Référence de l'API de flux</a> contient tous les détails sur les demandes et les réponses disponibles.</p>
-    <p>L'URL de base est :</p>
+    <p>L'URL de base est:</p>
     <pre><code class="language-http" translate="No">https://social.feeds.brightcove.com/v1</code></pre>
 
   </section>
@@ -29,7 +29,7 @@ parent: Social Syndication API
   <section class="bcls-section">
     <h2 id="operations">Opérations</h2>
     
-    <p>Il n'y a qu'une seule opération pour l'API Feed : OBTENEZ un flux basé sur le <code translate="No">syndication_id</code>.</p>
+    <p>Il n'y a qu'une seule opération pour l'API Feed: OBTENEZ un flux basé sur le <code translate="No">syndication_id</code>.</p>
     
     <p>URL de demande</p>
     
@@ -49,8 +49,8 @@ parent: Social Syndication API
       <dd>Une chaîne datetime ISO-8601 (par exemple, 2016-03-16T15:42:06.000Z ou <code translate="No">2016-03-16T10:47:29-05:00</code> ) qui limitera les résultats du flux aux éléments mis à jour après la date indiquée.</dd>
     </dl>
     
-    <h3>Corps de la requête : aucun</h3> 
+    <h3>Corps de la requête: aucun</h3> 
       <p> C'est important! si vous incluez un corps de requête, une erreur sera renvoyée.</p>
-    <p>Type de réponse : XML</p>
+    <p>Type de réponse: XML</p>
     </section>
 </article>

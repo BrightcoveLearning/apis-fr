@@ -1,6 +1,6 @@
 ---
 title: 'Aperçu: Dimensions, champs et paramètres'
-description: 'Les dimensions sont les catégories de données clés pour <span translate="No">API d'analyse</span> rapports de données. Cette rubrique fournit un guide interactif sur les dimensions et les champs qui peuvent être renvoyés pour elles. Il montre également quelles dimensions peuvent être combinées dans un rapport et les champs disponibles pour les différentes combinaisons.'
+description: "Les dimensions sont les catégories de données clés pour Analytics API rapports de données. Cette rubrique fournit un guide interactif sur les dimensions et les champs qui peuvent être renvoyés pour elles. Il montre également quelles dimensions peuvent être combinées dans un rapport et les champs disponibles pour les différentes combinaisons."
 parent: Getting Started 
 grandparent: Analytics API
 ---
@@ -23,10 +23,10 @@ grandparent: Analytics API
 
 <p id="dimensions">Sélectionnez la ou les dimensions ci-dessous pour voir les champs qui peuvent être renvoyés pour cela. Vous pouvez également cliquer sur le <strong>Faire une demande</strong> pour faire une demande d'échantillon et voir les résultats. Si vous sélectionnez plusieurs dimensions incompatibles, vous verrez un message à cet effet.</p>
 
-<aside class="bcls-aside bcls-aside--information">Remarque : vous ne pouvez pas retourner le champ <code translate="No">video.custom_fields</code> , mais dans certains cas, vous <em>pouvez</em> revenir <code translate="No">video.custom_fields.{field_name}</code>. Ceci est représenté ci-dessous, mais puisque <code translate="No">{field_name}</code> n'est pas un vrai nom de champ, il ne sera pas utilisé dans les exemples de requêtes.</aside>
+<aside class="bcls-aside bcls-aside--information">Remarque: vous ne pouvez pas retourner le champ <code translate="No">video.custom_fields</code> , mais dans certains cas, vous <em>pouvez</em> revenir <code translate="No">video.custom_fields.{field_name}</code>. Ceci est représenté ci-dessous, mais puisque <code translate="No">{field_name}</code> n'est pas un vrai nom de champ, il ne sera pas utilisé dans les exemples de requêtes.</aside>
 
 <fieldset class="bcls-fieldset"><legend>Saisir</legend> <input id="account_id" type="hidden" value="1752604059001" />
-<h3>Sélectionnez la ou les dimensions sur lesquelles créer un rapport :</h3>
+<h3>Sélectionnez la ou les dimensions sur lesquelles créer un rapport:</h3>
 
 <div id="dimensionsCol1" class="fields-list-col">&nbsp;</div>
 
@@ -45,11 +45,11 @@ grandparent: Analytics API
 
 <fieldset class="bcls-fieldset"><legend>Sortir</legend>
 
-<h3>Au plus tôt <code translate="No">from</code> date pour cette combinaison de dimensions : <code id="fromDisplay">&nbsp;</code></h3>
+<h3>Au plus tôt <code translate="No">from</code> date pour cette combinaison de dimensions: <code id="fromDisplay">&nbsp;</code></h3>
 
 <h3 id="logger">&nbsp;</h3>
 
-<h5>Exemple de requête API :</h5>
+<h5>Exemple de requête API:</h5>
 <textarea id="apiRequest" class="bcls-code"></textarea>
 
 <h3>Données de réponse</h3>
@@ -69,7 +69,7 @@ grandparent: Analytics API
 
 <h3>Exemple de demande</h3>
 
-<p>Un cas d'utilisation typique pour obtenir un rapport sur plusieurs dimensions : vous voulez une répartition des vues vidéo entre le bureau et les appareils mobiles, et vous voulez également savoir combien de vues sur les appareils mobiles étaient sur les appareils iOS par rapport aux appareils Android, et combien de vues sur les appareils mobiles les vues étaient sur des machines Mac par rapport à des machines Windows. Actuellement, il n'y a pas de rapport standard dans le module Studio Analytics qui fournit ces informations, mais vous pouvez l'obtenir via cette <span translate="No">API d'analyse</span> appel:</p>
+<p>Un cas d'utilisation typique pour obtenir un rapport sur plusieurs dimensions: vous voulez une répartition des vues vidéo entre le bureau et les appareils mobiles, et vous voulez également savoir combien de vues sur les appareils mobiles étaient sur les appareils iOS par rapport aux appareils Android, et combien de vues sur les appareils mobiles les vues étaient sur des machines Mac par rapport à des machines Windows. Actuellement, il n'y a pas de rapport standard dans le module Studio Analytics qui fournit ces informations, mais vous pouvez l'obtenir via cette Analytics API appel:</p>
 
 <pre>
   <code class="language-http" translate="No">https://analytics.api.brightcove.com/v1/data?accounts=57838016001&amp;dimensions=video,device_type,device_os&amp;from=2014-01-01&amp;to=2014-04-01&amp;fields=video_view</code></pre>
@@ -87,7 +87,7 @@ grandparent: Analytics API
 
 <h4>Échantillon</h4>
 
-<p>Voici un exemple de commande cURL :</p>
+<p>Voici un exemple de commande cURL:</p>
 
 <pre>
   <code class="language-bash" translate="No">curl -s --header "Authorization: Bearer <span class="bcls-input">$ACCESS_TOKEN</span>" \
@@ -118,7 +118,7 @@ grandparent: Analytics API
 			<th class="rotate-90"><code style="word-break:unset;font-weight:normal;">fabricant_de_l'appareil</code></th>
 			<th class="rotate-90"><code style="word-break:unset;font-weight:normal;">type d'appareil</code></th>
 			<th class="rotate-90"><code style="word-break:unset;font-weight:normal;">direct</code></th>
-			<th class="rotate-90"><code style="word-break:unset;font-weight:normal;">joueur</code></th>
+			<th class="rotate-90"><code style="word-break:unset;font-weight:normal;">Lecteur</code></th>
 			<th class="rotate-90">referrer_domain<code style="word-break:unset;font-weight:normal;"></code></th>
 			<th class="rotate-90"><code style="word-break:unset;font-weight:normal;">Région</code></th>
 			<th class="rotate-90"><code style="word-break:unset;font-weight:normal;">termes_recherche</code></th>
@@ -553,7 +553,7 @@ grandparent: Analytics API
 <section class="bcls-section">
 <h2 id="params">Paramètres</h2>
 
-<p>Vous trouverez ci-dessous un tableau récapitulant les paramètres disponibles dans le <span translate="No">API d'analyse</span>. L'utilisation des paramètres est discutée plus en détail dans les sections qui suivent.</p>
+<p>Vous trouverez ci-dessous un tableau récapitulant les paramètres disponibles dans le Analytics API. L'utilisation des paramètres est discutée plus en détail dans les sections qui suivent.</p>
 
 <table class="bcls-table">
 	<thead class="bcls-table__head">
@@ -582,7 +582,7 @@ grandparent: Analytics API
 <section class="bcls-section">
 <h2 id="filterValues">Où les filtres</h2>
 
-<p>La syntaxe générale des filtres est :</p>
+<p>La syntaxe générale des filtres est:</p>
 
 <pre>
 <code class="language-http" translate="No">where=dimension1==value1;dimension2==value2</code></pre>
@@ -592,7 +592,7 @@ grandparent: Analytics API
 <pre>
 <code class="language-http" translate="No">https://analytics.api.brightcove.com/v1?accounts=<span class="bcls-input">account_id(s)</span>&amp;dimensions=device_type&amp;where=video==<span class="bcls-input">video_id</span>;device_type==tablet</code></pre>
 
-<p>Les virgules sont traitées comme des OU logiques et les points-virgules comme des ET logiques. Par exemple, <code class="language-http" translate="No">where=video==1234,5678;player==9876</code> est interprété comme "où vidéo = 1234 <strong>OU</strong> 5678 <strong>ET</strong> joueur = 9876"</p>
+<p>Les virgules sont traitées comme des OU logiques et les points-virgules comme des ET logiques. Par exemple, <code class="language-http" translate="No">where=video==1234,5678;player==9876</code> est interprété comme "où vidéo = 1234 <strong>OU</strong> 5678 <strong>ET</strong> Lecteur = 9876"</p>
 
 <h3>Espaces et caractères spéciaux</h3>
 
@@ -604,18 +604,18 @@ grandparent: Analytics API
 <p>Vous pouvez utiliser n'importe quelle dimension comme filtre, <strong>mais <em>seul</em> si cette dimension est également incluse dans le <code translate="No">dimensions</code></strong> vous demandez.</p>
 
 <aside class="bcls-aside bcls-aside--warning">
-<p>Notez les points suivants lorsque vous filtrez sur les joueurs :</p>
+<p>Notez les points suivants lorsque vous filtrez sur les Lecteurs:</p>
 
 <ul>
-	<li><strong>Joueurs de Brightcove</strong> - Saisissez l'URL du lecteur dans ce format : <code translate="No">players.brightcove.com/account_id/player_id <span class="bcls-highlight">_default</span> </code></li>
-	<li>Si vous avez utilisé un <a href="https://studio.support.brightcove.com/publish/adding-application-id-player-embed-code.html">ID d'application</a> pour identifier le lecteur, puis saisissez l'URL du lecteur au format suivant : <code translate="No">players.brightcove.com/account_id/player_id_default/ <span class="bcls-highlight">application-id</span> </code> - par exemple: <code translate="No">players.brightcove.com/1752604059001/BJFYWrtUl_default/AlltimeViewsPlayerSample</code></li>
-	<li>Lecteurs intelligents - Entrez l'ID du joueur</li>
+	<li><strong>Lecteurs de Brightcove</strong> - Saisissez l'URL du lecteur dans ce format: <code translate="No">players.brightcove.com/account_id/player_id <span class="bcls-highlight">_default</span> </code></li>
+	<li>Si vous avez utilisé un <a href="https://studio.support.brightcove.com/publish/adding-application-id-player-embed-code.html">ID d'application</a> pour identifier le lecteur, puis saisissez l'URL du lecteur au format suivant: <code translate="No">players.brightcove.com/account_id/player_id_default/ <span class="bcls-highlight">application-id</span> </code> - par exemple: <code translate="No">players.brightcove.com/1752604059001/BJFYWrtUl_default/AlltimeViewsPlayerSample</code></li>
+	<li>Lecteurs intelligents - Entrez l'ID du Lecteur</li>
 </ul>
 </aside>
 
 <h3 id="Filtering_by_video_properties">Filtrage par propriétés vidéo</h3>
 
-<p>Utilisation du spécial <code class="language-http" translate="No">where=video.q=={property}:{value}</code> filtre, vous pouvez limiter votre rapport à un ensemble spécifique de vidéos en fonction de diverses propriétés, notamment :</p>
+<p>Utilisation du spécial <code class="language-http" translate="No">where=video.q=={property}:{value}</code> filtre, vous pouvez limiter votre rapport à un ensemble spécifique de vidéos en fonction de diverses propriétés, notamment:</p>
 
 <ul>
 	<li>Mots clés</li>
@@ -628,7 +628,7 @@ grandparent: Analytics API
 <h4>Remarques</h4>
 
 <div id="note1">
-<p><sup>[1]<strong></strong> </sup> La syntaxe de base est <code translate="No">where=video.q==custom_fields:value</code> (correspond à la valeur de n'importe quel champ personnalisé) ou <code translate="No">where=video.q==myfield:value</code> (correspond à la valeur dans le champ personnalisé spécifique <code translate="No">myfield</code>). Si vous effectuez une recherche sur des champs personnalisés spécifiques, notez que vous devez rechercher sur le <strong>Nom interne</strong> , pas le nom d'affichage :</p>
+<p><sup>[1]<strong></strong> </sup> La syntaxe de base est <code translate="No">where=video.q==custom_fields:value</code> (correspond à la valeur de n'importe quel champ personnalisé) ou <code translate="No">where=video.q==myfield:value</code> (correspond à la valeur dans le champ personnalisé spécifique <code translate="No">myfield</code>). Si vous effectuez une recherche sur des champs personnalisés spécifiques, notez que vous devez rechercher sur le <strong>Nom interne</strong> , pas le nom d'affichage:</p>
 
 <figure class="bcls-figure"><img class="bcls-image" alt="Internal Name vs Display Name" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/analytics-api/getting-started/api-overview/custom-field-names.png" />
 <figcaption class="bcls-caption--image">Nom interne vs nom d'affichage</figcaption>
@@ -639,14 +639,14 @@ grandparent: Analytics API
 
 <h4>Exemples</h4>
 
-<p>Voici quelques exemples <code translate="No">where</code> filtres de recherche sur les balises et les champs personnalisés :</p>
+<p>Voici quelques exemples <code translate="No">where</code> filtres de recherche sur les balises et les champs personnalisés:</p>
 
 <h5>Balise unique</h5>
 
 <pre>
 <code class="language-http" translate="No">where=video.q==tags:foo</code></pre>
 
-<h5>Plusieurs balises :</h5>
+<h5>Plusieurs balises:</h5>
 
 <pre>
 <code class="language-http" translate="No">where=video.q==tags:foo,bar</code></pre>
@@ -696,7 +696,7 @@ grandparent: Analytics API
 
 <aside class="bcls-aside bcls-aside--information">Noter: <code translate="No">%20</code> dans les exemples ci-dessus est un espace codé par URI. Selon le client que vous utilisez pour faire la demande, vous devrez peut-être également encoder le <code translate="No">+</code> signer comme <code translate="No">%2B</code>.</aside>
 
-<p>Pour une explication complète de cette syntaxe de requête, consultez <a href="/cms/searching/cms-and-playback-apis-video-search-v2.html">Utilisation de l'API CMS : Rechercher des vidéos</a>.</p>
+<p>Pour une explication complète de cette syntaxe de requête, consultez <a href="/cms/searching/cms-and-playback-apis-video-search-v2.html">Utilisation de CMS API: Rechercher des vidéos</a>.</p>
 
 <aside class="bcls-aside bcls-aside--information">Les données récupérées à l'aide de ce filtre sont mises en cache pendant 24 heures et ne refléteront donc pas les modifications apportées au cours de la dernière journée</aside>
 
@@ -705,7 +705,7 @@ grandparent: Analytics API
 <ul id="filtersList">
 </ul>
 
-<p>Le tableau suivant présente les valeurs autorisées pour chaque dimension utilisée comme filtre :</p>
+<p>Le tableau suivant présente les valeurs autorisées pour chaque dimension utilisée comme filtre:</p>
 
 <table class="bcls-table">
 	<thead class="bcls-table__head">
@@ -725,14 +725,14 @@ grandparent: Analytics API
 <p>Plages de dates, spécifiées dans <code translate="No">from</code> et <code translate="No">to</code> paramètres pour tous les types de rapports, peuvent être indiqués sous différents formats :</p>
 
 <ul>
-	<li>Valeurs de texte :
+	<li>Valeurs de texte:
 	<ul>
 		<!-- <li><code class="language-http" translate="No">from=alltime</code></li> -->
 		<li><code class="language-http" translate="No">to=now</code>(disponible et la valeur par défaut pour toutes les demandes)</li>
 	</ul>
 	</li>
 	<li>Valeurs de temps d'époque en millisecondes, telles que <code translate="No">1377047323000</code></li>
-	<li>Dates exprimées au format de date international standard ISO 8601 : <code translate="No">YYYY-MM-DD</code>format, tel que <code translate="No">2013-09-12</code>. Pour les dates exprimées dans ce format :
+	<li>Dates exprimées au format de date international standard ISO 8601: <code translate="No">YYYY-MM-DD</code>format, tel que <code translate="No">2013-09-12</code>. Pour les dates exprimées dans ce format:
 	<ul>
 		<li>Toute plage de dates spécifiée sera interprétée <em>dans le fuseau horaire défini pour le compte</em></li>
 		<li>L'heure de la date donnée sera interprétée comme minuit ( <code translate="No">00:00:00</code> ) à la date indiquée <em>dans le fuseau horaire défini pour le compte</em></li>
@@ -750,7 +750,7 @@ grandparent: Analytics API
 	</li>
 </ul>
 
-<p>Pour générer un rapport sur une dimension telle que « vidéo » pour une seule journée, définissez les valeurs de début et de fin sur cette date :</p>
+<p>Pour générer un rapport sur une dimension telle que « vidéo » pour une seule journée, définissez les valeurs de début et de fin sur cette date:</p>
 
 <pre>
 <code class="language-http" translate="No">...&amp;dimensions=video&amp;from=2013-11-01&amp;to=2013-11-01</code></pre>
@@ -796,11 +796,11 @@ grandparent: Analytics API
 
 <p>Utilisez le <code translate="No">fields</code> paramètre pour spécifier les champs que vous souhaitez renvoyer. Par défaut, <code translate="No">video_view</code> est renvoyé et le champ correspondant à la dimension sur laquelle vous créez un rapport (par exemple <code translate="No">destination_domain</code> ) sont renvoyés. Voir <a href="#metrics">dimensions et champs</a> pour plus de détails.</p>
 
-<p>Utilisez le <code translate="No">sort</code> paramètre pour spécifier quel champ de métrique est utilisé pour trier les éléments renvoyés ; par exemple: <code class="language-http" translate="No">sort=video_view</code>. Vous pouvez inverser l'ordre de tri en annulant le champ de tri : <code translate="No"> <span>sort= <span style="color:#CC0000;font-weight: bold;background-color:#FFFF00;">-</span>video_view</span> </code></p>
+<p>Utilisez le <code translate="No">sort</code> paramètre pour spécifier quel champ de métrique est utilisé pour trier les éléments renvoyés ; par exemple: <code class="language-http" translate="No">sort=video_view</code>. Vous pouvez inverser l'ordre de tri en annulant le champ de tri: <code translate="No"> <span>sort= <span style="color:#CC0000;font-weight: bold;background-color:#FFFF00;">-</span>video_view</span> </code></p>
 
 <aside class="bcls-aside bcls-aside--warning">Les champs disponibles pour le retour ou le tri dépendent de la <a href="#metrics">métrique</a> renvoyé pour la ou les dimensions sur lesquelles vous créez un rapport. Ces paramètres sont strictement validés, et votre demande renverra une erreur si le <code translate="No">fields</code> ou <code translate="No">sort</code> Le paramètre pointe vers un champ non valide pour la requête.
 
-<p>Pour les rapports sur les dimensions vidéo, les valeurs de tri valides incluent les champs de métadonnées vidéo : <code translate="No">video.name</code> , <code translate="No">video.reference_id</code> , et <code translate="No">video.tags</code>.</p>
+<p>Pour les rapports sur les dimensions vidéo, les valeurs de tri valides incluent les champs de métadonnées vidéo: <code translate="No">video.name</code> , <code translate="No">video.reference_id</code> , et <code translate="No">video.tags</code>.</p>
 </aside> <aside class="bcls-aside bcls-aside--information">
 <h3>video_name vs video.name</h3>
 
@@ -813,7 +813,7 @@ grandparent: Analytics API
 
 <ul>
 	<li>Dans certains cas, vous pouvez voir une valeur pour <code translate="No">video.name</code> , mais pas pour <code translate="No">video_name</code> - dans ce cas, le nom de la vidéo pour une raison quelconque n'a pas été envoyé au collecteur de données d'analyse</li>
-	<li>Dans certains cas, les valeurs peuvent être différentes - dans ce cas, la vidéo a été renommée à un moment donné : <code translate="No">video.name</code> est le nom actuel de la vidéo dans votre médiathèque Video Cloud ; <code translate="No">video_name</code> sera le nom de la vidéo de la vidéo au moment où les données ont été envoyées au collecteur de données analytiques (si vous recherchez une période au cours de laquelle le nom a changé, la valeur renvoyée par l'API sera le nom associé à la majorité des vues pendant la période).</li>
+	<li>Dans certains cas, les valeurs peuvent être différentes - dans ce cas, la vidéo a été renommée à un moment donné: <code translate="No">video.name</code> est le nom actuel de la vidéo dans votre médiathèque Video Cloud ; <code translate="No">video_name</code> sera le nom de la vidéo de la vidéo au moment où les données ont été envoyées au collecteur de données analytiques (si vous recherchez une période au cours de laquelle le nom a changé, la valeur renvoyée par l'API sera le nom associé à la majorité des vues pendant la période).</li>
 </ul>
 </aside>
 </section>
@@ -821,7 +821,7 @@ grandparent: Analytics API
 <section class="bcls-section">
 <h2 id="calculateFields">Champs calculés</h2>
 
-<p>Vous pouvez ajouter des champs calculés à vos requêtes API à l'aide de la syntaxe :</p>
+<p>Vous pouvez ajouter des champs calculés à vos requêtes API à l'aide de la syntaxe:</p>
 
 <pre>
 <code class="language-http" translate="No">fields=calulated_field_name:expression</code></pre>
@@ -830,7 +830,7 @@ grandparent: Analytics API
 
 <aside class="bcls-aside bcls-aside--information">Notez que vous pouvez <strong>ne pas</strong> utiliser un champ calculé dans le cadre d'une expression pour un autre champ calculé.</aside>
 
-<p>Le nom du champ calculé peut être n'importe quelle chaîne compatible URI. L'expression peut inclure des noms de champs normaux et les opérateurs arithmétiques suivants :</p>
+<p>Le nom du champ calculé peut être n'importe quelle chaîne compatible URI. L'expression peut inclure des noms de champs normaux et les opérateurs arithmétiques suivants:</p>
 
 <ul>
 	<li><code translate="No"><span class="bcls-highlight">+</span> </code>(une addition)</li>

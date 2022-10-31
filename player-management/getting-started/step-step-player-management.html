@@ -1,6 +1,6 @@
 ---
-title: 'Pas à pas: Gestion des joueurs'
-description: 'Ce document fournit une introduction pratique aux opérations de base de l'API Player Management.'
+title: 'Pas à pas: Gestion des Lecteurs'
+description: "Ce document fournit une introduction pratique aux opérations de base de l'API Player Management."
 parent: Getting Started 
 grandparent: Player Management API
 ---
@@ -10,16 +10,16 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
     
-    <p>Dans ce document étape par étape, vous effectuerez les tâches suivantes :</p>
+    <p>Dans ce document étape par étape, vous effectuerez les tâches suivantes:</p>
     
     <ul>
-      <li>Créer un joueur</li>
+      <li>Créer un Lecteur</li>
       <li>Mettre à jour le lecteur pour lire automatiquement la vidéo</li>
       <li>Personnaliser un lecteur en ajoutant un plugin</li>
       <li>Afficher la configuration d'un lecteur</li>
     </ul>
     
-    <aside class="bcls-aside bcls-aside--information">Pour plus de détails sur l'API utilisée dans ce document, vous pouvez consulter le <a href="/player-management/getting-started/overview-player-management-api.html">Présentation de l'API de gestion des joueurs</a> document et le <a href="/player-management/references/reference.html">API de gestion des joueurs</a> référence.</aside> <aside class="bcls-aside bcls-aside--warning">Les étapes du document impliquent curl et d'autres outils de ligne de commande natifs des systèmes Mac et Linux, mais ne faisant pas partie du système d'exploitation Windows. Si vous êtes sous Windows, vous pouvez obtenir ces outils en installant <a href="//cygwin.com">cygwin</a>. Au cours de l'installation, vous serez invité à indiquer les packages à installer. Ouvrez le <strong>Rapporter</strong> paquet, puis vérifiez le <strong>boucle</strong> option, puis terminez l'installation. Une fois cela fait, vous pourrez suivre le pas à pas : Document de gestion des joueurs avec succès tel qu'il est écrit à l'aide de la ligne de commande cygwin. Des outils sont disponibles pour exécuter curl sur la ligne de commande Windows normale, mais ils ne sont pas détaillés dans ce document.</aside>
+    <aside class="bcls-aside bcls-aside--information">Pour plus de détails sur l'API utilisée dans ce document, vous pouvez consulter le <a href="/player-management/getting-started/overview-player-management-api.html">Présentation de l'Ingestion Profiles API</a> document et le <a href="/player-management/references/reference.html">Ingestion Profiles API</a> référence.</aside> <aside class="bcls-aside bcls-aside--warning">Les étapes du document impliquent curl et d'autres outils de ligne de commande natifs des systèmes Mac et Linux, mais ne faisant pas partie du système d'exploitation Windows. Si vous êtes sous Windows, vous pouvez obtenir ces outils en installant <a href="//cygwin.com">cygwin</a>. Au cours de l'installation, vous serez invité à indiquer les packages à installer. Ouvrez le <strong>Rapporter</strong> paquet, puis vérifiez le <strong>boucle</strong> option, puis terminez l'installation. Une fois cela fait, vous pourrez suivre le pas à pas : Document de gestion des Lecteurs avec succès tel qu'il est écrit à l'aide de la ligne de commande cygwin. Des outils sont disponibles pour exécuter curl sur la ligne de commande Windows normale, mais ils ne sont pas détaillés dans ce document.</aside>
     </section>
     
     <section class="bcls-section">
@@ -27,22 +27,22 @@ grandparent: Player Management API
     
     <p>L'approche adoptée par ce document étape par étape consiste à utiliser des instructions curl pour communiquer avec l'API Player Service. L'outil curl est utilisé sur la ligne de commande pour transférer des données avec la syntaxe d'URL. Plus d'informations sur curl peuvent être obtenues à partir de <a href="http://curl.haxx.se/">http://curl.haxx.se</a>.</p>
     
-    <p>Vous n'êtes certainement pas obligé d'utiliser curl comme vous le faites dans ce document étape par étape pour des raisons de simplicité' Saké. Vous pouvez bien sûr utiliser votre langage préféré pour communiquer avec les API. Vérifiez <a href="/player-management/code-samples/setup-player-management-samples.html">Configuration pour les exemples de gestion des joueurs</a> qui montre comment utiliser l'authentification de base, AJAX et JavaScript pour écrire des mini-applications pour des tâches de base comme créer un lecteur, afficher tous vos lecteurs, supprimer des lecteurs, etc.</p>
+    <p>Vous n'êtes certainement pas obligé d'utiliser curl comme vous le faites dans ce document étape par étape pour des raisons de simplicité' Saké. Vous pouvez bien sûr utiliser votre langage préféré pour communiquer avec les API. Vérifiez <a href="/player-management/code-samples/setup-player-management-samples.html">Configuration pour les exemples de gestion des Lecteurs</a> qui montre comment utiliser l'authentification de base, AJAX et JavaScript pour écrire des mini-applications pour des tâches de base comme créer un lecteur, afficher tous vos Lecteurs, supprimer des Lecteurs, etc.</p>
     
     <p>Quelques étapes préliminaires doivent être effectuées avant de pouvoir commencer à utiliser l'API. Ceux-ci sont:</p>
     
     <ul>
-      <li>Connectez-vous à Studio. Si vous avez plusieurs comptes, utilisez le menu déroulant pour sélectionner celui dans lequel vous souhaitez créer vos nouveaux joueurs. Pour que le système d'identification fonctionne correctement, vous devez disposer des droits d'administrateur sur ce compte. Si vous n'êtes pas sûr qu'un utilisateur dispose de droits d'administrateur, accédez à la page Paramètres des utilisateurs pour voir les utilisateurs répertoriés avec leur rôle.</li>
+      <li>Connectez-vous à Studio. Si vous avez plusieurs comptes, utilisez le menu déroulant pour sélectionner celui dans lequel vous souhaitez créer vos nouveaux Lecteurs. Pour que le système d'identification fonctionne correctement, vous devez disposer des droits d'administrateur sur ce compte. Si vous n'êtes pas sûr qu'un utilisateur dispose de droits d'administrateur, accédez à la page Paramètres des utilisateurs pour voir les utilisateurs répertoriés avec leur rôle.</li>
       <li>Dans Studio, assurez-vous d'avoir sélectionné <strong>DOMICILE</strong> à partir des listes de modules. Dans le coin supérieur gauche de la page, juste en dessous du nom du compte, vous pourrez copier votre <strong>identifiant de compte</strong>.
       <figure class="bcls-figure"><img class="bcls-image" alt="Account ID to copy" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/player-management-api/getting-started/quick-start/acct-id.png" /></figure>
       </li>
-      <li>Sur la ligne de commande, saisissez ce qui suit pour affecter la valeur d'ID de compte à une variable d'environnement :
+      <li>Sur la ligne de commande, saisissez ce qui suit pour affecter la valeur d'ID de compte à une variable d'environnement:
       <pre class="line-numbers">
         <code class="language-bash" translate="No">export ACCOUNT_ID=<em>YourAccountID</em>
         </code>
         </pre>
       </li>
-      <li>L'authentification sera gérée en fournissant l'adresse e-mail de votre compte dans le cadre de la déclaration curl, puis l'API vous demandera un mot de passe. Étant donné que l'adresse e-mail sera fréquemment utilisée, attribuez également cette valeur à une variable d'environnement :
+      <li>L'authentification sera gérée en fournissant l'adresse e-mail de votre compte dans le cadre de la déclaration curl, puis l'API vous demandera un mot de passe. Étant donné que l'adresse e-mail sera fréquemment utilisée, attribuez également cette valeur à une variable d'environnement:
       <pre class="line-numbers">
         <code class="language-bash" translate="No">export EMAIL=<em>YourEmailAddress</em>
         </code>
@@ -56,9 +56,9 @@ grandparent: Player Management API
     </section>
     
     <section class="bcls-section">
-    <h2 id="createPlayer">Créer un joueur</h2>
+    <h2 id="createPlayer">Créer un Lecteur</h2>
     
-    <p>Vous pouvez désormais créer un lecteur avec un appel à l'API Player Management. Cet appel API est expliqué en détail dans le <a href="/player-management/getting-started/overview-player-management-api.html">Présentation de l'API de gestion des joueurs</a> document. Il est suggéré de copier et de coller les instructions curl suivantes dans la ligne de commande.</p>
+    <p>Vous pouvez désormais créer un lecteur avec un appel à l'API Player Management. Cet appel API est expliqué en détail dans le <a href="/player-management/getting-started/overview-player-management-api.html">Présentation de l'Ingestion Profiles API</a> document. Il est suggéré de copier et de coller les instructions curl suivantes dans la ligne de commande.</p>
     
     <p>Les étapes suivantes vous aident à créer un lecteur.</p>
     
@@ -80,7 +80,7 @@ grandparent: Player Management API
         </pre>
       <!-- <p><code data-gist-id="8759542" data-gist-hide-footer="true" data-gist-line="1-16"></code></p> -->
     
-      <p>Vous verrez que le serveur renvoie les données de réponse au format JSON :</p>
+      <p>Vous verrez que le serveur renvoie les données de réponse au format JSON:</p>
     
       <pre class="line-numbers">
         <code class="language-json" translate="No">{
@@ -95,16 +95,16 @@ grandparent: Player Management API
         </pre>
       <!-- <p><code data-gist-id="8759542" data-gist-hide-footer="true" data-gist-line="17-24"></code></p> -->
     
-      <aside class="bcls-aside bcls-aside--information">A ce moment le <code translate="No">preview_url </code> et <code translate="No">preview_embed_code </code> ne sera pas discuté. Plus loin dans ce document, les différences entre les lecteurs d'aperçu et les lecteurs publiés seront abordées.</aside>
+      <aside class="bcls-aside bcls-aside--information">A ce moment le <code translate="No">preview_url </code> et <code translate="No">preview_embed_code </code> ne sera pas discuté. Plus loin dans ce document, les différences entre les Lecteurs d'aperçu et les Lecteurs publiés seront abordées.</aside>
       </li>
-      <li>Affichez votre lecteur en utilisant l'une (ou toutes) des valeurs suivantes (à ce stade, il n'y a pas de vidéo dans le lecteur, mais vous pouvez publier une vidéo à l'aide de votre lecteur nouvellement créé à l'aide de Studio) :
+      <li>Affichez votre lecteur en utilisant l'une (ou toutes) des valeurs suivantes (à ce stade, il n'y a pas de vidéo dans le lecteur, mais vous pouvez publier une vidéo à l'aide de votre lecteur nouvellement créé à l'aide de Studio):
       <ul>
         <li>Copiez le <code translate="No">url </code> dans un navigateur pour voir votre lecteur.</li>
         <li>Copiez le <code translate="No">embed_code </code> dans une page HTML pour afficher votre lecteur dans un iframe. Pour que cela fonctionne correctement, la page contenant l'iframe doit être servie à partir d'un serveur HTTP réel.</li>
         <li>Les <code translate="No">embed_in_page </code> l'utilisation de la fonctionnalité est détaillée dans le <a href="https://player.support.brightcove.com/publish/available-options-advanced-page-embed-code.html">Options disponibles pour le code d'intégration avancé (dans la page)</a> document.</li>
       </ul>
     
-      <aside class="bcls-aside bcls-aside--tip">Vous pouvez utiliser plusieurs lecteurs sur la même page HTML.</aside>
+      <aside class="bcls-aside bcls-aside--tip">Vous pouvez utiliser plusieurs Lecteurs sur la même page HTML.</aside>
       </li>
     </ol>
     </section>
@@ -148,7 +148,7 @@ grandparent: Player Management API
         </code>
         </pre>
     
-    <p>Vous pouvez voir la configuration du lecteur en parcourant la valeur de l'URL renvoyée et modifier le <strong>index.html</strong> à <strong>config.json</strong>. Pour le lecteur créé par l'instruction curl ci-dessus, vous verriez ce qui suit :</p>
+    <p>Vous pouvez voir la configuration du lecteur en parcourant la valeur de l'URL renvoyée et modifier le <strong>index.html</strong> à <strong>config.json</strong>. Pour le lecteur créé par l'instruction curl ci-dessus, vous verriez ce qui suit:</p>
     
     <pre class="line-numbers">
         <code class="language-json" translate="No">{
@@ -174,16 +174,16 @@ grandparent: Player Management API
     
     <p>Les <code translate="No">policy_key </code> est automatiquement ajouté à la configuration du lecteur. Ceci est créé à l'aide de l'API Policy, et il permettra d'imposer des restrictions spéciales à votre lecteur pour accéder à différentes vidéos. En d'autres termes, la clé de stratégie contrôle quelles vidéos peuvent être visionnées à quel moment.</p>
     
-    <aside class="bcls-aside bcls-aside--information">Vous pouvez également ajouter votre propre clé de stratégie à une configuration au lieu d'en générer une. Les règles normales d'interaction entre le joueur et la configuration enfant du joueur s'appliquent ici : une clé de stratégie définie au niveau de l'enfant du joueur remplacera toute clé de stratégie définie au niveau du joueur.</aside>
+    <aside class="bcls-aside bcls-aside--information">Vous pouvez également ajouter votre propre clé de stratégie à une configuration au lieu d'en générer une. Les règles normales d'interaction entre le Lecteur et la configuration enfant du Lecteur s'appliquent ici: une clé de stratégie définie au niveau de l'enfant du Lecteur remplacera toute clé de stratégie définie au niveau du Lecteur.</aside>
     </section>
     
     <section class="bcls-section">
-    <h2 id="updatePlayer">Mettre à jour un joueur</h2>
+    <h2 id="updatePlayer">Mettre à jour un Lecteur</h2>
     
     <p>Vous avez maintenant effectué les bases de la création d'un lecteur. Ensuite, vous apprendrez à faire une simple mise à jour du lecteur. Dans ce cas, vous configurerez le lecteur pour lire automatiquement la vidéo dans le lecteur, si le navigateur le permet.</p>
     
     <ol class="bcls-tasklist">
-      <li>Dans le JSON renvoyé de la création du joueur, un <code translate="No">id </code> valeur a été affichée. Copiez ceci dans un <code translate="No">PLAYER_ID </code> variable d'environnement.
+      <li>Dans le JSON renvoyé de la création du Lecteur, un <code translate="No">id </code> valeur a été affichée. Copiez ceci dans un <code translate="No">PLAYER_ID </code> variable d'environnement.
     
       <pre class="line-numbers">
         <code class="language-bash" translate="No">export PLAYER_ID=<em>YourPlayerID</em>
@@ -202,7 +202,7 @@ grandparent: Player Management API
         https://players.api.brightcove.com/v2/accounts/{account_id}/players/{player_id}/configuration</code>
         </pre>
       <!-- <p><code data-gist-id="8759542" data-gist-hide-footer="true" data-gist-line="53-74"></code></p></li> --></li>
-      <li>Assurez-vous que le serveur renvoie des données qui incluent le <code translate="No">id </code> , <code translate="No">preview_url </code> et <code translate="No">preview_embed_code </code> valeurs au format JSON suivant :
+      <li>Assurez-vous que le serveur renvoie des données qui incluent le <code translate="No">id </code> , <code translate="No">preview_url </code> et <code translate="No">preview_embed_code </code> valeurs au format JSON suivant:
       <pre class="line-numbers">
         <code class="language-json" translate="No">{
           "id": "S1qN4xeG7",
@@ -216,7 +216,7 @@ grandparent: Player Management API
       <aside class="bcls-aside bcls-aside--information">Après une mise à jour, vous disposez d'une version d'aperçu du lecteur. Le changement n'est PAS reflété dans la version publiée du lecteur avec lequel vous travailliez avant la mise à jour.</aside>
       </li>
       <li>Utilisez soit le <code translate="No">preview_url </code> ou <code translate="No">preview_embed_code </code> valeurs pour voir les changements dans la configuration de votre lecteur. Vous verrez que la lecture automatique est maintenant vraie.</li>
-      <li>Vous allez maintenant publier le lecteur pour le placer à l'emplacement correct afin que les utilisateurs puissent le voir. Saisissez la commande suivante :
+      <li>Vous allez maintenant publier le lecteur pour le placer à l'emplacement correct afin que les utilisateurs puissent le voir. Saisissez la commande suivante:
       <pre class="line-numbers">
         <code class="language-bash" translate="No">curl \
         --header "Content-Type: application/json" \
@@ -227,7 +227,7 @@ grandparent: Player Management API
         </pre>
       <!-- <p><code data-gist-id="8759542" data-gist-hide-footer="true" data-gist-line="26-30"></code></p> -->
     
-      <p>Une fois le lecteur publié, vous aurez des lecteurs différents des versions préliminaires. Les versions publiées diffèrent des versions préliminaires de ces manières :</p>
+      <p>Une fois le lecteur publié, vous aurez des Lecteurs différents des versions préliminaires. Les versions publiées diffèrent des versions préliminaires de ces manières:</p>
     
       <ul>
         <li>Le JavaScript et le CSS sont minifiés, concaténés et intégrés directement dans le lecteur.</li>
@@ -237,7 +237,7 @@ grandparent: Player Management API
     
       <aside class="bcls-aside bcls-aside--information">Noter: Lors de la création du lecteur (étape 1 ci-dessus), le lecteur est également automatiquement publié. C'est pourquoi lors de la création du lecteur, la réponse JSON incluait à la fois des informations publiées et des informations d'aperçu.</aside>
       </li>
-      <li>Vérifiez que la réponse JSON de la publication du lecteur apparaît comme suit :
+      <li>Vérifiez que la réponse JSON de la publication du lecteur apparaît comme suit:
       <pre class="line-numbers">
         <code class="language-json" translate="No">{
         "id": "S1qN4xeG7",
@@ -255,7 +255,7 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h2 id="customizePlayer">Personnaliser un lecteur</h2>
     
-    <aside class="bcls-aside bcls-aside--warning">Cette section suppose que vous avez associé une vidéo au lecteur, via Studio ou via l'API de gestion des lecteurs. Selon votre approche, les configurations de lecteur résultantes peuvent différer de ce qui est montré.</aside>
+    <aside class="bcls-aside bcls-aside--warning">Cette section suppose que vous avez associé une vidéo au lecteur, via Studio ou via l'API de gestion des Lecteurs. Selon votre approche, les configurations de lecteur résultantes peuvent différer de ce qui est montré.</aside>
     
     <p>Vous pouvez personnaliser votre lecteur à l'aide de plugins. Vous pouvez apprendre à inclure des plugins préexistants dans votre lecteur ou créer les vôtres dans le <a href="https://player.support.brightcove.com/coding-topics/step-step-plugin-development.html">Pas à pas: Développement de plugins</a>.</p>
     
@@ -290,7 +290,7 @@ grandparent: Player Management API
         </pre>
     <!-- <p><code data-gist-id="8759542" data-gist-hide-footer="true" data-gist-line="88-97"></code></p> -->
     
-    <p>Tout comme vous avez utilisé une instruction curl pour attribuer la source vidéo et l'image de l'affiche, vous utiliserez une instruction curl pour indiquer au lecteur ce qui suit :</p>
+    <p>Tout comme vous avez utilisé une instruction curl pour attribuer la source vidéo et l'image de l'affiche, vous utiliserez une instruction curl pour indiquer au lecteur ce qui suit:</p>
     
     <ul>
       <li>Emplacement du fichier JavaScript qui contient le code du plugin</li>
@@ -359,7 +359,7 @@ grandparent: Player Management API
         </code>
         </pre>
       <!-- <p><code data-gist-id="8759542" data-gist-hide-footer="true" data-gist-line="117-121"></code></p></li> --></li>
-      <li>Vérifiez que la réponse de configuration JSON est similaire à la suivante :
+      <li>Vérifiez que la réponse de configuration JSON est similaire à la suivante:
       <pre class="line-numbers">
         <code class="language-json" translate="No">{
           "media": {
@@ -401,7 +401,7 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h2 id="deliverySystem">API du système de livraison</h2>
     
-    <p>Les API du système de livraison permettent la gestion et le déploiement d'un groupe de fichiers, appelé référentiel. Ces fichiers sont gérés via les API REST et via git. Ces API ne devraient pas être nécessaires à la plupart des gens lors de la création ou de l'édition de lecteurs, mais elles peuvent constituer un ensemble d'API très intéressant à utiliser à d'autres fins. Si vous souhaitez les essayer, vous pouvez <a href="/cms/references/reference.html">fais-le ici</a>. Pour une introduction pratique, essayez le <a href="/delivery-system/step-step-delivery-system-api.html">Étape par étape : Système de livraison</a> document.</p>
+    <p>Les API du système de livraison permettent la gestion et le déploiement d'un groupe de fichiers, appelé référentiel. Ces fichiers sont gérés via les API REST et via git. Ces API ne devraient pas être nécessaires à la plupart des gens lors de la création ou de l'édition de Lecteurs, mais elles peuvent constituer un ensemble d'API très intéressant à utiliser à d'autres fins. Si vous souhaitez les essayer, vous pouvez <a href="/cms/references/reference.html">fais-le ici</a>. Pour une introduction pratique, essayez le <a href="/delivery-system/step-step-delivery-system-api.html">Étape par étape: Système de livraison</a> document.</p>
     </section>
     </article>
  

@@ -1,5 +1,6 @@
 ---
-title: Utilisation de PAS/EPA avec description Live : Cette rubrique couvre l'utilisation du service d'autorisation de lecture (PAS) ou du service de gestion des droits de lecture (EPA) avec des flux en direct
+title: Utilisation de PAS/EPA avec Live
+description: Cette rubrique couvre l'utilisation du service d'autorisation de lecture (PAS) ou du service de gestion des droits de lecture (EPA) avec des flux en direct
 parent: Guides 
 grandparent: Live API
 layout: staging
@@ -10,14 +11,14 @@ layout: staging
   <aside class="bcls-aside bcls-aside--information"><a href="https://apis.support.brightcove.com/playback-authorization/index.html">PAS</a> et <a href="https://apis.support.brightcove.com/playback-rights/index.html">EPA</a> sont actuellement en version à disponibilité limitée. Si vous souhaitez utiliser ces services, contactez votre gestionnaire de compte.</aside>
   <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
-    <p>Le PAS ou l'EPA peut être activé pour une tâche Live afin d'étendre les protections fournies par DRM. PAS fournit un ensemble limité de restrictions : limiter la lecture à un agent utilisateur particulier, ou limiter le nombre de changements d'adresse IP ou d'utilisations totales. Dans le cas Live, cela permet également à un client de remplacer le DRM CRT pour cet utilisateur. Ces restrictions sont directement précisées dans l'autorisation de lecture <a href="https://general.support.brightcove.com/developer/create-jwt-stage.html#Claims_for_Playback_Authorization">JWT</a>.</p>
+    <p>Le PAS ou l'EPA peut être activé pour une tâche Live afin d'étendre les protections fournies par DRM. PAS fournit un ensemble limité de restrictions: limiter la lecture à un agent utilisateur particulier, ou limiter le nombre de changements d'adresse IP ou d'utilisations totales. Dans le cas Live, cela permet également à un client de remplacer le DRM CRT pour cet utilisateur. Ces restrictions sont directement précisées dans l'autorisation de lecture <a href="https://general.support.brightcove.com/developer/create-jwt-stage.html#Claims_for_Playback_Authorization">JWT</a>.</p>
     <p>L'EPA fournit un ensemble de restrictions beaucoup plus complet. Un ensemble de ces restrictions est configuré via l'API de gestion des droits de lecture et est référencé à l'aide d'un droit de lecture. <code translate="No">id</code>. Cette <code translate="No">id</code> peut être associé à la vidéo ( à l'aide du <code translate="No">playback_rights_id</code> attribut illustré ci-dessous) ou inclus dans le <a href="https://general.support.brightcove.com/developer/create-jwt-stage.html#Claims_for_Playback_Rights">JWT</a>. Le deuxième ensemble implique des restrictions au niveau de l'utilisateur telles que les limites de simultanéité et le nombre d'appareils. Ceux-ci sont directement spécifiés dans les revendications JWT (qui doivent également inclure un identifiant utilisateur [v<code translate="No">uid</code> Réclamer]).</p>
-    <p>Pour l'un ou l'autre mode, la demande de travail doit inclure un <code translate="No">videocloud.video</code> attribut pour qu'une vidéo Video Cloud soit créée et liée à la tâche en direct. Les <code translate="No">playback_rights_id</code> L'attribut peut être mis à jour sur la vidéo Video Cloud pour modifier les restrictions de lecture via le <a href="https://apis.support.brightcove.com/cms/references/reference.html#operation/UpdateVideo">API CMS</a>.</p>
+    <p>Pour l'un ou l'autre mode, la demande de travail doit inclure un <code translate="No">videocloud.video</code> attribut pour qu'une vidéo Video Cloud soit créée et liée à la tâche en direct. Les <code translate="No">playback_rights_id</code> L'attribut peut être mis à jour sur la vidéo Video Cloud pour modifier les restrictions de lecture via le <a href="https://apis.support.brightcove.com/cms/references/reference.html#operation/UpdateVideo">CMS API</a>.</p>
     <p>Vous devrez également <a href="https://general.support.brightcove.com/developer/create-jwt-stage.html">créer un JWT</a> avec des allégations appropriées au PAS ou à l'EPA, selon ce que vous utilisez. Le JWT devra être inclus dans toutes les demandes de serveur de licences. Si vous implémentez votre propre lecteur, vous devrez passer cette valeur soit dans un <code translate="No">BCOV-Auth</code> en-tête ou <code translate="No">bcov_auth</code> paramètre de requête (en plus du jeton DRM).</p>
   </section>
   <section class="bcls-section">
     <h2 id="Create_Live_job_with_EPA_PAS">Créer un travail en direct avec EPA/PAS</h2>
-    <p>Les nouveaux champs suivants sont utilisés pour ajouter EPA et/ou PAS à une tâche Live :</p>
+    <p>Les nouveaux champs suivants sont utilisés pour ajouter EPA et/ou PAS à une tâche Live:</p>
     <h3>De nouveaux champs pour le <code translate="No">drm</code> objet:</h3>
     <dl>
       <dt><code translate="No">require_playback_token</code>(booléen)</dt>
@@ -26,7 +27,7 @@ layout: staging
       <dd>Active l'EPA. L'autorisation de lecture JWT sera requise lors de la demande de licence. Utilise l'identifiant des droits de lecture associé à la vidéo ou au JWT pour appliquer les restrictions.</dd>
     </dl>
     <h3>Nouveau terrain pour le <code translate="No">videocloud.video</code> objet:</h3>
-    <aside class="bcls-aside bcls-aside--information">Notez que ce champ doit être ajouté à la vidéo à l'aide de l'API CMS <em>après</em> vous créez le travail en direct, car il ne peut pas être ajouté lors de la création de la vidéo.</aside>
+    <aside class="bcls-aside bcls-aside--information">Notez que ce champ doit être ajouté à la vidéo à l'aide de CMS API <em>après</em> vous créez le travail en direct, car il ne peut pas être ajouté lors de la création de la vidéo.</aside>
     <dl>
       <dt><code translate="No">playback_rights_id</code>(chaîne de caractères)</dt>
       <dd>Les associés ont spécifié les droits de lecture EPA avec la vidéo.</dd>
@@ -34,7 +35,7 @@ layout: staging
   </section>
   <section class="bcls-section">
     <h2 id="Sample_request_response">Exemple de demande et de réponse</h2>
-    <p>Vous trouverez ci-dessous un exemple de corps de demande d'API Live pour la création d'une tâche Live avec EPA. Remarque Il existe également une demande d'API CMS pour mettre à jour la vidéo créée pour le travail en direct avec le <code translate="No">playback_rights_id</code>. (Ce champ ne peut être ajouté qu'avec un <strong>mettre à jour la vidéo</strong> demande, et doit donc être ajouté après que la demande Live API a créé la vidéo.)</p>
+    <p>Vous trouverez ci-dessous un exemple de corps de demande d'API Live pour la création d'une tâche Live avec EPA. Remarque Il existe également une demande d'CMS API pour mettre à jour la vidéo créée pour le travail en direct avec le <code translate="No">playback_rights_id</code>. (Ce champ ne peut être ajouté qu'avec un <strong>mettre à jour la vidéo</strong> demande, et doit donc être ajouté après que la demande Live API a créé la vidéo.)</p>
     <h3>Exemple de corps de requête</h3>
 <pre class="line-numbers"><code class="language-json" translate="No">{
   "live_stream": true,
@@ -153,15 +154,15 @@ layout: staging
   }
 }</code></pre>
     </details>
-    <h3>Demande d'API CMS</h3>
-    <p>Pour ajouter l'identifiant des droits de lecture à la vidéo, envoyez un <a href="https://apis.support.brightcove.com/cms/references/reference.html#operation/UpdateVideo">Mettre à jour la vidéo</a> requête à l'API CMS avec le corps de requête suivant :</p>
+    <h3>Demande d'CMS API</h3>
+    <p>Pour ajouter l'identifiant des droits de lecture à la vidéo, envoyez un <a href="https://apis.support.brightcove.com/cms/references/reference.html#operation/UpdateVideo">Mettre à jour la vidéo</a> requête à l'CMS API avec le corps de requête suivant:</p>
 <pre class="line-numbers"><code class="language-json" translate="No">{
-	"playback_rights_id": "<span class="bcls-input">your playback_rights_id</span>"
+  "playback_rights_id": "<span class="bcls-input">your playback_rights_id</span>"
 }</code></pre>
   </section>
   <section class="bcls-section">
     <h2 id="player_implementation">Implémentation du lecteur</h2>
-    <p>Si vous utilisez le lecteur Web Brightcove ou l'un des SDK de lecteur natif Brightcove pour diffuser le flux en direct, la mise en œuvre pour PAS ou EPA est la même que pour la VOD. Voir l'un des éléments suivants :</p>
+    <p>Si vous utilisez le lecteur Web Brightcove ou l'un des SDK de lecteur natif Brightcove pour diffuser le flux en direct, la mise en œuvre pour PAS ou EPA est la même que pour la VOD. Voir l'un des éléments suivants:</p>
     <h3>PAS</h3>
     <ul>
       <li><a href="https://apis.support.brightcove.com/playback-authorization/guides/using-pas-with-bcp.html">Utilisation de DRM d'autorisation de lecture avec Brightcove Player</a></li>

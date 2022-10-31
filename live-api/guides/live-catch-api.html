@@ -1,5 +1,6 @@
 ---
-title: Description de l'API de rattrapage en direct : Cette rubrique explique comment créer une tâche en direct avec rattrapage à l'aide de l'API de rattrapage en direct (TimeShift).
+title: Live Catch API
+description: "Cette rubrique explique comment créer une tâche en direct avec rattrapage à l'aide de l'API de rattrapage en direct (TimeShift)."
 parent: Guides 
 grandparent: Live API
 layout: staging
@@ -9,7 +10,7 @@ layout: staging
   <summary>{{ page.description }}</summary>
   <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
-    <p>L'API de rattrapage en direct est un ajout à l'API en direct qui fournit une capacité de relecture pour le début ou une partie d'un flux en direct pour permettre aux téléspectateurs en retard de "rattraper leur retard".</p>
+    <p>L'API de rattrapage en direct est un ajout à l'Live API qui fournit une capacité de relecture pour le début ou une partie d'un flux en direct pour permettre aux téléspectateurs en retard de "rattraper leur retard".</p>
     <p>La capacité de rattrapage est ajoutée à un travail en direct via un nouveau <code translate="No">timeshift</code> champ objet utilisé lorsque vous créez un travail Live. Les détails de la <code translate="No">timeshift</code> les champs d'objet sont détaillés dans les sections ci-dessous.</p>
   </section>
   <section class="bcls-section">
@@ -29,7 +30,7 @@ layout: staging
               <td>
                 Taille de la fenêtre de redémarrage en secondes, jusqu'à 604800 (7 jours).
                 <p>Si <code translate="No">timeshift.startover_duration</code> est spécifié dans la demande, une URL de lecture compatible avec le décalage horaire sera créée pour chaque liste de lecture. Ces URL prendront en charge la lecture Edge en direct (avec une taille DVR telle que spécifiée par le <code translate="No">live_duration</code> paramètre).</p>
-                <p>Ils prendront également en charge la lecture de portions arbitraires dans la période définie par startover_duration en ajoutant des paramètres :</p>
+                <p>Ils prendront également en charge la lecture de portions arbitraires dans la période définie par startover_duration en ajoutant des paramètres:</p>
                 <ul style="padding: 0;margin-left: 1rem;">
                   <li><code translate="No">start=ts</code>- Horodatage de l'époque Unix du début de la lecture</li>
                   <li><code translate="No">end=ts</code>- Horodatage de l'époque Unix de la fin de la lecture</li>

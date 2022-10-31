@@ -1,5 +1,6 @@
 ---
-title: Description de « Utilisation de l'autorisation de lecture DRM avec Brightcove Player » : "Dans cette rubrique, vous apprendrez comment configurer Brightcove Player pour utiliser le service d'autorisation de lecture de Brightcove."
+title: "Utilisation de l'autorisation de lecture DRM avec Brightcove Player"
+description: "Dans cette rubrique, vous apprendrez comment configurer Brightcove Player pour utiliser le service d'autorisation de lecture de Brightcove."
 parent: Guides 
 grandparent: Playback Authorization
 layout: staging
@@ -22,8 +23,8 @@ layout: staging
     <h2 id="Overview">Aperçu</h2>
     <p>Pour configurer Brightcove Player pour utiliser PAS, transmettez un paramètre de jeton lors de la demande de catalogue pour la vidéo. Le code sera affiché dans la section suivante. Pour être sûr d'avoir les pré-requis pour comprendre le code, les concepts dans les documents suivants vous aideront à fournir une base sur laquelle construire :</p>
     <ul>
-      <li><a href="https://general.support.brightcove.com/developer/create-jwt.html">Créer un <span translate="No">Jeton Web JSON</span> (JWT)</a></li>
-      <li><a href="https://support.brightcove.com/concepts-using-javascript-promises">Notions : Utiliser les promesses JavaScript</a></li>
+      <li><a href="https://general.support.brightcove.com/developer/create-jwt.html">Créer un <span>Jeton Web JSON</span> (JWT)</a></li>
+      <li><a href="https://support.brightcove.com/concepts-using-javascript-promises">Notions: Utiliser les promesses JavaScript</a></li>
       <li><a href="https://support.brightcove.com/player-catalog#Catalog_parameters_object">Paramètres du catalogue</a></li>
       <li><a href="https://support.brightcove.com/configuring-brightcove-player-drm">Configuration de Brightcove Player pour DRM</a></li>
     </ul>
@@ -32,7 +33,7 @@ layout: staging
   <section class="bcls-section">
     <h2 id="Using_a_token_in_the_catalog_parameters">Utilisation d'un jeton dans les paramètres du catalogue</h2>
     <p>Cette section détaille le code nécessaire pour configurer le lecteur pour utiliser PAS. Pour ce faire, transmettez un jeton de chaîne dans le cadre d'un <a href="https://support.brightcove.com/player-catalog#Catalog_parameters_object">paramètres de catalogue</a> objet, en utilisant le nom de la propriété <code translate="No">bcovAuthToken</code>.</p>
-    <p>Cette approche fonctionnera à la fois pour les DRM et HLSe. Le lecteur détectera le type de source en cours de chargement à partir de l'API de lecture et fournira l'implémentation correcte pour cette source.</p>
+    <p>Cette approche fonctionnera à la fois pour les DRM et HLSe. Le lecteur détectera le type de source en cours de chargement à partir de le Playback API et fournira l'implémentation correcte pour cette source.</p>
     <aside class="bcls-aside bcls-aside--information">Noter: Cette implémentation nécessite la version Player <strong>6.33.0</strong> ou plus grand. Si vous utilisez DRM, vous aurez besoin de la version <strong>5.5.0</strong> ou plus tard du <a href="https://support.brightcove.com/configuring-brightcove-player-drm#Changelog">Plugin DRM</a>.</aside>
     <p>Cet exemple de code d'implémentation utilise le <a href="https://support.brightcove.com/player-catalog#get_method">catalogue.get()</a> méthode pour demander la vidéo tout en fournissant le jeton (qui devrait remplacer le <code translate="No">&lt;BCOV_AUTH_TOKEN&gt;</code> espace réservé). Assurez-vous de NE PAS inclure l'ID de la vidéo dans le <code translate="No">&lt;video-js&gt;</code> étiqueter.</p>
     <pre class="line-numbers">
@@ -97,16 +98,16 @@ layout: staging
 
   <section class="bcls-section">
     <h2 id="Using_a_custom_implementation">Utiliser une implémentation personnalisée</h2>
-    <p>Vous utilisez peut-être une implémentation personnalisée où vous n'avez pas le <code translate="No">bcovAuthToken</code> pour régler la valeur avec le <a href="https://support.brightcove.com/player-catalog#get_method">catalogue.get()</a> demande de méthode. Si vous utilisez votre propre lecteur ou un lecteur tiers, vous pouvez utiliser l'une des approches suivantes pour transmettre votre jeton à la demande de licence :</p>
+    <p>Vous utilisez peut-être une implémentation personnalisée où vous n'avez pas le <code translate="No">bcovAuthToken</code> pour régler la valeur avec le <a href="https://support.brightcove.com/player-catalog#get_method">catalogue.get()</a> demande de méthode. Si vous utilisez votre propre lecteur ou un lecteur tiers, vous pouvez utiliser l'une des approches suivantes pour transmettre votre jeton à la demande de licence:</p>
     <ul>
       <li>
-        En-tête HTTP : <code translate="No">BCOV-Auth</code>(Non pris en charge pour HLSe)
+        En-tête HTTP: <code translate="No">BCOV-Auth</code>(Non pris en charge pour HLSe)
       </li>
       <li>
         Biscuit: <code translate="No">bcov-auth</code>(Non pris en charge pour HLSe)
       </li>
       <li>
-        Paramètre de requête : <code translate="No">bcov-auth</code>(Uniquement pris en charge pour HLSe) Doit être ajouté à l'URL du manifeste principal, au lieu de l'URL de la licence.
+        Paramètre de requête: <code translate="No">bcov-auth</code>(Uniquement pris en charge pour HLSe) Doit être ajouté à l'URL du manifeste principal, au lieu de l'URL de la licence.
       </li>
     </ul>
     <p>

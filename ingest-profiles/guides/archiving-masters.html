@@ -1,7 +1,6 @@
 ---
 title: 'Archivage des masters'
-description: 'Dans cette rubrique, vous apprendrez à archiver le master numérique de la vidéo lorsque vous l'ingérez.'
-
+description: "Dans cette rubrique, vous apprendrez à archiver le master numérique de la vidéo lorsque vous l'ingérez."
 parent: 'Guides' 
 grandparent: Ingest Profiles API
 ---
@@ -21,7 +20,7 @@ grandparent: Ingest Profiles API
     <section class="bcls-section">
     <h2 id="archivingMaster">Archivage d'un master</h2>
     
-    <p>Pour archiver un master pour votre vidéo, vous devez inclure le <code translate="No">digital_master</code> objet dans votre profil d'ingestion :</p>
+    <p>Pour archiver un master pour votre vidéo, vous devez inclure le <code translate="No">digital_master</code> objet dans votre profil d'ingestion:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -42,7 +41,7 @@ grandparent: Ingest Profiles API
     
     <p>Pour les profils Legacy Ingest, vous pouvez choisir d'utiliser votre fichier source vidéo comme maître ou vous pouvez sélectionner un rendu de haute qualité à utiliser comme maître.</p>
     
-    <p>Pour utiliser le fichier source vidéo que vous ingérez en tant que maître, incluez le code suivant dans votre profil d'acquisition :</p>
+    <p>Pour utiliser le fichier source vidéo que vous ingérez en tant que maître, incluez le code suivant dans votre profil d'acquisition:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">"digital_master": {
@@ -91,7 +90,7 @@ grandparent: Ingest Profiles API
         "rendition": "passthrough"
     }</code></pre>
     
-    <p>Pour empêcher la distribution du maître, définissez <code translate="No">distribute</code> à faux :</p>
+    <p>Pour empêcher la distribution du maître, définissez <code translate="No">distribute</code> à faux:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">"digital_master": {
@@ -103,7 +102,7 @@ grandparent: Ingest Profiles API
     <section class="bcls-section">
     <h2 id="defaultBehavior">Comportement par défaut</h2>
     
-    <p>Par défaut (si le profil ne comprend pas de <code translate="No">digital_master</code> champ), le <span translate="No"><a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">API d'ingestion dynamique</a></span> et <a href="https://studio.support.brightcove.com/media/uploading-videos-using-upload-module.html">Module de téléchargement</a> se comportera exactement comme si les éléments suivants avaient été inclus dans le profil :</p>
+    <p>Par défaut (si le profil ne comprend pas de <code translate="No">digital_master</code> champ), le <span><a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">Dynamic Ingest API</a></span> et <a href="https://studio.support.brightcove.com/media/uploading-videos-using-upload-module.html">Module de téléchargement</a> se comportera exactement comme si les éléments suivants avaient été inclus dans le profil:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">"digital_master": {
@@ -113,7 +112,7 @@ grandparent: Ingest Profiles API
     
     <p>En d'autres termes, aucun master numérique ne sera stocké.</p>
     
-    <p>Si vous avez les éléments suivants dans votre profil :</p>
+    <p>Si vous avez les éléments suivants dans votre profil:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">"digital_master": {
@@ -126,9 +125,9 @@ grandparent: Ingest Profiles API
     <section class="bcls-section">
     <h2 id="standardProfiles">Profils standards</h2>
     
-    <p>Les profils standards pour <span translate="No">Livraison dynamique</span> ainsi que le système d'ingestion hérité stockera automatiquement les masters mais <em>ne pas</em> les distribuer :</p>
+    <p>Les profils standards pour <span>Livraison dynamique</span> ainsi que le système d'ingestion hérité stockera automatiquement les masters mais <em>ne pas</em> les distribuer :</p>
     
-    <h3>Standard <span translate="No">Livraison dynamique</span> profils</h3>
+    <h3>Standard <span>Livraison dynamique</span> profils</h3>
     
     <ul>
       <li translate="No">multi-plateforme-étendu-statique</li>
@@ -151,7 +150,7 @@ grandparent: Ingest Profiles API
       <li translate="No">norme de débit unique</li>
       <li translate="No">débit binaire unique élevé</li>
       <li translate="No">screencast-1280</li>
-      <li translate="No">transition-joueur-smart</li>
+      <li translate="No">transition-Lecteur-smart</li>
     </ul>
     </section>
     </article>

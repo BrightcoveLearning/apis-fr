@@ -1,6 +1,6 @@
 Dimension:---
 title: ' <code translate="No">account</code>'
-description: 'Dans cette rubrique, vous découvrirez les <span translate="No">API d'analyse</span> <code translate="No">account</code> dimension. Les <code translate="No">account</code> La dimension est utilisée pour récupérer les données analytiques globales du compte.'
+description: "Dans cette rubrique, vous découvrirez les Analytics API <code translate="No">account</code> dimension. Les <code translate="No">account</code> La dimension est utilisée pour récupérer les données analytiques globales du compte."
 parent: Dimension Guides 
 grandparent: Analytics API
 ---
@@ -10,7 +10,7 @@ grandparent: Analytics API
     <section class="bcls-section">
     <h2 id="urlParams">Paramètres d'URL</h2>
     
-    <p>Les rapports de l'API Analytics prennent en charge les paramètres d'URL suivants.</p>
+    <p>Les rapports de Analytics API prennent en charge les paramètres d'URL suivants.</p>
     
     <table class="bcls-table">
       <caption class="bcls-caption--table">Paramètres d'URL</caption>
@@ -114,8 +114,8 @@ grandparent: Analytics API
       <li><code translate="No">account</code>- l'identifiant du compte</li>
       <li><code translate="No">account.name</code>- le nom du compte</li>
       <li><code translate="No">active_media</code>- le nombre de vidéos actives dans le compte</li>
-      <li><code translate="No">ad_mode_begin</code>- le nombre de fois où le joueur est entré en mode publicité</li>
-      <li><code translate="No">ad_mode_complete</code>- le nombre de fois où le joueur a terminé le mode publicité</li>
+      <li><code translate="No">ad_mode_begin</code>- le nombre de fois où le Lecteur est entré en mode publicité</li>
+      <li><code translate="No">ad_mode_complete</code>- le nombre de fois où le Lecteur a terminé le mode publicité</li>
       <li><code translate="No">bytes_delivered</code>- nombre total d'octets délivrés aux machines clientes pour le lecteur et les médias associés</li>
       <li><code translate="No">daily_unique_viewers</code>- utilisateurs uniques quotidiens moyens</li>
       <li><code translate="No">drm_bytes_packaged</code>- le nombre d'octets DRM conditionnés</li>
@@ -124,13 +124,13 @@ grandparent: Analytics API
       <li><code translate="No">live_seconds_streamed</code>- le nombre total de secondes de diffusion en direct délivrées</li>
       <li><code translate="No">play_request</code>- nombre total de fois où la lecture vidéo a été demandée</li>
       <li><code translate="No">play_rate</code>- le taux de lecture moyen (vues vidéo divisées par impressions) pour les vidéos</li>
-      <li><code translate="No">player_load</code>- le nombre total de chargements de joueurs</li>
+      <li><code translate="No">player_load</code>- le nombre total de chargements de Lecteurs</li>
       <li><code translate="No">video_engagement_1</code>- le nombre total de vues au point de 1% de la durée de la vidéo</li>
       <li><code translate="No">video_engagement_100</code>- le nombre total de vues au point de 100 pour cent de la durée de la vidéo</li>
       <li><code translate="No">video_engagement_25</code>- le nombre total de vues au point de 25% de la durée de la vidéo</li>
       <li><code translate="No">video_engagement_50</code>- le nombre total de vues au point de 50 pour cent de la durée de la vidéo</li>
       <li><code translate="No">video_engagement_75</code>- le nombre total de vues au point de 75 pour cent de la durée de la vidéo</li>
-      <li><code translate="No">video_impression</code>- le nombre total de fois où les vidéos ont été chargées dans les lecteurs</li>
+      <li><code translate="No">video_impression</code>- le nombre total de fois où les vidéos ont été chargées dans les Lecteurs</li>
       <li><code translate="No">video_percent_viewed</code>- pourcentage total de visionnages pour toutes les vidéos (une somme, pas une moyenne)</li>
       <li><code translate="No">video_seconds_viewed</code>- le nombre total de secondes vues pour toutes les vidéos</li>
       <li><code translate="No">video_view</code>- le nombre total de fois où la lecture vidéo a commencé</li>
@@ -142,7 +142,7 @@ grandparent: Analytics API
     
     <p>Utilisée comme filtre, une dimension permet d'affiner les résultats.</p>
     
-    <p id="filters">Filtrer les valeurs : La dimension du compte n'est pas utilisée comme filtre.</p>
+    <p id="filters">Filtrer les valeurs: La dimension du compte n'est pas utilisée comme filtre.</p>
     </section>
     
     <section class="bcls-section">
@@ -157,7 +157,7 @@ grandparent: Analytics API
     <h3>Demande de dimension</h3>
     
     <pre class="line-numbers language-http code-toolbar">
-    <code class="language-http" id="dimensionRequest"><span class="token header-name keyword"><span class="token header-name keyword">https :</span></span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=account</code></pre>
+    <code class="language-http" id="dimensionRequest"><span class="token header-name keyword"><span class="token header-name keyword">https:</span></span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=account</code></pre>
     <button class="bcls-button" id="sendDimensionRequest">Tester cette demande</button>
     
     <h3>Demande de filtre</h3>

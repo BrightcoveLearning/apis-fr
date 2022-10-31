@@ -1,6 +1,6 @@
 ---
 title: Manifeste XML pour l'ingestion via MRSS
-description: 'Cette rubrique explique la structure du XML utilisé par l'ingestion MRSS pour télécharger des vidéos sur Video Cloud. Noter: Il s'agit d'un service d'ingestion bêta.'
+description: "Cette rubrique explique la structure du XML utilisé par l'ingestion MRSS pour télécharger des vidéos sur Video Cloud. Noter: Il s'agit d'un service d'ingestion bêta."
 parent: MRSS ingestion
 layout: staging
 ---
@@ -19,7 +19,7 @@ layout: staging
   </section>
   <section class="bcls-section">
     <h2 id="Handling_of_metadata">Gestion des métadonnées</h2>
-    <p>Si vous incluez <code translate="No">metadata</code> pour les vidéos lorsque vous les ingérez, elles sont mappées aux champs vidéo de Video Cloud de l'une des deux manières suivantes :</p>
+    <p>Si vous incluez <code translate="No">metadata</code> pour les vidéos lorsque vous les ingérez, elles sont mappées aux champs vidéo de Video Cloud de l'une des deux manières suivantes:</p>
     <ol>
       <li>Par défaut, chaque <code translate="No">metadata</code> la paire clé/valeur est ajoutée en tant que <strong>étiqueter</strong> sous la forme: <code translate="No">meta::key::value</code>. Par exemple, <code translate="No">&lt;ooyala:metadata name="category"&gt;cooking&lt;/ooyala:metadata&gt;</code> produirait l'étiquette <code translate="No">meta::category::cooking</code></li>
     </ol>
@@ -67,7 +67,7 @@ layout: staging
           <tr>
               <td><code translate="No">&lt;media:thumbnail&gt;</code></td>
               <td>
-                Spécifie une miniature (image d'aperçu). L'un des éléments suivants :
+                Spécifie une miniature (image d'aperçu). L'un des éléments suivants:
                 <ul style="padding: 0;margin-left: 1rem;">
                   <li>Nom de fichier d'une vignette que vous avez téléchargée sur votre serveur.</li>
                   <li>URL où se trouve la miniature. L'URL peut inclure <code translate="No">http://</code> ou <code translate="No">https://</code>.</li>
@@ -80,7 +80,7 @@ layout: staging
               <td>
                 Spécifie un fichier de sous-titres codés (pris en charge pour les fichiers DFXP, WebVTT et SRT). Voir <a href="https://studio.support.brightcove.com/media/overview-adding-captions-video.html">Ingérer des fichiers de sous-titres codés</a>. Les attributs:
                 <ul style="padding: 0;margin-left: 1rem;">
-                  <li><code translate="No">href</code>(<strong>obligatoire</strong> ) - L'un des éléments suivants :
+                  <li><code translate="No">href</code>(<strong>obligatoire</strong> ) - L'un des éléments suivants:
                     <ul style="padding: 0;margin-left: 1rem;">
                       <li>Nom de fichier du fichier de sous-titres que vous avez téléchargé. Exemple: <samp translate="No">légende-1.dfxp</samp></li>
                       <li>URL où se trouve le fichier de sous-titres. L'URL peut inclure <code translate="No">http://</code> ou <code translate="No">https://</code>.</li>
@@ -131,7 +131,7 @@ layout: staging
           <tr>
               <td><code translate="No">&lt;ooyala:remoteasset&gt;</code></td>
               <td>
-                Spécifie un actif distant à ingérer. Une ressource distante est une vidéo hébergée ailleurs que Video Cloud. Spécifiez les attributs suivants :
+                Spécifie un actif distant à ingérer. Une ressource distante est une vidéo hébergée ailleurs que Video Cloud. Spécifiez les attributs suivants:
                 <ul style="padding: 0;margin-left: 1rem;">
                   <li><code translate="No">durationInMs</code>: durée du média (en millisecondes)</li>
                   <li>:<code translate="No">url</code> URL où se trouve l'actif distant. L'URL peut inclure <code translate="No">http://</code> ou <code translate="No">https://</code>.</li>
@@ -170,7 +170,7 @@ layout: staging
       <li>
         Créé un <code translate="No">&lt;item&gt;</code> entrée pour chaque vidéo, contenant les éléments souhaités du tableau ci-dessus.
         <p>Dans l'exemple suivant, le XML spécifie des métadonnées pour deux vidéos. Pour la première vidéo, le fichier et les vignettes se trouvent sur un serveur de téléchargement et sont extraits de ce serveur. Pour la deuxième vidéo, le fichier et la vignette ont déjà été téléchargés sur un serveur Ooyala. La deuxième vidéo a également des temps de vol.</p>
-<pre class="line-numbers"><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt; &lt;rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dcterms="http:/ /purl.org/dc/terms/" xmlns:fh="http://purl.org/syndication/history/1.0" xmlns:ooyala="http://brightcove.com/mrss"&gt; &lt;channel&gt; &lt;item &gt; &lt;media:content url="http://mysite.com/upload/lacrosse_70.mov" /&gt; &lt;media:thumbnail url="http://mysite.com/upload/lacrosse_70_previewimage.jpg" /&gt; &lt;media : title&gt;Les sports qui existent vraiment : Lacrosse&lt;/media:title&gt; &lt;media:description&gt;Ma description de ma vidéo&lt;/media:description&gt; &lt;ooyala:labels&gt;/sports/lacrosse,/hobbies/lacrosse&lt;/ooyala:labels&gt; &lt;link&gt;http:// mysite.com/videos/sports/real_sports.html&lt;/link&gt; &lt;ooyala:metadata name="video_ID"&gt;70&lt;/ooyala:metadata&gt; &lt;ooyala:metadata name="season_number"&gt;1&lt;/ooyala:metadata&gt; &lt; /item&gt; &lt;item&gt; &lt;media:content url="curling_71.mov" /&gt; &lt;media:thumbnail url="curling_71_previewimage.jpg" /&gt; &lt;media:title&gt;Les sports qui existent vraiment : Curling&lt;/media:title&gt; &lt;media:description&gt;Ma description de ma vidéo&lt;/media:description&gt; &lt;ooyala:labels&gt;/sports/curling,/hobbies/curling&lt;/ooyala:labels&gt; &lt;link&gt;http:// mysite.com/videos/sports/real_sports.html&lt;/link&gt; &lt;ooyala:metadata name="video_ID"&gt;71&lt;/ooyala:metadata&gt; &lt;ooyala:metadata name="season_number"&gt;1&lt;/ooyala:metadata&gt; &lt; !-- définir les heures de vol --&gt; &lt;dcterms:valid&gt;start=2011-06-28T15:15:00-07:00 ; end=2022-12-01T16:00:00-07:00;scheme=W3C-DTF &lt;/dcterms:valid&gt; &lt;/item&gt; &lt;/channel&gt; &lt;/rss&gt;</code></pre>
+<pre class="line-numbers"><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt; &lt;rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dcterms="http:/ /purl.org/dc/terms/" xmlns:fh="http://purl.org/syndication/history/1.0" xmlns:ooyala="http://brightcove.com/mrss"&gt; &lt;channel&gt; &lt;item &gt; &lt;media:content url="http://mysite.com/upload/lacrosse_70.mov" /&gt; &lt;media:thumbnail url="http://mysite.com/upload/lacrosse_70_previewimage.jpg" /&gt; &lt;media: title&gt;Les sports qui existent vraiment: Lacrosse&lt;/media:title&gt; &lt;media:description&gt;Ma description de ma vidéo&lt;/media:description&gt; &lt;ooyala:labels&gt;/sports/lacrosse,/hobbies/lacrosse&lt;/ooyala:labels&gt; &lt;link&gt;http:// mysite.com/videos/sports/real_sports.html&lt;/link&gt; &lt;ooyala:metadata name="video_ID"&gt;70&lt;/ooyala:metadata&gt; &lt;ooyala:metadata name="season_number"&gt;1&lt;/ooyala:metadata&gt; &lt; /item&gt; &lt;item&gt; &lt;media:content url="curling_71.mov" /&gt; &lt;media:thumbnail url="curling_71_previewimage.jpg" /&gt; &lt;media:title&gt;Les sports qui existent vraiment: Curling&lt;/media:title&gt; &lt;media:description&gt;Ma description de ma vidéo&lt;/media:description&gt; &lt;ooyala:labels&gt;/sports/curling,/hobbies/curling&lt;/ooyala:labels&gt; &lt;link&gt;http:// mysite.com/videos/sports/real_sports.html&lt;/link&gt; &lt;ooyala:metadata name="video_ID"&gt;71&lt;/ooyala:metadata&gt; &lt;ooyala:metadata name="season_number"&gt;1&lt;/ooyala:metadata&gt; &lt; !-- définir les heures de vol --&gt; &lt;dcterms:valid&gt;start=2011-06-28T15:15:00-07:00 ; end=2022-12-01T16:00:00-07:00;scheme=W3C-DTF &lt;/dcterms:valid&gt; &lt;/item&gt; &lt;/channel&gt; &lt;/rss&gt;</code></pre>
       </li>
       <li>Enregistrez le fichier au format XML. Assurez-vous de spécifier un nom unique. Si vous spécifiez deux fichiers portant le même nom et que vous en téléchargez un pendant que l'autre est en cours de traitement, le second peut être ignoré</li>
       <li>

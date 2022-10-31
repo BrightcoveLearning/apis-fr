@@ -1,6 +1,6 @@
 ---
 title: 'Ajouter des points de repère'
-description: 'Dans cet exemple, vous apprendrez à ajouter des points de repère à une vidéo par programmation à l'aide de l'API CMS.'
+description: "Dans cet exemple, vous apprendrez à ajouter des points de repère à une vidéo par programmation à l'aide de CMS API."
 
 parent: 'Code Samples' 
 grandparent: CMS API
@@ -15,18 +15,18 @@ grandparent: CMS API
 
     <p>Les points de repère sont des emplacements spécifiés sur la chronologie de la vidéo. Lorsque la vidéo est lue, un événement est automatiquement diffusé à chaque fois qu'un point de repère est atteint - en utilisant l'API Player, vous pouvez écouter ces événements et prendre les mesures que vous souhaitez. De plus, vous pouvez lire toutes les informations de point de repère à partir des métadonnées vidéo stockées dans le lecteur <code translate="No">mediainfo</code> objet, ce qui vous permet de <a href="https://player.support.brightcove.com/code-samples/brightcove-player-sample-ad-indicators-playback-bar.html">marquer les points de repère sur la chronologie de la vidéo</a> d'une manière ou d'une autre si vous le souhaitez.</p>
 
-    <p>Il existe deux types de points de repère :</p>
+    <p>Il existe deux types de points de repère:</p>
 
     <ul>
-      <li>Points de repère publicitaire : ils sont utilisés pour marquer les endroits où une demande de publicité doit être faite (si la vidéo et le lecteur sont activés pour la publicité).</li>
-      <li>Points de repère de code : ils sont utilisés pour effectuer des actions à l'aide de l'API Player - certains usages typiques sont l'affichage d'une sorte d'appel à l'action (CTA) ou l'affichage d'une image ou d'un texte relatif au contenu vidéo, peut-être sous forme de superposition vidéo ou dans la page autour du lecteur.</li>
+      <li>Points de repère publicitaire: ils sont utilisés pour marquer les endroits où une demande de publicité doit être faite (si la vidéo et le lecteur sont activés pour la publicité).</li>
+      <li>Points de repère de code: ils sont utilisés pour effectuer des actions à l'aide de l'API Player - certains usages typiques sont l'affichage d'une sorte d'appel à l'action (CTA) ou l'affichage d'une image ou d'un texte relatif au contenu vidéo, peut-être sous forme de superposition vidéo ou dans la page autour du lecteur.</li>
     </ul>
   </section>
 
   <section class="bcls-section">
     <h2 id="implementation_overview">Présentation de la mise en œuvre</h2>
 
-    <p>Vous pouvez ajouter des points de repère dans <a href="https://studio.support.brightcove.com/media/working-cue-points-media-module.html">le module Studio Média</a>. Vous pouvez également les ajouter à l'aide de l'API CMS, qui est la méthode que nous utiliserons dans cet exemple.</p>
+    <p>Vous pouvez ajouter des points de repère dans <a href="https://studio.support.brightcove.com/media/working-cue-points-media-module.html">le module Studio Média</a>. Vous pouvez également les ajouter à l'aide de CMS API, qui est la méthode que nous utiliserons dans cet exemple.</p>
 
     <h3>Méthode HTTP</h3>
 
@@ -36,14 +36,14 @@ grandparent: CMS API
 
     <h3>Point de terminaison</h3>
 
-    <p>Le point de terminaison de la demande de mise à jour vidéo est :</p>
+    <p>Le point de terminaison de la demande de mise à jour vidéo est:</p>
 
     <pre class="line-numbers">
           <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/<span class="bcls-input">account_id</span></code>/vidéos/<span class="bcls-input">id_vidéo</span></pre>
 
     <h3>Corps de la demande</h3>
 
-    <p>Le corps de la requête est un objet JSON qui peut contenir de nombreux éléments de métadonnées vidéo. Ici, nous allons simplement regarder le <code translate="No">cue_points</code> champ, qui est défini sur un tableau d'objets de point de repère, comme dans l'exemple suivant :</p>
+    <p>Le corps de la requête est un objet JSON qui peut contenir de nombreux éléments de métadonnées vidéo. Ici, nous allons simplement regarder le <code translate="No">cue_points</code> champ, qui est défini sur un tableau d'objets de point de repère, comme dans l'exemple suivant:</p>
 
     <pre class="line-numbers">
           <code class="language-json" translate="No">{
@@ -125,15 +125,15 @@ grandparent: CMS API
       <summary>
         <h2 id="getCredentials">Obtenir des informations d'authentification</h2>
       </summary>
-      <p>Pour utiliser le <span translate="No">API CMS</span> vous aurez besoin des informations d'identification appropriées.</p>
+      <p>Pour utiliser le CMS API vous aurez besoin des informations d'identification appropriées.</p>
 
-      <p>Le moyen le plus simple d'obtenir des informations d'identification dans la plupart des cas consiste à utiliser la section Authentification de l'API d'administration de Studio (nécessite des autorisations d'administrateur sur votre compte). Voir <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a> pour les détails. Dans la plupart des cas, vous souhaitez probablement simplement obtenir des autorisations pour tous <span translate="No">API CMS</span> opération:</p>
+      <p>Le moyen le plus simple d'obtenir des informations d'identification dans la plupart des cas consiste à utiliser la section Authentification de l'API d'administration de Studio (nécessite des autorisations d'administrateur sur votre compte). Voir <a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a> pour les détails. Dans la plupart des cas, vous souhaitez probablement simplement obtenir des autorisations pour tous CMS API opération:</p>
 
       <figure class="bcls-figure"><img class="bcls-image" alt="CMS API Permissions" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/cms-api/cms-permissions.png" />
-        <figcaption class="bcls-caption--image">Autorisations API CMS</figcaption>
+        <figcaption class="bcls-caption--image">Autorisations CMS API</figcaption>
       </figure>
 
-      <p>Si les autorisations dont vous avez besoin ne sont pas disponibles dans Studio, ou si vous préférez les obtenir directement à partir de l'API OAuth, utilisez votre choix de <strong>Obtenir les informations d'identification du client</strong> documents énumérés ci-dessous. Quelle que soit l'option que vous choisissez, vous devrez demander les autorisations de fonctionnement correctes. Les éléments suivants peuvent être utilisés avec cURL ou Postman pour obtenir toutes les autorisations pour l'API CMS :</p>
+      <p>Si les autorisations dont vous avez besoin ne sont pas disponibles dans Studio, ou si vous préférez les obtenir directement à partir de OAuth API, utilisez votre choix de <strong>Obtenir les informations d'identification du client</strong> documents énumérés ci-dessous. Quelle que soit l'option que vous choisissez, vous devrez demander les autorisations de fonctionnement correctes. Les éléments suivants peuvent être utilisés avec cURL ou Postman pour obtenir toutes les autorisations pour l'CMS API:</p>
 
       <pre class="line-numbers">
           <code class="language-json" translate="No">"operations": [
@@ -144,8 +144,8 @@ grandparent: CMS API
           ]</code></pre>
 
       <ul>
-        <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">OAuth : Obtenir les informations d'identification du client à l'aide de cURL</a></li>
-        <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">OAuth : Obtenez les informations d'identification du client à l'aide de Postman</a></li>
+        <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">OAuth: Obtenir les informations d'identification du client à l'aide de cURL</a></li>
+        <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">OAuth: Obtenez les informations d'identification du client à l'aide de Postman</a></li>
       </ul>
     </details>
   </section>
@@ -154,7 +154,7 @@ grandparent: CMS API
     <h2 id="sample_app">Exemple d'application</h2>
     Retrouvez tout le code associé à cet exemple dans ce <a href="https://github.com/BrightcoveLearning/18030-cms-api-sample-add-cue-points">Dépôt GitHub</a>.
 
-    <p data-height="1200" data-theme-id="34967" data-slug-hash="bvqJEp" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="CMS API Sample: Add Cue Points" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/bvqJEp/">Exemple d'API CMS : Ajouter des points de repère</a> par Brightcove Learning Services ( <a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
+    <p data-height="1200" data-theme-id="34967" data-slug-hash="bvqJEp" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="CMS API Sample: Add Cue Points" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/bvqJEp/">Exemple d'CMS API: Ajouter des points de repère</a> par Brightcove Learning Services ( <a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
     <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
   </section>
 

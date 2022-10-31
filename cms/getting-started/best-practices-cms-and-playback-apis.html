@@ -1,6 +1,6 @@
 ---
-title: 'Les meilleures pratiques: CMS et API de lecture'
-description: 'Cette rubrique fournit les meilleures pratiques pour l'utilisation des API de catalogue (CMS et API de lecture).'
+title: 'Les meilleures pratiques: CMS et Playback API'
+description: "Cette rubrique fournit les meilleures pratiques pour l'utilisation des API de catalogue (CMS et Playback API)."
 
 parent: 'Getting Started' 
 grandparent: CMS API
@@ -11,15 +11,15 @@ grandparent: CMS API
   <section class="bcls-section">
   <h2 id="Introduction">introduction</h2>
   
-  <p>Le CMS et les API de lecture donnent accès à vos données vidéo Video Cloud. Le but de cette rubrique est de vous aider à comprendre la différence entre eux et les meilleures pratiques pour les utiliser.</p>
+  <p>Le CMS et les Playback API donnent accès à vos données vidéo Video Cloud. Le but de cette rubrique est de vous aider à comprendre la différence entre eux et les meilleures pratiques pour les utiliser.</p>
   </section>
   
   <section class="bcls-section">
-  <h2 id="differences_between">Différences entre le CMS et les API de lecture</h2>
+  <h2 id="differences_between">Différences entre le CMS et les Playback API</h2>
   
-  <p>Le CMS et les API de lecture accèdent aux mêmes données vidéo sous-jacentes. Cependant, il existe des différences clés entre eux qui devraient déterminer celui que vous utilisez dans des situations particulières.</p>
+  <p>Le CMS et les Playback API accèdent aux mêmes données vidéo sous-jacentes. Cependant, il existe des différences clés entre eux qui devraient déterminer celui que vous utilisez dans des situations particulières.</p>
   
-  <p>D'une manière générale, le <span translate="No">API CMS</span> est destiné à une utilisation backend, telle que l'intégration de Video Cloud à votre système CMS. L'API de lecture est destinée à une utilisation frontale pour récupérer des données de vidéo et de liste de lecture pour les lecteurs ou les portails vidéo (le Brightcove Player <code translate="No">catalog</code> et <code translate="No">playlist</code> Les API utilisent l'API Playback, par exemple).</p>
+  <p>D'une manière générale, le CMS API est destiné à une utilisation backend, telle que l'intégration de Video Cloud à votre système CMS. le Playback API est destinée à une utilisation frontale pour récupérer des données de vidéo et de liste de lecture pour les Lecteurs ou les portails vidéo (le Brightcove Player <code translate="No">catalog</code> et <code translate="No">playlist</code> Les API utilisent le Playback API, par exemple).</p>
   
   <p>Le tableau ci-dessous répertorie quelques différences clés entre les deux API.</p>
   
@@ -28,15 +28,15 @@ grandparent: CMS API
     <thead class="bcls-table__head">
       <tr>
         <th>Article</th>
-        <th>API CMS</th>
-        <th>API de lecture</th>
+        <th>CMS API</th>
+        <th>Playback API</th>
       </tr>
     </thead>
     <tbody class="bcls-table__body">
       <tr>
         <td><strong>Types d'opérations</strong></td>
         <td>créer, lire, mettre à jour, supprimer</td>
-        <td>lecture seule - aucune donnée ne peut être modifiée à l'aide de l'API de lecture</td>
+        <td>lecture seule - aucune donnée ne peut être modifiée à l'aide de le Playback API</td>
       </tr>
       <tr>
         <td><strong>Portée des opérations</strong></td>
@@ -79,7 +79,7 @@ grandparent: CMS API
   
   <p>De plus, toutes les URL contiennent un <code translate="No">TTL</code> jeton pour des raisons de sécurité du contenu. Cela signifie que les URL expirent après 6 heures par défaut. La durée de vie du token peut être prolongée jusqu'à 365 jours - si vous voulez des tokens à plus longue durée de vie, <a href="https://supportportal.brightcove.com/s/login/?language=en_US">Contacter l'assistance Brightcove</a>. Sachez toutefois que le <code translate="No">TTL</code> reflète la durée maximale pendant laquelle l'actif sera mis en cache par le CDN, mais ne garantit pas que l'URL ne changera pas avant l'expiration du jeton.</p>
   
-  <p>Le meilleur moyen d'empêcher la rupture des liens vers les médias est de les récupérer à partir de Video Cloud au moment de l'exécution en utilisant le <a href="/cms/managing-videos/using-cms-api-retrieve-video-data.html">API CMS</a> ou la <a href="/playback/index.html">API de lecture</a>.</p>
+  <p>Le meilleur moyen d'empêcher la rupture des liens vers les médias est de les récupérer à partir de Video Cloud au moment de l'exécution en utilisant le <a href="/cms/managing-videos/using-cms-api-retrieve-video-data.html">CMS API</a> ou la <a href="/playback/index.html">Playback API</a>.</p>
   
   <section class="bcls-subsection">
   <h3>Mettre en cache les URL</h3>
@@ -91,8 +91,8 @@ grandparent: CMS API
   <section class="bcls-section">
   <h2 id="reference_id_conflicts">Conflits d'ID de référence</h2>
   
-  <p>Cette section s'applique aux <span translate="No">API CMS</span> seul.</p>
+  <p>Cette section s'applique aux CMS API seul.</p>
   
-  <p>Pour garantir l'unicité des identifiants de référence, le <span translate="No">API CMS</span> verrouille l'identifiant jusqu'à 3 minutes après toute opération sur la vidéo à laquelle il est attribué. Cela peut entraîner le retour d'erreurs 409 lorsque vous essayez de réessayer une demande qui échoue trop rapidement, ou lorsque vous essayez de réutiliser un identifiant de référence trop tôt après avoir supprimé la vidéo à laquelle il était précédemment attribué. Voir le <a href="/cms/references/cms-api-error-message-reference.html#409_conflict">Référence des messages d'erreur</a> pour plus de détails.</p>
+  <p>Pour garantir l'unicité des identifiants de référence, le CMS API verrouille l'identifiant jusqu'à 3 minutes après toute opération sur la vidéo à laquelle il est attribué. Cela peut entraîner le retour d'erreurs 409 lorsque vous essayez de réessayer une demande qui échoue trop rapidement, ou lorsque vous essayez de réutiliser un identifiant de référence trop tôt après avoir supprimé la vidéo à laquelle il était précédemment attribué. Voir le <a href="/cms/references/cms-api-error-message-reference.html#409_conflict">Référence des messages d'erreur</a> pour plus de détails.</p>
   </section>
   </article>

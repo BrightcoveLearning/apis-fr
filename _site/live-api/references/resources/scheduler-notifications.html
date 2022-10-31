@@ -1,0 +1,113 @@
+<article class="markdown-body entry-content" itemprop="text">
+  <h1> <a id="user-content-scheduler-notifications" class="anchor" aria-hidden="true" href="#scheduler-notifications">
+      <svg
+        class="octicon octicon-link"
+        viewBox="0 0 16 16"
+        version="1.1"
+        width="16"
+        height="16"
+        aria-hidden="true"
+      >
+        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+      </svg>
+    </a>Notifications du planificateur </h1>
+  <p>Lors de la création de workflows avec le planificateur, vous pouvez éventuellement configurer des notifications. Après avoir terminé une tâche, le planificateur enverra une notification au point de terminaison configuré à l'aide de la méthode http <code translate="no">PUBLIER</code> avec des détails sur l'action qui a été effectuée et son succès/échec. Vous pouvez également configurer une pré-notification d'une tâche à venir. Veuillez vous référer au <a href="/live-api/references/reference-staging.html">Référence API</a> pour configurer les notifications pour votre type de workflow.
+  </p>
+  <h2>
+    <a id="user-content-notification-body" class="anchor" aria-hidden="true" href="#notification-body">
+      <svg
+        class="octicon octicon-link"
+        viewBox="0 0 16 16"
+        version="1.1"
+        width="16"
+        height="16"
+        aria-hidden="true"
+      >
+        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+      </svg>
+    </a>Corps de notification
+  </h2>
+  <p>Lorsque le serveur envoie une notification à votre <code translate="no">notification_url</code> , la demande inclura un corps JSON
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Champ</th>
+        <th>La description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>action</td>
+        <td>Nom de l'action. Voir <a href="#Actions">Actions</a>
+        </td>
+      </tr>
+      <tr>
+        <td>flux de travail</td>
+        <td>Flux de travail mis à jour après l'achèvement de l'action. La structure dépendra du type de flux de travail.</td>
+      </tr>
+      <tr>
+        <td>Erreur</td>
+        <td>Si une erreur s'est produite lors de l'exécution de l'action, ce champ contiendra l'erreur. la valeur dépend du type d'action.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a id="user-content-actions" class="anchor" aria-hidden="true" href="#actions">
+      <svg
+        class="octicon octicon-link"
+        viewBox="0 0 16 16"
+        version="1.1"
+        width="16"
+        height="16"
+        aria-hidden="true"
+      >
+        <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+      </svg>
+    Actions</a>
+  </h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Type de flux de travail</th>
+        <th>La description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>notifier-activer</td>
+        <td>travailstartstop</td>
+        <td>Notification d'avertissement indiquant que votre emploi sera bientôt activé.</td>
+      </tr>
+      <tr>
+        <td>Activer</td>
+        <td>travailstartstop</td>
+        <td>Activation du travail terminée. Si <code translate="no">"Erreur"</code> est présent, l'activation a échoué et la désactivation sera annulée.
+        </td>
+      </tr>
+      <tr>
+        <td>notifier-désactiver</td>
+        <td>travailstartstop</td>
+        <td>Notification d'avertissement indiquant que votre emploi sera bientôt activé.</td>
+      </tr>
+      <tr>
+        <td>désactiver</td>
+        <td>travailstartstop</td>
+        <td>Désactivation de l'emploi obligatoire. Si <code translate="no">"Erreur"</code> est présent, la désactivation a échoué.
+        </td>
+      </tr>
+      <tr>
+        <td>notifier-clip</td>
+        <td>agrafe</td>
+        <td>Notification d'avertissement indiquant que votre clip sera bientôt demandé.</td>
+      </tr>
+      <tr>
+        <td>agrafe</td>
+        <td>agrafe</td>
+        <td>Demande de clip terminée. Si <code translate="no">"Erreur"</code> est présent, la demande a échoué.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</article>

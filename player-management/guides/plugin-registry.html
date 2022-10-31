@@ -1,6 +1,6 @@
 ---
 title: 'Registre des plugins'
-description: 'Dans cette rubrique, vous apprendrez comment le registre de plugins peut être utilisé pour suivre et gérer les plugins utilisés par votre Brightcove Player.'
+description: "Dans cette rubrique, vous apprendrez comment le registre de plugins peut être utilisé pour suivre et gérer les plugins utilisés par votre Brightcove Player."
 parent: Guides 
 grandparent: Player Management API
 ---
@@ -22,7 +22,7 @@ grandparent: Player Management API
   <section class="bcls-section">
     <h2 id="What_is_the_Plugin_Registry">Qu'est-ce que le registre des plugins ?</h2>
     
-    <p>Le registre des plugins est une section de l'API de gestion des lecteurs consacrée au stockage d'informations sur les plugins Brightcove. Le registre sert de référence pour toutes les versions de chaque plugin stocké, ainsi que les scripts et les feuilles de style associés à chacun. La configuration du lecteur exploite le registre des plug-ins, affichant la version actuelle du plug-in et vous permettant également de spécifier une version du plug-in.</p>
+    <p>Le registre des plugins est une section de l'API de gestion des Lecteurs consacrée au stockage d'informations sur les plugins Brightcove. Le registre sert de référence pour toutes les versions de chaque plugin stocké, ainsi que les scripts et les feuilles de style associés à chacun. La configuration du lecteur exploite le registre des plug-ins, affichant la version actuelle du plug-in et vous permettant également de spécifier une version du plug-in.</p>
     
     <aside class="bcls-aside bcls-aside--information">Le registre des plugins est implémenté dans la version 2 de l'API Player Management.</aside>
     </section>
@@ -42,7 +42,7 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h2 id="Current_eligible_plugins">Plugins éligibles actuels</h2>
     
-    <p>Le tableau suivant montre les plug-ins fournis par Brightcove qui fonctionnent avec le registre de plug-ins. Les <strong>ID de registre du plug-in</strong> sera utilisé avec la configuration du lecteur en conjonction avec l'API de gestion des lecteurs. De nombreux exemples seront présentés dans ce document.</p>
+    <p>Le tableau suivant montre les plug-ins fournis par Brightcove qui fonctionnent avec le registre de plug-ins. Les <strong>ID de registre du plug-in</strong> sera utilisé avec la configuration du lecteur en conjonction avec l'API de gestion des Lecteurs. De nombreux exemples seront présentés dans ce document.</p>
     
     <table class="bcls-table">
       <thead class="bcls-table__head">
@@ -136,7 +136,7 @@ grandparent: Player Management API
       https://players.api.brightcove.com/v2/accounts/{account_id}/players</code>
           </pre>
     
-    <p>Les informations sur le lecteur créé sont renvoyées par l'API de gestion des lecteurs. Vous pouvez utiliser le <strong>URL</strong> valeur renvoyée, modifiez la <strong>index.html</strong> à <strong>config.json</strong> et parcourez cette URL pour voir la configuration du lecteur publié.</p>
+    <p>Les informations sur le lecteur créé sont renvoyées par l'API de gestion des Lecteurs. Vous pouvez utiliser le <strong>URL</strong> valeur renvoyée, modifiez la <strong>index.html</strong> à <strong>config.json</strong> et parcourez cette URL pour voir la configuration du lecteur publié.</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -190,7 +190,7 @@ grandparent: Player Management API
     
     <p>Vous pouvez configurer un lecteur pour utiliser la dernière version du plugin pour un <strong>Majeur</strong> version compatible avec le lecteur que vous utilisez. Lorsque vous faites cela et que des versions mineures du plugin sont publiées, le plugin sera automatiquement mis à jour vers la dernière version mineure.</p>
     
-    <p>Par exemple, si vous souhaitez que votre lecteur contienne la dernière version compatible du plug-in d'écran de fin personnalisé pour <strong>version majeure 2</strong> du plugin, vous utiliseriez ce qui suit :</p>
+    <p>Par exemple, si vous souhaitez que votre lecteur contienne la dernière version compatible du plug-in d'écran de fin personnalisé pour <strong>version majeure 2</strong> du plugin, vous utiliseriez ce qui suit:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -213,7 +213,7 @@ grandparent: Player Management API
       }' \
       https://players.api.brightcove.com/v2/accounts/{account_id}/players</code></pre>
     
-    <p>La configuration résultante ressemblera à la suivante :</p>
+    <p>La configuration résultante ressemblera à la suivante:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">"plugins": [{
@@ -261,7 +261,7 @@ grandparent: Player Management API
       https://players.api.brightcove.com/v2/accounts/{account_id}/players</code>
           </pre>
     
-    <p>La configuration du lecteur reflétera la version spécifique, ainsi que dans les fichiers JavaScript et CSS :</p>
+    <p>La configuration du lecteur reflétera la version spécifique, ainsi que dans les fichiers JavaScript et CSS:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">"plugins": [{
@@ -285,7 +285,7 @@ grandparent: Player Management API
     
     <h3>Attribuer le plugin à un lecteur non compatible</h3>
     
-    <p>Si à tout moment, que ce soit lors de la création ou de la mise à jour du lecteur, vous essayez de spécifier une version de plugin non compatible avec une version de lecteur, vous obtiendrez une erreur. Par exemple, voici une réponse de l'API lorsque vous essayez d'attribuer un ancien plugin non compatible à un nouveau lecteur :</p>
+    <p>Si à tout moment, que ce soit lors de la création ou de la mise à jour du lecteur, vous essayez de spécifier une version de plugin non compatible avec une version de lecteur, vous obtiendrez une erreur. Par exemple, voici une réponse de l'API lorsque vous essayez d'attribuer un ancien plugin non compatible à un nouveau lecteur:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -296,7 +296,7 @@ grandparent: Player Management API
     
     <h3>Changer la version du lecteur donc non compatible avec le plugin</h3>
     
-    <p>Si vous essayez de changer la version d'un lecteur existant et que le lecteur dispose déjà d'un plugin qui n'est pas compatible avec la nouvelle version du lecteur, vous obtiendrez une erreur semblable à la suivante :</p>
+    <p>Si vous essayez de changer la version d'un lecteur existant et que le lecteur dispose déjà d'un plugin qui n'est pas compatible avec la nouvelle version du lecteur, vous obtiendrez une erreur semblable à la suivante:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -309,7 +309,7 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h2 id="Studio_configured_plugin">Plugin configuré pour Studio</h2>
     
-    <p>Si un plugin est chargé via Studio, le plugin reflétera les nouvelles fonctionnalités dans le registre des plugins :</p>
+    <p>Si un plugin est chargé via Studio, le plugin reflétera les nouvelles fonctionnalités dans le registre des plugins:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -353,7 +353,7 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h2 id="Updating_registry_information">Mise à jour des informations du registre</h2>
     
-    <p>Vous pouvez mettre à jour les informations de registre de plug-in pour un lecteur à l'aide de procédures standard. Par exemple, l'instruction curl suivante utilise le protocole HTTP <code translate="No">PATCH </code> méthode pour changer un plugin d'une version spécifique en comportement de mise à jour de version majeure :</p>
+    <p>Vous pouvez mettre à jour les informations de registre de plug-in pour un lecteur à l'aide de procédures standard. Par exemple, l'instruction curl suivante utilise le protocole HTTP <code translate="No">PATCH </code> méthode pour changer un plugin d'une version spécifique en comportement de mise à jour de version majeure:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -375,7 +375,7 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h2 id="Plugin_registry_API">API de registre de plug-ins</h2>
     
-    <p>Deux nouveaux points de terminaison ont été ajoutés à l'API de gestion des lecteurs qui permettent de récupérer les informations de plug-in à partir du registre, ce qui vous permet de :</p>
+    <p>Deux nouveaux points de terminaison ont été ajoutés à l'API de gestion des Lecteurs qui permettent de récupérer les informations de plug-in à partir du registre, ce qui vous permet de:</p>
     
     <ul>
       <li>Récupérez tous les plugins dans le registre.</li>
@@ -396,7 +396,7 @@ grandparent: Player Management API
     
     <aside class="bcls-aside bcls-aside--tip">Noter: Ajout d'une chaîne de requête dans le formulaire <code translate="No">?template_version=$SVTVERSION </code> au point de terminaison entraînera une réponse contenant uniquement des versions de plug-in compatibles avec la version de modèle de vidéo unique spécifiée. Par exemple, pour obtenir uniquement les versions de plug-in compatibles avec le modèle Brightcove Player 6.7.0, utilisez <code translate="No">?template_version=6.7.0 </code>.</aside>
     
-    <p>Les informations renvoyées apparaîtront comme suit :</p>
+    <p>Les informations renvoyées apparaîtront comme suit:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">[{
@@ -498,7 +498,7 @@ grandparent: Player Management API
       https://players.api.brightcove.com/v2/plugins/%40brightcove%2fvideojs-ima3</code>
           </pre>
     
-    <p>Les informations renvoyées apparaîtront comme suit :</p>
+    <p>Les informations renvoyées apparaîtront comme suit:</p>
     
     <aside class="bcls-aside bcls-aside--information">Les différents détails de version retournés sont uniquement informatifs. Comme indiqué précédemment dans ce document, vous n'avez pas besoin de ces informations pour effectuer des configurations de plug-in.</aside>
     

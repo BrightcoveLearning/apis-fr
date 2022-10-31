@@ -1,7 +1,6 @@
 ---
-title: 'Images et API d'ingestion dynamique'
-description: 'Cette rubrique explique comment capturer ou ingérer des images pour une vidéo.'
-
+title: 'Images et Dynamic Ingest API'
+description: "Cette rubrique explique comment capturer ou ingérer des images pour une vidéo."
 parent: 'Ingest Guides' 
 grandparent: Dynamic Ingest API
 layout: staging
@@ -11,7 +10,7 @@ layout: staging
   <summary>{{ page.description }}</summary>
   <section class="bcls-section">
     <h2 id="introduction">introduction</h2>
-		<p>Vous pouvez ingérer deux catégories d'images :</p>
+		<p>Vous pouvez ingérer deux catégories d'images:</p>
 		<ul>
 			<li>Affiches et vignettes principales/par défaut, qui sont définies dans le corps de la demande comme <code translate="no">affiche</code> et <code translate="no">la vignette</code> objets (les détails des champs et de la syntaxe sont ci-dessous)</li>
 			<li>Des images variantes multilingues, qui sont définies dans un <code translate="no">images</code> tableau d'objets (les détails du champ et de la syntaxe sont ci-dessous)</li>
@@ -108,7 +107,7 @@ layout: staging
       </tbody>
     </table>
 
-    <p>Il existe deux manières différentes d'ajouter des affiches principales et des vignettes à vos vidéos à l'aide de l'API Dynamic Ingest :</p>
+    <p>Il existe deux manières différentes d'ajouter des affiches principales et des vignettes à vos vidéos à l'aide de Dynamic Ingest API:</p>
 
     <ul>
       <li><a href="#capture_images">Capturer des images</a> au milieu de la vidéo pendant le transcodage (actuellement cela s'applique à <code translate="No">poster</code> et <code translate="No">thumbnail</code> images. D'autres types doivent être ingérés). La capture d'images pour l'affiche principale et la vignette peut être utilisée avec les images ingérées pour les variantes multilingues.</li>
@@ -119,7 +118,7 @@ layout: staging
   <section class="bcls-section">
     <h2 id="setup">Installer</h2>
 
-    <p>La configuration des requêtes d'ingestion dynamique est la même, que vous ingérez une vidéo, des images, un fichier WebVTT ou tous :</p>
+    <p>La configuration des requêtes d'ingestion dynamique est la même, que vous ingérez une vidéo, des images, un fichier WebVTT ou tous:</p>
 
     <aside class="bcls-aside bcls-aside--information">Notez que tous les noms de fichiers doivent être codés en URI.</aside>
 
@@ -140,7 +139,7 @@ layout: staging
   <section class="bcls-section">
     <h2 id="s3">Remarque sur S3</h2>
 
-    <p>Si vos images seront extraites d'un compartiment S3 protégé, vous devrez définir une stratégie de compartiment pour permettre à Video Cloud d'accéder aux fichiers. Voir <a href="/dynamic-ingest/general/using-dynamic-ingest-s3.html#setPolicy">Utilisation de l'ingestion dynamique avec S3</a> pour les détails.</p>
+    <p>Si vos images seront extraites d'un compartiment S3 protégé, vous devrez définir une stratégie de compartiment pour permettre à Video Cloud d'accéder aux fichiers. Voir <a href="/dynamic-ingest/general/using-dynamic-ingest-s3.html#setPolicy">Utilisation de Dynamic Ingest API avec S3</a> pour les détails.</p>
   </section>
 
   <section class="bcls-section">
@@ -221,7 +220,7 @@ layout: staging
         </tr>
         <tr>
           <td><code translate="No">variant</code></td>
-          <td>Le type de cette image : <code translate="No">poster</code> | <code translate="No">thumbnail</code> | <code translate="No">portrait</code> | <code translate="No">square</code> | <code translate="No">wide</code> | <code translate="No">ultra-wide</code></td>
+          <td>Le type de cette image: <code translate="No">poster</code> | <code translate="No">thumbnail</code> | <code translate="No">portrait</code> | <code translate="No">square</code> | <code translate="No">wide</code> | <code translate="No">ultra-wide</code></td>
           <td>chaîne de caractères</td>
           <td><i data-feather="check"></i></td>
           <td><code translate="No">wide</code></td>
@@ -304,14 +303,14 @@ layout: staging
       <ul>
         <li>Pour les images, seules les URL HTTP/HTTPS non protégées ou les URL S3 signées sont actuellement prises en charge</li>
         <li>Les images peuvent être incluses avec l'ingestion d'une vidéo <code translate="No">master</code> , ou séparément</li>
-        <li>Si vous utilisez le <a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">système d'ingestion hérité</a> , et vous omettez le <code translate="No">width</code> et <code translate="No">height</code> champs, les valeurs par défaut du système seront utilisées (vignette : 160 x 90 ; affiche : 960 x 540)</li>
+        <li>Si vous utilisez le <a href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">système d'ingestion hérité</a> , et vous omettez le <code translate="No">width</code> et <code translate="No">height</code> champs, les valeurs par défaut du système seront utilisées (vignette: 160 x 90 ; affiche: 960 x 540)</li>
         <li>Si vous téléchargez vos propres affiches et vignettes avec un master vidéo et que le profil d'acquisition que vous utilisez inclut des rendus d'images, vous devez définir <code translate="No">capture-images</code> à <code translate="No">false</code></li>
       </ul>
     </aside>
 
 		<details>
 			<summary>Exemple de réponse</summary>
-			<p>Vous trouverez ci-dessous une réponse à un <a href="/cms/references/reference.html#operation/GetVideoImages">API CMS Demande d'obtention d'images vidéo</a>. Voir <a href="#Retrieving_image_data">Récupération des données d'image</a> au dessous de.</p>
+			<p>Vous trouverez ci-dessous une réponse à un <a href="/cms/references/reference.html#operation/GetVideoImages">CMS API Demande d'obtention d'images vidéo</a>. Voir <a href="#Retrieving_image_data">Récupération des données d'image</a> au dessous de.</p>
 <pre class="line-numbers"><code class="language-json" translate="No">{
   "thumbnail.en": {
     "src": "https://cf-images.us-east-1.prod.boltdns.net/v1/static/3676484086001/4fb9012e-7b20-4744-9fff-512634d7b2a5/5b593403-01a7-4a18-978e-cad13647cf99/292x108/match/image.jpg",
@@ -440,7 +439,7 @@ layout: staging
   <section class="bcls-section">
     <h2 id="Automatic_resizing">Redimensionnement automatique</h2>
 
-    <p>Lorsque vous ajoutez des affiches personnalisées et/ou des images miniatures via Studio ou l'API Dynamic Ingest, par défaut, Video Cloud les redimensionnera pour qu'elles correspondent aux tailles d'image définies dans le profil d'ingestion par défaut du compte.</p>
+    <p>Lorsque vous ajoutez des affiches personnalisées et/ou des images miniatures via Studio ou Dynamic Ingest API, par défaut, Video Cloud les redimensionnera pour qu'elles correspondent aux tailles d'image définies dans le profil d'ingestion par défaut du compte.</p>
 
     <p>Notez que le redimensionnement et le remplissage sont les seules modifications Video Cloud ou <a href="https://beacon.support.brightcove.com">Balise de Brightcove</a>. Les images ne sont jamais recadrées.</p>
 
@@ -457,7 +456,7 @@ layout: staging
 
     <p>Vous devez également définir le <code translate="No">capture-images</code> signaler dans les données de votre demande à <code translate="No">true</code> si vous souhaitez que l'affiche et la vignette soient capturées à partir de la vidéo pendant le transcodage, mais il s'agit de la valeur par défaut <em>si</em> le profil sélectionné comprend des rendus d'images. (S'il n'y a pas de rendus d'image dans le profil, la valeur par défaut pour <code translate="No">capture-images</code> est <code translate="No">false</code>.)</p>
 
-    <h4>Exemple de données de demande :</h4>
+    <h4>Exemple de données de demande:</h4>
 
     <pre class="line-numbers">
       <code class="language-json" translate="No">{
@@ -504,7 +503,7 @@ layout: staging
       </tbody>
     </table>
 
-    <p>Voici des exemples de données pour les rendus :</p>
+    <p>Voici des exemples de données pour les rendus:</p>
 
 <pre class="line-numbers"><code class="language-json" translate="No">"images": [
 	{
@@ -563,9 +562,9 @@ layout: staging
 
   <section class="bcls-section">
     <h2 id="Retrieving_image_data">Récupération des données d'image</h2>
-    <p>Vous pouvez récupérer des données d'image à l'aide du <a href="/cms/index.html">API CMS</a>.</p>
-    <p>Les <span translate="No">API CMS</span> renverra les données d'image dans un <code translate="No">GET</code> demande à <code translate="No">https://cms.api.brightcove.com/v1/accounts/{account_id}/videos/{video_id}</code> ou, si vous voulez uniquement les données d'image, <code translate="No">https://cms.api.brightcove.com/v1/accounts/{account_id}/videos/{video_id}/images</code></p>
-    <p>Dans les deux cas, les données d'image dans la réponse ressembleront à ceci :</p>
+    <p>Vous pouvez récupérer des données d'image à l'aide du <a href="/cms/index.html">CMS API</a>.</p>
+    <p>Les CMS API renverra les données d'image dans un <code translate="No">GET</code> demande à <code translate="No">https://cms.api.brightcove.com/v1/accounts/{account_id}/videos/{video_id}</code> ou, si vous voulez uniquement les données d'image, <code translate="No">https://cms.api.brightcove.com/v1/accounts/{account_id}/videos/{video_id}/images</code></p>
+    <p>Dans les deux cas, les données d'image dans la réponse ressembleront à ceci:</p>
 <pre class="line-numbers"><code class="language-json" translate="No">{
   "thumbnail": {
     "src": "https://cf-images.us-east-1.prod.boltdns.net/v1/jit/57838016001/ee705e97-3fb5-409c-99d8-703e9f57bd0a/main/160x90/20s629ms/match/image.jpg",
@@ -655,7 +654,7 @@ layout: staging
 
     <ul>
       <li><strong>Le système d'ingestion n'autorise pas les tâches simultanées sur la même vidéo</strong>.</li>
-      <li>Actuellement, les données d'image pour les variantes large, carré, portrait et ultra-large sont renvoyées uniquement par l'API CMS, <strong><em>ne pas</em></strong> par requêtes vidéo de l'API de lecture.</li>
+      <li>Actuellement, les données d'image pour les variantes large, carré, portrait et ultra-large sont renvoyées uniquement par l'CMS API, <strong><em>ne pas</em></strong> par requêtes vidéo de le Playback API.</li>
     </ul>
   </section>
 </article>

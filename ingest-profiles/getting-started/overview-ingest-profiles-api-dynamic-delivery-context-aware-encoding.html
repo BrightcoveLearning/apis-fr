@@ -1,6 +1,6 @@
 ---
-title: 'Aperçu: Ingérer l'API des profils'
-description: 'Dans cette rubrique, vous obtiendrez un aperçu de l'API Ingest Profiles. L'API Ingest Profiles vous permet de créer, récupérer, mettre à jour et supprimer des profils de rendu pour votre compte Video Cloud.'
+title: 'Aperçu: Ingérer Ingest Profiles API'
+description: "Dans cette rubrique, vous obtiendrez un aperçu de l'API Ingest Profiles. L'API Ingest Profiles vous permet de créer, récupérer, mettre à jour et supprimer des profils de rendu pour votre compte Video Cloud."
 parent: Getting Started 
 grandparent: Ingest Profiles API
 ---
@@ -16,7 +16,7 @@ grandparent: Ingest Profiles API
 
 <p>Voir aussi le <a href="/ingest-profiles/references/reference.html">Référence API</a>.</p>
 
-<aside class="bcls-aside bcls-aside--information">Remarque : vous pouvez également gérer vos profils d'ingestion via <a href="https://studio.support.brightcove.com/admin/managing-ingest-profiles.html">Studio</a> , et nous vous recommandons de le faire, sauf si vous intégrez Video Cloud à votre propre CMS.</aside> <aside class="bcls-aside bcls-aside--warning">Si un utilisateur extrait par programme un profil dans le but de mettre à jour ce profil à l'aide du contenu récupéré, l'utilisateur devra nettoyer le profil, en supprimant des éléments tels que « id » pour les rendus, mais pas le profil, et « version » doit être entièrement supprimé .</aside>
+<aside class="bcls-aside bcls-aside--information">Remarque: vous pouvez également gérer vos profils d'ingestion via <a href="https://studio.support.brightcove.com/admin/managing-ingest-profiles.html">Studio</a> , et nous vous recommandons de le faire, sauf si vous intégrez Video Cloud à votre propre CMS.</aside> <aside class="bcls-aside bcls-aside--warning">Si un utilisateur extrait par programme un profil dans le but de mettre à jour ce profil à l'aide du contenu récupéré, l'utilisateur devra nettoyer le profil, en supprimant des éléments tels que « id » pour les rendus, mais pas le profil, et « version » doit être entièrement supprimé .</aside>
 </section>
 
 <section class="bcls-section">
@@ -29,7 +29,7 @@ grandparent: Ingest Profiles API
 	</dd>
 	<dt>Carte d'indentité</dt>
 	<dd>
-	<p>UNE <code translate="No">profile id</code> peut être soit le <code translate="No">id</code> ou <code translate="No">name</code> champ de niveau supérieur dans un profil. Dans cet exemple (un fragment de profil) :</p>
+	<p>UNE <code translate="No">profile id</code> peut être soit le <code translate="No">id</code> ou <code translate="No">name</code> champ de niveau supérieur dans un profil. Dans cet exemple (un fragment de profil):</p>
 
 	<pre class="line-numbers">
 <code class="language-json" translate="No">{
@@ -42,11 +42,11 @@ grandparent: Ingest Profiles API
 	</dd>
 	<dt>Pièce d'identité</dt>
 	<dd>
-	<p>UNE <code translate="No">reference_id</code> identifie de manière unique un rendu dans un profil. Les identifiants de référence sont utilisés pour l'empaquetage DRM et peuvent être utilisés à d'autres fins à l'avenir. En plus d'être uniques dans le profil, les identifiants de référence peuvent être n'importe quelle chaîne - ils ne doivent pas inclure d'espaces. Nous vous recommandons d'utiliser un schéma qui facilitera l'identification du format du rendu, par exemple : <code translate="No">mp4_1</code> , <code translate="No">mp4_2</code> , <code translate="No">hls1</code> , <code translate="No">hls2</code> , etc.</p>
+	<p>UNE <code translate="No">reference_id</code> identifie de manière unique un rendu dans un profil. Les identifiants de référence sont utilisés pour l'empaquetage DRM et peuvent être utilisés à d'autres fins à l'avenir. En plus d'être uniques dans le profil, les identifiants de référence peuvent être n'importe quelle chaîne - ils ne doivent pas inclure d'espaces. Nous vous recommandons d'utiliser un schéma qui facilitera l'identification du format du rendu, par exemple: <code translate="No">mp4_1</code> , <code translate="No">mp4_2</code> , <code translate="No">hls1</code> , <code translate="No">hls2</code> , etc.</p>
 	</dd>
 	<dt>Version du profil</dt>
 	<dd>
-	<p>UNE <code translate="No">version</code> est le numéro de révision d'un profil pour un compte. Il est représenté par une valeur entière longue. Remarque : il n'est pas cité dans la représentation JSON.</p>
+	<p>UNE <code translate="No">version</code> est le numéro de révision d'un profil pour un compte. Il est représenté par une valeur entière longue. Remarque: il n'est pas cité dans la représentation JSON.</p>
 	</dd>
 	<dt>Profil actif</dt>
 	<dd>
@@ -66,7 +66,7 @@ grandparent: Ingest Profiles API
 <section class="bcls-section">
 <h2 id="serviceURL">URL de base</h2>
 
-<p>L'URL du service est :</p>
+<p>L'URL du service est:</p>
 
 <pre class="line-numbers">
 <code class="language-http" translate="No">https://ingestion.api.brightcove.com/v1/</code></pre>
@@ -75,7 +75,7 @@ grandparent: Ingest Profiles API
 <section class="bcls-section">
 <h2 id="authorization">Autorisation</h2>
 
-<p>L'autorisation pour l'API se fait via l'implémentation OAuth2 de Brightcove. Vous aurez besoin d'informations d'identification client (un identifiant client et un secret client) disposant des autorisations pour les opérations suivantes sur votre ou vos comptes :</p>
+<p>L'autorisation pour l'API se fait via l'implémentation OAuth2 de Brightcove. Vous aurez besoin d'informations d'identification client (un identifiant client et un secret client) disposant des autorisations pour les opérations suivantes sur votre ou vos comptes:</p>
 
 <ul>
 	<li><code translate="No">video-cloud/ingest-profiles/profile/read</code></li>
@@ -84,20 +84,20 @@ grandparent: Ingest Profiles API
 	<li><code translate="No">video-cloud/ingest-profiles/account/write</code></li>
 </ul>
 
-<p>Pour obtenir un <code translate="No">client_id</code> et <code translate="No">client_secret</code> , vous devrez accéder à l'interface utilisateur OAuth et enregistrer une application :</p>
+<p>Pour obtenir un <code translate="No">client_id</code> et <code translate="No">client_secret</code> , vous devrez accéder à l'interface utilisateur OAuth et enregistrer une application:</p>
 
 <ul>
 	<li><a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a></li>
 </ul>
 
-<p>Vous pouvez également obtenir vos informations d'identification via CURL ou Postman - voir :</p>
+<p>Vous pouvez également obtenir vos informations d'identification via CURL ou Postman - voir:</p>
 
 <ul>
 	<li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">Obtenir les informations d'identification du client à l'aide de CURL</a></li>
 	<li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">Obtenez les informations d'identification du client à l'aide de Postman</a></li>
 </ul>
 
-<p>Vous utiliserez vos informations d'identification client pour obtenir des jetons d'accès qui vous permettront de passer des appels à l'API. Les jetons d'accès sont transmis dans un en-tête d'autorisation :</p>
+<p>Vous utiliserez vos informations d'identification client pour obtenir des jetons d'accès qui vous permettront de passer des appels à l'API. Les jetons d'accès sont transmis dans un en-tête d'autorisation:</p>
 
 <pre class="line-numbers">
 <code class="language-http" translate="No">Authorization: Bearer {your_access_token}</code></pre>
@@ -180,7 +180,7 @@ grandparent: Ingest Profiles API
 
 <p>Pour mettre à jour un profil, faites une demande PUT au point de terminaison ci-dessus, y compris le <em>Achevée</em> Données JSON pour le profil dans le corps de la requête.</p>
 
-<aside class="bcls-aside bcls-aside--warning">Remarque : le JSON du profil mis à jour <strong>doit</strong> inclure le <code translate="No">id</code> biens.</aside>
+<aside class="bcls-aside bcls-aside--warning">Remarque: le JSON du profil mis à jour <strong>doit</strong> inclure le <code translate="No">id</code> biens.</aside>
 
 <h3>Supprimer un profil</h3>
 
@@ -195,7 +195,7 @@ grandparent: Ingest Profiles API
 <div class="bcls-section" id="defaultProfile">
 <h2>Opérations de profil par défaut</h2>
 
-<p>Vous pouvez obtenir, définir ou mettre à jour les profils de vidéo à la demande et de vidéo en direct par défaut pour votre compte à l'aide du point de terminaison :</p>
+<p>Vous pouvez obtenir, définir ou mettre à jour les profils de vidéo à la demande et de vidéo en direct par défaut pour votre compte à l'aide du point de terminaison:</p>
 
 <pre class="line-numbers">
 <code class="language-http" translate="No">/accounts/{account_id}/configuration</code></pre>
@@ -208,7 +208,7 @@ grandparent: Ingest Profiles API
 
 <h3>Définir le profil par défaut</h3>
 
-<p>Pour définir le profil par défaut, envoyez une requête POST au point de terminaison indiqué ci-dessus, en incluant le JSON dans le corps de la requête :</p>
+<p>Pour définir le profil par défaut, envoyez une requête POST au point de terminaison indiqué ci-dessus, en incluant le JSON dans le corps de la requête:</p>
 
 <pre class="line-numbers">
 <code class="language-json" translate="No">{
@@ -216,7 +216,7 @@ grandparent: Ingest Profiles API
   "default_profile_id": {default_profile_id}
 }</code></pre>
 
-<p>Pour le <code translate="No">default_profile_id</code> , vous pouvez utiliser l'un des éléments suivants :</p>
+<p>Pour le <code translate="No">default_profile_id</code> , vous pouvez utiliser l'un des éléments suivants:</p>
 
 <ul>
 	<li>nom (par exemple multi-plateforme-standard-statique)</li>
@@ -225,7 +225,7 @@ grandparent: Ingest Profiles API
 
 <h3>Mettre à jour le profil par défaut</h3>
 
-<p>Pour mettre à jour le profil par défaut, envoyez une requête PUT au point de terminaison indiqué ci-dessus, en incluant ce JSON dans le corps de la requête :</p>
+<p>Pour mettre à jour le profil par défaut, envoyez une requête PUT au point de terminaison indiqué ci-dessus, en incluant ce JSON dans le corps de la requête:</p>
 
 <pre class="line-numbers">
 <code class="language-json" translate="No">{
@@ -238,7 +238,7 @@ grandparent: Ingest Profiles API
 
 <h4>Définir le profil en direct par défaut</h4>
 
-<p>La définition du profil en direct par défaut est exactement la même chose que la définition du profil de vidéo à la demande par défaut, à l'exception de cette modification dans le corps de la demande :</p>
+<p>La définition du profil en direct par défaut est exactement la même chose que la définition du profil de vidéo à la demande par défaut, à l'exception de cette modification dans le corps de la demande:</p>
 
 <pre class="line-numbers">
 <code class="language-json" translate="No">{
@@ -249,7 +249,7 @@ grandparent: Ingest Profiles API
 
 <h4>Définition du profil de coupure sociale par défaut</h4>
 
-<p>La définition du profil de clip social par défaut est exactement la même que la définition du profil de vidéo à la demande par défaut, à l'exception de cette modification dans le corps de la demande :</p>
+<p>La définition du profil de clip social par défaut est exactement la même que la définition du profil de vidéo à la demande par défaut, à l'exception de cette modification dans le corps de la demande:</p>
 
 <pre class="line-numbers">
 <code class="language-json" translate="No">{

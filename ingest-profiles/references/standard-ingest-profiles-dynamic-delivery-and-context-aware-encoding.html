@@ -1,6 +1,6 @@
 ---
-title: 'Profils d'acquisition standard'
-description: 'Dans cette rubrique, vous découvrirez les propriétés des profils d'ingestion standard fournis lors de l'utilisation de la livraison dynamique et de l'encodage contextuel.'
+title: "Profils d'acquisition standard"
+description: "Dans cette rubrique, vous découvrirez les propriétés des profils d'ingestion standard fournis lors de l'utilisation de la livraison dynamique et de l'encodage contextuel."
 parent: References
 ---
 
@@ -20,7 +20,7 @@ parent: References
   <summary>{{ page.description }}</summary>
   <section class="bcls-section">
     <h2 id="introduction">introduction</h2>
-    <p>Lors de la création d'une demande d'ingestion dynamique à l'aide du <span translate="No">API d'ingestion dynamique</span> ou en téléchargeant des vidéos à l'aide du module Upload, vous devez fournir un profil qui détermine le nombre et le type de rendus créés par le processus d'ingestion de Video Cloud. Cette rubrique fournit des informations détaillées sur chacun des <strong>Livraison dynamique</strong> et <strong>Codage contextuel (CAE)</strong> profils, y compris <strong>HEVC (h.265)</strong> profils.</p>
+    <p>Lors de la création d'une demande d'ingestion dynamique à l'aide du <span>Dynamic Ingest API</span> ou en téléchargeant des vidéos à l'aide du module Upload, vous devez fournir un profil qui détermine le nombre et le type de rendus créés par le processus d'ingestion de Video Cloud. Cette rubrique fournit des informations détaillées sur chacun des <strong>Livraison dynamique</strong> et <strong>Codage contextuel (CAE)</strong> profils, y compris <strong>HEVC (h.265)</strong> profils.</p>
     <aside class="bcls-aside bcls-aside--information">Remarques:
       <ul>
         <li>L'encodage contextuel et l'encodage HEVC sont des modules complémentaires payants de Video Cloud. Si vous souhaitez ajouter ces fonctionnalités à votre compte, contactez votre gestionnaire de compte.</li>
@@ -33,7 +33,7 @@ parent: References
     <p>Remarques:</p>
     <ul>
       <li>Ce document présente des profils pour la livraison dynamique régulière et l'encodage contextuel, y compris les profils HEVC.</li>
-      <li>En raison des différentes manières dont fonctionnent les profils de livraison dynamique statique et d'encodage contextuel, vous verrez différentes informations dans les détails du profil ci-dessous :
+      <li>En raison des différentes manières dont fonctionnent les profils de livraison dynamique statique et d'encodage contextuel, vous verrez différentes informations dans les détails du profil ci-dessous:
         <ul>
           <li>Pour les profils de livraison dynamique statiques, une liste des rendus inclus s'affiche</li>
           <li>Pour les profils de codage contextuel, un tableau des paramètres de profil dynamique utilisés pour déterminer les rendus à produire est affiché.</li>
@@ -41,7 +41,7 @@ parent: References
       </li>
       <li>Les profils standard peuvent être dupliqués, mais <strong>ne pas</strong> édité - si vous voulez une version modifiée, vous devrez créer un profil personnalisé.</li>
     </ul>
-    <p>Il est également possible de créer vos propres profils d'ingestion personnalisés. Pour plus d'informations, consultez la rubrique appropriée :</p>
+    <p>Il est également possible de créer vos propres profils d'ingestion personnalisés. Pour plus d'informations, consultez la rubrique appropriée:</p>
     <ul>
       <li><a href="https://studio.support.brightcove.com/admin/creating-ingest-profiles-dynamic-delivery.html">Création de profils d'ingestion pour la livraison dynamique</a></li>
       <li><a href="https://studio.support.brightcove.com/admin/creating-ingest-profiles-context-aware-encoding.html">Création de profils d'ingestion pour l'encodage contextuel</a></li>
@@ -82,7 +82,7 @@ parent: References
       <ul style="list-style-type:none">
         <li id="note1-1"><sup>[1-1]<strong></strong></sup> Lorsque vous référencez un rendu dans un profil d'acquisition, <strong>assurez-vous de préfixer le nom avec <code translate="No">default/</code></strong> - par exemple: <code translate="No">default/audio128</code></li>
         <li id="note1-2"><sup>[1-2]<strong></strong></sup> Un segment correspond à un fichier téléchargeable. Par exemple, avec HLS, vous pouvez segmenter le fichier toutes les 6 secondes. Chaque segment contient suffisamment d'informations pour lui permettre d'être décodé et lu indépendamment des autres segments. Un manifeste HLS répertorie chaque chemin de segment et sa durée.
-          <p>Un fragment fait référence à des fragments d'un fichier MP4. Un MP4 non fragmenté contient des métadonnées au début ou à la fin du fichier et nécessite que les données (<code translate="No">FTYP</code> , <code translate="No">MOOV</code> atomes) être décodé avant les médias (<code translate="No">MDAT</code> atome). Pour faciliter la diffusion en continu, un fichier MP4 peut être fragmenté afin que les métadonnées et nécessaires à la lecture ainsi que les médias soient fragmentés en fragments dans le fichier. Cela permet aux joueurs de rechercher facilement des morceaux spécifiques de médias et de permettre des transitions en douceur entre les différentes interprétations. La fragmentation a été initialement créée pour DASH mais est désormais également prise en charge par HLS.</p>
+          <p>Un fragment fait référence à des fragments d'un fichier MP4. Un MP4 non fragmenté contient des métadonnées au début ou à la fin du fichier et nécessite que les données (<code translate="No">FTYP</code> , <code translate="No">MOOV</code> atomes) être décodé avant les médias (<code translate="No">MDAT</code> atome). Pour faciliter la diffusion en continu, un fichier MP4 peut être fragmenté afin que les métadonnées et nécessaires à la lecture ainsi que les médias soient fragmentés en fragments dans le fichier. Cela permet aux Lecteurs de rechercher facilement des morceaux spécifiques de médias et de permettre des transitions en douceur entre les différentes interprétations. La fragmentation a été initialement créée pour DASH mais est désormais également prise en charge par HLS.</p>
           <p>Vous pouvez également fragmenter et aligner les médias de telle sorte qu'un segment (fichier) puisse contenir plusieurs fragments. Il est courant de faire en sorte que la durée du segment et du fragment soit la même. Noter que <code translate="No">duration</code> et <code translate="No">length</code> faire référence à la même chose en discutant de fragments et de segments.</p>
         </li>
       </ul>
@@ -168,7 +168,7 @@ parent: References
         <li id="note4-1"><sup>[4-1]<strong></strong></sup> Le support HEVC est un module complémentaire payant. Contactez votre gestionnaire de compte si vous êtes intéressé par le support HEVC</li>
         <li id="note4-2"><sup>[4-2]<strong></strong></sup> La largeur est également incluse pour les rapports d'aspect 16:9, mais la largeur réelle des rendus de sortie dépend du rapport d'aspect de la source d'entrée</li>
         <li id="note4-3"><sup>[4-3]<strong></strong></sup> Lorsque vous référencez un rendu dans un profil d'acquisition, <strong>assurez-vous de préfixer le nom avec <code translate="No">default/</code></strong> - par exemple: <code translate="No">default/video2000</code></li>
-        <li id="note4-4"><sup>[4-4]<strong></strong></sup> En plus de ceux indiqués dans le tableau, les rendus HEVC ont les propriétés suivantes :
+        <li id="note4-4"><sup>[4-4]<strong></strong></sup> En plus de ceux indiqués dans le tableau, les rendus HEVC ont les propriétés suivantes:
           <ul>
             <li><code translate="No">fixed_keyframe_interval: true</code></li>
             <li><code translate="No">segment_seconds: 2</code></li>
@@ -199,11 +199,11 @@ parent: References
       </table>
       <h5>Remarques</h5>
       <ul style="list-style-type:none">
-        <li id="note5-0"><sup>[5-0]<strong></strong></sup> En plus des propriétés indiquées ci-dessus, tous les rendus progressifs ont les paramètres suivants :
+        <li id="note5-0"><sup>[5-0]<strong></strong></sup> En plus des propriétés indiquées ci-dessus, tous les rendus progressifs ont les paramètres suivants:
           <ul>
-            <li>Mode d'aspect : Préserver</li>
+            <li>Mode d'aspect: Préserver</li>
             <li>La vitesse: 3</li>
-            <li>Codec vidéo : h264</li>
+            <li>Codec vidéo: h264</li>
             <li>Haut de gamme : faux</li>
             <li>Codec audio : aac</li>
             <li>Profil AAC : aac-lc</li>

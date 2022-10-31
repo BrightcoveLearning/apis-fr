@@ -1,6 +1,6 @@
 ---
-title: 'Planification de l'activation/désactivation d'un flux SEP'
-description: 'Avec le <code translate="No">JobStartStop</code> point de terminaison, vous pouvez programmer l'activation et la désactivation d'un <a href="/live-api/guides/live-api-static-entry-points.html">SEP</a> ou un ensemble de travaux SEP faisant partie d'un <a href="/live-api/guides/using-live-redundancy.html">Groupe redondant</a>. À l'heure spécifiée, notre système effectuera les appels d'API nécessaires pour activer et désactiver une tâche en votre nom.'
+title: "Planification de l'activation/désactivation d'un flux SEP"
+description: "Avec le <code>JobStartStop</code> point de terminaison, vous pouvez programmer l'activation et la désactivation d'un SEP ou un ensemble de travaux SEP faisant partie d'un Groupe redondant. À l'heure spécifiée, notre système effectuera les appels d'API nécessaires pour activer et désactiver une tâche en votre nom."
 parent: Guides 
 grandparent: Live API
 ---
@@ -11,181 +11,181 @@ grandparent: Live API
 <h1>{{ page.title }}</h1>
 <article class="bcls-article">
   <summary>{{ page.description }}</summary>
-	<section class="bcls-section">
-		<h2 id="Requirements">Conditions</h2>
-		<ul>
-			<li>La clé API Live pour votre compte.</li>
-			<li>Le remplacement du planificateur doit être activé sur votre compte réel.</li>
-			<li>Un Live Job existant avec <code translate="no">"statique": vrai</code> (voir <a href="/live-api/guides/live-api-static-entry-points.html">Tâches de point d'entrée statique</a> pour plus d'informations).</li>
-		</ul>
-		<aside class="bcls-aside bcls-aside--information">Notez que vous pouvez également programmer l'activation et la désactivation dans le Live Module - voir <a href="https://live.support.brightcove.com/live-module/scheduling-live-event.html">Démarrage/arrêt automatique des événements en direct dans la salle de contrôle</a> pour les détails</aside>
-	</section>
-	<section class="bcls-section">
-		<h2 id="Create_a_scheduler">Créer un planificateur</h2>
-		<p>Disons que nous voulons programmer un événement de 2 heures qui commencera à <code translate="no">2021-04-02T14:00:00+00:00</code>.</p>
+  <section class="bcls-section">
+    <h2 id="Requirements">Conditions</h2>
+    <ul>
+      <li>La clé API Live pour votre compte.</li>
+      <li>Le remplacement du planificateur doit être activé sur votre compte réel.</li>
+      <li>Un Live Job existant avec <code translate="no">"statique": vrai</code> (voir <a href="/live-api/guides/live-api-static-entry-points.html">Tâches de point d'entrée statique</a> pour plus d'informations).</li>
+    </ul>
+    <aside class="bcls-aside bcls-aside--information">Notez que vous pouvez également programmer l'activation et la désactivation dans le Live Module - voir <a href="https://live.support.brightcove.com/live-module/scheduling-live-event.html">Démarrage/arrêt automatique des événements en direct dans la salle de contrôle</a> pour les détails</aside>
+  </section>
+  <section class="bcls-section">
+    <h2 id="Create_a_scheduler">Créer un planificateur</h2>
+    <p>Disons que nous voulons programmer un événement de 2 heures qui commencera à <code translate="no">2021-04-02T14:00:00+00:00</code>.</p>
 
-		<p>Les horodatages doivent être au format UTC au format Unix en secondes. Vous pouvez utiliser <a href="https://www.unixtimestamp.com/" rel="nofollow">https://www.unixtimestamp.com/</a> pour reconversion.</p>
-		<aside class="bcls-aside bcls-aside--information">Notez que les limites de temps d'activation décrites <a href="https://live.support.brightcove.com/live-api/guides/live-api-static-entry-points.html#Limitations" rel="nofollow">ici</a> s'appliquent toujours aux activations planifiées, nous vous recommandons donc de planifier une heure au moins 60 secondes avant l'heure de début souhaitée.
-			<p>Pour cet exemple, nous choisirons 5 minutes avant l'heure de début prévue :</p>
-			<pre><code translate="no">début: 02-04-2021T13:55:00+00:00 = 1617386100 arrêt : 02-04-2021T16:00:00+00:00 = 1617393600</code></pre>
-		</aside>
-		<p>Pour implémenter le planificateur, procédez comme suit <code translate="No">POST</code> demander:</p>
-		<pre><code class="language-http" translate="No">https://api.bcovlive.io/v1/scheduler/jobstartstop</code></pre>
-		<h3>En-têtes</h3>
-		<pre class="line-numbers"><code class="language-bash" translate="No">Content-Type: application/json
-		X-API-KEY: <span class="bcls-input">{your API Key}</span></code></pre>
-		<h3>Corps de la requête : tâche SEP unique</h3>
-		<pre class="line-numbers"><code class="language-json" translate="No">{
-			"job_id": "your_Job_ID",
-			"activation": {
-				"time_utc": 1617386100
-			},
-			"deactivation": {
-				"time_utc": 1617393600
-			},
-			"description": "My Wednesday broadcast"
-		}</code></pre>
-			<details>
-				<summary><h3>Exemple de réponse</h3></summary>
+    <p>Les horodatages doivent être au format UTC au format Unix en secondes. Vous pouvez utiliser <a href="https://www.unixtimestamp.com/" rel="nofollow">https://www.unixtimestamp.com/</a> pour reconversion.</p>
+    <aside class="bcls-aside bcls-aside--information">Notez que les limites de temps d'activation décrites <a href="https://live.support.brightcove.com/live-api/guides/live-api-static-entry-points.html#Limitations" rel="nofollow">ici</a> s'appliquent toujours aux activations planifiées, nous vous recommandons donc de planifier une heure au moins 60 secondes avant l'heure de début souhaitée.
+      <p>Pour cet exemple, nous choisirons 5 minutes avant l'heure de début prévue:</p>
+      <pre><code translate="no">début: 02-04-2021T13:55:00+00:00 = 1617386100 arrêt: 02-04-2021T16:00:00+00:00 = 1617393600</code></pre>
+    </aside>
+    <p>Pour implémenter le planificateur, procédez comme suit <code translate="No">POST</code> demander:</p>
+    <pre><code class="language-http" translate="No">https://api.bcovlive.io/v1/scheduler/jobstartstop</code></pre>
+    <h3>En-têtes</h3>
+    <pre class="line-numbers"><code class="language-bash" translate="No">Content-Type: application/json
+    X-API-KEY: <span class="bcls-input">{your API Key}</span></code></pre>
+    <h3>Corps de la requête: tâche SEP unique</h3>
+    <pre class="line-numbers"><code class="language-json" translate="No">{
+      "job_id": "your_Job_ID",
+      "activation": {
+        "time_utc": 1617386100
+      },
+      "deactivation": {
+        "time_utc": 1617393600
+      },
+      "description": "My Wednesday broadcast"
+    }</code></pre>
+      <details>
+        <summary><h3>Exemple de réponse</h3></summary>
 <pre class="line-numbers"><code class="language-json" translate="No">{
-	"account_id": "1752604059001",
-	"activation": {
-		"state": "pending",
-		"time_utc": 1617386100
-	},
-	"deactivation": {
-		"state": "pending",
-		"time_utc": 1617393600
-	},
-	"description": "My Wednesday broadcast",
-	"job_id": "15981d93877e490185e6ebc9af2c79a3",
-	"type": "jobstartstop",
-	"workflow_id": "d44cf29f4f184757ac0995beb8a0097e"
+  "account_id": "1752604059001",
+  "activation": {
+    "state": "pending",
+    "time_utc": 1617386100
+  },
+  "deactivation": {
+    "state": "pending",
+    "time_utc": 1617393600
+  },
+  "description": "My Wednesday broadcast",
+  "job_id": "15981d93877e490185e6ebc9af2c79a3",
+  "type": "jobstartstop",
+  "workflow_id": "d44cf29f4f184757ac0995beb8a0097e"
 }</code></pre>
-			</details>
-		<h3>Corps de la requête : groupe redondant du travail SEP</h3>
+      </details>
+    <h3>Corps de la requête: groupe redondant du travail SEP</h3>
     <p>Pour l'activation de groupe redondant, la seule différence est que le <code translate="No">redundant_group_id</code> est utilisé pour le <code translate="No">job_id</code> , et le <code translate="No">redundant_group</code> flag est inclus (défini sur <code translate="No">true</code>).</p>
-		<pre class="line-numbers"><code class="language-json" translate="No">{
-			"job_id": "<span class="bcls-highlight">your_Redundant_Group_ID</span>",
-			"activation": {
-				"time_utc": 1617386100
-			},
-			"deactivation": {
-				"time_utc": 1617393600
-			},
-			"description": "My Wednesday broadcast",
+    <pre class="line-numbers"><code class="language-json" translate="No">{
+      "job_id": "<span class="bcls-highlight">your_Redundant_Group_ID</span>",
+      "activation": {
+        "time_utc": 1617386100
+      },
+      "deactivation": {
+        "time_utc": 1617393600
+      },
+      "description": "My Wednesday broadcast",
       <span class="bcls-highlight">"redundant_group": true</span>
-		}</code></pre>
-			<details>
-				<summary><h3>Exemple de réponse</h3></summary>
+    }</code></pre>
+      <details>
+        <summary><h3>Exemple de réponse</h3></summary>
 <pre class="line-numbers"><code class="language-json" translate="No">{
-	"account_id": "1752604059001",
-	"activation": {
-		"state": "pending",
-		"time_utc": 1617386100
-	},
-	"deactivation": {
-		"state": "pending",
-		"time_utc": 1617393600
-	},
-	"description": "My Wednesday broadcast",
-	"job_id": "15981d93877e490185e6ebc9af2c79a3",
-	"type": "jobstartstop",
-	"workflow_id": "d44cf29f4f184757ac0995beb8a0097e"
+  "account_id": "1752604059001",
+  "activation": {
+    "state": "pending",
+    "time_utc": 1617386100
+  },
+  "deactivation": {
+    "state": "pending",
+    "time_utc": 1617393600
+  },
+  "description": "My Wednesday broadcast",
+  "job_id": "15981d93877e490185e6ebc9af2c79a3",
+  "type": "jobstartstop",
+  "workflow_id": "d44cf29f4f184757ac0995beb8a0097e"
 }</code></pre>
-			</details>
-		</section>
-		<section class="bcls-section">
-			<h2 id="Update_a_scheduler">Mettre à jour un planificateur</h2>
-			<p>Vous pouvez mettre à jour le <code translate="no">Activation</code> et/ou <code translate="no">désactivation</code> temps pour un planificateur à condition que le travail soit dans un <strong translate="no">en attendant</strong> Etat (<code translate="no">"état": "en attente"</code>). Pour ce faire, envoyez un <code translate="no">METTRE</code> demande à:</p>
+      </details>
+    </section>
+    <section class="bcls-section">
+      <h2 id="Update_a_scheduler">Mettre à jour un planificateur</h2>
+      <p>Vous pouvez mettre à jour le <code translate="no">Activation</code> et/ou <code translate="no">désactivation</code> temps pour un planificateur à condition que le travail soit dans un <strong translate="no">en attendant</strong> Etat (<code translate="no">"état": "en attente"</code>). Pour ce faire, envoyez un <code translate="no">METTRE</code> demande à:</p>
 <pre><code class="language-http" translate="No">https://api.bcovlive.io/v1/scheduler/jobstartstop/<span class="bcls-input">{workflow_id}</span></code></pre>
-			<p>Les en-têtes sont les mêmes que pour le <code translate="no">PUBLIER</code> demande ci-dessus.</p>
-			<h3>Corps de la demande</h3>
-			<p>Dans l'objet du corps de la requête, n'incluez que le <code translate="no">Activation</code> et/ou <code translate="no">désactivation</code> des champs.</p>
-			<p>Par exemple, pour arrêter l'événement 30 minutes plus tôt que prévu :</p>
-			<h3>Corps de la demande</h3>
+      <p>Les en-têtes sont les mêmes que pour le <code translate="no">PUBLIER</code> demande ci-dessus.</p>
+      <h3>Corps de la demande</h3>
+      <p>Dans l'objet du corps de la requête, n'incluez que le <code translate="no">Activation</code> et/ou <code translate="no">désactivation</code> des champs.</p>
+      <p>Par exemple, pour arrêter l'événement 30 minutes plus tôt que prévu:</p>
+      <h3>Corps de la demande</h3>
 <pre class="line-numbers"><code class="language-json" translate="No">{
-	"deactivation": {
-		"time_utc": 1617391800
-	}
+  "deactivation": {
+    "time_utc": 1617391800
+  }
 }</code></pre>
 <details>
-	<summary><h3>Exemple de réponse</h3></summary>
+  <summary><h3>Exemple de réponse</h3></summary>
 <pre class="line-numbers"><code class="language-json" translate="No">{
-	"account_id": "1752604059001",
-	"activation": {
-		"state": "pending",
-		"time_utc": 1617386100
-	},
-	"deactivation": {
-		"state": "pending",
-		"time_utc": 1617391800
-	},
-	"description": "My Wednesday broadcast",
-	"job_id": "15981d93877e490185e6ebc9af2c79a3",
-	"type": "jobstartstop",
-	"workflow_id": "d44cf29f4f184757ac0995beb8a0097e"
+  "account_id": "1752604059001",
+  "activation": {
+    "state": "pending",
+    "time_utc": 1617386100
+  },
+  "deactivation": {
+    "state": "pending",
+    "time_utc": 1617391800
+  },
+  "description": "My Wednesday broadcast",
+  "job_id": "15981d93877e490185e6ebc9af2c79a3",
+  "type": "jobstartstop",
+  "workflow_id": "d44cf29f4f184757ac0995beb8a0097e"
 }</code></pre>
 </details>
 </section>
 <section class="bcls-section">
   <h2 id="cancel_the_scheduler">Annuler un planificateur</h2>
   <p>Vous pouvez annuler l'activation et la désactivation avec un <code translate="no">EFFACER</code> demander:</p>
-	<pre><code class="language-http" translate="No">https://api.bcovlive.io/v1/scheduler/jobstartstop/<span class="bcls-input">{workflow_id}</span></code></pre>
-	<p>Vous pouvez également le faire après l'activation pour simplement annuler la désactivation.</p>
-	<h3>En-têtes</h3>
-	<p>Le seul en-tête requis est :</p>
-	<pre class="line-numbers"><code class="language-bash" translate="No">X-API-KEY: <span class="bcls-input">your API Key</span></code></pre>
-	<h3>Corps de la demande</h3>
-	<p>Il n'y a pas de corps de requête pour cette requête.</p>
-	<details>
-		<summary><h3>Exemple de réponse</h3></summary>
-	<pre class="line-numbers"><code class="language-json" translate="No">{
-		"account_id": "1752604059001",
-		"activation": {
-			"state": "cancelled",
-			"time_utc": 1617386100
-		},
-		"deactivation": {
-			"state": "cancelled",
-			"time_utc": 1617391800
-		},
-		"description": "My Wednesday broadcast",
-		"job_id": "15981d93877e490185e6ebc9af2c79a3",
-		"type": "jobstartstop",
-		"workflow_id": "d44cf29f4f184757ac0995beb8a0097e"
-	}</code></pre>
-	</details>
+  <pre><code class="language-http" translate="No">https://api.bcovlive.io/v1/scheduler/jobstartstop/<span class="bcls-input">{workflow_id}</span></code></pre>
+  <p>Vous pouvez également le faire après l'activation pour simplement annuler la désactivation.</p>
+  <h3>En-têtes</h3>
+  <p>Le seul en-tête requis est:</p>
+  <pre class="line-numbers"><code class="language-bash" translate="No">X-API-KEY: <span class="bcls-input">your API Key</span></code></pre>
+  <h3>Corps de la demande</h3>
+  <p>Il n'y a pas de corps de requête pour cette requête.</p>
+  <details>
+    <summary><h3>Exemple de réponse</h3></summary>
+  <pre class="line-numbers"><code class="language-json" translate="No">{
+    "account_id": "1752604059001",
+    "activation": {
+      "state": "cancelled",
+      "time_utc": 1617386100
+    },
+    "deactivation": {
+      "state": "cancelled",
+      "time_utc": 1617391800
+    },
+    "description": "My Wednesday broadcast",
+    "job_id": "15981d93877e490185e6ebc9af2c79a3",
+    "type": "jobstartstop",
+    "workflow_id": "d44cf29f4f184757ac0995beb8a0097e"
+  }</code></pre>
+  </details>
 </section>
 <section class="bcls-section">
   <h2 id="Notifications">Notifications</h2>
   <p>Vous pouvez éventuellement configurer des notifications lors de la création du workflow. Vous devez fournir une URL pour que notre service <code translate="no">PUBLIER</code> à. Nous enverrons une notification lorsque le planificateur effectuera les appels d'activation et de désactivation. Vous pouvez également configurer pour recevoir une notification <code translate="no">m</code> secondes avant l'activation et/ou la désactivation. Voir le <a href="/live-api/guides/live-scheduler-notifications.html">Notifications du programmateur en direct</a> pour plus de détails.</p>
-	<details>
-		<summary><h3>Exemple de corps de requête</h3></summary>
-	<pre class="line-numbers"><code class="language-json" translate="No">{
-		"job_id": "your Job ID",
-		"activation": {
-			"time_utc": 1612274100,
-			<span class="bcls-highlight">"notification": 600</span>
-		},
-		"deactivation": {
-			"time_utc": 1612281600,
-			<span class="bcls-highlight">"notification": 600</span>
-		},
-		"description": "My Tuesday broadcast",
-		<span class="bcls-highlight">"notification_url": "http://example.com/live/jobstartstop/callbacks"</span>
-	}</code></pre>
-	</details>
+  <details>
+    <summary><h3>Exemple de corps de requête</h3></summary>
+  <pre class="line-numbers"><code class="language-json" translate="No">{
+    "job_id": "your Job ID",
+    "activation": {
+      "time_utc": 1612274100,
+      <span class="bcls-highlight">"notification": 600</span>
+    },
+    "deactivation": {
+      "time_utc": 1612281600,
+      <span class="bcls-highlight">"notification": 600</span>
+    },
+    "description": "My Tuesday broadcast",
+    <span class="bcls-highlight">"notification_url": "http://example.com/live/jobstartstop/callbacks"</span>
+  }</code></pre>
+  </details>
 </section>
 <section class="bcls-section">
-	<h2 id="related_topics">Rubriques connexes</h2>
-	<ul>
-		<li><a href="/live-api/guides/live-scheduler-stop-start.html">Planification de l'activation/désactivation d'un flux SEP</a></li>
-		<li><a href="/live-api/guides/live-scheduler-clips.html">Planification de la génération de clips pour une diffusion en direct</a></li>
-		<li><a href="/live-api/guides/live-scheduler-notifications.html">Notifications du programmateur en direct</a></li>
-		<li><a href="/live-api/guides/live-api-static-entry-points.html">Emplois de point d'entrée statique (SEP)</a></li>
-		<li><a href="/live-api/references/reference-staging.html">Référence de l'API en direct</a></li>
-		<li><a href="https://live.support.brightcove.com/live-module/scheduling-live-event.html">Démarrage/arrêt automatique des événements en direct dans la salle de contrôle</a></li>
-	</ul>
+  <h2 id="related_topics">Rubriques connexes</h2>
+  <ul>
+    <li><a href="/live-api/guides/live-scheduler-stop-start.html">Planification de l'activation/désactivation d'un flux SEP</a></li>
+    <li><a href="/live-api/guides/live-scheduler-clips.html">Planification de la génération de clips pour une diffusion en direct</a></li>
+    <li><a href="/live-api/guides/live-scheduler-notifications.html">Notifications du programmateur en direct</a></li>
+    <li><a href="/live-api/guides/live-api-static-entry-points.html">Emplois de point d'entrée statique (SEP)</a></li>
+    <li><a href="/live-api/references/reference-staging.html">Référence de l'Live API</a></li>
+    <li><a href="https://live.support.brightcove.com/live-module/scheduling-live-event.html">Démarrage/arrêt automatique des événements en direct dans la salle de contrôle</a></li>
+  </ul>
 </section>
 </article>

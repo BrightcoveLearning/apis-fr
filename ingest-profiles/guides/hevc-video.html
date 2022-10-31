@@ -1,7 +1,6 @@
 ---
 title: 'Vidéo HEVC'
-description: 'Cette rubrique couvre la prise en charge de Video Cloud pour la vidéo HEVC.'
-
+description: "Cette rubrique couvre la prise en charge de Video Cloud pour la vidéo HEVC."
 parent: 'Guides' 
 grandparent: Ingest Profiles API
 ---
@@ -24,13 +23,13 @@ grandparent: Ingest Profiles API
     <p>Pour vous offrir les avantages de HEVC tout en permettant aux téléspectateurs d'utiliser une technologie qui ne la prend pas en charge, Brightcove a développé une solution complète qui prend en charge les clients plus anciens non HEVC et optimise également l'utilisation de la bande passante. Il y a plusieurs parties à cette solution :</p>
     <ul>
       <li>Création de rendus codés HEVC et AVC pendant le transcodage (avec création facultative de MP4 pour le téléchargement progressif en plus)</li>
-      <li>Génération de manifestes contenant des références aux rendus HEVC et AVC :
+      <li>Génération de manifestes contenant des références aux rendus HEVC et AVC:
         <ul>
-          <li>HLS : flux de variantes mixtes (classés par débit)</li>
-          <li>DASH : ensembles d'adaptation séparés pour HEVC et H.264, ainsi que des propriétés supplémentaires les déclarant comme commutables</li>
+          <li>HLS: flux de variantes mixtes (classés par débit)</li>
+          <li>DASH: ensembles d'adaptation séparés pour HEVC et H.264, ainsi que des propriétés supplémentaires les déclarant comme commutables</li>
         </ul>
       </li>
-      <li>Logique de filtrage basée sur le type de client de la visionneuse :
+      <li>Logique de filtrage basée sur le type de client de la visionneuse:
         <ul>
           <li>supprime les flux HEVC des manifestes si l'appareil demandeur est un appareil hérité non compatible HEVC</li>
           <li>supprime les flux H.264 des manifestes en direction des appareils non commutables compatibles HEVC</li>
@@ -42,7 +41,7 @@ grandparent: Ingest Profiles API
   </section>
   <section class="bcls-section">
     <h2 id="Supported_clients">Clients pris en charge</h2>
-    <p>Actuellement, HEVC est pris en charge de bout en bout sur les clients suivants à l'aide de lecteurs Web Brightcove ou d'appareils natifs :</p>
+    <p>Actuellement, HEVC est pris en charge de bout en bout sur les clients suivants à l'aide de Lecteurs Web Brightcove ou d'appareils natifs:</p>
     <table class="bcls-table">
       <caption class="bcls-caption--table">Clients Web pris en charge pour HEVC</caption>
       <thead class="bcls-table__head">
@@ -106,14 +105,14 @@ grandparent: Ingest Profiles API
   </section>
   <section class="bcls-section">
     <h2 id="HEVC_ingest_profiles">Profils d'ingestion HEVC</h2>
-    <p>Si HEVC est activé pour votre compte, pour obtenir des rendus HEVC pour la lecture, il vous suffit de choisir l'un des profils d'ingestion HEVC (Context Aware Encoding ou Dynamic Delivery) lorsque vous ingérez vos vidéos à l'aide du module Upload ou de l'API Dynamic Ingest. :
+    <p>Si HEVC est activé pour votre compte, pour obtenir des rendus HEVC pour la lecture, il vous suffit de choisir l'un des profils d'ingestion HEVC (Context Aware Encoding ou Dynamic Delivery) lorsque vous ingérez vos vidéos à l'aide du module Upload ou de Dynamic Ingest API. :
       <figure class="bcls-figure">
         <img class="bcls-image" src="https://general.support.brightcove.com/assets/images/shared-content/general/hevc-profiles.png" alt="HEVC Ingest Profiles">
         <figcaption class="bcls-caption--image">Profils d'ingestion HEVC</figcaption>
       </figure>
     </p>
     <p>Les détails JSON complets de ces profils sont inclus <a href="#appendix_profiles">au dessous de</a>. Nous vous recommandons d'utiliser des profils CAE (Context Aware Encoding) pour créer le meilleur ensemble de rendu pour votre source et optimiser le stockage. Étant donné que CAE nécessite un temps de traitement un peu plus long pour inspecter la source, si obtenir un rendu publiable le plus rapidement possible est votre priorité, vous pouvez créer un profil d'acquisition personnalisé avec le <a href="https://apis.support.brightcove.com/ingest-profiles/guides/cae-fast-publish.html">Publication rapide</a> option.</p>
-    <p>Notez que si, pour l'option de publication rapide ou pour toute autre raison, vous devez créer un profil HEVC personnalisé, vous devrez utiliser soit le <a href="https://studio.support.brightcove.com/admin/creating-ingest-profiles-context-aware-encoding.html#using_the_advanced_editor">Éditeur avancé</a> dans les pages d'administration de Studio, ou le <a href="https://apis.support.brightcove.com/ingest-profiles/">Ingérer l'API des profils</a>. Les rendus HEVC n'apparaîtront pas dans l'éditeur simple de Studio. Vous trouverez les rendus Dynamic Delivery disponibles <a href="#appendix_renditions">au dessous de</a>.</p>
+    <p>Notez que si, pour l'option de publication rapide ou pour toute autre raison, vous devez créer un profil HEVC personnalisé, vous devrez utiliser soit le <a href="https://studio.support.brightcove.com/admin/creating-ingest-profiles-context-aware-encoding.html#using_the_advanced_editor">Éditeur avancé</a> dans les pages d'administration de Studio, ou le <a href="https://apis.support.brightcove.com/ingest-profiles/">Ingérer Ingest Profiles API</a>. Les rendus HEVC n'apparaîtront pas dans l'éditeur simple de Studio. Vous trouverez les rendus Dynamic Delivery disponibles <a href="#appendix_renditions">au dessous de</a>.</p>
     <p>Notez également que les rendus standard pour HEVC ont une largeur de 1920px ou moins. Cependant, nous prenons en charge les rendus UHD (4K et plus). Si vous avez besoin de rendus UHD, vous pouvez soumettre une demande au support Brightcove pour en créer un ou plusieurs.</p>
   </section>
   <section class="bcls-section">
@@ -144,7 +143,7 @@ grandparent: Ingest Profiles API
       </dd>
     </dl>
     <h3>Échantillon</h3>
-    <p>Vous trouverez ci-dessous un exemple de profil CAE avec des rendus mixtes :</p>
+    <p>Vous trouverez ci-dessous un exemple de profil CAE avec des rendus mixtes:</p>
 <pre class="line-numbers"><code class="language-json" translate="No">{
   "name": "multi-platform-extended-dynamic-hevc-mixed-codec",
   "display_name": "Multiplatform Extended HEVC (CAE) mixed-codec",

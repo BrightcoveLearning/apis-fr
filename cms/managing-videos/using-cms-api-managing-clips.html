@@ -1,6 +1,6 @@
 ---
 title: 'Gestion des clips'
-description: 'Dans cette rubrique, vous apprendrez à gérer des clips vidéo à l'aide de l'API CMS.'
+description: "Dans cette rubrique, vous apprendrez à gérer des clips vidéo à l'aide de CMS API."
 parent: Managing Videos/Assets 
 grandparent: CMS API
 ---
@@ -15,7 +15,7 @@ grandparent: CMS API
   <section id="findingClips" class="bcls-section">
   <h2>Recherche d'extraits</h2>
   
-  <p>Il existe des termes de recherche spéciaux pour le <span translate="No">API CMS</span> pour vous aider à localiser des clips dans votre compte :</p>
+  <p>Il existe des termes de recherche spéciaux pour le CMS API pour vous aider à localiser des clips dans votre compte:</p>
   
   <ul>
     <li><code translate="No">q=%2Bis_clip:true</code>- ne renvoie que des clips</li>
@@ -28,7 +28,7 @@ grandparent: CMS API
   <ul>
     <li><code translate="No">%2B</code> est un code URI <code translate="No">+</code> signe</li>
     <li><code translate="No">%2D</code> est un code URI <code translate="No">-</code> signe</li>
-    <li>Rappelez-vous que <code translate="No">limit</code> et <code translate="No">offset</code> appliquer : par défaut, <span translate="No">API CMS</span> les requêtes renvoient 10 vidéos (maximum : limit=100), donc s'il y a beaucoup de clips dans le compte, vous devrez faire plusieurs requêtes avec <code translate="No">limit</code> et <code translate="No">offset</code> paramètres pour les trouver tous. Vous pouvez obtenir un décompte de tous les clips en envoyant une demande GET au <span translate="No">API CMS</span> compte le point final : <code translate="No">.../accounts/account_id/ <span class="bcls-highlight">counts</span>/videos/ <span class="bcls-highlight">q=%2Bis_clip:true</span> </code></li>
+    <li>Rappelez-vous que <code translate="No">limit</code> et <code translate="No">offset</code> appliquer: par défaut, CMS API les requêtes renvoient 10 vidéos (maximum: limit=100), donc s'il y a beaucoup de clips dans le compte, vous devrez faire plusieurs requêtes avec <code translate="No">limit</code> et <code translate="No">offset</code> paramètres pour les trouver tous. Vous pouvez obtenir un décompte de tous les clips en envoyant une demande GET au CMS API compte le point final: <code translate="No">.../accounts/account_id/ <span class="bcls-highlight">counts</span>/videos/ <span class="bcls-highlight">q=%2Bis_clip:true</span> </code></li>
   </ul>
   </aside>
   
@@ -197,7 +197,7 @@ grandparent: CMS API
   
   <aside class="bcls-aside bcls-aside--warning">Tu fais <strong>ne pas</strong> voulez supprimer le clip lui-même, car si vous le faites, vous ne pourrez plus obtenir d'analyse sociale pour celui-ci. Vous allez également <strong>ne pas</strong> obtenez des analyses sociales si vous désactivez le clip ou le programmez pour une date ultérieure.</aside>
   
-  <p>Pour supprimer des éléments, vous utiliserez <a href="/cms/references/reference.html#api-assetGroup">les points de terminaison des actifs de l'API CMS</a>. La logique est simple : OBTENIR d'abord les ressources pour récupérer leurs identifiants dans le système Video Cloud, puis SUPPRIMER :</p>
+  <p>Pour supprimer des éléments, vous utiliserez <a href="/cms/references/reference.html#api-assetGroup">les points de terminaison des actifs de CMS API</a>. La logique est simple: OBTENIR d'abord les ressources pour récupérer leurs identifiants dans le système Video Cloud, puis SUPPRIMER:</p>
   
   <figure class="bcls-figure"><img class="bcls-image" alt="Logic for Removing Rendtions" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/cms-api/guides/clips/clips.svg" />
   <figcaption class="bcls-caption--image">Logique de suppression des rendus</figcaption>
@@ -209,7 +209,7 @@ grandparent: CMS API
   <section id="assetEndpoints" class="bcls-section">
   <h2>Points de terminaison d'actifs</h2>
   
-  <p>Voici les points de terminaison d'actifs pertinents dont vous aurez besoin pour supprimer des actifs. Pour tous ces points de terminaison, l'URL de base est :</p>
+  <p>Voici les points de terminaison d'actifs pertinents dont vous aurez besoin pour supprimer des actifs. Pour tous ces points de terminaison, l'URL de base est:</p>
   
   <pre class="line-numbers">
   <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts</code></pre>
@@ -542,7 +542,7 @@ grandparent: CMS API
   
   <h3>Procuration</h3>
   
-  <aside class="bcls-aside bcls-aside--information">Afin de créer votre propre version de l'exemple d'application sur cette page, vous devez créer et héberger votre propre proxy. (Les proxys utilisés par Brightcove Learning Services n'acceptent que les demandes des domaines Brightcove.) Vous pouvez télécharger deux versions de notre code proxy :
+  <aside class="bcls-aside bcls-aside--information">Afin de créer votre propre version de l'exemple d'application sur cette page, vous devez créer et héberger votre propre proxy. (Les proxys utilisés par Brightcove Learning Services n'acceptent que les demandes des domaines Brightcove.) Vous pouvez télécharger deux versions de notre code proxy:
   <ul>
     <li><a href="https://apis.support.brightcove.com/assets/downloads/bcls-proxy-for-distribution.php.zip">Il s'agit d'une version générale qui s'attend à ce que les informations d'identification du client soient transmises avec la demande</a></li>
     <li><a href="https://apis.support.brightcove.com/assets/downloads/doc-samples-proxy.php.zip">Cette version vous permet d'enregistrer vos identifiants client dans le proxy lui-même sur les lignes 25-26 (recommandé)</a></li>

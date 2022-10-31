@@ -1,6 +1,6 @@
 ---
 title: 'Pas à pas: API du système de livraison'
-description: 'Ce document fournit une introduction pratique à l'utilisation de l'API du système de livraison pour créer un référentiel (dépôt), et dans le dépôt, vous enregistrerez et mettrez à jour un plug-in.'
+description: "Ce document fournit une introduction pratique à l'utilisation de l'API du système de livraison pour créer un référentiel (dépôt), et dans le dépôt, vous enregistrerez et mettrez à jour un plug-in."
 parent: Delivery System API 
 grandparent: Home
 ---
@@ -10,14 +10,14 @@ grandparent: Home
     <section id="Overview" class="bcls-section">
         <h2>Aperçu</h2>
 
-        <p>Voici les étapes que vous effectuerez :</p>
+        <p>Voici les étapes que vous effectuerez:</p>
 
         <ul>
             <li>Créer un dépôt à l'aide de l'API du système de livraison</li>
             <li>Créer un dossier local pour le stockage de fichiers</li>
             <li>Créez un plugin et copiez-le dans le dépôt</li>
             <li>Modifiez le lecteur pour utiliser le nouveau plugin</li>
-            <li>Modifiez le plugin et observez que le joueur utilise le plugin modifié</li>
+            <li>Modifiez le plugin et observez que le Lecteur utilise le plugin modifié</li>
         </ul>
 
         <p class="BCL-aside">Noter: Si vous êtes un utilisateur expérimenté de Git, vous verrez que certains des appels d'API exécutent des fonctionnalités équivalentes que vous pouvez également utiliser dans Git. En fait, certains des appels d'API de manipulation de fichiers exécutent simplement des commandes Git.</p>
@@ -27,7 +27,7 @@ grandparent: Home
         <h2>Conditions préalables</h2>
 
         <div class="BCL-concept">
-            <p>Pour commencer ces instructions étape par étape, il est supposé que vous avez terminé le <a href="/player-management/getting-started/step-step-player-management.html">Pas à pas: Gestion des joueurs</a>. En complétant cette activité, vous avez défini les variables d'environnement suivantes dans votre système de ligne de commande :</p>
+            <p>Pour commencer ces instructions étape par étape, il est supposé que vous avez terminé le <a href="/player-management/getting-started/step-step-player-management.html">Pas à pas: Gestion des Lecteurs</a>. En complétant cette activité, vous avez défini les variables d'environnement suivantes dans votre système de ligne de commande:</p>
 
             <ul>
                 <li>{account_id}</li>
@@ -53,12 +53,12 @@ grandparent: Home
     </code></pre>
             <!-- <code data-gist-id="8939637" data-gist-hide-footer="true" data-gist-line="1-5"></code><br /> -->
 
-            <p>Vous recevrez une réponse confirmant la création du dépôt. La réponse affichera : le nom et l'URL publique du dépôt.</p>
+            <p>Vous recevrez une réponse confirmant la création du dépôt. La réponse affichera: le nom et l'URL publique du dépôt.</p>
 
             <ul>
                 <li>Nom: Nom du dépôt</li>
-                <li>URL_publique : L'URL publique du dépôt</li>
-                <li>URL_repo : L'URL du référentiel</li>
+                <li>URL_publique: L'URL publique du dépôt</li>
+                <li>URL_repo: L'URL du référentiel</li>
             </ul>
 
             <pre class="line-numbers">
@@ -87,7 +87,7 @@ grandparent: Home
     <section id="createplugin" class="bcls-section">
         <h2>Créer un plugin</h2>
 
-        <p>Vous allez maintenant créer un plugin dans votre dossier à copier dans le référentiel. Utilisez le même plugin de l'étape par étape : Player Management, sauf modifier le texte affiché. Créez le fichier, collez le texte ci-dessous dans le fichier, puis enregistrez-le. Utilisez le même nom de fichier que celui utilisé dans l'étape par étape : Gestion des joueurs, <code translate="No">first-plugin.js</code>.</p>
+        <p>Vous allez maintenant créer un plugin dans votre dossier à copier dans le référentiel. Utilisez le même plugin de l'étape par étape: Player Management, sauf modifier le texte affiché. Créez le fichier, collez le texte ci-dessous dans le fichier, puis enregistrez-le. Utilisez le même nom de fichier que celui utilisé dans l'étape par étape: Gestion des Lecteurs, <code translate="No">first-plugin.js</code>.</p>
 
         <pre class="line-numbers">
     <code class="language-javascript" translate="No">videojs.registerPlugin('firstPlugin', function() {
@@ -109,7 +109,7 @@ grandparent: Home
       https://repos.api.brightcove.com/v1/accounts/{account_id}/repos/firstRepo/files/first-plugin.js</code></pre>
         <!-- <p><code data-gist-id="8939637" data-gist-hide-footer="true" data-gist-line="113-117"></code></p> -->
 
-        <p>Après la copie, vous devriez voir une confirmation semblable à la suivante :</p>
+        <p>Après la copie, vous devriez voir une confirmation semblable à la suivante:</p>
 
         <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -166,7 +166,7 @@ grandparent: Home
         <h2>Modifier le plug-in</h2>
 
         <div class="BCL-concept">
-            <p>L'un des points forts de l'utilisation du nouveau lecteur Brightcove est la facilité de mise à jour des lecteurs en apportant une seule modification à un plug-in, et tous les lecteurs utilisant ce plug-in seront mis à jour. À ce stade des étapes, vous apporterez une petite modification au plugin et le verrez en cours d'utilisation sans apporter de modifications au lecteur lui-même.</p>
+            <p>L'un des points forts de l'utilisation du nouveau lecteur Brightcove est la facilité de mise à jour des Lecteurs en apportant une seule modification à un plug-in, et tous les Lecteurs utilisant ce plug-in seront mis à jour. À ce stade des étapes, vous apporterez une petite modification au plugin et le verrez en cours d'utilisation sans apporter de modifications au lecteur lui-même.</p>
 
             <p>Ouvrez le <code translate="No">first-plugin.js</code> fichier et mettre à jour le texte à lire <strong>Texte plus récent !</strong></p>
 

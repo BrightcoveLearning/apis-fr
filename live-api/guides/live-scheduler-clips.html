@@ -1,6 +1,6 @@
 ---
 title: 'Planification de la génération de clips pour une diffusion en direct'
-description: 'Avec le point de terminaison Clip, vous pouvez planifier l'événement de clip d'un travail en direct existant. À l'heure spécifiée, notre système effectuera les appels d'API nécessaires pour démarrer une tâche de clip en votre nom.'
+description: "Avec le point de terminaison Clip, vous pouvez planifier l'événement de clip d'un travail en direct existant. À l'heure spécifiée, notre système effectuera les appels d'API nécessaires pour démarrer une tâche de clip en votre nom."
 parent: Guides 
 grandparent: Live API
 ---
@@ -25,7 +25,7 @@ grandparent: Live API
 		<p>En règle générale, vous définissez <code translate="no">time_utc</code> pour correspondre à la limite de fin de votre clip. L'heure prévue <strong>DOIT</strong> être après la limite de fin du clip, sinon la demande de clip échouera à l'heure programmée.</p>
 		<p>Horodatages pour le <code translate="no">time_utc</code> Le champ doit être au format UTC en tant qu'horodatage Unix en secondes. Vous pouvez utiliser <a href="https://www.unixtimestamp.com/" rel="nofollow">https://www.unixtimestamp.com/</a> pour reconversion.</p>
 		<p>Disons que nous voulons programmer un clip de 15 minutes qui commencera à <code translate="no">2021-02-09T13:55:00+00:00</code>. Nous pouvons utiliser le <code translate="no">output.start_time</code> et <code translate="no">output.end_time</code> pour spécifier notre limite de clip en temps Unix en secondes. (Encore une fois, voir <a href="/live-api/guides/live-api-creating-vod-clips.html">Documents de prise en charge des clips VOD</a> pour plus de détails sur les champs disponibles).</p>
-		<pre><code translate="no">Heure de début: 2021-02-09T13:55:00+00:00 = 1612878900 end_time : 2021-02-09T14:10:00+00:00 = 1612879800 </code></pre>
+		<pre><code translate="no">Heure de début: 2021-02-09T13:55:00+00:00 = 1612878900 end_time: 2021-02-09T14:10:00+00:00 = 1612879800 </code></pre>
 		<p>Étant donné que le planificateur aura également besoin d'un temps pour planifier la demande de clip, nous pouvons utiliser la même valeur que <code translate="no">heure de fin</code> car c'est aussi le temps Unix en secondes.</p>
 		<p>Nous voulons également créer une vidéo Videocloud pour le clip, nous l'incluons donc dans le <code translate="no">sortir</code>. Une vidéo Videocloud sera créée au moment de la planification du flux de travail et son ID sera renvoyé dans la réponse afin que vous puissiez connaître l'ID de la vidéo avant la création du clip. Si vous annulez plus tard la demande de clip ou si elle échoue à l'heure prévue, la vidéo Videocloud ne sera PAS supprimée de votre compte.</p>
 		<h3>Demander</h3>
@@ -34,7 +34,7 @@ grandparent: Live API
 		
 		<h3>En-têtes</h3>
 		
-<pre><code translate="no">Type de contenu : application/json X-API-KEY : votre clé API</code></pre>
+<pre><code translate="no">Type de contenu: application/json X-API-KEY: votre clé API</code></pre>
 		
 		<h3>Corps de la demande</h3>
 <pre class="line-numbers"><code class="language-json" translate="No">{
@@ -63,7 +63,7 @@ grandparent: Live API
 		</section>
 		<section class="bcls-section">
 			<h2 id="Update_a_Clip_scheduler_workflow">Mettre à jour un workflow de planificateur de clips</h2>
-			<p>Vous pouvez mettre à jour à la fois le <code translate="no">sortir</code> et <code translate="no">time_utc</code> de votre clip. Ceux-ci ne peuvent être mis à jour que si la tâche est en attente : <code translate="no">"état": "en attente"</code>.</p>
+			<p>Vous pouvez mettre à jour à la fois le <code translate="no">sortir</code> et <code translate="no">time_utc</code> de votre clip. Ceux-ci ne peuvent être mis à jour que si la tâche est en attente: <code translate="no">"état": "en attente"</code>.</p>
 			<p>Suivant l'exemple précédent, nous voulons que le clip soit 5 minutes plus court que prévu. Lors de la mise à jour du <code translate="no">sortir</code> champ, vous devez fournir l'objet complet, pas seulement les modifications apportées. Cela inclut l'ID vidéo Videocloud renvoyé par l'appel de création ci-dessus.</p>
 			<p>Notez que dans cet exemple, nous avons mis à jour les deux <code translate="no">heure de fin</code> et <code translate="no">time_utc</code> pour refléter la réduction de 5 minutes.</p>
 			<h3>Demander</h3>
@@ -72,7 +72,7 @@ grandparent: Live API
 			
 			<h3>En-têtes</h3>
 			
-	<pre><code translate="no">Type de contenu : application/json X-API-KEY : votre clé API</code></pre>
+	<pre><code translate="no">Type de contenu: application/json X-API-KEY: votre clé API</code></pre>
 			
 			<h3>Corps de la demande</h3>
 	<pre class="line-numbers"><code class="language-json" translate="No">{
@@ -131,7 +131,7 @@ X-API-KEY : votre clé API</code></pre>
 		<li><a href="/live-api/guides/live-scheduler-stop-start.html">Planification de l'activation/désactivation d'un flux SEP</a></li>
 		<li><a href="/live-api/guides/live-scheduler-notifications.html">Notifications du programmateur en direct</a></li>
 		<li><a href="/live-api/guides/live-api-static-entry-points.html">Emplois de point d'entrée statique (SEP)</a></li>
-		<li><a href="/live-api/references/reference-staging.html">Référence de l'API en direct</a></li>
+		<li><a href="/live-api/references/reference-staging.html">Référence de l'Live API</a></li>
 		<li><a href="https://live.support.brightcove.com/live-module/scheduling-live-event.html">Démarrage/arrêt automatique des événements en direct dans la salle de contrôle</a></li>
 	</ul>
 </section>

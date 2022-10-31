@@ -1,6 +1,6 @@
 ---
 title: 'Utilisateurs uniques'
-description: 'Dans cette rubrique, vous apprendrez comment obtenir des données sur des utilisateurs uniques via le <span translate="No">API d'analyse</span> et comment les utilisateurs uniques sont calculés.'
+description: "Dans cette rubrique, vous apprendrez comment obtenir des données sur des utilisateurs uniques via le Analytics API et comment les utilisateurs uniques sont calculés."
 
 parent: 'General Information' 
 grandparent: Analytics API
@@ -11,7 +11,7 @@ grandparent: Analytics API
     <section class="bcls-section">
     <h2 id="introduction">introduction</h2>
     
-    <p>Les <code translate="No">unique_users</code> qui donne aux clients une estimation du nombre de téléspectateurs uniques par jour au niveau du compte. Les données sont renvoyées dans un champ appelé <code translate="No">daily_unique_viewers</code>. Ce champ est disponible au niveau du compte ou de la vidéo. Voir <a href="/data-collection/getting-started/overview-data-collection-api-v2.html#userData">Aperçu: API de collecte de données</a> pour plus d'informations sur la manière dont les données des utilisateurs sont collectées et utilisées.</p>
+    <p>Les <code translate="No">unique_users</code> qui donne aux clients une estimation du nombre de téléspectateurs uniques par jour au niveau du compte. Les données sont renvoyées dans un champ appelé <code translate="No">daily_unique_viewers</code>. Ce champ est disponible au niveau du compte ou de la vidéo. Voir <a href="/data-collection/getting-started/overview-data-collection-api-v2.html#userData">Aperçu: Data Collection API</a> pour plus d'informations sur la manière dont les données des utilisateurs sont collectées et utilisées.</p>
     
     <p>Notez que les données d'utilisateurs uniques ne sont renvoyées que pour <a href="/analytics/general/analytics-api-glossary.html#reconciled">réconcilié</a> Les données.</p>
     </section>
@@ -24,7 +24,7 @@ grandparent: Analytics API
     <pre>
     https://analytics.api.brightcove.com/v1/data?accounts=789967572001&amp;dimensions=date&amp;from=2014-07-09&amp;to=2014-07-22&amp;limit=10&amp;format=json&amp;fields=daily_unique_viewers,date,video_view</pre>
     
-    <p>Exemple de sortie :</p>
+    <p>Exemple de sortie:</p>
     
     <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -100,7 +100,7 @@ grandparent: Analytics API
     
     <h3>La durée de plusieurs jours est moyenne</h3>
     
-    <p>Si vous effectuez une demande qui s'étend sur plusieurs jours, comme ceci :</p>
+    <p>Si vous effectuez une demande qui s'étend sur plusieurs jours, comme ceci:</p>
     
     <pre>
     https://analytics.api.brightcove.com/v1/data?accounts=789967572001&amp;dimensions=account&amp;from=2014-07-09&amp;to=2014-07-22&amp;limit=10&amp;format=json&amp;fields=daily_unique_viewers,video_view</pre>

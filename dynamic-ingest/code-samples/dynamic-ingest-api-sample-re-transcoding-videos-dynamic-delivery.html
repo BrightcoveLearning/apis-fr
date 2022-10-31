@@ -1,7 +1,6 @@
 ---
 title: 'Re-transcodage des vidéos'
-description: 'Dans cet exemple, vous apprendrez à retranscoder plusieurs vidéos à l'aide de l'API Dynamic Ingest. Pour obtenir des jetons d'accès et effectuer les appels d'API, il utilise un proxy créé par les services d'apprentissage Brightcove.'
-
+description: "Dans cet exemple, vous apprendrez à retranscoder plusieurs vidéos à l'aide de Dynamic Ingest API. Pour obtenir des jetons d'accès et effectuer les appels d'API, il utilise un proxy créé par les services d'apprentissage Brightcove."
 parent: 'Code Samples' 
 grandparent: Dynamic Ingest API
 ---
@@ -11,9 +10,9 @@ grandparent: Dynamic Ingest API
   <section class="bcls-section">
     <h2 id="Overview">Aperçu</h2>
 
-    <p>Les <span translate="No">API d'ingestion dynamique</span> l'appel est exactement le même que pour <a href="/dynamic-ingest/code-samples/dynamic-ingest-api-sample-ingesting-videos-dynamic-delivery.html">ingérer de nouvelles vidéos</a> - la seule différence est que vous n'avez pas besoin d'appeler au préalable le <span translate="No">API CMS</span> pour créer l'objet vidéo dans le système Video Cloud et obtenir un identifiant pour celui-ci, et le corps de la requête est légèrement différent. Toutes les vidéos resteront lisibles avec les rendus existants jusqu'à ce que le retranscodage soit terminé.</p>
+    <p>Les <span>Dynamic Ingest API</span> l'appel est exactement le même que pour <a href="/dynamic-ingest/code-samples/dynamic-ingest-api-sample-ingesting-videos-dynamic-delivery.html">ingérer de nouvelles vidéos</a> - la seule différence est que vous n'avez pas besoin d'appeler au préalable le CMS API pour créer l'objet vidéo dans le système Video Cloud et obtenir un identifiant pour celui-ci, et le corps de la requête est légèrement différent. Toutes les vidéos resteront lisibles avec les rendus existants jusqu'à ce que le retranscodage soit terminé.</p>
 
-    <aside class="bcls-aside bcls-aside--information">L'ingestion dynamique fait <strong>ne pas</strong> ont un mécanisme pour traiter plusieurs vidéos - cet exemple exécute simplement une boucle pour faire une demande d'ingestion dynamique pour chaque vidéo.</aside> <aside class="bcls-aside bcls-aside--information">Cet exemple et le code associé sont fournis comme guide pour le développement de votre production. Le code n'est pas certifié pour une utilisation en production ni officiellement pris en charge.</aside>
+    <aside class="bcls-aside bcls-aside--information">Dynamic Ingest API fait <strong>ne pas</strong> ont un mécanisme pour traiter plusieurs vidéos - cet exemple exécute simplement une boucle pour faire une demande d'ingestion dynamique pour chaque vidéo.</aside> <aside class="bcls-aside bcls-aside--information">Cet exemple et le code associé sont fournis comme guide pour le développement de votre production. Le code n'est pas certifié pour une utilisation en production ni officiellement pris en charge.</aside>
   </section>
 
   <section class="bcls-section">
@@ -22,26 +21,26 @@ grandparent: Dynamic Ingest API
         <h2 id="gettingCredentials">Obtenir des informations d'identification</h2>
       </summary>
 
-      <p>Pour obtenir un <code translate="No">client_id</code> et <code translate="No">client_secret</code> , vous devrez accéder à l'interface utilisateur OAuth et enregistrer cette application :</p>
+      <p>Pour obtenir un <code translate="No">client_id</code> et <code translate="No">client_secret</code> , vous devrez accéder à l'interface utilisateur OAuth et enregistrer cette application:</p>
 
       <ul>
         <li><a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a></li>
       </ul>
 
-      <p>Voici les autorisations dont vous aurez besoin :</p>
+      <p>Voici les autorisations dont vous aurez besoin:</p>
 
       <figure class="bcls-figure"><img class="bcls-image" alt="Dynamic Ingest Permissions" src="/assets/images/dynamic-ingest/code-samples/di-permissions.png" />
         <figcaption class="bcls-caption--image">Autorisations d'ingestion dynamique</figcaption>
       </figure>
 
-      <p>Vous pouvez également obtenir vos informations d'identification via CURL ou Postman - voir :</p>
+      <p>Vous pouvez également obtenir vos informations d'identification via CURL ou Postman - voir:</p>
 
       <ul>
         <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">Obtenir les informations d'identification du client à l'aide de CURL</a></li>
         <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">Obtenez les informations d'identification du client à l'aide de Postman</a></li>
       </ul>
 
-      <p>Si vous obtenez des informations d'identification directement de l'API, voici les autorisations dont vous avez besoin :</p>
+      <p>Si vous obtenez des informations d'identification directement de l'API, voici les autorisations dont vous avez besoin:</p>
 
       <pre class="line-numbers">
         <code class="language-json" translate="No">[
@@ -66,7 +65,7 @@ grandparent: Dynamic Ingest API
       Retrouvez tout le code associé à cet exemple dans ce <a href="https://github.com/BrightcoveLearning/18496-dynamic-ingest-api-sample-re-transcoding-videos-dynamic-delivery-save-for-update">Dépôt GitHub</a>.
     </p>
     <h3>Exemple d'application</h3>
-    <p data-height="1200" data-theme-id="34967" data-slug-hash="MVNzeL" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="Dynamic Ingest API Sample: Re-transcoding Videos (Dynamic Delivery)" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/MVNzeL/">Exemple d'API d'ingestion dynamique : Retranscodage de vidéos (diffusion dynamique)</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
+    <p data-height="1200" data-theme-id="34967" data-slug-hash="MVNzeL" data-default-tab="result" data-user="rcrooks1969" data-embed-version="2" data-pen-title="Dynamic Ingest API Sample: Re-transcoding Videos (Dynamic Delivery)" class="codepen">Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/MVNzeL/">Exemple de Dynamic Ingest API: Retranscodage de vidéos (diffusion dynamique)</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</p>
     <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
   </section>
 
@@ -76,7 +75,7 @@ grandparent: Dynamic Ingest API
         <h2 id="Using_the_CodePen">Utiliser le CodePen</h2>
       </summary>
 
-      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus :</p>
+      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus:</p>
 
       <ul>
         <li>Basculez l'affichage réel du lecteur en cliquant sur le bouton <strong>Résultat</strong> bouton.</li>

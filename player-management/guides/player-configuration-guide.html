@@ -1,6 +1,6 @@
 ---
 title: 'Guide de configuration du lecteur'
-description: 'Cette rubrique décrit comment afficher et modifier la configuration du lecteur. La syntaxe JSON est également documentée.'
+description: "Cette rubrique décrit comment afficher et modifier la configuration du lecteur. La syntaxe JSON est également documentée."
 parent: Guides 
 grandparent: Player Management API
 ---
@@ -34,13 +34,13 @@ grandparent: Player Management API
 
     <h3>Utiliser Studio</h3>
 
-    <p>Vous pouvez utiliser Studio pour afficher la configuration JSON du lecteur. L'étape suivante détaille le processus :</p>
+    <p>Vous pouvez utiliser Studio pour afficher la configuration JSON du lecteur. L'étape suivante détaille le processus:</p>
 
     <ol class="bcls-tasklist">
-      <li>Ouvrez le <strong>JOUEURS</strong> module et localisez le lecteur dont vous souhaitez visualiser la configuration.</li>
+      <li>Ouvrez le <strong>Lecteurs</strong> module et localisez le lecteur dont vous souhaitez visualiser la configuration.</li>
       <li>Cliquez sur le lien du lecteur pour ouvrir les propriétés du lecteur.</li>
       <li>Cliquez sur <strong>Éditeur JSON</strong> dans le menu de navigation de gauche.</li>
-      <li>Vous pouvez afficher la configuration du lecteur, semblable à ce qui suit :
+      <li>Vous pouvez afficher la configuration du lecteur, semblable à ce qui suit:
       <figure class="bcls-figure"><img class="bcls-image" alt="JSON editor" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/player-management-api/guides/player-configuration/json-editor.png" /></figure>
       </li>
     </ol>
@@ -56,18 +56,18 @@ grandparent: Player Management API
     <pre>
     <code class="language-http" translate="No">http://players.brightcove.net/1507807800001/HJyMlHiuZ_default/config.json</code></pre>
 
-    <p>Certaines propriétés de la configuration du lecteur définissent les éléments suivants :</p>
+    <p>Certaines propriétés de la configuration du lecteur définissent les éléments suivants:</p>
 
     <ul>
-      <li>Le nom et la version du joueur</li>
+      <li>Le nom et la version du Lecteur</li>
       <li>La ou les vidéos que le lecteur va lire</li>
-      <li>Le compte auquel appartient le joueur</li>
-      <li>L'identifiant du joueur</li>
-      <li>Tous les plugins que le joueur peut utiliser, ainsi que les URL pour les emplacements du code du plugin</li>
+      <li>Le compte auquel appartient le Lecteur</li>
+      <li>L'identifiant du Lecteur</li>
+      <li>Tous les plugins que le Lecteur peut utiliser, ainsi que les URL pour les emplacements du code du plugin</li>
       <li class="player-only">Une affiche à afficher avant la lecture vidéo</li>
     </ul>
 
-    <p>Un exemple de fichier de configuration de lecteur, pour un lecteur de l'étape par étape : La gestion des joueurs, est la suivante :</p>
+    <p>Un exemple de fichier de configuration de lecteur, pour un lecteur de l'étape par étape: La gestion des Lecteurs, est la suivante :</p>
 
     <pre class="line-numbers player-only">
     <code class="language-json" translate="No">{
@@ -139,7 +139,7 @@ grandparent: Player Management API
 
     <h3>Être avec <code translate="No">{player_id}/configuration</code> point final</h3>
 
-    <p>Vous pouvez récupérer les mêmes informations que celles affichées en utilisant le HTTP <code translate="No">GET</code> méthode. À l'aide de <code translate="No">GET</code> avec le <code translate="No">/{player_id}/configuration</code> point de terminaison, vous pouvez récupérer le <em>joueur publié</em> informations de configuration. Un exemple d'instruction curl et le JSON récupéré sont affichés ici :</p>
+    <p>Vous pouvez récupérer les mêmes informations que celles affichées en utilisant le HTTP <code translate="No">GET</code> méthode. À l'aide de <code translate="No">GET</code> avec le <code translate="No">/{player_id}/configuration</code> point de terminaison, vous pouvez récupérer le <em>Lecteur publié</em> informations de configuration. Un exemple d'instruction curl et le JSON récupéré sont affichés ici:</p>
 
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -208,7 +208,7 @@ grandparent: Player Management API
 
     <h3>GET méthode <code translate="No">{player_id}</code> point final</h3>
 
-    <p>Le HTTP <code translate="No">GET</code> méthode utilisée avec le <code translate="No">/{player_id}</code> endpoint est le moyen de récupérer des informations complètes sur le joueur. Cette approche donne un sur-ensemble de configuration de lecteur que vous venez de voir. Vous pouvez penser à ce point de terminaison qui vous montre des informations de configuration "au niveau supérieur" et inclut des informations de configuration actuelles pour les versions de prévisualisation et de lecteur publié. Un exemple d'instruction curl et le JSON récupéré sont affichés ici :</p>
+    <p>Le HTTP <code translate="No">GET</code> méthode utilisée avec le <code translate="No">/{player_id}</code> endpoint est le moyen de récupérer des informations complètes sur le Lecteur. Cette approche donne un sur-ensemble de configuration de lecteur que vous venez de voir. Vous pouvez penser à ce point de terminaison qui vous montre des informations de configuration "au niveau supérieur" et inclut des informations de configuration actuelles pour les versions de prévisualisation et de lecteur publié. Un exemple d'instruction curl et le JSON récupéré sont affichés ici:</p>
 
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -382,9 +382,9 @@ grandparent: Player Management API
 
     <p>Pour modifier la configuration du lecteur, vous utilisez le <code translate="No">/{account_id}/players/{player_id}/configuration</code> point final, et c'est l'accent de ce document. Il y a, cependant, deux propriétés que vous modifiez en utilisant simplement le <code translate="No">/{account_id}/players/{player_id}</code> point final. Ces deux propriétés sont <code translate="No">name</code> et <code translate="No">description</code>.</p>
 
-    <p>Noter la <code translate="No">name</code> vous entrez pour le joueur est retourné comme <code translate="No">player_name</code> quand vous obtenez la configuration en mettant <code translate="No">config.json</code> à la fin de l'URL d'aperçu du lecteur (elle est renvoyée sous la forme <code translate="No">name</code> lorsque vous obtenez la configuration via l'API Player Management. Mais vous devez utiliser <code translate="No">name</code> lorsque vous créez ou mettez à jour le lecteur.</p>
+    <p>Noter la <code translate="No">name</code> vous entrez pour le Lecteur est retourné comme <code translate="No">player_name</code> quand vous obtenez la configuration en mettant <code translate="No">config.json</code> à la fin de l'URL d'aperçu du lecteur (elle est renvoyée sous la forme <code translate="No">name</code> lorsque vous obtenez la configuration via l'API Player Management. Mais vous devez utiliser <code translate="No">name</code> lorsque vous créez ou mettez à jour le lecteur.</p>
 
-    <p>Le premier bloc de code montre un exemple d'instruction curl qui modifie le comportement d'un joueur <code translate="No">name</code> et <code translate="No">description</code>. Notez que la réponse JSON montre que les versions d'aperçu du lecteur sont générées par la méthode PATCH, vous devrez donc publier le lecteur pour obtenir les versions optimisées.</p>
+    <p>Le premier bloc de code montre un exemple d'instruction curl qui modifie le comportement d'un Lecteur <code translate="No">name</code> et <code translate="No">description</code>. Notez que la réponse JSON montre que les versions d'aperçu du lecteur sont générées par la méthode PATCH, vous devrez donc publier le lecteur pour obtenir les versions optimisées.</p>
 
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -408,7 +408,7 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h2 id="settingvalues">Valeurs de réglage</h2>
 
-    <p>Vous pouvez définir les valeurs de configuration du lecteur en utilisant n'importe quel outil qui émet des appels de méthode HTTP OU en utilisant le <strong>Éditeur JSON</strong> qui fait partie de Studio's <strong>JOUEURS</strong> module. L'outil curl peut être utilisé, et des exemples d'instructions affichés dans le <a href="https://apis.support.brightcove.com/player-management/getting-started/step-step-player-management.html">Pas à pas: Gestion des joueurs</a> et l'utilisation d'AJAX expliquée dans de nombreux <a href="/getting-started/learning-guide-using-rest-apis.html">Exemples de lecteur Brightcove</a>.</p>
+    <p>Vous pouvez définir les valeurs de configuration du lecteur en utilisant n'importe quel outil qui émet des appels de méthode HTTP OU en utilisant le <strong>Éditeur JSON</strong> qui fait partie de Studio's <strong>Lecteurs</strong> module. L'outil curl peut être utilisé, et des exemples d'instructions affichés dans le <a href="https://apis.support.brightcove.com/player-management/getting-started/step-step-player-management.html">Pas à pas: Gestion des Lecteurs</a> et l'utilisation d'AJAX expliquée dans de nombreux <a href="/getting-started/learning-guide-using-rest-apis.html">Exemples de lecteur Brightcove</a>.</p>
 
     <p>Un exemple de changement en utilisant le <strong>Éditeur JSON</strong> est montré ici :</p>
 
@@ -420,7 +420,7 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h2 id="configproperties">Configuration des propriétés</h2>
 
-    <p>Certaines propriétés de configuration sont définies par le service de gestion des lecteurs et ne sont pas modifiables. Ce sont:</p>
+    <p>Certaines propriétés de configuration sont définies par le service de gestion des Lecteurs et ne sont pas modifiables. Ce sont:</p>
 
     <ul>
       <li>identifiant de compte</li>
@@ -461,10 +461,10 @@ grandparent: Player Management API
       <li><a href="#muted">en sourdine</a></li>
       <li>picture_in_picture_control<a href="#picture_in_picture_control"></a></li>
       <li><a href="#playback_rates">taux_de_lecture</a></li>
-      <li><a href="#player">joueur</a></li>
+      <li><a href="#player">Lecteur</a></li>
       <li><a href="#play_button">Bouton jouer</a></li>
       <li>player_id<a href="#player_id"></a></li>
-      <li><a href="#player_name">nom de joueur</a></li>
+      <li><a href="#player_name">nom de Lecteur</a></li>
       <li><a href="#playsinline">joue en ligne</a></li>
     </ul>
 
@@ -498,9 +498,9 @@ grandparent: Player Management API
     <p><code translate="No">ad_config_id</code> informations:</p>
 
     <ul>
-      <li>Type de données : chaîne</li>
+      <li>Type de données: chaîne</li>
       <li>Défaut: <code translate="No">undefined</code></li>
-      <li>Un ID de configuration d'annonce SSAI de diffusion dynamique. En plus d'être défini dans la configuration du lecteur, il peut être défini au moment de l'exécution via le paramètre de chaîne de requête adConfigId pour les lecteurs iframe ou l'attribut data-ad-config-id pour les lecteurs intégrés. L'un ou l'autre remplacera toute valeur dans la configuration du lecteur.</li>
+      <li>Un ID de configuration d'annonce SSAI de diffusion dynamique. En plus d'être défini dans la configuration du lecteur, il peut être défini au moment de l'exécution via le paramètre de chaîne de requête adConfigId pour les Lecteurs iframe ou l'attribut data-ad-config-id pour les Lecteurs intégrés. L'un ou l'autre remplacera toute valeur dans la configuration du lecteur.</li>
     </ul>
     </section>
 
@@ -510,9 +510,9 @@ grandparent: Player Management API
     <p><code translate="No">ad_failover</code> informations:</p>
 
     <ul>
-      <li>Type de données : booléen</li>
+      <li>Type de données: booléen</li>
       <li>Défaut: <code translate="No">undefined</code></li>
-      <li>Définissez sur true pour activer le comportement de basculement publicitaire. Il s'agit d'une configuration en plusieurs parties qui dépend de :
+      <li>Définissez sur true pour activer le comportement de basculement publicitaire. Il s'agit d'une configuration en plusieurs parties qui dépend de:
       <ul>
         <li>Les plugins IMA3 et SSAI doivent être configurés sur le lecteur.</li>
         <li>Un <code translate="No">ad_config_id</code> devraient être disponibles, sinon les annonces SSAI ne sont pas disponibles.</li>
@@ -527,9 +527,9 @@ grandparent: Player Management API
     <p><code translate="No">application_id</code> informations:</p>
 
     <ul>
-      <li>Type de données : chaîne</li>
+      <li>Type de données: chaîne</li>
       <li>Défaut: <code translate="No">undefined</code></li>
-      <li>L'ID d'application est utilisé pour différencier les utilisations multiples d'un seul joueur dans les métriques. Il est invisible pour l'utilisateur.</li>
+      <li>L'ID d'application est utilisé pour différencier les utilisations multiples d'un seul Lecteur dans les métriques. Il est invisible pour l'utilisateur.</li>
     </ul>
     </section>
 
@@ -539,7 +539,7 @@ grandparent: Player Management API
     <p><code translate="No">autoadvance</code> informations:</p>
 
     <ul>
-      <li>Type de données : chaîne</li>
+      <li>Type de données: chaîne</li>
       <li>Défaut: Non activé initialement</li>
       <li>Utilisé avec les listes de lecture et définit le comportement d'avance automatique de la liste de lecture.</li>
     </ul>
@@ -553,17 +553,17 @@ grandparent: Player Management API
     <p><code translate="No">autoplay</code> informations:</p>
 
     <ul>
-      <li>Type de données : booléen ou chaîne</li>
+      <li>Type de données: booléen ou chaîne</li>
       <li>Défaut: <code translate="No">false</code></li>
-      <li>Indique que le joueur doit commencer à jouer immédiatement, sur les plateformes où cela est autorisé.</li>
+      <li>Indique que le Lecteur doit commencer à jouer immédiatement, sur les plateformes où cela est autorisé.</li>
     </ul>
 
-    <p>Si <code translate="No">autoplay</code> est défini sur une valeur booléenne, le comportement de lecture automatique natif du navigateur est utilisé. S'il est défini sur l'une des trois valeurs de chaîne valides suivantes, les événements suivants se produisent :</p>
+    <p>Si <code translate="No">autoplay</code> est défini sur une valeur booléenne, le comportement de lecture automatique natif du navigateur est utilisé. S'il est défini sur l'une des trois valeurs de chaîne valides suivantes, les événements suivants se produisent:</p>
 
     <ul>
-      <li>:<code translate="No">play</code> Le joueur essaiera manuellement d'appeler la lecture.</li>
+      <li>:<code translate="No">play</code> Le Lecteur essaiera manuellement d'appeler la lecture.</li>
       <li>:<code translate="No">muted</code> Le lecteur désactivera manuellement le lecteur et appellera la lecture.</li>
-      <li>:<code translate="No">any</code> Le joueur essaiera d'abord d'appeler play. Si cela échoue, coupez le son du lecteur et lancez la lecture.</li>
+      <li>:<code translate="No">any</code> Le Lecteur essaiera d'abord d'appeler play. Si cela échoue, coupez le son du lecteur et lancez la lecture.</li>
     </ul>
 
     <p>Si l'un des éléments ci-dessus échoue, le lecteur affichera le "Big Play Button" comme si la lecture automatique était définie sur false.</p>
@@ -602,20 +602,20 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h3 id="base_url">base_url (pour les problèmes de restriction IP)</h3>
 
-    <p>Des problèmes peuvent survenir lors de l'utilisation de restrictions IP avec des lecteurs Brightcove utilisés en dehors de l'Amérique du Nord. Lorsqu'un Brightcove Player est invité à charger une vidéo depuis un compte Video Cloud, il se connecte au catalogue à cette adresse<strong>https://edge.api.brightcove.com/playback/v1/</strong>.</p>
+    <p>Des problèmes peuvent survenir lors de l'utilisation de restrictions IP avec des Lecteurs Brightcove utilisés en dehors de l'Amérique du Nord. Lorsqu'un Brightcove Player est invité à charger une vidéo depuis un compte Video Cloud, il se connecte au catalogue à cette adresse<strong>https://edge.api.brightcove.com/playback/v1/</strong>.</p>
 
-    <p>Ce point de terminaison Edge se comporte d'une manière qui peut causer des problèmes de restriction IP :</p>
+    <p>Ce point de terminaison Edge se comporte d'une manière qui peut causer des problèmes de restriction IP:</p>
 
     <ul>
       <li>Lorsque vous frappez Edge depuis l'intérieur de l'Amérique du Nord, il frappe directement Edge et Edge voit l'adresse IP de l'utilisateur. Il peut autoriser ou refuser l'accès au catalogue selon la liste blanche de restriction IP. Il s'agit de la fonctionnalité souhaitée.</li>
       <li>Lorsque vous frappez Edge depuis l'EXTÉRIEUR de l'Amérique du Nord, il passe par Cloudfront pour des raisons d'équilibrage de charge/mise en cache locale CDN. C'est important, car à la suite de cela, Edge voit l'adresse IP de Cloudfront au lieu de l'adresse IP de l'utilisateur et refuse tout le monde, car Cloudfront ne figure pas sur la liste blanche (et ne devrait jamais l'être, car toute personne utilisant Cloudfront y aurait accès).</li>
     </ul>
 
-    <p>Pour résoudre ce problème, vous pouvez configurer le lecteur pour utiliser un autre point de terminaison Edge, <strong>edge-elb.api.brightcove.com</strong>. Cette modification doit être apportée à chaque joueur qui doit accéder au compte IP restreint depuis l'extérieur de l'Amérique du Nord.</p>
+    <p>Pour résoudre ce problème, vous pouvez configurer le lecteur pour utiliser un autre point de terminaison Edge, <strong>edge-elb.api.brightcove.com</strong>. Cette modification doit être apportée à chaque Lecteur qui doit accéder au compte IP restreint depuis l'extérieur de l'Amérique du Nord.</p>
 
     <aside class="bcls-aside bcls-aside--information">Il y a un inconvénient à cette approche. Un très léger retard dans la récupération du contenu mis en cache depuis l'extérieur des États-Unis sera introduit car les demandes de catalogue seront envoyées en Virginie plutôt que via le réseau mondial de Cloudfront avec des serveurs locaux. Il est probable que cela sera à peine perceptible.</aside>
 
-    <p>Le changement de configuration réel implique la définition d'une valeur pour le Video Cloud <code translate="No">base_url</code>. N'oubliez pas que cela doit être modifié UNIQUEMENT si des restrictions IP sont utilisées avec des lecteurs Brightcove en dehors de l'Amérique du Nord. Pour un lecteur existant, vous utiliseriez la commande curl suivante qui utilise le <code translate="No">PATCH</code> Méthode HTTP (vous devez substituer vos données aux variables d'environnement <code translate="No">$EMAIL</code> , <code translate="No">{account_id}</code> et <code translate="No">{player_id}</code>):</p>
+    <p>Le changement de configuration réel implique la définition d'une valeur pour le Video Cloud <code translate="No">base_url</code>. N'oubliez pas que cela doit être modifié UNIQUEMENT si des restrictions IP sont utilisées avec des Lecteurs Brightcove en dehors de l'Amérique du Nord. Pour un lecteur existant, vous utiliseriez la commande curl suivante qui utilise le <code translate="No">PATCH</code> Méthode HTTP (vous devez substituer vos données aux variables d'environnement <code translate="No">$EMAIL</code> , <code translate="No">{account_id}</code> et <code translate="No">{player_id}</code>):</p>
 
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl
@@ -629,10 +629,10 @@ grandparent: Player Management API
       }'
     https://players.api.brightcove.com/v2/accounts/{account_id}/players/{player_id}/configuration</code></pre>
 
-    <p>Si vous débutez dans le curling, les documents suivants vous seront utiles :</p>
+    <p>Si vous débutez dans le curling, les documents suivants vous seront utiles:</p>
 
     <ul>
-      <li><a href="https://apis.support.brightcove.com/player-management/getting-started/step-step-player-management.html">Pas à pas: Gestion des joueurs</a></li>
+      <li><a href="https://apis.support.brightcove.com/player-management/getting-started/step-step-player-management.html">Pas à pas: Gestion des Lecteurs</a></li>
       <li><a href="https://general.support.brightcove.com/developer/concepts-cors.html">Configurer cURL</a></li>
       <li><a href="https://apis.support.brightcove.com/general/use-postman-api-requests.html">Utiliser Postman pour les requêtes HTTP</a></li>
     </ul>
@@ -645,8 +645,8 @@ grandparent: Player Management API
 
     <ul>
       <li>Type de données: Objet</li>
-      <li>Défaut: Les points d'arrêt par défaut sont :</li>
-      <li>Lorsqu'il est utilisé avec le <a href="#responsive">sensible</a> option, définit des points d'arrêt qui configureront la façon dont les noms de classe sont basculés sur le lecteur pour ajuster l'interface utilisateur en fonction des dimensions du joueur.
+      <li>Défaut: Les points d'arrêt par défaut sont:</li>
+      <li>Lorsqu'il est utilisé avec le <a href="#responsive">sensible</a> option, définit des points d'arrêt qui configureront la façon dont les noms de classe sont basculés sur le lecteur pour ajuster l'interface utilisateur en fonction des dimensions du Lecteur.
       <table class="bcls-table">
         <thead class="bcls-table__head">
           <tr>
@@ -688,7 +688,7 @@ grandparent: Player Management API
       </li>
     </ul>
 
-    <p>Bien que les noms de classe ne puissent pas être modifiés, les plages de largeur peuvent être configurées via un objet comme celui-ci :</p>
+    <p>Bien que les noms de classe ne puissent pas être modifiés, les plages de largeur peuvent être configurées via un objet comme celui-ci:</p>
 
     <pre class="line-numbers">
     <code class="language-javascript" translate="No">breakpoints: {
@@ -707,7 +707,7 @@ grandparent: Player Management API
       <li>Toutes les clés n'ont pas besoin d'être définies. Vous pouvez facilement remplacer un seul point d'arrêt en passant un objet avec une paire clé/valeur. Les points d'arrêt personnalisés seront fusionnés avec les points d'arrêt par défaut lors de la création du lecteur.</li>
     </ul>
 
-    <p>Lorsque la taille du joueur change, les points d'arrêt fusionnés seront inspectés dans l'ordre de taille jusqu'à ce qu'un point d'arrêt correspondant soit trouvé. Le nom de classe associé à ce point d'arrêt sera ajouté en tant que classe au lecteur. La classe du point d'arrêt précédent sera supprimée.</p>
+    <p>Lorsque la taille du Lecteur change, les points d'arrêt fusionnés seront inspectés dans l'ordre de taille jusqu'à ce qu'un point d'arrêt correspondant soit trouvé. Le nom de classe associé à ce point d'arrêt sera ajouté en tant que classe au lecteur. La classe du point d'arrêt précédent sera supprimée.</p>
     </section>
 
     <section class="bcls-section">
@@ -716,7 +716,7 @@ grandparent: Player Management API
     <p><code translate="No">crossorigin</code> informations:</p>
 
     <ul>
-      <li>Type de données : booléen</li>
+      <li>Type de données: booléen</li>
       <li>Par défaut : faux</li>
       <li>Si <strong>vrai</strong> , le sous-jacent <strong>&lt;vidéo&gt;</strong> élément aura <strong>crossorigin="anonyme"</strong>. Cela signifie que toutes les vidéos ou pistes de texte extraites dans le lecteur doivent avoir des en-têtes CORS. <aside class="bcls-aside bcls-aside--information">Noter: Cette fonctionnalité ne doit être utilisée que si vous savez que tous vos contenus (pistes vidéo et texte) ont des en-têtes CORS qui leur sont appliqués.</aside>
       </li>
@@ -736,7 +736,7 @@ grandparent: Player Management API
 
     <p>Toute couleur CSS valide (y compris les couleurs hexadécimales, par exemple) est une valeur acceptable pour ces propriétés.</p>
 
-    <p>Voici une instruction curl pour définir les trois propriétés CSS en vert, suivie d'une capture d'écran affichant les résultats :</p>
+    <p>Voici une instruction curl pour définir les trois propriétés CSS en vert, suivie d'une capture d'écran affichant les résultats:</p>
 
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -760,7 +760,7 @@ grandparent: Player Management API
     <section class="bcls-section">
     <h3 id="debugger">débogueur</h3>
 
-    <p>Le débogueur affiche les informations du joueur dans une fenêtre modale. Voir le <a href="https://player.support.brightcove.com/troubleshooting/brightcove-player-information-modal.html">Modalité d'information du joueur</a> document pour une information complète.</p>
+    <p>Le débogueur affiche les informations du Lecteur dans une fenêtre modale. Voir le <a href="https://player.support.brightcove.com/troubleshooting/brightcove-player-information-modal.html">Modalité d'information du Lecteur</a> document pour une information complète.</p>
     </section>
 
     <section class="bcls-section">
@@ -769,9 +769,9 @@ grandparent: Player Management API
     <p><code translate="No">dock</code> informations:</p>
 
     <ul>
-      <li>Type de données : booléen</li>
-      <li>Par défaut : vrai</li>
-      <li>Si explicitement <code translate="No">false</code> , le joueur n'inclura pas le soi-disant <strong>quai</strong> où le titre et la description de la vidéo peuvent être affichés.</li>
+      <li>Type de données: booléen</li>
+      <li>Par défaut: vrai</li>
+      <li>Si explicitement <code translate="No">false</code> , le Lecteur n'inclura pas le soi-disant <strong>quai</strong> où le titre et la description de la vidéo peuvent être affichés.</li>
     </ul>
     </section>
 
@@ -781,9 +781,9 @@ grandparent: Player Management API
     <p><code translate="No">embed_id</code> informations:</p>
 
     <ul>
-      <li>Type de données : chaîne</li>
+      <li>Type de données: chaîne</li>
       <li>Défaut: <code translate="No">undefined</code></li>
-      <li>L'ID d'intégration de Video Cloud associé à ce lecteur. Si la valeur est <code translate="No">default</code> cela signifie que le joueur n'est pas un enfant joueur. Si la valeur n'est pas <code translate="No">default</code> , c'est une valeur représentant le parent du joueur.</li>
+      <li>L'ID d'intégration de Video Cloud associé à ce lecteur. Si la valeur est <code translate="No">default</code> cela signifie que le Lecteur n'est pas un enfant Lecteur. Si la valeur n'est pas <code translate="No">default</code> , c'est une valeur représentant le parent du Lecteur.</li>
     </ul>
     </section>
 
@@ -794,8 +794,8 @@ grandparent: Player Management API
 
     <ul>
       <li>Type de données: Objet ou booléen</li>
-      <li>Par défaut : vrai</li>
-      <li>Réglage explicite <code translate="No">false</code> empêchera le joueur d'inclure <strong>videojs-erreurs</strong> , qui est le plugin de messages d'erreur. Si cette valeur est fausse, le lecteur n'affichera pas de messages d'erreur détaillés aux téléspectateurs lorsqu'une erreur se produit. Les erreurs qui empêchent la lecture apparaîtront toujours dans la console de développement Web.</li>
+      <li>Par défaut: vrai</li>
+      <li>Réglage explicite <code translate="No">false</code> empêchera le Lecteur d'inclure <strong>videojs-erreurs</strong> , qui est le plugin de messages d'erreur. Si cette valeur est fausse, le lecteur n'affichera pas de messages d'erreur détaillés aux téléspectateurs lorsqu'une erreur se produit. Les erreurs qui empêchent la lecture apparaîtront toujours dans la console de développement Web.</li>
     </ul>
     </section>
 
@@ -817,8 +817,8 @@ grandparent: Player Management API
     <p><code translate="No">fullscreenControl</code> informations:</p>
 
     <ul>
-      <li>Type de données : booléen</li>
-      <li>Par défaut : vrai</li>
+      <li>Type de données: booléen</li>
+      <li>Par défaut: vrai</li>
       <li>Indique si le contrôle plein écran doit être affiché dans la barre de contrôle</li>
     </ul>
 
@@ -836,7 +836,7 @@ grandparent: Player Management API
     https://players.api.brightcove.com/v2/accounts/{account_id}/players/{player_id}/configuration</code></pre>
     <!-- <p><code data-gist-id="9629223" data-gist-hide-footer="true" data-gist-line="171-179" data-gist-highlight-line="177"></code></p> -->
 
-    <p>Les deux captures d'écran suivantes montrent le lecteur avec et sans le contrôle plein écran :</p>
+    <p>Les deux captures d'écran suivantes montrent le lecteur avec et sans le contrôle plein écran:</p>
 
     <figure class="bcls-figure"><img class="bcls-image" alt="Player with Fullscreen Control" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/player-management-api/guides/player-configuration/config-with-fullscreencontrol.png" />
     <figcaption class="bcls-caption--image">Lecteur avec contrôle plein écran</figcaption>
@@ -860,9 +860,9 @@ grandparent: Player Management API
     </section>
 
     <section class="bcls-section">
-    <h3 id="inactive">Joueur inactif</h3>
+    <h3 id="inactive">Lecteur inactif</h3>
 
-    <p>Il est possible de rendre les joueurs inactifs. Vous souhaiterez peut-être faire cela pour qu'un lecteur arrête de diffuser du contenu, mais qu'une erreur 404 n'apparaisse pas si un lecteur supprimé est parcouru.</p>
+    <p>Il est possible de rendre les Lecteurs inactifs. Vous souhaiterez peut-être faire cela pour qu'un lecteur arrête de diffuser du contenu, mais qu'une erreur 404 n'apparaisse pas si un lecteur supprimé est parcouru.</p>
 
     <p>Pour désactiver un lecteur, réglez le <code translate="No">player</code> des champs <code translate="No">inactive</code> propriété à <code translate="No">true</code> , comme suit:</p>
 
@@ -880,13 +880,13 @@ grandparent: Player Management API
 
     <p>Bien entendu, si vous souhaitez activer le lecteur, vous pouvez définir le <code translate="No">inactive</code> propriété à <code translate="No">false</code>.</p>
 
-    <p>Une fois le lecteur désactivé, si un utilisateur parcourt le lecteur, le message suivant apparaîtra :</p>
+    <p>Une fois le lecteur désactivé, si un utilisateur parcourt le lecteur, le message suivant apparaîtra:</p>
 
     <figure class="bcls-figure"><img class="bcls-image" alt="Deactivated Player" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/player-management-api/guides/player-configuration/deactivated.png" />
     <figcaption class="bcls-caption--image">Lecteur désactivé</figcaption>
     </figure>
 
-    <aside class="bcls-aside bcls-aside--information">Ceci est une capture d'écran d'un joueur inactif. Il est censé afficher une erreur.</aside>
+    <aside class="bcls-aside bcls-aside--information">Ceci est une capture d'écran d'un Lecteur inactif. Il est censé afficher une erreur.</aside>
     </section>
 
     <section class="bcls-section">
@@ -895,7 +895,7 @@ grandparent: Player Management API
     <p><code translate="No">language</code> informations:</p>
 
     <ul>
-      <li>Type de données : chaîne</li>
+      <li>Type de données: chaîne</li>
       <li>Défaut: <code translate="No">undefined</code></li>
       <li>Peut être fourni pour régler le <code translate="No">lang</code> attribut de la <code translate="No">&lt;html&gt;</code> élément.</li>
     </ul>
@@ -953,7 +953,7 @@ grandparent: Player Management API
           <ul>
             <li>Un tableau d'objets sources, par ordre de préférence</li>
             <li>Les éléments de ce tableau sont traduits directement en <code translate="No">source</code> éléments</li>
-            <li>UNE <em>la source</em> l'objet doit avoir deux propriétés : <code translate="No">src</code> et <code translate="No">type</code></li>
+            <li>UNE <em>la source</em> l'objet doit avoir deux propriétés: <code translate="No">src</code> et <code translate="No">type</code></li>
             <li>Les <code translate="No">type</code> l'attribut est le type MIME de la vidéo, tel que spécifié dans la norme HTML5</li>
           </ul>
           </td>
@@ -1051,7 +1051,7 @@ grandparent: Player Management API
     <p><code translate="No">muted</code> informations:</p>
 
     <ul>
-      <li>Type de données : booléen</li>
+      <li>Type de données: booléen</li>
       <li>Par défaut : faux</li>
       <li>Détermine si le son est coupé lorsque le lecteur se charge.</li>
     </ul>
@@ -1063,8 +1063,8 @@ grandparent: Player Management API
     <p><code translate="No">picture_in_picture_control</code> informations:</p>
 
     <ul>
-      <li>Type de données : booléen</li>
-      <li>Par défaut : vrai</li>
+      <li>Type de données: booléen</li>
+      <li>Par défaut: vrai</li>
       <li>Indique si le contrôle d'image dans l'image intégré doit être affiché dans la barre de contrôle.</li>
     </ul>
     </section>
@@ -1084,7 +1084,7 @@ grandparent: Player Management API
 
     <figure class="bcls-figure"><img class="bcls-image" alt="playback rates ui" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/player-management-api/guides/player-configuration/playback-rates-ui.png" /></figure>
 
-    <p>Vous pouvez utiliser Studio ou curl pour modifier la valeur de la propriété :</p>
+    <p>Vous pouvez utiliser Studio ou curl pour modifier la valeur de la propriété:</p>
 
     <figure class="bcls-figure"><img class="bcls-image" alt="playback rates json editor" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/player-management-api/guides/player-configuration/playback-rates-json-editor.png" /></figure>
 
@@ -1100,13 +1100,13 @@ grandparent: Player Management API
     </section>
 
     <section class="bcls-section">
-    <h3 id="player">joueur</h3>
+    <h3 id="player">Lecteur</h3>
 
     <p><code translate="No">player</code> informations:</p>
 
     <ul>
       <li>Type de données: Objet</li>
-      <li>Défaut: Remplir avec des informations spécifiques au joueur</li>
+      <li>Défaut: Remplir avec des informations spécifiques au Lecteur</li>
       <li>Contient diverses métadonnées sur ce lecteur, par exemple <code translate="No">inactive</code> et <code translate="No">template.version</code>.</li>
     </ul>
     </section>
@@ -1118,7 +1118,7 @@ grandparent: Player Management API
 
     <ul>
       <li>Type de données: Objet</li>
-      <li>Les propriétés suivantes peuvent être modifiées via la configuration du lecteur :
+      <li>Les propriétés suivantes peuvent être modifiées via la configuration du lecteur:
       <table class="bcls-table">
         <thead class="bcls-table__head">
           <tr>
@@ -1155,19 +1155,19 @@ grandparent: Player Management API
     <p><code translate="No">player_id</code> informations:</p>
 
     <ul>
-      <li>Type de données : chaîne</li>
+      <li>Type de données: chaîne</li>
       <li>L'identifiant du lecteur Video Cloud associé à un lecteur</li>
     </ul>
     </section>
 
     <section class="bcls-section">
-    <h3 id="player_name">nom de joueur</h3>
+    <h3 id="player_name">nom de Lecteur</h3>
 
     <p><code translate="No">player_name</code> informations:</p>
 
     <ul>
-      <li>Type de données : chaîne</li>
-      <li>Le nom du lecteur Video Cloud associé à un lecteur - remarque : le <code translate="No">name</code> vous entrez pour le joueur est retourné comme <code translate="No">player_name</code> quand vous obtenez la configuration en mettant <code translate="No">config.json</code> à la fin de l'URL d'aperçu du lecteur (elle est renvoyée sous la forme <code translate="No">name</code> lorsque vous obtenez la configuration via l'API Player Management. Mais vous devez utiliser <code translate="No">name</code> lorsque vous créez ou mettez à jour le lecteur.</li>
+      <li>Type de données: chaîne</li>
+      <li>Le nom du lecteur Video Cloud associé à un lecteur - remarque : le <code translate="No">name</code> vous entrez pour le Lecteur est retourné comme <code translate="No">player_name</code> quand vous obtenez la configuration en mettant <code translate="No">config.json</code> à la fin de l'URL d'aperçu du lecteur (elle est renvoyée sous la forme <code translate="No">name</code> lorsque vous obtenez la configuration via l'API Player Management. Mais vous devez utiliser <code translate="No">name</code> lorsque vous créez ou mettez à jour le lecteur.</li>
     </ul>
     </section>
 
@@ -1177,7 +1177,7 @@ grandparent: Player Management API
     <p><code translate="No">playsinline</code> informations:</p>
 
     <ul>
-      <li>Type de données : booléen</li>
+      <li>Type de données: booléen</li>
       <li>Par défaut : faux</li>
       <li>Active le lecteur pour la lecture en ligne (nécessaire pour la lecture sur certains appareils).</li>
     </ul>
@@ -1188,7 +1188,7 @@ grandparent: Player Management API
 
     <p>Il existe maintenant deux implémentations de playlist différentes, détaillées dans le <a href="https://player.support.brightcove.com/styling/styling-playlists.html">Utilisation des listes de lecture</a> document. La valeur par défaut est la version 3. Les informations de configuration des deux versions sont détaillées ici.</p>
 
-    <p>Les deux configurations montreront comment définir les éléments suivants :</p>
+    <p>Les deux configurations montreront comment définir les éléments suivants:</p>
 
     <ul>
       <li>:<code translate="No">autoadvance</code> Nombre entier assigné en secondes à retarder avant le chargement de la vidéo suivante dans la liste de lecture ; valeur de <code translate="No">0</code> attribué ne causera aucune attente entre les vidéos ; valeur de <code translate="No">null</code> attribué n'entraînera aucune avance automatique.</li>
@@ -1197,7 +1197,7 @@ grandparent: Player Management API
 
     <h3>Liste de lecture version 3 (par défaut)</h3>
 
-    <p>Pour configurer des listes de lecture à l'aide du plugin version 3, vous utilisez le registre des plugins. Voici une instruction curl pour configurer l'utilisation du plugin Playlist version 3 :</p>
+    <p>Pour configurer des listes de lecture à l'aide du plugin version 3, vous utilisez le registre des plugins. Voici une instruction curl pour configurer l'utilisation du plugin Playlist version 3:</p>
 
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -1222,7 +1222,7 @@ grandparent: Player Management API
 
     <p>Voir le <a href="https://player.support.brightcove.com/plugins/plugin-registry.html">Registre des plugins</a> document pour obtenir des informations sur son utilisation et ses avantages.</p>
 
-    <p>Pour régler le <code translate="No">playOnSelect</code> et <code translate="No">autoadvance</code> lors de la création du lecteur, utilisez les options suivantes :</p>
+    <p>Pour régler le <code translate="No">playOnSelect</code> et <code translate="No">autoadvance</code> lors de la création du lecteur, utilisez les options suivantes:</p>
 
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -1254,11 +1254,11 @@ grandparent: Player Management API
     <p>En plus de <code translate="No">autoadvance</code> et <code translate="No">playOnSelect</code> deux autres propriétés qui permettent de paramétrer l'utilisation des playlists version 1. Elles sont:</p>
 
     <ul>
-      <li>:<code translate="No">playlist</code> Attribué <code translate="No">true</code> pour qu'un joueur utilise des listes de lecture.</li>
+      <li>:<code translate="No">playlist</code> Attribué <code translate="No">true</code> pour qu'un Lecteur utilise des listes de lecture.</li>
       <li>:<code translate="No">adjusted</code> Attribué <code translate="No">true</code> pour que le lecteur ajuste les dimensions du lecteur pour la liste de lecture.</li>
     </ul>
 
-    <p>Voici une instruction curl pour définir trois des propriétés liées à la playlist :</p>
+    <p>Voici une instruction curl pour définir trois des propriétés liées à la playlist:</p>
 
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -1280,7 +1280,7 @@ grandparent: Player Management API
 
     <aside class="bcls-aside bcls-aside--information">Quand le <code translate="No">height</code> et <code translate="No">width</code> ne sont pas affectées de valeurs, les tailles du lecteur et de la liste de lecture sont automatiquement ajustées.</aside>
 
-    <p>Mettre en place <code translate="No">playOnSelect</code> pour les listes de lecture version 1, utilisez l'instruction curl suivante :</p>
+    <p>Mettre en place <code translate="No">playOnSelect</code> pour les listes de lecture version 1, utilisez l'instruction curl suivante:</p>
 
     <pre class="line-numbers">
     <code class="language-bash" translate="No">curl \
@@ -1295,12 +1295,12 @@ grandparent: Player Management API
 
     <h3>Déterminer par programmation si le lecteur contient une liste de lecture</h3>
 
-    <p>Si vous utilisez JavaScript dans une page contenant un lecteur et que vous souhaitez vérifier si un plug-in de liste de lecture est utilisé, vous pouvez utiliser les éléments suivants :</p>
+    <p>Si vous utilisez JavaScript dans une page contenant un lecteur et que vous souhaitez vérifier si un plug-in de liste de lecture est utilisé, vous pouvez utiliser les éléments suivants:</p>
 
     <pre class="line-numbers">
     <code class="language-javascript" translate="No">player.hasPlugin('playlist')</code></pre>
 
-    <p>Si vous vérifiez la présence d'un plugin de playlist, et non dans une page avec un lecteur (par exemple lors de la vérification d'une liste de lecteurs à utiliser avec un connecteur), vous devez utiliser un processus un peu plus compliqué. Vous devez lire la configuration du lecteur, puis vérifier si le <strong>plug-ins</strong> section du JSON du lecteur contient <strong>"nom": "bcPlaylistUi"</strong>. Une solution pour cette tâche est la suivante :</p>
+    <p>Si vous vérifiez la présence d'un plugin de playlist, et non dans une page avec un lecteur (par exemple lors de la vérification d'une liste de Lecteurs à utiliser avec un connecteur), vous devez utiliser un processus un peu plus compliqué. Vous devez lire la configuration du lecteur, puis vérifier si le <strong>plug-ins</strong> section du JSON du lecteur contient <strong>"nom": "bcPlaylistUi"</strong>. Une solution pour cette tâche est la suivante:</p>
 
     <aside class="bcls-aside bcls-aside--information">REMARQUE: Les <code translate="No">the JSON String</code> La variable contient simplement une version minifiée de la configuration JSON d'un lecteur.</aside>
 
@@ -1345,7 +1345,7 @@ grandparent: Player Management API
       "options" : {"redirectURL": "http://docs.brightcove.com"}
     }]</code></pre>
 
-    <p>Cela vous donne la possibilité de transmettre des données à un plugin via la configuration du lecteur. Par exemple, pour utiliser le <code translate="No">redirectURL</code> objet montré ci-dessus, vous feriez ce qui suit dans le plugin lui-même :</p>
+    <p>Cela vous donne la possibilité de transmettre des données à un plugin via la configuration du lecteur. Par exemple, pour utiliser le <code translate="No">redirectURL</code> objet montré ci-dessus, vous feriez ce qui suit dans le plugin lui-même:</p>
 
     <pre class="line-numbers">
     <code class="language-javascript" translate="No">videojs.registerPlugin('navigateOnVideoEnd', function (<strong>options</strong>) {
@@ -1355,7 +1355,7 @@ grandparent: Player Management API
       });
     });</code></pre>
 
-    <p>Remarque : vous utilisez l'implémentation standard du plugin, mais utilisez <code translate="No">options</code> comme paramètre dans la fonction anonyme. Vous pouvez ensuite accéder à la valeur en utilisant <code translate="No">options.propertyName</code> notation.</p>
+    <p>Remarque: vous utilisez l'implémentation standard du plugin, mais utilisez <code translate="No">options</code> comme paramètre dans la fonction anonyme. Vous pouvez ensuite accéder à la valeur en utilisant <code translate="No">options.propertyName</code> notation.</p>
 
     <aside class="bcls-aside bcls-aside--information">Les <em>options</em> La propriété peut être n'importe quelle structure de données nécessaire, par exemple un tableau d'objets. N'oubliez pas que si vous transmettez un tableau d'objets, vous devez accéder aux données en tant que tableau d'objets.</aside>
 
@@ -1370,7 +1370,7 @@ grandparent: Player Management API
     <aside class="bcls-aside bcls-aside--warning">Noter: Les paramètres de préchargement ne sont en fait que des suggestions dans la spécification HTML5 et, par conséquent, il peut y avoir un comportement différent sur différents navigateurs. Définir la valeur sur <strong>Auto</strong> pourrait potentiellement avoir un impact significatif sur la consommation de bande passante.</aside>
 
     <ul>
-      <li>Type de données : chaîne</li>
+      <li>Type de données: chaîne</li>
       <li>Défaut: <code translate="No">none</code></li>
       <li>L'attribut de préchargement indique au navigateur si le téléchargement des données vidéo doit ou non commencer dès que la balise vidéo est chargée. Les options sont <strong>auto</strong> , <strong>métadonnées</strong> , et <strong>rien</strong>.</li>
     </ul>
@@ -1400,24 +1400,24 @@ grandparent: Player Management API
 
     <p><code translate="No">query_string_to_window</code> informations:</p>
 
-    <aside class="bcls-aside bcls-aside--information">Prise en charge des implémentations de lecteur standard (iframe) uniquement.</aside> Utilisé pour contrôler le remplissage de l'espace de noms global (fenêtre) à partir des paramètres de chaîne de requête. Ceci est particulièrement utile dans les cas de lecteurs intégrés, tels que les composants AMP de Google ou les articles instantanés de Facebook. L'analyse des chaînes de requête est effectuée à l'aide du <a href="//nodejs.org/api/querystring.html#querystring_querystring_parse_str_sep_eq_options">Module de chaîne de requête Node.js</a>. L'utilisation de cet objet de configuration requiert au moins une des sous-propriétés suivantes. Les deux peuvent être utilisés simultanément.
+    <aside class="bcls-aside bcls-aside--information">Prise en charge des implémentations de lecteur standard (iframe) uniquement.</aside> Utilisé pour contrôler le remplissage de l'espace de noms global (fenêtre) à partir des paramètres de chaîne de requête. Ceci est particulièrement utile dans les cas de Lecteurs intégrés, tels que les composants AMP de Google ou les articles instantanés de Facebook. L'analyse des chaînes de requête est effectuée à l'aide du <a href="//nodejs.org/api/querystring.html#querystring_querystring_parse_str_sep_eq_options">Module de chaîne de requête Node.js</a>. L'utilisation de cet objet de configuration requiert au moins une des sous-propriétés suivantes. Les deux peuvent être utilisés simultanément.
 
     <ol class="bcls-tasklist">
       <li>
       <ul>
         <li>Nom: <code translate="No">query_string_to_window.target</code></li>
-        <li>Type de données : chaîne</li>
+        <li>Type de données: chaîne</li>
         <li>La
-description: Un objet de destination à créer sur la fenêtre, qui sera renseigné avec l'intégralité de la chaîne de requête analysée. Par exemple, une utilisation de <code translate="No">query_string_to_window.target</code> étant donné les éléments suivants dans une configuration de lecteur :
+description: Un objet de destination à créer sur la fenêtre, qui sera renseigné avec l'intégralité de la chaîne de requête analysée. Par exemple, une utilisation de <code translate="No">query_string_to_window.target</code> étant donné les éléments suivants dans une configuration de lecteur:
         <pre class="line-numbers">
     <code class="language-json" translate="No">{
     "query_string_to_window": {"target": "queryStringParams"}
     }</code></pre>
-        et étant donné la chaîne de requête suivante :
+        et étant donné la chaîne de requête suivante:
 
         <pre class="line-numbers">
     <code class="language-html" translate="No">?foo=bar&amp;nums=1&amp;nums=2</code></pre>
-        donnerait ce qui suit <code translate="No">window.queryStringParams</code> l'objet global serait disponible pour le lecteur et les plugins :
+        donnerait ce qui suit <code translate="No">window.queryStringParams</code> l'objet global serait disponible pour le lecteur et les plugins:
 
         <pre class="line-numbers">
     <code class="language-json" translate="No">{
@@ -1432,7 +1432,7 @@ description: Un objet de destination à créer sur la fenêtre, qui sera renseig
         <li>Nom: <code translate="No">query_string_to_window.globals</code></li>
         <li>Type de données: Déployer</li>
         <li>La
-description: Un tableau de noms de propriétés de l'objet window, qui sera renseigné à partir des valeurs trouvées dans la chaîne de requête. Toutes les propriétés correspondantes qui existent déjà sur le <code translate="No">window</code> l'objet ou sa chaîne de prototypes ne sera pas défini. Par exemple, une utilisation de <code translate="No">query_string_to_window.globals</code> étant donné les éléments suivants dans une configuration de lecteur :
+description: Un tableau de noms de propriétés de l'objet window, qui sera renseigné à partir des valeurs trouvées dans la chaîne de requête. Toutes les propriétés correspondantes qui existent déjà sur le <code translate="No">window</code> l'objet ou sa chaîne de prototypes ne sera pas défini. Par exemple, une utilisation de <code translate="No">query_string_to_window.globals</code> étant donné les éléments suivants dans une configuration de lecteur:
         <pre class="line-numbers">
     <code class="language-json" translate="No">{
     "query_string_to_window": {
@@ -1443,11 +1443,11 @@ description: Un tableau de noms de propriétés de l'objet window, qui sera rens
       ]
     }
     }</code></pre>
-        et donnez la chaîne de requête suivante :
+        et donnez la chaîne de requête suivante:
 
         <pre class="line-numbers">
     <code class="language-html" translate="No">?foo=bar&amp;nums=1&amp;nums=2&amp;self=not-allowed</code></pre>
-        donnerait ce qui suit <code translate="No">window</code> objet global avec les propriétés suivantes ajoutées :
+        donnerait ce qui suit <code translate="No">window</code> objet global avec les propriétés suivantes ajoutées:
 
         <pre class="line-numbers">
     <code class="language-javascript" translate="No">window.foo; // 'bar'
@@ -1479,9 +1479,9 @@ description: Un tableau de noms de propriétés de l'objet window, qui sera rens
     <p><code translate="No">responsive</code> informations:</p>
 
     <ul>
-      <li>Type de données : booléen</li>
+      <li>Type de données: booléen</li>
       <li>Défaut: <code translate="No">true</code></li>
-      <li>Définir cette option sur <code translate="No">true</code> amènera le joueur à se personnaliser en fonction de points d'arrêt réactifs (voir : <a href="#breakpoints">points d'arrêt</a> option).</li>
+      <li>Définir cette option sur <code translate="No">true</code> amènera le Lecteur à se personnaliser en fonction de points d'arrêt réactifs (voir: <a href="#breakpoints">points d'arrêt</a> option).</li>
     </ul>
 
     <p>Pour plus de détails sur l'activation de cette fonctionnalité, consultez les notes de version pour <a href="https://player.support.brightcove.com/release-notes/brightcove-player-release-notes.html#6.29.2">Lecteur Brightcove 6.29.2</a>.</p>
@@ -1506,9 +1506,9 @@ description: Un tableau de noms de propriétés de l'objet window, qui sera rens
     <p><code translate="No">skin</code> informations:</p>
 
     <ul>
-      <li>Type de données : booléen ou chaîne</li>
-      <li>Par défaut : non défini</li>
-      <li>Détermine la variante de style visuel que le joueur utilisera. Cette valeur se reflète également dans l'accessibilité mondiale <code translate="No">bc.SKIN</code> propriété dans le navigateur. Il reconnaît les valeurs suivantes :
+      <li>Type de données: booléen ou chaîne</li>
+      <li>Par défaut: non défini</li>
+      <li>Détermine la variante de style visuel que le Lecteur utilisera. Cette valeur se reflète également dans l'accessibilité mondiale <code translate="No">bc.SKIN</code> propriété dans le navigateur. Il reconnaît les valeurs suivantes :
       <table class="bcls-table">
         <thead class="bcls-table__head">
           <tr>
@@ -1532,7 +1532,7 @@ description: Un tableau de noms de propriétés de l'objet window, qui sera rens
           <tr>
             <td>indéfini</td>
             <td>"Lune"</td>
-            <td>Laissant ça <code translate="No">undefined</code> le joueur utilisera le skin par défaut (aka Lune).</td>
+            <td>Laissant ça <code translate="No">undefined</code> le Lecteur utilisera le skin par défaut (aka Lune).</td>
             <td>&nbsp;</td>
           </tr>
         </tbody>
@@ -1552,7 +1552,7 @@ description: Un tableau de noms de propriétés de l'objet window, qui sera rens
       <li>Les feuilles de style sont incluses dans l'ordre dans lequel vous les spécifiez</li>
     </ul>
 
-    <aside class="bcls-aside bcls-aside--warning">Ne pas utiliser le CSS <code translate="No">@import</code> règle dans les feuilles de style des joueurs. Des problèmes d'analyse se produiront lors de la construction du lecteur et ne permettront pas au lecteur d'être publié avec succès.</aside>
+    <aside class="bcls-aside bcls-aside--warning">Ne pas utiliser le CSS <code translate="No">@import</code> règle dans les feuilles de style des Lecteurs. Des problèmes d'analyse se produiront lors de la construction du lecteur et ne permettront pas au lecteur d'être publié avec succès.</aside>
     </section>
 
     <section class="bcls-section">
@@ -1562,7 +1562,7 @@ description: Un tableau de noms de propriétés de l'objet window, qui sera rens
 
     <ul>
       <li>Type de données: Déployer</li>
-      <li>Par défaut : ['html5','flash']</li>
+      <li>Par défaut: ['html5','flash']</li>
       <li>Par défaut, Brightcove Player exécute <strong>avant tout la technologie</strong> commande lorsqu'il recherche une combinaison source/technologie pour lire des vidéos. Cela signifie que si vous avez deux sources et deux techniciens, le lecteur essaiera de lire chaque vidéo avec le premier technicien du <code translate="No">techOrder</code> option avant de passer à la prochaine technologie de lecture. Voir le <a href="https://player.support.brightcove.com/playback/guide-playback-technology.html">Guider: Technologie de lecture</a> document pour plus d'informations.</li>
     </ul>
 
@@ -1582,7 +1582,7 @@ description: Un tableau de noms de propriétés de l'objet window, qui sera rens
     <section class="bcls-section">
     <h3 id="version">version</h3>
 
-    <p>Vous pouvez définir manuellement la version du lecteur à l'aide du <strong>JOUEURS</strong> module <strong>Éditeur JSON</strong>.</p>
+    <p>Vous pouvez définir manuellement la version du lecteur à l'aide du <strong>Lecteurs</strong> module <strong>Éditeur JSON</strong>.</p>
 
     <figure class="bcls-figure"><img class="bcls-image" alt="version" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/player-management-api/guides/player-configuration/version.png" /></figure>
 
@@ -1622,8 +1622,8 @@ description: Un tableau de noms de propriétés de l'objet window, qui sera rens
     <aside class="bcls-aside bcls-aside--information">Cette fonctionnalité est disponible pour Brightcove Player 6.32.0+.</aside>
 
     <ul>
-      <li>Type de données : chaîne</li>
-      <li>Par défaut : horizontal</li>
+      <li>Type de données: chaîne</li>
+      <li>Par défaut: horizontal</li>
       <li>Les <code translate="No">volume_orientation</code> La propriété détermine si le curseur de niveau de volume est orienté horizontalement ou verticalement.
       <figure class="bcls-figure"><img class="bcls-image" alt="volume horizontal" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/player-management-api/guides/player-configuration/volume-horizontal.png" /></figure>
 
@@ -1631,7 +1631,7 @@ description: Un tableau de noms de propriétés de l'objet window, qui sera rens
       </li>
     </ul>
 
-    <p>Vous pouvez utiliser Studio ou curl pour modifier la valeur de la propriété :</p>
+    <p>Vous pouvez utiliser Studio ou curl pour modifier la valeur de la propriété:</p>
 
     <figure class="bcls-figure"><img class="bcls-image" alt="set volume orientation" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/player-management-api/guides/player-configuration/set-volume-orientation.png" /></figure>
 
@@ -1652,9 +1652,9 @@ description: Un tableau de noms de propriétés de l'objet window, qui sera rens
     <p><code translate="No">vttjs</code> informations:</p>
 
     <ul>
-      <li>Type de données : chaîne</li>
-      <li>Par défaut : vjs.zencdn.net CDN</li>
-      <li>Définit l'URL à partir de laquelle charger <strong>vtt.js</strong>. C'est la même chose que l'option standard Video.js <code translate="No">vtt.js</code>. Le Brightcove Player utilise <code translate="No">vttjs</code> au lieu de cela, un nom de propriété en pointillé n'est pas possible à utiliser dans l'API de gestion des lecteurs et peut être problématique ailleurs. L'option peut être définie comme un <code translate="No">data-vttjs</code> attribut, un <code translate="No">vttjs</code> paramètre de requête iframe, un <code translate="No">vttjs</code> option de configuration ou <code translate="No">vttjs</code> dans la configuration du lecteur.</li>
+      <li>Type de données: chaîne</li>
+      <li>Par défaut: vjs.zencdn.net CDN</li>
+      <li>Définit l'URL à partir de laquelle charger <strong>vtt.js</strong>. C'est la même chose que l'option standard Video.js <code translate="No">vtt.js</code>. Le Brightcove Player utilise <code translate="No">vttjs</code> au lieu de cela, un nom de propriété en pointillé n'est pas possible à utiliser dans l'API de gestion des Lecteurs et peut être problématique ailleurs. L'option peut être définie comme un <code translate="No">data-vttjs</code> attribut, un <code translate="No">vttjs</code> paramètre de requête iframe, un <code translate="No">vttjs</code> option de configuration ou <code translate="No">vttjs</code> dans la configuration du lecteur.</li>
     </ul>
     </section>
 
@@ -1664,8 +1664,8 @@ description: Un tableau de noms de propriétés de l'objet window, qui sera rens
     <p><code translate="No">wait_for_ad_block_detect</code> informations:</p>
 
     <ul>
-      <li>Type de données : booléen</li>
-      <li>Par défaut : non défini</li>
+      <li>Type de données: booléen</li>
+      <li>Par défaut: non défini</li>
       <li>Lorsqu'il est réglé sur <code translate="No">true</code> , le lecteur retardera son processus d'auto-initialisation jusqu'à ce que la détection du bloc publicitaire ait pris une décision. Cela peut retarder l'initialisation du lecteur jusqu'à 100 millisecondes environ. Cela n'a pas besoin d'être réglé sur <code translate="No">true</code> lors de l'utilisation <code translate="No">ad_failover</code> car le comportement retardateur se produit dans les deux cas.</li>
     </ul>
     </section>

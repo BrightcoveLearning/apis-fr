@@ -1,5 +1,6 @@
 ---
-title: Description de « Obtenir la position de lecture à partir de l'API XDR » : "Dans cette rubrique, vous apprendrez comment récupérer la position de lecture du spectateur à partir de l'API Cross-Device Resume (XDR)."
+title: "Obtenir la position de lecture à partir de l'API XDR"
+description: "Dans cette rubrique, vous apprendrez comment récupérer la position de lecture du spectateur à partir de l'API Cross-Device Resume (XDR)."
 parent: Getting started 
 grandparent: Cross Device Resume API
 ---
@@ -30,19 +31,19 @@ grandparent: Cross Device Resume API
 
     <h3>URL de base</h3>
     <p>
-      L'URL de base de l'API est :
+      L'URL de base de l'API est:
     </p>
     <pre><code class="language-http" translate="No">https://data.brightcove.com/v1/xdr</code></pre>
 
     <h3>Chemin du compte</h3>
     <p>
-      Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base :
+      Dans tous les cas, des demandes seront faites pour un compte Video Cloud spécifique. Ainsi, vous ajouterez toujours le terme comptes suivi de votre identifiant de compte à l'URL de base:
     </p>
     <pre><code class="language-http" translate="No">https://data.brightcove.com/v1/xdr/accounts/{account_id}</code></pre>
 
     <h3>Autorisation</h3>
     <p>
-      Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization :
+      Un jeton d'accès pour les demandes est requis et doit être présent dans l'en-tête Authorization:
     </p>
     <pre><code class="language-http" translate="No">Authorization: Bearer {access_token}</code></pre>
     <p>
@@ -101,7 +102,7 @@ grandparent: Cross Device Resume API
     <br />
     <aside class="bcls-aside bcls-aside--tip">
       <p>
-        Vous pouvez également inclure une liste d'identifiants vidéo : (maximum = 100)
+        Vous pouvez également inclure une liste d'identifiants vidéo: (maximum = 100)
       </p>
       <pre><code class="language-http" translate="No">GET /accounts/{account_id}/playheads/{viewer_id}/{video_id},{video_id},...</code></pre>
     </aside>
@@ -129,7 +130,7 @@ grandparent: Cross Device Resume API
     <p>Un proxy est une application côté serveur qui agit comme intermédiaire entre votre application côté client et l'API REST. Voici quelques liens utiles :</p>
     <ul>
       <li>
-        Pour les concepts, voir <a href="https://player.support.brightcove.com/getting-started/learning-guide-using-rest-apis.html">Guide d'apprentissage : Utilisation des API REST</a>
+        Pour les concepts, voir <a href="https://player.support.brightcove.com/getting-started/learning-guide-using-rest-apis.html">Guide d'apprentissage: Utilisation des API REST</a>
       </li>
       <li>
         Pour un exemple de lecteur Web qui appelle un proxy côté serveur pour obtenir la tête de lecture à partir de l'API XDR, consultez le <a href="https://github.com/BrightcoveLearning/cross-device-resume/blob/master/index.html">Exemple de CV multi-appareils sur github</a>.
@@ -144,7 +145,7 @@ grandparent: Cross Device Resume API
 <p>Here are the limitation associated with the cross-device resume.</p>
 
 <ul>
-	<li>The current version of this plugin does not support thumbnails on mobile devices.</li>
+  <li>The current version of this plugin does not support thumbnails on mobile devices.</li>
 </ul>
 </section> -->
 

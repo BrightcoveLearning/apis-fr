@@ -1,6 +1,6 @@
 ---
 title: Présentation de la livraison dynamique
-description: 'Cette rubrique donne un aperçu de Dynamic Delivery, la plate-forme de diffusion multimédia de nouvelle génération de Brightcove.'
+description: "Cette rubrique donne un aperçu de Dynamic Delivery, la plate-forme de diffusion multimédia de nouvelle génération de Brightcove."
 parent: General Information
 ---
 
@@ -18,7 +18,7 @@ parent: General Information
  <article class="bcls-article">
   <summary>{{ page.description }}</summary>
   <section class="bcls-section">
-    <p>La diffusion de contenu multimédia sur différents appareils (sur ordinateur de bureau, mobile et téléviseurs connectés) nécessite un mélange de technologies en constante évolution :</p>
+    <p>La diffusion de contenu multimédia sur différents appareils (sur ordinateur de bureau, mobile et téléviseurs connectés) nécessite un mélange de technologies en constante évolution:</p>
     
     <ul>
       <li>Codecs audio et vidéo</li>
@@ -42,7 +42,7 @@ parent: General Information
       <li>Lorsqu'un fichier source est téléchargé, le processus de transcodage utilise le profil d'ingestion sélectionné pour déterminer l'ensemble de rendus à créer.</li>
       <li>Les rendus sont stockés sous la forme d'un ensemble de fichiers MP4 contigus et fragmentés de divers débits binaires et résolutions qui sont indépendants de tout format de livraison spécifique.</li>
       <li>Lorsqu'une demande est faite pour une vidéo, le processus de livraison dynamique effectue un emballage juste à temps ou JIT, ce qui signifie qu'il emballera dynamiquement le contenu dans le format approprié en fonction des exigences spécifiées. Cet emballage prendra en considération le format de livraison spécifique requis, les pistes audio et de sous-titres nécessaires, ainsi que tout cryptage/DRM requis.</li>
-      <li>Lorsque l'appareil de lecture utilise le manifeste renvoyé par l'API de lecture pour demander la lecture des médias, nous effectuons un emballage juste à temps sur les fichiers MP4 fragmentés pour fournir le format de segment, la durée et le cryptage appropriés. Ces fragments sont mis en cache sur un CDN afin que la diffusion vidéo soit toujours très performante.</li>
+      <li>Lorsque l'appareil de lecture utilise le manifeste renvoyé par le Playback API pour demander la lecture des médias, nous effectuons un emballage juste à temps sur les fichiers MP4 fragmentés pour fournir le format de segment, la durée et le cryptage appropriés. Ces fragments sont mis en cache sur un CDN afin que la diffusion vidéo soit toujours très performante.</li>
     </ol>
     
     <p>Le processus de livraison dynamique a été conçu pour être un service entièrement géré et basé sur le cloud. Tous les composants s'exécutent sur une infrastructure cloud dans plusieurs régions pour assurer la haute disponibilité, la redondance et l'évolutivité.</p>
@@ -51,7 +51,7 @@ parent: General Information
     <section class="bcls-section">
     <h2 id="output_formats">Quels formats vidéo produit Dynamic Delivery ?</h2>
     
-    <p>La livraison dynamique produit les sources suivantes selon les besoins :</p>
+    <p>La livraison dynamique produit les sources suivantes selon les besoins:</p>
     
     <ul>
       <li>HLS (versions 3, 4 et 5)</li>
@@ -60,7 +60,7 @@ parent: General Information
       <li>MP4 (si des rendus progressifs sont spécifiés dans le profil d'ingestion)</li>
     </ul>
     
-    <p>Les packages DRM suivants sont créés (en fonction de la protection du contenu pour laquelle votre compte est activé) :</p>
+    <p>Les packages DRM suivants sont créés (en fonction de la protection du contenu pour laquelle votre compte est activé):</p>
     
     <ul>
       <li>HLS + Fairplay</li>
@@ -95,7 +95,7 @@ parent: General Information
     
     <p>De plus, le panneau Sources vidéo du module multimédia apparaîtra légèrement différent en raison du stockage des rendus dans un état indépendant du format.</p>
     
-    <p>Fonctionnellement, tout le reste reste le même. Vous pouvez télécharger via tous les mécanismes standard (Video Cloud Studio, API d'ingestion dynamique, connecteurs CMS, etc.) et la lecture reste inchangée sur tous vos appareils de lecture standard.</p>
+    <p>Fonctionnellement, tout le reste reste le même. Vous pouvez télécharger via tous les mécanismes standard (Video Cloud Studio, Dynamic Ingest API, connecteurs CMS, etc.) et la lecture reste inchangée sur tous vos appareils de lecture standard.</p>
     
     <p>Une fois qu'une vidéo a été ingérée à l'aide de Dynamic Delivery, si la vidéo est retranscodée, un profil Dynamic Delivery doit être sélectionné. Si vous souhaitez utiliser un ancien profil d'ingestion, la vidéo doit être rechargée.</p>
     
@@ -103,7 +103,7 @@ parent: General Information
     
     <h3>Migration de catalogue arrière</h3>
     
-    <p>Une fois que vous avez de nouvelles acquisitions à l'aide de Dynamic Delivery, nous pouvons alors migrer votre catalogue de retour. Cela peut être fait de l'une des deux manières suivantes :</p>
+    <p>Une fois que vous avez de nouvelles acquisitions à l'aide de Dynamic Delivery, nous pouvons alors migrer votre catalogue de retour. Cela peut être fait de l'une des deux manières suivantes:</p>
     
     <h4>Outil de migration Transmux</h4>
     
@@ -111,7 +111,7 @@ parent: General Information
     
     <h4>Re-transcoder</h4>
     
-    <p>Il y a quelques critères qui rendent un titre inéligible pour migrer via l'outil transmux et en tant que tel, il faudra que les titres soient ré-encodés pour les migrer. Les titres devront être réencodés si :</p>
+    <p>Il y a quelques critères qui rendent un titre inéligible pour migrer via l'outil transmux et en tant que tel, il faudra que les titres soient ré-encodés pour les migrer. Les titres devront être réencodés si:</p>
     
     <ul>
       <li>Vous souhaitez utiliser l'encodage contextuel</li>
@@ -150,7 +150,7 @@ parent: General Information
     
     <p><strong>Dans quelles régions Dynamic Delivery prend-il en charge l'ingestion et l'origine ?</strong></p>
     
-    <p>Dynamic Delivery prend en charge l'ingestion et l'origine dans les régions AWS suivantes :</p>
+    <p>Dynamic Delivery prend en charge l'ingestion et l'origine dans les régions AWS suivantes:</p>
     
     <ul>
       <li>us-east-1 (Virginie) - par défaut pour tous les comptes</li>
@@ -166,9 +166,9 @@ parent: General Information
     
     <p>Oui, tous les nouveaux éditeurs (Video Cloud et Once) seront configurés avec Dynamic Delivery. Tous les comptes existants ont été migrés vers Dynamic Delivery et le système d'acquisition hérité a été désactivé.</p>
 
-		<p><strong>Certains de mes rendus HLS ont un débit binaire plus élevé (selon l'API CMS) que ce qui est spécifié dans le profil d'ingestion - pourquoi ?</strong></p>
+		<p><strong>Certains de mes rendus HLS ont un débit binaire plus élevé (selon l'CMS API) que ce qui est spécifié dans le profil d'ingestion - pourquoi ?</strong></p>
 
-		<p>Ce qui est spécifié dans le profil d'ingestion est le <strong>vidéo</strong> débit binaire. Ce qui est rapporté par l'API CMS est le débit vidéo + le débit audio + une surcharge de 10 % pour le traitement de la livraison dynamique. Ainsi, le débit renvoyé par l'API CMS sera toujours supérieur à ce qui est spécifié dans le profil d'ingestion, à moins que le débit de la vidéo source ne soit inférieur à cela.</p>
+		<p>Ce qui est spécifié dans le profil d'ingestion est le <strong>vidéo</strong> débit binaire. Ce qui est rapporté par l'CMS API est le débit vidéo + le débit audio + une surcharge de 10 % pour le traitement de la livraison dynamique. Ainsi, le débit renvoyé par l'CMS API sera toujours supérieur à ce qui est spécifié dans le profil d'ingestion, à moins que le débit de la vidéo source ne soit inférieur à cela.</p>
     </section>
     
     <!-- <section class="bcls-section">

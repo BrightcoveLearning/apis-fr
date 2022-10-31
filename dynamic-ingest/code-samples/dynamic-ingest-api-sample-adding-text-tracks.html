@@ -1,7 +1,6 @@
 ---
 title: 'Ajout de pistes de texte'
-description: 'Dans cet exemple, vous apprendrez à créer une application pour ajouter des ressources à des vidéos existantes à l'aide de Dynamic Ingest.'
-
+description: "Dans cet exemple, vous apprendrez à créer une application pour ajouter des ressources à des vidéos existantes à l'aide de Dynamic Ingest."
 parent: 'Code Samples' 
 grandparent: Dynamic Ingest API
 ---
@@ -13,7 +12,7 @@ grandparent: Dynamic Ingest API
 
     <aside class="bcls-aside bcls-aside--information">Cet exemple et le code associé sont fournis comme guide pour le développement de votre production. Le code n'est pas certifié pour une utilisation en production ni officiellement pris en charge.</aside>
 
-    <p>Dans cet exemple, nous affichons les vidéos d'un compte 20 à la fois (à l'aide de l'API CMS) et permettons à l'utilisateur d'ajouter des sous-titres WebVTT à une ou plusieurs des vidéos affichées. L'échantillon peut être facilement modifié pour ajouter des images miniatures et/ou des affiches à la place, ou pour retranscoder les vidéos. Le point principal de l'exemple est d'aller au-delà des requêtes API de base pour vous montrer comment les assembler dans une application réelle.</p>
+    <p>Dans cet exemple, nous affichons les vidéos d'un compte 20 à la fois (à l'aide de CMS API) et permettons à l'utilisateur d'ajouter des sous-titres WebVTT à une ou plusieurs des vidéos affichées. L'échantillon peut être facilement modifié pour ajouter des images miniatures et/ou des affiches à la place, ou pour retranscoder les vidéos. Le point principal de l'exemple est d'aller au-delà des requêtes API de base pour vous montrer comment les assembler dans une application réelle.</p>
 
     <aside class="bcls-aside bcls-aside--information">Noter: Dynamic Delivery fournit les légendes et sous-titres dans le manifeste, lorsque c'est le cas, nous préférons les pistes dans le manifeste à celles envoyées dans le catalogue. Le type de piste dans le manifeste ne peut être que "SOUS-TITRES" plutôt que "CLOSED-CAPTIONS" car "CLOSED-CAPTIONS" est réservé aux sous-titres 608/708. Le Brightcove Player présente les sous-titres sous forme de SOUS-TITRES.</aside>
 
@@ -25,7 +24,7 @@ grandparent: Dynamic Ingest API
 
     <p>L'application est également conçue pour être utilisée par plusieurs utilisateurs sur un ou plusieurs comptes. Ce n'est pas le cas, mais dans l'explication ci-dessous, vous verrez où se trouvent les crochets pour extraire les informations utilisateur d'un système backend. (Vous pouvez également demander aux utilisateurs des identifiants de compte et des informations d'identification client à chaque utilisation, comme le font la plupart de nos exemples d'API.)</p>
 
-    <aside class="bcls-aside bcls-aside--information">L'ingestion dynamique fait <strong>ne pas</strong> avoir un mécanisme de traitement de plusieurs vidéos - cet exemple parcourt simplement un ensemble de vidéos pour faire une demande d'ingestion dynamique pour chacune.</aside>
+    <aside class="bcls-aside bcls-aside--information">Dynamic Ingest API fait <strong>ne pas</strong> avoir un mécanisme de traitement de plusieurs vidéos - cet exemple parcourt simplement un ensemble de vidéos pour faire une demande d'ingestion dynamique pour chacune.</aside>
   </section>
 
   <section class="bcls-section">
@@ -34,26 +33,26 @@ grandparent: Dynamic Ingest API
         <h2 id="gettingCredentials">Obtenir des informations d'identification</h2>
       </summary>
 
-      <p>Pour obtenir un <code translate="No">client_id</code> et <code translate="No">client_secret</code> , vous devrez accéder à l'interface utilisateur OAuth et enregistrer cette application :</p>
+      <p>Pour obtenir un <code translate="No">client_id</code> et <code translate="No">client_secret</code> , vous devrez accéder à l'interface utilisateur OAuth et enregistrer cette application:</p>
 
       <ul>
         <li><a href="/general/managing-api-authentication-credentials.html">Gestion des informations d'authentification API</a></li>
       </ul>
 
-      <p>Voici les autorisations dont vous aurez besoin :</p>
+      <p>Voici les autorisations dont vous aurez besoin:</p>
 
       <figure class="bcls-figure"><img class="bcls-image" alt="Dynamic Ingest Permissions" src="/assets/images/dynamic-ingest/code-samples/di-permissions.png" />
         <figcaption class="bcls-caption--image">Autorisations d'ingestion dynamique</figcaption>
       </figure>
 
-      <p>Vous pouvez également obtenir vos informations d'identification via CURL ou Postman - voir :</p>
+      <p>Vous pouvez également obtenir vos informations d'identification via CURL ou Postman - voir:</p>
 
       <ul>
         <li><a href="/oauth/guides/oauth-create-client-credentials-using-curl.html">Obtenir les informations d'identification du client à l'aide de CURL</a></li>
         <li><a href="/oauth/guides/oauth-create-client-credentials-using-postman.html">Obtenez les informations d'identification du client à l'aide de Postman</a></li>
       </ul>
 
-      <p>Si vous obtenez des informations d'identification directement de l'API, voici les autorisations dont vous avez besoin :</p>
+      <p>Si vous obtenez des informations d'identification directement de l'API, voici les autorisations dont vous avez besoin:</p>
 
       <pre class="line-numbers">
                 <code class="language-json" translate="No">[
@@ -80,7 +79,7 @@ grandparent: Dynamic Ingest API
     </p>
     <h3>Exemple d'application</h3>
     <p class="codepen" data-height="1200" data-theme-id="34967" data-default-tab="result" data-user="rcrooks1969" data-slug-hash="vgLLQp" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Dynamic Ingest API Sample: Add Text Tracks">
-      <span>Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/vgLLQp"> <span translate="No">API d'ingestion dynamique</span> Échantillon: Ajouter des pistes de texte</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</span>
+      <span>Voir le stylo <a href="https://codepen.io/team/rcrooks1969/pen/vgLLQp"> <span>Dynamic Ingest API</span> Échantillon: Ajouter des pistes de texte</a> par Brightcove Learning Services (<a href="https://codepen.io/rcrooks1969">@rcrooks1969</a> ) au <a href="https://codepen.io">Stylo de code</a>.</span>
     </p>
     <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
   </section>
@@ -91,7 +90,7 @@ grandparent: Dynamic Ingest API
         <h2 id="Using_the_CodePen">Utiliser le CodePen</h2>
       </summary>
 
-      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus :</p>
+      <p>Voici quelques conseils pour utiliser efficacement le CodePen ci-dessus:</p>
 
       <ul>
         <li>Basculez l'affichage réel du lecteur en cliquant sur le bouton <strong>Résultat</strong> bouton.</li>

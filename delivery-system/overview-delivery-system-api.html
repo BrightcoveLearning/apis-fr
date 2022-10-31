@@ -1,6 +1,6 @@
 ---
 title: 'Aperçu: API du système de livraison'
-description: 'Dans cette rubrique, vous obtiendrez un aperçu des API du système de livraison, qui permettent la gestion et le déploiement d'un groupe de fichiers, appelé référentiel. Ce système a été configuré comme une zone de stockage pour les fichiers liés au lecteur, comme les fichiers JavaScript et CSS pour les plugins personnalisés.'
+description: "Dans cette rubrique, vous obtiendrez un aperçu des API du système de livraison, qui permettent la gestion et le déploiement d'un groupe de fichiers, appelé référentiel. Ce système a été configuré comme une zone de stockage pour les fichiers liés au lecteur, comme les fichiers JavaScript et CSS pour les plugins personnalisés."
 parent: Delivery System API 
 grandparent: Home
 ---
@@ -10,7 +10,7 @@ grandparent: Home
     <section id="Overview" class="bcls-section">
     <h2>Aperçu</h2>
     
-    <p>Les fichiers associés au système de livraison sont gérés via des API REST et éventuellement via Git. Ces fichiers sont livrés à <strong>joueurs.brightcove.net</strong> soit via un appel API ou un "git push".</p>
+    <p>Les fichiers associés au système de livraison sont gérés via des API REST et éventuellement via Git. Ces fichiers sont livrés à <strong>Lecteurs.brightcove.net</strong> soit via un appel API ou un "git push".</p>
     
     <aside class="bcls-aside bcls-aside--information">L'API du système de livraison n'est pas nécessaire pour la plupart des créations et publications de Brightcove Players. Cette API est recommandée uniquement pour les développeurs avancés.</aside>
     
@@ -24,11 +24,11 @@ grandparent: Home
     
     <p>Les API du système de livraison sont centrées sur les référentiels, également appelés référentiels. Vous pouvez gérer les dépôts via un groupe d'API REST qui vous permettent d'ajouter, d'obtenir et de répertorier vos dépôts. Vous pouvez également utiliser des appels d'API REST pour manipuler des fichiers dans des dépôts.</p>
     
-    <p>Vous pouvez utiliser l'outil de ligne de commande curl pour utiliser les API REST. Les API REST renvoient des réponses au format JSON contenant les informations de réussite suivantes :</p>
+    <p>Vous pouvez utiliser l'outil de ligne de commande curl pour utiliser les API REST. Les API REST renvoient des réponses au format JSON contenant les informations de réussite suivantes:</p>
     
     <ul>
       <li>Nom: Le nom du dépôt. C'est le même que le nom trouvé dans les URL de l'API REST.</li>
-      <li>URL_publique : L'URL de base où les fichiers de dépôt peuvent être vus.</li>
+      <li>URL_publique: L'URL de base où les fichiers de dépôt peuvent être vus.</li>
     </ul>
     
     <p>Les <a href="/delivery-system/step-step-delivery-system-api.html">Pas à pas: Système de livraison</a> fournit un guide pratique sur l'utilisation des API du système de livraison.</p>
@@ -39,7 +39,7 @@ grandparent: Home
     
     <p>Vous pouvez vous autoriser en utilisant soit <a href="/oauth/guides/getting-access-tokens.html">Jetons d'accès OAuth</a> ou via l'authentification de base en utilisant votre nom d'utilisateur et votre mot de passe Brightcove. Les jetons d'accès OAuth standard doivent être utilisés pour toute utilisation par programmation des API, mais la route d'authentification de base est beaucoup plus facile pour l'utilisation de la ligne de commande et la mise en route.</p>
     
-    <p>Nous utiliserons l'authentification de base dans le <a href="/delivery-system/step-step-delivery-system-api.html">Pas à pas</a> exemples. Si vous souhaitez utiliser des jetons d'accès à la place, modifiez :</p>
+    <p>Nous utiliserons l'authentification de base dans le <a href="/delivery-system/step-step-delivery-system-api.html">Pas à pas</a> exemples. Si vous souhaitez utiliser des jetons d'accès à la place, modifiez:</p>
     
     <pre class="line-numbers">
     <code class="language-bash" translate="No">--user $EMAIL</code></pre>
@@ -53,7 +53,7 @@ grandparent: Home
     <section class="bcls-section" id="APIerrors">
     <h2>Réponses d'erreur d'API</h2>
     
-    <p>Il existe un certain nombre de réponses d'erreur possibles qui peuvent être renvoyées au format JSON en cas de problème avec un appel d'API REST :</p>
+    <p>Il existe un certain nombre de réponses d'erreur possibles qui peuvent être renvoyées au format JSON en cas de problème avec un appel d'API REST:</p>
     
     <ul>
       <li>Si vous essayez d'appeler une API qui n'existe pas, y compris en mal orthographiant des appels d'API existants, vous obtiendrez un code d'état de 404 et un message utile sur ce que vous avez peut-être mal fait.</li>
@@ -62,7 +62,7 @@ grandparent: Home
       <li>S'il y a un problème avec le traitement de votre demande, vous obtiendrez un code d'état 500 et une réponse d'erreur Brightcove standard.</li>
     </ul>
     
-    <p>La réponse d'erreur Brightcove standard mentionnée ci-dessus est une réponse JSON contenant error_code et les propriétés du message. Le code d'erreur sera l'un des suivants :</p>
+    <p>La réponse d'erreur Brightcove standard mentionnée ci-dessus est une réponse JSON contenant error_code et les propriétés du message. Le code d'erreur sera l'un des suivants:</p>
     
     <ul>
       <li><code translate="No">INVALID_LOGIN_CREDENTIALS</code>: le nom d'utilisateur et le mot de passe donnés lors de l'utilisation de l'authentification de base n'étaient pas valides</li>

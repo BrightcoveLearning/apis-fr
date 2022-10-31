@@ -1,11 +1,12 @@
 ---
-title: Description de l'API en direct : Sujets sur l'API Live.
+title: Live API
+description: Sujets sur le Live API.
 parent: Home
 ---
  <h1>{{ page.title }}</h1>
 <article class="bcls-article">
   <summary>{{ page.description }}</summary>
-	<aside class="bcls-aside bcls-aside--information">Remarque : les sujets traités ici traitent de l'API Live. Regarde aussi <a href="https://live.support.brightcove.com/index.html">documentation pour le Live Module</a>.</aside>
+  <aside class="bcls-aside bcls-aside--information">Remarque: les sujets traités ici traitent de le Live API. Regarde aussi <a href="https://live.support.brightcove.com/index.html">documentation pour le Live Module</a>.</aside>
   <section class="card-wrapper">
     {% for item in site.data.navigation %} {% if item.name == page.title %} {% for subsection in item.docs %}
             <section class="bcls-card-small" onclick="window.location.href='{{subsection.url}}'">

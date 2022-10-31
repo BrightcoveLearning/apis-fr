@@ -1,6 +1,6 @@
 ---
-title: 'Notifications d'API CMS'
-description: 'Dans cette rubrique, vous découvrirez <span translate="No">API CMS</span> avis. Les <span translate="No">API CMS</span> fournit des notifications de modifications apportées aux vidéos de votre compte, qu'elles soient effectuées par un utilisateur de compte ou par le système Video Cloud.'
+title: 'Notifications du CMS API'
+description: "Dans cette rubrique, vous découvrirez CMS API avis. Les CMS API fournit des notifications de modifications apportées aux vidéos de votre compte, qu'elles soient effectuées par un utilisateur de compte ou par le système Video Cloud."
 
 parent: 'Getting Started' 
 grandparent: CMS API
@@ -11,15 +11,15 @@ grandparent: CMS API
   <section class="bcls-section">
   <h2 id="overview">Aperçu</h2>
   
-  <p>Vous pouvez recevoir des notifications lorsque <code translate="No">video-change</code> événements se produisent dans votre vidéothèque. Les notifications seront envoyées à l'URL que vous spécifiez, qui doit pointer vers une application capable de gérer <span translate="No">HTTP</span> <code translate="No">POST</code> demandes.</p>
+  <p>Vous pouvez recevoir des notifications lorsque <code translate="No">video-change</code> événements se produisent dans votre vidéothèque. Les notifications seront envoyées à l'URL que vous spécifiez, qui doit pointer vers une application capable de gérer <span>HTTP</span> <code translate="No">POST</code> demandes.</p>
   
   <h3>Authentification</h3>
   
-  <p>Comme toutes les demandes adressées à l'API CMS, les demandes de configuration ou de liste d'abonnements aux notifications doivent être authentifiées à l'aide d'un <a href="/oauth/guides/getting-access-tokens.html">jeton d'accès</a>. Les informations d'identification du client utilisées pour obtenir le jeton d'accès doivent avoir des autorisations pour <code translate="No">video-cloud/notifications/all</code> (<strong translate="No">CMS-&gt;Notifications</strong> si vous utilisez le <a href="https://studio.support.brightcove.com/admin/managing-api-authentication-credentials.html">Interface utilisateur de Studio</a> pour créer les identifiants.)</p>
+  <p>Comme toutes les demandes adressées à l'CMS API, les demandes de configuration ou de liste d'abonnements aux notifications doivent être authentifiées à l'aide d'un <a href="/oauth/guides/getting-access-tokens.html">jeton d'accès</a>. Les informations d'identification du client utilisées pour obtenir le jeton d'accès doivent avoir des autorisations pour <code translate="No">video-cloud/notifications/all</code> (<strong translate="No">CMS-&gt;Notifications</strong> si vous utilisez le <a href="https://studio.support.brightcove.com/admin/managing-api-authentication-credentials.html">Interface utilisateur de Studio</a> pour créer les identifiants.)</p>
   
   <h3>Installer</h3>
   
-  <p>Vous pouvez spécifier jusqu'à 10 points de terminaison pour recevoir des notifications en effectuant un <code translate="No">POST</code> demande à <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/{account_id}/subscriptions</code> et en incluant JSON dans le corps de la requête comme ceci :</p>
+  <p>Vous pouvez spécifier jusqu'à 10 points de terminaison pour recevoir des notifications en effectuant un <code translate="No">POST</code> demande à <code class="language-http" translate="No">https://cms.api.brightcove.com/v1/accounts/{account_id}/subscriptions</code> et en incluant JSON dans le corps de la requête comme ceci:</p>
   
   <pre class="line-numbers">
         <code class="language-json" translate="No">{
@@ -29,7 +29,7 @@ grandparent: CMS API
         </code>
         </pre>
   
-  <p>Les notifications sont envoyées au format JSON. Voici un exemple :</p>
+  <p>Les notifications sont envoyées au format JSON. Voici un exemple:</p>
   
   <pre class="line-numbers">
         <code class="language-json" translate="No">{"timestamp":1423840514446,
@@ -54,11 +54,11 @@ grandparent: CMS API
     <tbody class="bcls-table__body">
       <tr>
         <td ><code translate="No">timestamp</code></td>
-        <td >moment où l'événement s'est produit dans <span translate="No">Époque</span> millisecondes</td>
+        <td >moment où l'événement s'est produit dans <span>Époque</span> millisecondes</td>
       </tr>
       <tr>
         <td ><code translate="No">account_id</code></td>
-        <td >les <span translate="No">Nuage vidéo</span> identifiant de compte</td>
+        <td >les <span>Nuage vidéo</span> identifiant de compte</td>
       </tr>
       <tr>
         <td ><code translate="No">event</code></td>
@@ -75,7 +75,7 @@ grandparent: CMS API
     </tbody>
   </table>
   
-  <p>Les demandes de création d'abonnement recevront un <span translate="No">HTTP 422</span> réponse d'erreur pour les conditions suivantes :</p>
+  <p>Les demandes de création d'abonnement recevront un <span>HTTP 422</span> réponse d'erreur pour les conditions suivantes:</p>
   
   <ul>
     <li>Les <code translate="No">endpoint</code> ou <code translate="No">events</code> le champ est manquant dans le corps de la requête</li>
@@ -88,7 +88,7 @@ grandparent: CMS API
   
   <p>Le système de notification traite tout <code translate="No">4xx</code> ou <code translate="No">5xx</code> retour du serveur client en tant qu'échec réessayable. Les rappels en échec seront réessayés jusqu'à 20 fois, avec un délai exponentiellement croissant entre les rappels suivants. Les premières tentatives auront lieu quelques minutes après la première tentative de rappel. Si le rappel continue d'échouer et que nous arrivons à la 20e tentative, le délai de nouvelle tentative sera de quelques jours.</p>
   
-  <aside class="bcls-aside bcls-aside--information">&gt; Remarques :
+  <aside class="bcls-aside bcls-aside--information">&gt; Remarques:
   <ul>
     <li><code translate="No">video-change</code> les événements sont déclenchés par des processus système automatisés ainsi que par des actions de l'utilisateur. Par conséquent, ces événements ne correspondent pas toujours aux modifications que vous avez apportées aux propriétés de la vidéo dans Studio ou via les API.</li>
     <li>Les gestionnaires de notifications sur les serveurs construits sur HTTP2 ne sont actuellement pas pris en charge. Les notifications envoyées aux serveurs HTTP2 peuvent ne pas être livrées sans renvoyer d'erreur.</li>
@@ -121,7 +121,7 @@ grandparent: CMS API
   
   <h3 id="getSubscription">Obtenir ou supprimer un seul abonnement</h3>
   
-  <p>Utilisez le point de terminaison suivant pour obtenir ou supprimer un seul abonnement :</p>
+  <p>Utilisez le point de terminaison suivant pour obtenir ou supprimer un seul abonnement:</p>
   
   <h4>Point de terminaison</h4>
   
@@ -136,9 +136,9 @@ grandparent: CMS API
   <section class="bcls-section">
   <h2 id="What_triggers">Qu'est-ce qui déclenche les notifications ?</h2>
   
-  <p><code translate="No">video-change</code> les événements sont déclenchés par tout changement dans les métadonnées de la vidéo. Cela inclut toute modification de la vidéo effectuée dans Studio ou via un <span translate="No">API CMS</span> méthode d'écriture. Il existe également des événements système qui déclencheront <code translate="No">video-change</code> événements.</p>
+  <p><code translate="No">video-change</code> les événements sont déclenchés par tout changement dans les métadonnées de la vidéo. Cela inclut toute modification de la vidéo effectuée dans Studio ou via un CMS API méthode d'écriture. Il existe également des événements système qui déclencheront <code translate="No">video-change</code> événements.</p>
   
-  <p>Les changements qui déclencheront un événement incluent :</p>
+  <p>Les changements qui déclencheront un événement incluent:</p>
   
   <ul>
     <li>Une vidéo est créée</li>

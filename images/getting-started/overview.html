@@ -1,9 +1,8 @@
 ---
-title: 'Aperçu: API d'images' la
-description: L'API Image vous permet de récupérer une version redimensionnée, recadrée ou pivotée d'une image.
+title: 'Aperçu: Image API'
+description: Image API vous permet de récupérer une version redimensionnée, recadrée ou pivotée d'une image.
 parent: Getting Started 
 grandparent: Image API
-layout: staging
 ---
  <h1>{{ page.title }}</h1>
 <article class="bcls-article">
@@ -12,18 +11,18 @@ layout: staging
     <h2 id="Introduction">introduction</h2>
     <p>L'API Brightcove Image offre un moyen simple et rapide de redimensionner, recadrer et/ou faire pivoter une image à l'aide d'une simple requête GET.</p>
     <h3>URL de demande</h3>
-    <p>L'URL de requête pour l'API Image est :</p>
+    <p>L'URL de requête pour Image APIest:</p>
     <pre><code class="language-http" translate="No">https://images.brightcovecdn.com/image/v1/<span class="bc-input">account_id</span>/default/url/<span class="bc-input">{image_url}</span></code></pre>
-    <p>Les paramètres de chemin requis sont :</p>
+    <p>Les paramètres de chemin requis sont:</p>
     <ul>
       <li><code translate="No">account_id</code>: votre identifiant de compte Video Cloud</li>
       <li><code translate="No">image_url</code>: une URL publique où l'image peut être trouvée</li>
     </ul>
     <aside class="bcls-aside bcls-aside--information language-editable"> Remarques:
       <ul>
-        <li>Les formats d'image suivants sont pris en charge : PNG, JPG, GIF</li>
+        <li>Les formats d'image suivants sont pris en charge: PNG, JPG, GIF</li>
         <li>
-          Les <code translate="No">image_url</code> doit être correctement codé. Si vous utilisez JavaScript, utilisez le <code translate="No">encodeURIComponent()</code> méthode. Vous pouvez également utiliser le <a href="https://general.support.brightcove.com/utilities/string-encoder.html">Encodeur de chaîne</a> fourni par Brightcove Learning Services :
+          Les <code translate="No">image_url</code> doit être correctement codé. Si vous utilisez JavaScript, utilisez le <code translate="No">encodeURIComponent()</code> méthode. Vous pouvez également utiliser le <a href="https://general.support.brightcove.com/utilities/string-encoder.html">Encodeur de chaîne</a> fourni par Brightcove Learning Services:
           <figure class="bcls-figure">
             <img class="bcls-image" src="/assets/images/image-api/string-encoder.png" alt="String Encoder">
             <figcaption class="bcls-caption--image">Encodeur de chaîne</figcaption>
@@ -46,15 +45,15 @@ layout: staging
       <tbody class="bcls-table__body">
           <tr>
               <td><code translate="No">resize</code></td>
-              <td>Redimensionnez l'image en définissant cette valeur égale à "widthxheight" - exemple : <code translate="no">redimensionner=160x90</code>)</td>
+              <td>Redimensionnez l'image en définissant cette valeur égale à "widthxheight" - exemple: <code translate="no">redimensionner=160x90</code>)</td>
           </tr>
           <tr>
               <td><code translate="No">crop</code></td>
-              <td>Recadrez la largeur et la hauteur en définissant cette valeur égale à "widthxheight" - exemple : <code translate="no">recadrer=160x90</code> - le point d'origine est le centre de l'image.</td>
+              <td>Recadrez la largeur et la hauteur en définissant cette valeur égale à "widthxheight" - exemple: <code translate="no">recadrer=160x90</code> - le point d'origine est le centre de l'image.</td>
           </tr>
           <tr>
               <td><code translate="No">rotate</code></td>
-              <td>faire pivoter l'image dans le sens des aiguilles d'une montre du nombre de degrés spécifié - exemple : <code translate="no">rotation=90</code></td>
+              <td>faire pivoter l'image dans le sens des aiguilles d'une montre du nombre de degrés spécifié - exemple: <code translate="no">rotation=90</code></td>
           </tr>
       </tbody>
   </table>
@@ -65,7 +64,7 @@ layout: staging
   </section>
   <section class="bcls-section">
     <h2 id="Examples">Exemples</h2>
-    <p>Voici l'image originale pour les exemples ci-dessous :</p>
+    <p>Voici l'image originale pour les exemples ci-dessous:</p>
     <figure class="bcls-figure">
       <img class="bcls-image" src="/assets/images/image-api/leaf.jpg" alt="Original Image">
       <figcaption class="bcls-caption--image">Image originale (726x985)</figcaption>

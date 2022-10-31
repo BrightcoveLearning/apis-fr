@@ -1,6 +1,6 @@
 ---
-title: 'API de téléchargement de fichier source pour l'ingestion dynamique'
-description: 'Dans cette rubrique, vous apprendrez comment ajouter des vidéos à votre compte Video Cloud à l'aide de l'API de téléchargement de fichier source pour l'ingestion dynamique. L'API de téléchargement de fichier source offre la possibilité de télécharger (« pousser ») des fichiers source dans Video Cloud via Dynamic Ingest.'
+title: 'API de téléchargement de fichier source pour Dynamic Ingest API'
+description: "Dans cette rubrique, vous apprendrez comment ajouter des vidéos à votre compte Video Cloud à l'aide de l'API de téléchargement de fichier source pour Dynamic Ingest API. L'API de téléchargement de fichier source offre la possibilité de télécharger (« pousser ») des fichiers source dans Video Cloud via Dynamic Ingest."
 parent: Getting Started 
 grandparent: Dynamic Ingest API
 ---
@@ -10,7 +10,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="Introduction">introduction</h2>
     
-    <p>Pour l'ingestion via le téléchargement de fichier source, Brightcove fournit un compartiment S3 dans lequel vous pouvez télécharger vos vidéos et fichiers d'actifs, et Dynamic Ingest extrait ensuite la vidéo du compartiment S3 de la même manière qu'elle le ferait à partir de votre propre compartiment S3 ou URL. Le diagramme ci-dessous montre la différence entre les workflows pour l'ingestion dynamique de base et l'ingestion avec téléchargement de fichier source.</p>
+    <p>Pour l'ingestion via le téléchargement de fichier source, Brightcove fournit un compartiment S3 dans lequel vous pouvez télécharger vos vidéos et fichiers d'actifs, et Dynamic Ingest extrait ensuite la vidéo du compartiment S3 de la même manière qu'elle le ferait à partir de votre propre compartiment S3 ou URL. Le diagramme ci-dessous montre la différence entre les workflows pour Dynamic Ingest API de base et l'ingestion avec téléchargement de fichier source.</p>
     
     <figure class="bcls-figure"><img class="bcls-image" alt="Workflow Differences" src="//learning-services-media.brightcove.com/doc-assets/video-cloud-apis/di-api/guides/push-based-ingest/source-file-upload.png" />
     <figcaption class="bcls-caption--image">Différences de flux de travail</figcaption>
@@ -23,7 +23,7 @@ grandparent: Dynamic Ingest API
     <dl>
       <dt class="bcls-question">Combien de temps les vidéos sont-elles temporairement stockées et quand les URL correspondantes deviennent-elles invalides ?</dt>
       <dd class="bcls-answer">Les vidéos sont supprimées du stockage temporaire 24 heures après leur mise en ligne et leurs URL ne sont plus valides après cela.</dd>
-      <dt class="bcls-question">Combien de temps les informations d'identification S3 sont-elles renvoyées par le <span translate="No">API d'ingestion dynamique</span> valide?</dt>
+      <dt class="bcls-question">Combien de temps les informations d'identification S3 sont-elles renvoyées par le <span>Dynamic Ingest API</span> valide?</dt>
       <dd class="bcls-answer">Les informations d'identification S3 sont également valides pendant 24 heures après leur envoi par l'API.</dd>
       <dt class="bcls-question">Les fichiers vidéo sont-ils physiquement supprimés du compartiment S3 après 24 heures ?</dt>
       <dd class="bcls-answer">Oui</dd>
@@ -45,7 +45,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="Source_file_names">Noms des fichiers sources</h2>
     
-    <p>Pour éviter les problèmes d'accès aux vidéos et aux ressources dans Brightcove Player, vous devez éviter d'utiliser des caractères spéciaux dans les noms de fichiers source, qu'il s'agisse de vidéos, d'images ou de pistes de texte (fichiers WebVTT). Cela s'applique également aux actifs distants. Les noms de fichiers ne doivent inclure que les éléments suivants :</p>
+    <p>Pour éviter les problèmes d'accès aux vidéos et aux ressources dans Brightcove Player, vous devez éviter d'utiliser des caractères spéciaux dans les noms de fichiers source, qu'il s'agisse de vidéos, d'images ou de pistes de texte (fichiers WebVTT). Cela s'applique également aux actifs distants. Les noms de fichiers ne doivent inclure que les éléments suivants:</p>
     
     <ul>
       <li><strong>Un seul octet</strong> lettres (majuscules ou minuscules)</li>
@@ -58,7 +58,7 @@ grandparent: Dynamic Ingest API
     <section id="Authentication" class="bcls-section">
     <h2>Authentification</h2>
     
-    <p>Le moyen le plus simple d'obtenir les informations d'identification du client pour l'ingestion dynamique consiste à <a href="/general/managing-api-authentication-credentials.html">la page d'administration de Studio pour l'authentification API</a>. Pour les autorisations API, il vous faut au moins :</p>
+    <p>Le moyen le plus simple d'obtenir les informations d'identification du client pour Dynamic Ingest API consiste à <a href="/general/managing-api-authentication-credentials.html">la page d'administration de Studio pour l'authentification API</a>. Pour les autorisations API, il vous faut au moins:</p>
     
     <ul>
       <li>CMS &gt; Lecture vidéo</li>
@@ -75,7 +75,7 @@ grandparent: Dynamic Ingest API
     <pre class="line-numbers">
       <code class="language-bash" translate="No">video-cloud/upload-urls/read</code></pre>
     
-    <p>L'ensemble complet des autorisations nécessaires pour le téléchargement du fichier source est :</p>
+    <p>L'ensemble complet des autorisations nécessaires pour le téléchargement du fichier source est:</p>
     
     <ul>
       <li>video-cloud/video/create</li>
@@ -84,7 +84,7 @@ grandparent: Dynamic Ingest API
       <li>video-cloud/upload-urls/read<span class="bcls-highlight"></span></li>
     </ul>
     
-    <p>Ces autorisations sont disponibles dans <a href="/getting-started/authentication-brightcove-api-requests.html">Studio</a>. Vous pouvez également obtenir les informations d'identification du client pour utiliser l'API de téléchargement de fichier source directement à partir de l'API OAuth en effectuant une requête POST comme suit :</p>
+    <p>Ces autorisations sont disponibles dans <a href="/getting-started/authentication-brightcove-api-requests.html">Studio</a>. Vous pouvez également obtenir les informations d'identification du client pour utiliser l'API de téléchargement de fichier source directement à partir de OAuth API en effectuant une requête POST comme suit:</p>
     
     <h3>URL de demande</h3>
     
@@ -96,7 +96,7 @@ grandparent: Dynamic Ingest API
     <ul>
       <li><code translate="No">Authorization: BC_TOKEN <span class="bcls-highlight">{YOUR_BC_TOKEN}</span> </code></li>
       <li>
-      <div>Type de contenu : application/json</div>
+      <div>Type de contenu: application/json</div>
       </li>
     </ul>
     
@@ -130,7 +130,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="API_requests">Requêtes API</h2>
     
-    <p>Il y a quatre requêtes API impliquées dans l'ingestion push :</p>
+    <p>Il y a quatre requêtes API impliquées dans l'ingestion push:</p>
     
     <ol>
       <li>Requête CMS API POST pour créer l'objet vidéo dans Video Cloud (identique à l'ingestion basée sur l'extraction)</li>
@@ -140,18 +140,18 @@ grandparent: Dynamic Ingest API
     </ol>
     
     <aside class="bcls-aside bcls-aside--information">
-    <p>Les <span translate="No">API CMS</span> et <span translate="No">API d'ingestion dynamique</span> les demandes doivent être effectuées à partir d'une application côté serveur ou <a href="/getting-started/learning-guide-using-rest-apis.html">Procuration</a>. Les requêtes PUT pour télécharger les fichiers dans le compartiment S3 peuvent être effectuées directement à partir d'une application cliente ou d'une application serveur.</p>
+    <p>Les CMS API et <span>Dynamic Ingest API</span> les demandes doivent être effectuées à partir d'une application côté serveur ou <a href="/getting-started/learning-guide-using-rest-apis.html">Procuration</a>. Les requêtes PUT pour télécharger les fichiers dans le compartiment S3 peuvent être effectuées directement à partir d'une application cliente ou d'une application serveur.</p>
     
-    <p>Si vous téléchargez des vidéos à partir d'un site Web (côté client), cette bibliothèque simplifie les étapes dont vous avez besoin pour une expérience utilisateur fluide : <a href="https://github.com/BrightcoveOS/evaporate-brightcove">https://github.com/BrightcoveOS/evaporate-brightcove</a>. Notez que cette bibliothèque est Open Source et n'est pas officiellement prise en charge par Brightcove.</p>
+    <p>Si vous téléchargez des vidéos à partir d'un site Web (côté client), cette bibliothèque simplifie les étapes dont vous avez besoin pour une expérience utilisateur fluide: <a href="https://github.com/BrightcoveOS/evaporate-brightcove">https://github.com/BrightcoveOS/evaporate-brightcove</a>. Notez que cette bibliothèque est Open Source et n'est pas officiellement prise en charge par Brightcove.</p>
     </aside>
     
     <p>Ces demandes sont détaillées dans les sections qui suivent.</p>
     </section>
     
     <section class="bcls-section">
-    <h2 id="CMS_API_request">Demande d'API CMS</h2>
+    <h2 id="CMS_API_request">Demande d'CMS API</h2>
     
-    <p>Les <span translate="No">API CMS</span> La demande est la même que pour toute opération d'ingestion dynamique pour ajouter une nouvelle vidéo. Cette demande est nécessaire pour ingérer une nouvelle vidéo. Si vous remplacez ou ajoutez des éléments à une vidéo existante, vous n'aurez pas besoin de cette étape. À la place, vous utiliserez l'identifiant vidéo existant dans les autres demandes.</p>
+    <p>Les CMS API La demande est la même que pour toute opération d'ingestion dynamique pour ajouter une nouvelle vidéo. Cette demande est nécessaire pour ingérer une nouvelle vidéo. Si vous remplacez ou ajoutez des éléments à une vidéo existante, vous n'aurez pas besoin de cette étape. À la place, vous utiliserez l'identifiant vidéo existant dans les autres demandes.</p>
     
     <h3>Syntaxe de la requête</h3>
     
@@ -162,7 +162,7 @@ grandparent: Dynamic Ingest API
     
     <h4>Paramètres</h4>
     
-    <p>Paramètres d'URL pour la requête :</p>
+    <p>Paramètres d'URL pour la requête:</p>
     
     <ul>
       <li><code translate="No">{ACCOUNT_ID}</code>- votre identifiant de compte</li>
@@ -170,7 +170,7 @@ grandparent: Dynamic Ingest API
     
     <h4>Corps de la demande</h4>
     
-    <p>Le corps de la requête se compose d'un objet JSON contenant le <code translate="No">name</code> (obligatoire) et autres métadonnées pour la vidéo (facultatif) :</p>
+    <p>Le corps de la requête se compose d'un objet JSON contenant le <code translate="No">name</code> (obligatoire) et autres métadonnées pour la vidéo (facultatif):</p>
     
     <pre class="line-numbers">
       <code class="language-json" translate="No">{
@@ -181,7 +181,7 @@ grandparent: Dynamic Ingest API
     
     <h4>En-têtes</h4>
     
-    <p>Les en-têtes HTTP que vous devez inclure avec la requête sont :</p>
+    <p>Les en-têtes HTTP que vous devez inclure avec la requête sont:</p>
     
     <ul>
       <li><code translate="No">Authorization: Bearer {ACCESS_TOKEN}</code></li>
@@ -207,17 +207,17 @@ grandparent: Dynamic Ingest API
     
     <h4>Paramètres</h4>
     
-    <p>Paramètres d'URL pour la requête :</p>
+    <p>Paramètres d'URL pour la requête:</p>
     
     <ul>
       <li><code translate="No">{ACCOUNT_ID}</code>- votre identifiant de compte</li>
-      <li><code translate="No">{VIDEO_ID}</code>- l'identifiant de la vidéo renvoyé par <span translate="No">API CMS</span> demander</li>
+      <li><code translate="No">{VIDEO_ID}</code>- l'identifiant de la vidéo renvoyé par CMS API demander</li>
       <li><code translate="No">{SOURCE_NAME}</code>- le nom du fichier source vidéo - <strong>le nom ne doit pas contenir de caractères réservés à l'URL tels que <code translate="No">?</code> , <code translate="No">&amp;</code> , <code translate="No">#</code> ou des espaces</strong></li>
     </ul>
     
     <h4>En-têtes</h4>
     
-    <p>Les en-têtes HTTP que vous devez inclure avec la requête sont :</p>
+    <p>Les en-têtes HTTP que vous devez inclure avec la requête sont:</p>
     
     <ul>
       <li><code translate="No">Authorization: Bearer {ACCESS_TOKEN}</code></li>
@@ -225,7 +225,7 @@ grandparent: Dynamic Ingest API
     
     <h4>Réponse</h4>
     
-    <p>La réponse sera un objet JSON semblable au suivant :</p>
+    <p>La réponse sera un objet JSON semblable au suivant:</p>
     
     <pre class="line-numbers">
       <code class="language-json" translate="No">{
@@ -252,7 +252,7 @@ grandparent: Dynamic Ingest API
     
     <p>Il est recommandé d'utiliser le téléchargement partitionné à l'aide du kit AWS SDK pour la langue que vous utilisez. Les SDK sont disponibles pour de nombreux langages, notamment Java, .NET, Ruby, PHP, Python, JavaScript, Go et C++. Voir le <a href="https://aws.amazon.com/blogs/developer/">Blog des développeurs AWS</a> pour plus d'informations.</p>
     
-    <p>Si vous implémentez un téléchargement partitionné, les documents et exemples de code suivants vous seront utiles :</p>
+    <p>Si vous implémentez un téléchargement partitionné, les documents et exemples de code suivants vous seront utiles:</p>
     
     <ul>
       <li><a href="//docs.aws.amazon.com/AmazonS3/latest/dev/llJavaUploadFile.html">Télécharger un fichier</a></li>
@@ -268,7 +268,7 @@ grandparent: Dynamic Ingest API
     <aside class="bcls-aside bcls-aside--information">
     <ul>
       <li>Notez que les URL sont valides pour <strong>24 heures</strong> - si vous ne terminez pas les opérations d'ingestion dynamique dans les 24 heures, vous devrez faire une nouvelle demande de nouvelles URL.</li>
-      <li>L'ingestion dynamique n'autorise pas plus de 100 tâches exécutées simultanément par compte</li>
+      <li>Dynamic Ingest API n'autorise pas plus de 100 tâches exécutées simultanément par compte</li>
     </ul>
     </aside>
     </section>
@@ -278,7 +278,7 @@ grandparent: Dynamic Ingest API
     
     <p>Après avoir obtenu les URL S3, vous faites une demande PUT pour télécharger votre fichier vidéo, en utilisant le <code translate="No">signed_url</code> comme destination.</p>
     
-    <p>Vous pouvez utiliser ce qui suit <a href="https://general.support.brightcove.com/developer/concepts-set-curl.html">boucle</a> commande pour tester l'opération PUT :</p>
+    <p>Vous pouvez utiliser ce qui suit <a href="https://general.support.brightcove.com/developer/concepts-set-curl.html">boucle</a> commande pour tester l'opération PUT:</p>
     
     <pre class="line-numbers">
       <code class="language-bash" translate="No">curl -X PUT "<span class="bcls-input">SIGNED_URL_GOES_HERE</span>" --upload-file <span class="bcls-input">FILE_PATH_FOR_LOCAL_ASSET_GOES_HERE</span> </code></pre>
@@ -315,11 +315,11 @@ grandparent: Dynamic Ingest API
     
     <h4>Paramètres</h4>
     
-    <p>Paramètres d'URL pour la requête :</p>
+    <p>Paramètres d'URL pour la requête:</p>
     
     <ul>
       <li><code translate="No">{ACCOUNT_ID}</code>- votre identifiant de compte</li>
-      <li><code translate="No">{VIDEO_ID}</code>- l'identifiant de la vidéo renvoyé par <span translate="No">API CMS</span> demander</li>
+      <li><code translate="No">{VIDEO_ID}</code>- l'identifiant de la vidéo renvoyé par CMS API demander</li>
     </ul>
     
     <h4>Corps de la demande</h4>
@@ -339,7 +339,7 @@ grandparent: Dynamic Ingest API
     
     <h4>En-têtes</h4>
     
-    <p>Les en-têtes HTTP que vous devez inclure avec la requête sont :</p>
+    <p>Les en-têtes HTTP que vous devez inclure avec la requête sont:</p>
     
     <ul>
       <li><code translate="No">Authorization: Bearer {ACCESS_TOKEN}</code></li>
@@ -354,7 +354,7 @@ grandparent: Dynamic Ingest API
     <section class="bcls-section">
     <h2 id="Sample_code">Exemple de code</h2>
     
-    <p>Pour vous aider à démarrer avec l'ingestion dynamique basée sur push, nous avons créé des exemples d'applications en Java et Python. Vous pouvez les retrouver sur notre <a href="//github.com/BrightcoveLearning/dynamic-ingest-code-samples">Site Github</a>.</p>
+    <p>Pour vous aider à démarrer avec Dynamic Ingest API basée sur push, nous avons créé des exemples d'applications en Java et Python. Vous pouvez les retrouver sur notre <a href="//github.com/BrightcoveLearning/dynamic-ingest-code-samples">Site Github</a>.</p>
     
     <aside class="bcls-aside bcls-aside--information">Un exemple de code est proposé tel quel et n'est pas pris en charge par Brightcove.</aside>
     </section>

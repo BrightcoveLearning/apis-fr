@@ -1,6 +1,6 @@
 Dimension:---
 title: ' <code translate="No">player</code>'
-description: 'Dans cette rubrique, vous découvrirez les <span translate="No">API d'analyse</span> <code translate="No">player</code> dimension. Les <code translate="No">player</code> dimension fournit des analyses pour les lecteurs vidéo.'
+description: "Dans cette rubrique, vous découvrirez les Analytics API <code translate="No">player</code> dimension. Les <code translate="No">player</code> dimension fournit des analyses pour les Lecteurs vidéo."
 parent: Dimension Guides 
 grandparent: Analytics API
 ---
@@ -10,7 +10,7 @@ grandparent: Analytics API
     <section class="bcls-section">
     <h2 id="urlParams">Paramètres d'URL</h2>
     
-    <p>Les rapports de l'API Analytics prennent en charge les paramètres d'URL suivants.</p>
+    <p>Les rapports de Analytics API prennent en charge les paramètres d'URL suivants.</p>
     
     <table class="bcls-table">
       <caption class="bcls-caption--table">Paramètres d'URL</caption>
@@ -111,14 +111,14 @@ grandparent: Analytics API
     <p>Les champs suivants peuvent être renvoyés pour la dimension.</p>
     
     <ul id="fields">
-      <li><code translate="No">ad_mode_begin</code>- le nombre de fois où le joueur est entré en mode publicité</li>
-      <li><code translate="No">ad_mode_complete</code>- le nombre de fois où le joueur a terminé le mode publicité</li>
+      <li><code translate="No">ad_mode_begin</code>- le nombre de fois où le Lecteur est entré en mode publicité</li>
+      <li><code translate="No">ad_mode_complete</code>- le nombre de fois où le Lecteur a terminé le mode publicité</li>
       <li><code translate="No">bytes_delivered</code>- nombre total d'octets délivrés aux machines clientes pour le lecteur et les médias associés</li>
       <li><code translate="No">engagement_score</code>- le score d'engagement moyen pour une vidéo jouée dans un player</li>
       <li><code translate="No">play_request</code>- nombre total de fois où la lecture vidéo a été demandée</li>
       <li><code translate="No">play_rate</code>- le taux de lecture moyen (vues vidéo divisées par impressions) pour une vidéo</li>
-      <li><code translate="No">player</code>- l'identifiant du joueur</li>
-      <li><code translate="No">player_load</code>- le nombre de fois qu'un joueur a été chargé</li>
+      <li><code translate="No">player</code>- l'identifiant du Lecteur</li>
+      <li><code translate="No">player_load</code>- le nombre de fois qu'un Lecteur a été chargé</li>
       <li><code translate="No">player_name</code></li>
       <li><code translate="No">video_engagement_1</code>- le nombre de vues au point de 1% de la vidéo</li>
       <li><code translate="No">video_engagement_100</code>- le nombre total de vues à 100 % de la durée des vidéos lues dans le lecteur</li>
@@ -137,7 +137,7 @@ grandparent: Analytics API
     
     <p>Utilisée comme filtre, une dimension permet d'affiner les résultats.</p>
     
-    <p id="filters">Filtrer les valeurs : identifiants des joueurs sous forme de liste délimitée par des virgules</p>
+    <p id="filters">Filtrer les valeurs: identifiants des Lecteurs sous forme de liste délimitée par des virgules</p>
     </section>
     
     <section class="bcls-section">
@@ -152,13 +152,13 @@ grandparent: Analytics API
     <h3>Demande de dimension</h3>
     
     <pre class="line-numbers language-http code-toolbar">
-    <code class="language-http" id="dimensionRequest"><span class="token header-name keyword"><span class="token header-name keyword">https :</span></span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=player</code></pre>
+    <code class="language-http" id="dimensionRequest"><span class="token header-name keyword"><span class="token header-name keyword">https:</span></span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=player</code></pre>
     <button class="bcls-button" id="sendDimensionRequest">Tester cette demande</button>
     
     <h3>Demande de filtre</h3>
     
     <pre class="line-numbers language-http">
-    <code class="language-http" id="filterRequest"><span class="token header-name keyword">https :</span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=player&amp;where=player==qsvobWoRx</code></pre>
+    <code class="language-http" id="filterRequest"><span class="token header-name keyword">https:</span>//analytics.api.brightcove.com/v1/data?accounts=1752604059001&amp;dimensions=player&amp;where=player==qsvobWoRx</code></pre>
     <button class="bcls-button" id="sendFilterRequest">Tester cette demande</button>
     
     <h3>Réponse</h3>
