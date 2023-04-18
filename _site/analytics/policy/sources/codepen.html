@@ -1,0 +1,50 @@
+﻿<fieldset><legend>Créer une clé de stratégie</legend>
+
+  <p>Si vous n'entrez pas d'informations de compte, un exemple de compte Brightcove sera utilisé.</p>
+
+  <p>Pour plus d'informations sur les options des clés de stratégie, consultez le <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Présentation de l'API de clé de stratégie</a>.</p>
+  
+  <p>Identifiant de compte: <input id="account_id" type="text" value="" placeholder="1752604059001" /></p>
+  
+  <p>Identité du client: <input id="client_id" type="text" size="60" value="" placeholder="c5d0a622-5479-46d8-8d8a-5f034b943fab" /></p>
+  
+  <p>Secret client : <input id="client_secret" type="text" size="60" value="" placeholder="W7NQYU0Vulom4Gyyyyy2SXAxrvyfPT8FWI35Qafzcs13-vigs0itWknsawhos80SOWKJ1BuwhivsFG2i" /></p>
+    
+    <p><input type="checkbox" id="search_enabled" checked> <label for="search_enabled">Clé de stratégie activée pour la recherche ?</label></p>
+    <p><input type="checkbox" id="restrict_domains"> <label for="restrict_domains">Ajouter des restrictions de domaine ?</label></p>
+    <div>
+      Saisissez une liste de domaines séparés par des virgules qui sont <strong>autorisé</strong> (<code translate="No">https://mysite.com,https://somesite.com</code>)
+      <p>
+        <input type="text" id="domain_list" size="60">
+      </p>
+    </div>
+    <p><input type="checkbox" id="restrict_geo"> <label for="restrict_geo">Ajouter des restrictions géographiques ?</label></p>
+    <div>
+      Saisissez une liste d'abréviations de pays séparées par des virgules (<code translate="No">us,usmil,pr,gu,vi,as,mp</code>)
+      <p>
+        <input type="text" id="country_list" size="60">
+      </p>
+      <p><input type="checkbox" id="disallowed"> <label for="disallowed">Affichage <strong>ne pas</strong> autorisé de ces pays</label> (si décoché, la visualisation est autorisée <strong>seul</strong> dans ces pays)</p>
+    </div>
+    <p><input type="checkbox" id="require_ssai"> <label for="require_ssai">Exiger la SSAI</label> (si décoché, la visualisation est autorisée <strong>seul</strong> dans ces pays)</p>
+  
+  <p><button class="bcls-button" id="generateKey" style="color:#eeeeee;font-weight:normal">Créer la clé de stratégie</button></p>
+  
+  <h4>Demande d'API</h4>
+  
+  <pre class="line-numbers">
+  <code id="apiRequest" class="language-http">Celui-ci sera rempli dynamiquement</code></pre>
+  
+  <h4>Corps de la demande</h4>
+  
+  <pre class="line-numbers">
+  <code id="requestBody" class="language-json">Celui-ci sera rempli dynamiquement</code></pre>
+
+  <h4>Clé de stratégie</h4>
+    <textarea name="policy_key" id="policy_key" cols="100" rows="3"></textarea>
+
+  <h4>Réponse complète</h4>
+  
+  <pre class="line-numbers">
+  <code id="apiResponse" class="language-json">Celui-ci sera rempli dynamiquement</code></pre>
+  </fieldset>
