@@ -1,31 +1,33 @@
 ﻿<!DOCTYPE html>
-<html lang="fr">
+<html lang="fr"> 
     <head>
-        <title>Documentation sur les API de la plateforme Video Cloud</title>
+        <title>API d'analyse</title>
         
         <!-- Meta -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <link rel="apple-touch-icon" sizes="180x180" href="/assets/s-site-assets-favicons/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/assets/s-site-assets-favicons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/assets/s-site-assets-favicons/favicon-16x16.png">
-        <link rel="manifest" href="/assets/s-site-assets-favicons/site.webmanifest">  
-
+        <meta name="description" content="L'API Analytics vous permet d'obtenir des données d'analyse pour vos comptes Video Cloud par programme. Vous pouvez également afficher les rapports d'analyse intégrés dans le module d'analyse de Video Cloud Studio. L'accès aux données par programmation vous offre une flexibilité supplémentaire.">
+        
         <!-- Google Font -->
         <link href="/assets/s-site-assets-stylesheets/fonts/poppins.css" rel="stylesheet">
         <link rel="stylesheet" href="/assets/s-site-assets-stylesheets/fonts/articulat-site.css">
+        <link href="/assets/s-site-assets-stylesheets/fonts/source-code-pro.css" rel="stylesheet">
         
         <!-- FontAwesome JS-->
+        
         <script src="https://kit.fontawesome.com/d67c74a882.js" crossorigin="anonymous"></script>  
-
-        <!-- <script defer src="/assets/s-site-assets-template-stylesheets/fontawesome/js/all.min.js"></script> -->
+        
+        <!-- Plugins CSS -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+        <link rel="stylesheet" href="/assets/s-site-assets-template-stylesheets/plugins/simplelightbox/simple-lightbox.min.css">
 
         <!-- Theme CSS -->  
         <link id="theme-style" rel="stylesheet" href="/assets/s-site-assets-template-stylesheets/css/theme.css">
+        <link rel="stylesheet" href="/assets/s-site-assets-stylesheets/prism.css">
         <link rel="stylesheet" href="/assets/s-site-assets-template-stylesheets/custom-css/styles.css">
-        
+
+
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBJC11HF8Z"></script>
         <script translate="no">
@@ -36,12 +38,14 @@
         gtag('config', 'G-XBJC11HF8Z');
         </script>
         <script src="/assets/s-site-assets-scripts/sixth-sense.js"></script>
-        <script src="assets/s-site-assets-scripts/sajari-head.js"></script>
+        <script src="/assets/s-site-assets-scripts/sajari-head.js"></script>
         <script src="/assets/s-site-assets-scripts/feather.min.js"></script>
 
     </head> 
 
-    <body> 
+    <body class="docs-page">
+        
+
 <header class="header fixed-top">
   <div class="branding docs-branding">
     <div class="container-fluid position-relative py-2">
@@ -57,103 +61,107 @@
 
       <div class="docs-top-utilities d-flex justify-content-end
         align-items-center">
-        <select id="site_select" class="form-select select-focus" style="width:
+        
+        <!-- Search bar -->
+        <div id="nav-search-box" class="top-search-box d-none d-lg-flex" style="margin-right: 10px ;"></div>
+
+<select id="site_select" class="form-select select-focus" style="width:
           20%; margin-right: 10px;" translate="no">
           <option value="">Other Brightcove Docs</option>
           
           
-          <option value="https://support.brightcove.com">Documentation Home</option>
+          <option value="https://support.brightcove.com" translate="no">Documentation Home</option>
           
           
           
-          <option value="https://support.brightcove.com/">-- VIDEO CLOUD --</option>
+          <option value="https://support.brightcove.com/" translate="no">-- VIDEO CLOUD --</option>
           
           
           
-          <option value="https://studio.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Video Cloud Studio</option>
+          <option value="https://studio.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Video Cloud Studio</option>
           
           
           
-          <option value="https://mstudio.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Marketing Studio</option>
+          <option value="https://mstudio.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Marketing Studio</option>
           
           
           
-          <option value="https://player.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Player Development</option>
+          <option value="https://player.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Player Development</option>
           
           
           
-          <option value="https://apis.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Video Cloud Platform APIs</option>
+          <option value="https://apis.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Video Cloud Platform APIs</option>
           
           
           
-          <option value="https://sdks.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Video Cloud Device SDKs</option>
+          <option value="https://sdks.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Video Cloud Device SDKs</option>
           
           
           
-          <option value="https://integrations.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Integrations and CMS Connectors</option>
+          <option value="https://integrations.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Integrations and CMS Connectors</option>
           
           
           
-          <option value="https://general.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Video Cloud General Information</option>
+          <option value="https://general.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Video Cloud General Information</option>
           
           
           
-          <option value="https://support.brightcove.com/">-- VIDEO ESSENTIALS --</option>
+          <option value="https://support.brightcove.com/" translate="no">-- VIDEO ESSENTIALS --</option>
           
           
           
-          <option value="https://audience-insights.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Audience Insights</option>
+          <option value="https://audience-insights.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Audience Insights</option>
           
           
           
-          <option value="https://beacon-help.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Beacon Studio</option>
+          <option value="https://beacon-help.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Beacon Studio</option>
           
           
           
-          <option value="https://beacon.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Beacon Classic</option>
+          <option value="https://beacon.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Beacon Classic</option>
           
           
           
-          <option value="https://corptv.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;CorpTV</option>
+          <option value="https://corptv.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;CorpTV</option>
           
           
           
-          <option value="https://live.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Live</option>
+          <option value="https://live.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Live</option>
           
           
           
-          <option value="https://zencoder.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Zencoder</option>
+          <option value="https://zencoder.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Zencoder</option>
           
           
           
-          <option value="https://support.brightcove.com/">-- VIDEO CLOUD ADD-ONS --</option>
+          <option value="https://support.brightcove.com/" translate="no">-- VIDEO CLOUD ADD-ONS --</option>
           
           
           
-          <option value="https://gallery.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Gallery</option>
+          <option value="https://gallery.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Gallery</option>
           
           
           
-          <option value="https://studio.support.brightcove.com/social/index.html">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Social</option>
+          <option value="https://studio.support.brightcove.com/social/index.html" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Social</option>
           
           
           
-          <option value="https://interactivity.support.brightcove.com/index.html">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Interactivity</option>
+          <option value="https://interactivity.support.brightcove.com/index.html" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Interactivity</option>
           
           
           
-          <option value="https://ssai.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove SSAI</option>
+          <option value="https://ssai.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove SSAI</option>
           
           
           
-          <option value="https://campaign.support.brightcove.com">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Campaign</option>
+          <option value="https://campaign.support.brightcove.com" translate="no">&nbsp;&nbsp;&nbsp;&nbsp;Brightcove Campaign</option>
           
           
         </select>
 
         <select id="language_select" class="form-select select-focus" style="width: 10%;"
           onchange="doGTranslate(this);" translate="no">
-          <option value="">Select Language</option>
+          <!-- <option value="">Select Language</option> -->
           <option value="en|en" translate="No">English</option>
           <option value="en|zh-TW" translate="No">繁體中文</option>
           <option value="en|fr" translate="No">Français</option>
@@ -162,6 +170,7 @@
           <option value="en|ko" translate="No">한국어</option>
           <option value="en|es" translate="No">Español</option>
         </select>
+
         <script translate="no">
           /* <![CDATA[ */
           function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];var plang=location.hostname.split('.')[0];if(plang.length !=2 && plang.toLowerCase() != 'zh-cn' && plang.toLowerCase() != 'zh-tw')plang='en';location.href=location.protocol+'//'+(lang == 'en' ? '' : lang+'.')+location.hostname.replace('www.', '').replace(RegExp('^' + plang + '\\.'), '')+location.pathname+location.search;}
@@ -170,15 +179,14 @@
       </div>
     </div>
   </div>
-</header>
+</header><!--//header-->
 
 <div class="docs-wrapper">
   <div id="docs-sidebar" class="docs-sidebar" style="padding-right: 15px;">
-    <!-- <div id="nav-search-box" class="top-search-box d-lg-none p-3" style="margin-left: 5px;"></div> -->
+    <div id="nav-search-box" class="top-search-box d-lg-none p-3"></div>
     <div class="row">
       
-        <div id="side_nav" style="margin-left: 1em;display:
-          inline-block;border-right: 1px solid #e5e5e6;padding-right: 1em;">
+        <div id="side_nav" style="margin-left: 1em; display: inline-block; border-right: 1px solid #e5e5e6; padding-right: 1em;">
           
           <nav class="docs-nav sidenav" aria-label="Main">
             <ul class="site-nav" style="list-style-type: none;">
@@ -195,7 +203,7 @@
               
               
               
-              <li class="nav-item"><a class="nav-link" href="/getting-started/getting-started-brightcove-apis.html">Vue d'ensemble : API de plate-forme</a></li>
+              <li class="nav-item"><a class="nav-link" href="/getting-started/getting-started-brightcove-apis.html">Aperçu: API de plate-forme</a></li>
               
               
               
@@ -369,13 +377,13 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/general/overview-forensic-watermarking.html">Vue d'ensemble : Filigrane médico-légal</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/general/overview-forensic-watermarking.html">Aperçu: Filigrane médico-légal</a></li>
                   
                   
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/general/faq-forensic-watermarking.html">FAQ : Filigrane médico-légal</a></li>
+                  <li class="nav-item">FAQ:<a class="nav-link" href="/general/faq-forensic-watermarking.html"> Filigrane médico-légal</a></li>
                   
                   
                   
@@ -445,7 +453,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/analytics/getting-started/overview-analytics-api-v1.html">Vue d'ensemble : API d'analyse</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/analytics/getting-started/overview-analytics-api-v1.html">Aperçu: API d'analyse</a></li>
                   
                   
                   
@@ -457,13 +465,13 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/analytics/getting-started/overview-video-data-endpoint.html">Vue d'ensemble : Point de terminaison de données vidéo</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/analytics/getting-started/overview-video-data-endpoint.html">Aperçu: Point de terminaison de données vidéo</a></li>
                   
                   
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html">Vue d'ensemble : Dimensions, champs et paramètres</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html">Aperçu: Dimensions, champs et paramètres</a></li>
                   
                   
                   
@@ -482,7 +490,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/analytics/general/faq-analytics-api.html">FAQ : API d'analyse</a></li>
+                  <li class="nav-item">FAQ:<a class="nav-link" href="/analytics/general/faq-analytics-api.html"> API d'analyse</a></li>
                   
                   
                   
@@ -779,7 +787,7 @@
               
               
               
-              <li class="nav-item"><a class="nav-link" href="/aspera/overview.html">Vue d'ensemble : Utilisation d'Aspera pour l'ingestion vers Video Cloud</a></li>
+              <li class="nav-item"><a class="nav-link" href="/aspera/overview.html">Aperçu: Utilisation d'Aspera pour l'ingestion vers Video Cloud</a></li>
               
               
               
@@ -808,7 +816,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/audience/getting-started/overview-audience-api.html">Vue d'ensemble : API d'audience</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/audience/getting-started/overview-audience-api.html">Aperçu: API d'audience</a></li>
                   
                   
                   
@@ -854,13 +862,13 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/cloud-playout-apis/getting-started/overview-channel-api.html">Vue d'ensemble : API de canaux</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/cloud-playout-apis/getting-started/overview-channel-api.html">Aperçu: API de canaux</a></li>
                   
                   
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/cloud-playout-apis/getting-started/overview-epg-api.html">Vue d'ensemble : API EPG</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/cloud-playout-apis/getting-started/overview-epg-api.html">Aperçu: API EPG</a></li>
                   
                   
                   
@@ -936,7 +944,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/cms/getting-started/overview-cms-api.html">Vue d'ensemble : API CMS</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/cms/getting-started/overview-cms-api.html">Aperçu: API CMS</a></li>
                   
                   
                   
@@ -948,7 +956,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/cms/getting-started/best-practices-cms-and-playback-apis.html">Bonnes pratiques : CMS et API de lecture</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/cms/getting-started/best-practices-cms-and-playback-apis.html">Les meilleures pratiques: CMS et API de lecture</a></li>
                   
                   
                   
@@ -1034,13 +1042,13 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/cms/searching/cms-and-playback-apis-video-search-v2.html">API du CMS : Recherche vidéo v2</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/cms/searching/cms-and-playback-apis-video-search-v2.html">API CMS: Recherche vidéo v2</a></li>
                   
                   
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/cms/searching/cms-api-playlists-search.html">API du CMS : Recherche de listes de lecture</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/cms/searching/cms-api-playlists-search.html">API CMS: Recherche de listes de lecture</a></li>
                   
                   
                   
@@ -1381,7 +1389,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/xdr/getting-started/xdr-overview.html">Vue d'ensemble : CV multi-appareils</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/xdr/getting-started/xdr-overview.html">Aperçu: CV multi-appareils</a></li>
                   
                   
                   
@@ -1449,7 +1457,7 @@
               
               
               
-              <li class="nav-item"><a class="nav-link" href="/data-collection/getting-started/overview-data-collection-api-v2.html">Vue d'ensemble : API de collecte de données</a></li>
+              <li class="nav-item"><a class="nav-link" href="/data-collection/getting-started/overview-data-collection-api-v2.html">Aperçu: API de collecte de données</a></li>
               
               
               
@@ -1484,7 +1492,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/delivery-rules/getting-started/overview-delivery-rules.html">Vue d'ensemble : Règles de livraison</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/delivery-rules/getting-started/overview-delivery-rules.html">Aperçu: Règles de livraison</a></li>
                   
                   
                   
@@ -1552,7 +1560,7 @@
               
               
               
-              <li class="nav-item"><a class="nav-link" href="/delivery-system/overview-delivery-system-api.html">Vue d'ensemble : API du système de livraison</a></li>
+              <li class="nav-item"><a class="nav-link" href="/delivery-system/overview-delivery-system-api.html">Aperçu: API du système de livraison</a></li>
               
               
               
@@ -1593,13 +1601,13 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">Vue d'ensemble : API d'ingestion dynamique</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/dynamic-ingest/getting-started/overview-dynamic-ingest-api-dynamic-delivery.html">Aperçu: API d'ingestion dynamique</a></li>
                   
                   
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/dynamic-ingest/getting-started/quick-start-dynamic-ingest-api.html">Démarrage rapide : API d'ingestion dynamique</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/dynamic-ingest/getting-started/quick-start-dynamic-ingest-api.html">Démarrage rapide: API d'ingestion dynamique</a></li>
                   
                   
                   
@@ -1867,7 +1875,7 @@
               
               
               
-              <li class="nav-item"><a class="nav-link" href="/images/getting-started/overview.html">Vue d'ensemble : Image API</a></li>
+              <li class="nav-item"><a class="nav-link" href="/images/getting-started/overview.html">Aperçu: Image API</a></li>
               
               
               
@@ -1902,7 +1910,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/ingest-profiles/getting-started/overview-ingest-profiles-api-dynamic-delivery-context-aware-encoding.html">Vue d'ensemble : Ingérer l'API des profils</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/ingest-profiles/getting-started/overview-ingest-profiles-api-dynamic-delivery-context-aware-encoding.html">Aperçu: Ingérer l'API des profils</a></li>
                   
                   
                   
@@ -1963,7 +1971,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/ingest-profiles/guides/mp4s-dynamic-delivery.html">MP4 dans Dynamic Delivery</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/ingest-profiles/guides/mp4s-dynamic-delivery.html">MP4 en livraison dynamique</a></li>
                   
                   
                   
@@ -2134,13 +2142,13 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/ipx/getting-started/overview-page-experience-api.html">Vue d'ensemble : API d'expérience sur la page</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/ipx/getting-started/overview-page-experience-api.html">Aperçu: API d'expérience sur la page</a></li>
                   
                   
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/ipx/getting-started/quick-start-page-experience-platform-rest-api.html">Démarrage rapide : API REST (In-Page Experience Platform)</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/ipx/getting-started/quick-start-page-experience-platform-rest-api.html">Démarrage rapide: API REST (In-Page Experience Platform)</a></li>
                   
                   
                   
@@ -2198,7 +2206,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/live-api/getting-started/overview-brightcove-live-api.html">Vue d'ensemble : API en direct</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/live-api/getting-started/overview-brightcove-live-api.html">Aperçu: API en direct</a></li>
                   
                   
                   
@@ -2325,7 +2333,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/live-api/guides/live-scheduler.html">Vue d'ensemble : Planificateur en direct</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/live-api/guides/live-scheduler.html">Aperçu: Planificateur en direct</a></li>
                   
                   
                   
@@ -2374,7 +2382,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/live-api/ssai/overview-player-enhancements-live-ssai.html">Vue d'ensemble : Améliorations du lecteur pour Live SSAI</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/live-api/ssai/overview-player-enhancements-live-ssai.html">Aperçu: Améliorations du lecteur pour Live SSAI</a></li>
                   
                   
                   
@@ -2463,13 +2471,13 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/oauth/getting-started/overview-oauth-api-v4.html">Vue d'ensemble : API OAuth</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/oauth/getting-started/overview-oauth-api-v4.html">Aperçu: API OAuth</a></li>
                   
                   
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/oauth/getting-started/quick-start-oauth.html">Démarrage rapide : API OAuth</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/oauth/getting-started/quick-start-oauth.html">Démarrage rapide: API OAuth</a></li>
                   
                   
                   
@@ -2589,19 +2597,19 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/playback/getting-started/overview-playback-api.html">Vue d'ensemble : API de lecture</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/playback/getting-started/overview-playback-api.html">Aperçu: API de lecture</a></li>
                   
                   
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/playback/getting-started/quick-start-playback-api.html">Démarrage rapide : API de lecture</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/playback/getting-started/quick-start-playback-api.html">Démarrage rapide: API de lecture</a></li>
                   
                   
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/cms/getting-started/best-practices-cms-and-playback-apis.html">Bonnes pratiques : CMS et API de lecture</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/cms/getting-started/best-practices-cms-and-playback-apis.html">Les meilleures pratiques: CMS et API de lecture</a></li>
                   
                   
                   
@@ -2745,7 +2753,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/player-management/getting-started/overview-player-management-api.html">Vue d'ensemble : API de gestion des joueurs</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/player-management/getting-started/overview-player-management-api.html">Aperçu: API de gestion des joueurs</a></li>
                   
                   
                   
@@ -2757,7 +2765,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/player-management/getting-started/training-demand-quick-start-player-management.html">Formation à la demande : Démarrage rapide de la gestion des joueurs</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/player-management/getting-started/training-demand-quick-start-player-management.html">Formation à la demande: Démarrage rapide de la gestion des joueurs</a></li>
                   
                   
                   
@@ -2931,7 +2939,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/playback-restrictions/getting-started/overview-playback-restrictions.html">Vue d'ensemble : Restrictions de lecture Brightcove</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/playback-restrictions/getting-started/overview-playback-restrictions.html">Aperçu: Restrictions de lecture Brightcove</a></li>
                   
                   
                   
@@ -3111,7 +3119,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/policy/getting-started/overview-policy-api.html">Vue d'ensemble : API de règles</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/policy/getting-started/overview-policy-api.html">Aperçu: API de règles</a></li>
                   
                   
                   
@@ -3175,13 +3183,13 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/social/getting-started/overview-social-api.html">Vue d'ensemble : API sociale</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/social/getting-started/overview-social-api.html">Aperçu: API sociale</a></li>
                   
                   
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/social/getting-started/quick-start-social-api.html">Démarrage rapide : API sociale</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/social/getting-started/quick-start-social-api.html">Démarrage rapide: API sociale</a></li>
                   
                   
                   
@@ -3233,13 +3241,13 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/social-syndication/getting-started/public-syndication-api-overview.html">Vue d'ensemble : API de configuration de syndication</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/social-syndication/getting-started/public-syndication-api-overview.html">Aperçu: API de configuration de syndication</a></li>
                   
                   
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/social-syndication/getting-started/feed-syndication-api-overview.html">Vue d'ensemble : API de flux de syndication</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/social-syndication/getting-started/feed-syndication-api-overview.html">Aperçu: API de flux de syndication</a></li>
                   
                   
                   
@@ -3437,943 +3445,269 @@
   </div>
 </div>
 
-<div class="page-header theme-bg-dark py-5 text-center position-relative"
-    style="background:#4EA9D1;">
-    <div class="theme-bg-shapes-right"></div>
-    <div class="theme-bg-shapes-left"></div>
+<div style="margin-top: 20px;">
+  <div class="docs-content" style="padding-bottom: 0px;">
     <div class="container">
-        <!-- <h1 class="page-heading single-col-max mx-auto" style="color: transparent; -webkit-text-stroke: 2px white; text-transform:uppercase;">Video Cloud Studio
-            </h1> -->
-        <h1 class="page-heading single-col-max mx-auto">Documentation sur les API de la plateforme Video Cloud</h1>
-        <div class="page-intro single-col-max mx-auto">Avec Video Cloud, vous pouvez proposer des expériences télévisées rapides, innovantes et prêtes à l'emploi, insérer dynamiquement des annonces côté serveur pour maximiser vos revenus et atteindre vos audiences où qu'elles se trouvent.
-
-<p>
-  Les API de la plate-forme sont des API RESTful qui vous permettent d'accéder à presque tous les aspects de la plate-forme Video Cloud par programme. Généralement, les API sont utilisées pour créer une intégration entre votre CMS ou un autre système, ou pour créer des applications personnalisées répondant aux besoins spécifiques de vos utilisateurs.
-</p></div>
-            <!-- Search bar -->
-        <div id="nav-search-box" class="main-search-box pt-3 d-block mx-auto"></div>
+      <div class="docs-overview">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            
+            <li class="breadcrumb-item"><a class="theme-link" href="/">Accueil</a></li>
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">API d'analyse</li>
+            
+            
+          </ol>
+        </nav>
+      </div>
     </div>
-</div><!--//page-header-->
-<!-- begin main contents -->
-<div class="page-content">
-    <div class="container">
-      <div class="docs-overview py-5">
-  
-<!-- main content -->
-<div class="page-content">
+  </div>
+</div>
+<div class="docs-content">
   <div class="container">
     <div class="docs-overview py-5">
-      <div class="row justify-content-center">
+      
+      
+<!-- Template for section that just has sub-sections -->
+
+  
+
+  
+
+  
+
+  
+    <h1><i class="fa-regular fa-chart-line-up"></i> API d'analyse</h1>
+    <article class="bcls-article">
+    <summary>L'API Analytics vous permet d'obtenir des données d'analyse pour vos comptes Video Cloud par programme. Vous pouvez également afficher les rapports d'analyse intégrés dans le module d'analyse de Video Cloud Studio. L'accès aux données par programmation vous offre une flexibilité supplémentaire.</summary>
+    <div class="row">
+      
+        <div class="col-12 col-lg-4 py-3">
+          <div class="card shadow-sm" style="background: white" onclick="window.location.href = '/analytics/getting-started/index.html'">
+            <div class="card-body">
+              <div>
+                
+                <h5 class="card-title text-center m-2">Mise en route</h5>
+                <ul class="list-group list-group-flush">
+                  
+                  <li class="list-group-item"><a href="/analytics/getting-started/overview-analytics-api-v1.html" style="text-decoration: none;">Aperçu: API d'analyse</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/getting-started/analytics-api-explorer.html" style="text-decoration: none;">Explorateur d'API d'analyse</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/getting-started/overview-video-data-endpoint.html" style="text-decoration: none;">Aperçu: Point de terminaison de données vidéo</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/getting-started/analytics-api-overview-dimensions-fields-and-parameters.html" style="text-decoration: none;">Aperçu: Dimensions, champs et paramètres</a></li>
+                  
+                </ul>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+      
+        <div class="col-12 col-lg-4 py-3">
+          <div class="card shadow-sm" style="background: white" onclick="window.location.href = '/analytics/general/index.html'">
+            <div class="card-body">
+              <div>
+                
+                <h5 class="card-title text-center m-2">Informations générales</h5>
+                <ul class="list-group list-group-flush">
+                  
+                  <li class="list-group-item">FAQ:<a href="/analytics/general/faq-analytics-api.html" style="text-decoration: none;"> API d'analyse</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/general/analytics-api-glossary.html" style="text-decoration: none;">Glossaire de l'API Analytics</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/general/data-sent-from-brightcove-player.html" style="text-decoration: none;">Données envoyées au système d'analyse par le lecteur Brightcove</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/general/analytics-api-unique-users.html" style="text-decoration: none;">Utilisateurs uniques</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/general/live-metrics.html" style="text-decoration: none;">Métriques en direct</a></li>
+                  
+                </ul>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+      
+        <div class="col-12 col-lg-4 py-3">
+          <div class="card shadow-sm" style="background: white" onclick="window.location.href = '/analytics/references/index.html'">
+            <div class="card-body">
+              <div>
+                
+                <h5 class="card-title text-center m-2">Les références</h5>
+                <ul class="list-group list-group-flush">
+                  
+                  <li class="list-group-item"><a href="/analytics/references/reference.html" style="text-decoration: none;">Référence de l'API d'analyse</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/references/analytics-api-release-notes.html" style="text-decoration: none;">Notes de version</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/references/known-issues.html" style="text-decoration: none;">Problèmes connus</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/references/analytics-api-error-reference.html" style="text-decoration: none;">Référence d'erreur</a></li>
+                  
+                </ul>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+      
+        <div class="col-12 col-lg-4 py-3">
+          <div class="card shadow-sm" style="background: white" onclick="window.location.href = '/analytics/dimension-guides/index.html'">
+            <div class="card-body">
+              <div>
+                
+                <h5 class="card-title text-center m-2">Guides de dimensions</h5>
+                <ul class="list-group list-group-flush">
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-account.html" style="text-decoration: none;">Dimension : <code translate="No">account</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-browsertype.html" style="text-decoration: none;">Dimension : <code translate="No">browser_type</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-date.html" style="text-decoration: none;">Dimension : <code translate="No">date</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-datehour.html" style="text-decoration: none;">Dimension : <code translate="No">date_hour</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-destinationdomain.html" style="text-decoration: none;">Dimension : <code translate="No">destination_domain</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-destinationpath.html" style="text-decoration: none;">Dimension : <code translate="No">destination_path</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-devicemanufacturer.html" style="text-decoration: none;">Dimension : <code translate="No">device_manufacturer</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-devicetype.html" style="text-decoration: none;">Dimension : <code translate="No">device_type</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-deviceos.html" style="text-decoration: none;">Dimension : <code translate="No">device_os</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-city.html" style="text-decoration: none;">Dimension : <code translate="No">city</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-country.html" style="text-decoration: none;">Dimension : <code translate="No">country</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-region.html" style="text-decoration: none;">Dimension : <code translate="No">region</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-livestream.html" style="text-decoration: none;">Dimension : <code translate="No">live_stream</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-referrerdomain.html" style="text-decoration: none;">Dimension : <code translate="No">referrer_domain</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-sourcetype.html" style="text-decoration: none;">Dimension : <code translate="No">source_type</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-searchterms.html" style="text-decoration: none;">Dimension : <code translate="No">search_terms</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-socialplatform.html" style="text-decoration: none;">Dimension : <code translate="No">social_platform</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-player.html" style="text-decoration: none;">Dimension : <code translate="No">player</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-video.html" style="text-decoration: none;">Dimension : <code translate="No">video</code></a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/dimension-guides/dimension-viewer.html" style="text-decoration: none;">Dimension : <code translate="No">viewer</code></a></li>
+                  
+                </ul>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+      
+        <div class="col-12 col-lg-4 py-3">
+          <div class="card shadow-sm" style="background: white" onclick="window.location.href = '/analytics/code-samples/index.html'">
+            <div class="card-body">
+              <div>
+                
+                <h5 class="card-title text-center m-2">Exemples de codes</h5>
+                <ul class="list-group list-group-flush">
+                  
+                  <li class="list-group-item"><a href="/analytics/code-samples/analytics-api-sample-concurrent-viewers-live-events.html" style="text-decoration: none;">Visionneuses simultanées pour les événements en direct</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/code-samples/analytics-api-sample-daily-analytics-report-generator.html" style="text-decoration: none;">Générateur de rapports analytiques quotidiens</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/code-samples/analytics-api-sample-destinations-report.html" style="text-decoration: none;">Rapport sur les destinations</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/code-samples/analytics-api-sample-geographical-analytics-report.html" style="text-decoration: none;">Rapport d'analyse géographique</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/code-samples/analytics-api-sample-unique-users-day.html" style="text-decoration: none;">Utilisateurs uniques par jour</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/code-samples/analytics-api-sample-video-engagement-graph.html" style="text-decoration: none;">Graphique d'engagement vidéo</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/code-samples/analytics-api-sample-video-report-player-and-day.html" style="text-decoration: none;">Rapport vidéo par joueur et jour</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/code-samples/analytics-api-sample-video-report-reference-id.html" style="text-decoration: none;">Rapport vidéo par ID de référence</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/code-samples/analytics-api-sample-video-report-tags.html" style="text-decoration: none;">Rapport vidéo par balises</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/code-samples/analyticscms-apis-sample-analytics-playlists.html" style="text-decoration: none;">Analyse par listes de lecture</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/code-samples/analyticscms-apis-sample-recently-added-videos.html" style="text-decoration: none;">Vidéos récemment ajoutées</a></li>
+                  
+                  <li class="list-group-item"><a href="/analytics/code-samples/code-sample-video-analytics-report-country-and-day.html" style="text-decoration: none;">Rapport d'analyse vidéo par pays et jour</a></li>
+                  
+                </ul>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </article>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-map-pin"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">Mise en route</span>
-              </h5>
-              <div class="card-text">
-                Cette section donne un aperçu des API, de l'authentification des demandes d'API, des outils de test et de la création d'applications web simples à l'aide des API.
-              </div>
-              <a class="card-link-mask" href="/getting-started/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-circle-info"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">Informations générales</span>
-              </h5>
-              <div class="card-text">
-                Ces rubriques s'appliquent à la plupart ou à l'ensemble des API.
-              </div>
-              <a class="card-link-mask" href="/general/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-chart-line-up"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API d'analyse</span>
-              </h5>
-              <div class="card-text">
-                L'API Analytics vous permet d'obtenir des données d'analyse pour vos comptes Video Cloud par programme. Vous pouvez également afficher les rapports d'analyse intégrés dans le module d'analyse de Video Cloud Studio. L'accès aux données par programmation vous offre une flexibilité supplémentaire.
-              </div>
-              <a class="card-link-mask" href="/analytics/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-folder-arrow-up"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">Aspera</span>
-              </h5>
-              <div class="card-text">
-                Brightcove propose une solution simple et flexible pour ajouter des vidéos et des ressources multimédias à Video Cloud à l'aide d' Aspera. Les rubriques de cette section expliquent les détails.
-              </div>
-              <a class="card-link-mask" href="/aspera/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-thin fa-screen-users"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API d'audience</span>
-              </h5>
-              <div class="card-text">
-                L'API Audience vous permet de récupérer les données d'événement et de prospect. Cette API s'adresse principalement à ceux qui travaillent dans le domaine de l'automatisation du marketing.
-              </div>
-              <a class="card-link-mask" href="/audience/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-cloud-bolt"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API Cloud Playout</span>
-              </h5>
-              <div class="card-text">
-                Il existe deux API pour Cloud Playout : 1) L'API EPG utilisée pour obtenir un guide de programmation électronique (EPG) pour une chaîne ; 2) L'API Channels utilisée pour récupérer des informations sur les chaînes.
-              </div>
-              <a class="card-link-mask" href="/cloud-playout-apis/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-folder-grid"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API CMS</span>
-              </h5>
-              <div class="card-text">
-                L'API CMS offre un accès en lecture sans mise en cache à toutes vos données médiatiques.
-              </div>
-              <a class="card-link-mask" href="/cms/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-laptop-mobile"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API de CV multi-appareils (XDR)</span>
-              </h5>
-              <div class="card-text">
-                La fonction de reprise entre appareils (XDR) vous permet de commencer à regarder une vidéo sur un appareil, comme un téléphone portable, et de passer à un autre appareil, comme votre téléviseur domestique.
-              </div>
-              <a class="card-link-mask" href="/xdr/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-filter"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API de collecte de données</span>
-              </h5>
-              <div class="card-text">
-                Cette section fournit des informations sur l'utilisation de l'API de collecte de données pour envoyer des données d'analyse à Brightcove. Notez que vous n'avez pas besoin d'utiliser cette API sauf si vous utilisez un lecteur non-BrightCove.
-              </div>
-              <a class="card-link-mask" href="/data-collection/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-memo-circle-check"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API de règles de livraison</span>
-              </h5>
-              <div class="card-text">
-                Les règles de diffusion vous permettent de personnaliser la diffusion de vos médias en fonction de vos objectifs commerciaux.
-              </div>
-              <a class="card-link-mask" href="/delivery-rules/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-truck"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API du système de livraison</span>
-              </h5>
-              <div class="card-text">
-                L'API du système de diffusion permet de créer un référentiel git associé à un lecteur Brightcove et d'y stocker les fichiers associés au lecteur.
-              </div>
-              <a class="card-link-mask" href="/delivery-system/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-cloud-arrow-up"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API d'ingestion dynamique</span>
-              </h5>
-              <div class="card-text">
-                L'API Dynamic Ingest est utilisée pour ingérer des vidéos et d'autres ressources multimédias dans Video Cloud.
-              </div>
-              <a class="card-link-mask" href="/dynamic-ingest/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-image"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">Image API</span>
-              </h5>
-              <div class="card-text">
-                L'API Image vous permet de redimensionner, recadrer et faire pivoter les images.
-              </div>
-              <a class="card-link-mask" href="/images/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-sliders"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">Ingérer l'API des profils</span>
-              </h5>
-              <div class="card-text">
-                L'API Ingest Profiles est utilisée pour gérer les profils d'ingeste, qui définissent ce qui se passe lorsque vous ingérez des vidéos et d'autres ressources multimédia dans Video Cloud.
-              </div>
-              <a class="card-link-mask" href="/ingest-profiles/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-cloud-arrow-up"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">Ingestion par MRSS</span>
-              </h5>
-              <div class="card-text">
-                Vous pouvez intégrer des vidéos et des ressources dans le nuage de vidéos à l'aide d'un flux MRSS.
-              </div>
-              <a class="card-link-mask" href="/mrss-ingestion/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-hand-back-point-up"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API d'interactivité Brightcove</span>
-              </h5>
-              <div class="card-text">
-                Les API d'interactivité de Brightcove vous permettent de gérer et d'améliorer vos interactions et de créer vos propres interactions personnalisées.
-              </div>
-              <a class="card-link-mask" href="/interactivity/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-sidebar-flip"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API d'expérience sur la page</span>
-              </h5>
-              <div class="card-text">
-                Gérez les expériences en page de votre galerie Brightcove à l'aide de l'API d'expérience en page. Cette API s'adresse principalement à ceux qui intègrent Gallery avec un CMS ou un autre système.
-              </div>
-              <a class="card-link-mask" href="/ipx/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-satellite-dish"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API en direct</span>
-              </h5>
-              <div class="card-text">
-                L'API Live vous permet de créer et de gérer des émissions en direct.
-              </div>
-              <a class="card-link-mask" href="/live-api/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-shield"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API OAuth</span>
-              </h5>
-              <div class="card-text">
-                La mise en œuvre d'OAuth2 par Brightcove vous permet de gérer les informations d'identification des clients et d'obtenir des clés d'accès pour diverses API de Brightcove.
-              </div>
-              <a class="card-link-mask" href="/oauth/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-play"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API de lecture</span>
-              </h5>
-              <div class="card-text">
-                L'API de lecture est utilisée pour récupérer les données de vidéo et de liste de lecture à partir de Video Cloud. Il est généralement utilisé pour transmettre des données vidéo à un lecteur sur une page Web ou dans une application mobile.
-              </div>
-              <a class="card-link-mask" href="/playback/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-play"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API de gestion des joueurs</span>
-              </h5>
-              <div class="card-text">
-                La gestion des lecteurs fait référence à la création, à l'édition et à la gestion des lecteurs en tant que ressource pour les éditeurs.
-              </div>
-              <a class="card-link-mask" href="/player-management/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-solid fa-hand"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">Restrictions de lecture</span>
-              </h5>
-              <div class="card-text">
-                Les restrictions de lecture de Brightcove offrent un moyen évolutif et expressif de gérer la lecture vidéo.
-              </div>
-              <a class="card-link-mask" href="/playback-restrictions/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-key-skeleton-left-right"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API de règles</span>
-              </h5>
-              <div class="card-text">
-                L'API Policy est utilisée pour créer ou obtenir des clés qui peuvent être utilisée pour accéder à l'API de lecture.
-              </div>
-              <a class="card-link-mask" href="/policy/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-share-nodes"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API sociale</span>
-              </h5>
-              <div class="card-text">
-                L'API sociale permet d'obtenir le statut de partage social et l'historique de vos vidéos.
-              </div>
-              <a class="card-link-mask" href="/social/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-solid fa-share-all"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API de syndication sociale</span>
-              </h5>
-              <div class="card-text">
-                L'API Social Syndication est utilisée pour générer des flux MRSS à partir d'une vidéothèque Video Cloud.
-              </div>
-              <a class="card-link-mask" href="/social-syndication/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-rectangle-ad"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">API SSAI</span>
-              </h5>
-              <div class="card-text">
-                Le SSAI de Brightcove insère des publicités directement dans le flux de contenu vidéo. Il fonctionne donc sur tous les appareils capables de lire des vidéos en continu.
-              </div>
-              <a class="card-link-mask" href="/ssai/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-chalkboard-user"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">Entraînement</span>
-              </h5>
-              <div class="card-text">
-                Obtenez une formation sur les produits Brightcove.
-              </div>
-              <a class="card-link-mask" href="/training/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card-hover card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">
-                <span class="span-icon card-icon-holder icon-theme me-2"> <i class="fa-regular fa-comments-question-check"></i> </span><!--//card-icon-holder-->
-                <span class="card-title-text">Assistance</span>
-              </h5>
-              <div class="card-text">
-                Découvrez comment obtenir de l'aide auprès du service d'assistance de Brightcove.
-              </div>
-              <a class="card-link-mask" href="/support/index.html"></a>
-            </div><!--//card-body-->
-          </div><!--//card-->
-        </div><!--//col-->
-        
-      </div><!--//row-->
-    </div><!--//container-->
-  </div><!--//container-->
-</div><!--//page-content-->
-
-
-
-<!-- <style translate="no">
-  h1 {
-    font-weight: bold;
-    color: rgb(9, 7, 140);
-  }
-</style>
-<article class="landing-page-wrapper">
-  <section class="landing-page-header" id="landing_page_header">
-    <h1>Video Cloud Platform APIs Documentation</h1>
-
-    <p>With Video Cloud you can deliver fast, innovative, TV-like experiences out-of-the-box, dynamically insert server-side ads to maximize revenue, and reach your audiences wherever they are.
-
-<p>
-  The platform APIs are RESTful APIs that allow you access almost every aspect of the Video Cloud platform programmatically. Typically the APIs are used to create integration between your CMS or other system, or to build custom apps to serve the specific needs of your users.
-</p></p>
-  </section>
-  <section class="card-wrapper">
-    
-    <section class="bcls-card-small" onclick="window.location.href='/getting-started/index.html'">
-      <div class="card-content">
-        <h2>Getting Started</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/getting-started/getting-started-brightcove-apis.html">Overview: Platform APIs</a></li>
-          
-          <li><a href="/getting-started/authentication-brightcove-api-requests.html">Authentication for API Requests</a></li>
-          
-          <li><a href="/getting-started/concepts-testing-tools-brightcove-apis.html">Testing Tools for Brightcove APIs</a></li>
-          
-          <li><a href="/getting-started/learning-guide-using-rest-apis.html">Learning Guide: Using the REST APIs</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/getting-started/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/general/index.html'">
-      <div class="card-content">
-        <h2>General Information</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/general/integrating-your-cms-video-cloud.html">Integrating Your CMS with Video Cloud</a></li>
-          
-          <li><a href="/general/managing-api-authentication-credentials.html">Managing API Authentication Credentials</a></li>
-          
-          <li><a href="/general/all-api-references.html">All API References</a></li>
-          
-          <li><a href="/general/platform-api-code-samples.html">Platform API Code Samples</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/general/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/analytics/index.html'">
-      <div class="card-content">
-        <h2>Analytics API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/analytics/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/analytics/general/index.html">General Information</a></li>
-          
-          <li><a href="/analytics/references/index.html">References</a></li>
-          
-          <li><a href="/analytics/dimension-guides/index.html">Dimension Guides</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/analytics/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/aspera/index.html'">
-      <div class="card-content">
-        <h2>Aspera</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/aspera/overview.html">Overview: Using Aspera for Ingestion to Video Cloud</a></li>
-          
-          <li><a href="/aspera/manifest-metadata-reference.html">Manifest/Metadata Reference</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/aspera/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/audience/index.html'">
-      <div class="card-content">
-        <h2>Audience API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href=" /audience/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/audience/references/index.html">References</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/audience/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/cloud-playout-apis/index.html'">
-      <div class="card-content">
-        <h2>Cloud Playout APIs</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href=" /cloud-playout-apis/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/cloud-playout-apis/references/index.html">References</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/cloud-playout-apis/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/cms/index.html'">
-      <div class="card-content">
-        <h2>CMS API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/cms/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/cms/references/index.html">References</a></li>
-          
-          <li><a href="/cms/searching/index.html">Searching</a></li>
-          
-          <li><a href="/cms/managing-videos/index.html">Managing Videos/Assets</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/cms/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/xdr/index.html'">
-      <div class="card-content">
-        <h2>Cross-Device Resume (XDR) API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/xdr/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/xdr/index.html">Guides</a></li>
-          
-          <li><a href="/xdr/references/index.html">References</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/xdr/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/data-collection/index.html'">
-      <div class="card-content">
-        <h2>Data Collection API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/data-collection/getting-started/overview-data-collection-api-v2.html">Overview: Data Collection API</a></li>
-          
-          <li><a href="/data-collection/getting-started/data-collection-api-sample.html">Data Collection API Sample</a></li>
-          
-          <li><a href="/data-collection/references/reference.html">Data Collection API Reference</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/data-collection/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/delivery-rules/index.html'">
-      <div class="card-content">
-        <h2>Delivery Rules API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/delivery-rules/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/delivery-rules/guides/index.html">Guides</a></li>
-          
-          <li><a href="/delivery-rules/references/index.html">References</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/delivery-rules/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/delivery-system/index.html'">
-      <div class="card-content">
-        <h2>Delivery System API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/delivery-system/overview-delivery-system-api.html">Overview: Delivery System API</a></li>
-          
-          <li><a href="/delivery-system/step-step-delivery-system-api.html">Step-by-Step: Delivery System API</a></li>
-          
-          <li><a href="/delivery-system/delivery-system-api-git-overview.html">Git Overview</a></li>
-          
-          <li><a href="/delivery-system/references/reference.html">Delivery System API Reference</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/delivery-system/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/dynamic-ingest/index.html'">
-      <div class="card-content">
-        <h2>Dynamic Ingest API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/dynamic-ingest/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/dynamic-ingest/general/index.html">General Information</a></li>
-          
-          <li><a href="/dynamic-ingest/references/index.html">References</a></li>
-          
-          <li><a href="/dynamic-ingest/ingest-guides/index.html">Ingest Guides</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/dynamic-ingest/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/images/index.html'">
-      <div class="card-content">
-        <h2>Image API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/images/getting-started/overview.html">Overview: Image API</a></li>
-          
-          <li><a href="/images/references/reference.html">Image API Reference</a></li>
-          
-          <li><a href="/images/references/image-token-api-reference.html">Image Token API Reference</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/images/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/ingest-profiles/index.html'">
-      <div class="card-content">
-        <h2>Ingest Profiles API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/ingest-profiles/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/ingest-profiles/guides/index.html">Guides</a></li>
-          
-          <li><a href="/ingest-profiles/references/index.html">References</a></li>
-          
-          <li><a href="/ingest-profiles/code-samples/index.html">Code Samples</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/ingest-profiles/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/mrss-ingestion/index.html'">
-      <div class="card-content">
-        <h2>Ingestion via MRSS</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/mrss-ingestion/getting-started/ingesting_from_a_remotely_hosted_mrss_feed.html">Ingesting via an MRSS Feed</a></li>
-          
-          <li><a href="/mrss-ingestion/getting-started/xml-manifest-for-ingestion-via-mrss.html">XML Manifest for Ingestion via MRSS</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/mrss-ingestion/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/interactivity/index.html'">
-      <div class="card-content">
-        <h2>Brightcove Interactivity APIs</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/interactivity/addon-api/reference.html">Addon API</a></li>
-          
-          <li><a href="/interactivity/annotation-api/reference.html">Annotations API</a></li>
-          
-          <li><a href="/interactivity/embed-api/reference.html">Embed API</a></li>
-          
-          <li><a href="/interactivity/extension-api/reference.html">Extension API</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/interactivity/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/ipx/index.html'">
-      <div class="card-content">
-        <h2>In-Page Experience API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href=" /ipx/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/ipx/references/index.html">References</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/ipx/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/live-api/index.html'">
-      <div class="card-content">
-        <h2>Live API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/live-api/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/live-api/guides/index.html">Guides</a></li>
-          
-          <li><a href="/live-api/ssai/index.html">SSAI</a></li>
-          
-          <li><a href="/live-api/code-samples/index.html">Code Samples</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/live-api/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/oauth/index.html'">
-      <div class="card-content">
-        <h2>OAuth API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/oauth/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/oauth/guides/index.html">Guides</a></li>
-          
-          <li><a href="/oauth/references/index.html">References</a></li>
-          
-          <li><a href="/oauth/code-samples/index.html">Code Samples</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/oauth/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/playback/index.html'">
-      <div class="card-content">
-        <h2>Playback API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/playback/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/playback/guides/index.html">Guides</a></li>
-          
-          <li><a href="/playback/references/index.html">References</a></li>
-          
-          <li><a href="/playback/code-samples/index.html">Code Samples</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/playback/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/player-management/index.html'">
-      <div class="card-content">
-        <h2>Player Management API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/player-management/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/player-management/guides/index.html">Guides</a></li>
-          
-          <li><a href="/player-management/references/index.html">References</a></li>
-          
-          <li><a href="/player-management/code-samples/index.html">Code Samples</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/player-management/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/playback-restrictions/index.html'">
-      <div class="card-content">
-        <h2>Playback Restrictions</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/playback-restrictions/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/playback-restrictions/guides/index.html">Guides</a></li>
-          
-          <li><a href="/playback-restrictions/references/auth-index.html">Authentication</a></li>
-          
-          <li><a href="/playback-restrictions/references/index.html">References</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/playback-restrictions/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/policy/index.html'">
-      <div class="card-content">
-        <h2>Policy API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/policy/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/policy/references/index.html">References</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/policy/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/social/index.html'">
-      <div class="card-content">
-        <h2>Social API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/social/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/social/references/index.html">References</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/social/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/social-syndication/index.html'">
-      <div class="card-content">
-        <h2>Social Syndication API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/social-syndication/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/social-syndication/references/index.html">References</a></li>
-          
-          <li><a href="/social-syndication/code-samples/index.html">Code Samples</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/social-syndication/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/ssai/index.html'">
-      <div class="card-content">
-        <h2>SSAI API</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/ssai/getting-started/index.html">Getting Started</a></li>
-          
-          <li><a href="/ssai/references/index.html">References</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/ssai/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/training/index.html'">
-      <div class="card-content">
-        <h2>Training</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/training/online-training-courses.html">Online Training Courses</a></li>
-          
-          <li><a href="/training/register-training.html">Register for Instructor-led Training</a></li>
-          
-          <li><a href="/training/brightcove-university.html">Brightcove University Training Courses</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/training/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/support/index.html'">
-      <div class="card-content">
-        <h2>Support</h2>
-        <ul class="bcls-topic-list">
-          
-          <li><a href="/support/contact-sales.html">Contact Sales</a></li>
-          
-          <li><a href="/support/viewing-brightcove-system-status-page.html">Viewing the Brightcove System Status Page</a></li>
-          
-          <li><a href="/support/known-issues-studio-brightcove-player-and-apis.html">Known Issues</a></li>
-          
-          <li><a href="/support/opening-case-with-brightcove-support.html">Opening a Support Case</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/support/index.html">View all...</a></p>
-      </div>
-    </section>
-    
-  </section>
-</article> -->
+<footer class="footer">
+    <div class="container text-center py-5">
+        <div>Vous recherchez quelque chose ? Accédez à notre page <a class="theme-link" href="https://support.brightcove.com/search.html" target="_blank">de recherche</small>
+    </div>
+</footer>
 </div>
 </div>
 </div>
@@ -4458,73 +3792,73 @@
   
   </script>
   
-    <!-- Javascript -->          
-    <script src="/assets/s-site-assets-template-stylesheets/plugins/popper.min.js"></script>
-    <script src="/assets/s-site-assets-template-stylesheets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-    
-    <!-- Page Specific JS -->
-    <script src="/assets/s-site-assets-template-stylesheets/plugins/smoothscroll.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
-    <script src="/assets/s-site-assets-template-stylesheets/js/highlight-custom.js"></script> 
-    <script src="/assets/s-site-assets-template-stylesheets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
-    <script src="/assets/s-site-assets-template-stylesheets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
-    <script src="/assets/s-site-assets-template-stylesheets/js/docs.js"></script> 
-    
-    <!-- original footer components -->
+  <!-- Javascript -->          
+  <script src="/assets/s-site-assets-template-stylesheets/plugins/popper.min.js"></script>
+  <script src="/assets/s-site-assets-template-stylesheets/plugins/bootstrap/js/bootstrap.min.js"></script>  
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    
-    <script src="/assets/s-site-assets-scripts/https-fix.js"></script>
-    <script src="/assets/s-site-assets-scripts/setDate.js"></script>
-    <script src="/assets/s-site-assets-scripts/selector.js"></script>
-    
-    <script src="/assets/s-site-assets-scripts/prism.js"></script>
-    
-    <script src="/assets/s-site-assets-scripts/site.js"></script>
-    <script src="https://support.brightcove.com/site-assets/js/learning-paths/learning-paths.js"></script>
-    <!-- <script src="/assets/s-site-assets-scripts/site.js"></script> -->
-    <script src="/assets/s-site-assets-scripts/tabs.js"></script>
-    <!-- <script src="/assets/s-site-assets-scripts/hide-nav.js"></script> -->
-    <script src="/assets/js/sites_nav.js"></script>
-    <script src="/assets/s-site-assets-scripts/bcls-utils.js"></script>
-    <script src="/assets/s-site-assets-scripts/local-link-fix.js"></script>
-    <script src="/assets/s-site-assets-scripts/sajari-reindex.js"></script>
-    <script src="/assets/js/feedback.js"></script>
-    
-    <script src="/assets/s-site-assets-scripts/sajari-search-foot.js"></script>
-    
-    <script translate="no">
-      feather.replace()
-    </script>
-    <!-- <script src="/assets/js/sajari-index.js"></script> -->
-    <script src="/assets/s-site-assets-scripts/in-app.js"></script>
-    <style translate="no">
-      a.sj-paginator__page-number.sj-paginator__page-number--current.css-so0ov7 {
-        background-color: lightblue;
-      }
-      div.sj-tabs__tab {
-        margin-top: 3rem;
-        margin-left: .3rem;
-        border-top-left-radius: .4rem;
-        border-top-right-radius: .4rem;
-        background-color:#e8e8e8;
-      }
 
-      div.sj-tabs__tab.sj-tabs__tab--selected {
-        border-bottom-color: crimson;
-        background-color: #f8f8f8;
-      }
+  <!-- Page Specific JS -->
+  <script src="/assets/s-site-assets-template-stylesheets/plugins/smoothscroll.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+  <script src="/assets/s-site-assets-template-stylesheets/js/highlight-custom.js"></script>  -->
+  <script src="/assets/s-site-assets-template-stylesheets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+  <script src="/assets/s-site-assets-template-stylesheets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+  <script src="/assets/s-site-assets-template-stylesheets/js/docs.js"></script> 
 
-      p.sj-results__result__description.css-p9jvyt {
-        font-size: 1rem;
-      }
+  <!-- original footer components -->
 
-      .sj-result__text.css-31l7gp h3 {
-        color: navy;
-        font-size: 1.4rem;
-      }
-      </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+  <script src="/assets/s-site-assets-scripts/https-fix.js"></script>
+  <script src="/assets/s-site-assets-scripts/setDate.js"></script>
+  <script src="/assets/s-site-assets-scripts/selector.js"></script>
+  
+  <script src="/assets/s-site-assets-scripts/prism.js"></script>
+  
+  <script src="/assets/s-site-assets-scripts/site.js"></script>
+  <script src="https://support.brightcove.com/site-assets/js/learning-paths/learning-paths.js"></script>
+  <!-- <script src="/assets/s-site-assets-scripts/site.js"></script> -->
+  <script src="/assets/s-site-assets-scripts/tabs.js"></script>
+  <script src="/assets/js/sites_nav.js"></script>
+  <script src="/assets/s-site-assets-scripts/bcls-utils.js"></script>
+  <script src="/assets/s-site-assets-scripts/local-link-fix.js"></script>
+  <script src="/assets/s-site-assets-scripts/sajari-reindex.js"></script>
+  <script src="/assets/js/feedback.js"></script>
+  
+  <script src="/assets/s-site-assets-scripts/sajari-search-foot.js"></script>
+  
+  <script translate="no">
+    feather.replace()
+  </script>
+  <!-- <script src="/assets/js/sajari-index.js"></script> -->
+  <script src="/assets/s-site-assets-scripts/in-app.js"></script>
+  <style translate="no">
+    a.sj-paginator__page-number.sj-paginator__page-number--current.css-so0ov7 {
+      background-color: lightblue;
+    }
+    div.sj-tabs__tab {
+      margin-top: 3rem;
+      margin-left: .3rem;
+      border-top-left-radius: .4rem;
+      border-top-right-radius: .4rem;
+      background-color:#e8e8e8;
+    }
+
+    div.sj-tabs__tab.sj-tabs__tab--selected {
+      border-bottom-color: crimson;
+      background-color: #f8f8f8;
+    }
+
+    p.sj-results__result__description.css-p9jvyt {
+      font-size: 1rem;
+    }
+
+    .sj-result__text.css-31l7gp h3 {
+      color: navy;
+      font-size: 1.4rem;
+    }
+    </style>
 
   </body>
 </html> 
